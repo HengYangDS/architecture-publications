@@ -1,0 +1,8 @@
+../../build/
+../../node_modules/
+../../.venv/
+../../.serena/
+# Captured source originals remain byte-exact; native tests verify their pins.
+../../publications/ethos/artwork/
+../../publications/ethos/design/
+../../publications/aigw-client/model.json

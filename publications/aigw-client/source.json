@@ -1,5 +1,22 @@
 {
   "repository": "aigw-client",
   "sourceCommit": "e2eca41303f1aa7fd51ccc542bc15da40153ea5f",
-  "sourceTree": "4c9e205bf4c04021561cc1b231dae290b098f3b1"
+  "sourceTree": "4c9e205bf4c04021561cc1b231dae290b098f3b1",
+  "preservationCommit": "e30a26d5eb1b70355398b2fa5522785bf75a0eb8",
+  "members": [
+    {
+      "source": "architecture/edition-provider/claim-model.json",
+      "target": "model.json",
+      "bytes": 15397,
+      "sha256": "9ccbbb6f2a2b0f5543c3e058dd1e56a4ab5bf6253e8bfd08d1866f95830320b2"
+    },
+    {
+      "source": "architecture/edition-provider/edition.json",
+      "target": "edition/project.json",
+      "bytes": 16661,
+      "sha256": "4f5a01a2f36c8047ba3175582349fe6a9cea332ed10f6d595632b283a5a2aedc",
+      "sourceBytes": 16661,
+      "sourceSha256": "1baa72e1bdfef546fff81c2b4e700f0b28800d453e52bf8fa125f0764666c5d1"
+    }
+  ]
 }

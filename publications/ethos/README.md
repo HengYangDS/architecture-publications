@@ -1,8 +1,9 @@
 # ETHOS Architecture
 
 This independent editorial work retains exact original design and artwork from
-[source.json](source.json). ETHOS itself owns no diagram exporter, publication
-package, editorial contract or drawing test.
+[source.json](source.json). ETHOS must not own a diagram exporter, publication
+package, editorial contract or drawing test. This preservation alone does not
+prove that the separate source-removal transition has finished.
 
 - [Design](design/declaration.json): preserved assertions, provenance and visual obligations.
 - [Interactive artwork](artwork/interactive/edition.json): original page definitions and bindings.

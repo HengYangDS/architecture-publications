@@ -26,10 +26,7 @@
     }
   ],
   "providers": [],
-  "media": [
-    "static",
-    "interactive"
-  ],
+  "media": ["static", "interactive"],
   "toolchain": {
     "profile": "portable"
   }
