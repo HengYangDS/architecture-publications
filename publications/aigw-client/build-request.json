@@ -1,0 +1,36 @@
+{
+  "schema": "architecture.build-request/v1",
+  "edition": {
+    "kind": "direct",
+    "root": "edition",
+    "manifest": "project.json"
+  },
+  "sources": [
+    {
+      "id": "client-projection",
+      "namespace": "aigw/client-projection",
+      "format": {
+        "id": "architecture.claim-model",
+        "version": "2"
+      },
+      "claimant": "aigw-cli",
+      "revision": {
+        "kind": "content",
+        "algorithm": "sha256"
+      },
+      "input": {
+        "kind": "pin",
+        "path": "model.json",
+        "sha256": "9ccbbb6f2a2b0f5543c3e058dd1e56a4ab5bf6253e8bfd08d1866f95830320b2"
+      }
+    }
+  ],
+  "providers": [],
+  "media": [
+    "static",
+    "interactive"
+  ],
+  "toolchain": {
+    "profile": "portable"
+  }
+}
