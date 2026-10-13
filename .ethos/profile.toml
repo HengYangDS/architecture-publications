@@ -1,0 +1,6 @@
+profile_id = "architecture-publications"
+
+[openspec]
+material_paths = [
+    "**",
+]
