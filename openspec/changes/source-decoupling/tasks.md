@@ -7,7 +7,7 @@
 
 - [x] 2.1 Build the selected AIGW work through Publisher's installed public entry with unchanged source Git state; `raster-feasibility-installed-locked-probe-20261014.json` at the Publisher evidence owner, exact request SHA-256 `1dc5de998b54…`.
 - [x] 2.2 Verify all 42 original ETHOS semantic and artwork members against source commit `e60fec5` and external preservation commit `e30a26d`; historical composition is not current rendering acceptance.
-- [ ] 2.3 Commit the exact editorial preservation and verify source cleanup and accepted delivery retention.
+- [x] 2.3 Commit the exact editorial preservation and verify source cleanup and accepted delivery retention; external accepted `7d9dda6`, ETHOS `1a12fde`, AIGW `03e210c`, and four unchanged Documents digests.
 
 ## 3. Native quality
 
