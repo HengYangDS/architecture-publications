@@ -1,6 +1,7 @@
 # publication-inputs Specification
 
 ## Purpose
+
 Keep architecture publication inputs independently owned and reproducible
 through pinned source objects, exact member custody and explicit editorial
 identity, without drawing-specific code or effects in source products.
