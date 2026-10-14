@@ -13,5 +13,5 @@
 
 - [x] 3.1 Verify current and Git-retained member custody through one bounded checker and focused counterexamples; four native tests pass.
 - [x] 3.2 Pass native behavior, static-analysis and formatting proof on signed commit `29daf4f`; statements, lines, functions and V8 branches are 100%, native proof artifact `a6e2e16e…`.
-- [ ] 3.3 Require signed native commits and pass exact-head proof after canonical specification formatting.
-- [ ] 3.4 Accept the official archive and retire the owned lane with its preservation evidence verified.
+- [x] 3.3 Require signed native archive commits and pass exact-head proof using the existing local signer and trust anchor; proof artifact `cf938497…`.
+- [x] 3.4 Preserve the failed archive and incompatible signature-repair originals, and verify exact compensation before the final native archive; two verified recovery bundles at the Publisher evidence owner.
