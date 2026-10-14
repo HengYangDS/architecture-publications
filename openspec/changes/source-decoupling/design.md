@@ -36,6 +36,11 @@ Native ETHOS code-quality providers measure the small input checker and its
 tests; the original Prettier owns formatting. No new source-side obligations
 or renderer implementation are introduced by these input checks.
 
+The repository's native commit policy requires SSH-signed conventional commits,
+including generated archive transitions. The final canonical specification is
+formatted with the original Prettier before exact-head proof and acceptance.
+Failed archive originals remain in Git and the bounded recovery evidence.
+
 ## Acceptance
 
 A complete external input can be qualified and rebuilt with no drawing-specific
