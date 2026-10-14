@@ -22,8 +22,14 @@ Generated output and bounded verification remain under ignored `build/`.
 Run `node --test tests/publication-inputs.test.mjs` to verify the current authored
 members against their pins and confirm that direct builds consume local data.
 Each `source.json` records the original source revision, preservation commit and
-current member hashes. Original bytes remain recoverable from that Git commit.
+member hashes. Current data is read locally; a member with `storage: "git"` is
+read from its exact preservation commit in this repository. Original executable
+adapters are recovery material, not active build inputs or a second renderer.
 These checks neither execute source products nor prove artwork qualification.
+
+`ethos prove --full --execute --json` applies the same input tests through native
+ETHOS coverage and static-analysis providers plus the original Prettier check.
+The private package declares commands only and installs no dependencies.
 
 Run `prettier --config .config/checks/prettier.json --ignore-path
 .config/checks/prettier.ignore --check .` for formatting; replace `--check` with

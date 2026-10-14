@@ -22,3 +22,16 @@ imply source endorsement or current implementation acceptance.
 - **WHEN** an external work uses an exact original input
 - **THEN** its origin and source pins remain inspectable
 - **AND** editorial and source acceptance remain separately recorded
+
+### Requirement: Preserved originals do not become active compatibility code
+
+The editorial repository SHALL distinguish current local members from originals
+retained in its exact Git preservation commit. Both SHALL keep their declared
+member hashes. Input qualification SHALL use native behavior, coverage, static
+analysis and formatting without executing either source product.
+
+#### Scenario: A removed adapter is needed for recovery
+
+- **WHEN** a historical member is selected with Git storage
+- **THEN** its original bytes are verified at the preservation commit
+- **AND** the member is not required as executable code in the current worktree

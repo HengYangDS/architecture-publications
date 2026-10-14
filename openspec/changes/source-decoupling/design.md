@@ -29,6 +29,13 @@ source tree and source-member digests, external origin and declared limits.
 Do not imply source endorsement or current implementation acceptance.
 Accepted user-delivery bytes are preserved throughout migration.
 
+Incomplete original executable adapters remain recoverable from their exact
+preservation commit, not as active code with broken imports. The same member
+manifest selects current files or Git-retained originals and verifies both.
+Native ETHOS code-quality providers measure the small input checker and its
+tests; the original Prettier owns formatting. No new source-side obligations
+or renderer implementation are introduced by these input checks.
+
 ## Acceptance
 
 A complete external input can be qualified and rebuilt with no drawing-specific

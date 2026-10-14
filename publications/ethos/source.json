@@ -236,25 +236,29 @@
       "source": "integrations/architecture-publisher/src/edition/static/natural-overview.mjs",
       "target": "artwork/static/natural-overview.mjs",
       "bytes": 84458,
-      "sha256": "ad81af2ad7d3dcc19283a4f33d807b516ddc4dde18b55156fd9a7e445724ad73"
+      "sha256": "ad81af2ad7d3dcc19283a4f33d807b516ddc4dde18b55156fd9a7e445724ad73",
+      "storage": "git"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/static/natural-semantics.mjs",
       "target": "artwork/static/natural-semantics.mjs",
       "bytes": 42744,
-      "sha256": "ad071c491d994883e00ed980feace2470941ff61f9de17c56ff9a66f0796309b"
+      "sha256": "ad071c491d994883e00ed980feace2470941ff61f9de17c56ff9a66f0796309b",
+      "storage": "git"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/static/effect-matrix.mjs",
       "target": "artwork/static/effect-matrix.mjs",
       "bytes": 5866,
-      "sha256": "af082aa58ecc3038e24ff649d3ef296941ed7b64350829ae4ac5f0b0a53e9f16"
+      "sha256": "af082aa58ecc3038e24ff649d3ef296941ed7b64350829ae4ac5f0b0a53e9f16",
+      "storage": "git"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/static/trace-scene.mjs",
       "target": "artwork/static/trace-scene.mjs",
       "bytes": 11528,
-      "sha256": "d5dd4b9283d88fc376713b63dc1e0d8c7f515ffd8459134f28cb7053da2c6230"
+      "sha256": "d5dd4b9283d88fc376713b63dc1e0d8c7f515ffd8459134f28cb7053da2c6230",
+      "storage": "git"
     }
   ]
 }
