@@ -6,7 +6,7 @@
 
 ## 2. Commit Grammar
 
-- [ ] 2.1 Remove `subject_pattern` from `[commit_policy]` and keep the signing settings; done when commit admission accepts the removal commit under the derived grammar and the paradigm report has no gap.
+- [x] 2.1 Remove `subject_pattern` from `[commit_policy]` and keep the signing settings; done when commit admission accepts the removal commit under the derived grammar and the paradigm report has no gap. The removal commit is admitted and signed, and the paradigm report has no gap.
 
 ## Workflow follow-up
 
