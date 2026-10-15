@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "test": "node --test tests/publication-inputs.test.mjs",
-    "format:check": "prettier --config .config/checks/prettier.json --ignore-path .config/checks/prettier.ignore --check .",
-    "format:fix": "prettier --config .config/checks/prettier.json --ignore-path .config/checks/prettier.ignore --write ."
+    "format:check": "prettier --config .config/checks/prettier/prettier.toml --ignore-path .config/checks/prettier/prettierignore --check . && taplo fmt --config .config/checks/taplo/taplo.toml --check .ethos/*.toml .config/checks/*/*.toml",
+    "format:fix": "prettier --config .config/checks/prettier/prettier.toml --ignore-path .config/checks/prettier/prettierignore --write . && taplo fmt --config .config/checks/taplo/taplo.toml .ethos/*.toml .config/checks/*/*.toml"
   }
 }

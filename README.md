@@ -28,10 +28,12 @@ adapters are recovery material, not active build inputs or a second renderer.
 These checks neither execute source products nor prove artwork qualification.
 
 `ethos prove --full --execute --json` applies the same input tests through native
-ETHOS coverage and static-analysis providers plus the original Prettier check.
+ETHOS coverage and static-analysis providers plus `npm run format:check`.
 The private package declares commands only and installs no dependencies.
 
-Run `prettier --config .config/checks/prettier.json --ignore-path
-.config/checks/prettier.ignore --check .` for formatting; replace `--check` with
-`--write` to fix the same declared inputs. Captured source originals are excluded
-through Prettier's native ignore mechanism, not reformatted.
+Run `npm run format:check` for formatting and `npm run format:fix` to fix the
+same declared inputs. Prettier and taplo run from the host's installation with
+their configuration under `.config/checks/`: Prettier formats the Markdown,
+YAML, JSON and JavaScript carriers, and taplo the TOML files. Captured source
+originals are excluded through Prettier's native ignore mechanism, not
+reformatted.

@@ -1,9 +1,7 @@
 profile_id = "architecture-publications"
 
 [openspec]
-material_paths = [
-    "**",
-]
+material_paths = ["**"]
 
 [proof]
 code_correctness_gates = ["input-behavior", "input-static-analysis", "formatting"]
@@ -35,7 +33,7 @@ network_policy = "offline"
 [[proof.gates]]
 id = "formatting"
 kind = "lint"
-command = ["prettier", "--config", ".config/checks/prettier.json", "--ignore-path", ".config/checks/prettier.ignore", "--check", "."]
+command = ["npm", "run", "format:check"]
 dimensions = ["format"]
 evidence_class = "proof"
 trust_bearing = true
