@@ -6,8 +6,8 @@
 
 ## 2. Toolchain
 
-- [ ] 2.1 Lock `prettier` 3.9.10 and `@taplo/cli` 0.7.0 as development dependencies with a tracked `package-lock.json` that Prettier ignores; done when `npm ci --ignore-scripts` installs them and `npm run format:check` passes with the locked binaries.
-- [ ] 2.2 Add `bootstrap`, `check` and `fix` scripts to `package.json`; done when each runs and the paradigm report is conforming.
+- [x] 2.1 Lock `prettier` 3.9.10 and `@taplo/cli` 0.7.0 as development dependencies with a tracked `package-lock.json` that Prettier ignores; done when `npm ci --ignore-scripts` installs them and `npm run format:check` passes with the locked binaries. `npm run bootstrap` installs both, and the check passes with `node_modules/.bin/prettier` and `taplo`.
+- [x] 2.2 Add `bootstrap`, `check` and `fix` scripts to `package.json`; done when each runs and the paradigm report is conforming. All three run; `fix` changes no tracked file.
 
 ## Workflow follow-up
 

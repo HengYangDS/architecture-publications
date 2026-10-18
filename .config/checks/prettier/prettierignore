@@ -2,6 +2,8 @@
 ../../../node_modules/
 ../../../.venv/
 ../../../.serena/
+# npm writes its lock file.
+../../../package-lock.json
 # Captured source originals remain byte-exact; native tests verify their pins.
 ../../../publications/ethos/artwork/
 ../../../publications/ethos/design/
