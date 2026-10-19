@@ -1,4 +1,5 @@
 {
+  "name": "architecture-publications",
   "private": true,
   "type": "module",
   "scripts": {
