@@ -2,8 +2,8 @@
 
 ## 1. Current ETHOS checks
 
-- [ ] 1.1 Drop `singleQuote` from `.config/checks/prettier/prettier.toml` and format `tests/publication-inputs.test.mjs` and `tools/verification/publication-inputs.mjs` with `ethos lane format --apply`; done when the source format gate passes, only string quotes change and `npm run check` passes.
-- [ ] 1.2 Spell the product name Taplo in `README.md`; done when the prose gate passes.
+- [x] 1.1 Drop `singleQuote` from `.config/checks/prettier/prettier.toml` and format `tests/publication-inputs.test.mjs` and `tools/verification/publication-inputs.mjs` with `ethos lane format --apply`; done when the source format gate passes, only string quotes change and `npm run check` passes. The gate passes on the ETHOS runtime built from `66044eba5`, both files differ only in quotes, and `npm run check` passes with 4 of 4 tests.
+- [x] 1.2 Spell the product name Taplo in `README.md`; done when the prose gate passes. It passes on that runtime.
 
 ## Workflow follow-up
 

@@ -32,8 +32,8 @@ ETHOS coverage and static-analysis providers plus `npm run format:check`.
 The private package declares commands only and installs no dependencies.
 
 Run `npm run format:check` for formatting and `npm run format:fix` to fix the
-same declared inputs. Prettier and taplo run from the host's installation with
+same declared inputs. Prettier and Taplo run from the host's installation with
 their configuration under `.config/checks/`: Prettier formats the Markdown,
-YAML, JSON and JavaScript carriers, and taplo the TOML files. Captured source
+YAML, JSON and JavaScript carriers, and Taplo the TOML files. Captured source
 originals are excluded through Prettier's native ignore mechanism, not
 reformatted.
