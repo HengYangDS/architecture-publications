@@ -15,7 +15,7 @@
 
 - [x] 3.1 Rewrite the README for one pinned model per work, the retained originals and the check, build and publication steps.
 - [x] 3.2 Build both works with `archpub build` into `build/` and inspect every poster and the map; every view renders within 1800 × 1350 px with no text below 14 px.
-- [ ] 3.3 Pass `npm run check`, `openspec validate --strict` and the ETHOS proof.
+- [x] 3.3 Pass `npm run check`, `openspec validate --strict` and the ETHOS proof. The full proof of `9d09546` passes.
 
 ## Workflow follow-up
 
