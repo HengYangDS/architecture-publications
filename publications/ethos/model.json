@@ -1,0 +1,812 @@
+{
+  "format": "architecture-publisher.model",
+  "version": 1,
+  "id": "ethos",
+  "title": "ETHOS",
+  "question": "How does ETHOS carry one repository change from official intent to a proven commit on the accepted branch?",
+  "summary": "ETHOS compiles an OpenSpec Change and Git facts into a TransitionPlan and admits each step by lease, prewrite check and recorded proof.",
+  "scope": "The implemented command plane in src/ethos and the stores and external tools it calls.",
+  "limits": [
+    "Leaves out the MCP server, lane handoff, signature and paradigm repair, and land --release.",
+    "Relations are imports and calls in the source, not runtime order or design intent."
+  ],
+  "attribution": "Architecture Publications, read from the ETHOS source",
+  "repository": {
+    "name": "ethos",
+    "url": "https://github.com/HengYangDS/ethos.git",
+    "revision": "ad9108d70cc6a974eaf9271d06ccf5c7e8f33152"
+  },
+  "kinds": {
+    "service": {
+      "label": "ETHOS module",
+      "category": "backend",
+      "icon": "workflow"
+    },
+    "admission": {
+      "label": "admission",
+      "category": "security",
+      "icon": "shield-check"
+    },
+    "store": {
+      "label": "Git-common store",
+      "category": "database",
+      "icon": "database"
+    },
+    "tool": {
+      "label": "external tool",
+      "category": "external",
+      "icon": "wrench"
+    },
+    "peer": {
+      "label": "Forge peer",
+      "category": "external",
+      "icon": "cloud"
+    }
+  },
+  "sources": {
+    "adapters.admission.current.authority": {
+      "path": "src/ethos/adapters/admission/current/authority.py",
+      "sha256": "ee71c58987e80e00a4d18774d63c9632f60d3d5f3b23740bcd1a483d271b9b72"
+    },
+    "adapters.admission.current.resolution": {
+      "path": "src/ethos/adapters/admission/current/resolution.py",
+      "sha256": "3a42f68a8051c8a2fe87c0f92be2db22a70f125a28e5eea5b71cba6a99280aa3"
+    },
+    "adapters.admission.patch_admission": {
+      "path": "src/ethos/adapters/admission/patch_admission.py",
+      "sha256": "2ed7bf534c62df5ef3beeb1ac859863db1f9c85474cbcd9e369344b8ca47920c"
+    },
+    "adapters.admission.paths": {
+      "path": "src/ethos/adapters/admission/paths.py",
+      "sha256": "2d5722b7a26eb3afc965631835b5b723722fe2a74fe22fc36950e3b4f6f6df43"
+    },
+    "adapters.admission.prewrite": {
+      "path": "src/ethos/adapters/admission/prewrite.py",
+      "sha256": "c661647e89facad8cb7c05d66170e5be267be9efa1193513beb9d25d5052b675"
+    },
+    "adapters.admission.ref_intent": {
+      "path": "src/ethos/adapters/admission/ref_intent.py",
+      "sha256": "a97547c468354b8ef241d83caa744ff5baa35eddbd90ed7051d497eb6bb1ad66"
+    },
+    "adapters.admission.transitions": {
+      "path": "src/ethos/adapters/admission/transitions.py",
+      "sha256": "446d26ba8a087aff761381aa1082b95f6d76ccd2b4debaf1e4592e8709b299d3"
+    },
+    "adapters.gates.native.attempt": {
+      "path": "src/ethos/adapters/gates/native/attempt.py",
+      "sha256": "43d3edcd099f9cbda5fdd4ce762a20d2ad84d82323f9dbbea1a620f5f05c16bd"
+    },
+    "adapters.gates.runner": {
+      "path": "src/ethos/adapters/gates/runner.py",
+      "sha256": "887bf6a34839ef67b31cf6122cb4a1639b4ece6740f79e611d56dde369358b83"
+    },
+    "adapters.gates.tool": {
+      "path": "src/ethos/adapters/gates/tool.py",
+      "sha256": "2c3f0577277e29bb38536111facbf75cf7de66216cbdab54b21a2a0016e0be29"
+    },
+    "adapters.mutation.accepted.promotion": {
+      "path": "src/ethos/adapters/mutation/accepted/promotion.py",
+      "sha256": "bfbe368c214e329d7cea45e80d8ea9903dd893aac62b1666b4711c5695f33b1f"
+    },
+    "adapters.mutation.decision": {
+      "path": "src/ethos/adapters/mutation/decision.py",
+      "sha256": "1d001264e457a6e968caf0d07f321af99a3a41deab2feda11dbb2cb523b89794"
+    },
+    "adapters.mutation.landing": {
+      "path": "src/ethos/adapters/mutation/landing.py",
+      "sha256": "1b6c3ce68a359fc359677d431eefc09f611df974a43b9dd5c78ec08471f03142"
+    },
+    "adapters.mutation.lane_lifecycle.start": {
+      "path": "src/ethos/adapters/mutation/lane_lifecycle/start.py",
+      "sha256": "1f2ff6a2939e71b7e54be11662eb263607820da66da6c0634f4ff59ff0e0b9ed"
+    },
+    "adapters.mutation.lane_retirement.operation": {
+      "path": "src/ethos/adapters/mutation/lane_retirement/operation.py",
+      "sha256": "0c0c82ff7ffdcdd8f313a9e15963efcd23dcb9630bc752c618560c938220ab00"
+    },
+    "adapters.mutation.proof": {
+      "path": "src/ethos/adapters/mutation/proof.py",
+      "sha256": "4cf2e8ebf8cba89df30a9ede9052402b82189a7bcb1f16e0db0be2612a7f3477"
+    },
+    "adapters.mutation.proof_admission": {
+      "path": "src/ethos/adapters/mutation/proof_admission.py",
+      "sha256": "d970275cfc1e03c66f13a024a82dfa844c8dd678e66202cf7725d573bdcabde0"
+    },
+    "adapters.mutation.proof_artifacts": {
+      "path": "src/ethos/adapters/mutation/proof_artifacts.py",
+      "sha256": "b9c93654d0c509fbd72e05111db2bb599946fba05c0134db76e3ba88848d4434"
+    },
+    "adapters.mutation.publication.execution": {
+      "path": "src/ethos/adapters/mutation/publication/execution.py",
+      "sha256": "2c8ad2a0a746c72efe8c2eb796ce0a94079b3045f7f42f192f3cbb0fd9ee5f62"
+    },
+    "adapters.openspec.cli": {
+      "path": "src/ethos/adapters/openspec/cli.py",
+      "sha256": "776d2a1342b1431d96807a33151fbca9d040014790fec399d644291aa77d0652"
+    },
+    "adapters.openspec.commitment": {
+      "path": "src/ethos/adapters/openspec/commitment.py",
+      "sha256": "02015b20571e91dfff1ef420259e90d58923b79632f17b843304e684c85484a5"
+    },
+    "adapters.openspec.lifecycle.archive_transition": {
+      "path": "src/ethos/adapters/openspec/lifecycle/archive_transition.py",
+      "sha256": "a6cee6d3dabf9469984da35d312a24f48d3ea7d835ebc99c3bc77161739df03a"
+    },
+    "adapters.openspec.profile": {
+      "path": "src/ethos/adapters/openspec/profile.py",
+      "sha256": "975ccaa549e92a8d55bbd372173111334ff7eef3cd07a6a9bcac566312bfa28a"
+    },
+    "adapters.repo.attestation_set": {
+      "path": "src/ethos/adapters/repo/attestation_set.py",
+      "sha256": "02a97f961798db5c32e73769cebe222e72bfd6c6465d7a1a550a0a104b9e410c"
+    },
+    "adapters.repo.gate_policy": {
+      "path": "src/ethos/adapters/repo/gate_policy.py",
+      "sha256": "761b6eca64eca5af9cc99e847480ea2e19ca6f6c0ed2d197e406983e4c1cde04"
+    },
+    "adapters.repo.git": {
+      "path": "src/ethos/adapters/repo/git.py",
+      "sha256": "e5228fcc82109c1ef8976a33deaf706c5551bdb3ede883d4099f68dd3f71e08e"
+    },
+    "adapters.repo.git_effect_admission": {
+      "path": "src/ethos/adapters/repo/git_effect_admission.py",
+      "sha256": "3320abd5e6d6c090b6d4ffbbbe4a9bf5e2a7f586a1c2534ff0ade6853a4bb9e0"
+    },
+    "adapters.repo.git_effect_attestation": {
+      "path": "src/ethos/adapters/repo/git_effect_attestation.py",
+      "sha256": "bee5bcb6ceb427dc8910ac95825061931737414525fd5bed896befd121a634fd"
+    },
+    "adapters.repo.git_effect_observation": {
+      "path": "src/ethos/adapters/repo/git_effect_observation.py",
+      "sha256": "643ba21a100509fd41f2541080273549b25c0626d3d0927dc23336bed6976b0e"
+    },
+    "adapters.repo.git_effects": {
+      "path": "src/ethos/adapters/repo/git_effects.py",
+      "sha256": "dee4e8f90c5a855f44ee93f3c98dca76ae9cc1a5e0a6b00e4d1fd1a32171456d"
+    },
+    "adapters.repo.hook.activation": {
+      "path": "src/ethos/adapters/repo/hook/activation.py",
+      "sha256": "d16a23cd8d05846b6a30752b6ea363da3104d25703c3008050550da9a6070db3"
+    },
+    "adapters.repo.hook.admission": {
+      "path": "src/ethos/adapters/repo/hook/admission.py",
+      "sha256": "13dd714b27c07ebacfcf297477308e6e1adc23b290f47844fc7ff038aced2542"
+    },
+    "adapters.repo.hook.binding.toml": {
+      "path": "src/ethos/adapters/repo/hook/binding.toml",
+      "sha256": "7398f491fd59b6bfa868a331c6170660d720503d9cbf9c113ecbee3b755308fe"
+    },
+    "adapters.repo.hook.protocol": {
+      "path": "src/ethos/adapters/repo/hook/protocol.py",
+      "sha256": "ff311e080986cbb8415743140223738daa956226bf6ecaf681afb0a4f17c30ce"
+    },
+    "adapters.repo.runtime.selection": {
+      "path": "src/ethos/adapters/repo/runtime/selection.py",
+      "sha256": "0d4740c9ba192ec937c32944ba840d05ffd6ea43b7f7853c9a8ec2edabc18f04"
+    },
+    "adapters.repo.status.workspace": {
+      "path": "src/ethos/adapters/repo/status/workspace.py",
+      "sha256": "b0f4556f102e9f934a263723e309ef3004d0e4423aba72e104fdaae86d341f9a"
+    },
+    "adapters.repo.worktree_effects": {
+      "path": "src/ethos/adapters/repo/worktree_effects.py",
+      "sha256": "5bfd2dd5887261b5c4bb6a5f61dd67f92f0af65fb0f0c57d1580686265236006"
+    },
+    "adapters.store.content_addressed": {
+      "path": "src/ethos/adapters/store/content_addressed.py",
+      "sha256": "90763421da1297fb679f042b0636b90355c22c707b42a1439cc54e9be30dc5dd"
+    },
+    "adapters.store.custody": {
+      "path": "src/ethos/adapters/store/custody.py",
+      "sha256": "6642ffa259631281fd9377b9a5335a5e7c1337e87e3e403c597355e07dfefbb0"
+    },
+    "adapters.store.state.lease.lifecycle.transitions": {
+      "path": "src/ethos/adapters/store/state/lease/lifecycle/transitions.py",
+      "sha256": "f010ed123df9c2aee100c803fffec07bff1ac23215eaa222df92b36f630cf158"
+    },
+    "adapters.store.state.schema": {
+      "path": "src/ethos/adapters/store/state/schema.py",
+      "sha256": "7e3c811d3b9719c929a74923bcba4a2c5d22417ceed2c5a738aa1b2497a1d1eb"
+    },
+    "adapters.toolchain.mise": {
+      "path": "src/ethos/adapters/toolchain/mise.py",
+      "sha256": "66ddcb7eac466ce0e2318ad959d517e2f7f2bfb1aca0bd390543eb2ca611f8f0"
+    },
+    "contracts.admission": {
+      "path": "src/ethos/contracts/admission.py",
+      "sha256": "ad1a84bb66df96551b28a5705276d52149652ef48cf9e7d50fc840f0681210fc"
+    },
+    "contracts.plan": {
+      "path": "src/ethos/contracts/plan.py",
+      "sha256": "d22010532d71758615042211fc4f7213ba635c70a54bec053d81efc4ac52cb9c"
+    },
+    "contracts.semantic": {
+      "path": "src/ethos/contracts/semantic.py",
+      "sha256": "47a0cf30c241aef11565347c49bd0aefcad7fc00f6f6b8c29ba06bf023d01ec0"
+    },
+    "domain.inspection": {
+      "path": "src/ethos/domain/inspection.py",
+      "sha256": "ab7f154220105cdd3113186474382e3acc4125d55498056bda38b83a55a00366"
+    },
+    "domain.land.operation": {
+      "path": "src/ethos/domain/land/operation.py",
+      "sha256": "68c8da69931031805e47afe41e89e2b2a65b1c1f89128d86e82212f7ad73083c"
+    },
+    "domain.plan": {
+      "path": "src/ethos/domain/plan.py",
+      "sha256": "ea02f29591a2592eeb826c7c937cd540cece497fa61e5fcc6607154106a5df73"
+    },
+    "domain.publication.operation": {
+      "path": "src/ethos/domain/publication/operation.py",
+      "sha256": "70c3b7d44f39701d08ccf0ef6b94f2a4bec3d03ed417ddbdd3abcdffabab03f3"
+    },
+    "ethos.release.toml": {
+      "path": ".ethos/release.toml",
+      "sha256": "4521026350fa66261aa149d6b69477e9b78df69a91e7f8dd67d470e29ac12e42"
+    },
+    "github.workflows.ci.yml": {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "90946ca69c53c4cf178c3c7bf62bb4e63540824598ce617a0fd4a7afc8c15f8f"
+    },
+    "gitlab-ci.yml": {
+      "path": ".gitlab-ci.yml",
+      "sha256": "03175d3ef0b4ea1a185163c747b04355d95aa97276b7cdcd01330482e2c71265"
+    },
+    "openspec.config.yaml": {
+      "path": "openspec/config.yaml",
+      "sha256": "98fbb0f67b4fcfa78d46ac40bd1530922b73b80410f238d5fc65ed8b735527e9"
+    },
+    "package.json": {
+      "path": "package.json",
+      "sha256": "fd9bcace97b5c91470c75c885f6b8ae5aaa803042884360d4135af822b76cdcc"
+    },
+    "repository.policy.gates": {
+      "path": "src/ethos/repository/policy/gates.py",
+      "sha256": "b2f542713e0a84a05cc54f073b1d299a5865bc6046484f4899a7c5d52ff677b6"
+    },
+    "repository.profile": {
+      "path": "src/ethos/repository/profile.py",
+      "sha256": "65afdcf0fdf9433420fca43bd446d817327753ddfeee65209c14dbb77f519ac3"
+    },
+    "surface.cli.hook.commands": {
+      "path": "src/ethos/surface/cli/hook/commands.py",
+      "sha256": "a17d8de150bf172e2907103d14ca9aba4d8df13b7b097cb9d4090cc56f286f34"
+    },
+    "surface.cli.lane.lifecycle": {
+      "path": "src/ethos/surface/cli/lane/lifecycle.py",
+      "sha256": "bdb87dff0fa95fd1ccc0fa24732388dafdc31bd2194febb39f0b4180cf4dfc18"
+    },
+    "surface.cli.lane.retirement": {
+      "path": "src/ethos/surface/cli/lane/retirement.py",
+      "sha256": "803ed7a9779beea5cef7bc7499f57dd41d04d1ff563ea2598d3eb9f0d158d12a"
+    },
+    "surface.cli.root.inspection": {
+      "path": "src/ethos/surface/cli/root/inspection.py",
+      "sha256": "78053e70e614205df5b0ec83b7fbf4fc5a83a7b84326047b31e011d67746b4b8"
+    },
+    "surface.cli.root.land": {
+      "path": "src/ethos/surface/cli/root/land.py",
+      "sha256": "48ddd2902d63d4cc72ae8b6185c6df0e8ae4e60192a7548f43b5761f0fbe32e9"
+    },
+    "surface.cli.root.planning": {
+      "path": "src/ethos/surface/cli/root/planning.py",
+      "sha256": "bf421cc47a2ac51d15ff78015d2a9c167a8d5ef5f3e6c349f71e7c336d22b32f"
+    },
+    "surface.cli.root.proof": {
+      "path": "src/ethos/surface/cli/root/proof.py",
+      "sha256": "c46ab3e2d0d91038e94275386ea8062721d58961cc1912f372dd60e85024efe1"
+    },
+    "surface.cli.root.publish": {
+      "path": "src/ethos/surface/cli/root/publish.py",
+      "sha256": "c4a5c513bc80347d9f1732cd049abe3f2a1cb048d40d45539890092517a00d16"
+    },
+    "system.gates.toml": {
+      "path": "system/gates.toml",
+      "sha256": "23bba8ba09bf62b518ac12dbc33799a2d05e1fcd400f9c708f05654f2d586d4a"
+    }
+  },
+  "components": [
+    {
+      "id": "status-reader",
+      "label": "Status reader",
+      "kind": "service",
+      "details": {
+        "command": "ethos status",
+        "answers": "role, gaps and next action"
+      },
+      "sources": [
+        "surface.cli.root.inspection",
+        "domain.inspection",
+        "adapters.repo.status.workspace"
+      ]
+    },
+    {
+      "id": "commitment",
+      "label": "Commitment",
+      "kind": "service",
+      "details": {
+        "compiles": "the current OpenSpec Change",
+        "resolves": "change, scope and authority"
+      },
+      "sources": [
+        "adapters.admission.current.resolution",
+        "adapters.openspec.commitment",
+        "adapters.openspec.profile",
+        "adapters.openspec.lifecycle.archive_transition"
+      ]
+    },
+    {
+      "id": "transition-plan",
+      "label": "TransitionPlan",
+      "kind": "service",
+      "details": {
+        "command": "ethos plan",
+        "emits": "a digest-bound TransitionPlan"
+      },
+      "sources": [
+        "surface.cli.root.planning",
+        "domain.plan",
+        "contracts.plan",
+        "contracts.semantic"
+      ]
+    },
+    {
+      "id": "gate-policy",
+      "label": "Gate policy",
+      "kind": "service",
+      "details": {
+        "selects": "gates from .ethos/profile.toml"
+      },
+      "sources": [
+        "adapters.repo.gate_policy",
+        "repository.policy.gates",
+        "repository.profile",
+        "system.gates.toml"
+      ]
+    },
+    {
+      "id": "proof",
+      "label": "Proof",
+      "kind": "service",
+      "details": {
+        "command": "ethos prove",
+        "runs": "the gate graph, bounded parallel",
+        "issues": "proof:execution Attestation"
+      },
+      "sources": [
+        "surface.cli.root.proof",
+        "adapters.gates.runner",
+        "adapters.mutation.proof",
+        "adapters.mutation.proof_artifacts"
+      ]
+    },
+    {
+      "id": "work-lane",
+      "label": "Work Lane",
+      "kind": "service",
+      "details": {
+        "commands": "lane start, lane retire",
+        "owns": ["start", "refresh", "archive-change", "retirement"]
+      },
+      "sources": [
+        "surface.cli.lane.lifecycle",
+        "adapters.mutation.lane_lifecycle.start",
+        "adapters.mutation.lane_retirement.operation",
+        "surface.cli.lane.retirement"
+      ]
+    },
+    {
+      "id": "prewrite-admission",
+      "label": "Prewrite admission",
+      "kind": "admission",
+      "details": {
+        "command": "ethos lane prewrite",
+        "admits": "exact tracked write paths"
+      },
+      "sources": [
+        "adapters.admission.prewrite",
+        "adapters.admission.paths",
+        "adapters.admission.patch_admission"
+      ]
+    },
+    {
+      "id": "lane-lease",
+      "label": "Lane lease",
+      "kind": "admission",
+      "details": {
+        "binds": "holder, generation and expiry",
+        "state": "ethos/state.sqlite in the Git common directory"
+      },
+      "sources": [
+        "adapters.admission.current.authority",
+        "adapters.store.state.lease.lifecycle.transitions",
+        "adapters.store.state.schema"
+      ]
+    },
+    {
+      "id": "hook-admission",
+      "label": "Hook admission",
+      "kind": "admission",
+      "details": {
+        "guards": "commits, pushes and ref moves"
+      },
+      "sources": [
+        "adapters.repo.hook.protocol",
+        "adapters.repo.hook.admission",
+        "adapters.admission.transitions"
+      ]
+    },
+    {
+      "id": "mutation-admission",
+      "label": "Mutation admission",
+      "kind": "admission",
+      "details": {
+        "requires": "a proof Attestation at HEAD"
+      },
+      "sources": [
+        "adapters.mutation.decision",
+        "adapters.mutation.proof_admission",
+        "contracts.admission"
+      ]
+    },
+    {
+      "id": "land-closeout",
+      "label": "Land and closeout",
+      "kind": "service",
+      "details": {
+        "command": "ethos land",
+        "promotes": "candidate, then accepted branch"
+      },
+      "sources": [
+        "surface.cli.root.land",
+        "domain.land.operation",
+        "adapters.mutation.landing",
+        "adapters.mutation.accepted.promotion"
+      ]
+    },
+    {
+      "id": "git-effect-engine",
+      "label": "Git effect engine",
+      "kind": "service",
+      "details": {
+        "executes": "CAS update-ref with ref intents"
+      },
+      "sources": [
+        "adapters.repo.git_effects",
+        "adapters.repo.git_effect_observation",
+        "adapters.repo.git_effect_admission",
+        "adapters.admission.ref_intent"
+      ]
+    },
+    {
+      "id": "publication",
+      "label": "Peer publication",
+      "kind": "service",
+      "details": {
+        "command": "ethos publish",
+        "pushes": "exact refs to peer remotes"
+      },
+      "sources": [
+        "surface.cli.root.publish",
+        "domain.publication.operation",
+        "adapters.mutation.publication.execution"
+      ]
+    },
+    {
+      "id": "runtime-installer",
+      "label": "Runtime installer",
+      "kind": "service",
+      "details": {
+        "command": "ethos hook install",
+        "activates": "runtime/CURRENT and hook launchers"
+      },
+      "sources": [
+        "surface.cli.hook.commands",
+        "adapters.repo.hook.activation",
+        "adapters.repo.runtime.selection",
+        "adapters.repo.hook.binding.toml"
+      ]
+    },
+    {
+      "id": "attestation-set",
+      "label": "Attestation set",
+      "kind": "store",
+      "details": {
+        "ref": "refs/ethos/attestations-set"
+      },
+      "sources": ["adapters.repo.attestation_set", "adapters.repo.git_effect_attestation"]
+    },
+    {
+      "id": "evidence-store",
+      "label": "Evidence store",
+      "kind": "store",
+      "details": {
+        "holds": "proof artifacts and custody"
+      },
+      "sources": ["adapters.store.content_addressed", "adapters.store.custody"]
+    },
+    {
+      "id": "git",
+      "label": "Git",
+      "kind": "tool",
+      "details": {
+        "owns": "objects, refs and worktrees"
+      },
+      "sources": ["adapters.repo.git", "adapters.repo.worktree_effects"]
+    },
+    {
+      "id": "openspec",
+      "label": "OpenSpec CLI",
+      "kind": "tool",
+      "details": {
+        "package": "@fission-ai/openspec"
+      },
+      "sources": ["adapters.openspec.cli", "package.json", "openspec.config.yaml"]
+    },
+    {
+      "id": "forge-ci",
+      "label": "Forge and CI",
+      "kind": "peer",
+      "details": {
+        "peers": "GitLab and GitHub"
+      },
+      "sources": ["ethos.release.toml", "gitlab-ci.yml", "github.workflows.ci.yml"]
+    },
+    {
+      "id": "native-tools",
+      "label": "Repository tools",
+      "kind": "tool",
+      "details": {
+        "for example": "nox, ruff, gitleaks, mise"
+      },
+      "sources": ["adapters.gates.tool", "adapters.gates.native.attempt", "adapters.toolchain.mise"]
+    }
+  ],
+  "relations": [
+    {
+      "id": "status-reader-commitment",
+      "from": "status-reader",
+      "to": "commitment",
+      "label": "resolves scope",
+      "sources": ["domain.inspection"]
+    },
+    {
+      "id": "transition-plan-commitment",
+      "from": "transition-plan",
+      "to": "commitment",
+      "label": "resolves change",
+      "sources": ["domain.plan"]
+    },
+    {
+      "id": "transition-plan-gate-policy",
+      "from": "transition-plan",
+      "to": "gate-policy",
+      "label": "resolves gates",
+      "sources": ["domain.plan"]
+    },
+    {
+      "id": "transition-plan-git",
+      "from": "transition-plan",
+      "to": "git",
+      "label": "reads refs",
+      "sources": ["domain.plan"]
+    },
+    {
+      "id": "commitment-openspec",
+      "from": "commitment",
+      "to": "openspec",
+      "label": "runs CLI",
+      "sources": ["adapters.openspec.commitment"]
+    },
+    {
+      "id": "commitment-attestation-set",
+      "from": "commitment",
+      "to": "attestation-set",
+      "label": "reads attestations",
+      "sources": ["adapters.openspec.lifecycle.archive_transition"]
+    },
+    {
+      "id": "proof-gate-policy",
+      "from": "proof",
+      "to": "gate-policy",
+      "label": "resolves gates",
+      "sources": ["adapters.mutation.proof"]
+    },
+    {
+      "id": "proof-transition-plan",
+      "from": "proof",
+      "to": "transition-plan",
+      "label": "compiles plan",
+      "sources": ["adapters.mutation.proof"]
+    },
+    {
+      "id": "proof-native-tools",
+      "from": "proof",
+      "to": "native-tools",
+      "label": "executes",
+      "sources": ["adapters.gates.runner"]
+    },
+    {
+      "id": "proof-evidence-store",
+      "from": "proof",
+      "to": "evidence-store",
+      "label": "writes artifact",
+      "sources": ["adapters.mutation.proof_artifacts"]
+    },
+    {
+      "id": "proof-attestation-set",
+      "from": "proof",
+      "to": "attestation-set",
+      "label": "records proof",
+      "sources": ["adapters.mutation.proof"]
+    },
+    {
+      "id": "work-lane-lane-lease",
+      "from": "work-lane",
+      "to": "lane-lease",
+      "label": "acquires, revokes",
+      "sources": [
+        "adapters.mutation.lane_lifecycle.start",
+        "adapters.mutation.lane_retirement.operation"
+      ]
+    },
+    {
+      "id": "work-lane-git-effect-engine",
+      "from": "work-lane",
+      "to": "git-effect-engine",
+      "label": "creates, deletes ref",
+      "sources": [
+        "adapters.mutation.lane_lifecycle.start",
+        "adapters.mutation.lane_retirement.operation"
+      ]
+    },
+    {
+      "id": "prewrite-admission-lane-lease",
+      "from": "prewrite-admission",
+      "to": "lane-lease",
+      "label": "checks holder",
+      "sources": ["adapters.admission.prewrite"]
+    },
+    {
+      "id": "git-hook-admission",
+      "from": "git",
+      "to": "hook-admission",
+      "label": "runs hooks",
+      "sources": ["adapters.repo.hook.binding.toml"]
+    },
+    {
+      "id": "hook-admission-prewrite-admission",
+      "from": "hook-admission",
+      "to": "prewrite-admission",
+      "label": "re-admits staged",
+      "sources": ["adapters.repo.hook.admission"]
+    },
+    {
+      "id": "hook-admission-git-effect-engine",
+      "from": "hook-admission",
+      "to": "git-effect-engine",
+      "label": "claims ref intent",
+      "sources": ["adapters.admission.transitions"]
+    },
+    {
+      "id": "land-closeout-mutation-admission",
+      "from": "land-closeout",
+      "to": "mutation-admission",
+      "label": "admits land",
+      "sources": ["domain.land.operation"]
+    },
+    {
+      "id": "land-closeout-git-effect-engine",
+      "from": "land-closeout",
+      "to": "git-effect-engine",
+      "label": "moves refs by CAS",
+      "sources": ["adapters.mutation.landing"]
+    },
+    {
+      "id": "mutation-admission-attestation-set",
+      "from": "mutation-admission",
+      "to": "attestation-set",
+      "label": "selects proof",
+      "sources": ["adapters.mutation.proof_admission"]
+    },
+    {
+      "id": "git-effect-engine-transition-plan",
+      "from": "git-effect-engine",
+      "to": "transition-plan",
+      "label": "compiles plan",
+      "sources": ["adapters.repo.git_effect_observation"]
+    },
+    {
+      "id": "git-effect-engine-mutation-admission",
+      "from": "git-effect-engine",
+      "to": "mutation-admission",
+      "label": "re-checks proof",
+      "sources": ["adapters.repo.git_effect_admission"]
+    },
+    {
+      "id": "git-effect-engine-git",
+      "from": "git-effect-engine",
+      "to": "git",
+      "label": "update-ref --stdin",
+      "sources": ["adapters.repo.git_effects"]
+    },
+    {
+      "id": "git-effect-engine-attestation-set",
+      "from": "git-effect-engine",
+      "to": "attestation-set",
+      "label": "attests effect",
+      "sources": ["adapters.repo.git_effect_attestation"]
+    },
+    {
+      "id": "publication-forge-ci",
+      "from": "publication",
+      "to": "forge-ci",
+      "label": "pushes refs",
+      "sources": ["adapters.mutation.publication.execution"]
+    },
+    {
+      "id": "runtime-installer-git",
+      "from": "runtime-installer",
+      "to": "git",
+      "label": "sets core.hooksPath",
+      "sources": ["adapters.repo.hook.activation"]
+    }
+  ],
+  "views": [
+    {
+      "id": "overview",
+      "members": [
+        "work-lane",
+        "prewrite-admission",
+        "lane-lease",
+        "proof",
+        "land-closeout",
+        "mutation-admission",
+        "git-effect-engine",
+        "attestation-set",
+        "git"
+      ]
+    },
+    {
+      "id": "intent",
+      "title": "Intent and plan",
+      "question": "How does ETHOS resolve the current change and compile it into a TransitionPlan?",
+      "members": [
+        "status-reader",
+        "transition-plan",
+        "commitment",
+        "gate-policy",
+        "attestation-set",
+        "openspec",
+        "git"
+      ]
+    },
+    {
+      "id": "proof",
+      "title": "Proof plane",
+      "question": "How is proof produced for one exact HEAD and recorded for later admission?",
+      "members": [
+        "proof",
+        "transition-plan",
+        "gate-policy",
+        "native-tools",
+        "evidence-store",
+        "attestation-set",
+        "mutation-admission"
+      ]
+    },
+    {
+      "id": "hooks",
+      "title": "Runtime and hook binding",
+      "question": "How does ethos hook install bind a runtime so that plain Git commits, pushes and ref moves are admitted?",
+      "members": [
+        "runtime-installer",
+        "git",
+        "hook-admission",
+        "prewrite-admission",
+        "git-effect-engine",
+        "lane-lease"
+      ]
+    }
+  ]
+}

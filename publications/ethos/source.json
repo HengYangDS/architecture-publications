@@ -7,258 +7,296 @@
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/catalog.json",
       "target": "artwork/interactive/catalog.json",
+      "storage": "git",
       "bytes": 1587,
       "sha256": "1874f31aa67ce3e2d7295a5bdf63a24ed0071a5726b84fb876ddebd5f6dbd803"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/edition.json",
       "target": "artwork/interactive/edition.json",
+      "storage": "git",
       "bytes": 9908,
       "sha256": "01a7d7c297c91987792bfa744669807ddcb4e272d95d25b249b34d61eb2062af"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/manifest.json",
       "target": "artwork/interactive/manifest.json",
+      "storage": "git",
       "bytes": 4899,
       "sha256": "bcfc207b0f7dc3c56d2bbb8d9a4c7fa43985c43c155e485955c2681bd792a279"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/original-font-selection.json",
       "target": "artwork/interactive/original-font-selection.json",
+      "storage": "git",
       "bytes": 2088,
       "sha256": "e19e62f945eecda152cf155ba80c82401c20f92714eb13764f6c6c1e74af0fb6"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/accepted/bindings.json",
       "target": "artwork/interactive/pages/accepted/bindings.json",
+      "storage": "git",
       "bytes": 11270,
       "sha256": "dcbda9dc6b7d372d6698e7563869325603aadc7c9d0519e7e74428c45fdc7ba7"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/accepted/diagram.json",
       "target": "artwork/interactive/pages/accepted/diagram.json",
+      "storage": "git",
       "bytes": 12053,
       "sha256": "a6f3e74272f0aa09a79c9861b49677706d3b0629c823cd5fcf0223f8ffc83bc0"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/brownfield/bindings.json",
       "target": "artwork/interactive/pages/brownfield/bindings.json",
+      "storage": "git",
       "bytes": 14432,
       "sha256": "a7d8cff2f1c47758c5f169d8e88a6afe38e37a14c7ba05287a0301f822551640"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/brownfield/diagram.json",
       "target": "artwork/interactive/pages/brownfield/diagram.json",
+      "storage": "git",
       "bytes": 17003,
       "sha256": "8dc393d025338d848d11ee58e4506b911c790d4f637557988962fddd821eea02"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/candidate/bindings.json",
       "target": "artwork/interactive/pages/candidate/bindings.json",
+      "storage": "git",
       "bytes": 10718,
       "sha256": "084310ae683d827f9ef2c8efca0b5c01c715e14c8126e4c675c943cfa4c2b224"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/candidate/diagram.json",
       "target": "artwork/interactive/pages/candidate/diagram.json",
+      "storage": "git",
       "bytes": 11974,
       "sha256": "723fc75cb11c74002a25e3572767eba0faa6d9bb32906235190f765fe5e16b23"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/continuity/bindings.json",
       "target": "artwork/interactive/pages/continuity/bindings.json",
+      "storage": "git",
       "bytes": 6093,
       "sha256": "6ed81fc437103a493d850291951391508f98263c439094f65854be88897cc91d"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/continuity/diagram.json",
       "target": "artwork/interactive/pages/continuity/diagram.json",
+      "storage": "git",
       "bytes": 10119,
       "sha256": "9e685a04711de84a0d6ec8564f966a680ab9e2d220886bbd1faf18560aa029fb"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/greenfield/bindings.json",
       "target": "artwork/interactive/pages/greenfield/bindings.json",
+      "storage": "git",
       "bytes": 14486,
       "sha256": "76a36fb1edf7205833d36d0acb420655eaec72069011e5b96871898d690d63a0"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/greenfield/diagram.json",
       "target": "artwork/interactive/pages/greenfield/diagram.json",
+      "storage": "git",
       "bytes": 16982,
       "sha256": "f006b522cf38339a747d5147089ee66e725af1704f2c27771287daec58cb3b60"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/intent/bindings.json",
       "target": "artwork/interactive/pages/intent/bindings.json",
+      "storage": "git",
       "bytes": 7741,
       "sha256": "c944756b7629a6e2c4870fd1c72bdf766ad65e74b079909c5b6b08b8446a6eaa"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/intent/diagram.json",
       "target": "artwork/interactive/pages/intent/diagram.json",
+      "storage": "git",
       "bytes": 10655,
       "sha256": "85fbb512eb75791b9d7e9f42083ed00ac77715dde0938bed25c09f40af3fe06c"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/lanes/bindings.json",
       "target": "artwork/interactive/pages/lanes/bindings.json",
+      "storage": "git",
       "bytes": 29778,
       "sha256": "3a0b1825c91f443ba056b83165f244f8b8cb4004a7f0b3e12568f84e4a4177b8"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/lanes/diagram.json",
       "target": "artwork/interactive/pages/lanes/diagram.json",
+      "storage": "git",
       "bytes": 23039,
       "sha256": "dd48b8e1b9f05222df00b1a497de8a18af17042656fcfb30f74e6d65238de136"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/overview/bindings.json",
       "target": "artwork/interactive/pages/overview/bindings.json",
+      "storage": "git",
       "bytes": 26387,
       "sha256": "7e83e2bc7916e8ee008850f47f15f6ffd3f2357e083694a23be4638bf474aa12"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/overview/diagram.json",
       "target": "artwork/interactive/pages/overview/diagram.json",
+      "storage": "git",
       "bytes": 26008,
       "sha256": "4ff69fb19a6f7f990e31d3a3b8b0885e10c6e80410204f56bb884799d72504bd"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/ownership/bindings.json",
       "target": "artwork/interactive/pages/ownership/bindings.json",
+      "storage": "git",
       "bytes": 2872,
       "sha256": "186d0a80816deb4b7d9a94889ad33d502a397d9a81155f1ac7a8bad6472f2dd0"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/ownership/diagram.json",
       "target": "artwork/interactive/pages/ownership/diagram.json",
+      "storage": "git",
       "bytes": 6559,
       "sha256": "c2e12be1428a69b7829d983c2c1b76e7cbe91c2baaf40951c6fdd47c8073245f"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/peers/bindings.json",
       "target": "artwork/interactive/pages/peers/bindings.json",
+      "storage": "git",
       "bytes": 10584,
       "sha256": "48be9ca277cd5d758ee8dfeb00ad8f28d14d8bb298db7788a53b8a6b112fff1f"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/peers/diagram.json",
       "target": "artwork/interactive/pages/peers/diagram.json",
+      "storage": "git",
       "bytes": 12122,
       "sha256": "826e67349ad3f2881b9cbed52d4684578673223c82145272995e7f195cd0c8ea"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/publication/bindings.json",
       "target": "artwork/interactive/pages/publication/bindings.json",
+      "storage": "git",
       "bytes": 10538,
       "sha256": "b8d947390e7c6fa60388abe1942312baa080ff0ddbabf215a893267dc1d6ce3c"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/publication/diagram.json",
       "target": "artwork/interactive/pages/publication/diagram.json",
+      "storage": "git",
       "bytes": 13213,
       "sha256": "233cd62590ce8c1e1335b7aed80bfc11247dc4e17f19d1a6f6dd039bdc20f8e7"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/runtime/bindings.json",
       "target": "artwork/interactive/pages/runtime/bindings.json",
+      "storage": "git",
       "bytes": 4861,
       "sha256": "aea878b799c47c105f1f5b009dc8dd2a366f063179602b290c766f67b0c20928"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/runtime/diagram.json",
       "target": "artwork/interactive/pages/runtime/diagram.json",
+      "storage": "git",
       "bytes": 8509,
       "sha256": "9526e078662f6279423a915017e2fbcf82fef858a5654a3b25ac23cb5cb40adc"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/verification/bindings.json",
       "target": "artwork/interactive/pages/verification/bindings.json",
+      "storage": "git",
       "bytes": 6966,
       "sha256": "d067ffa1fc9e11bab1f18cdf0d191e08cd6fd4c558ae2320e88be1e9ae0fa9ab"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/authoring/pages/verification/diagram.json",
       "target": "artwork/interactive/pages/verification/diagram.json",
+      "storage": "git",
       "bytes": 8234,
       "sha256": "6ba99963f7628bbd6a313126e458a35c8d19bdc652644fbcf5e673bc4436dc70"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/static/authoring/edition.json",
       "target": "artwork/static/edition.json",
+      "storage": "git",
       "bytes": 719,
       "sha256": "abf415aa8ac4ea22d3743ef6f5ac07e633576cd352259c97d8597e8660e99bad"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/static/authoring/manifest.json",
       "target": "artwork/static/manifest.json",
+      "storage": "git",
       "bytes": 447,
       "sha256": "62317d11b19994090a1c7ae65eae3a092ebc783b9702cc687f5e4d33ace15a43"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/static/authoring/metrics.json",
       "target": "artwork/static/metrics.json",
+      "storage": "git",
       "bytes": 139280,
       "sha256": "c3361ad22e2262732852f31f0fa2daaa83757b086a82d365d232c941e5be7307"
     },
     {
       "source": "system/projections/terminal-architecture/copy.json",
       "target": "design/copy.json",
+      "storage": "git",
       "bytes": 10957,
       "sha256": "65d20b88dfe4720e990901e1748f142e934b923ca9b8a4855e019c341b400ed2"
     },
     {
       "source": "system/projections/terminal-architecture/declaration.json",
       "target": "design/declaration.json",
+      "storage": "git",
       "bytes": 2887,
       "sha256": "401ea8938a4a847082c9d50f0cacf9cefe6aec3b9a6d8facf1b16d78e8e3ecc6"
     },
     {
       "source": "system/projections/terminal-architecture/quality-contract.json",
       "target": "design/quality-contract.json",
+      "storage": "git",
       "bytes": 25645,
       "sha256": "12895be7eb2a5af4d82994f6baed9d0e58e72a55db7e07c07d1836b3c729181f"
     },
     {
       "source": "system/projections/terminal-architecture/semantic-graph.json",
       "target": "design/semantic-graph.json",
+      "storage": "git",
       "bytes": 151132,
       "sha256": "4c74b53928b06131a506017136eb342e0d1606418e3120ab211a8472e3369e42"
     },
     {
       "source": "system/projections/terminal-architecture/view-profile.json",
       "target": "design/view-profile.json",
+      "storage": "git",
       "bytes": 60555,
       "sha256": "c548c2afb2a8186860382b57f64876d1c8d718c87973071da11e4c1c925afb5e"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/static/natural-overview.mjs",
       "target": "artwork/static/natural-overview.mjs",
+      "storage": "git",
       "bytes": 84458,
-      "sha256": "ad81af2ad7d3dcc19283a4f33d807b516ddc4dde18b55156fd9a7e445724ad73",
-      "storage": "git"
+      "sha256": "ad81af2ad7d3dcc19283a4f33d807b516ddc4dde18b55156fd9a7e445724ad73"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/static/natural-semantics.mjs",
       "target": "artwork/static/natural-semantics.mjs",
+      "storage": "git",
       "bytes": 42744,
-      "sha256": "ad071c491d994883e00ed980feace2470941ff61f9de17c56ff9a66f0796309b",
-      "storage": "git"
+      "sha256": "ad071c491d994883e00ed980feace2470941ff61f9de17c56ff9a66f0796309b"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/static/effect-matrix.mjs",
       "target": "artwork/static/effect-matrix.mjs",
+      "storage": "git",
       "bytes": 5866,
-      "sha256": "af082aa58ecc3038e24ff649d3ef296941ed7b64350829ae4ac5f0b0a53e9f16",
-      "storage": "git"
+      "sha256": "af082aa58ecc3038e24ff649d3ef296941ed7b64350829ae4ac5f0b0a53e9f16"
     },
     {
       "source": "integrations/architecture-publisher/src/edition/static/trace-scene.mjs",
       "target": "artwork/static/trace-scene.mjs",
+      "storage": "git",
       "bytes": 11528,
-      "sha256": "d5dd4b9283d88fc376713b63dc1e0d8c7f515ffd8459134f28cb7053da2c6230",
-      "storage": "git"
+      "sha256": "d5dd4b9283d88fc376713b63dc1e0d8c7f515ffd8459134f28cb7053da2c6230"
     }
   ]
 }

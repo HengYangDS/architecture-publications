@@ -1,39 +1,58 @@
 # Architecture Publications
 
-Independent architecture authoring and publication for selected systems.
-ETHOS and AIGW are read-only source products; neither installs or maintains
-drawing code, Providers, publication tests or diagram CI gates.
+Architecture models of selected systems, authored and published outside the
+systems they describe. Each work under `publications/` is one Architecture
+Model that Architecture Publisher (`archpub`) draws as posters and an
+interactive map. The described repositories gain no files, dependencies or
+diagram checks.
 
 ## Works
 
-- [ETHOS](publications/ethos/README.md): preserved design and artwork, selected from an exact source tree.
-- [AIGW Client Projection](publications/aigw-client/README.md): direct standard model and editorial input.
+- [ETHOS](publications/ethos/README.md): how one repository change becomes a
+  proven commit on the accepted branch.
+- [AIGW Client Projection](publications/aigw-client/README.md): how operator
+  intent becomes guarded native client projections.
 
-Publisher supplies generic compilation and qualification. Archify supplies native
-interactive rendering and reading; independent SVG/PNG6000 supplies static media.
-Source meaning, independent editorial choices and exact artwork acceptance are
-separate. A renderable input is not source endorsement or current implementation proof.
+A model pins the described repository to a full commit and cites the files that
+support each component and relation by SHA-256. Its `attribution` names this
+repository as the editor; a model or a delivery built from it is not an
+endorsement by the described project.
 
-Use the owning OpenSpec Change for the migration and its acceptance boundaries.
-Generated output and bounded verification remain under ignored `build/`.
+## Building and publishing
+
+Run the publisher with a checkout of the described repository. `check` verifies
+every source at the pinned revision without changing the checkout; `build`
+writes a new delivery under the ignored `build/` directory.
+
+```sh
+archpub check publications/ethos/model.json --repo ../ethos
+archpub build publications/ethos/model.json --repo ../ethos --out build/ethos
+archpub accept build/ethos --reviewer "<name>"
+archpub publish build/ethos --to <root>
+```
+
+Only the person reviewing the delivery accepts it, and only an accepted
+delivery is published. Deliveries are not committed here.
 
 ## Input checks
 
-Run `node --test tests/publication-inputs.test.mjs` to verify the current authored
-members against their pins and confirm that direct builds consume local data.
-Each `source.json` records the original source revision, preservation commit and
-member hashes. Current data is read locally; a member with `storage: "git"` is
-read from its exact preservation commit in this repository. Original executable
-adapters are recovery material, not active build inputs or a second renderer.
-These checks neither execute source products nor prove artwork qualification.
+`npm test` checks that each work holds only its model, its README and an
+optional `source.json`, that each model is in the publisher's format with a
+full revision, cites at least one source and gives every source a digest, and
+that no two works share a model id. It does not run the publisher or a
+described product; `archpub check --repo` is the full validation.
 
-`ethos prove --full --execute --json` applies the same input tests through native
-ETHOS coverage and static-analysis providers plus `npm run format:check`.
-The private package declares commands only and installs no dependencies.
+A `source.json` records originals preserved from a described repository: its
+source revision and tree, the preservation commit and each member's digest.
+Members with `storage: "git"` are read from that commit, so originals of a
+retired input format stay verifiable without being current files.
 
-Run `npm run format:check` for formatting and `npm run format:fix` to fix the
-same declared inputs. Prettier and Taplo run from the host's installation with
-their configuration under `.config/checks/`: Prettier formats the Markdown,
-YAML, JSON and JavaScript carriers, and Taplo the TOML files. Captured source
-originals are excluded through Prettier's native ignore mechanism, not
-reformatted.
+`ethos prove --full --execute --json` runs the same tests through the native
+ETHOS coverage and static-analysis providers, plus `npm run format:check`.
+
+## Formatting
+
+Run `npm run format:check` to check formatting and `npm run format:fix` to fix
+it. Prettier formats the Markdown, YAML, JSON and JavaScript files and Taplo
+the TOML files, both from the host's installation with their configuration
+under `.config/checks/`.

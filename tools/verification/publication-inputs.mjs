@@ -4,6 +4,11 @@ import { createHash } from "node:crypto";
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 
+const MODEL_FORMAT = "architecture-publisher.model";
+const WORK_FILES = new Set(["README.md", "model.json", "source.json"]);
+const REVISION = /^([0-9a-f]{40}|[0-9a-f]{64})$/;
+const DIGEST = /^[0-9a-f]{64}$/;
+
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const readJson = async (file) => JSON.parse(await readFile(file, "utf8"));
 const localFile = (directory, relative) => {
@@ -13,7 +18,7 @@ const localFile = (directory, relative) => {
   return file;
 };
 
-export async function verifyPublicationInput(directory, repositoryRoot) {
+export async function verifyCustody(directory, repositoryRoot) {
   const source = await readJson(path.join(directory, "source.json"));
   assert.match(source.sourceCommit, /^[a-f0-9]{40}$/);
   assert.match(source.sourceTree, /^[a-f0-9]{40}$/);
@@ -46,25 +51,40 @@ export async function verifyPublicationInput(directory, repositoryRoot) {
     assert.equal(sha256(bytes), member.sha256);
     if (file.endsWith(".json")) JSON.parse(bytes.toString("utf8"));
   }
+}
 
-  if (!(await readdir(directory)).includes("build-request.json")) return;
-  const request = await readJson(path.join(directory, "build-request.json"));
-  assert.equal(request.schema, "architecture.build-request/v1");
-  assert.equal(request.edition.kind, "direct");
-  assert.deepEqual(request.providers, []);
-  const projectFile = localFile(
-    directory,
-    path.join(request.edition.root, request.edition.manifest),
-  );
-  const project = await readJson(projectFile);
-  assert.equal(project.schema, "architecture.edition-project/v1");
-  assert.ok(project.questions.length > 0);
-  assert.deepEqual(request.media, ["static", "interactive"]);
-  for (const selected of request.sources) {
-    assert.equal(selected.input.kind, "pin");
-    const file = localFile(directory, selected.input.path);
-    const bytes = await readFile(file);
-    assert.equal(sha256(bytes), selected.input.sha256);
-    assert.equal(JSON.parse(bytes.toString("utf8")).schema, "architecture.claim-model/v2");
+export async function verifyModel(directory) {
+  const model = await readJson(path.join(directory, "model.json"));
+  assert.equal(model.format, MODEL_FORMAT);
+  assert.equal(model.version, 1);
+  assert.ok(typeof model.id === "string" && model.id.length > 0);
+  assert.match(model.repository?.revision ?? "", REVISION);
+  const sources = Object.entries(model.sources ?? {});
+  assert.ok(sources.length > 0, "the model cites no sources");
+  for (const [id, source] of sources) {
+    assert.match(source.sha256 ?? "", DIGEST, `source ${id} declares no digest`);
   }
+  return model.id;
+}
+
+export async function verifyWork(directory, repositoryRoot) {
+  const names = [];
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    assert.ok(entry.isFile() && WORK_FILES.has(entry.name), `${entry.name} is not a work file`);
+    names.push(entry.name);
+  }
+  assert.ok(names.includes("README.md") && names.includes("model.json"));
+  if (names.includes("source.json")) await verifyCustody(directory, repositoryRoot);
+  return verifyModel(directory);
+}
+
+export async function verifyPublications(publications, repositoryRoot) {
+  const works = new Map();
+  for (const entry of await readdir(publications, { withFileTypes: true })) {
+    assert.ok(entry.isDirectory(), `${entry.name} is not a work directory`);
+    const id = await verifyWork(path.join(publications, entry.name), repositoryRoot);
+    assert.ok(!works.has(id), `${entry.name} and ${works.get(id)} both publish ${id}`);
+    works.set(id, entry.name);
+  }
+  return works;
 }
