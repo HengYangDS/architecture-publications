@@ -80,6 +80,23 @@ test("a model is refused unless it is the publisher's format pinned exactly", as
   });
 });
 
+test("every view is named by a title of its own", async () => {
+  await withDirectory(async (directory) => {
+    const titled = {
+      ...model("shop"),
+      views: [{ id: "overview", title: "Overview", question: "What is in the shop?" }],
+    };
+    await writeWork(directory, titled);
+    assert.equal(await verifyModel(directory), "shop");
+    for (const title of [undefined, " ", "Shop"]) {
+      const copy = structuredClone(titled);
+      copy.views[0].title = title;
+      await writeWork(directory, copy);
+      await assert.rejects(verifyModel(directory), /view overview has no title of its own/);
+    }
+  });
+});
+
 test("a work holds only its model, description and custody record", async () => {
   await withDirectory(async (directory) => {
     await writeWork(directory);

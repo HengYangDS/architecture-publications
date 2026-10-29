@@ -369,11 +369,13 @@
   "views": [
     {
       "id": "overview",
+      "title": "Overview",
       "question": "How does AIGW turn operator intent into guarded native client projections?",
       "tiers": ["intent", "coordination", "admission", "safety", "clients"]
     },
     {
       "id": "authority",
+      "title": "Authority",
       "question": "Which owners supply desired state, credentials, and host observations?",
       "tiers": [
         {
@@ -390,6 +392,7 @@
     },
     {
       "id": "adapters",
+      "title": "Adapters",
       "question": "How are native client adapters admitted and dispatched, and where are their effects guarded?",
       "tiers": [
         {

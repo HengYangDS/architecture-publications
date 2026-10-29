@@ -64,6 +64,11 @@ export async function verifyModel(directory) {
   for (const [id, source] of sources) {
     assert.match(source.sha256 ?? "", DIGEST, `source ${id} declares no digest`);
   }
+  // The publisher names a view's poster, panel and viewer by its own title.
+  for (const view of model.views ?? []) {
+    const title = typeof view.title === "string" ? view.title.trim() : "";
+    assert.ok(title && title !== model.title, `view ${view.id} has no title of its own`);
+  }
   return model.id;
 }
 

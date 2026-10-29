@@ -38,8 +38,8 @@ delivery is published. Deliveries are not committed here.
 
 `npm test` checks that each work holds only its model, its README and an
 optional `source.json`, that each model is in the publisher's format with a
-full revision, cites at least one source and gives every source a digest, and
-that no two works share a model id. It does not run the publisher or a
+full revision, cites at least one source, gives every source a digest and
+titles every view, and that no two works share a model id. It does not run the publisher or a
 described product; `archpub check --repo` is the full validation.
 
 A `source.json` records originals preserved from a described repository: its
