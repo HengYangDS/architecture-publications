@@ -369,7 +369,7 @@
   "views": [
     {
       "id": "overview",
-      "title": "Overview",
+      "title": "From intent to guarded projections",
       "question": "How does AIGW turn operator intent into guarded native client projections?",
       "tiers": ["intent", "coordination", "admission", "safety", "clients"]
     },
