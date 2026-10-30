@@ -98,8 +98,8 @@ that evidence.
 ### Requirement: Every view has a title
 
 Each view of a work SHALL declare a short title of its own, different from the
-model's title, so that its poster, its page panel, the page's list of panels
-and its full viewer name that view.
+model's title, that names what the view shows, so that its poster, its page
+panel, the page's list of panels and its full viewer name that view.
 
 #### Scenario: A view without a title
 
