@@ -12,6 +12,8 @@ diagram checks.
   proven commit on the accepted branch.
 - [AIGW Client Projection](publications/aigw-client/README.md): how operator
   intent becomes guarded native client projections.
+- [Architecture Publisher](publications/architecture-publisher/README.md): how
+  Architecture Publisher turns an architecture model into posters and a page.
 
 A model pins the described repository to a full commit and cites the files that
 support each component and relation by SHA-256. Its `attribution` names this
