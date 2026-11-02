@@ -13,7 +13,7 @@ publisher moved its package to the repository root. Of its 27 cited sources,
 - A work may hold the overview composition its model names: one `.typ` file
   beside the model. The input check admits that file and fails a model that
   names a composition the work lacks or a path outside the work.
-- The architecture-publisher work is re-pinned at `d7812b7`. It cites every
+- The architecture-publisher work is re-pinned at `97c2079`. It cites every
   file under `src/` with its digest and declares `src/` as its coverage scope.
   It adds the coverage report, the overview typesetter and the publisher's
   words, and two views, the checks and the LikeC4 import, beside its three.

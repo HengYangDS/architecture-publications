@@ -12,7 +12,7 @@ pinned before the publisher moved its package to the repository root.
 - A work may hold the one composition its model names, and the input check
   still refuses any other file.
 - The architecture-publisher work describes the publisher as built at
-  `d7812b7`, cites every file of its source and has its overview.
+  `97c2079`, cites every file of its source and has its overview.
 
 **Non-Goals:**
 

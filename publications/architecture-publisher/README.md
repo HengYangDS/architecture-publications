@@ -2,7 +2,7 @@
 
 [`model.json`](model.json) is an Architecture Model of how Architecture
 Publisher turns an architecture model into posters, a page and an overview. It
-pins `architecture-publisher` at `d7812b753317650cfcf09d4d05172a537aff6d28` and
+pins `architecture-publisher` at `97c2079a33d1772343593d6609145b5dd6d41358` and
 cites all 55 files under `src/`, its coverage scope, by SHA-256: twenty-five
 components, thirty-four relations and five views, the overview from the editor
 through acceptance and publication, the checks, the grid layout, the media and

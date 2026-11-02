@@ -4,7 +4,7 @@
 
 ## 2. Works
 
-- [x] 2.1 Re-pin the architecture-publisher work at `d7812b7` with every `src/` file cited and its overview composition; verify `archpub check --repo` verifies every source, finds nothing undrawn and passes the overview's checks.
+- [x] 2.1 Re-pin the architecture-publisher work at `97c2079` with every `src/` file cited and its overview composition; verify `archpub check --repo` verifies every source, finds nothing undrawn and passes the overview's checks.
 - [x] 2.2 Update the work's README and the repository README; verify the formatting and input checks pass.
 
 ## 3. Verification
