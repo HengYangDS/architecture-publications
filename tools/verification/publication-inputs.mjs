@@ -6,6 +6,8 @@ import path from "node:path";
 
 const MODEL_FORMAT = "architecture-publisher.model";
 const WORK_FILES = new Set(["README.md", "model.json", "source.json"]);
+/** An overview composition the publisher typesets: one Typst file beside the model. */
+const COMPOSITION = /^[^/\\]+\.typ$/;
 const REVISION = /^([0-9a-f]{40}|[0-9a-f]{64})$/;
 const DIGEST = /^[0-9a-f]{64}$/;
 
@@ -73,12 +75,20 @@ export async function verifyModel(directory) {
 }
 
 export async function verifyWork(directory, repositoryRoot) {
+  const { overview } = await readJson(path.join(directory, "model.json"));
+  // A model may name its overview composition, which the work then holds beside it.
+  assert.ok(
+    overview === undefined || (typeof overview === "string" && COMPOSITION.test(overview)),
+    `the overview ${overview} is not a Typst file beside the model`,
+  );
+  const allowed = new Set([...WORK_FILES, ...(overview ? [overview] : [])]);
   const names = [];
   for (const entry of await readdir(directory, { withFileTypes: true })) {
-    assert.ok(entry.isFile() && WORK_FILES.has(entry.name), `${entry.name} is not a work file`);
+    assert.ok(entry.isFile() && allowed.has(entry.name), `${entry.name} is not a work file`);
     names.push(entry.name);
   }
   assert.ok(names.includes("README.md") && names.includes("model.json"));
+  assert.ok(!overview || names.includes(overview), `the overview ${overview} is missing`);
   if (names.includes("source.json")) await verifyCustody(directory, repositoryRoot);
   return verifyModel(directory);
 }

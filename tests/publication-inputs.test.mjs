@@ -112,6 +112,24 @@ test("a work holds only its model, description and custody record", async () => 
   });
 });
 
+test("a work may hold the overview composition its model names", async () => {
+  await withDirectory(async (directory) => {
+    await writeWork(directory, { ...model("shop"), overview: "overview.typ" });
+    await assert.rejects(verifyWork(directory, directory), /the overview overview\.typ is missing/);
+    await writeFile(path.join(directory, "overview.typ"), '#import "/archpub/house.typ": *\n');
+    assert.equal(await verifyWork(directory, directory), "shop");
+    await writeWork(directory, model("shop"));
+    await assert.rejects(verifyWork(directory, directory), /overview\.typ is not a work file/);
+    for (const overview of ["../overview.typ", "pages/overview.typ", "overview.svg", 3]) {
+      await writeWork(directory, { ...model("shop"), overview });
+      await assert.rejects(
+        verifyWork(directory, directory),
+        /is not a Typst file beside the model/,
+      );
+    }
+  });
+});
+
 test("two works may not publish under one id", async () => {
   await withDirectory(async (directory) => {
     await writeWork(path.join(directory, "first"));

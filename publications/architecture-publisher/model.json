@@ -3,8 +3,8 @@
   "version": 1,
   "id": "architecture-publisher",
   "title": "Architecture Publisher",
-  "question": "How does Architecture Publisher turn an architecture model into posters and a page?",
-  "summary": "An editor runs archpub on a model or a LikeC4 workspace. One build validates the model, verifies its sources, plans at most four views, lays each out on one grid and writes 16:9 poster pages, a native Archify explainer page and a manifest of their digests and evidence.",
+  "question": "How does Architecture Publisher turn an architecture model into posters, a page and an overview?",
+  "summary": "An editor runs archpub on a model or a LikeC4 workspace. One build validates the model, verifies its sources, plans its views, lays each out on one grid and writes 16:9 poster pages, a native Archify explainer page, the overview its author composes in Typst and a manifest of their digests and evidence; archpub check also counts what the model covers of its repository.",
   "attribution": "Architecture Publications, read from the Architecture Publisher source",
   "scope": "The publisher package and its vendored supplies; not the repository's quality tooling or CI",
   "limits": [
@@ -13,7 +13,7 @@
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "3bf75fdd078164c45437a0252f26b5e98e643677"
+    "revision": "d7812b753317650cfcf09d4d05172a537aff6d28"
   },
   "kinds": {
     "person": {
@@ -64,112 +64,224 @@
   },
   "sources": {
     "cli": {
-      "path": "packages/publisher/src/cli/run.mjs",
-      "sha256": "afc57e1c9b86666fcf6ee1f0e0bd3d5ecfd170edf75ad28ff134648e67c9240c"
+      "path": "src/cli/run.mjs",
+      "sha256": "eba533b1654c607fc48bde8c4d18c97e68dbe9374e7e10125f37aa37183bd608"
+    },
+    "main": {
+      "path": "src/cli/main.mjs",
+      "sha256": "23a9296b612f54e32003a1596e42eddf2d74b9ffe5048ecba8226f4801659030"
+    },
+    "refusal": {
+      "path": "src/refusal.mjs",
+      "sha256": "1867c16cb8a804684f2ffb7d989ca825759ea72677342478c9af442f4af0b714"
     },
     "build": {
-      "path": "packages/publisher/src/build.mjs",
-      "sha256": "3b45c77d2677384a69bee5c2a9257b256adef9a93165c7b1abd87636d41120f5"
+      "path": "src/build.mjs",
+      "sha256": "4c54645c94041bdd1b8ef9c7df97887bc52bdf188aa09e80382fb54de830b2a4"
     },
     "delivery": {
-      "path": "packages/publisher/src/delivery.mjs",
+      "path": "src/delivery.mjs",
       "sha256": "440749852521f208d57918bb7489e382e7c2d540053d8d8824eb4cd5fd467e92"
     },
     "importer": {
-      "path": "packages/publisher/src/importers/likec4.mjs",
-      "sha256": "91f5a3f5408558e358e90ceb45c2643663999615f0f120efadd94c12e4046608"
+      "path": "src/importers/likec4.mjs",
+      "sha256": "2a6348ab6b69101de1cf1ccf744b79ad247c1a95a6b3f0d1b57b347f2933600d"
     },
     "worker": {
-      "path": "packages/publisher/src/importers/likec4-worker.mjs",
+      "path": "src/importers/likec4-worker.mjs",
       "sha256": "7fa5da5d726ddfe4374971b36dfea48aa64d351c39a102271e90d47faa391d9b"
     },
     "model": {
-      "path": "packages/publisher/src/model/load.mjs",
-      "sha256": "a7dad7575c64cff30ca95d8e32a04b04f27d2d8408713176370a93f84cf9d343"
+      "path": "src/model/load.mjs",
+      "sha256": "97808510961a5182f5c24f00fed4defa00a68ce768a0b653cfddc8813b84ef58"
     },
     "schema": {
-      "path": "packages/publisher/src/model/schema.json",
-      "sha256": "c987a703979aa4e68b9c991c2663a32f50937bf1e2fd83bd0e83c60ab1e39d6f"
+      "path": "src/model/schema.json",
+      "sha256": "1b2f966bf2d724ad33b01e45833f7787b5a07a3b2208c0ee612623d4a1e53e09"
+    },
+    "paths": {
+      "path": "src/model/paths.mjs",
+      "sha256": "4100404fd21a212b52f25cf890b873448c5527409636a2a92a9e8214ea9ab511"
     },
     "binding": {
-      "path": "packages/publisher/src/sources/bind.mjs",
-      "sha256": "34b8fc0f89367f0c90031da931e38c654446198308af9d4ba79a7af9ea72b162"
+      "path": "src/sources/bind.mjs",
+      "sha256": "0a0ca1dbea0097ee33a175f05cf0e4f90f2f6a967dfff3e4451eb50580cb63d6"
+    },
+    "git": {
+      "path": "src/sources/git.mjs",
+      "sha256": "e99ede6efe968fd2a3b6650206f2fa5b3070a313a6976cc550a0f47f062c2e43"
+    },
+    "environment": {
+      "path": "src/environment.mjs",
+      "sha256": "2405277a7a06dc75eacd7fc4f9d87c60cb29f4b15c01fdee714fa23da63d2632"
+    },
+    "coverage": {
+      "path": "src/sources/coverage.mjs",
+      "sha256": "5c02497cd1527f6d2e927f6dd4f2adb3feeb643dce5f385ca513fd5059668e8d"
     },
     "plan": {
-      "path": "packages/publisher/src/plan/views.mjs",
-      "sha256": "7deebecd2be132809124771929dd3fb51a86a959509dda54e9a4a7c098b24601"
+      "path": "src/plan/views.mjs",
+      "sha256": "e12d1befec1ba8b9c29d575f287b684ec914a74d044f8fead100c84a76d8da96"
     },
     "grid": {
-      "path": "packages/publisher/src/layout/grid.mjs",
-      "sha256": "132063c65b3f0d9cd0bd487cf472a32b041350ecb4e7b42f4f05f2933b7bbb4b"
+      "path": "src/layout/grid.mjs",
+      "sha256": "998bafcd0959d8d24ca71aa0f668de2495e568bf10554555a960db24cd9adb89"
     },
     "rows": {
-      "path": "packages/publisher/src/layout/rows.mjs",
+      "path": "src/layout/rows.mjs",
       "sha256": "7c827b5cffee94201c62687ed53aa35aaf22b0df9097792717d985628a6cf478"
     },
     "placement": {
-      "path": "packages/publisher/src/layout/placement.mjs",
+      "path": "src/layout/placement.mjs",
       "sha256": "f2f080ae722a1d99ea28ebb284305b1199882e7d161ffac3ebf3a9d0dd9f72a9"
     },
-    "channels": {
-      "path": "packages/publisher/src/layout/channels.mjs",
-      "sha256": "074751f876b79463f575b63b28926c99db93a2c34906e0d26ff0ef26844cb194"
+    "permutations": {
+      "path": "src/layout/permutations.mjs",
+      "sha256": "afbfd9e328f67958dd16aae9b3335671f11f4714457112a29eb42e5c556bc20b"
     },
-    "solver": {
-      "path": "packages/publisher/src/layout/channel-solver.mjs",
-      "sha256": "4019dd9125175d9fb28834b48b2c3dc3e96a178a416b8a3837fc796365776923"
+    "channels": {
+      "path": "src/layout/channels.mjs",
+      "sha256": "86d236536c82a9df2edcf7a5137851ef4213c0b7f3a4064338b5c511643cdf20"
+    },
+    "solver-conflicts": {
+      "path": "src/layout/channel-solver/conflicts.mjs",
+      "sha256": "798afa3bbbdcefb38a29c45b1828a2783048021e69bb8b9f615032ad4dc7d39d"
+    },
+    "solver-options": {
+      "path": "src/layout/channel-solver/options.mjs",
+      "sha256": "3ee2b8665765dcba6b58b3b1f6cfa625c7d4eb9a8d283fa3f64f83f55c1094cc"
+    },
+    "solver-search": {
+      "path": "src/layout/channel-solver/search.mjs",
+      "sha256": "fbe86507fce3a2e129a770659ac8e92bbf0e286638445a5aa6160db7306fbd5a"
+    },
+    "solver-solution": {
+      "path": "src/layout/channel-solver/solution.mjs",
+      "sha256": "bd285b7b222f91a76beb3d617b369ef7f95d2cb3ac0c03e4c4ac2521a4c404a7"
+    },
+    "solver-tracks": {
+      "path": "src/layout/channel-solver/tracks.mjs",
+      "sha256": "6672d194f793ff20d8b2324802b35293669c54d7f8e3d401036926b7eee42607"
     },
     "measure": {
-      "path": "packages/publisher/src/layout/measure.mjs",
-      "sha256": "06099b27d7fba1baed928be98045cc3bd628ce19eedaae5a871a911265ec830d"
+      "path": "src/layout/measure.mjs",
+      "sha256": "b62b49a4f0ade507fbafaf5b96b951b2c9f0db812bdbd20608eccbd87e4b3d32"
     },
     "poster": {
-      "path": "packages/publisher/src/poster/compose.mjs",
-      "sha256": "000f28aff92c485a1f4109de9d2730cd764be381f238dfe2285707f1f089ba83"
+      "path": "src/poster/compose/edition.mjs",
+      "sha256": "86db8a882dd4576970d7b54480bf3a2853da1ca96452ea1dd33c30f10807321d"
+    },
+    "candidates": {
+      "path": "src/poster/compose/candidates.mjs",
+      "sha256": "5737f4e252c95040fb254ab4191bec73fc0db230dfc382a6c9317b06e8868265"
+    },
+    "drawing": {
+      "path": "src/poster/compose/drawing.mjs",
+      "sha256": "92b2d39a24740594ec7f62fdb3f9f83ab1833d72b557dc9c2a88e33e2fe73f78"
+    },
+    "gates": {
+      "path": "src/poster/compose/gates.mjs",
+      "sha256": "e8a2ad949ab9f41d7a812f3c056e9b13ab4caaa2e0715b51839ac12daf77ec83"
+    },
+    "ranking": {
+      "path": "src/poster/compose/ranking.mjs",
+      "sha256": "7268f4987596d856a4ef43e49ef371f739f9d35ec5c2ae71491e4953b1aa8047"
+    },
+    "page": {
+      "path": "src/poster/page.mjs",
+      "sha256": "3d017c9813a692b3aade487c39d38b2aa8bbfca7a6010d0da2c6ec16ec68465f"
+    },
+    "plate": {
+      "path": "src/poster/plate.mjs",
+      "sha256": "29074aa91c956c0d1553d61727c5b2818c876986d88ec3fa18d87be6efae2c06"
+    },
+    "figure": {
+      "path": "src/poster/figure.mjs",
+      "sha256": "a49bb7a3a4c191ee7d63d73024fcf97e190da9d3f433d713598f7d5e30d15ac1"
+    },
+    "blocks": {
+      "path": "src/poster/blocks.mjs",
+      "sha256": "2c9dca0f7ec4b2d188d6be7d4252dd4c360f183973cee57c969fbd452d460bdf"
+    },
+    "balance": {
+      "path": "src/poster/balance.mjs",
+      "sha256": "ce318a33fea38c01702a0c1713441adfc12a948c30cf8ea6f8ef1636b6c7a028"
+    },
+    "corners": {
+      "path": "src/poster/corners.mjs",
+      "sha256": "89159107c9714e0449a740024fd7570e867d43f0ba1f846de9e2a221f4c6bf67"
+    },
+    "justify": {
+      "path": "src/poster/justify.mjs",
+      "sha256": "8b19f0ef88dd7263f99235933df935c781de77459b69a3c795600e24f9d1b4c1"
     },
     "tokens": {
-      "path": "packages/publisher/src/poster/tokens.mjs",
-      "sha256": "a2f08a20df10d8c13b5e2da2639f75146b4b7b2b8e28a5dd56e8ffe4b90daf89"
+      "path": "src/poster/tokens.mjs",
+      "sha256": "53272d38e4a3ed2226903988f4852b0812a292e328d6a2d8bcea1eba77962d86"
     },
     "text": {
-      "path": "packages/publisher/src/poster/text.mjs",
+      "path": "src/poster/text.mjs",
       "sha256": "41e9ab5351bb895b145d59366e1a2cfa0b2c28c57b2e5d2836821b993dd25fb4"
     },
+    "breaks": {
+      "path": "src/breaks.mjs",
+      "sha256": "4c3fd461401879ef0171406e9093472cba8dc3d8bd48a4db85aef6742332081a"
+    },
     "raster": {
-      "path": "packages/publisher/src/poster/raster.mjs",
+      "path": "src/poster/raster.mjs",
       "sha256": "d320400f0ca105e3b426fb7715e92639ca3de2b0d64f829a06b96f79b849c056"
     },
     "explainer": {
-      "path": "packages/publisher/src/map/explainer.mjs",
-      "sha256": "e7ef49aca5cb0500d409fc67ba1b50a16408a673a673427878cf2937ae4c4312"
+      "path": "src/map/explainer.mjs",
+      "sha256": "1a5818cf15979086c5b908d75c90401115b36fde41eac4c994df3400090455fb"
     },
     "map": {
-      "path": "packages/publisher/src/map/archify.mjs",
-      "sha256": "6863453da0b7685f788b4022fb0699d3c130374b34b6d5e0d9686d24ed9c791e"
+      "path": "src/map/archify.mjs",
+      "sha256": "3f6fb073be9b087e94aa70a03f8f6a71df1eb1ed75a002bf0732f2a4980b8973"
+    },
+    "choice": {
+      "path": "src/map/choice.mjs",
+      "sha256": "476104c0f0dc90b7e3d1f7bb08315319943c85cbd0d5424b7a0e43339915369f"
+    },
+    "routes": {
+      "path": "src/map/routes.mjs",
+      "sha256": "99e39aeab432577906000941cffcc2ef04c5897922b8039db034bb39b154c378"
     },
     "kinds": {
-      "path": "packages/publisher/src/kinds.mjs",
+      "path": "src/kinds.mjs",
       "sha256": "815cfae915efc9538f230112a048df8aca236df4dd4d47c1873137cc986611b0"
     },
     "icons": {
-      "path": "packages/publisher/src/icons.mjs",
+      "path": "src/icons.mjs",
       "sha256": "7b1731c06a6d081203a6a157e166d4c8447bf0d88c5fb40486ce5ff56f482925"
     },
     "supply": {
-      "path": "packages/publisher/src/supply.mjs",
-      "sha256": "c47e5c55e3b98bfb664cea1af190c28d7b26abf952af5d27cf33cf1035947ea7"
+      "path": "src/supply.mjs",
+      "sha256": "fbba726484aab557f63f5fb73cbeff2d62a44a50e149eaca8684e196d3792ff6"
     },
-    "breaks": {
-      "path": "packages/publisher/src/breaks.mjs",
-      "sha256": "4c3fd461401879ef0171406e9093472cba8dc3d8bd48a4db85aef6742332081a"
+    "locale": {
+      "path": "src/locale.mjs",
+      "sha256": "fed0a34dd3d5b7d16b14cabe66f93b2fcaa62ac4e6daa5b703955aad08803e3c"
     },
-    "choice": {
-      "path": "packages/publisher/src/map/choice.mjs",
-      "sha256": "8b568d37fcc8cbf0daad054440b7f1c4682fb70b8f2af54a3ba25429820b686d"
+    "typeset": {
+      "path": "src/overview/typeset.mjs",
+      "sha256": "e65f28881e381638f93344bd796d943fefbf1a5d89ae9ce150d9cf6cfce127f5"
     },
-    "routes": {
-      "path": "packages/publisher/src/map/routes.mjs",
-      "sha256": "a65397c965facba7e026c53964507c95a90496c50e5fe54c35f0efabe2cd7f75"
+    "house": {
+      "path": "src/overview/house.typ",
+      "sha256": "4147b1c11da2e93a9629cc9d96526373394be703cf5cf8994f1a5d9ea359c262"
+    },
+    "checks": {
+      "path": "src/overview/checks.mjs",
+      "sha256": "fe36e7215cc2babe9db53b46f36ff29fd6106910d3f523c9d6cde04caae6b326"
+    },
+    "lint": {
+      "path": "src/overview/lint.mjs",
+      "sha256": "78e20f28a5a6612f931ba7e9d787483305b276242b497099c8323f8490506ae8"
+    },
+    "glyphs": {
+      "path": "src/overview/glyphs.mjs",
+      "sha256": "ccfd9a4c61566f0f318a827f75c5d86cd871ff0b559bf012e65478392ffcfef1"
     }
   },
   "components": [
@@ -185,7 +297,7 @@
       "id": "cli",
       "label": "archpub",
       "kind": "command",
-      "sources": ["cli"]
+      "sources": ["cli", "main", "refusal"]
     },
     {
       "id": "importer",
@@ -221,7 +333,7 @@
       "details": {
         "refuses": "invalid fields"
       },
-      "sources": ["model", "schema"]
+      "sources": ["model", "schema", "paths"]
     },
     {
       "id": "binding",
@@ -230,7 +342,7 @@
       "details": {
         "reads": "Git at a revision"
       },
-      "sources": ["binding"]
+      "sources": ["binding", "git", "environment"]
     },
     {
       "id": "plan",
@@ -248,7 +360,21 @@
       "details": {
         "draws": "2400 × 1350 px pages"
       },
-      "sources": ["poster", "tokens"]
+      "sources": [
+        "poster",
+        "candidates",
+        "drawing",
+        "gates",
+        "ranking",
+        "page",
+        "plate",
+        "figure",
+        "blocks",
+        "balance",
+        "corners",
+        "justify",
+        "tokens"
+      ]
     },
     {
       "id": "map",
@@ -309,7 +435,7 @@
       "details": {
         "solves": "positions exactly"
       },
-      "sources": ["placement"]
+      "sources": ["placement", "permutations"]
     },
     {
       "id": "wires",
@@ -327,7 +453,13 @@
       "details": {
         "routes": "each channel"
       },
-      "sources": ["solver"]
+      "sources": [
+        "solver-conflicts",
+        "solver-options",
+        "solver-search",
+        "solver-solution",
+        "solver-tracks"
+      ]
     },
     {
       "id": "measure",
@@ -364,6 +496,33 @@
         "maps": "kinds to icons"
       },
       "sources": ["kinds", "icons"]
+    },
+    {
+      "id": "coverage",
+      "label": "Coverage report",
+      "kind": "check",
+      "details": {
+        "counts": "cited, uncovered and moved files"
+      },
+      "sources": ["coverage"]
+    },
+    {
+      "id": "overview",
+      "label": "Overview typesetter",
+      "kind": "medium",
+      "details": {
+        "typesets": "the author's composition with Typst"
+      },
+      "sources": ["typeset", "house", "checks", "lint", "glyphs"]
+    },
+    {
+      "id": "words",
+      "label": "Words",
+      "kind": "medium",
+      "details": {
+        "holds": "the publisher's words in five languages"
+      },
+      "sources": ["locale"]
     }
   ],
   "relations": [
@@ -377,163 +536,232 @@
       "id": "imports",
       "from": "cli",
       "to": "importer",
-      "label": "import likec4"
+      "label": "import likec4",
+      "sources": ["cli"]
     },
     {
       "id": "builds",
       "from": "cli",
       "to": "builder",
-      "label": "build, check"
+      "label": "build, check",
+      "sources": ["cli"]
     },
     {
       "id": "accepts",
       "from": "cli",
       "to": "acceptance",
-      "label": "accept, publish"
+      "label": "accept, publish",
+      "sources": ["cli"]
     },
     {
       "id": "validates",
       "from": "importer",
       "to": "model",
-      "label": "validates"
+      "label": "validates",
+      "sources": ["importer"]
     },
     {
       "id": "parses",
       "from": "importer",
       "to": "supplies",
-      "label": "parses with LikeC4"
+      "label": "parses with LikeC4",
+      "sources": ["importer"]
     },
     {
       "id": "loads",
       "from": "builder",
       "to": "model",
-      "label": "loads"
+      "label": "loads",
+      "sources": ["build"]
     },
     {
       "id": "binds",
       "from": "builder",
       "to": "binding",
-      "label": "binds sources"
+      "label": "binds sources",
+      "sources": ["build"]
     },
     {
       "id": "plans",
       "from": "builder",
       "to": "plan",
-      "label": "plans views"
+      "label": "plans views",
+      "sources": ["build"]
     },
     {
       "id": "composes",
       "from": "builder",
       "to": "poster",
-      "label": "composes posters"
+      "label": "composes posters",
+      "sources": ["build"]
     },
     {
       "id": "maps",
       "from": "builder",
       "to": "map",
-      "label": "writes the page"
+      "label": "writes the page",
+      "sources": ["build"]
     },
     {
       "id": "rasterizes",
       "from": "builder",
       "to": "raster",
-      "label": "rasterizes"
+      "label": "rasterizes",
+      "sources": ["build"]
     },
     {
       "id": "reads",
       "from": "binding",
       "to": "repository",
-      "label": "reads at the revision"
+      "label": "reads at the revision",
+      "sources": ["git"]
     },
     {
       "id": "poster-layout",
       "from": "poster",
       "to": "layout",
-      "label": "lays out"
+      "label": "lays out",
+      "sources": ["plate"]
     },
     {
       "id": "map-layout",
       "from": "map",
       "to": "layout",
-      "label": "lays out"
+      "label": "lays out",
+      "sources": ["map"]
     },
     {
       "id": "delivers",
       "from": "map",
       "to": "supplies",
-      "label": "runs Archify"
+      "label": "runs Archify",
+      "sources": ["map"]
     },
     {
       "id": "copies",
       "from": "acceptance",
       "to": "publication-root",
-      "label": "copies accepted deliveries"
+      "label": "copies accepted deliveries",
+      "sources": ["delivery"]
     },
     {
       "id": "builds-rows",
       "from": "layout",
       "to": "rows",
-      "label": "builds rows"
+      "label": "builds rows",
+      "sources": ["grid"]
     },
     {
       "id": "places",
       "from": "layout",
       "to": "placement",
-      "label": "places cards"
+      "label": "places cards",
+      "sources": ["grid"]
     },
     {
       "id": "wires-up",
       "from": "layout",
       "to": "wires",
-      "label": "builds wires"
+      "label": "builds wires",
+      "sources": ["grid"]
     },
     {
       "id": "routes",
       "from": "layout",
       "to": "solver",
-      "label": "routes channels"
+      "label": "routes channels",
+      "sources": ["grid"]
     },
     {
       "id": "measures",
       "from": "layout",
       "to": "measure",
-      "label": "measures"
+      "label": "measures",
+      "sources": ["grid"]
     },
     {
       "id": "sets",
       "from": "poster",
       "to": "typefaces",
-      "label": "sets text"
+      "label": "sets text",
+      "sources": ["plate"]
     },
     {
       "id": "styles",
       "from": "poster",
       "to": "presentation",
-      "label": "styles cards"
+      "label": "styles cards",
+      "sources": ["plate"]
     },
     {
       "id": "types",
       "from": "map",
       "to": "presentation",
-      "label": "types components"
+      "label": "types components",
+      "sources": ["map"]
     },
     {
       "id": "fonts",
       "from": "typefaces",
       "to": "supplies",
-      "label": "loads fonts"
+      "label": "loads fonts",
+      "sources": ["text"]
     },
     {
       "id": "icons",
       "from": "presentation",
       "to": "supplies",
-      "label": "loads icons"
+      "label": "loads icons",
+      "sources": ["icons"]
     },
     {
       "id": "renders",
       "from": "raster",
       "to": "supplies",
-      "label": "renders with resvg"
+      "label": "renders with resvg",
+      "sources": ["raster"]
+    },
+    {
+      "id": "measures-coverage",
+      "from": "builder",
+      "to": "coverage",
+      "label": "measures coverage",
+      "sources": ["build"]
+    },
+    {
+      "id": "reads-history",
+      "from": "coverage",
+      "to": "repository",
+      "label": "reads two revisions",
+      "sources": ["coverage"]
+    },
+    {
+      "id": "typesets",
+      "from": "builder",
+      "to": "overview",
+      "label": "typesets the overview",
+      "sources": ["build"]
+    },
+    {
+      "id": "faces",
+      "from": "overview",
+      "to": "supplies",
+      "label": "sets the house faces",
+      "sources": ["typeset"]
+    },
+    {
+      "id": "poster-words",
+      "from": "poster",
+      "to": "words",
+      "label": "sets its words",
+      "sources": ["plate"]
+    },
+    {
+      "id": "page-words",
+      "from": "map",
+      "to": "words",
+      "label": "words the page",
+      "sources": ["explainer"]
     }
   ],
   "views": [
@@ -558,14 +786,37 @@
           "members": ["importer", "builder", "acceptance"]
         },
         {
-          "id": "steps",
-          "label": "Build steps",
-          "members": ["model", "binding", "plan", "poster", "map"]
+          "id": "media",
+          "label": "Media",
+          "members": ["poster", "map", "overview"]
         },
         {
           "id": "outside",
           "label": "Outside the package",
           "members": ["repository", "publication-root"]
+        }
+      ]
+    },
+    {
+      "id": "checks",
+      "title": "Checks",
+      "question": "What does a build check before it draws, and what does archpub check report about the repository?",
+      "summary": "The model is validated, its sources are read from Git at the pinned revision and the views are planned before anything is drawn; archpub check also counts what the model cites and covers and how far the repository has moved since its pin.",
+      "tiers": [
+        {
+          "id": "build",
+          "label": "Build",
+          "members": ["builder"]
+        },
+        {
+          "id": "checks",
+          "label": "Checks",
+          "members": ["model", "binding", "coverage", "plan"]
+        },
+        {
+          "id": "outside",
+          "label": "Outside the package",
+          "members": ["repository"]
         }
       ]
     },
@@ -595,8 +846,8 @@
     {
       "id": "media",
       "title": "Media",
-      "question": "What draws the posters and the page, and which supplies do they use?",
-      "summary": "The poster outlines its text with the bundled fonts and draws Lucide icons; resvg renders its PNG. The map hands grid positions to native Archify.",
+      "question": "What draws the posters, the page and the overview, and which supplies do they use?",
+      "summary": "The poster outlines its text with the bundled fonts and draws Lucide icons; resvg renders its PNG. The map hands grid positions to native Archify. The overview is the author's Typst composition, set in the house faces.",
       "tiers": [
         {
           "id": "build",
@@ -606,12 +857,12 @@
         {
           "id": "media",
           "label": "Media",
-          "members": ["poster", "map"]
+          "members": ["poster", "map", "overview"]
         },
         {
           "id": "parts",
           "label": "Parts",
-          "members": ["typefaces", "presentation", "raster"]
+          "members": ["typefaces", "presentation", "raster", "words"]
         },
         {
           "id": "supplies",
@@ -619,6 +870,33 @@
           "members": ["supplies"]
         }
       ]
+    },
+    {
+      "id": "import",
+      "title": "LikeC4 import",
+      "question": "How does a LikeC4 workspace become a model?",
+      "summary": "archpub import likec4 parses the workspace with the bundled LikeC4 parser in a worker under Node's permission model, writes the leaf elements, relations, groups and element views in the model's language, and warns about nested parents, relations it cannot connect, two-way relations and other view types.",
+      "tiers": [
+        {
+          "id": "commands",
+          "label": "Command line",
+          "members": ["cli"]
+        },
+        {
+          "id": "import",
+          "label": "Import",
+          "members": ["importer"]
+        },
+        {
+          "id": "parts",
+          "label": "Parts",
+          "members": ["model", "words", "supplies"]
+        }
+      ]
     }
-  ]
+  ],
+  "coverage": {
+    "include": ["src/"]
+  },
+  "overview": "overview.typ"
 }

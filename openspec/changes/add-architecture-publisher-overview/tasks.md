@@ -9,4 +9,4 @@
 
 ## 3. Verification
 
-- [ ] 3.1 Run `npm run check`; verify it passes.
+- [x] 3.1 Run `npm run check`; verify it passes.
