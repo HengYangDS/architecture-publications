@@ -7,4 +7,4 @@
 
 ## 2. Verification
 
-- [ ] 2.1 Build the three works with Architecture Publisher, the ETHOS work without its page; verify every poster, the AIGW and Architecture Publisher pages and the three overviews are delivered and each overview passes its checks.
+- [x] 2.1 Build the three works with Architecture Publisher, the ETHOS work without its page; verify every poster, the AIGW and Architecture Publisher pages and the three overviews are delivered and each overview passes its checks. At `a702e32` the ETHOS build delivers 11 posters and its overview, the AIGW build 6 posters and the Architecture Publisher build 5, each with its page and its overview; the three overviews pass their checks.
