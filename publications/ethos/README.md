@@ -30,11 +30,12 @@ names sit beside it. The proof's timings were measured on 2026-11-03, on
 Architecture Publisher's own proof under this ETHOS release.
 
 Each component cites every file that ordered path rules attribute to it, so no
-file in the scope is missed or cited twice. A relation is kept only when an
-import in the source backs it, and cites the importing modules; relations are
-imports and calls, not runtime order. The model leaves out the repository's
-tests, tools, CI and documentation. ETHOS does not maintain this model, and a
-built delivery is not an ETHOS endorsement.
+file in the scope is missed. Seven of those files are also cited by the outside
+system they reach: Git, the OpenSpec CLI, the native tools or the Forges. A
+relation is kept only when an import in the source backs it, and cites the
+importing modules; relations are imports and calls, not runtime order. The
+model leaves out the repository's tests, tools, CI and documentation. ETHOS
+does not maintain this model, and a built delivery is not an ETHOS endorsement.
 
 ```sh
 archpub check publications/ethos/model.json --repo <ethos checkout>

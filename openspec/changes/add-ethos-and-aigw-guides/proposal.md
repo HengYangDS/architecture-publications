@@ -26,6 +26,8 @@ work's top level.
   becomes a Route, its parts, why one guarded transaction, what AIGW leaves to
   others, how it is released and rolled back, and what is still open. Every
   claim cites a line range at v0.6.0.
+- The ETHOS README said no file is cited twice. Seven files are also cited by
+  the outside system they reach, and it now says so.
 - Both overviews' imprints said every view, step by step, is in the
   interactive page. They now say each view has its poster and the page is the
   guide.

@@ -8,6 +8,7 @@
 - [x] 2.2 Add the AIGW work's guide and name it in the model; verify the same check passes it. At `3a8924d` the check verifies all 210 sources and the guide with its 5 diagrams at showcase with strict writing, every line it cites verified at `9c26591`.
 - [x] 2.3 Say in both overviews' imprints that the page is the guide; verify each overview passes its checks. The ETHOS overview sets 125 texts and the AIGW overview 105, none outside the live area or over another.
 - [x] 2.4 Describe the guides in each work's README and the repository README; verify the formatting and input checks pass. The formatting and input checks pass.
+- [x] 2.5 Say in the ETHOS README which files two components cite; verify the count against the model. The model cites 455 files; seven are cited twice, each by its owner and by Git, the OpenSpec CLI, the native tools or the Forges.
 
 ## 3. Verification
 
