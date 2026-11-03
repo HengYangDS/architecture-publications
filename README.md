@@ -28,7 +28,8 @@ Run the publisher with a checkout of the described repository. `check` verifies
 every source at the pinned revision without changing the checkout; `build`
 writes a new delivery under the ignored `build/` directory. A work whose model
 names an overview composition also gets its overview page, which needs Typst
-0.15.1 on the path.
+0.15.1 on the path. A work whose model names a guide gets that guide as its
+page, with every line range it cites checked at the pinned revision.
 
 ```sh
 archpub check publications/ethos/model.json --repo ../ethos
@@ -43,10 +44,12 @@ delivery is published. Deliveries are not committed here.
 ## Input checks
 
 `npm test` checks that each work holds only its model, its README, an optional
-`source.json` and the overview composition its model names, that each model is in the publisher's format with a
-full revision, cites at least one source, gives every source a digest and
-titles every view, and that no two works share a model id. It does not run the publisher or a
-described product; `archpub check --repo` is the full validation.
+`source.json`, the overview composition its model names and the directory of
+the guide it names. It checks that each model is in the publisher's format with
+a full revision, cites at least one source, gives every source a digest and
+titles every view, and that no two works share a model id. It does not run the
+publisher or a described product; `archpub check --repo` is the full
+validation.
 
 A `source.json` records originals preserved from a described repository: its
 source revision and tree, the preservation commit and each member's digest.

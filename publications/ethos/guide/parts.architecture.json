@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The parts that carry one change",
+    "output": "parts.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/ethos.git",
+      "provider": "github",
+      "revision": "424d325386784633839b1abf52a4ac394e412a76"
+    }
+  },
+  "components": [
+    {
+      "id": "part-intent",
+      "type": "backend",
+      "label": "OpenSpec intent",
+      "sublabel": "the official Change",
+      "pos": [40, 40],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "src/ethos/adapters/openspec/commitment.py",
+          "line": 44,
+          "end_line": 56,
+          "label": "Compile"
+        }
+      ]
+    },
+    {
+      "id": "part-plan",
+      "type": "backend",
+      "label": "TransitionPlan",
+      "sublabel": "checks, decisions, effects",
+      "pos": [280, 40],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "src/ethos/contracts/plan.py",
+          "line": 169,
+          "end_line": 181,
+          "label": "Plan"
+        }
+      ]
+    },
+    {
+      "id": "part-proof",
+      "type": "database",
+      "label": "Proof Attestation",
+      "sublabel": "one exact HEAD",
+      "pos": [520, 40],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "src/ethos/adapters/mutation/proof.py",
+          "line": 406,
+          "end_line": 411,
+          "label": "Proof"
+        }
+      ]
+    },
+    {
+      "id": "part-landing",
+      "type": "backend",
+      "label": "Landing and acceptance",
+      "sublabel": "candidate, then accepted",
+      "pos": [760, 40],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "src/ethos/adapters/mutation/landing.py",
+          "line": 45,
+          "end_line": 58,
+          "label": "Land"
+        }
+      ]
+    },
+    {
+      "id": "part-prewrite",
+      "type": "security",
+      "label": "Prewrite admission",
+      "sublabel": "before each tracked write",
+      "pos": [40, 220],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "src/ethos/adapters/admission/prewrite.py",
+          "line": 60,
+          "end_line": 72,
+          "label": "Guard"
+        }
+      ]
+    },
+    {
+      "id": "part-lane",
+      "type": "backend",
+      "label": "Work Lane",
+      "sublabel": "branch, worktree, Lease",
+      "pos": [280, 220],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "src/ethos/adapters/mutation/lane_lifecycle/start.py",
+          "line": 343,
+          "end_line": 353,
+          "label": "Start"
+        }
+      ]
+    },
+    {
+      "id": "part-hooks",
+      "type": "security",
+      "label": "Hook protocol",
+      "sublabel": "one admission per hook",
+      "pos": [520, 220],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "src/ethos/adapters/repo/hook/protocol.py",
+          "line": 20,
+          "end_line": 33,
+          "label": "Hook"
+        }
+      ]
+    },
+    {
+      "id": "part-publication",
+      "type": "backend",
+      "label": "Peer publication",
+      "sublabel": "GitLab and GitHub, exact leases",
+      "pos": [760, 220],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "src/ethos/adapters/mutation/publication/execution.py",
+          "line": 44,
+          "end_line": 61,
+          "label": "Push"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "edge-compiles",
+      "from": "part-intent",
+      "to": "part-plan",
+      "label": "compiles"
+    },
+    {
+      "id": "edge-validates",
+      "from": "part-proof",
+      "to": "part-plan",
+      "label": "validates"
+    },
+    {
+      "id": "edge-landing-requires",
+      "from": "part-landing",
+      "to": "part-proof",
+      "label": "requires",
+      "variant": "emphasis"
+    },
+    {
+      "id": "edge-attributes",
+      "from": "part-prewrite",
+      "to": "part-intent",
+      "label": "attributes paths"
+    },
+    {
+      "id": "edge-holder",
+      "from": "part-prewrite",
+      "to": "part-lane",
+      "label": "checks holder"
+    },
+    {
+      "id": "edge-activates",
+      "from": "part-lane",
+      "to": "part-hooks",
+      "label": "activates"
+    },
+    {
+      "id": "edge-publication-requires",
+      "from": "part-publication",
+      "to": "part-proof",
+      "label": "requires"
+    }
+  ]
+}

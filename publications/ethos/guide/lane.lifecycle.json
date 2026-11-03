@@ -1,0 +1,215 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "A Work Lane, from start to retirement",
+    "output": "lane.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/ethos.git",
+      "provider": "github",
+      "revision": "424d325386784633839b1abf52a4ac394e412a76"
+    }
+  },
+  "mainPath": ["lane-started", "lane-writing", "lane-proven", "lane-accepted"],
+  "states": [
+    {
+      "id": "lane-started",
+      "type": "start",
+      "label": "Lane started",
+      "sublabel": "owned lane",
+      "sources": [
+        {
+          "path": "src/ethos/adapters/mutation/lane_lifecycle/start.py",
+          "line": 343,
+          "end_line": 353,
+          "label": "Start"
+        }
+      ]
+    },
+    {
+      "id": "lane-writing",
+      "type": "active",
+      "label": "Writing",
+      "sublabel": "admitted paths",
+      "sources": [
+        {
+          "path": "src/ethos/adapters/admission/prewrite.py",
+          "line": 60,
+          "end_line": 72,
+          "label": "Prewrite"
+        }
+      ]
+    },
+    {
+      "id": "lane-proven",
+      "type": "decision",
+      "label": "Head proven",
+      "sublabel": "one exact head",
+      "sources": [
+        {
+          "path": "src/ethos/adapters/mutation/proof.py",
+          "line": 406,
+          "end_line": 411,
+          "label": "Proof"
+        },
+        {
+          "path": "docs/architecture/runner-and-mutation.md",
+          "line": 97,
+          "end_line": 104,
+          "label": "Archive"
+        }
+      ]
+    },
+    {
+      "id": "lane-accepted",
+      "type": "success",
+      "label": "Head accepted",
+      "sublabel": "then retired",
+      "sources": [
+        {
+          "path": "src/ethos/adapters/mutation/landing.py",
+          "line": 45,
+          "end_line": 58,
+          "label": "Land"
+        },
+        {
+          "path": "docs/architecture/runner-and-mutation.md",
+          "line": 129,
+          "end_line": 131,
+          "label": "Closeout"
+        },
+        {
+          "path": "docs/architecture/runner-and-mutation.md",
+          "line": 88,
+          "end_line": 92,
+          "label": "Retire"
+        }
+      ]
+    },
+    {
+      "id": "lane-stale",
+      "type": "waiting",
+      "label": "Stale base",
+      "sublabel": "candidate moved",
+      "sources": [
+        {
+          "path": "docs/architecture/runner-and-mutation.md",
+          "line": 43,
+          "end_line": 46,
+          "label": "Stale"
+        }
+      ]
+    },
+    {
+      "id": "lane-refused",
+      "type": "failure",
+      "label": "Proof refused",
+      "sublabel": "not admitted",
+      "sources": [
+        {
+          "path": "docs/architecture/runner-and-mutation.md",
+          "line": 104,
+          "end_line": 107,
+          "label": "Compensate"
+        }
+      ]
+    },
+    {
+      "id": "lane-unowned",
+      "type": "waiting",
+      "label": "Lane unowned",
+      "sublabel": "Lease lapsed",
+      "sources": [
+        {
+          "path": "docs/governance/product-design-contract.md",
+          "line": 273,
+          "end_line": 277,
+          "label": "Reconcile"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "id": "lane-t-write",
+      "from": "lane-started",
+      "to": "lane-writing",
+      "label": "prewrite"
+    },
+    {
+      "id": "lane-t-prove",
+      "from": "lane-writing",
+      "to": "lane-proven",
+      "label": "prove"
+    },
+    {
+      "id": "lane-t-accept",
+      "from": "lane-proven",
+      "to": "lane-accepted",
+      "label": "accept"
+    },
+    {
+      "id": "lane-t-stale",
+      "from": "lane-proven",
+      "to": "lane-stale",
+      "label": "base moved",
+      "variant": "security"
+    },
+    {
+      "id": "lane-t-refresh",
+      "from": "lane-stale",
+      "to": "lane-writing",
+      "label": "refresh",
+      "variant": "dashed"
+    },
+    {
+      "id": "lane-t-refused",
+      "from": "lane-writing",
+      "to": "lane-refused",
+      "label": "fails",
+      "variant": "security"
+    },
+    {
+      "id": "lane-t-compensate",
+      "from": "lane-refused",
+      "to": "lane-writing",
+      "label": "compensate",
+      "variant": "dashed"
+    },
+    {
+      "id": "lane-t-unowned",
+      "from": "lane-writing",
+      "to": "lane-unowned",
+      "label": "lapses",
+      "variant": "security"
+    },
+    {
+      "id": "lane-t-reacquire",
+      "from": "lane-unowned",
+      "to": "lane-writing",
+      "label": "reacquire",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Who may write",
+      "items": [
+        "Only the Lease holder writes in a lane.",
+        "A Lease holds four fields: lane, holder, generation and expiry."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "How a lane recovers",
+      "items": [
+        "A stale base replays onto the candidate.",
+        "A refused proof returns to the pre-archive head.",
+        "An unowned lane is reacquired, transferred or retired."
+      ]
+    }
+  ]
+}

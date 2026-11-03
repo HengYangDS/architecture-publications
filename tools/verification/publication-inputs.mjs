@@ -8,6 +8,8 @@ const MODEL_FORMAT = "architecture-publisher.model";
 const WORK_FILES = new Set(["README.md", "model.json", "source.json"]);
 /** An overview composition the publisher typesets: one Typst file beside the model. */
 const COMPOSITION = /^[^/\\]+\.typ$/;
+/** A guide the publisher delivers as the page: an Archify draft in a directory of its own. */
+const GUIDE = /^(?!\.\.?\/)[^/\\]+\/[^/\\]+\.archify\.md$/;
 const REVISION = /^([0-9a-f]{40}|[0-9a-f]{64})$/;
 const DIGEST = /^[0-9a-f]{64}$/;
 
@@ -74,21 +76,43 @@ export async function verifyModel(directory) {
   return model.id;
 }
 
+/** Whether a guide's directory, which may hold regular files only, holds its draft. */
+async function holdsDraft(directory, draft) {
+  const names = [];
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    assert.ok(entry.isFile(), `${entry.name} in the guide's directory is not a regular file`);
+    names.push(entry.name);
+  }
+  return names.includes(draft);
+}
+
 export async function verifyWork(directory, repositoryRoot) {
-  const { overview } = await readJson(path.join(directory, "model.json"));
+  const { overview, guide } = await readJson(path.join(directory, "model.json"));
   // A model may name its overview composition, which the work then holds beside it.
   assert.ok(
     overview === undefined || (typeof overview === "string" && COMPOSITION.test(overview)),
     `the overview ${overview} is not a Typst file beside the model`,
   );
+  // A model may name its guide, which the work then holds in a directory of its own.
+  assert.ok(
+    guide === undefined || (typeof guide === "string" && GUIDE.test(guide)),
+    `the guide ${guide} is not an Archify draft in a directory of its own`,
+  );
+  const [guideDirectory, draft] = guide ? guide.split("/") : [];
   const allowed = new Set([...WORK_FILES, ...(overview ? [overview] : [])]);
   const names = [];
+  let guideHeld = false;
   for (const entry of await readdir(directory, { withFileTypes: true })) {
+    if (entry.isDirectory() && entry.name === guideDirectory) {
+      guideHeld = await holdsDraft(path.join(directory, entry.name), draft);
+      continue;
+    }
     assert.ok(entry.isFile() && allowed.has(entry.name), `${entry.name} is not a work file`);
     names.push(entry.name);
   }
   assert.ok(names.includes("README.md") && names.includes("model.json"));
   assert.ok(!overview || names.includes(overview), `the overview ${overview} is missing`);
+  assert.ok(!guide || guideHeld, `the guide ${guide} is missing`);
   if (names.includes("source.json")) await verifyCustody(directory, repositoryRoot);
   return verifyModel(directory);
 }

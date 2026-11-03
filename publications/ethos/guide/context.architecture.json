@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Who reaches ETHOS, and what it touches",
+    "output": "context.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/ethos.git",
+      "provider": "github",
+      "revision": "424d325386784633839b1abf52a4ac394e412a76"
+    }
+  },
+  "components": [
+    {
+      "id": "ctx-people",
+      "type": "external",
+      "icon": "person",
+      "label": "People",
+      "sublabel": "CLI",
+      "pos": [40, 40],
+      "size": [160, 64],
+      "sources": [
+        {
+          "path": "docs/governance/product-design-contract.md",
+          "line": 370,
+          "end_line": 372,
+          "label": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "ctx-agents",
+      "type": "external",
+      "label": "AI agents",
+      "sublabel": "MCP and Skills",
+      "pos": [40, 150],
+      "size": [160, 64],
+      "sources": [
+        {
+          "path": "docs/architecture/mcp-server.md",
+          "line": 18,
+          "end_line": 21,
+          "label": "MCP"
+        }
+      ]
+    },
+    {
+      "id": "ctx-programs",
+      "type": "external",
+      "label": "Programs",
+      "sublabel": "Python SDK",
+      "pos": [40, 260],
+      "size": [160, 64],
+      "sources": [
+        {
+          "path": "docs/governance/product-design-contract.md",
+          "line": 373,
+          "end_line": 374,
+          "label": "SDK"
+        }
+      ]
+    },
+    {
+      "id": "ctx-service",
+      "type": "backend",
+      "label": "Application service",
+      "sublabel": "one typed operation set",
+      "pos": [250, 150],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "docs/plans/terminal-governance-product-design.md",
+          "line": 394,
+          "end_line": 397,
+          "label": "Service"
+        }
+      ]
+    },
+    {
+      "id": "ctx-kernel",
+      "type": "security",
+      "label": "Trust kernel",
+      "sublabel": "compile, admit, attest",
+      "pos": [470, 150],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "docs/governance/product-design-contract.md",
+          "line": 25,
+          "end_line": 30,
+          "label": "Kernel"
+        }
+      ]
+    },
+    {
+      "id": "ctx-ci",
+      "type": "cloud",
+      "label": "CI and forges",
+      "sublabel": "native projections",
+      "pos": [470, 290],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "docs/governance/product-design-contract.md",
+          "line": 378,
+          "end_line": 378,
+          "label": "CI"
+        }
+      ]
+    },
+    {
+      "id": "ctx-standards",
+      "type": "external",
+      "label": "Standards and tools",
+      "sublabel": "by adapter only",
+      "pos": [470, 10],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "docs/architecture/protocol-contracts.md",
+          "line": 18,
+          "end_line": 22,
+          "label": "Adapters"
+        }
+      ]
+    },
+    {
+      "id": "ctx-git",
+      "type": "database",
+      "label": "Git",
+      "sublabel": "your repository",
+      "pos": [690, 90],
+      "size": [160, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 26,
+          "end_line": 29,
+          "label": "Native"
+        }
+      ]
+    },
+    {
+      "id": "ctx-openspec",
+      "type": "backend",
+      "label": "OpenSpec",
+      "sublabel": "the official Change",
+      "pos": [690, 210],
+      "size": [160, 64],
+      "sources": [
+        {
+          "path": "docs/governance/product-design-contract.md",
+          "line": 119,
+          "end_line": 126,
+          "label": "Carrier"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "ctx-cli",
+      "from": "ctx-people",
+      "to": "ctx-service",
+      "label": "CLI"
+    },
+    {
+      "id": "ctx-mcp",
+      "from": "ctx-agents",
+      "to": "ctx-service",
+      "label": "MCP"
+    },
+    {
+      "id": "ctx-sdk",
+      "from": "ctx-programs",
+      "to": "ctx-service",
+      "label": "SDK"
+    },
+    {
+      "id": "ctx-same",
+      "from": "ctx-service",
+      "to": "ctx-kernel",
+      "label": "same operations"
+    },
+    {
+      "id": "ctx-effects",
+      "from": "ctx-kernel",
+      "to": "ctx-git",
+      "label": "exact CAS effects",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ctx-compiles",
+      "from": "ctx-kernel",
+      "to": "ctx-openspec",
+      "label": "compiles the Change"
+    },
+    {
+      "id": "ctx-projects",
+      "from": "ctx-ci",
+      "to": "ctx-kernel",
+      "label": "same proof"
+    },
+    {
+      "id": "ctx-adapts",
+      "from": "ctx-kernel",
+      "to": "ctx-standards",
+      "label": "adapters",
+      "variant": "dashed"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "security-group",
+      "label": "ETHOS",
+      "wraps": ["ctx-service", "ctx-kernel"]
+    }
+  ]
+}

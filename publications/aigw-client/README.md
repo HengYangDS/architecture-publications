@@ -14,6 +14,16 @@ compensation.
 Architecture Publisher's house class: the control plane projected into each
 client, the transaction every projection is, and who owns what.
 
+[`guide/guide.archify.md`](guide/guide.archify.md) is the work's guide, an
+Archify explainer that Architecture Publisher delivers as its page. It opens
+with who uses AIGW, how a team gets started and what its configuration holds,
+then shows one sync as a guarded transaction, a newer edit that survives a
+rollback and where a client's Token comes from. It ends with how much each
+check proves, how a provider's model becomes a Route, the parts that keep the
+clients in step, why one guarded transaction, what AIGW leaves to others, how
+it is released and what is still open. Each claim cites a line range at
+v0.6.0, and the diagrams the draft names sit beside it.
+
 Each component cites every production file that ordered path rules attribute
 to it. A relation is kept only when a Go import backs it, and cites the
 importing package's files. The scope leaves out the tests beside the code with
@@ -26,8 +36,9 @@ archpub check publications/aigw-client/model.json --repo <aigw-cli checkout>
 archpub build publications/aigw-client/model.json --repo <aigw-cli checkout> --out build/aigw-client
 ```
 
-Checking the coverage scope needs an Architecture Publisher that reads a glob
-in a coverage path; building the overview needs Typst 0.15.1 on the path.
+Checking the work needs an Architecture Publisher that reads a glob in a
+coverage path and delivers a guide as the page; building the overview needs
+Typst 0.15.1 on the path.
 
 [`source.json`](source.json) records the original claim model and edition
 project with their digests. Both are retained at the preservation commit it

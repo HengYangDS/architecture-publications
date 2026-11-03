@@ -17,6 +17,18 @@ Architecture Publisher's house class: the repository's roles above one change,
 the TransitionPlan every step is, and the structure every governed repository
 shares.
 
+[`guide/guide.archify.md`](guide/guide.archify.md) is the work's guide, an
+Archify explainer that Architecture Publisher delivers as its page. It opens
+with what ETHOS is for, who reaches it and what adoption writes, then follows
+one change from a lane to every peer and a lane's life with its recoveries. It
+shows what decides whether an effect runs, what one transition binds, the parts
+that carry a change and where one full proof spends its time. It ends with the
+evidence planes, why local proof is enough and when it is not, what every
+repository shares, the principles behind the design and what is still open.
+Each claim cites a line range at v0.2.0-alpha.28, and the diagrams the draft
+names sit beside it. The proof's timings were measured on 2026-11-03, on
+Architecture Publisher's own proof under this ETHOS release.
+
 Each component cites every file that ordered path rules attribute to it, so no
 file in the scope is missed or cited twice. A relation is kept only when an
 import in the source backs it, and cites the importing modules; relations are
@@ -29,7 +41,8 @@ archpub check publications/ethos/model.json --repo <ethos checkout>
 archpub build publications/ethos/model.json --repo <ethos checkout> --out build/ethos
 ```
 
-Building the overview needs Typst 0.15.1 on the path.
+Checking the work needs an Architecture Publisher that delivers a guide as the
+page; building the overview needs Typst 0.15.1 on the path.
 
 [`source.json`](source.json) records the design and artwork preserved from
 ETHOS `e60fec5` with their digests. They describe a retired publication

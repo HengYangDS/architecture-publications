@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "One reviewed configuration, projected into every client",
+    "output": "parts.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/aigw-cli.git",
+      "provider": "github",
+      "revision": "9c26591fb3efec088075a7ba18b6dae6d840eacf"
+    }
+  },
+  "components": [
+    {
+      "id": "parts-store",
+      "type": "database",
+      "label": "Configuration store",
+      "sublabel": "config.toml under one lock",
+      "pos": [70, 30],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "internal/store/store.go",
+          "line": 131,
+          "end_line": 134,
+          "label": "Commit"
+        }
+      ]
+    },
+    {
+      "id": "parts-sync",
+      "type": "backend",
+      "label": "Synchronization",
+      "sublabel": "one guarded transaction",
+      "pos": [365, 30],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "internal/app/synchronization/transaction.go",
+          "line": 40,
+          "end_line": 118,
+          "label": "commit"
+        }
+      ]
+    },
+    {
+      "id": "parts-seam",
+      "type": "backend",
+      "label": "Adapter seam",
+      "sublabel": "one contract per client",
+      "pos": [365, 170],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "internal/adapter/registry.go",
+          "line": 93,
+          "end_line": 111,
+          "label": "Adapter"
+        }
+      ]
+    },
+    {
+      "id": "parts-codex",
+      "type": "external",
+      "label": "Codex",
+      "sublabel": "~/.codex/config.toml",
+      "pos": [50, 340],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "internal/adapter/codex/reconcile.go",
+          "line": 88,
+          "end_line": 92,
+          "label": "Rollback"
+        }
+      ]
+    },
+    {
+      "id": "parts-claude-code",
+      "type": "external",
+      "label": "Claude Code",
+      "sublabel": "~/.claude/settings.json",
+      "pos": [260, 340],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "internal/adapter/claude/settings.go",
+          "line": 95,
+          "end_line": 100,
+          "label": "Rollback"
+        }
+      ]
+    },
+    {
+      "id": "parts-claude-desktop",
+      "type": "external",
+      "label": "Claude Desktop",
+      "sublabel": "Claude-3p/configLibrary",
+      "pos": [470, 340],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "internal/adapter/claudedesktop/configuration.go",
+          "line": 288,
+          "end_line": 295,
+          "label": "Rollback"
+        }
+      ]
+    },
+    {
+      "id": "parts-hermes",
+      "type": "external",
+      "label": "Hermes",
+      "sublabel": "~/.hermes/config.yaml",
+      "pos": [680, 340],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "internal/adapter/hermes/projection.go",
+          "line": 356,
+          "end_line": 366,
+          "label": "Rollback"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "persists",
+      "from": "parts-sync",
+      "to": "parts-store",
+      "label": "persists"
+    },
+    {
+      "id": "plans-applies",
+      "from": "parts-sync",
+      "to": "parts-seam",
+      "label": "plans, applies",
+      "variant": "emphasis"
+    },
+    {
+      "id": "codex-implements",
+      "from": "parts-codex",
+      "to": "parts-seam",
+      "label": "implements"
+    },
+    {
+      "id": "claude-code-implements",
+      "from": "parts-claude-code",
+      "to": "parts-seam",
+      "label": "implements"
+    },
+    {
+      "id": "claude-desktop-implements",
+      "from": "parts-claude-desktop",
+      "to": "parts-seam",
+      "label": "implements"
+    },
+    {
+      "id": "hermes-implements",
+      "from": "parts-hermes",
+      "to": "parts-seam",
+      "label": "implements"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Supported clients",
+      "wraps": ["parts-codex", "parts-claude-code", "parts-claude-desktop", "parts-hermes"]
+    }
+  ]
+}

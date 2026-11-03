@@ -1,0 +1,148 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "How a transition plan admits an effect",
+    "output": "plan.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/ethos.git",
+      "provider": "github",
+      "revision": "424d325386784633839b1abf52a4ac394e412a76"
+    },
+    "legend": {
+      "entries": {
+        "external": { "label": "input or outcome" },
+        "backend": { "label": "ETHOS step" },
+        "security": { "label": "admission" },
+        "database": { "label": "durable record" }
+      }
+    }
+  },
+  "lanes": [
+    { "id": "plan-lane-admit", "label": "Admit" },
+    { "id": "plan-lane-refuse", "label": "Refuse", "variant": "exception" }
+  ],
+  "mainPath": ["plan-inputs", "plan-compile", "plan-judge", "plan-effect", "plan-attest"],
+  "nodes": [
+    {
+      "id": "plan-inputs",
+      "lane": "plan-lane-admit",
+      "col": 0,
+      "type": "external",
+      "label": "Change, facts, Attestations",
+      "sources": [
+        {
+          "path": "docs/architecture/transition-plan.md",
+          "line": 39,
+          "end_line": 40,
+          "label": "Explicit inputs"
+        }
+      ]
+    },
+    {
+      "id": "plan-compile",
+      "lane": "plan-lane-admit",
+      "col": 1,
+      "type": "backend",
+      "label": "Compile the plan",
+      "sources": [
+        {
+          "path": "docs/architecture/transition-plan.md",
+          "line": 24,
+          "end_line": 32,
+          "label": "Algebra"
+        }
+      ]
+    },
+    {
+      "id": "plan-judge",
+      "lane": "plan-lane-admit",
+      "col": 2,
+      "type": "security",
+      "label": "Pass?",
+      "sources": [
+        {
+          "path": "docs/architecture/transition-plan.md",
+          "line": 47,
+          "end_line": 48,
+          "label": "Fail closed"
+        }
+      ]
+    },
+    {
+      "id": "plan-effect",
+      "lane": "plan-lane-admit",
+      "col": 3,
+      "type": "backend",
+      "label": "Run the effects",
+      "sources": [
+        {
+          "path": "docs/architecture/transition-plan.md",
+          "line": 45,
+          "end_line": 50,
+          "label": "Effects"
+        }
+      ]
+    },
+    {
+      "id": "plan-attest",
+      "lane": "plan-lane-admit",
+      "col": 4,
+      "type": "database",
+      "label": "Observe and attest",
+      "sources": [
+        {
+          "path": "docs/architecture/transition-plan.md",
+          "line": 49,
+          "end_line": 50,
+          "label": "Attest"
+        }
+      ]
+    },
+    {
+      "id": "plan-stop",
+      "lane": "plan-lane-refuse",
+      "col": 3,
+      "type": "external",
+      "label": "Block or unknown",
+      "sources": [
+        {
+          "path": "docs/architecture/runner-and-mutation.md",
+          "line": 233,
+          "end_line": 233,
+          "label": "Verdict"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    { "id": "plan-e-compile", "from": "plan-inputs", "to": "plan-compile", "role": "main" },
+    { "id": "plan-e-judge", "from": "plan-compile", "to": "plan-judge", "role": "main" },
+    {
+      "id": "plan-e-pass",
+      "from": "plan-judge",
+      "to": "plan-effect",
+      "role": "main",
+      "label": "yes",
+      "variant": "emphasis"
+    },
+    { "id": "plan-e-attest", "from": "plan-effect", "to": "plan-attest", "role": "main" },
+    {
+      "id": "plan-e-refuse",
+      "from": "plan-judge",
+      "to": "plan-stop",
+      "role": "error",
+      "label": "no"
+    }
+  ],
+  "semanticChecks": {
+    "allowedRoots": ["plan-inputs"],
+    "allowedTerminals": ["plan-attest", "plan-stop"],
+    "requiredEdges": [
+      { "from": "plan-judge", "to": "plan-effect" },
+      { "from": "plan-judge", "to": "plan-stop" }
+    ]
+  }
+}

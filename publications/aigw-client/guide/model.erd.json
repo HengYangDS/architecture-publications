@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "diagram_type": "erd",
+  "meta": {
+    "title": "What AIGW's configuration holds",
+    "locale": "en",
+    "output": "model.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/HengYangDS/aigw-cli.git",
+      "provider": "github",
+      "revision": "9c26591fb3efec088075a7ba18b6dae6d840eacf"
+    }
+  },
+  "layout": {
+    "mode": "grid",
+    "gapX": 72,
+    "gapY": 38
+  },
+  "entities": [
+    {
+      "id": "erd-binding",
+      "label": "Client Binding",
+      "tag": "config.toml",
+      "row": 0,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "client",
+          "type": "string",
+          "key": "pk"
+        },
+        {
+          "name": "route",
+          "type": "string",
+          "key": "fk",
+          "references": "erd-route.id"
+        },
+        {
+          "name": "enabled",
+          "type": "bool"
+        },
+        {
+          "name": "protocol",
+          "type": "EndpointProtocol"
+        },
+        {
+          "name": "authentication",
+          "type": "Authentication"
+        }
+      ],
+      "sources": [
+        {
+          "path": "internal/domain/clients.go",
+          "line": 200,
+          "end_line": 216,
+          "label": "ClientBinding"
+        }
+      ],
+      "width": 244
+    },
+    {
+      "id": "erd-route",
+      "label": "Route",
+      "tag": "config.toml",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "key": "pk"
+        },
+        {
+          "name": "account",
+          "type": "string",
+          "key": "fk",
+          "references": "erd-account.id"
+        },
+        {
+          "name": "model",
+          "type": "string",
+          "key": "fk",
+          "references": "erd-model.id"
+        },
+        {
+          "name": "upstream_model",
+          "type": "string"
+        },
+        {
+          "name": "lifecycle",
+          "type": "RouteLifecycle"
+        }
+      ],
+      "sources": [
+        {
+          "path": "internal/domain/model.go",
+          "line": 102,
+          "end_line": 113,
+          "label": "Route"
+        }
+      ]
+    },
+    {
+      "id": "erd-model",
+      "label": "Model",
+      "tag": "config.toml",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "key": "pk"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        }
+      ],
+      "sources": [
+        {
+          "path": "internal/domain/model.go",
+          "line": 94,
+          "end_line": 100,
+          "label": "Model"
+        }
+      ],
+      "width": 244
+    },
+    {
+      "id": "erd-account",
+      "label": "Account",
+      "tag": "config.toml",
+      "row": 1,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "key": "pk"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        },
+        {
+          "name": "endpoints",
+          "type": "Endpoints"
+        }
+      ],
+      "sources": [
+        {
+          "path": "internal/domain/model.go",
+          "line": 85,
+          "end_line": 92,
+          "label": "Account"
+        }
+      ]
+    },
+    {
+      "id": "erd-token",
+      "label": "Account Token",
+      "tag": "Token store",
+      "row": 1,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "account",
+          "type": "string",
+          "key": ["pk", "fk"],
+          "references": "erd-account.id"
+        },
+        {
+          "name": "token",
+          "type": "secret"
+        }
+      ],
+      "sources": [
+        {
+          "path": "docs/architecture/security-model.md",
+          "line": 13,
+          "end_line": 16,
+          "label": "Credential storage"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel-selects",
+      "from": "erd-binding",
+      "to": "erd-route",
+      "label": "selects",
+      "fromCardinality": "many",
+      "toCardinality": "one"
+    },
+    {
+      "id": "rel-uses",
+      "from": "erd-route",
+      "to": "erd-account",
+      "label": "uses",
+      "fromCardinality": "many",
+      "toCardinality": "one"
+    },
+    {
+      "id": "rel-exposes",
+      "from": "erd-route",
+      "to": "erd-model",
+      "label": "exposes",
+      "fromCardinality": "many",
+      "toCardinality": "one"
+    },
+    {
+      "id": "rel-authenticates",
+      "from": "erd-token",
+      "to": "erd-account",
+      "label": "authenticates",
+      "fromCardinality": "one",
+      "toCardinality": "one",
+      "fromOptional": true
+    }
+  ]
+}

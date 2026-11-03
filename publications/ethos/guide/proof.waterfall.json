@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "diagram_type": "waterfall",
+  "meta": {
+    "title": "One full proof, gate by gate",
+    "subtitle": "Measured: ethos prove --full --execute of architecture-publisher at 3a8924d with ETHOS v0.2.0-alpha.28, on 2026-11-03; seconds from the command's start.",
+    "output": "proof.html",
+    "evidence": "measured",
+    "unit": "s",
+    "quality_profile": "showcase",
+    "locale": "en"
+  },
+  "spans": [
+    {
+      "id": "proof-wait",
+      "name": "Waiting for host load",
+      "start": 0,
+      "end": 390.8,
+      "service": "admission"
+    },
+    {
+      "id": "proof-floor",
+      "name": "ETHOS gates",
+      "start": 390.8,
+      "end": 471.4,
+      "service": "ETHOS"
+    },
+    {
+      "id": "proof-own",
+      "name": "Repository gates",
+      "start": 390.8,
+      "end": 1212.0,
+      "service": "repository"
+    },
+    {
+      "id": "gate-docs-registry",
+      "name": "docs-registry",
+      "start": 390.8,
+      "end": 392.3,
+      "parent": "proof-floor",
+      "service": "ETHOS"
+    },
+    {
+      "id": "gate-schemas",
+      "name": "schemas",
+      "start": 390.8,
+      "end": 391.9,
+      "parent": "proof-floor",
+      "service": "ETHOS"
+    },
+    {
+      "id": "gate-openspec",
+      "name": "openspec",
+      "start": 391.9,
+      "end": 392.3,
+      "parent": "proof-floor",
+      "service": "ETHOS"
+    },
+    {
+      "id": "gate-markdown-links",
+      "name": "markdown-links",
+      "start": 390.8,
+      "end": 394.7,
+      "parent": "proof-floor",
+      "service": "ETHOS"
+    },
+    {
+      "id": "gate-config-quality",
+      "name": "config-quality",
+      "start": 390.8,
+      "end": 421.0,
+      "parent": "proof-floor",
+      "service": "ETHOS"
+    },
+    {
+      "id": "gate-markdown-lint",
+      "name": "markdown-lint",
+      "start": 390.8,
+      "end": 411.6,
+      "parent": "proof-floor",
+      "service": "ETHOS"
+    },
+    {
+      "id": "gate-source-format",
+      "name": "source-format",
+      "start": 390.8,
+      "end": 471.4,
+      "parent": "proof-floor",
+      "service": "ETHOS"
+    },
+    {
+      "id": "gate-prose",
+      "name": "prose",
+      "start": 390.8,
+      "end": 397.6,
+      "parent": "proof-floor",
+      "service": "ETHOS"
+    },
+    {
+      "id": "gate-source-integrity",
+      "name": "source-integrity",
+      "start": 390.8,
+      "end": 396.5,
+      "parent": "proof-own",
+      "service": "repository"
+    },
+    {
+      "id": "gate-runtime-generation",
+      "name": "runtime-generation",
+      "start": 471.4,
+      "end": 472.0,
+      "parent": "proof-own",
+      "service": "repository"
+    },
+    {
+      "id": "gate-node-static",
+      "name": "node-static",
+      "start": 472.0,
+      "end": 478.3,
+      "parent": "proof-own",
+      "service": "repository"
+    },
+    {
+      "id": "gate-node-behavior",
+      "name": "node-behavior",
+      "start": 478.3,
+      "end": 1211.3,
+      "parent": "proof-own",
+      "service": "repository"
+    },
+    {
+      "id": "gate-node-package",
+      "name": "node-package",
+      "start": 1211.3,
+      "end": 1212.0,
+      "parent": "proof-own",
+      "service": "repository"
+    }
+  ]
+}

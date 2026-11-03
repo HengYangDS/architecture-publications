@@ -20,6 +20,7 @@
     "include": ["src/ethos/", "system/", "distributions/npm/", ".ethos/"]
   },
   "overview": "overview.typ",
+  "guide": "guide/guide.archify.md",
   "kinds": {
     "surface": {
       "label": "surface",

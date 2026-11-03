@@ -30,6 +30,7 @@
     ]
   },
   "overview": "overview.typ",
+  "guide": "guide/guide.archify.md",
   "kinds": {
     "interface": {
       "category": "frontend",

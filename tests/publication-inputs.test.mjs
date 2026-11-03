@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { mkdtemp, mkdir, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, mkdir, rm, symlink, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -125,6 +125,50 @@ test("a work may hold the overview composition its model names", async () => {
       await assert.rejects(
         verifyWork(directory, directory),
         /is not a Typst file beside the model/,
+      );
+    }
+  });
+});
+
+test("a work may hold the guide its model names in a directory of its own", async () => {
+  await withDirectory(async (directory) => {
+    const guided = { ...model("shop"), guide: "guide/guide.archify.md" };
+    const missing = /the guide guide\/guide\.archify\.md is missing/;
+    const guideDirectory = path.join(directory, "guide");
+    await writeWork(directory, guided);
+    await assert.rejects(verifyWork(directory, directory), missing);
+    await mkdir(guideDirectory);
+    await writeFile(path.join(guideDirectory, "parts.architecture.json"), "{}\n");
+    await assert.rejects(verifyWork(directory, directory), missing);
+    await writeFile(path.join(guideDirectory, "guide.archify.md"), "# Shop {#shop}\n");
+    assert.equal(await verifyWork(directory, directory), "shop");
+    await mkdir(path.join(guideDirectory, "parts"));
+    await assert.rejects(
+      verifyWork(directory, directory),
+      /parts in the guide's directory is not a regular file/,
+    );
+    await rm(path.join(guideDirectory, "parts"), { recursive: true });
+    await symlink("parts.architecture.json", path.join(guideDirectory, "link.json"));
+    await assert.rejects(
+      verifyWork(directory, directory),
+      /link\.json in the guide's directory is not a regular file/,
+    );
+    await rm(path.join(guideDirectory, "link.json"));
+    await writeWork(directory, model("shop"));
+    await assert.rejects(verifyWork(directory, directory), /guide is not a work file/);
+    for (const guide of [
+      "guide.archify.md",
+      "../guide/guide.archify.md",
+      "./guide/guide.archify.md",
+      "guide/parts/guide.archify.md",
+      "guide/guide.md",
+      "guide/.archify.md",
+      3,
+    ]) {
+      await writeWork(directory, { ...model("shop"), guide });
+      await assert.rejects(
+        verifyWork(directory, directory),
+        /is not an Archify draft in a directory of its own/,
       );
     }
   });
