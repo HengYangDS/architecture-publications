@@ -4,11 +4,11 @@
 
 ## 2. Works
 
-- [x] 2.1 Add the ETHOS work's guide and name it in the model; verify `archpub check --repo`, with the publisher that delivers guides, passes the guide at showcase with its sources verified. At `3a8924d` the check verifies all 455 sources and the guide with its 6 diagrams at showcase with strict writing, every line it cites verified at `424d325`.
+- [x] 2.1 Add the ETHOS work's guide and name it in the model; verify `archpub check --repo`, with the publisher that delivers guides, passes the guide at showcase with its sources verified. At `3a8924d` the check verifies all 455 sources and the guide with its 7 diagrams at showcase with strict writing, every line it cites verified at `424d325`.
 - [x] 2.2 Add the AIGW work's guide and name it in the model; verify the same check passes it. At `3a8924d` the check verifies all 210 sources and the guide with its 5 diagrams at showcase with strict writing, every line it cites verified at `9c26591`.
 - [x] 2.3 Say in both overviews' imprints that the page is the guide; verify each overview passes its checks. The ETHOS overview sets 125 texts and the AIGW overview 105, none outside the live area or over another.
 - [x] 2.4 Describe the guides in each work's README and the repository README; verify the formatting and input checks pass. The formatting and input checks pass.
 
 ## 3. Verification
 
-- [x] 3.1 Build the ETHOS and AIGW works with that publisher; verify each page is its guide, recorded in the manifest with its sources verified. At `1324bec` the ETHOS build delivers 11 posters and the AIGW build 6, each with its overview and its guide as the page; each manifest records the guide at showcase with its sources verified.
+- [ ] 3.1 Build the ETHOS and AIGW works with that publisher; verify each page is its guide, recorded in the manifest with its sources verified.

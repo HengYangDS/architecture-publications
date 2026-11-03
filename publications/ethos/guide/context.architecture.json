@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "ctx-openspec",
+      "id": "ctx-spec",
       "type": "backend",
       "label": "OpenSpec",
       "sublabel": "the official Change",
@@ -194,7 +194,7 @@
     {
       "id": "ctx-compiles",
       "from": "ctx-kernel",
-      "to": "ctx-openspec",
+      "to": "ctx-spec",
       "label": "compiles the Change"
     },
     {

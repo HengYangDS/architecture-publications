@@ -1,4 +1,4 @@
-# How does ETHOS let people and AI agents change a repository on evidence alone? {#ethos-guide}
+# How does ETHOS let people and AI agents change a repository on evidence alone? {#guide}
 
 ETHOS admits a change only on evidence: an official OpenSpec Change states the intent, fresh facts state the present, and only a passing plan admits an effect.[](source:kernel)[](source:product-kernel) A client's claim, a chat transcript or an earlier success never grants authority, because each effect rechecks it.[](source:mcp-authority)[](source:non-authorizing) The same small kernel governs ETHOS itself and every repository that adopts it.[](source:isomorphic)
 
@@ -8,7 +8,7 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 - [Each kind of evidence proves only its own plane](block:p-evidence), so local proof is not anti-forgery assurance.[](source:planes)[](source:proof-boundary)
 
 @answer scope="ETHOS v0.2.0-alpha.28 · commit 424d325 · its source and its own documents · proof timings measured on 2026-11-03"
-@meta locale=en style=editorial repo_url="https://github.com/HengYangDS/ethos.git" repo_revision=424d325386784633839b1abf52a4ac394e412a76
+@meta locale=en style=editorial
 @source kernel title="The kernel" path="README.md" lines=100:107
 @source native title="What stays native" path="README.md" lines=26:29
 @source visibility title="Visibility is not authority" path="README.md" lines=91:93
@@ -98,7 +98,7 @@ People, AI agents and programs reach the same operations, each through its own s
 | step-ctx-agents | AI agents | MCP and Skills carry the same result as the CLI and the Python SDK, with the same verdict in human and JSON views.[](source:surfaces)[](source:experience) | context-map | ctx-agents |
 | step-ctx-service | Application service | One typed service serves every surface; a surface adapts only transport and presentation.[](source:service) | context-map | ctx-service |
 | step-ctx-kernel | Trust kernel | ETHOS writes its own code only to compile intent and fresh facts into admitted, exact, attestable effects.[](source:custom-code)[](source:product-kernel) | context-map | ctx-kernel |
-| step-ctx-openspec | OpenSpec | The official Change is the sole tracked carrier of intent, design, specs and tasks; ETHOS keeps no second copy.[](source:carrier) | context-map | ctx-openspec |
+| step-ctx-spec | OpenSpec | The official Change is the sole tracked carrier of intent, design, specs and tasks; ETHOS keeps no second copy.[](source:carrier) | context-map | ctx-spec |
 | step-ctx-git | Git | Effects reach Git only as exact compare-and-swap. Your domain model, CI provider, assistant host and issue tracker stay yours.[](source:invariants)[](source:native) | context-map | ctx-git |
 | step-ctx-ci | CI and forges | Native CI syntax invokes the same proof capabilities and keeps each proof plane's identity.[](source:surfaces) | context-map | ctx-ci |
 | step-ctx-standards | Standards and tools | SLSA, in-toto, Sigstore, Dagger, Temporal and others extend execution or projection; none replaces the kernel.[](source:standards) | context-map | ctx-standards |
@@ -107,24 +107,13 @@ People, AI agents and programs reach the same operations, each through its own s
 
 Adoption writes one small declaration and, only where it is absent, the native OpenSpec configuration.[](source:adopt-writes)[](source:adopt-keeps) Everything else lives in the Git common directory, shared by every worktree, or in the host store.[](source:state-home)[](source:host-store)
 
-@tree id=footprint-tree title="What adoption writes, and where ETHOS keeps its state"
-| fp-root | Where ETHOS lives | - |
-| fp-checkout | Your checkout, tracked | fp-root |
-| fp-profile | .ethos/profile.toml | fp-checkout |
-| fp-openspec | openspec/, official | fp-checkout |
-| fp-common | Git common directory | fp-root |
-| fp-state | ethos/state.sqlite | fp-common |
-| fp-receipts | ethos/requests and receipts | fp-common |
-| fp-runtime | ethos/runtime and hooks | fp-common |
-| fp-attestations | refs/ethos/attestations-set | fp-common |
-| fp-host | Host store | fp-root |
-| fp-installations | ethos/installations | fp-host |
+@diagram tree id=footprint-tree source=footprint.tree.json
 
 @steps id=footprint-steps
-| step-fp-profile | .ethos/profile.toml | The minimal declaration names the repository and its OpenSpec material; an existing OpenSpec configuration is kept byte for byte.[](source:adopt-writes)[](source:adopt-keeps) | footprint-tree | fp-profile |
-| step-fp-state | ethos/state.sqlite | Holds Leases, each with exactly four fields: lane, holder, generation and expiry.[](source:lease-fields) | footprint-tree | fp-state |
-| step-fp-runtime | ethos/runtime and hooks | Immutable runtimes and hook launchers, which every linked worktree inherits.[](source:runtime-home) | footprint-tree | fp-runtime |
-| step-fp-attestations | refs/ethos/attestations-set | Selects the durable Attestations; the other state here is re-observed, never truth.[](source:state-home) | footprint-tree | fp-attestations |
+| step-fp-profile | Profile declaration | `.ethos/profile.toml` names the repository and its OpenSpec material; an existing OpenSpec configuration is kept byte for byte.[](source:adopt-writes)[](source:adopt-keeps) | footprint-tree | fp-profile |
+| step-fp-state | State database | `ethos/state.sqlite` holds Leases, each with exactly four fields: lane, holder, generation and expiry.[](source:lease-fields) | footprint-tree | fp-state |
+| step-fp-runtime | Runtimes and hooks | Immutable runtimes and hook launchers under `ethos/runtime`, which every linked worktree inherits.[](source:runtime-home) | footprint-tree | fp-runtime |
+| step-fp-attestations | Attestation set | `refs/ethos/attestations-set` selects the durable Attestations; the other state here is re-observed, never truth.[](source:state-home) | footprint-tree | fp-attestations |
 
 - [ ] Run `ethos status` in your repository and follow its one next action.[](source:status)
 - [ ] Preview `ethos adopt --root <repo> --json` and review the exact file effects.[](source:adopt-preview)
@@ -143,26 +132,26 @@ Each command returns `pass`, `block` or `unknown`, and only `pass` lets it chang
 | actor seq-accepted | Accepted branch | backend | source:closeout |
 | actor seq-peers | GitLab and GitHub | cloud | source:peers |
 | phase | Write |
-| seq-author | seq-lane | ethos lane start |
-| seq-author | seq-lane | ethos lane prewrite, then edit |
+| seq-author | seq-lane | start a lane |
+| seq-author | seq-lane | prewrite, then edit |
 | seq-author | seq-lane | commit through the hooks |
-| seq-author | seq-lane | ethos lane archive-change |
+| seq-author | seq-lane | archive the Change |
 | phase | Prove |
-| seq-author | seq-proof | ethos prove --full --execute | emphasis |
+| seq-author | seq-proof | prove the archived head | emphasis |
 | phase | Land |
-| seq-author | seq-candidate | ethos land |
-| seq-author | seq-accepted | ethos land --closeout | emphasis |
+| seq-author | seq-candidate | land |
+| seq-author | seq-accepted | close out | emphasis |
 | phase | Publish |
-| seq-author | seq-peers | ethos publish --ref |
+| seq-author | seq-peers | publish |
 | seq-peers | seq-author | applied, failed or pending | return |
 
 @steps id=change-steps
 | step-start | Work Lane | `ethos lane start` creates an owned branch and worktree from the candidate and records a Lease. Before each tracked write, `ethos lane prewrite` admits the exact paths.[](source:write-boundary)[](source:candidate-train) | change-flow | seq-lane | | seq-author-to-seq-lane-1,seq-author-to-seq-lane-2 |
 | step-commit | Commits | Each Git hook runs one admission under the selected runtime, never the ambient `PATH`.[](source:hook)[](source:runtime) | change-flow | seq-lane | | seq-author-to-seq-lane-3 |
-| step-prove | Proof store | Every gate runs on the archived, frozen head. The proof stays in the Git common directory, where every worktree reads it.[](source:standard-proof)[](source:shared-proof) | change-flow | seq-proof | | seq-author-to-seq-lane-4,seq-author-to-seq-proof-1 |
+| step-prove | Proof store | `ethos lane archive-change` archives the Change, and `ethos prove --full --execute` runs every gate on that frozen head. The proof stays in the Git common directory, where every worktree reads it.[](source:standard-proof)[](source:shared-proof) | change-flow | seq-proof | | seq-author-to-seq-lane-4,seq-author-to-seq-proof-1 |
 | step-land | Candidate branch | `ethos land --apply` needs authorization, the expected HEAD and proof of that head.[](source:authorization)[](source:archive) | change-flow | seq-candidate | | seq-author-to-seq-candidate-1 |
-| step-closeout | Accepted branch | Closeout audits the candidate first, then fast-forwards only with executed proof of its head.[](source:closeout) | change-flow | seq-accepted | | seq-author-to-seq-accepted-1 |
-| step-publish | GitLab and GitHub | Each peer is pushed with exact leases. If a later peer fails, the attested outcome names which peers applied, failed or are pending.[](source:publish) | change-flow | seq-peers | | seq-author-to-seq-peers-1,seq-peers-to-seq-author-1 |
+| step-closeout | Accepted branch | `ethos land --closeout` audits the candidate first, then fast-forwards only with executed proof of its head.[](source:closeout) | change-flow | seq-accepted | | seq-author-to-seq-accepted-1 |
+| step-publish | GitLab and GitHub | `ethos publish` pushes each peer with exact leases. If a later peer fails, the attested outcome names which peers applied, failed or are pending.[](source:publish) | change-flow | seq-peers | | seq-author-to-seq-peers-1,seq-peers-to-seq-author-1 |
 
 ## How does a lane live, and how does it recover? {#p-lane}
 

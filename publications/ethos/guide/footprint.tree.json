@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "diagram_type": "tree",
+  "meta": {
+    "title": "What adoption writes, and where ETHOS keeps its state",
+    "locale": "en",
+    "output": "footprint.html",
+    "quality_profile": "showcase"
+  },
+  "nodes": [
+    {
+      "id": "fp-root",
+      "label": "Where ETHOS lives"
+    },
+    {
+      "id": "fp-checkout",
+      "label": "Your checkout, tracked",
+      "parent": "fp-root"
+    },
+    {
+      "id": "fp-profile",
+      "label": ".ethos/profile.toml",
+      "parent": "fp-checkout"
+    },
+    {
+      "id": "fp-spec",
+      "label": "openspec/, official",
+      "parent": "fp-checkout"
+    },
+    {
+      "id": "fp-common",
+      "label": "Git common directory",
+      "parent": "fp-root"
+    },
+    {
+      "id": "fp-state",
+      "label": "ethos/state.sqlite",
+      "parent": "fp-common"
+    },
+    {
+      "id": "fp-receipts",
+      "label": "ethos/requests and receipts",
+      "parent": "fp-common"
+    },
+    {
+      "id": "fp-runtime",
+      "label": "ethos/runtime and hooks",
+      "parent": "fp-common"
+    },
+    {
+      "id": "fp-attestations",
+      "label": "refs/ethos/attestations-set",
+      "parent": "fp-common"
+    },
+    {
+      "id": "fp-host",
+      "label": "Host store",
+      "parent": "fp-root"
+    },
+    {
+      "id": "fp-installations",
+      "label": "ethos/installations",
+      "parent": "fp-host"
+    }
+  ]
+}

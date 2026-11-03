@@ -39,6 +39,9 @@ build's quality, with strict writing checks at showcase.
 - **A word on the page lights the part it names.** Archify links a word to the
   diagram node whose label it matches. Labels name exact parts, so a common
   word does not light an unrelated node.
+- **A draft names no repository.** The publisher verifies every citation through
+  a clone of the model's repository at its revision, so `@meta` carries only the
+  locale and the style. A URL there would be a bare link to the Markdown checks.
 
 ## Risks / Trade-offs
 
@@ -49,3 +52,6 @@ build's quality, with strict writing checks at showcase.
 - [The ETHOS waterfall is a measurement, not a cited line] → Its caption names
   the run it measured: one full proof of Architecture Publisher under ETHOS
   v0.2.0-alpha.28. A re-pin measures again or removes it.
+- [ETHOS's prose gate reads an Archify draft's `@source` lines as prose and
+  refuses lowercase repository paths] → The lane is proved under the ETHOS
+  release whose prose gate skips Archify directive lines.

@@ -1,4 +1,4 @@
-# How does AIGW keep every AI client of a team in step with one reviewed configuration? {#aigw-guide}
+# How does AIGW keep every AI client of a team in step with one reviewed configuration? {#guide}
 
 AIGW is a local-first control plane for a team's AI clients.[](source:readme-what) It keeps reviewed Accounts, Routes and Client Bindings in one locked configuration, and writes a bounded region into each client it supports, as one guarded transaction.[](source:store-owner)[](source:transaction) It never carries a request: each client reads its Token on demand and calls its endpoint itself.[](source:boundary)
 
@@ -8,7 +8,7 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 - [Each check proves one more thing](block:p-ready), and a synchronized file is not an answered request.[](source:experience-readiness)
 
 @answer scope="AIGW v0.6.0 · commit 9c26591 · its source and its own documents"
-@meta locale=en style=editorial repo_url="https://github.com/HengYangDS/aigw-cli.git" repo_revision=9c26591fb3efec088075a7ba18b6dae6d840eacf
+@meta locale=en style=editorial
 @source readme-what title="What AIGW is" path="README.md" lines=3:6
 @source readme-install title="Install" path="README.md" lines=29:41
 @source readme-team title="Importing a team manifest" path="README.md" lines=94:102
