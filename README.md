@@ -8,10 +8,11 @@ diagram checks.
 
 ## Works
 
-- [ETHOS](publications/ethos/README.md): how one repository change becomes a
-  proven commit on the accepted branch.
-- [AIGW Client Projection](publications/aigw-client/README.md): how operator
-  intent becomes guarded native client projections.
+- [ETHOS](publications/ethos/README.md): how ETHOS turns official intent and
+  fresh facts into proven repository change, and what it holds every
+  repository to.
+- [AIGW Client Projection](publications/aigw-client/README.md): how one
+  reviewed configuration becomes guarded native projections in every client.
 - [Architecture Publisher](publications/architecture-publisher/README.md): how
   Architecture Publisher turns an architecture model into posters, a page and an
   overview.

@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([Architecture Publisher], [Meaning, evidence, form and acceptance each have one owner], [archpub draws any repository's architecture from an explicit model, binds every byte of a delivery to its inputs, and publishes only what a named reviewer accepted.], read-from: [Read from src/; every source is in the interactive page.], claim-x: 270pt)
+#masthead([Architecture Publisher], [Meaning, evidence, form and acceptance each have one owner], [archpub draws any repository's architecture from an explicit model, binds every byte of a delivery to its inputs, and publishes only what a named reviewer accepted.], read-from: [Read from 55 files, each cited by its SHA-256.], claim-x: 270pt)
 
 // ── Band 1: four owners side by side; one build passes through them ───────
 #let cols = ((48pt, [Author], [owns the meaning]), (346pt, [Repository], [holds the evidence]), (636pt, [Publisher], [gives it form]), (1196pt, [Reviewer], [accepts and publishes]))
@@ -126,4 +126,4 @@
 #tx(1072pt, 822pt, [infer architecture from code, judge whether a model is true, or decide that a figure is good enough to publish], w: 480pt)
 
 // ── Imprint ─────────────────────────────────────────────────────────────
-#imprint([Each element's source and rule is in the interactive page.])
+#imprint([Every view, step by step, is in the interactive page.])

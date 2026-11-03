@@ -1,36 +1,47 @@
 {
   "format": "architecture-publisher.model",
   "version": 1,
-  "id": "aigw-client-projection",
+  "id": "aigw-client",
   "title": "AIGW Client Projection",
-  "question": "How does AIGW turn operator intent into guarded native client projections?",
-  "summary": "Operator intent and observed clients enter desired-state coordination; one admitted Adapter contract projects guarded native client settings. The model covers client projection, not the whole product or release approval.",
-  "attribution": "Architecture Publications, from the AIGW Client Projection claim model of aigw-cli e2eca41",
-  "scope": "Selected AIGW control-plane owners; not automatic inference or exhaustive implementation coverage",
+  "question": "How does AIGW turn one reviewed configuration into guarded native projections in every admitted client?",
+  "summary": "AIGW keeps Accounts, Routes and Client Bindings in one locked configuration and its Tokens in one selected store, and projects each client's bounded region through one adapter seam as a guarded, compensated transaction. It never carries a request.",
+  "scope": "The AIGW program as released at v0.6.0: its production Go packages, the command entry point, the team manifest and go.mod.",
   "limits": [
-    "Curated from the cited sources at the pinned revision; selected control-plane owners, not every implementation path."
+    "Each component cites every production file the rules attribute to it; a relation cites the files of the packages that import the other component.",
+    "Tests, their inputs and the repository's tools, CI and documentation are outside the scope."
   ],
+  "attribution": "Architecture Publications, read from the AIGW source",
   "repository": {
     "name": "aigw-cli",
     "url": "https://github.com/HengYangDS/aigw-cli.git",
-    "revision": "ed9f0fd54c5c768e21df10354234d1646b683297"
+    "revision": "9c26591fb3efec088075a7ba18b6dae6d840eacf"
   },
+  "coverage": {
+    "include": ["cmd/", "internal/", "manifests/", "go.mod"],
+    "exclude": [
+      {
+        "path": "**/*_test.go",
+        "reason": "Go keeps each package's tests beside its code; they are not its architecture."
+      },
+      {
+        "path": "cmd/aigw/testdata/",
+        "reason": "Inputs of the command tests."
+      }
+    ]
+  },
+  "overview": "overview.typ",
   "kinds": {
     "interface": {
       "category": "frontend",
       "icon": "square-terminal"
     },
-    "authority": {
-      "category": "database",
-      "icon": "database"
+    "coordinator": {
+      "category": "backend",
+      "icon": "workflow"
     },
     "observer": {
       "category": "cloud",
       "icon": "radar"
-    },
-    "coordinator": {
-      "category": "backend",
-      "icon": "workflow"
     },
     "registry": {
       "category": "messagebus",
@@ -44,372 +55,1979 @@
       "category": "security",
       "icon": "shield-check"
     },
+    "authority": {
+      "category": "database",
+      "icon": "database"
+    },
     "client": {
       "category": "external",
       "icon": "app-window"
     }
   },
   "sources": {
-    "cli": {
+    "cmd.aigw.main": {
+      "path": "cmd/aigw/main.go",
+      "sha256": "030b86af71e9731c36c3d1736bebd5d9c95d45b09c11e0151e8cdd8daf324118"
+    },
+    "go.mod": {
+      "path": "go.mod",
+      "sha256": "a2d598a27528c2df8686a63bbb59a1ae5d04746c339e512b265641953f25c3c4"
+    },
+    "adapter.adapters": {
+      "path": "internal/adapter/adapters.go",
+      "sha256": "0ba8d222f1535d8484450f11c6114777ba65600673a0c257bd72c430d5bb485a"
+    },
+    "adapter.claude.adapter": {
+      "path": "internal/adapter/claude/adapter.go",
+      "sha256": "9c2ae38a4b60454fc4347768f071e8ed51f0a41f6326da2ef116273544deee76"
+    },
+    "adapter.claude.adapter-verify": {
+      "path": "internal/adapter/claude/adapter_verify.go",
+      "sha256": "6f454b590e2c94334934b8873a6d846be6ad6f3105bc5018dbb0695e9f9cc195"
+    },
+    "adapter.claude.inspection": {
+      "path": "internal/adapter/claude/inspection.go",
+      "sha256": "99e3a586af0dd1f87610a809addd674c2d143fc7b4f92b06c68427a5592690fd"
+    },
+    "adapter.claude.live-verification": {
+      "path": "internal/adapter/claude/live_verification.go",
+      "sha256": "e617e6388f48017e5b873c2f81a37f4dae7042ea00cf5bced98fbb3b63201e3b"
+    },
+    "adapter.claude.native-paths": {
+      "path": "internal/adapter/claude/native_paths.go",
+      "sha256": "3384f3af3766bf9aeeed6d90378f452270aa7355ea122ec9e7c5f521d582f230"
+    },
+    "adapter.claude.plan": {
+      "path": "internal/adapter/claude/plan.go",
+      "sha256": "d79b85decfa949569e71d9ee3d2b6775aff39ed9e027c0a708b7493674f6356f"
+    },
+    "adapter.claude.settings": {
+      "path": "internal/adapter/claude/settings.go",
+      "sha256": "75cfadfe937333030c8191498e7262bdc2ec72406119f57a4947bdd51f4e6e0a"
+    },
+    "adapter.claudedesktop.adapter": {
+      "path": "internal/adapter/claudedesktop/adapter.go",
+      "sha256": "39d898da791522c3649c22117e617398f63cbe51d1f73f3e75a47087bfe08517"
+    },
+    "adapter.claudedesktop.configuration": {
+      "path": "internal/adapter/claudedesktop/configuration.go",
+      "sha256": "5b5d877bf15f011f5c6c7cbb93ac60102b6b05752ab69d995353ce8b846260a2"
+    },
+    "adapter.claudedesktop.identity": {
+      "path": "internal/adapter/claudedesktop/identity.go",
+      "sha256": "0b659496dff23591a7b8cff68fa810748764c730dcb37c33d5fe692ab498fbe2"
+    },
+    "adapter.claudedesktop.native-paths": {
+      "path": "internal/adapter/claudedesktop/native_paths.go",
+      "sha256": "f62c03adc8961adc93e3144258ec4aaf8d9d9e2e84c62a24b9f02e54dc1ddf10"
+    },
+    "adapter.claudedesktop.profile": {
+      "path": "internal/adapter/claudedesktop/profile.go",
+      "sha256": "49a7e15769aa1a3e777cd082691548e577634ac0c2fbc7303e8d79885c7f28b0"
+    },
+    "adapter.codex.adapter": {
+      "path": "internal/adapter/codex/adapter.go",
+      "sha256": "ff08ae07c4fa38f61f1ce5b5e364738560a69b1d55327adfb71816322d787fd7"
+    },
+    "adapter.codex.adapter-selection": {
+      "path": "internal/adapter/codex/adapter_selection.go",
+      "sha256": "a26ad7da3a1e2d599f5d677013853479e6c19cf6190f204386ce34eadf0c1e97"
+    },
+    "adapter.codex.adapter-verify": {
+      "path": "internal/adapter/codex/adapter_verify.go",
+      "sha256": "25cfe01abc5e2a572e3597f7ad469af22ba26b979a0ec2cb4a0188d4d2f01497"
+    },
+    "adapter.codex.adoption": {
+      "path": "internal/adapter/codex/adoption.go",
+      "sha256": "55ac5cda7a022855e988280c4a346a2efdab48469bf4325d325538162c5e88f9"
+    },
+    "adapter.codex.catalog": {
+      "path": "internal/adapter/codex/catalog.go",
+      "sha256": "a45b78ca09041f02854f7befc337aac926a0e2874afa7cbacc56701939981247"
+    },
+    "adapter.codex.catalog-reference-unix": {
+      "path": "internal/adapter/codex/catalog_reference_unix.go",
+      "sha256": "a2337abcd8cab3e63e43ba90413a0cbe8a61f657c0feae0c87575709f65626cb"
+    },
+    "adapter.codex.catalog-reference-windows": {
+      "path": "internal/adapter/codex/catalog_reference_windows.go",
+      "sha256": "fc183ce3b79cc62cae7485148cdc2e02dcf0f39a587b16ba4f02e32de4643903"
+    },
+    "adapter.codex.client": {
+      "path": "internal/adapter/codex/client.go",
+      "sha256": "882b4c0ac36aeae19e3960e48a9ca375189c32bbb5cb38f694054927d346f887"
+    },
+    "adapter.codex.config": {
+      "path": "internal/adapter/codex/config.go",
+      "sha256": "f3555d2a8f30e90014adbd1ba77081c76381f223d0b29b68f1e95b2e56caf1ec"
+    },
+    "adapter.codex.conflict": {
+      "path": "internal/adapter/codex/conflict.go",
+      "sha256": "7e95863b647ab1d22f49ebba39ba92d5412ae93dc3b19bdb0ae821d04bc040e4"
+    },
+    "adapter.codex.extensions": {
+      "path": "internal/adapter/codex/extensions.go",
+      "sha256": "293af1a2621dc71921f0ab0db832e091855c31374f1c72259ca00a1449880c42"
+    },
+    "adapter.codex.live-verification": {
+      "path": "internal/adapter/codex/live_verification.go",
+      "sha256": "068c587976a20c71cb6b4358e2c4469dee09e2d332223461dac193fe0ccb7849"
+    },
+    "adapter.codex.modelcatalog.document": {
+      "path": "internal/adapter/codex/modelcatalog/document.go",
+      "sha256": "7f419d7679170e8f851c18ce46719c6675cf53cfb68636bcfdba192e1827c654"
+    },
+    "adapter.codex.provider": {
+      "path": "internal/adapter/codex/provider.go",
+      "sha256": "acac143c6d25aeb5eafd83f4b05ebabd49f282a1a8f6c0a9bca148f297384c79"
+    },
+    "adapter.codex.reconcile": {
+      "path": "internal/adapter/codex/reconcile.go",
+      "sha256": "81892e431c88064e94ac740e36bca2a181623bed4231b066751a57b82a892e29"
+    },
+    "adapter.codex.scheduler": {
+      "path": "internal/adapter/codex/scheduler.go",
+      "sha256": "660a0cd7a767c8378e57f3d0cd87882bc0d35c86966456bf31bf53659dc30697"
+    },
+    "adapter.codex.selection": {
+      "path": "internal/adapter/codex/selection.go",
+      "sha256": "d70cba3762fa613c06a7b51cd3d6159eb74071ddaa2a7e2685356297b7aed918"
+    },
+    "adapter.codex.surfaces": {
+      "path": "internal/adapter/codex/surfaces.go",
+      "sha256": "d31b0cd26ad07f38096a4d1cceeca2e3e130a178e97ff9a64d327f84dc9da99c"
+    },
+    "adapter.codex.targets": {
+      "path": "internal/adapter/codex/targets.go",
+      "sha256": "9c6737639b680e85d4dab2bf6121ead4233f05502a6cd2730198c17c9cad02d4"
+    },
+    "adapter.contract.contract": {
+      "path": "internal/adapter/contract/contract.go",
+      "sha256": "f047206829197b055b9c660371fa89cff05f6f2f9743d67f1e917d0e9bcc1fb7"
+    },
+    "adapter.discovery.discovery": {
+      "path": "internal/adapter/discovery/discovery.go",
+      "sha256": "9843b8ef1a34eb7ae2815bb13f41984c13b6e5a62384410f8c69da8bf23dbeb2"
+    },
+    "adapter.discovery.surfaces": {
+      "path": "internal/adapter/discovery/surfaces.go",
+      "sha256": "00bea0bdc9893b545dea8d45c46d1950eb32b32d0ee876dd0e88a88e16cae7a8"
+    },
+    "adapter.hermes.adapter": {
+      "path": "internal/adapter/hermes/adapter.go",
+      "sha256": "f4974826845bb1be4ce7f243dc69dfd9e6d19d87d5cb0276f1b8a10b0d23247a"
+    },
+    "adapter.hermes.adapter-verification-unix": {
+      "path": "internal/adapter/hermes/adapter_verification_unix.go",
+      "sha256": "31823f87defe455db6966e761bc733c2147f2734f1597f729434ff25b742d73e"
+    },
+    "adapter.hermes.adapter-verification-windows": {
+      "path": "internal/adapter/hermes/adapter_verification_windows.go",
+      "sha256": "012fa6ab899428a50a820e72793a5a8599a8ee201ab0f64f54f74fc651119384"
+    },
+    "adapter.hermes.document": {
+      "path": "internal/adapter/hermes/document.go",
+      "sha256": "6d7f2a93d814ce992498c370fbeb38a76db6efc5294ce9373715b269503b6d58"
+    },
+    "adapter.hermes.gateway": {
+      "path": "internal/adapter/hermes/gateway.go",
+      "sha256": "8da3e427c38f4f3d0e8c8b10611d45463810c146a0d980e6411840828946539c"
+    },
+    "adapter.hermes.projection": {
+      "path": "internal/adapter/hermes/projection.go",
+      "sha256": "f9d6def228775f50fc14699eaa901cc731657cab8d807c653f84caca886d9816"
+    },
+    "adapter.hermes.selection": {
+      "path": "internal/adapter/hermes/selection.go",
+      "sha256": "2fe7c20087c8a57028931e5d24e75898ccedbe1d7b54e8bcdf7b0787e8d9b368"
+    },
+    "adapter.hermes.verification-home-unix": {
+      "path": "internal/adapter/hermes/verification_home_unix.go",
+      "sha256": "16c3b88a7aec90626dedcb9ac599fb62bbdf526bd0bdc630a726b58cbf983faa"
+    },
+    "adapter.hermes.verification-home-windows": {
+      "path": "internal/adapter/hermes/verification_home_windows.go",
+      "sha256": "1ca84297d9adc72464f88e3de3eb8bc2503bcea91ad57972f3eae16b0c44ecfa"
+    },
+    "adapter.registry": {
+      "path": "internal/adapter/registry.go",
+      "sha256": "980aa08935347616db68c4f0b7e25da503f9bc143ecbcf31a6cb80a2a5368fa9"
+    },
+    "adapter.support": {
+      "path": "internal/adapter/support.go",
+      "sha256": "eb382053db620e33c1d93884ee256621689609c77413cda2103d29f12ef70629"
+    },
+    "adapter.surface.surface": {
+      "path": "internal/adapter/surface/surface.go",
+      "sha256": "1ad3c97727253e51ab05399dc7ebde197c7ff79488a0e3544065fe6a822be2eb"
+    },
+    "adapter.verification.verify": {
+      "path": "internal/adapter/verification/verify.go",
+      "sha256": "75617c9669214f712c9894e21fd9ce2b6a699747a2171932eee608aa728d5346"
+    },
+    "app.activation.activation": {
+      "path": "internal/app/activation/activation.go",
+      "sha256": "c607784c13cb858b731d6f256a04c661f4e6535f784df10ca0cf0e2b836abe20"
+    },
+    "app.catalog": {
+      "path": "internal/app/catalog.go",
+      "sha256": "1f88fc5da3dc531d1d9add3de7e880caa7308121de1470471a47cb4b4bdba922"
+    },
+    "app.dependencies": {
+      "path": "internal/app/dependencies.go",
+      "sha256": "d2b0f9c6fbfec8cd071bc51bec63955ef395a511857cfb7f93459ec5d87ebc94"
+    },
+    "app.diagnostics.probe": {
+      "path": "internal/app/diagnostics/probe.go",
+      "sha256": "5acb417ce77bf1e55a48cbc2a939a08d50abf2cbef4d0f5d98feb6455bfd73d9"
+    },
+    "app.entrypoint": {
+      "path": "internal/app/entrypoint.go",
+      "sha256": "745344087051f4f13c934c52969d03b2578f7f4f8d4463c4f39be5eee0fe2a8a"
+    },
+    "app.readiness.state": {
+      "path": "internal/app/readiness/state.go",
+      "sha256": "1e679d82686dcfb1213d0087acd7103721676acff2c6d9fa93f84724d43eab64"
+    },
+    "app.renaming.credentials": {
+      "path": "internal/app/renaming/credentials.go",
+      "sha256": "577dcbea8f3a108bb7eea3f3ec3211ff4d1e12db85b59f3a1aa3f37f1b9eaad6"
+    },
+    "app.renaming.finalization": {
+      "path": "internal/app/renaming/finalization.go",
+      "sha256": "6dbf2196efcf95dcbe75b5ef265e865d50e1f29b2cf4f48f995379f0ad72fb12"
+    },
+    "app.renaming.model": {
+      "path": "internal/app/renaming/model.go",
+      "sha256": "e2d052582dc338586583736b17499be7dc99c3f52aa3d13af7d1b8a9ec64c2b1"
+    },
+    "app.renaming.planning": {
+      "path": "internal/app/renaming/planning.go",
+      "sha256": "db40f2e2f89761216e4e69444672b9ef34831917fd4ebcc2e6f82af07995c7e4"
+    },
+    "app.renaming.workflow": {
+      "path": "internal/app/renaming/workflow.go",
+      "sha256": "161c58a8ef72b06827c230abaf9c57b371685ee7cdabf3c21667bb60bc06f12a"
+    },
+    "app.status": {
+      "path": "internal/app/status.go",
+      "sha256": "389dd42ffe51b2dd449f22b7033808e642943c7f3ada9a91d743c9537b89f2d3"
+    },
+    "app.synchronization.account-connection": {
+      "path": "internal/app/synchronization/account_connection.go",
+      "sha256": "147d01910256c8848305919bc2bbb8f576d7317c6f56f989ed6665a8206b87c3"
+    },
+    "app.synchronization.preview": {
+      "path": "internal/app/synchronization/preview.go",
+      "sha256": "ab46e5bb65ba210851fd8925072b87d56769743ff5b0e7d36a72e676b1fd24ac"
+    },
+    "app.synchronization.projection": {
+      "path": "internal/app/synchronization/projection.go",
+      "sha256": "ad7c98d815d4e3331065b9f129d47612f6c0a8055b28ded27947dd35108eafea"
+    },
+    "app.synchronization.selection": {
+      "path": "internal/app/synchronization/selection.go",
+      "sha256": "e0c15349ed3c56f39f99494e7aeb334b3c91ff0e9dc435bbb1ea63c72550598c"
+    },
+    "app.synchronization.setup": {
+      "path": "internal/app/synchronization/setup.go",
+      "sha256": "f1805b8912d5eef6ad699d4c4ceaa464b97873a3da67754243c0690e4a82bf7d"
+    },
+    "app.synchronization.synchronizer": {
+      "path": "internal/app/synchronization/synchronizer.go",
+      "sha256": "84ac747e516fbefdac9d68e9fef6d640adf2f0a49512e105aa4065775d120f25"
+    },
+    "app.synchronization.transaction": {
+      "path": "internal/app/synchronization/transaction.go",
+      "sha256": "49d809c0b6613af58a8b7556a826611bbf3c929f5023da690bd9cd4bb00f70db"
+    },
+    "cli.account.account": {
+      "path": "internal/cli/account/account.go",
+      "sha256": "07b90f4bd7606215f77f6c067f6581a63755b00ba0e2264cb4b8a1714aaac133"
+    },
+    "cli.account.documents": {
+      "path": "internal/cli/account/documents.go",
+      "sha256": "f5518934aa90a2efcddb58d120d62d3941e79df1b7dc4c655244146413e2b70e"
+    },
+    "cli.account.rename": {
+      "path": "internal/cli/account/rename.go",
+      "sha256": "248df638cff8b9b9f77a2b0d913da2daf77c5c0a82c7e4939a905cb2ca8813b7"
+    },
+    "cli.add.add": {
+      "path": "internal/cli/add/add.go",
+      "sha256": "4ca657424675ecafad293a21deef7290c0113870d5a78beaf9f639b4ab500a15"
+    },
+    "cli.app": {
       "path": "internal/cli/app.go",
-      "sha256": "edfe41a42756f04903a96d113b0632b94a0da56af6fd5fe04a68a80ac7c3041e",
-      "note": "AIGW command composition"
+      "sha256": "449eee76e5eb59ad87cc1a3518653c741b5665fdf59f0e4dbe5175a457e36c31"
     },
-    "configuration": {
-      "path": "internal/configuration/model.go",
-      "sha256": "7a8edce5f82c63244a84c6be2abbf4c0094cc7a524a50be6ef23eb352bba2ab5",
-      "note": "AIGW Account, Model, Route, recommendation, and Client Binding authority"
+    "cli.balance.balance": {
+      "path": "internal/cli/balance/balance.go",
+      "sha256": "0faae6febd0c114f85213a51db2fdce52ada1fb87107e8f4ff7d3f95e3e90a6d"
     },
-    "credentials": {
-      "path": "internal/secrets/store.go",
-      "sha256": "42228ed5c0bd0f3e76677965af1286f9f67f888b2e96e98b2965aa33e03b87e0",
-      "note": "AIGW Account Token storage contract"
+    "cli.catalog.catalog": {
+      "path": "internal/cli/catalog/catalog.go",
+      "sha256": "9abc5a6db15b67f8705398a3cb5cce6afa15abafe2edcbcc9bafb6142646f0ea"
     },
-    "discovery": {
-      "path": "internal/discovery/discovery.go",
-      "sha256": "c69a92a49a2bf4ae65a470259b5b063670cc4d16dd6434b9a20a89c3357c035d",
-      "note": "AIGW read-only native client discovery contract"
+    "cli.check.check": {
+      "path": "internal/cli/check/check.go",
+      "sha256": "11c802b4eee9d18da77241e83026b985a01b6ae47b499b5f1c838a6cc881d574"
     },
-    "registry": {
-      "path": "internal/client/registry.go",
-      "sha256": "c6d74bcb498995eb196c6ddeee5b6d63338f11085ff0006091be246cba4c86f7",
-      "note": "AIGW ordered client registry and Adapter contract"
+    "cli.client.client": {
+      "path": "internal/cli/client/client.go",
+      "sha256": "2b687ce96b5ff6dd15e5078bbae3cd84e7980df96423697be20aa6799e4607b4"
     },
-    "adapters": {
-      "path": "internal/client/adapters.go",
-      "sha256": "1167dacd784d28a8cbf91272c712cf495908a7d64859a86a9056a5d134b493aa",
-      "note": "AIGW built-in Adapter composition"
+    "cli.client.documents": {
+      "path": "internal/cli/client/documents.go",
+      "sha256": "78d6dece42760d227d495832804e404426c6158f8185d5792c8dab216630a98b"
     },
-    "synchronizer": {
-      "path": "internal/synchronization/synchronizer.go",
-      "sha256": "4d6ba5b51e386e22997bfbb1b6a2cb5aa89eabd1e64c269ba67fb95e18cadc70",
-      "note": "AIGW client convergence coordinator"
+    "cli.completion.completion": {
+      "path": "internal/cli/completion/completion.go",
+      "sha256": "7ef53d5ebfdab809d72460253807f37e5adf9a929cb2a66663937c81a1f242f7"
     },
-    "projection-transaction": {
-      "path": "internal/synchronization/transaction.go",
-      "sha256": "c576fa35dd325747b2c14b7ccdc61bbf82440d86e63fe351cb87c2026e098f67",
-      "note": "AIGW configuration and projection transaction"
+    "cli.config.config": {
+      "path": "internal/cli/config/config.go",
+      "sha256": "49aa0426e1201b84361765d689d7e75797230dbbde7ec78af343c79757ec0fd6"
     },
-    "file-transaction": {
-      "path": "internal/transaction/files.go",
-      "sha256": "816b1661bfa844060fc49107f2ff1d37ac172412fe25269d010f27afdf6cbc2a",
-      "note": "AIGW guarded filesystem mutation boundary"
+    "cli.config.migration": {
+      "path": "internal/cli/config/migration.go",
+      "sha256": "b6e16bdef3c98af4e7c764a3d8df339072868ea56cba170b2699ddd472488e5a"
     },
-    "codex": {
-      "path": "internal/codex/reconcile.go",
-      "sha256": "582fcfcfa458fe5761cf1e540ac63354996a8c69694f3fa985d4c0602775673f",
-      "note": "AIGW native Codex projection"
+    "cli.credential.credential": {
+      "path": "internal/cli/credential/credential.go",
+      "sha256": "e98e88962d6beb7da01a7356a5478c05746a676a8a1f51d33a4073575e37fb6a"
     },
-    "claude-code": {
-      "path": "internal/claude/settings.go",
-      "sha256": "f9a65ea4b4e7d5d0bb61cf09cae38011f468f2008cb597d178651edc5958bc8b",
-      "note": "AIGW native Claude Code projection"
+    "cli.doctor.doctor": {
+      "path": "internal/cli/doctor/doctor.go",
+      "sha256": "6139fa324c50e240297a1322fa0ca42d3b2b9f0a0fc8b4b88e3b3fbc8caee9bd"
     },
-    "claude-desktop": {
-      "path": "internal/claude/desktop/configuration.go",
-      "sha256": "e4f5d0a90863b80388c139687691280c516db74c7d678fdc520db36a3f6656ff",
-      "note": "AIGW Claude Desktop third-party inference projection"
+    "cli.doctor.wording": {
+      "path": "internal/cli/doctor/wording.go",
+      "sha256": "5c4077efc578f5dd20fba1bb699c5056678ec2ebd6a0485ec09fc8177b3a41b1"
     },
-    "hermes": {
-      "path": "internal/hermes/configuration/projection.go",
-      "sha256": "9f2c3e556b4b5f3b51092257d421f0f51a11240d01f7fa759ef0e6bde03aabea",
-      "note": "AIGW native Hermes provider projection"
+    "cli.install.install": {
+      "path": "internal/cli/install/install.go",
+      "sha256": "a59c2deb3448b2aeadb3703782ea5dda376508979b2bde4052dcf9564c2b12ec"
     },
-    "license": {
-      "path": "LICENSE",
-      "sha256": "35e7e1bfe59ab4b6122410767dea9de995077af273b695d075743a45dcb0e07a",
-      "note": "AIGW source license"
+    "cli.installation.installation": {
+      "path": "internal/cli/installation/installation.go",
+      "sha256": "65a649085886ace52fde4d4761f24f851540f3a6db410a0f04d572264ab96eeb"
+    },
+    "cli.invocation.accounts": {
+      "path": "internal/cli/invocation/accounts.go",
+      "sha256": "7411ebef3984e55f634c957da20785b61ccbd41500865e1b8f690fe2b3d9c542"
+    },
+    "cli.invocation.context": {
+      "path": "internal/cli/invocation/context.go",
+      "sha256": "5f8adaefeb607587b112e4fce46bb487b445de05c7f66b103a9ccf556397b367"
+    },
+    "cli.invocation.preview": {
+      "path": "internal/cli/invocation/preview.go",
+      "sha256": "38555cbb56a605995c4d14c9b7c4a2b5c51d7a7dbef6ea22c9a295d980c448e5"
+    },
+    "cli.invocation.readiness": {
+      "path": "internal/cli/invocation/readiness.go",
+      "sha256": "c1c257587ce6d36f6e3c697e845c4bffd4f948a09aee2ddc566b719785f526fb"
+    },
+    "cli.invocation.rename": {
+      "path": "internal/cli/invocation/rename.go",
+      "sha256": "cfbc6ea1801a94b1ede9d56767367f40e05a92c4b7674b30d67aff49972bb966"
+    },
+    "cli.models.models": {
+      "path": "internal/cli/models/models.go",
+      "sha256": "0e85c9254ce488de9993c523619117c69ce4b3dee92a445ba4ae79792358043d"
+    },
+    "cli.repair.repair": {
+      "path": "internal/cli/repair/repair.go",
+      "sha256": "fafb2314bd295601a0deeab5cb5236fbb32520e1be106cf2ca5a1aefd1b7daa8"
+    },
+    "cli.rollback.rollback": {
+      "path": "internal/cli/rollback/rollback.go",
+      "sha256": "5f465ea9578c875b05749c08c5f5b55c6441c7a7078eebde5ef96c6eb7e8e89b"
+    },
+    "cli.rotate.rotate": {
+      "path": "internal/cli/rotate/rotate.go",
+      "sha256": "26cbac16334a9758d2af79d88787591fc875db7783382bd8dabf8bf2737c3e60"
+    },
+    "cli.route.documents": {
+      "path": "internal/cli/route/documents.go",
+      "sha256": "d85e90a134bc5789f3c0fcc7e381964f0865ad672bb10d82e47957eba66eb779"
+    },
+    "cli.route.rename": {
+      "path": "internal/cli/route/rename.go",
+      "sha256": "61b080d27a6d469fe55f768f81e065399a289a13e5bec9eb103e6de61db6a100"
+    },
+    "cli.route.route": {
+      "path": "internal/cli/route/route.go",
+      "sha256": "80f7bab30c5f6630cabc2fc3a9521ae587466128ce16447749f6c7f7c35cbbb8"
+    },
+    "cli.setup.manifest": {
+      "path": "internal/cli/setup/manifest.go",
+      "sha256": "5082b02db2fedf3e22dd22c8b64fcdc67b497d597be528040824c812960ac9b4"
+    },
+    "cli.setup.setup": {
+      "path": "internal/cli/setup/setup.go",
+      "sha256": "7df64a0d7af2ce49b9d84df7e82d7734609edc54e3ed990fa6d8360e3b7ecdb6"
+    },
+    "cli.status.report": {
+      "path": "internal/cli/status/report.go",
+      "sha256": "9afde9d828c904e6fa2d3aa25fed1b58a8cfedae89a7eb5e80a5ca1592c7564a"
+    },
+    "cli.status.status": {
+      "path": "internal/cli/status/status.go",
+      "sha256": "1ee7dff3e573ad72c13c45a00f6ae9225572c533b3dc89aad3262ecfb9630df1"
+    },
+    "cli.status.status-render": {
+      "path": "internal/cli/status/status_render.go",
+      "sha256": "7bed3379ea7e941f2939a1bacb2653e534bc0818d744d6eb108ac95832eb07a5"
+    },
+    "cli.sync.sync": {
+      "path": "internal/cli/sync/sync.go",
+      "sha256": "109bea00c5e09ad59888e12472e967f511919614c60f4811f1cf441909d32b96"
+    },
+    "cli.test.test": {
+      "path": "internal/cli/test/test.go",
+      "sha256": "0447982a43fe61639f23d86f2767ed5ece718623fa88b596be429a6e3fdf9369"
+    },
+    "cli.uninstall.uninstall": {
+      "path": "internal/cli/uninstall/uninstall.go",
+      "sha256": "bcf474540346d45d58100b24e359e2e7853eaacf1092f0b19bbc5f3e8cc26817"
+    },
+    "cli.update.custody": {
+      "path": "internal/cli/update/custody.go",
+      "sha256": "03dcaeab18e6c1e1a1e6c8c474089d31f050adab9830c525362b4767a6920351"
+    },
+    "cli.update.preview": {
+      "path": "internal/cli/update/preview.go",
+      "sha256": "77b354ec7408b81c69aa0655cb331d64ae20f37516624f80fca0f7bda838d04f"
+    },
+    "cli.update.update": {
+      "path": "internal/cli/update/update.go",
+      "sha256": "ca9388ba53deafefcf187e90c4c6c95057c76ef96e8c9f05f4fc348ab27a7eda"
+    },
+    "cli.use.retries": {
+      "path": "internal/cli/use/retries.go",
+      "sha256": "926cbf7d3c3f478bc815aa628a2fbc6d993c5fb82be9904d732c625af2b0aff0"
+    },
+    "cli.use.use": {
+      "path": "internal/cli/use/use.go",
+      "sha256": "067aabf366a45755f1f4805463e526515926f6acabaee645c60ce9058ecd165a"
+    },
+    "cli.verify.verify": {
+      "path": "internal/cli/verify/verify.go",
+      "sha256": "926081084abfa145192b91822961595b18e8ace437bedc84a8fdb5595f0f9c43"
+    },
+    "clients.clients": {
+      "path": "internal/clients/clients.go",
+      "sha256": "c7fb54c6c47dc97fd1aad0d324a28bb134b3a4c7fa7b931bdc30389db9dfae76"
+    },
+    "domain.admission": {
+      "path": "internal/domain/admission.go",
+      "sha256": "b166f06c68ca1197cbaf770dbbb7639eb169ba61674c1bba2eeb4b2108a29f3c"
+    },
+    "domain.clients": {
+      "path": "internal/domain/clients.go",
+      "sha256": "86e542b929db080f7a0262214453836f0e5e423dc2b3490a9d931717ace920d7"
+    },
+    "domain.inference": {
+      "path": "internal/domain/inference.go",
+      "sha256": "dfb4c2a8078423e050073c507edd25205f27db56af040d78f0bff65d9dea7abc"
+    },
+    "domain.manifest": {
+      "path": "internal/domain/manifest.go",
+      "sha256": "1b14c376dd866ed8ae9d304bfa0c6689f3e8c3f4e89f3926679e5407a5129490"
+    },
+    "domain.model": {
+      "path": "internal/domain/model.go",
+      "sha256": "7de1759f870a7afefa7f5d775870751d54580a998ee14402b519afe129b5fed6"
+    },
+    "domain.model-errors": {
+      "path": "internal/domain/model_errors.go",
+      "sha256": "c8e20bd66ccf35d6bf845861053162591344818da39e085c405293293ec54fd6"
+    },
+    "domain.model-validation": {
+      "path": "internal/domain/model_validation.go",
+      "sha256": "586fa58b9dafe5319ab672dc6766522e19a2900d11102cdf6f8c544b72abed33"
+    },
+    "domain.ordering": {
+      "path": "internal/domain/ordering.go",
+      "sha256": "07178dcdc59a285be19843097e74da88a2534b1dd40523333aec233dc7571600"
+    },
+    "domain.probe": {
+      "path": "internal/domain/probe.go",
+      "sha256": "a7b45da5d5a6620a87062219d4fb6158c2b7ef24de4b4c19afbd467424529f29"
+    },
+    "domain.redaction": {
+      "path": "internal/domain/redaction.go",
+      "sha256": "1c7bbaeca915acd7c1a1450107fbc26ddbf8a18a8287f678b99f2921390cdae6"
+    },
+    "domain.retries": {
+      "path": "internal/domain/retries.go",
+      "sha256": "82d48ab5e12ac9ef2e53597114c469cd9b3bf4d0989b10dc75c6f02bbb0064a0"
+    },
+    "platform.files": {
+      "path": "internal/platform/files.go",
+      "sha256": "ca8b47fd1b951ca03fe8c18b60816632a493c97acd5dcfeafa4bac32a8073420"
+    },
+    "platform.paths": {
+      "path": "internal/platform/paths.go",
+      "sha256": "e048ab59f8054b3c40d1c7669eb0cc565d7f43d8960df31e0ce0a23ccbb1ddbe"
+    },
+    "platform.process.capture-unix": {
+      "path": "internal/platform/process/capture_unix.go",
+      "sha256": "720e20b257b8e183000996f3493347199546c6f8566c385de0bc00d43608dfd9"
+    },
+    "platform.process.capture-windows": {
+      "path": "internal/platform/process/capture_windows.go",
+      "sha256": "25b42e50943798d5ce71f4f2378c20ac8b2aa44ebc21ac9d85c4463e2422b8e4"
+    },
+    "platform.process.command-unix": {
+      "path": "internal/platform/process/command_unix.go",
+      "sha256": "1d89452c681f894263d1009eb3a2c43bdb1a42a2994903339311ef61f99e52c8"
+    },
+    "platform.process.command-windows": {
+      "path": "internal/platform/process/command_windows.go",
+      "sha256": "e7bdf18085ea491bbe24fbfaa1029ecfa717808b2cb296e732e711fbbf18af16"
+    },
+    "platform.process.plan": {
+      "path": "internal/platform/process/plan.go",
+      "sha256": "1c905c7059ccade42d0acd67631b41ed53c6a8eb8ae7510e7a16d1211116cdfa"
+    },
+    "platform.process.runner": {
+      "path": "internal/platform/process/runner.go",
+      "sha256": "4e6c3ff8210e97fed97d065839e0bf0523386e578afb234c6016ff290f17c2af"
+    },
+    "program.artifact.archive": {
+      "path": "internal/program/artifact/archive.go",
+      "sha256": "62b94e6549939a0eb189df43986576809530226c2545ce1b1e254c0a4fa75a80"
+    },
+    "program.artifact.checksum": {
+      "path": "internal/program/artifact/checksum.go",
+      "sha256": "22ab7053cf634122a7d0564aeac9054c82b9ea4b17970db784b726ebe46d8bc1"
+    },
+    "program.artifact.identity": {
+      "path": "internal/program/artifact/identity.go",
+      "sha256": "1b8f1d4f7a405668d24fcecd83ef551f4ab2f95d26bbd486905c6344f0e9eb57"
+    },
+    "program.artifact.matrix": {
+      "path": "internal/program/artifact/matrix.go",
+      "sha256": "a9f67310c435c2eff3cc1b2a5532c359111f7083b67848a644ebb767baf77b58"
+    },
+    "program.artifact.signature": {
+      "path": "internal/program/artifact/signature.go",
+      "sha256": "4d0a8b8d3a68e98a208a2246c756563573451c64b4445ff7dd8d2648796fbab0"
+    },
+    "program.candidate": {
+      "path": "internal/program/candidate.go",
+      "sha256": "a26f578d1a1692bb35d10eefb9ab60c2485d50cbe5aaee16b616e0ad3d3761ff"
+    },
+    "program.github": {
+      "path": "internal/program/github.go",
+      "sha256": "c4c98dae7cb1c0d0a5cdd340913d12f762b6f15389e7a69a4db17e95affbef50"
+    },
+    "program.gitlab": {
+      "path": "internal/program/gitlab.go",
+      "sha256": "bd983e707ce99b36bf36362872b2826ec85127034c49ab54c245d8c56e9473b6"
+    },
+    "program.inspect": {
+      "path": "internal/program/inspect.go",
+      "sha256": "14c033f4ff8af11b7672ad85f3f030be864c371b924040b633cea156266bab49"
+    },
+    "program.install": {
+      "path": "internal/program/install.go",
+      "sha256": "93b87aeb2b3d1c0067072cdb6e2cc4fca04c65ed542e5a4002c2a02baa294d97"
+    },
+    "program.ownership": {
+      "path": "internal/program/ownership.go",
+      "sha256": "186bc772ad9440c56f16781a13faaa48ff975ddf3d729ffd5daa1d93b0bc192b"
+    },
+    "program.portable": {
+      "path": "internal/program/portable.go",
+      "sha256": "ff20eaf8c504327d8c4355c8f6d5b141baa0909f47269a084777f98c8a25c9ee"
+    },
+    "program.preview": {
+      "path": "internal/program/preview.go",
+      "sha256": "83f5fc904075ff2d80555f6ee9d7d0d048ac7baabe40f82edb145b3d9009baed"
+    },
+    "program.source": {
+      "path": "internal/program/source.go",
+      "sha256": "5bf55d8bb9fcf501b531f9a26bde32011d04fda51876c51314be17ab58d4122c"
+    },
+    "program.transition": {
+      "path": "internal/program/transition.go",
+      "sha256": "f1b70a37e72b8d02061561ffd164c5b04259fdc548744f8df20a0563968d36a4"
+    },
+    "program.update": {
+      "path": "internal/program/update.go",
+      "sha256": "8e882991e0e58049e77dfd90b1ba7e09f0f0d66ceb5f19b103a2c8b7ab691978"
+    },
+    "program.version": {
+      "path": "internal/program/version.go",
+      "sha256": "9d50c85f3a842527a320ddcfa493a6438a6fe6098f78ee11b0ff89b083b1989d"
+    },
+    "provider.diagnostic.credential": {
+      "path": "internal/provider/diagnostic/credential.go",
+      "sha256": "0f7338cd731c50bc2c544baf0b9bd7b89cac1868e8d98d89cc50d3e06864085f"
+    },
+    "provider.diagnostic.report": {
+      "path": "internal/provider/diagnostic/report.go",
+      "sha256": "761444bade6f0b5c044781252d712c6a6122a226670949acd351dbb507f8c55b"
+    },
+    "provider.dmxapi.probe": {
+      "path": "internal/provider/dmxapi/probe.go",
+      "sha256": "6cd54f82182647454d11f420a399d93d49b439adff42bc9468ac8b693e38e4d7"
+    },
+    "provider.registry": {
+      "path": "internal/provider/registry.go",
+      "sha256": "0edb901dc63e126f5a68b11191768370873366a51d9638f1355154b01c296f61"
+    },
+    "secret.command": {
+      "path": "internal/secret/command.go",
+      "sha256": "f090b4e49fff8d5572ff13283191dc2545612907a43abc97daa5088136abdec9"
+    },
+    "secret.command-unix": {
+      "path": "internal/secret/command_unix.go",
+      "sha256": "5f0ac78dea0a773da26d603700dc8c2dc0850de32adacd7595f0f56d65521f05"
+    },
+    "secret.command-windows": {
+      "path": "internal/secret/command_windows.go",
+      "sha256": "7d3a5a595f9be7ec3e8405b4435c97392454b7ae61e2e1bee370ad26e614a0d4"
+    },
+    "secret.diagnostic": {
+      "path": "internal/secret/diagnostic.go",
+      "sha256": "094440aae40942b922b81ea1e6ed129488d3697b40ed7bd8c14b57e51c5f0103"
+    },
+    "secret.entrypoint": {
+      "path": "internal/secret/entrypoint.go",
+      "sha256": "79f23ce5e23115c0af5ff4fffd2b6c3d6f6e520e3036d808ba13aafcbe1d90c5"
+    },
+    "secret.entrypoint-unix": {
+      "path": "internal/secret/entrypoint_unix.go",
+      "sha256": "0347d03a172b492888fbf32e317d24071e4fb161a20889dd233fc6c0bdbbdb99"
+    },
+    "secret.entrypoint-windows": {
+      "path": "internal/secret/entrypoint_windows.go",
+      "sha256": "f8e545525c8a4c830e230af8e6aa79ac92c1db9e6e97d8af348c1f1a55ac4c32"
+    },
+    "secret.env": {
+      "path": "internal/secret/env.go",
+      "sha256": "5af3abaad09554e69aa040677a7a8c9dda8062ec27b03bf6307c14bfaace13ce"
+    },
+    "secret.file-store": {
+      "path": "internal/secret/file_store.go",
+      "sha256": "b4746dcf0e1501f312b21fe1db11ad53bc23543f0b124fd4115d1020ba1fe3b5"
+    },
+    "secret.file-transaction": {
+      "path": "internal/secret/file_transaction.go",
+      "sha256": "1bf8dcbf3d4757b990bd56ba3de14b95ec3c6eecfc6bbe75ac48306085193641"
+    },
+    "secret.file-unix": {
+      "path": "internal/secret/file_unix.go",
+      "sha256": "882bf1d2ccb324537e5292217ce2d9fd25b52983d6947dc30e981d519adfd99f"
+    },
+    "secret.file-windows": {
+      "path": "internal/secret/file_windows.go",
+      "sha256": "7cead7ce67298721893b73f333b3e133437f9e692cd7949cde53c12d10a09a69"
+    },
+    "secret.keyring": {
+      "path": "internal/secret/keyring.go",
+      "sha256": "94454a00a2edc0a5330c038047a5e066ee9172619fed7d77b98a5ed70eb8c6af"
+    },
+    "secret.memory": {
+      "path": "internal/secret/memory.go",
+      "sha256": "250b84d6f7a4ba303de4fb62da3bf3ea534776abffa14da63e649cbd0c92e076"
+    },
+    "secret.native.keychain-darwin": {
+      "path": "internal/secret/native/keychain_darwin.go",
+      "sha256": "bfe4611851502b8172ae3a9da43f005f0e661787e5669c5784338dfd53138a59"
+    },
+    "secret.native.keychain-darwin-nocgo": {
+      "path": "internal/secret/native/keychain_darwin_nocgo.go",
+      "sha256": "888da97b64c56196f8d5fd677489ef551fd7f2a749edc8128a1667dfda44d9c0"
+    },
+    "secret.native.migration-darwin": {
+      "path": "internal/secret/native/migration_darwin.go",
+      "sha256": "4e7d8b600462a7367c1dda19fa576a1d7f199daeb8ae2a7a620da279e785a1dd"
+    },
+    "secret.native.provider": {
+      "path": "internal/secret/native/provider.go",
+      "sha256": "d13f3c1bc69cfcb90505e8a062ae4fbb8618d41de062255c1b74f4de56d72d58"
+    },
+    "secret.native.provider-darwin": {
+      "path": "internal/secret/native/provider_darwin.go",
+      "sha256": "f182ac4ae520702294dd56c87dfd5b25b4ad2f2aa5140a10a772de1ec44139a6"
+    },
+    "secret.native.provider-keyring": {
+      "path": "internal/secret/native/provider_keyring.go",
+      "sha256": "b033805afeaba7643ac96b425a4db9bcd56207a3e2a459e1f233bd3e25a9e903"
+    },
+    "secret.native.provider-linux": {
+      "path": "internal/secret/native/provider_linux.go",
+      "sha256": "00a6e6160e095e31de2c7ea9a92899d914e15a5eb491993bf0fc2b8693f42a3c"
+    },
+    "secret.native.provider-other": {
+      "path": "internal/secret/native/provider_other.go",
+      "sha256": "6ff8da332ba41799e12069e4dfef5fc82711561cabaec7ec64213128f96c10c2"
+    },
+    "secret.native.provider-windows": {
+      "path": "internal/secret/native/provider_windows.go",
+      "sha256": "6e6f475706aa96f63255bead1b95b97f495cb4f410aaa27e9b784d21a5386390"
+    },
+    "secret.native.subprocess": {
+      "path": "internal/secret/native/subprocess.go",
+      "sha256": "c5ac684e6229b06ee8847ee4167e13ad36b24c0bd92ab1f30241a89778eb96f0"
+    },
+    "secret.predecessor-darwin": {
+      "path": "internal/secret/predecessor_darwin.go",
+      "sha256": "7dabb2b567a8c308c7cc1823089f5f69a14f08d048b237ad034f22ff75fd0fa0"
+    },
+    "secret.predecessor-other": {
+      "path": "internal/secret/predecessor_other.go",
+      "sha256": "2626f6e2631239b55d2fb1177da0a2bf0e1f38df609d19953743f3d678dbb0c7"
+    },
+    "secret.probe.probe": {
+      "path": "internal/secret/probe/probe.go",
+      "sha256": "c1c03e7e3709e055a3997c8a8067ec44758d612d4acd5ac131e7515f401a218d"
+    },
+    "secret.program": {
+      "path": "internal/secret/program.go",
+      "sha256": "938fcdaa908b6d579bb81a5a7a88b4870a277ed5c9d84a96a39f246e4009eeb7"
+    },
+    "secret.recovery": {
+      "path": "internal/secret/recovery.go",
+      "sha256": "70889b8571b2a58f781e7196c0d4e59b04839d42ca75c6b282eeafdfb2f91e9a"
+    },
+    "secret.replacement": {
+      "path": "internal/secret/replacement.go",
+      "sha256": "102625b8045731bcfd303782de90eb792502a744b5ef5bf9a17cc3e34f001c93"
+    },
+    "secret.scoped": {
+      "path": "internal/secret/scoped.go",
+      "sha256": "4ff3118b78642b39615ab8ac0f33ff3e3af4decaa393c022a423efebe73e8d3f"
+    },
+    "secret.selection": {
+      "path": "internal/secret/selection.go",
+      "sha256": "97a3ae19fc253dc8adadbc7970878ec6429142887d3f0740e43f790192562f7c"
+    },
+    "secret.store": {
+      "path": "internal/secret/store.go",
+      "sha256": "1b5f730923bad57e939aa54b6424c337aa6c91b9b826f24fcb1853d0f1a5973d"
+    },
+    "store.capabilities": {
+      "path": "internal/store/capabilities.go",
+      "sha256": "ab797dc4d85cb9db12951c2f6b570656b577b1d6ad96d5a5ef85d3643f032556"
+    },
+    "store.checkpoint": {
+      "path": "internal/store/checkpoint.go",
+      "sha256": "c01b99db3f794e1afd5de0c9c6635e28b2bd9472bd13c58b04869e7872efdd6a"
+    },
+    "store.components": {
+      "path": "internal/store/components.go",
+      "sha256": "09b429283d64c0e6f5cc7f75b4d371816b8f9e0018277a1766570cf282642e8f"
+    },
+    "store.forwarding": {
+      "path": "internal/store/forwarding.go",
+      "sha256": "18611c49d696eab4a9320407d07d3cdebfc29bfc69ed0b58c4fc887986aad3f6"
+    },
+    "store.manifest": {
+      "path": "internal/store/manifest.go",
+      "sha256": "9889c10a4ac14e92a9265316406a76eea1766f02a82daa9027f7488a7cf9b018"
+    },
+    "store.migration": {
+      "path": "internal/store/migration.go",
+      "sha256": "934167acc5b61f0e33806bccaf425bef66407590b822d5ae3f68960fcbd592dd"
+    },
+    "store.ordering": {
+      "path": "internal/store/ordering.go",
+      "sha256": "df0480bbb357ab3a35f31228f724da98932840be0097e61916c79b2867d3999b"
+    },
+    "store.retry-store": {
+      "path": "internal/store/retry_store.go",
+      "sha256": "fcd3e416f4c9e159d9f3fb5b51e379895305501bae53690ce1bc67150dbf5e0b"
+    },
+    "store.store": {
+      "path": "internal/store/store.go",
+      "sha256": "4241dd94cf725f1cf0dc52ad96ea9c3b68c8824eaa3d363cd155730b7f690edc"
+    },
+    "store.store-errors": {
+      "path": "internal/store/store_errors.go",
+      "sha256": "971c13f792702c8174483bc086d337bd09825cd3106775d5c670e7eaf876f686"
+    },
+    "terminal.continuation": {
+      "path": "internal/terminal/continuation.go",
+      "sha256": "1d5ada165b51e61a89bcccc59481a3a37f577c49b513f0f3dee80c708e5a52ba"
+    },
+    "terminal.document": {
+      "path": "internal/terminal/document.go",
+      "sha256": "3e866906b73b8d9447201b79a642c6d70c52e298d6deb0f8fdca55c6276c7445"
+    },
+    "terminal.errors": {
+      "path": "internal/terminal/errors.go",
+      "sha256": "57d8023cee7a6a04fd7b828affab3b25c66f4b747aaac6b6ea9c5f47cab681b6"
+    },
+    "terminal.password": {
+      "path": "internal/terminal/password.go",
+      "sha256": "2475af3242b19fe4f2cdb59c48fbf52220ae75dd925f27716aadc02dd98cd34b"
+    },
+    "terminal.password-unix": {
+      "path": "internal/terminal/password_unix.go",
+      "sha256": "4bce221fab28ba31150ee1a9684a64a512574fdbffe1882ad173abc001eeb6d8"
+    },
+    "terminal.password-windows": {
+      "path": "internal/terminal/password_windows.go",
+      "sha256": "fe846dffc615d68008b20d4f84cd95192e39c469e6af62ed9ab15456b80c6742"
+    },
+    "terminal.prompt": {
+      "path": "internal/terminal/prompt.go",
+      "sha256": "48228c8a7cf59a4be8282d60a58c13adce168d0d9815b644bc938efea57c1fc8"
+    },
+    "terminal.render": {
+      "path": "internal/terminal/render.go",
+      "sha256": "55e83c8afce2e5392a965e0eed20763e82a05658bde7f1b6a64692bff1cb6700"
+    },
+    "terminal.target": {
+      "path": "internal/terminal/target.go",
+      "sha256": "925f5764760ec6972b51aaf23278d2bba19576f8b2cc38b52f78599674655dba"
+    },
+    "terminal.terminal": {
+      "path": "internal/terminal/terminal.go",
+      "sha256": "ea8112d19659a214cf9e82bf4f44fd99ad794997397af6ebd7d63e52089fe672"
+    },
+    "terminal.terminal-unix": {
+      "path": "internal/terminal/terminal_unix.go",
+      "sha256": "19b365eb712b457d5894137ccb65da493b34ca608bab2a1eb3a33558fc4c9291"
+    },
+    "terminal.terminal-windows": {
+      "path": "internal/terminal/terminal_windows.go",
+      "sha256": "839aeeb530f6ae73f03974a666f1d7bec5b6718a62d4b0024efd6e3d5ec0e6a9"
+    },
+    "manifests.team.toml": {
+      "path": "manifests/team.toml",
+      "sha256": "57693567c0a20c72777ca92a024d2c419fab9b8c55a0736c7f31c12e3e8d32c0"
     }
   },
   "components": [
     {
-      "id": "cli",
-      "label": "CLI",
+      "id": "program-entry",
+      "label": "Program",
       "kind": "interface",
       "details": {
-        "role": "operator intent"
+        "starts": "the command-line application"
       },
-      "sources": ["cli"]
+      "sources": ["cmd.aigw.main"]
     },
     {
-      "id": "configuration",
-      "label": "Configuration",
-      "kind": "authority",
+      "id": "commands",
+      "label": "Commands",
+      "kind": "interface",
       "details": {
-        "owns": ["accounts", "models", "routes", "recommendations", "client bindings"]
+        "commands": "setup, use, sync, check, verify, rotate, rollback, doctor, update and more",
+        "shape": "one package per command, sharing behaviour only through invocation"
       },
-      "sources": ["configuration"]
+      "sources": [
+        "cli.account.account",
+        "cli.account.documents",
+        "cli.account.rename",
+        "cli.add.add",
+        "cli.app",
+        "cli.balance.balance",
+        "cli.catalog.catalog",
+        "cli.check.check",
+        "cli.client.client",
+        "cli.client.documents",
+        "cli.completion.completion",
+        "cli.config.config",
+        "cli.config.migration",
+        "cli.doctor.doctor",
+        "cli.doctor.wording",
+        "cli.install.install",
+        "cli.installation.installation",
+        "cli.invocation.accounts",
+        "cli.invocation.context",
+        "cli.invocation.preview",
+        "cli.invocation.readiness",
+        "cli.invocation.rename",
+        "cli.models.models",
+        "cli.repair.repair",
+        "cli.rollback.rollback",
+        "cli.rotate.rotate",
+        "cli.route.documents",
+        "cli.route.rename",
+        "cli.route.route",
+        "cli.setup.manifest",
+        "cli.setup.setup",
+        "cli.status.report",
+        "cli.status.status",
+        "cli.status.status-render",
+        "cli.sync.sync",
+        "cli.test.test",
+        "cli.uninstall.uninstall",
+        "cli.update.custody",
+        "cli.update.preview",
+        "cli.update.update",
+        "cli.use.retries",
+        "cli.use.use",
+        "cli.verify.verify"
+      ]
     },
     {
-      "id": "credentials",
-      "label": "Credential store",
-      "kind": "authority",
+      "id": "credential-helper",
+      "label": "Credential helper",
+      "kind": "interface",
       "details": {
-        "owns": "account tokens"
+        "command": "aigw credential",
+        "serves": "a client's own Token on demand, never on standard output"
       },
-      "sources": ["credentials"]
+      "sources": ["cli.credential.credential"]
+    },
+    {
+      "id": "terminal",
+      "label": "Terminal",
+      "kind": "interface",
+      "details": {
+        "renders": "human and JSON output, prompts and errors; imports no use case"
+      },
+      "sources": [
+        "terminal.continuation",
+        "terminal.document",
+        "terminal.errors",
+        "terminal.password",
+        "terminal.password-unix",
+        "terminal.password-windows",
+        "terminal.prompt",
+        "terminal.render",
+        "terminal.target",
+        "terminal.terminal",
+        "terminal.terminal-unix",
+        "terminal.terminal-windows"
+      ]
+    },
+    {
+      "id": "use-cases",
+      "label": "Use cases",
+      "kind": "coordinator",
+      "details": {
+        "returns": "values that several commands share, for the terminal to render"
+      },
+      "sources": ["app.catalog", "app.dependencies", "app.entrypoint", "app.status"]
+    },
+    {
+      "id": "renaming",
+      "label": "Renaming",
+      "kind": "coordinator",
+      "details": {
+        "migrates": "an Account or Route identity in two phases"
+      },
+      "sources": [
+        "app.renaming.credentials",
+        "app.renaming.finalization",
+        "app.renaming.model",
+        "app.renaming.planning",
+        "app.renaming.workflow"
+      ]
+    },
+    {
+      "id": "activation",
+      "label": "Activation",
+      "kind": "coordinator",
+      "details": {
+        "classifies": "the enabled-client scope of an operation"
+      },
+      "sources": ["app.activation.activation"]
+    },
+    {
+      "id": "synchronization",
+      "label": "Synchronization",
+      "kind": "coordinator",
+      "details": {
+        "converges": "Client Bindings and their projections",
+        "commits": "one configuration transition with guarded compensation"
+      },
+      "sources": [
+        "app.synchronization.account-connection",
+        "app.synchronization.preview",
+        "app.synchronization.projection",
+        "app.synchronization.selection",
+        "app.synchronization.setup",
+        "app.synchronization.synchronizer",
+        "app.synchronization.transaction"
+      ]
+    },
+    {
+      "id": "readiness",
+      "label": "Readiness",
+      "kind": "coordinator",
+      "details": {
+        "states": "configured, endpoint checked, inference checked, deferred, degraded, invalid, unavailable"
+      },
+      "sources": ["app.readiness.state"]
+    },
+    {
+      "id": "diagnostics",
+      "label": "Diagnostics",
+      "kind": "observer",
+      "details": {
+        "observes": "bounded, redacted endpoint and authentication health"
+      },
+      "sources": [
+        "app.diagnostics.probe",
+        "provider.diagnostic.credential",
+        "provider.diagnostic.report",
+        "provider.dmxapi.probe",
+        "provider.registry"
+      ]
+    },
+    {
+      "id": "client-admission",
+      "label": "Client admission",
+      "kind": "registry",
+      "details": {
+        "lists": "the built-in adapters in admission order"
+      },
+      "sources": ["clients.clients"]
+    },
+    {
+      "id": "adapter-seam",
+      "label": "Adapter seam",
+      "kind": "contract",
+      "details": {
+        "operations": ["discover", "converge", "plan", "apply", "inspect", "verify", "withdraw"],
+        "proves": "every adapter against one contract suite"
+      },
+      "sources": [
+        "adapter.adapters",
+        "adapter.contract.contract",
+        "adapter.registry",
+        "adapter.support",
+        "adapter.surface.surface",
+        "adapter.verification.verify"
+      ]
     },
     {
       "id": "discovery",
-      "label": "Native discovery",
+      "label": "Discovery",
       "kind": "observer",
       "details": {
-        "effect": "read-only"
+        "observes": "the host's clients and paths without adopting them"
       },
-      "sources": ["discovery"]
-    },
-    {
-      "id": "synchronizer",
-      "label": "Synchronizer",
-      "kind": "coordinator",
-      "details": {
-        "role": "desired-state coordination"
-      },
-      "sources": ["synchronizer", "projection-transaction"]
-    },
-    {
-      "id": "registry",
-      "label": "Client registry",
-      "kind": "registry",
-      "details": {
-        "order": "admission order"
-      },
-      "sources": ["registry", "adapters"]
-    },
-    {
-      "id": "adapter-contract",
-      "label": "Adapter contract",
-      "kind": "contract",
-      "details": {
-        "operations": ["discover", "converge", "plan", "apply", "inspect", "verify", "withdraw"]
-      },
-      "sources": ["registry"]
-    },
-    {
-      "id": "transaction",
-      "label": "Guarded transaction",
-      "kind": "boundary",
-      "details": {
-        "recovery": "reverse compensation"
-      },
-      "sources": ["projection-transaction", "file-transaction"]
+      "sources": ["adapter.discovery.discovery", "adapter.discovery.surfaces"]
     },
     {
       "id": "codex",
       "label": "Codex",
       "kind": "client",
       "details": {
-        "surface": "native configuration"
+        "projects": "a bounded region of ~/.codex/config.toml and its model catalog"
       },
-      "sources": ["adapters", "codex"]
+      "sources": [
+        "adapter.codex.adapter",
+        "adapter.codex.adapter-selection",
+        "adapter.codex.adapter-verify",
+        "adapter.codex.adoption",
+        "adapter.codex.catalog",
+        "adapter.codex.catalog-reference-unix",
+        "adapter.codex.catalog-reference-windows",
+        "adapter.codex.client",
+        "adapter.codex.config",
+        "adapter.codex.conflict",
+        "adapter.codex.extensions",
+        "adapter.codex.live-verification",
+        "adapter.codex.modelcatalog.document",
+        "adapter.codex.provider",
+        "adapter.codex.reconcile",
+        "adapter.codex.scheduler",
+        "adapter.codex.selection",
+        "adapter.codex.surfaces",
+        "adapter.codex.targets"
+      ]
     },
     {
       "id": "claude-code",
       "label": "Claude Code",
       "kind": "client",
       "details": {
-        "surface": "native settings"
+        "projects": "~/.claude/settings.json"
       },
-      "sources": ["adapters", "claude-code"]
+      "sources": [
+        "adapter.claude.adapter",
+        "adapter.claude.adapter-verify",
+        "adapter.claude.inspection",
+        "adapter.claude.live-verification",
+        "adapter.claude.native-paths",
+        "adapter.claude.plan",
+        "adapter.claude.settings"
+      ]
     },
     {
       "id": "claude-desktop",
       "label": "Claude Desktop",
       "kind": "client",
       "details": {
-        "surface": "third-party inference library"
+        "projects": "its separate third-party inference library"
       },
-      "sources": ["adapters", "claude-desktop"]
+      "sources": [
+        "adapter.claudedesktop.adapter",
+        "adapter.claudedesktop.configuration",
+        "adapter.claudedesktop.identity",
+        "adapter.claudedesktop.native-paths",
+        "adapter.claudedesktop.profile"
+      ]
     },
     {
       "id": "hermes",
       "label": "Hermes",
       "kind": "client",
       "details": {
-        "surface": "native provider catalogue"
+        "projects": "its provider catalog, protocol and model"
       },
-      "sources": ["adapters", "hermes"]
+      "sources": [
+        "adapter.hermes.adapter",
+        "adapter.hermes.adapter-verification-unix",
+        "adapter.hermes.adapter-verification-windows",
+        "adapter.hermes.document",
+        "adapter.hermes.gateway",
+        "adapter.hermes.projection",
+        "adapter.hermes.selection",
+        "adapter.hermes.verification-home-unix",
+        "adapter.hermes.verification-home-windows"
+      ]
+    },
+    {
+      "id": "program-updates",
+      "label": "Program updates",
+      "kind": "boundary",
+      "details": {
+        "resolves": "signed releases from both Forges",
+        "installs": "a verified portable program, one predecessor kept"
+      },
+      "sources": [
+        "program.artifact.archive",
+        "program.artifact.checksum",
+        "program.artifact.identity",
+        "program.artifact.matrix",
+        "program.artifact.signature",
+        "program.candidate",
+        "program.github",
+        "program.gitlab",
+        "program.inspect",
+        "program.install",
+        "program.ownership",
+        "program.portable",
+        "program.preview",
+        "program.source",
+        "program.transition",
+        "program.update",
+        "program.version"
+      ]
+    },
+    {
+      "id": "credentials",
+      "label": "Credential store",
+      "kind": "authority",
+      "details": {
+        "owns": "Account Tokens in one selected backend: native keyring, DPAPI or an owner-only file"
+      },
+      "sources": [
+        "secret.command",
+        "secret.command-unix",
+        "secret.command-windows",
+        "secret.diagnostic",
+        "secret.entrypoint",
+        "secret.entrypoint-unix",
+        "secret.entrypoint-windows",
+        "secret.env",
+        "secret.file-store",
+        "secret.file-transaction",
+        "secret.file-unix",
+        "secret.file-windows",
+        "secret.keyring",
+        "secret.memory",
+        "secret.native.keychain-darwin",
+        "secret.native.keychain-darwin-nocgo",
+        "secret.native.migration-darwin",
+        "secret.native.provider",
+        "secret.native.provider-darwin",
+        "secret.native.provider-keyring",
+        "secret.native.provider-linux",
+        "secret.native.provider-other",
+        "secret.native.provider-windows",
+        "secret.native.subprocess",
+        "secret.predecessor-darwin",
+        "secret.predecessor-other",
+        "secret.probe.probe",
+        "secret.program",
+        "secret.recovery",
+        "secret.replacement",
+        "secret.scoped",
+        "secret.selection",
+        "secret.store"
+      ]
+    },
+    {
+      "id": "configuration-store",
+      "label": "Configuration store",
+      "kind": "authority",
+      "details": {
+        "owns": "config.toml under one lock, its checkpoint and schema migration"
+      },
+      "sources": [
+        "store.capabilities",
+        "store.checkpoint",
+        "store.components",
+        "store.forwarding",
+        "store.manifest",
+        "store.migration",
+        "store.ordering",
+        "store.retry-store",
+        "store.store",
+        "store.store-errors"
+      ]
+    },
+    {
+      "id": "domain",
+      "label": "Domain",
+      "kind": "authority",
+      "details": {
+        "owns": "Accounts, Models, Routes, recommendations, Client Bindings and the team manifest",
+        "imports": "the standard library only"
+      },
+      "sources": [
+        "go.mod",
+        "domain.admission",
+        "domain.clients",
+        "domain.inference",
+        "domain.manifest",
+        "domain.model",
+        "domain.model-errors",
+        "domain.model-validation",
+        "domain.ordering",
+        "domain.probe",
+        "domain.redaction",
+        "domain.retries",
+        "manifests.team.toml"
+      ]
+    },
+    {
+      "id": "platform",
+      "label": "Platform",
+      "kind": "boundary",
+      "details": {
+        "owns": "AIGW-owned paths, guarded file writes and their rollback, bounded child processes"
+      },
+      "sources": [
+        "platform.files",
+        "platform.paths",
+        "platform.process.capture-unix",
+        "platform.process.capture-windows",
+        "platform.process.command-unix",
+        "platform.process.command-windows",
+        "platform.process.plan",
+        "platform.process.runner"
+      ]
     }
   ],
   "relations": [
     {
-      "id": "cli-synchronizer",
-      "from": "cli",
-      "to": "synchronizer",
-      "label": "delegates",
-      "status": "implemented",
-      "sources": ["cli", "synchronizer"]
+      "id": "program-entry-commands",
+      "from": "program-entry",
+      "to": "commands",
+      "label": "starts",
+      "sources": ["cmd.aigw.main"]
     },
     {
-      "id": "configuration-synchronizer",
-      "from": "configuration",
-      "to": "synchronizer",
-      "label": "configures",
-      "details": {
-        "state": "desired client bindings"
-      },
-      "status": "implemented",
-      "sources": ["configuration", "synchronizer"]
+      "id": "program-entry-client-admission",
+      "from": "program-entry",
+      "to": "client-admission",
+      "label": "admits clients",
+      "sources": ["cmd.aigw.main"]
     },
     {
-      "id": "discovery-synchronizer",
-      "from": "discovery",
-      "to": "synchronizer",
-      "label": "reports to",
-      "details": {
-        "state": "observed native surfaces"
-      },
-      "status": "implemented",
-      "sources": ["discovery", "synchronizer"]
+      "id": "program-entry-program-updates",
+      "from": "program-entry",
+      "to": "program-updates",
+      "label": "installs, updates",
+      "sources": ["cmd.aigw.main"]
     },
     {
-      "id": "credentials-contract",
-      "from": "credentials",
-      "to": "adapter-contract",
-      "label": "supplies credentials",
-      "details": {
-        "scope": "selected account"
-      },
-      "status": "implemented",
-      "sources": ["credentials", "registry"]
+      "id": "commands-use-cases",
+      "from": "commands",
+      "to": "use-cases",
+      "label": "runs",
+      "sources": [
+        "cli.app",
+        "cli.catalog.catalog",
+        "cli.check.check",
+        "cli.doctor.doctor",
+        "cli.doctor.wording",
+        "cli.invocation.accounts",
+        "cli.invocation.context",
+        "cli.invocation.preview",
+        "cli.invocation.readiness",
+        "cli.invocation.rename",
+        "cli.models.models",
+        "cli.repair.repair",
+        "cli.status.report",
+        "cli.status.status",
+        "cli.status.status-render",
+        "cli.sync.sync",
+        "cli.update.custody",
+        "cli.update.preview",
+        "cli.update.update"
+      ]
     },
     {
-      "id": "synchronizer-registry",
-      "from": "synchronizer",
-      "to": "registry",
-      "label": "delegates",
-      "details": {
-        "selection": "requested clients in admission order"
-      },
-      "status": "implemented",
-      "sources": ["synchronizer", "registry"]
+      "id": "commands-synchronization",
+      "from": "commands",
+      "to": "synchronization",
+      "label": "converges",
+      "sources": [
+        "cli.invocation.accounts",
+        "cli.invocation.context",
+        "cli.invocation.preview",
+        "cli.invocation.readiness",
+        "cli.invocation.rename",
+        "cli.sync.sync"
+      ]
     },
     {
-      "id": "registry-contract",
-      "from": "registry",
-      "to": "adapter-contract",
-      "label": "dispatches",
-      "details": {
-        "order": "admission order"
-      },
-      "status": "implemented",
-      "sources": ["registry"]
+      "id": "commands-activation",
+      "from": "commands",
+      "to": "activation",
+      "label": "scopes",
+      "sources": [
+        "cli.check.check",
+        "cli.doctor.doctor",
+        "cli.doctor.wording",
+        "cli.rotate.rotate",
+        "cli.setup.manifest",
+        "cli.setup.setup",
+        "cli.status.report",
+        "cli.status.status",
+        "cli.status.status-render",
+        "cli.sync.sync",
+        "cli.use.retries",
+        "cli.use.use"
+      ]
     },
     {
-      "id": "contract-transaction",
-      "from": "adapter-contract",
-      "to": "transaction",
-      "label": "guards",
-      "details": {
-        "effects": "preflight then compensated apply"
-      },
-      "status": "implemented",
-      "sources": ["registry", "projection-transaction", "file-transaction"]
+      "id": "commands-terminal",
+      "from": "commands",
+      "to": "terminal",
+      "label": "renders",
+      "sources": [
+        "cli.account.account",
+        "cli.account.documents",
+        "cli.account.rename",
+        "cli.add.add",
+        "cli.app",
+        "cli.balance.balance",
+        "cli.catalog.catalog",
+        "cli.check.check",
+        "cli.client.client",
+        "cli.client.documents",
+        "cli.config.config",
+        "cli.config.migration",
+        "cli.doctor.doctor",
+        "cli.doctor.wording",
+        "cli.install.install",
+        "cli.installation.installation",
+        "cli.invocation.accounts",
+        "cli.invocation.context",
+        "cli.invocation.preview",
+        "cli.invocation.readiness",
+        "cli.invocation.rename",
+        "cli.models.models",
+        "cli.repair.repair",
+        "cli.rollback.rollback",
+        "cli.rotate.rotate",
+        "cli.route.documents",
+        "cli.route.rename",
+        "cli.route.route",
+        "cli.setup.manifest",
+        "cli.setup.setup",
+        "cli.status.report",
+        "cli.status.status",
+        "cli.status.status-render",
+        "cli.sync.sync",
+        "cli.test.test",
+        "cli.uninstall.uninstall",
+        "cli.update.custody",
+        "cli.update.preview",
+        "cli.update.update",
+        "cli.use.retries",
+        "cli.use.use",
+        "cli.verify.verify"
+      ]
     },
     {
-      "id": "contract-codex",
-      "from": "adapter-contract",
+      "id": "commands-credential-helper",
+      "from": "commands",
+      "to": "credential-helper",
+      "label": "registers",
+      "sources": ["cli.app"]
+    },
+    {
+      "id": "credential-helper-credentials",
+      "from": "credential-helper",
+      "to": "credentials",
+      "label": "reads one Token",
+      "sources": ["cli.credential.credential"]
+    },
+    {
+      "id": "credential-helper-configuration-store",
+      "from": "credential-helper",
+      "to": "configuration-store",
+      "label": "reads the binding",
+      "sources": ["cli.credential.credential"]
+    },
+    {
+      "id": "use-cases-synchronization",
+      "from": "use-cases",
+      "to": "synchronization",
+      "label": "commits",
+      "sources": ["app.catalog", "app.dependencies", "app.entrypoint", "app.status"]
+    },
+    {
+      "id": "use-cases-renaming",
+      "from": "use-cases",
+      "to": "renaming",
+      "label": "renames",
+      "sources": ["app.catalog", "app.dependencies", "app.entrypoint", "app.status"]
+    },
+    {
+      "id": "use-cases-readiness",
+      "from": "use-cases",
+      "to": "readiness",
+      "label": "reports",
+      "sources": ["app.catalog", "app.dependencies", "app.entrypoint", "app.status"]
+    },
+    {
+      "id": "use-cases-diagnostics",
+      "from": "use-cases",
+      "to": "diagnostics",
+      "label": "probes",
+      "sources": ["app.catalog", "app.dependencies", "app.entrypoint", "app.status"]
+    },
+    {
+      "id": "renaming-synchronization",
+      "from": "renaming",
+      "to": "synchronization",
+      "label": "commits",
+      "sources": [
+        "app.renaming.credentials",
+        "app.renaming.finalization",
+        "app.renaming.model",
+        "app.renaming.planning",
+        "app.renaming.workflow"
+      ]
+    },
+    {
+      "id": "renaming-credentials",
+      "from": "renaming",
+      "to": "credentials",
+      "label": "moves Tokens",
+      "sources": [
+        "app.renaming.credentials",
+        "app.renaming.finalization",
+        "app.renaming.model",
+        "app.renaming.planning",
+        "app.renaming.workflow"
+      ]
+    },
+    {
+      "id": "activation-readiness",
+      "from": "activation",
+      "to": "readiness",
+      "label": "classifies",
+      "sources": ["app.activation.activation"]
+    },
+    {
+      "id": "readiness-diagnostics",
+      "from": "readiness",
+      "to": "diagnostics",
+      "label": "reads health",
+      "sources": ["app.readiness.state"]
+    },
+    {
+      "id": "synchronization-adapter-seam",
+      "from": "synchronization",
+      "to": "adapter-seam",
+      "label": "plans, applies",
+      "sources": [
+        "app.synchronization.account-connection",
+        "app.synchronization.preview",
+        "app.synchronization.projection",
+        "app.synchronization.selection",
+        "app.synchronization.setup",
+        "app.synchronization.synchronizer",
+        "app.synchronization.transaction"
+      ]
+    },
+    {
+      "id": "synchronization-discovery",
+      "from": "synchronization",
+      "to": "discovery",
+      "label": "observes",
+      "sources": [
+        "app.synchronization.account-connection",
+        "app.synchronization.preview",
+        "app.synchronization.projection",
+        "app.synchronization.selection",
+        "app.synchronization.setup",
+        "app.synchronization.synchronizer",
+        "app.synchronization.transaction"
+      ]
+    },
+    {
+      "id": "synchronization-configuration-store",
+      "from": "synchronization",
+      "to": "configuration-store",
+      "label": "persists",
+      "sources": [
+        "app.synchronization.account-connection",
+        "app.synchronization.preview",
+        "app.synchronization.projection",
+        "app.synchronization.selection",
+        "app.synchronization.setup",
+        "app.synchronization.synchronizer",
+        "app.synchronization.transaction"
+      ]
+    },
+    {
+      "id": "synchronization-credentials",
+      "from": "synchronization",
+      "to": "credentials",
+      "label": "checks the reader",
+      "sources": [
+        "app.synchronization.account-connection",
+        "app.synchronization.preview",
+        "app.synchronization.projection",
+        "app.synchronization.selection",
+        "app.synchronization.setup",
+        "app.synchronization.synchronizer",
+        "app.synchronization.transaction"
+      ]
+    },
+    {
+      "id": "synchronization-domain",
+      "from": "synchronization",
+      "to": "domain",
+      "label": "validates",
+      "sources": [
+        "app.synchronization.account-connection",
+        "app.synchronization.preview",
+        "app.synchronization.projection",
+        "app.synchronization.selection",
+        "app.synchronization.setup",
+        "app.synchronization.synchronizer",
+        "app.synchronization.transaction"
+      ]
+    },
+    {
+      "id": "client-admission-codex",
+      "from": "client-admission",
       "to": "codex",
-      "label": "realized by",
-      "status": "implemented",
-      "sources": ["adapters", "codex"]
+      "label": "admits",
+      "sources": ["clients.clients"]
     },
     {
-      "id": "contract-claude-code",
-      "from": "adapter-contract",
+      "id": "client-admission-claude-code",
+      "from": "client-admission",
       "to": "claude-code",
-      "label": "realized by",
-      "status": "implemented",
-      "sources": ["adapters", "claude-code"]
+      "label": "admits",
+      "sources": ["clients.clients"]
     },
     {
-      "id": "contract-claude-desktop",
-      "from": "adapter-contract",
+      "id": "client-admission-claude-desktop",
+      "from": "client-admission",
       "to": "claude-desktop",
-      "label": "realized by",
-      "status": "implemented",
-      "sources": ["adapters", "claude-desktop"]
+      "label": "admits",
+      "sources": ["clients.clients"]
     },
     {
-      "id": "contract-hermes",
-      "from": "adapter-contract",
+      "id": "client-admission-hermes",
+      "from": "client-admission",
       "to": "hermes",
-      "label": "realized by",
-      "status": "implemented",
-      "sources": ["adapters", "hermes"]
-    }
-  ],
-  "groups": [
-    {
-      "id": "intent",
-      "label": "Operator intent and host state",
-      "members": ["cli", "configuration", "discovery"]
+      "label": "admits",
+      "sources": ["clients.clients"]
     },
     {
-      "id": "coordination",
-      "label": "Desired-state coordination",
-      "members": ["synchronizer"]
+      "id": "codex-adapter-seam",
+      "from": "codex",
+      "to": "adapter-seam",
+      "label": "implements",
+      "sources": [
+        "adapter.codex.adapter",
+        "adapter.codex.adapter-selection",
+        "adapter.codex.adapter-verify",
+        "adapter.codex.adoption",
+        "adapter.codex.catalog",
+        "adapter.codex.catalog-reference-unix",
+        "adapter.codex.catalog-reference-windows",
+        "adapter.codex.client",
+        "adapter.codex.config",
+        "adapter.codex.conflict",
+        "adapter.codex.extensions",
+        "adapter.codex.live-verification",
+        "adapter.codex.provider",
+        "adapter.codex.reconcile",
+        "adapter.codex.scheduler",
+        "adapter.codex.selection",
+        "adapter.codex.surfaces",
+        "adapter.codex.targets"
+      ]
     },
     {
-      "id": "admission",
-      "label": "Credential and client admission",
-      "members": ["credentials", "registry"]
+      "id": "claude-code-adapter-seam",
+      "from": "claude-code",
+      "to": "adapter-seam",
+      "label": "implements",
+      "sources": [
+        "adapter.claude.adapter",
+        "adapter.claude.adapter-verify",
+        "adapter.claude.inspection",
+        "adapter.claude.live-verification",
+        "adapter.claude.native-paths",
+        "adapter.claude.plan",
+        "adapter.claude.settings"
+      ]
     },
     {
-      "id": "safety",
-      "label": "Adapter contract and transaction",
-      "members": ["adapter-contract", "transaction"]
+      "id": "claude-desktop-adapter-seam",
+      "from": "claude-desktop",
+      "to": "adapter-seam",
+      "label": "implements",
+      "sources": [
+        "adapter.claudedesktop.adapter",
+        "adapter.claudedesktop.configuration",
+        "adapter.claudedesktop.identity",
+        "adapter.claudedesktop.native-paths",
+        "adapter.claudedesktop.profile"
+      ]
     },
     {
-      "id": "clients",
-      "label": "Native client projections",
-      "members": ["codex", "claude-code", "claude-desktop", "hermes"]
+      "id": "hermes-adapter-seam",
+      "from": "hermes",
+      "to": "adapter-seam",
+      "label": "implements",
+      "sources": [
+        "adapter.hermes.adapter",
+        "adapter.hermes.adapter-verification-unix",
+        "adapter.hermes.adapter-verification-windows",
+        "adapter.hermes.document",
+        "adapter.hermes.gateway",
+        "adapter.hermes.projection",
+        "adapter.hermes.selection",
+        "adapter.hermes.verification-home-unix",
+        "adapter.hermes.verification-home-windows"
+      ]
+    },
+    {
+      "id": "codex-platform",
+      "from": "codex",
+      "to": "platform",
+      "label": "guarded writes",
+      "sources": [
+        "adapter.codex.adapter",
+        "adapter.codex.adapter-selection",
+        "adapter.codex.adapter-verify",
+        "adapter.codex.adoption",
+        "adapter.codex.catalog",
+        "adapter.codex.catalog-reference-unix",
+        "adapter.codex.catalog-reference-windows",
+        "adapter.codex.client",
+        "adapter.codex.config",
+        "adapter.codex.conflict",
+        "adapter.codex.extensions",
+        "adapter.codex.live-verification",
+        "adapter.codex.provider",
+        "adapter.codex.reconcile",
+        "adapter.codex.scheduler",
+        "adapter.codex.selection",
+        "adapter.codex.surfaces",
+        "adapter.codex.targets"
+      ]
+    },
+    {
+      "id": "claude-code-platform",
+      "from": "claude-code",
+      "to": "platform",
+      "label": "guarded writes",
+      "sources": [
+        "adapter.claude.adapter",
+        "adapter.claude.adapter-verify",
+        "adapter.claude.inspection",
+        "adapter.claude.live-verification",
+        "adapter.claude.native-paths",
+        "adapter.claude.plan",
+        "adapter.claude.settings"
+      ]
+    },
+    {
+      "id": "claude-desktop-platform",
+      "from": "claude-desktop",
+      "to": "platform",
+      "label": "guarded writes",
+      "sources": [
+        "adapter.claudedesktop.adapter",
+        "adapter.claudedesktop.configuration",
+        "adapter.claudedesktop.identity",
+        "adapter.claudedesktop.native-paths",
+        "adapter.claudedesktop.profile"
+      ]
+    },
+    {
+      "id": "hermes-platform",
+      "from": "hermes",
+      "to": "platform",
+      "label": "guarded writes",
+      "sources": [
+        "adapter.hermes.adapter",
+        "adapter.hermes.adapter-verification-unix",
+        "adapter.hermes.adapter-verification-windows",
+        "adapter.hermes.document",
+        "adapter.hermes.gateway",
+        "adapter.hermes.projection",
+        "adapter.hermes.selection",
+        "adapter.hermes.verification-home-unix",
+        "adapter.hermes.verification-home-windows"
+      ]
+    },
+    {
+      "id": "adapter-seam-discovery",
+      "from": "adapter-seam",
+      "to": "discovery",
+      "label": "discovers",
+      "sources": ["adapter.adapters", "adapter.registry", "adapter.support"]
+    },
+    {
+      "id": "adapter-seam-domain",
+      "from": "adapter-seam",
+      "to": "domain",
+      "label": "reads specifications",
+      "sources": [
+        "adapter.adapters",
+        "adapter.contract.contract",
+        "adapter.registry",
+        "adapter.support",
+        "adapter.verification.verify"
+      ]
+    },
+    {
+      "id": "configuration-store-domain",
+      "from": "configuration-store",
+      "to": "domain",
+      "label": "encodes",
+      "sources": [
+        "store.capabilities",
+        "store.checkpoint",
+        "store.components",
+        "store.forwarding",
+        "store.manifest",
+        "store.migration",
+        "store.ordering",
+        "store.retry-store",
+        "store.store",
+        "store.store-errors"
+      ]
+    },
+    {
+      "id": "configuration-store-platform",
+      "from": "configuration-store",
+      "to": "platform",
+      "label": "locks, writes",
+      "sources": [
+        "store.capabilities",
+        "store.checkpoint",
+        "store.components",
+        "store.forwarding",
+        "store.manifest",
+        "store.migration",
+        "store.ordering",
+        "store.retry-store",
+        "store.store",
+        "store.store-errors"
+      ]
+    },
+    {
+      "id": "credentials-platform",
+      "from": "credentials",
+      "to": "platform",
+      "label": "owner-only files",
+      "sources": [
+        "secret.command",
+        "secret.command-unix",
+        "secret.command-windows",
+        "secret.diagnostic",
+        "secret.entrypoint",
+        "secret.entrypoint-unix",
+        "secret.entrypoint-windows",
+        "secret.env",
+        "secret.file-store",
+        "secret.file-transaction",
+        "secret.file-unix",
+        "secret.file-windows",
+        "secret.keyring",
+        "secret.memory",
+        "secret.native.keychain-darwin",
+        "secret.native.keychain-darwin-nocgo",
+        "secret.native.migration-darwin",
+        "secret.native.provider",
+        "secret.native.provider-darwin",
+        "secret.native.provider-keyring",
+        "secret.native.provider-linux",
+        "secret.native.provider-other",
+        "secret.native.provider-windows",
+        "secret.native.subprocess",
+        "secret.predecessor-darwin",
+        "secret.predecessor-other",
+        "secret.program",
+        "secret.recovery",
+        "secret.replacement",
+        "secret.scoped",
+        "secret.selection",
+        "secret.store"
+      ]
+    },
+    {
+      "id": "diagnostics-domain",
+      "from": "diagnostics",
+      "to": "domain",
+      "label": "builds probes",
+      "sources": ["app.diagnostics.probe", "provider.dmxapi.probe", "provider.registry"]
+    },
+    {
+      "id": "program-updates-platform",
+      "from": "program-updates",
+      "to": "platform",
+      "label": "installs",
+      "sources": [
+        "program.candidate",
+        "program.github",
+        "program.gitlab",
+        "program.inspect",
+        "program.install",
+        "program.ownership",
+        "program.portable",
+        "program.preview",
+        "program.source",
+        "program.transition",
+        "program.update",
+        "program.version"
+      ]
+    },
+    {
+      "id": "terminal-domain",
+      "from": "terminal",
+      "to": "domain",
+      "label": "renders",
+      "sources": [
+        "terminal.continuation",
+        "terminal.document",
+        "terminal.errors",
+        "terminal.password",
+        "terminal.password-unix",
+        "terminal.password-windows",
+        "terminal.prompt",
+        "terminal.render",
+        "terminal.target",
+        "terminal.terminal",
+        "terminal.terminal-unix",
+        "terminal.terminal-windows"
+      ]
     }
   ],
   "views": [
     {
       "id": "overview",
-      "title": "From intent to guarded projections",
-      "question": "How does AIGW turn operator intent into guarded native client projections?",
-      "tiers": ["intent", "coordination", "admission", "safety", "clients"]
+      "title": "One reviewed configuration, projected into every client",
+      "question": "How does one reviewed configuration become a guarded projection in each admitted client?",
+      "members": [
+        "commands",
+        "use-cases",
+        "synchronization",
+        "configuration-store",
+        "adapter-seam",
+        "codex",
+        "claude-code",
+        "claude-desktop",
+        "hermes"
+      ]
     },
     {
       "id": "authority",
-      "title": "Authority",
-      "question": "Which owners supply desired state, credentials, and host observations?",
-      "tiers": [
-        {
-          "id": "inputs",
-          "label": "Authoritative inputs",
-          "members": ["configuration", "discovery", "credentials"]
-        },
-        {
-          "id": "consumers",
-          "label": "Bounded consumers",
-          "members": ["synchronizer", "adapter-contract"]
-        }
+      "title": "Who owns which state",
+      "question": "Which owners hold the configuration, the Tokens and the host's paths, and who reads them?",
+      "members": [
+        "commands",
+        "credential-helper",
+        "synchronization",
+        "renaming",
+        "configuration-store",
+        "credentials",
+        "domain",
+        "platform"
       ]
     },
     {
       "id": "adapters",
-      "title": "Adapters",
-      "question": "How are native client adapters admitted and dispatched, and where are their effects guarded?",
-      "tiers": [
-        {
-          "id": "coordination",
-          "label": "Coordination",
-          "members": ["synchronizer"]
-        },
-        {
-          "id": "registry",
-          "label": "Admission, dispatch and guard",
-          "members": ["registry", "adapter-contract", "transaction"]
-        },
-        {
-          "id": "clients",
-          "label": "Native projections",
-          "members": ["codex", "claude-code", "claude-desktop", "hermes"]
-        }
+      "title": "Admitted clients and their seam",
+      "question": "How are client adapters admitted, held to one contract and kept to guarded writes?",
+      "members": [
+        "program-entry",
+        "client-admission",
+        "adapter-seam",
+        "discovery",
+        "codex",
+        "claude-code",
+        "claude-desktop",
+        "hermes",
+        "platform"
+      ]
+    },
+    {
+      "id": "readiness",
+      "title": "What a command can report",
+      "question": "How does a command decide what to report and what to do next?",
+      "members": [
+        "commands",
+        "use-cases",
+        "activation",
+        "readiness",
+        "diagnostics",
+        "renaming",
+        "synchronization",
+        "terminal",
+        "domain"
+      ]
+    },
+    {
+      "id": "program",
+      "title": "The program itself",
+      "question": "How does the program start, admit its clients and replace itself?",
+      "members": [
+        "program-entry",
+        "commands",
+        "client-admission",
+        "program-updates",
+        "credential-helper",
+        "credentials",
+        "configuration-store",
+        "platform"
+      ]
+    },
+    {
+      "id": "projection",
+      "title": "One projection, from plan to compensation",
+      "question": "Where does one projection read, plan, write and compensate?",
+      "members": [
+        "synchronization",
+        "discovery",
+        "adapter-seam",
+        "domain",
+        "configuration-store",
+        "credentials",
+        "platform"
       ]
     }
   ]
