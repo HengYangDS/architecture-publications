@@ -10,4 +10,4 @@
 
 ## 3. Verification
 
-- [ ] 3.1 Build the three works with the publisher that reads version 2; verify each manifest records every file of the scope with its digest and owner, and every poster and overview is byte-identical to the build of the version 1 models.
+- [x] 3.1 Build the three works with the publisher that reads version 2; verify each manifest records every file of the scope with its digest and owner, and every poster and overview is byte-identical to the build of the version 1 models. At `c435cf1`, with Architecture Publisher `5963db1`, ETHOS builds 11 posters, AIGW 6 and Architecture Publisher 5, each poster and overview byte-identical to the version 1 build with `3a8924d`; the manifests record 455, 210 and 55 owned files with their digests.
