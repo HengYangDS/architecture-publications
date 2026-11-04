@@ -1,12 +1,12 @@
 ## 1. Inputs
 
-- [ ] 1.1 Read model version 2 in the input check: a model claims at least one file and declares no digest; verify a version 2 model passes, and another version, a model without a claimed file and an abbreviated revision each fail.
+- [x] 1.1 Read model version 2 in the input check: a model claims at least one file and declares no digest; verify a version 2 model passes, and another version, a model without a claimed file and an abbreviated revision each fail. The input check reads version 2 and refuses version 1, an abbreviated revision and a model whose components claim no file; the 8 input tests pass.
 
 ## 2. Works
 
-- [ ] 2.1 Move the ETHOS and AIGW works to version 2 with their generators' rules as claims; verify `archpub check --repo` gives every file of each scope one owner, AIGW's 210 as before and ETHOS's 455 with eight package initializers moved, seven to Contracts and schemas and one to Git and process observation.
-- [ ] 2.2 Move the Architecture Publisher work to version 2 with `archpub migrate`; verify the check gives its 55 files the components they had.
-- [ ] 2.3 Describe the claims in each work's README and the repository README; verify the formatting and input checks pass.
+- [x] 2.1 Move the ETHOS and AIGW works to version 2 with their generators' rules as claims; verify `archpub check --repo` gives every file of each scope one owner, AIGW's 210 as before and ETHOS's 455 with eight package initializers moved, seven to Contracts and schemas and one to Git and process observation. At Architecture Publisher `5963db1` the check owns every file of each scope: AIGW's 210 with every owner as before, and ETHOS's 455 with eight package initializers moved, seven to Contracts and schemas and one to Git and process observation.
+- [x] 2.2 Move the Architecture Publisher work to version 2 with `archpub migrate`; verify the check gives its 55 files the components they had. `archpub migrate` wrote the Architecture Publisher work; the check owns its 55 files with the owners they had.
+- [x] 2.3 Describe the claims in each work's README and the repository README; verify the formatting and input checks pass. The repository README and the three works' READMEs describe the claims; the formatting and input checks pass.
 
 ## 3. Verification
 

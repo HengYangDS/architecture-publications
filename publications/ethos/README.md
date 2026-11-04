@@ -3,14 +3,15 @@
 [`model.json`](model.json) is an Architecture Model of how ETHOS turns
 official intent and fresh facts into proven repository change, and what it
 holds every repository to. It pins ETHOS at v0.2.0-alpha.28
-(`424d325386784633839b1abf52a4ac394e412a76`) and cites all 455 files of its
-coverage scope by SHA-256: the `src/ethos` package, `system/`, the npm launcher
-in `distributions/npm/` and the repository's own `.ethos/` binding. Forty-one
-components and eighty-five relations are drawn in eleven views: one change
-from intent to the accepted branch, where a checkout stands, the plan, the
-proof, what may mutate the repository, a Work Lane's life and the commits it
-may make, publication to every peer, the structure every governed repository
-shares, the runtime every hook runs and the surfaces that reach them.
+(`424d325386784633839b1abf52a4ac394e412a76`), and its components own all 455
+files of its coverage scope: the `src/ethos` package, `system/`, the npm
+launcher in `distributions/npm/` and the repository's own `.ethos/` binding.
+Forty-one components and eighty-five relations are drawn in eleven views: one
+change from intent to the accepted branch, where a checkout stands, the plan,
+the proof, what may mutate the repository, a Work Lane's life and the commits
+it may make, publication to every peer, the structure every governed
+repository shares, the runtime every hook runs and the surfaces that reach
+them.
 
 [`overview.typ`](overview.typ) is the work's overview page, composed with
 Architecture Publisher's house class: the repository's roles above one change,
@@ -29,9 +30,10 @@ Each claim cites a line range at v0.2.0-alpha.28, and the diagrams the draft
 names sit beside it. The proof's timings were measured on 2026-11-03, on
 Architecture Publisher's own proof under this ETHOS release.
 
-Each component cites every file that ordered path rules attribute to it, so no
-file in the scope is missed. Seven of those files are also cited by the outside
-system they reach: Git, the OpenSpec CLI, the native tools or the Forges. A
+Each component claims the directories and files its path rules name, and each
+file goes to its most specific claim, so every file in the scope has one owner.
+The outside systems claim none; the relations that reach Git, the OpenSpec
+CLI, the native tools and the Forges cite the files that make the call. A
 relation is kept only when an import in the source backs it, and cites the
 importing modules; relations are imports and calls, not runtime order. The
 model leaves out the repository's tests, tools, CI and documentation. ETHOS
@@ -42,8 +44,9 @@ archpub check publications/ethos/model.json --repo <ethos checkout>
 archpub build publications/ethos/model.json --repo <ethos checkout> --out build/ethos
 ```
 
-Checking the work needs an Architecture Publisher that delivers a guide as the
-page; building the overview needs Typst 0.15.1 on the path.
+Checking the work needs an Architecture Publisher that reads model version 2
+and delivers a guide as the page; building the overview needs Typst 0.15.1 on
+the path.
 
 [`source.json`](source.json) records the design and artwork preserved from
 ETHOS `e60fec5` with their digests. They describe a retired publication

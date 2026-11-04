@@ -1,6 +1,6 @@
 {
   "format": "architecture-publisher.model",
-  "version": 1,
+  "version": 2,
   "id": "architecture-publisher",
   "title": "Architecture Publisher",
   "question": "How does Architecture Publisher turn an architecture model into posters, a page and an overview?",
@@ -62,228 +62,6 @@
       "icon": "folder-open"
     }
   },
-  "sources": {
-    "cli": {
-      "path": "src/cli/run.mjs",
-      "sha256": "eba533b1654c607fc48bde8c4d18c97e68dbe9374e7e10125f37aa37183bd608"
-    },
-    "main": {
-      "path": "src/cli/main.mjs",
-      "sha256": "23a9296b612f54e32003a1596e42eddf2d74b9ffe5048ecba8226f4801659030"
-    },
-    "refusal": {
-      "path": "src/refusal.mjs",
-      "sha256": "1867c16cb8a804684f2ffb7d989ca825759ea72677342478c9af442f4af0b714"
-    },
-    "build": {
-      "path": "src/build.mjs",
-      "sha256": "4c54645c94041bdd1b8ef9c7df97887bc52bdf188aa09e80382fb54de830b2a4"
-    },
-    "delivery": {
-      "path": "src/delivery.mjs",
-      "sha256": "440749852521f208d57918bb7489e382e7c2d540053d8d8824eb4cd5fd467e92"
-    },
-    "importer": {
-      "path": "src/importers/likec4.mjs",
-      "sha256": "2a6348ab6b69101de1cf1ccf744b79ad247c1a95a6b3f0d1b57b347f2933600d"
-    },
-    "worker": {
-      "path": "src/importers/likec4-worker.mjs",
-      "sha256": "7fa5da5d726ddfe4374971b36dfea48aa64d351c39a102271e90d47faa391d9b"
-    },
-    "model": {
-      "path": "src/model/load.mjs",
-      "sha256": "97808510961a5182f5c24f00fed4defa00a68ce768a0b653cfddc8813b84ef58"
-    },
-    "schema": {
-      "path": "src/model/schema.json",
-      "sha256": "1b2f966bf2d724ad33b01e45833f7787b5a07a3b2208c0ee612623d4a1e53e09"
-    },
-    "paths": {
-      "path": "src/model/paths.mjs",
-      "sha256": "4100404fd21a212b52f25cf890b873448c5527409636a2a92a9e8214ea9ab511"
-    },
-    "binding": {
-      "path": "src/sources/bind.mjs",
-      "sha256": "0a0ca1dbea0097ee33a175f05cf0e4f90f2f6a967dfff3e4451eb50580cb63d6"
-    },
-    "git": {
-      "path": "src/sources/git.mjs",
-      "sha256": "e99ede6efe968fd2a3b6650206f2fa5b3070a313a6976cc550a0f47f062c2e43"
-    },
-    "environment": {
-      "path": "src/environment.mjs",
-      "sha256": "2405277a7a06dc75eacd7fc4f9d87c60cb29f4b15c01fdee714fa23da63d2632"
-    },
-    "coverage": {
-      "path": "src/sources/coverage.mjs",
-      "sha256": "5c02497cd1527f6d2e927f6dd4f2adb3feeb643dce5f385ca513fd5059668e8d"
-    },
-    "plan": {
-      "path": "src/plan/views.mjs",
-      "sha256": "e12d1befec1ba8b9c29d575f287b684ec914a74d044f8fead100c84a76d8da96"
-    },
-    "grid": {
-      "path": "src/layout/grid.mjs",
-      "sha256": "998bafcd0959d8d24ca71aa0f668de2495e568bf10554555a960db24cd9adb89"
-    },
-    "rows": {
-      "path": "src/layout/rows.mjs",
-      "sha256": "7c827b5cffee94201c62687ed53aa35aaf22b0df9097792717d985628a6cf478"
-    },
-    "placement": {
-      "path": "src/layout/placement.mjs",
-      "sha256": "f2f080ae722a1d99ea28ebb284305b1199882e7d161ffac3ebf3a9d0dd9f72a9"
-    },
-    "permutations": {
-      "path": "src/layout/permutations.mjs",
-      "sha256": "afbfd9e328f67958dd16aae9b3335671f11f4714457112a29eb42e5c556bc20b"
-    },
-    "channels": {
-      "path": "src/layout/channels.mjs",
-      "sha256": "86d236536c82a9df2edcf7a5137851ef4213c0b7f3a4064338b5c511643cdf20"
-    },
-    "solver-conflicts": {
-      "path": "src/layout/channel-solver/conflicts.mjs",
-      "sha256": "798afa3bbbdcefb38a29c45b1828a2783048021e69bb8b9f615032ad4dc7d39d"
-    },
-    "solver-options": {
-      "path": "src/layout/channel-solver/options.mjs",
-      "sha256": "3ee2b8665765dcba6b58b3b1f6cfa625c7d4eb9a8d283fa3f64f83f55c1094cc"
-    },
-    "solver-search": {
-      "path": "src/layout/channel-solver/search.mjs",
-      "sha256": "fbe86507fce3a2e129a770659ac8e92bbf0e286638445a5aa6160db7306fbd5a"
-    },
-    "solver-solution": {
-      "path": "src/layout/channel-solver/solution.mjs",
-      "sha256": "bd285b7b222f91a76beb3d617b369ef7f95d2cb3ac0c03e4c4ac2521a4c404a7"
-    },
-    "solver-tracks": {
-      "path": "src/layout/channel-solver/tracks.mjs",
-      "sha256": "6672d194f793ff20d8b2324802b35293669c54d7f8e3d401036926b7eee42607"
-    },
-    "measure": {
-      "path": "src/layout/measure.mjs",
-      "sha256": "b62b49a4f0ade507fbafaf5b96b951b2c9f0db812bdbd20608eccbd87e4b3d32"
-    },
-    "poster": {
-      "path": "src/poster/compose/edition.mjs",
-      "sha256": "86db8a882dd4576970d7b54480bf3a2853da1ca96452ea1dd33c30f10807321d"
-    },
-    "candidates": {
-      "path": "src/poster/compose/candidates.mjs",
-      "sha256": "5737f4e252c95040fb254ab4191bec73fc0db230dfc382a6c9317b06e8868265"
-    },
-    "drawing": {
-      "path": "src/poster/compose/drawing.mjs",
-      "sha256": "92b2d39a24740594ec7f62fdb3f9f83ab1833d72b557dc9c2a88e33e2fe73f78"
-    },
-    "gates": {
-      "path": "src/poster/compose/gates.mjs",
-      "sha256": "e8a2ad949ab9f41d7a812f3c056e9b13ab4caaa2e0715b51839ac12daf77ec83"
-    },
-    "ranking": {
-      "path": "src/poster/compose/ranking.mjs",
-      "sha256": "7268f4987596d856a4ef43e49ef371f739f9d35ec5c2ae71491e4953b1aa8047"
-    },
-    "page": {
-      "path": "src/poster/page.mjs",
-      "sha256": "3d017c9813a692b3aade487c39d38b2aa8bbfca7a6010d0da2c6ec16ec68465f"
-    },
-    "plate": {
-      "path": "src/poster/plate.mjs",
-      "sha256": "29074aa91c956c0d1553d61727c5b2818c876986d88ec3fa18d87be6efae2c06"
-    },
-    "figure": {
-      "path": "src/poster/figure.mjs",
-      "sha256": "a49bb7a3a4c191ee7d63d73024fcf97e190da9d3f433d713598f7d5e30d15ac1"
-    },
-    "blocks": {
-      "path": "src/poster/blocks.mjs",
-      "sha256": "2c9dca0f7ec4b2d188d6be7d4252dd4c360f183973cee57c969fbd452d460bdf"
-    },
-    "balance": {
-      "path": "src/poster/balance.mjs",
-      "sha256": "ce318a33fea38c01702a0c1713441adfc12a948c30cf8ea6f8ef1636b6c7a028"
-    },
-    "corners": {
-      "path": "src/poster/corners.mjs",
-      "sha256": "89159107c9714e0449a740024fd7570e867d43f0ba1f846de9e2a221f4c6bf67"
-    },
-    "justify": {
-      "path": "src/poster/justify.mjs",
-      "sha256": "8b19f0ef88dd7263f99235933df935c781de77459b69a3c795600e24f9d1b4c1"
-    },
-    "tokens": {
-      "path": "src/poster/tokens.mjs",
-      "sha256": "53272d38e4a3ed2226903988f4852b0812a292e328d6a2d8bcea1eba77962d86"
-    },
-    "text": {
-      "path": "src/poster/text.mjs",
-      "sha256": "41e9ab5351bb895b145d59366e1a2cfa0b2c28c57b2e5d2836821b993dd25fb4"
-    },
-    "breaks": {
-      "path": "src/breaks.mjs",
-      "sha256": "4c3fd461401879ef0171406e9093472cba8dc3d8bd48a4db85aef6742332081a"
-    },
-    "raster": {
-      "path": "src/poster/raster.mjs",
-      "sha256": "d320400f0ca105e3b426fb7715e92639ca3de2b0d64f829a06b96f79b849c056"
-    },
-    "explainer": {
-      "path": "src/map/explainer.mjs",
-      "sha256": "1a5818cf15979086c5b908d75c90401115b36fde41eac4c994df3400090455fb"
-    },
-    "map": {
-      "path": "src/map/archify.mjs",
-      "sha256": "3f6fb073be9b087e94aa70a03f8f6a71df1eb1ed75a002bf0732f2a4980b8973"
-    },
-    "choice": {
-      "path": "src/map/choice.mjs",
-      "sha256": "476104c0f0dc90b7e3d1f7bb08315319943c85cbd0d5424b7a0e43339915369f"
-    },
-    "routes": {
-      "path": "src/map/routes.mjs",
-      "sha256": "99e39aeab432577906000941cffcc2ef04c5897922b8039db034bb39b154c378"
-    },
-    "kinds": {
-      "path": "src/kinds.mjs",
-      "sha256": "815cfae915efc9538f230112a048df8aca236df4dd4d47c1873137cc986611b0"
-    },
-    "icons": {
-      "path": "src/icons.mjs",
-      "sha256": "7b1731c06a6d081203a6a157e166d4c8447bf0d88c5fb40486ce5ff56f482925"
-    },
-    "supply": {
-      "path": "src/supply.mjs",
-      "sha256": "fbba726484aab557f63f5fb73cbeff2d62a44a50e149eaca8684e196d3792ff6"
-    },
-    "locale": {
-      "path": "src/locale.mjs",
-      "sha256": "fed0a34dd3d5b7d16b14cabe66f93b2fcaa62ac4e6daa5b703955aad08803e3c"
-    },
-    "typeset": {
-      "path": "src/overview/typeset.mjs",
-      "sha256": "e65f28881e381638f93344bd796d943fefbf1a5d89ae9ce150d9cf6cfce127f5"
-    },
-    "house": {
-      "path": "src/overview/house.typ",
-      "sha256": "4147b1c11da2e93a9629cc9d96526373394be703cf5cf8994f1a5d9ea359c262"
-    },
-    "checks": {
-      "path": "src/overview/checks.mjs",
-      "sha256": "fe36e7215cc2babe9db53b46f36ff29fd6106910d3f523c9d6cde04caae6b326"
-    },
-    "lint": {
-      "path": "src/overview/lint.mjs",
-      "sha256": "78e20f28a5a6612f931ba7e9d787483305b276242b497099c8323f8490506ae8"
-    },
-    "glyphs": {
-      "path": "src/overview/glyphs.mjs",
-      "sha256": "ccfd9a4c61566f0f318a827f75c5d86cd871ff0b559bf012e65478392ffcfef1"
-    }
-  },
   "components": [
     {
       "id": "editor",
@@ -297,7 +75,7 @@
       "id": "cli",
       "label": "archpub",
       "kind": "command",
-      "sources": ["cli", "main", "refusal"]
+      "files": ["src/cli/run.mjs", "src/cli/main.mjs", "src/refusal.mjs"]
     },
     {
       "id": "importer",
@@ -306,7 +84,7 @@
       "details": {
         "parses": "LikeC4 sources"
       },
-      "sources": ["importer", "worker"]
+      "files": ["src/importers/likec4.mjs", "src/importers/likec4-worker.mjs"]
     },
     {
       "id": "builder",
@@ -315,7 +93,7 @@
       "details": {
         "writes": "one delivery"
       },
-      "sources": ["build"]
+      "files": ["src/build.mjs"]
     },
     {
       "id": "acceptance",
@@ -324,7 +102,7 @@
       "details": {
         "keeps": "accepted copies"
       },
-      "sources": ["delivery"]
+      "files": ["src/delivery.mjs"]
     },
     {
       "id": "model",
@@ -333,7 +111,7 @@
       "details": {
         "refuses": "invalid fields"
       },
-      "sources": ["model", "schema", "paths"]
+      "files": ["src/model/load.mjs", "src/model/schema.json", "src/model/paths.mjs"]
     },
     {
       "id": "binding",
@@ -342,7 +120,7 @@
       "details": {
         "reads": "Git at a revision"
       },
-      "sources": ["binding", "git", "environment"]
+      "files": ["src/sources/bind.mjs", "src/sources/git.mjs", "src/environment.mjs"]
     },
     {
       "id": "plan",
@@ -351,7 +129,7 @@
       "details": {
         "chooses": "the views"
       },
-      "sources": ["plan"]
+      "files": ["src/plan/views.mjs"]
     },
     {
       "id": "poster",
@@ -360,20 +138,20 @@
       "details": {
         "draws": "2400 × 1350 px pages"
       },
-      "sources": [
-        "poster",
-        "candidates",
-        "drawing",
-        "gates",
-        "ranking",
-        "page",
-        "plate",
-        "figure",
-        "blocks",
-        "balance",
-        "corners",
-        "justify",
-        "tokens"
+      "files": [
+        "src/poster/compose/edition.mjs",
+        "src/poster/compose/candidates.mjs",
+        "src/poster/compose/drawing.mjs",
+        "src/poster/compose/gates.mjs",
+        "src/poster/compose/ranking.mjs",
+        "src/poster/page.mjs",
+        "src/poster/plate.mjs",
+        "src/poster/figure.mjs",
+        "src/poster/blocks.mjs",
+        "src/poster/balance.mjs",
+        "src/poster/corners.mjs",
+        "src/poster/justify.mjs",
+        "src/poster/tokens.mjs"
       ]
     },
     {
@@ -383,7 +161,12 @@
       "details": {
         "delivers": "native Archify"
       },
-      "sources": ["explainer", "map", "choice", "routes"]
+      "files": [
+        "src/map/explainer.mjs",
+        "src/map/archify.mjs",
+        "src/map/choice.mjs",
+        "src/map/routes.mjs"
+      ]
     },
     {
       "id": "layout",
@@ -392,7 +175,7 @@
       "details": {
         "places": "equal cards"
       },
-      "sources": ["grid"]
+      "files": ["src/layout/grid.mjs"]
     },
     {
       "id": "supplies",
@@ -401,7 +184,7 @@
       "details": {
         "verified": "by digest"
       },
-      "sources": ["supply"]
+      "files": ["src/supply.mjs"]
     },
     {
       "id": "repository",
@@ -426,7 +209,7 @@
       "details": {
         "orders": "tiers or layers"
       },
-      "sources": ["rows"]
+      "files": ["src/layout/rows.mjs"]
     },
     {
       "id": "placement",
@@ -435,7 +218,7 @@
       "details": {
         "solves": "positions exactly"
       },
-      "sources": ["placement", "permutations"]
+      "files": ["src/layout/placement.mjs", "src/layout/permutations.mjs"]
     },
     {
       "id": "wires",
@@ -444,7 +227,7 @@
       "details": {
         "forms": "buses and corridors"
       },
-      "sources": ["channels"]
+      "files": ["src/layout/channels.mjs"]
     },
     {
       "id": "solver",
@@ -453,12 +236,12 @@
       "details": {
         "routes": "each channel"
       },
-      "sources": [
-        "solver-conflicts",
-        "solver-options",
-        "solver-search",
-        "solver-solution",
-        "solver-tracks"
+      "files": [
+        "src/layout/channel-solver/conflicts.mjs",
+        "src/layout/channel-solver/options.mjs",
+        "src/layout/channel-solver/search.mjs",
+        "src/layout/channel-solver/solution.mjs",
+        "src/layout/channel-solver/tracks.mjs"
       ]
     },
     {
@@ -468,7 +251,7 @@
       "details": {
         "refuses": "any overlap"
       },
-      "sources": ["measure"]
+      "files": ["src/layout/measure.mjs"]
     },
     {
       "id": "typefaces",
@@ -477,7 +260,7 @@
       "details": {
         "outlines": "Noto Sans CJK and Noto Sans"
       },
-      "sources": ["text", "breaks"]
+      "files": ["src/poster/text.mjs", "src/breaks.mjs"]
     },
     {
       "id": "raster",
@@ -486,7 +269,7 @@
       "details": {
         "renders": "PNG"
       },
-      "sources": ["raster"]
+      "files": ["src/poster/raster.mjs"]
     },
     {
       "id": "presentation",
@@ -495,7 +278,7 @@
       "details": {
         "maps": "kinds to icons"
       },
-      "sources": ["kinds", "icons"]
+      "files": ["src/kinds.mjs", "src/icons.mjs"]
     },
     {
       "id": "coverage",
@@ -504,7 +287,7 @@
       "details": {
         "counts": "cited, uncovered and moved files"
       },
-      "sources": ["coverage"]
+      "files": ["src/sources/coverage.mjs"]
     },
     {
       "id": "overview",
@@ -513,7 +296,13 @@
       "details": {
         "typesets": "the author's composition with Typst"
       },
-      "sources": ["typeset", "house", "checks", "lint", "glyphs"]
+      "files": [
+        "src/overview/typeset.mjs",
+        "src/overview/house.typ",
+        "src/overview/checks.mjs",
+        "src/overview/lint.mjs",
+        "src/overview/glyphs.mjs"
+      ]
     },
     {
       "id": "words",
@@ -522,7 +311,7 @@
       "details": {
         "holds": "the publisher's words in five languages"
       },
-      "sources": ["locale"]
+      "files": ["src/locale.mjs"]
     }
   ],
   "relations": [
@@ -537,231 +326,231 @@
       "from": "cli",
       "to": "importer",
       "label": "import likec4",
-      "sources": ["cli"]
+      "files": ["src/cli/run.mjs"]
     },
     {
       "id": "builds",
       "from": "cli",
       "to": "builder",
       "label": "build, check",
-      "sources": ["cli"]
+      "files": ["src/cli/run.mjs"]
     },
     {
       "id": "accepts",
       "from": "cli",
       "to": "acceptance",
       "label": "accept, publish",
-      "sources": ["cli"]
+      "files": ["src/cli/run.mjs"]
     },
     {
       "id": "validates",
       "from": "importer",
       "to": "model",
       "label": "validates",
-      "sources": ["importer"]
+      "files": ["src/importers/likec4.mjs"]
     },
     {
       "id": "parses",
       "from": "importer",
       "to": "supplies",
       "label": "parses with LikeC4",
-      "sources": ["importer"]
+      "files": ["src/importers/likec4.mjs"]
     },
     {
       "id": "loads",
       "from": "builder",
       "to": "model",
       "label": "loads",
-      "sources": ["build"]
+      "files": ["src/build.mjs"]
     },
     {
       "id": "binds",
       "from": "builder",
       "to": "binding",
       "label": "binds sources",
-      "sources": ["build"]
+      "files": ["src/build.mjs"]
     },
     {
       "id": "plans",
       "from": "builder",
       "to": "plan",
       "label": "plans views",
-      "sources": ["build"]
+      "files": ["src/build.mjs"]
     },
     {
       "id": "composes",
       "from": "builder",
       "to": "poster",
       "label": "composes posters",
-      "sources": ["build"]
+      "files": ["src/build.mjs"]
     },
     {
       "id": "maps",
       "from": "builder",
       "to": "map",
       "label": "writes the page",
-      "sources": ["build"]
+      "files": ["src/build.mjs"]
     },
     {
       "id": "rasterizes",
       "from": "builder",
       "to": "raster",
       "label": "rasterizes",
-      "sources": ["build"]
+      "files": ["src/build.mjs"]
     },
     {
       "id": "reads",
       "from": "binding",
       "to": "repository",
       "label": "reads at the revision",
-      "sources": ["git"]
+      "files": ["src/sources/git.mjs"]
     },
     {
       "id": "poster-layout",
       "from": "poster",
       "to": "layout",
       "label": "lays out",
-      "sources": ["plate"]
+      "files": ["src/poster/plate.mjs"]
     },
     {
       "id": "map-layout",
       "from": "map",
       "to": "layout",
       "label": "lays out",
-      "sources": ["map"]
+      "files": ["src/map/archify.mjs"]
     },
     {
       "id": "delivers",
       "from": "map",
       "to": "supplies",
       "label": "runs Archify",
-      "sources": ["map"]
+      "files": ["src/map/archify.mjs"]
     },
     {
       "id": "copies",
       "from": "acceptance",
       "to": "publication-root",
       "label": "copies accepted deliveries",
-      "sources": ["delivery"]
+      "files": ["src/delivery.mjs"]
     },
     {
       "id": "builds-rows",
       "from": "layout",
       "to": "rows",
       "label": "builds rows",
-      "sources": ["grid"]
+      "files": ["src/layout/grid.mjs"]
     },
     {
       "id": "places",
       "from": "layout",
       "to": "placement",
       "label": "places cards",
-      "sources": ["grid"]
+      "files": ["src/layout/grid.mjs"]
     },
     {
       "id": "wires-up",
       "from": "layout",
       "to": "wires",
       "label": "builds wires",
-      "sources": ["grid"]
+      "files": ["src/layout/grid.mjs"]
     },
     {
       "id": "routes",
       "from": "layout",
       "to": "solver",
       "label": "routes channels",
-      "sources": ["grid"]
+      "files": ["src/layout/grid.mjs"]
     },
     {
       "id": "measures",
       "from": "layout",
       "to": "measure",
       "label": "measures",
-      "sources": ["grid"]
+      "files": ["src/layout/grid.mjs"]
     },
     {
       "id": "sets",
       "from": "poster",
       "to": "typefaces",
       "label": "sets text",
-      "sources": ["plate"]
+      "files": ["src/poster/plate.mjs"]
     },
     {
       "id": "styles",
       "from": "poster",
       "to": "presentation",
       "label": "styles cards",
-      "sources": ["plate"]
+      "files": ["src/poster/plate.mjs"]
     },
     {
       "id": "types",
       "from": "map",
       "to": "presentation",
       "label": "types components",
-      "sources": ["map"]
+      "files": ["src/map/archify.mjs"]
     },
     {
       "id": "fonts",
       "from": "typefaces",
       "to": "supplies",
       "label": "loads fonts",
-      "sources": ["text"]
+      "files": ["src/poster/text.mjs"]
     },
     {
       "id": "icons",
       "from": "presentation",
       "to": "supplies",
       "label": "loads icons",
-      "sources": ["icons"]
+      "files": ["src/icons.mjs"]
     },
     {
       "id": "renders",
       "from": "raster",
       "to": "supplies",
       "label": "renders with resvg",
-      "sources": ["raster"]
+      "files": ["src/poster/raster.mjs"]
     },
     {
       "id": "measures-coverage",
       "from": "builder",
       "to": "coverage",
       "label": "measures coverage",
-      "sources": ["build"]
+      "files": ["src/build.mjs"]
     },
     {
       "id": "reads-history",
       "from": "coverage",
       "to": "repository",
       "label": "reads two revisions",
-      "sources": ["coverage"]
+      "files": ["src/sources/coverage.mjs"]
     },
     {
       "id": "typesets",
       "from": "builder",
       "to": "overview",
       "label": "typesets the overview",
-      "sources": ["build"]
+      "files": ["src/build.mjs"]
     },
     {
       "id": "faces",
       "from": "overview",
       "to": "supplies",
       "label": "sets the house faces",
-      "sources": ["typeset"]
+      "files": ["src/overview/typeset.mjs"]
     },
     {
       "id": "poster-words",
       "from": "poster",
       "to": "words",
       "label": "sets its words",
-      "sources": ["plate"]
+      "files": ["src/poster/plate.mjs"]
     },
     {
       "id": "page-words",
       "from": "map",
       "to": "words",
       "label": "words the page",
-      "sources": ["explainer"]
+      "files": ["src/map/explainer.mjs"]
     }
   ],
   "views": [

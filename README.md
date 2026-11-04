@@ -17,19 +17,22 @@ diagram checks.
   Architecture Publisher turns an architecture model into posters, a page and an
   overview.
 
-A model pins the described repository to a full commit and cites the files that
-support each component and relation by SHA-256. Its `attribution` names this
+A model pins the described repository to a full commit. Each component claims
+the directories and files it owns, and each relation names the files that
+support it; the publisher reads them at that commit and records each file's
+SHA-256 in the delivery's manifest. A model's `attribution` names this
 repository as the editor; a model or a delivery built from it is not an
 endorsement by the described project.
 
 ## Building and publishing
 
-Run the publisher with a checkout of the described repository. `check` verifies
-every source at the pinned revision without changing the checkout; `build`
-writes a new delivery under the ignored `build/` directory. A work whose model
-names an overview composition also gets its overview page, which needs Typst
-0.15.1 on the path. A work whose model names a guide gets that guide as its
-page, with every line range it cites checked at the pinned revision.
+Run the publisher with a checkout of the described repository. `check` resolves
+every claim and cited file at the pinned revision without changing the
+checkout; `build` writes a new delivery under the ignored `build/` directory. A
+work whose model names an overview composition also gets its overview page,
+which needs Typst 0.15.1 on the path. A work whose model names a guide gets
+that guide as its page, with every line range it cites checked at the pinned
+revision.
 
 ```sh
 archpub check publications/ethos/model.json --repo ../ethos
@@ -46,10 +49,9 @@ delivery is published. Deliveries are not committed here.
 `npm test` checks that each work holds only its model, its README, an optional
 `source.json`, the overview composition its model names and the directory of
 the guide it names. It checks that each model is in the publisher's format with
-a full revision, cites at least one source, gives every source a digest and
-titles every view, and that no two works share a model id. It does not run the
-publisher or a described product; `archpub check --repo` is the full
-validation.
+a full revision, claims at least one file and titles every view, and that no
+two works share a model id. It does not run the publisher or a described
+product; `archpub check --repo` is the full validation.
 
 A `source.json` records originals preserved from a described repository: its
 source revision and tree, the preservation commit and each member's digest.

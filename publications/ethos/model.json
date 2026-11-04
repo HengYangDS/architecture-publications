@@ -1,6 +1,6 @@
 {
   "format": "architecture-publisher.model",
-  "version": 1,
+  "version": 2,
   "id": "ethos",
   "title": "ETHOS",
   "question": "How does ETHOS turn official intent and fresh facts into proven repository change, and what does it hold every repository to?",
@@ -63,1828 +63,6 @@
       "icon": "cloud"
     }
   },
-  "sources": {
-    "ethos.profile.toml": {
-      "path": ".ethos/profile.toml",
-      "sha256": "e4713c0fa5590c12393ea74dbda63ef59dcdb3fa27d572868935e85d3838bd70"
-    },
-    "ethos.release.toml": {
-      "path": ".ethos/release.toml",
-      "sha256": "4521026350fa66261aa149d6b69477e9b78df69a91e7f8dd67d470e29ac12e42"
-    },
-    "ethos.rules.toml": {
-      "path": ".ethos/rules.toml",
-      "sha256": "5e626702d107610aa64645f0177b8dd0e79b14075c29ff393695f63b677835d9"
-    },
-    "distributions.npm.readme.md": {
-      "path": "distributions/npm/README.md",
-      "sha256": "25f3c36c43a41a4d175af8fd9f19c50bfadfb07eb3cc5cbc9eb218d3410cf356"
-    },
-    "distributions.npm.bin.ethos.mjs": {
-      "path": "distributions/npm/bin/ethos.mjs",
-      "sha256": "a34db0adcd29bfcf52eb201e0ef435ccfb3fda3c4d7379ae98f12624520c8c1d"
-    },
-    "distributions.npm.package.json": {
-      "path": "distributions/npm/package.json",
-      "sha256": "583f754534aa65dbbde4a4535bc6989c6eb9031bfc662c6a35808f88a5684f8e"
-    },
-    "init": {
-      "path": "src/ethos/__init__.py",
-      "sha256": "0ab172a2b2d920962dff0d70532070669a7119bed1363478c92dbbd54a645062"
-    },
-    "adapters.init": {
-      "path": "src/ethos/adapters/__init__.py",
-      "sha256": "9e1568529d8801ebc2a68c940988b332121d7a6ac1f626f663778096c3f72d62"
-    },
-    "adapters.admission.init": {
-      "path": "src/ethos/adapters/admission/__init__.py",
-      "sha256": "0a592eb94882c932538e3cfeea2956e726be97f015f0f470e7f1721d185353e6"
-    },
-    "adapters.admission.control.init": {
-      "path": "src/ethos/adapters/admission/control/__init__.py",
-      "sha256": "093d63de6817843a490558c2df049e59ee704eb3a2a99faed116bba6601dc7cd"
-    },
-    "adapters.admission.control.replacement": {
-      "path": "src/ethos/adapters/admission/control/replacement.py",
-      "sha256": "8421e60d5c1ed0b2e264b066e9343c1aca8e92e279952232a4d8b00bb3995592"
-    },
-    "adapters.admission.current.init": {
-      "path": "src/ethos/adapters/admission/current/__init__.py",
-      "sha256": "ab689f6f81f2f6e1aa72f20cfd18935695c70d50b66167b1a21a424e3137a1e6"
-    },
-    "adapters.admission.current.authority": {
-      "path": "src/ethos/adapters/admission/current/authority.py",
-      "sha256": "ee71c58987e80e00a4d18774d63c9632f60d3d5f3b23740bcd1a483d271b9b72"
-    },
-    "adapters.admission.current.resolution": {
-      "path": "src/ethos/adapters/admission/current/resolution.py",
-      "sha256": "286be62b7f93d91bb6f0772c882b978fe041b73922975ce59895a24d32674caa"
-    },
-    "adapters.admission.evidence.init": {
-      "path": "src/ethos/adapters/admission/evidence/__init__.py",
-      "sha256": "3d1d427286ab7ba249a94ec9ec569c9a90000b6d034665ba3004c5b0f3cd1440"
-    },
-    "adapters.admission.evidence.external": {
-      "path": "src/ethos/adapters/admission/evidence/external.py",
-      "sha256": "44ffd362f1d4364e30a0ff61084ac70d694d5de623a11f08a49bdbc244898ade"
-    },
-    "adapters.admission.git-admission": {
-      "path": "src/ethos/adapters/admission/git_admission.py",
-      "sha256": "9b83caa76fd4fd84fbd90672dd8c544bf00fa35c44519a09303bc9c621f43987"
-    },
-    "adapters.admission.patch-admission": {
-      "path": "src/ethos/adapters/admission/patch_admission.py",
-      "sha256": "9c08304076e8b62772c766ea16812fe3d88be5f4e094cab76a0d9af7cca5c37c"
-    },
-    "adapters.admission.paths": {
-      "path": "src/ethos/adapters/admission/paths.py",
-      "sha256": "2d5722b7a26eb3afc965631835b5b723722fe2a74fe22fc36950e3b4f6f6df43"
-    },
-    "adapters.admission.prewrite": {
-      "path": "src/ethos/adapters/admission/prewrite.py",
-      "sha256": "97880c9cdd7ee7cf371ef80b85a3700bb424b6a64c45f5c8dc96ba56fc348295"
-    },
-    "adapters.admission.publication": {
-      "path": "src/ethos/adapters/admission/publication.py",
-      "sha256": "3d3040bbfa068a0a66f4ed51c2bcb1b7f30a9853ff46190533e4bb2bd1445e3c"
-    },
-    "adapters.admission.ref-intent": {
-      "path": "src/ethos/adapters/admission/ref_intent.py",
-      "sha256": "fd77152a0b13db2a4702aa6bad83d9b8d208fb5aa0ba8875a409cde0de26aa54"
-    },
-    "adapters.admission.ref-move-policy": {
-      "path": "src/ethos/adapters/admission/ref_move_policy.py",
-      "sha256": "a46e278ed2b527c1b27811404126732c74f7b0481a303b44024fe7817d227e57"
-    },
-    "adapters.admission.role-rename": {
-      "path": "src/ethos/adapters/admission/role_rename.py",
-      "sha256": "31056f3707ef567812ed4e8e8f7d65f93409230263c4587ca3a9924946fd9d38"
-    },
-    "adapters.admission.shell": {
-      "path": "src/ethos/adapters/admission/shell.py",
-      "sha256": "573d9316b16f3a69838ba9cd09da24c0cd7e396da072160767dd7926bda9e33f"
-    },
-    "adapters.admission.transitions": {
-      "path": "src/ethos/adapters/admission/transitions.py",
-      "sha256": "446d26ba8a087aff761381aa1082b95f6d76ccd2b4debaf1e4592e8709b299d3"
-    },
-    "adapters.gates.init": {
-      "path": "src/ethos/adapters/gates/__init__.py",
-      "sha256": "eafbadb8dd287e076b0c3ca5ecbdd78cb6aa125b51b07c44715d194cca6f0b1c"
-    },
-    "adapters.gates.code-quality": {
-      "path": "src/ethos/adapters/gates/code_quality.py",
-      "sha256": "0dabf4dcaf9370fc65a4bd9927d4cba98379b56b1de523077e07bfb6f21390da"
-    },
-    "adapters.gates.configuration": {
-      "path": "src/ethos/adapters/gates/configuration.py",
-      "sha256": "b833e0cf3097bc1882070fc729751ae23ebb6f9ec3a1098b1c4fde8c256e432e"
-    },
-    "adapters.gates.formatting": {
-      "path": "src/ethos/adapters/gates/formatting.py",
-      "sha256": "6aa3a54edcc077884135bf01d8ebdbaea2cfdb815546ed9eccdff3ff40e1993d"
-    },
-    "adapters.gates.generated-artifacts": {
-      "path": "src/ethos/adapters/gates/generated_artifacts.py",
-      "sha256": "1c2dc501adb24a27fd10c635cd7e47a73824397344f2073980cac7f7a303ceca"
-    },
-    "adapters.gates.javascript.init": {
-      "path": "src/ethos/adapters/gates/javascript/__init__.py",
-      "sha256": "4af98b5c07c0c08b038cd2dd389154390bb1ab49d71e6b97d09e4355fbd6f2af"
-    },
-    "adapters.gates.javascript.analysis.mjs": {
-      "path": "src/ethos/adapters/gates/javascript/analysis.mjs",
-      "sha256": "a3dea8ffed245e49515f0e1f7b88bb58104728464eed3aec0dd9e8429a7a5e18"
-    },
-    "adapters.gates.javascript.analysis": {
-      "path": "src/ethos/adapters/gates/javascript/analysis.py",
-      "sha256": "6139bc3320ed9cf83b5ad621156617c002cc6c5a8c950734b686b675194737bd"
-    },
-    "adapters.gates.javascript.behavior": {
-      "path": "src/ethos/adapters/gates/javascript/behavior.py",
-      "sha256": "291865a798e9b82548d85f8ea6a432a474f0d4332d383d3f420c6a187f2165be"
-    },
-    "adapters.gates.javascript.execution": {
-      "path": "src/ethos/adapters/gates/javascript/execution.py",
-      "sha256": "4dc6d86ed898415a9de96188c1eb5c9e561616425a2c38d747ad633e5a4f666b"
-    },
-    "adapters.gates.javascript.reporter.mjs": {
-      "path": "src/ethos/adapters/gates/javascript/reporter.mjs",
-      "sha256": "3408103ba61d7c8c9ab4f10c2253db0a64baba14524c52dc0e1e92f897082e22"
-    },
-    "adapters.gates.javascript.selection.mjs": {
-      "path": "src/ethos/adapters/gates/javascript/selection.mjs",
-      "sha256": "b21ea0a58bf6009f01c43a987ae94150da45b5e46672676e73da9efed08cbafb"
-    },
-    "adapters.gates.markdown.mjs": {
-      "path": "src/ethos/adapters/gates/markdown.mjs",
-      "sha256": "a69cdce37db45f325dc46b8339e4d313070363ae8cc8b997636979110d11cadc"
-    },
-    "adapters.gates.native.init": {
-      "path": "src/ethos/adapters/gates/native/__init__.py",
-      "sha256": "df4b657f2340af5c85e2e85c6f89288f2cf3577e75f5b78afd30ff1ed3d37f8c"
-    },
-    "adapters.gates.native.attempt": {
-      "path": "src/ethos/adapters/gates/native/attempt.py",
-      "sha256": "7888940bb8efcaa9df61ac8d18aecdc66d06e29aa20ce8f05c29bdbaf406b283"
-    },
-    "adapters.gates.native.evidence": {
-      "path": "src/ethos/adapters/gates/native/evidence.py",
-      "sha256": "8e6703fdf19d7c4c762bdf0b0b073d2c123c942dcf6c691dad955c5e01dacb63"
-    },
-    "adapters.gates.native.inputs": {
-      "path": "src/ethos/adapters/gates/native/inputs.py",
-      "sha256": "57e7848373e471d0180c7820032ca5c6313da73097ae3b5173c1d142ff5e8706"
-    },
-    "adapters.gates.native.python": {
-      "path": "src/ethos/adapters/gates/native/python.py",
-      "sha256": "27688b16a895167ef83360d2089f5b3b0c3a0e7562384c7276b5f3332402bec5"
-    },
-    "adapters.gates.proof-slot": {
-      "path": "src/ethos/adapters/gates/proof_slot.py",
-      "sha256": "9455f65b5548dd4954abe6b5e71b9ad864e1bd1d7888b403bedafad0ac076d84"
-    },
-    "adapters.gates.provenance.init": {
-      "path": "src/ethos/adapters/gates/provenance/__init__.py",
-      "sha256": "0c68c8b550c73f1fbe346d0c0a6e92cc0becbeb62a22aa72e3c49608af0d93b1"
-    },
-    "adapters.gates.provenance.archive.mjs": {
-      "path": "src/ethos/adapters/gates/provenance/archive.mjs",
-      "sha256": "e37f847945bca218a8c354ae59c3afe2c2e25487af700561444f3dddff7594dd"
-    },
-    "adapters.gates.provenance.observation": {
-      "path": "src/ethos/adapters/gates/provenance/observation.py",
-      "sha256": "bef5561abe62722f160b34d50d384adba24532918d2cbf39b1f252552e32f213"
-    },
-    "adapters.gates.python-quality": {
-      "path": "src/ethos/adapters/gates/python_quality.py",
-      "sha256": "51d69f6fa2a0535086ae8642176b5f4a3876e773bcf3d4773042fd7edf21a8b1"
-    },
-    "adapters.gates.python-target": {
-      "path": "src/ethos/adapters/gates/python_target.py",
-      "sha256": "23ff05e54c8c4c70dbfcb82ad0ccc686d9b90d0070fb621714333e250f8f541a"
-    },
-    "adapters.gates.runner": {
-      "path": "src/ethos/adapters/gates/runner.py",
-      "sha256": "6eaa0f3e62d7721975ffef2b2d2338718efcd986188c605b7c4c8c4b4d3f30b7"
-    },
-    "adapters.gates.tool": {
-      "path": "src/ethos/adapters/gates/tool.py",
-      "sha256": "60ac6e1bee4c2966330cd4e03f07405ee1581061d76bcd37baf642603de12354"
-    },
-    "adapters.gates.ty": {
-      "path": "src/ethos/adapters/gates/ty.py",
-      "sha256": "1ee82b5251f83ef7e043668f78a3a21799a18cc6670a22863888d1cfc16efd7a"
-    },
-    "adapters.gates.verification": {
-      "path": "src/ethos/adapters/gates/verification.py",
-      "sha256": "22eb0b541e00ac7e770a623063fbd1e22c5060c5bef67e0e83117ed434e2883e"
-    },
-    "adapters.mutation.init": {
-      "path": "src/ethos/adapters/mutation/__init__.py",
-      "sha256": "5a17ee3a6f2958571d94d55feb7b425d92180a8ef4c5e525a6db7f41f5c3257d"
-    },
-    "adapters.mutation.accepted.init": {
-      "path": "src/ethos/adapters/mutation/accepted/__init__.py",
-      "sha256": "d0c646553b65b3356c9d948ab4743f30abdeb5ec07eba41931e63a08c03fe829"
-    },
-    "adapters.mutation.accepted.admission": {
-      "path": "src/ethos/adapters/mutation/accepted/admission.py",
-      "sha256": "8a99da2b3c2b770d6e6c31d1c41d4a0bed1d16a3cd739b40162c29ad5a613edd"
-    },
-    "adapters.mutation.accepted.promotion": {
-      "path": "src/ethos/adapters/mutation/accepted/promotion.py",
-      "sha256": "d97fbd0847c45e4f7b529f5ad63632e44fa712416a2b233099953ebe6fdc180a"
-    },
-    "adapters.mutation.accepted.release": {
-      "path": "src/ethos/adapters/mutation/accepted/release.py",
-      "sha256": "b9afe2fcc40ec7d35b3355c95a673b9a9851bd9e9e44c275da697cacd36181a8"
-    },
-    "adapters.mutation.accepted.signature": {
-      "path": "src/ethos/adapters/mutation/accepted/signature.py",
-      "sha256": "e568d7a310f946139b3a1c9abaef571a886959c31243c1cfa6496602f671bae3"
-    },
-    "adapters.mutation.branch-roles": {
-      "path": "src/ethos/adapters/mutation/branch_roles.py",
-      "sha256": "0b8e075cf7f63453bfe54a49d39be874492cd578adf0f5274c8784a42c04a351"
-    },
-    "adapters.mutation.carrier-edit": {
-      "path": "src/ethos/adapters/mutation/carrier_edit.py",
-      "sha256": "694d334419501ac8636ad048cb90e31fce1a863c4aadb8f4e0ba136c02942422"
-    },
-    "adapters.mutation.decision": {
-      "path": "src/ethos/adapters/mutation/decision.py",
-      "sha256": "1d001264e457a6e968caf0d07f321af99a3a41deab2feda11dbb2cb523b89794"
-    },
-    "adapters.mutation.landing": {
-      "path": "src/ethos/adapters/mutation/landing.py",
-      "sha256": "4429a6dc208144812df89b33be26827eaa4371f9fb178d8a61434b58a54142b7"
-    },
-    "adapters.mutation.lane-lifecycle.init": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/__init__.py",
-      "sha256": "dfab32532ef9e3fe9e9f2d097bdc848c845ab363329f23063dc0fe682b4c1ddc"
-    },
-    "adapters.mutation.lane-lifecycle.archive.init": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/archive/__init__.py",
-      "sha256": "c9ebf2d815f4c06f86a5f6ec0e9b3cf1df8a85ff92ccee89a18efcbfdb2c9ee5"
-    },
-    "adapters.mutation.lane-lifecycle.archive.command": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/archive/command.py",
-      "sha256": "652922eea36b73d932a68763d89303644bf5f7965a8e7c96b596a55312ca0e61"
-    },
-    "adapters.mutation.lane-lifecycle.archive.compensation": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/archive/compensation.py",
-      "sha256": "8f983c321c476291f901b72d5b81c6831e94d8353c2a29696fcfaa13e4dfda58"
-    },
-    "adapters.mutation.lane-lifecycle.archive.effect": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/archive/effect.py",
-      "sha256": "df4f88da9deb377ae30145eed106c09f14e47f0d1b74b99e277d95c010a81f37"
-    },
-    "adapters.mutation.lane-lifecycle.candidate.init": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/candidate/__init__.py",
-      "sha256": "42b151d491a28e86b6da891bdb7f9404a2ab7181dd430ff7ee4fbf04e8552c32"
-    },
-    "adapters.mutation.lane-lifecycle.candidate.materialization": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/candidate/materialization.py",
-      "sha256": "5867fb65947c544454e6fd9a216bf1c8712e43c0cdc717e71618752264ee0aba"
-    },
-    "adapters.mutation.lane-lifecycle.candidate-projection": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/candidate_projection.py",
-      "sha256": "0a1d09e7245375e93a9361f6e9f6df01e1b5b67d02c869e9d3fb7724c0d151d9"
-    },
-    "adapters.mutation.lane-lifecycle.change-overlay": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/change_overlay.py",
-      "sha256": "ef8c09f6fec9cf759db9b34005e8510b07716a8a665d294d9b2e1e10dd9c58d1"
-    },
-    "adapters.mutation.lane-lifecycle.handoff.init": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/handoff/__init__.py",
-      "sha256": "52118dadff6885cf15e35de6560c27fdbf18d764b79327312dc89789a520b5e3"
-    },
-    "adapters.mutation.lane-lifecycle.handoff.destination-cleanup": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/handoff/destination_cleanup.py",
-      "sha256": "ec3916e6b80c969b6b8a60d66ce6af28aa709b86f3a9e9751ff4c930cd1d3f04"
-    },
-    "adapters.mutation.lane-lifecycle.handoff.destination-import": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/handoff/destination_import.py",
-      "sha256": "ab639b8019587e84eb27dc1930cdaac01496c6a0ec2fea9570cafbce63ac49d1"
-    },
-    "adapters.mutation.lane-lifecycle.handoff.destination-objects": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/handoff/destination_objects.py",
-      "sha256": "991adc4caa01af05aac24d903324f5bc98efbd3716f8d509003ef18e3424a544"
-    },
-    "adapters.mutation.lane-lifecycle.handoff.package": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/handoff/package.py",
-      "sha256": "58ea0a3c08ca7bca06baec4a872b8b34ca561c0a29068e88d3a4b2daa7406f3c"
-    },
-    "adapters.mutation.lane-lifecycle.handoff.transfer": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/handoff/transfer.py",
-      "sha256": "7941fd0ed43bb80d7856941e7fad413e43398dda7e297d6c07c7c034b1810f22"
-    },
-    "adapters.mutation.lane-lifecycle.lease.init": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/lease/__init__.py",
-      "sha256": "4544fe4fa3b11b9340b7f2681046be0742ceb639229ab41f549bfedaf8f6acbe"
-    },
-    "adapters.mutation.lane-lifecycle.lease.acquisition": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/lease/acquisition.py",
-      "sha256": "a02976a6d8ac3cfd907c5f8a3db6eaadd28a77a5aad486405819bbce3fb8f8fe"
-    },
-    "adapters.mutation.lane-lifecycle.lease.operation": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/lease/operation.py",
-      "sha256": "58a0af62b98edf115b98789b203d339e79ad4763786e72ac43bf9d6b1b7c7c7a"
-    },
-    "adapters.mutation.lane-lifecycle.lease.takeover": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/lease/takeover.py",
-      "sha256": "41128f3316fe0ad9d24fc22c9e181f849dc49bc97e6a0fa8bb8be53f955b580d"
-    },
-    "adapters.mutation.lane-lifecycle.merge": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/merge.py",
-      "sha256": "5e02e6c305444c53cbf83ede72a296f1dbfecc60c35a6d91e7ca300bab8fb298"
-    },
-    "adapters.mutation.lane-lifecycle.merge-actions": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/merge_actions.py",
-      "sha256": "7e3f263127ab9780b5ad0a40b4e681ad65fd1993c06c5f04c73b9de2f8524797"
-    },
-    "adapters.mutation.lane-lifecycle.start": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/start.py",
-      "sha256": "1f2ff6a2939e71b7e54be11662eb263607820da66da6c0634f4ff59ff0e0b9ed"
-    },
-    "adapters.mutation.lane-lifecycle.work-lane-refresh": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/work_lane_refresh.py",
-      "sha256": "9c5a9db3bfecb203febaaa813d53980345908b42930924d721b482ad7c4f33bf"
-    },
-    "adapters.mutation.lane-lifecycle.work-lane-refresh-record": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/work_lane_refresh_record.py",
-      "sha256": "cb0ee73075d7c6b9cc3fbdddbeba54420884cd340de198f7baeeaa91e2929cc1"
-    },
-    "adapters.mutation.lane-lifecycle.work-lane-refresh-report": {
-      "path": "src/ethos/adapters/mutation/lane_lifecycle/work_lane_refresh_report.py",
-      "sha256": "433bdc94cdd4a9a66bea55d45487ed540fb7981a7bf8a9c607ef85af0aca6f61"
-    },
-    "adapters.mutation.lane-retirement.init": {
-      "path": "src/ethos/adapters/mutation/lane_retirement/__init__.py",
-      "sha256": "4b254423d609f339aa34e9f72351036e903549c0f45b95c98966334f2818cbcf"
-    },
-    "adapters.mutation.lane-retirement.abandonment": {
-      "path": "src/ethos/adapters/mutation/lane_retirement/abandonment.py",
-      "sha256": "e1633e670cc59c638be33bd166256ce26ec33a57702997981ef0322e43935007"
-    },
-    "adapters.mutation.lane-retirement.absorbed": {
-      "path": "src/ethos/adapters/mutation/lane_retirement/absorbed.py",
-      "sha256": "07795dd15d7ad8a7480bc3bff435dc35ba1b2ea9f2d3bb0b200b25aeee3787c1"
-    },
-    "adapters.mutation.lane-retirement.content": {
-      "path": "src/ethos/adapters/mutation/lane_retirement/content.py",
-      "sha256": "4c8b48ea48bb435b23c0c351b0386d317661cf9173ac08d41152f1475336b060"
-    },
-    "adapters.mutation.lane-retirement.continuation": {
-      "path": "src/ethos/adapters/mutation/lane_retirement/continuation.py",
-      "sha256": "5ad0a727ed8bb60ba92faafc0641645d135cd9c453cf90745609bb6167d0548e"
-    },
-    "adapters.mutation.lane-retirement.effects": {
-      "path": "src/ethos/adapters/mutation/lane_retirement/effects.py",
-      "sha256": "632a0bc29b982be321bce79e2d2b27a379b18574addd91e1ed3f8517cd5a117c"
-    },
-    "adapters.mutation.lane-retirement.linked": {
-      "path": "src/ethos/adapters/mutation/lane_retirement/linked.py",
-      "sha256": "b98a34c4803b910c2c12922bc3f82cad0d6cd72aceb836c41a3c05eb10268ddb"
-    },
-    "adapters.mutation.lane-retirement.linked-admission": {
-      "path": "src/ethos/adapters/mutation/lane_retirement/linked_admission.py",
-      "sha256": "161e30f94d9a8f7885116aad39a865e6f663c8cfea6be3671e585ffec356ea4f"
-    },
-    "adapters.mutation.lane-retirement.linked-effect": {
-      "path": "src/ethos/adapters/mutation/lane_retirement/linked_effect.py",
-      "sha256": "4d71b732ea50ccad3461cf9ab1e04566f4f9dc8ba9e55891b9997a7627c9ab1f"
-    },
-    "adapters.mutation.lane-retirement.operation": {
-      "path": "src/ethos/adapters/mutation/lane_retirement/operation.py",
-      "sha256": "5510cb970afad7edddb0de321dd42d16c66f2c5b9ab98b959f004e7355d1b150"
-    },
-    "adapters.mutation.paradigm-repair": {
-      "path": "src/ethos/adapters/mutation/paradigm_repair.py",
-      "sha256": "df3aa8e646357e7cbdf7c146eb19af4c07b3d253c234743a5692356980dedc14"
-    },
-    "adapters.mutation.projection": {
-      "path": "src/ethos/adapters/mutation/projection.py",
-      "sha256": "65d9a91036ff044f3b3808bca2fd745192a9e76481f2f6b883b2fc6c4270cd91"
-    },
-    "adapters.mutation.proof": {
-      "path": "src/ethos/adapters/mutation/proof.py",
-      "sha256": "cc66b4c776bfa48cd905e1e541cdda0a924865149aba0da16ba038d81f6a03f0"
-    },
-    "adapters.mutation.proof-admission": {
-      "path": "src/ethos/adapters/mutation/proof_admission.py",
-      "sha256": "016ae81d6d42a11941aa46a66b19be252445008601a593c9fd3f5c5e5497cd8e"
-    },
-    "adapters.mutation.proof-artifacts": {
-      "path": "src/ethos/adapters/mutation/proof_artifacts.py",
-      "sha256": "10b5d253268f50e55f104ef311a4a2834d03b81268bc44b6b864ef78a83f37f6"
-    },
-    "adapters.mutation.proof-validation": {
-      "path": "src/ethos/adapters/mutation/proof_validation.py",
-      "sha256": "23503153ca5713cb81bdada20aecc3c7b216f9415c6981781009a536cd7eadca"
-    },
-    "adapters.mutation.publication.init": {
-      "path": "src/ethos/adapters/mutation/publication/__init__.py",
-      "sha256": "593bc7255f1edc940a07d27f9ba2b563da7c30b918b0ed86370c1d7eb6343122"
-    },
-    "adapters.mutation.publication.absorption": {
-      "path": "src/ethos/adapters/mutation/publication/absorption.py",
-      "sha256": "c41e7c230d7c7d111087679da3227867af85b4aa80a1de9d089811be7b62e746"
-    },
-    "adapters.mutation.publication.attestation": {
-      "path": "src/ethos/adapters/mutation/publication/attestation.py",
-      "sha256": "92638d25ecdb38bde0c5971c68ae9e1407ea7ec728a9851d950bcca754e51fb7"
-    },
-    "adapters.mutation.publication.execution": {
-      "path": "src/ethos/adapters/mutation/publication/execution.py",
-      "sha256": "7df907c0360a6f02b77075a59e2b2ce2652eae15698cf2d117f8beb0f662c6ba"
-    },
-    "adapters.mutation.publication.observation": {
-      "path": "src/ethos/adapters/mutation/publication/observation.py",
-      "sha256": "596ab7de409caeef8f16b3a14a674e6bc5786d92bec5c4ef045085415745fa5e"
-    },
-    "adapters.mutation.publication.request": {
-      "path": "src/ethos/adapters/mutation/publication/request.py",
-      "sha256": "d11465e54f1953f2f31d96ca861ed7547d1945a8721238ec8649ee85fb5de4cb"
-    },
-    "adapters.mutation.publication.retirement": {
-      "path": "src/ethos/adapters/mutation/publication/retirement.py",
-      "sha256": "04b34a9515e62508b12fb0bb8925e5d4cc5c9478303145f2339fb1e51fd37980"
-    },
-    "adapters.mutation.remediation.init": {
-      "path": "src/ethos/adapters/mutation/remediation/__init__.py",
-      "sha256": "39677524a4728dde29ad546798c57e20fe07be14fd2057f6578a1fecbac2fb17"
-    },
-    "adapters.mutation.remediation.guidance": {
-      "path": "src/ethos/adapters/mutation/remediation/guidance.py",
-      "sha256": "3a6d446ffd93423fe8bd2472d12397ab0fcea244a617e0bea38f91ff6b45926a"
-    },
-    "adapters.mutation.source-format": {
-      "path": "src/ethos/adapters/mutation/source_format.py",
-      "sha256": "0ceb9a97bc2633aa4ab31ae6559cc8e617c6650b3367f5d472d1931c4377ed0b"
-    },
-    "adapters.mutation.worktree.init": {
-      "path": "src/ethos/adapters/mutation/worktree/__init__.py",
-      "sha256": "4d9192247315f9c37e8a926421066760ea67856f24caf87aa7611a0e7220702c"
-    },
-    "adapters.mutation.worktree.detached-cleanup": {
-      "path": "src/ethos/adapters/mutation/worktree/detached_cleanup.py",
-      "sha256": "fd3527a33a14c6092eab372f88027b16b321b0ff7ca9f619f5ca06d1b4cee794"
-    },
-    "adapters.open-files": {
-      "path": "src/ethos/adapters/open_files.py",
-      "sha256": "fb3e292021d61ea1ab63611650d993d8be26463acace4506e5a360bbe62288ec"
-    },
-    "adapters.openspec.init": {
-      "path": "src/ethos/adapters/openspec/__init__.py",
-      "sha256": "53abbd36a1082531e76dec716beffd38345134817e0aa5b0e8d647d0ed91a7fe"
-    },
-    "adapters.openspec.archive-projection": {
-      "path": "src/ethos/adapters/openspec/archive_projection.py",
-      "sha256": "1440c2631abd7b02ce69ab3740ee2f02ca88f52324ec2642de0a0eb258d5ad8a"
-    },
-    "adapters.openspec.archive-readiness": {
-      "path": "src/ethos/adapters/openspec/archive_readiness.py",
-      "sha256": "8f7c75b82944483d30d02d31d353b70d9123e4df962a504168892f6991c98035"
-    },
-    "adapters.openspec.batch.mjs": {
-      "path": "src/ethos/adapters/openspec/batch.mjs",
-      "sha256": "919e8ab8a87ef0e1c38783478e59c3dd8fe2f6d97fb5a1e2ab5dfc75f9b7d3c9"
-    },
-    "adapters.openspec.cli": {
-      "path": "src/ethos/adapters/openspec/cli.py",
-      "sha256": "84e98c3652fe484cf4932967363f335b819bf99262b51bca6786b04873428a04"
-    },
-    "adapters.openspec.commitment": {
-      "path": "src/ethos/adapters/openspec/commitment.py",
-      "sha256": "02015b20571e91dfff1ef420259e90d58923b79632f17b843304e684c85484a5"
-    },
-    "adapters.openspec.configuration.mjs": {
-      "path": "src/ethos/adapters/openspec/configuration.mjs",
-      "sha256": "33e57639bf099e6fb88c13f10939c7543a55d0c7b8c043564fcc5919195a9fe5"
-    },
-    "adapters.openspec.configuration": {
-      "path": "src/ethos/adapters/openspec/configuration.py",
-      "sha256": "e428a5b3549d7ae49d217f9de4f2048d7415e17e09ac64327cba39e586e8d093"
-    },
-    "adapters.openspec.governance": {
-      "path": "src/ethos/adapters/openspec/governance.py",
-      "sha256": "cc90cb22f9fe48167e6f55372e27bc83650c3d434383af6484a4198e5addfe80"
-    },
-    "adapters.openspec.lifecycle.init": {
-      "path": "src/ethos/adapters/openspec/lifecycle/__init__.py",
-      "sha256": "c87e720619616ffbcbea01fbe217ac47b97ca98aea4b234486fd5ff89fb68116"
-    },
-    "adapters.openspec.lifecycle.archive-binding": {
-      "path": "src/ethos/adapters/openspec/lifecycle/archive_binding.py",
-      "sha256": "757fdd2a45379a1df2a2d51566529451898bf79039ae7a44dd96ee543b67b8ff"
-    },
-    "adapters.openspec.lifecycle.archive-provenance": {
-      "path": "src/ethos/adapters/openspec/lifecycle/archive_provenance.py",
-      "sha256": "0e96091e4e6fa80b881c3b3f7efafa58cdd3e7b8544ca1b85f18431576fdd31e"
-    },
-    "adapters.openspec.lifecycle.archive-transition": {
-      "path": "src/ethos/adapters/openspec/lifecycle/archive_transition.py",
-      "sha256": "6483c642fe2317cdaab6ad6f204e1358ad4a9733b24257d39d0d97810950a193"
-    },
-    "adapters.openspec.lifecycle.bootstrap": {
-      "path": "src/ethos/adapters/openspec/lifecycle/bootstrap.py",
-      "sha256": "bbb0a0eb50d1809eedb4e1626575e11f214bb7db2296735600939e6c223e6978"
-    },
-    "adapters.openspec.lifecycle.intent": {
-      "path": "src/ethos/adapters/openspec/lifecycle/intent.py",
-      "sha256": "33200d6dd249e7efcec92d45995c88b945fe8ca1e490541253119d5fce3741f3"
-    },
-    "adapters.openspec.lifecycle.report": {
-      "path": "src/ethos/adapters/openspec/lifecycle/report.py",
-      "sha256": "d5b6dcd3b02f75ec07775b401ca94823ef8741d67760e045cd8b82faf663d3ce"
-    },
-    "adapters.openspec.lifecycle.root-repair": {
-      "path": "src/ethos/adapters/openspec/lifecycle/root_repair.py",
-      "sha256": "67c9bbf87317367d7b86cae939535d50733b044440c6610ee8cfe5a41706ec56"
-    },
-    "adapters.openspec.lifecycle.scope": {
-      "path": "src/ethos/adapters/openspec/lifecycle/scope.py",
-      "sha256": "92f4254c660b68387fa7559f4ff4276cbe950f3800ebb557ab6617a97a378ea3"
-    },
-    "adapters.openspec.lifecycle.template-repair": {
-      "path": "src/ethos/adapters/openspec/lifecycle/template_repair.py",
-      "sha256": "1c6682c114ba793cc66de13302fa6fb3bec55d2d49debbf43015fe315a7304a8"
-    },
-    "adapters.openspec.lifecycle.validation": {
-      "path": "src/ethos/adapters/openspec/lifecycle/validation.py",
-      "sha256": "7cd4ae5385ea456e3514c828365a676e07ee7feb2e5d0eb39d0f7687dd000331"
-    },
-    "adapters.openspec.observation": {
-      "path": "src/ethos/adapters/openspec/observation.py",
-      "sha256": "7feb695c8e3104c5cc58b54ebf467a7db21cef49e50cc1ce42811f550d6c9072"
-    },
-    "adapters.openspec.profile": {
-      "path": "src/ethos/adapters/openspec/profile.py",
-      "sha256": "975ccaa549e92a8d55bbd372173111334ff7eef3cd07a6a9bcac566312bfa28a"
-    },
-    "adapters.openspec.projection": {
-      "path": "src/ethos/adapters/openspec/projection.py",
-      "sha256": "c4d225e6b79f615f88cb6778ce700bbc236e8ab70a5935d3c8740c17516b809c"
-    },
-    "adapters.openspec.relocation.mjs": {
-      "path": "src/ethos/adapters/openspec/relocation.mjs",
-      "sha256": "751f96928e1d13e8b1d03e1d7951e50cee489ab258df56fb0aa36c20dc91b97e"
-    },
-    "adapters.openspec.relocation": {
-      "path": "src/ethos/adapters/openspec/relocation.py",
-      "sha256": "20ea5c2ca9f6a3653dd6bb1130fc478438795cc40d8279122d8cc71ce936ac82"
-    },
-    "adapters.openspec.selection": {
-      "path": "src/ethos/adapters/openspec/selection.py",
-      "sha256": "7a4c5c5210c304f5d045613a757e61bd95da796db051350d804e8c0c5c2af60e"
-    },
-    "adapters.openspec.template-conformance": {
-      "path": "src/ethos/adapters/openspec/template_conformance.py",
-      "sha256": "6d87e3b8a1adda0318f3fcf6ede983e13dc8fca341b8e057d880d60a78dd0ec7"
-    },
-    "adapters.process": {
-      "path": "src/ethos/adapters/process.py",
-      "sha256": "eb5f9b755a9a55538f7b4d2c71d56982dee1a4cb5d4d59ce93c46e2f1660e12b"
-    },
-    "adapters.projections.init": {
-      "path": "src/ethos/adapters/projections/__init__.py",
-      "sha256": "c2bdab28720b434a0ed3e1e3d0fef486e50089a63c472116d9c32fa8966cf0d7"
-    },
-    "adapters.projections.compiler": {
-      "path": "src/ethos/adapters/projections/compiler.py",
-      "sha256": "c87c64b4f2a8dcbcffcbc7742809a6851244bd546bd299ac2de1177e840753e9"
-    },
-    "adapters.projections.cue": {
-      "path": "src/ethos/adapters/projections/cue.py",
-      "sha256": "a52bad995a67a2ae6ddb9da40556fadc301aa81284a53b87b537478a41e77bcf"
-    },
-    "adapters.repo.init": {
-      "path": "src/ethos/adapters/repo/__init__.py",
-      "sha256": "704d344b40b29a27a0c23450dfd50269ca0a3fa70f9f847231808bd11df035b8"
-    },
-    "adapters.repo.adoption": {
-      "path": "src/ethos/adapters/repo/adoption.py",
-      "sha256": "ec21222c71e20e1ce88ae09652473c79dfcd6557848d8754363f4f6ee733c228"
-    },
-    "adapters.repo.attestation-lifetime": {
-      "path": "src/ethos/adapters/repo/attestation_lifetime.py",
-      "sha256": "ca97f4a8c4b74c89612f051713c21ce85dcd5eec1d3c69f768f59dad2dfd1d5e"
-    },
-    "adapters.repo.attestation-lifetime-facts": {
-      "path": "src/ethos/adapters/repo/attestation_lifetime_facts.py",
-      "sha256": "660e55fd181f11b6f37f3d8a45b32229511a84391534dc49f0aa11864efc9952"
-    },
-    "adapters.repo.attestation-set": {
-      "path": "src/ethos/adapters/repo/attestation_set.py",
-      "sha256": "612d2557c882051205bcf3c402cc60478ca00316cfa4692dfdff90b4b87a3c73"
-    },
-    "adapters.repo.commit.init": {
-      "path": "src/ethos/adapters/repo/commit/__init__.py",
-      "sha256": "e01c9db2bca9c4bc936616bf5556631f4bc76c4ce20f9941f5d5fe748ebd0917"
-    },
-    "adapters.repo.commit.admission": {
-      "path": "src/ethos/adapters/repo/commit/admission.py",
-      "sha256": "2fc5ea529bfad4bcf08c8d835fee10b8cb30f025679ee8d2c3ecb693af685772"
-    },
-    "adapters.repo.commit.conservation": {
-      "path": "src/ethos/adapters/repo/commit/conservation.py",
-      "sha256": "ccbe6e2be8ce5a268e9d3df45efdbb604268a8132f9165a70c4d180159d0059d"
-    },
-    "adapters.repo.commit.creation": {
-      "path": "src/ethos/adapters/repo/commit/creation.py",
-      "sha256": "5fa5607c984050a11f564061e88e2bcd1fd3194c3105a9c66e15d7e1e2a3196b"
-    },
-    "adapters.repo.commit.history": {
-      "path": "src/ethos/adapters/repo/commit/history.py",
-      "sha256": "f88c253f010fc6e84cbfce5215b4c05da45b41c13e968378ae2b421728a229fe"
-    },
-    "adapters.repo.commit.integration": {
-      "path": "src/ethos/adapters/repo/commit/integration.py",
-      "sha256": "a0500a5819017243303bf752dc24386ac362627683ce2808b67e7afd4e287187"
-    },
-    "adapters.repo.commit.provenance": {
-      "path": "src/ethos/adapters/repo/commit/provenance.py",
-      "sha256": "35257974645752fe98c50f303cef7b18d6e1d2f66d9a2198240c12e19fca91da"
-    },
-    "adapters.repo.commit.rewrite": {
-      "path": "src/ethos/adapters/repo/commit/rewrite.py",
-      "sha256": "9149681c5be21770312bf3a2d7279ff87947a9d87d9b821170a69b71761bdd79"
-    },
-    "adapters.repo.commit.signature": {
-      "path": "src/ethos/adapters/repo/commit/signature.py",
-      "sha256": "25b038fa1f5345d0416a5b155e43c48c6620b32f4621cc13207c2368d2a49150"
-    },
-    "adapters.repo.config-effects": {
-      "path": "src/ethos/adapters/repo/config_effects.py",
-      "sha256": "6d393e1b7931ccd101fe159c92338734ca07f881498cea67bd87bf52d3596d0b"
-    },
-    "adapters.repo.content.init": {
-      "path": "src/ethos/adapters/repo/content/__init__.py",
-      "sha256": "10a2ee8244994339291d2c3b360c1fc852e48e171e37a3279284f9ab8adaa51a"
-    },
-    "adapters.repo.content.observation": {
-      "path": "src/ethos/adapters/repo/content/observation.py",
-      "sha256": "8240f739c175fc56518021ee7f4324b930fe2ec87bfceb8a2db2d8b8252c7fa7"
-    },
-    "adapters.repo.content.source": {
-      "path": "src/ethos/adapters/repo/content/source.py",
-      "sha256": "f3fbd8ac1c1cd1e0ad1fa6cdca4a021cfd533bf6024f4416edf80d588f4e0bf0"
-    },
-    "adapters.repo.coordination": {
-      "path": "src/ethos/adapters/repo/coordination.py",
-      "sha256": "187831e833ac937e246e6f7e3188e3661412cda7eb66d1551110dcef3200dc76"
-    },
-    "adapters.repo.dependency-acceptance": {
-      "path": "src/ethos/adapters/repo/dependency_acceptance.py",
-      "sha256": "1d9a90237feb479eb76c131df8cefc1e320a736aaecb0922cf278d803adc7fb4"
-    },
-    "adapters.repo.dirty.init": {
-      "path": "src/ethos/adapters/repo/dirty/__init__.py",
-      "sha256": "1c672d49adf7935f3d65ac4b0f16c8231486a49eb73e5ebb6fd059169f739442"
-    },
-    "adapters.repo.dirty.change-provenance": {
-      "path": "src/ethos/adapters/repo/dirty/change_provenance.py",
-      "sha256": "6e9338d0098b8ae497699ecae012d6f0c16525cbb96b9ecffbd63d2dbd6a48dc"
-    },
-    "adapters.repo.gate-policy": {
-      "path": "src/ethos/adapters/repo/gate_policy.py",
-      "sha256": "73a67e2b2c0121f1ac29702feaab882ffd4dcb583edbc9e7a4a203a30cfe33ff"
-    },
-    "adapters.repo.git": {
-      "path": "src/ethos/adapters/repo/git.py",
-      "sha256": "a4ce4538f30d5e65bd29ecbc55cfc39c17826e83bb297f01b200a5d844f25792"
-    },
-    "adapters.repo.git-attributes": {
-      "path": "src/ethos/adapters/repo/git_attributes.py",
-      "sha256": "1928d3706acdf447f2157f723783ccf816fb3eb6ce82947688b1923f5239dbec"
-    },
-    "adapters.repo.git-effect-admission": {
-      "path": "src/ethos/adapters/repo/git_effect_admission.py",
-      "sha256": "67f6f804b98a67a129669b81d8f6f233a5473ba00f1d904c446dae6777815484"
-    },
-    "adapters.repo.git-effect-attestation": {
-      "path": "src/ethos/adapters/repo/git_effect_attestation.py",
-      "sha256": "11a8a58ea74752f579e9f94cbdd9d337ea065b7a13305667ab6f75345ca4d48e"
-    },
-    "adapters.repo.git-effect-observation": {
-      "path": "src/ethos/adapters/repo/git_effect_observation.py",
-      "sha256": "e1542a8dd356936320baad04f48e71298b459a4fa0280076310ef77374dbbc4c"
-    },
-    "adapters.repo.git-effects": {
-      "path": "src/ethos/adapters/repo/git_effects.py",
-      "sha256": "424e67c606c5885ea285e35ef189f04eb8825d2937bc9778d58f94e4879a518d"
-    },
-    "adapters.repo.git-object": {
-      "path": "src/ethos/adapters/repo/git_object.py",
-      "sha256": "6d276fc470ac06661457109c2e06f3e3d0421c90511d138a80e4029c86c72cfc"
-    },
-    "adapters.repo.git-object-sandbox": {
-      "path": "src/ethos/adapters/repo/git_object_sandbox.py",
-      "sha256": "a6af04f635d52fe0c31dc2fbaf7effc56d060ad4d0c035065892907139cc704d"
-    },
-    "adapters.repo.git-patch": {
-      "path": "src/ethos/adapters/repo/git_patch.py",
-      "sha256": "d88860aa281f8cb26301f1f45ad441bf7878372fd2aa381a8c54da641808651d"
-    },
-    "adapters.repo.git-ref-worktrees": {
-      "path": "src/ethos/adapters/repo/git_ref_worktrees.py",
-      "sha256": "feb5921dee3e2195fdff62137aa167bb4db8ee85639b6677a173ae49b0403ce1"
-    },
-    "adapters.repo.hook.init": {
-      "path": "src/ethos/adapters/repo/hook/__init__.py",
-      "sha256": "8fa211844145af6c3690a51177f3b86d475c480282775af098e231aebe4467be"
-    },
-    "adapters.repo.hook.activation": {
-      "path": "src/ethos/adapters/repo/hook/activation.py",
-      "sha256": "fb37470b00ead23dae236a4594b9f391e894d8f338045588cfff638f030a1ebb"
-    },
-    "adapters.repo.hook.admission": {
-      "path": "src/ethos/adapters/repo/hook/admission.py",
-      "sha256": "5460b94de0aa43159194a9c6ce99a22ec08d8cf6304c8f9dafbb16546629cf11"
-    },
-    "adapters.repo.hook.binding": {
-      "path": "src/ethos/adapters/repo/hook/binding.py",
-      "sha256": "ad366bd3985e7859e6f1f274adfd77c15029073d4552cc1e8f05f65df3105c45"
-    },
-    "adapters.repo.hook.binding.toml": {
-      "path": "src/ethos/adapters/repo/hook/binding.toml",
-      "sha256": "24197c94e92aea63188ab6f11a570ee03a350117b8a20d44574bf0f07b6bbf58"
-    },
-    "adapters.repo.hook.observation": {
-      "path": "src/ethos/adapters/repo/hook/observation.py",
-      "sha256": "eb6909179d4e10076703869487f4ad8ee8b95c40329105dfa529241c461fefd4"
-    },
-    "adapters.repo.hook.protocol": {
-      "path": "src/ethos/adapters/repo/hook/protocol.py",
-      "sha256": "ca545af2ab7a32e8db59f111d4de37f2236dcea271d4cfb9f291db5f75e2b8c9"
-    },
-    "adapters.repo.invocation-facts": {
-      "path": "src/ethos/adapters/repo/invocation_facts.py",
-      "sha256": "27fd489640aef8f4c6fe8a56d7b3459d88aeeaf1d2c0c83b5e45d6508b828973"
-    },
-    "adapters.repo.merge.init": {
-      "path": "src/ethos/adapters/repo/merge/__init__.py",
-      "sha256": "e959f7a6287c9af1ccba6c411fefae9a17958fe9cc596d018186f72e92818573"
-    },
-    "adapters.repo.merge.effect": {
-      "path": "src/ethos/adapters/repo/merge/effect.py",
-      "sha256": "17774571878ea03e623ed3562a6bc98039aa2af05b19812adbeb5515cbcca748"
-    },
-    "adapters.repo.merge.observation": {
-      "path": "src/ethos/adapters/repo/merge/observation.py",
-      "sha256": "56b8d48ced08ea8cc1362dbc0cc477ece680789fcf5f52041bac30b77a422e85"
-    },
-    "adapters.repo.merge.recovery": {
-      "path": "src/ethos/adapters/repo/merge/recovery.py",
-      "sha256": "3f5f61ec9ef50ff4235fc6bdbac1535b538c44692ccb7c39e0387f3ab6095359"
-    },
-    "adapters.repo.native-effect-attestation": {
-      "path": "src/ethos/adapters/repo/native_effect_attestation.py",
-      "sha256": "f90c868815cf563243d05549f315cd092ccd2fd241b4966a90d8cef3523666fb"
-    },
-    "adapters.repo.profile": {
-      "path": "src/ethos/adapters/repo/profile.py",
-      "sha256": "8de61deed84e952ac69d91f849640d8c7c7a6a84547b12b1d45e6c4bf6e27b27"
-    },
-    "adapters.repo.release": {
-      "path": "src/ethos/adapters/repo/release.py",
-      "sha256": "6ecf0dadd8212e22e44aec792e10e1ea2746b61241122681b2d6b5cb418a69c1"
-    },
-    "adapters.repo.runtime.init": {
-      "path": "src/ethos/adapters/repo/runtime/__init__.py",
-      "sha256": "d99961e174b89536e4177cadacf40c34d1483bf3bf22b6724bdcdab5032eedfa"
-    },
-    "adapters.repo.runtime.authority": {
-      "path": "src/ethos/adapters/repo/runtime/authority.py",
-      "sha256": "047b8aa52e8674048dc8eadc40bbf0fc5f8dfaa30bf6b1ed1aafb40bebc69960"
-    },
-    "adapters.repo.runtime.binding": {
-      "path": "src/ethos/adapters/repo/runtime/binding.py",
-      "sha256": "cda3540dde6000f1b2896d46e0ec63078719cdcb48b8275aa6761907285669ef"
-    },
-    "adapters.repo.runtime.filesystem": {
-      "path": "src/ethos/adapters/repo/runtime/filesystem.py",
-      "sha256": "ae377394a603b3eccbc430a6734b96ffc8ddce636bbf55ffc3dc43ac6d9ac360"
-    },
-    "adapters.repo.runtime.host-store": {
-      "path": "src/ethos/adapters/repo/runtime/host_store.py",
-      "sha256": "e975b78958edcaa316c6bb12f6a41eb5001b5301325912d12e7d17065af49461"
-    },
-    "adapters.repo.runtime.interpreter": {
-      "path": "src/ethos/adapters/repo/runtime/interpreter.py",
-      "sha256": "a24bd75a0747243162f34a6993c1f61eb185beaba4f1847ade65e896adbe3dad"
-    },
-    "adapters.repo.runtime.inventory-memo": {
-      "path": "src/ethos/adapters/repo/runtime/inventory_memo.py",
-      "sha256": "2ea0e3f155f570e90b98b97c607faaef06924d88ab1a72c88c957ca50d4ec0f3"
-    },
-    "adapters.repo.runtime.manifest": {
-      "path": "src/ethos/adapters/repo/runtime/manifest.py",
-      "sha256": "2c8f98c3d7e8f7796fe7f943c03207b5b1b3edc8ebd056de207edeb5996bb26f"
-    },
-    "adapters.repo.runtime.materialization.init": {
-      "path": "src/ethos/adapters/repo/runtime/materialization/__init__.py",
-      "sha256": "6788243ebc5ed9c5a2e8972b93e7a8a2db9a1003dbae28b5c8c1b948a4e3f768"
-    },
-    "adapters.repo.runtime.materialization.dependency-supply": {
-      "path": "src/ethos/adapters/repo/runtime/materialization/dependency_supply.py",
-      "sha256": "0567800922260f5ae91318687f79f5d9b187caa73a3bf2815f17bcf6a53c5805"
-    },
-    "adapters.repo.runtime.materialization.effect": {
-      "path": "src/ethos/adapters/repo/runtime/materialization/effect.py",
-      "sha256": "3950d257cca22b6b8a1eb2a59bf70d7bdcfd21a63b1592cf5d2ab9e4a09d6525"
-    },
-    "adapters.repo.runtime.materialization.host-retention": {
-      "path": "src/ethos/adapters/repo/runtime/materialization/host_retention.py",
-      "sha256": "3a9715a0d74bffb9d88402f077204fb6a00a5917fccd118ec4868925277c0114"
-    },
-    "adapters.repo.runtime.materialization.input-resolution": {
-      "path": "src/ethos/adapters/repo/runtime/materialization/input_resolution.py",
-      "sha256": "bc054c6c22ddc753b014f5da242be1d6016b55b36a9306d2372f8aedf6d7e313"
-    },
-    "adapters.repo.runtime.materialization.native-supply": {
-      "path": "src/ethos/adapters/repo/runtime/materialization/native_supply.py",
-      "sha256": "428106f50c80620163ed39bfd67184a594b95cda6df8a2759decd4bdda5329f9"
-    },
-    "adapters.repo.runtime.materialization.node.init": {
-      "path": "src/ethos/adapters/repo/runtime/materialization/node/__init__.py",
-      "sha256": "61b0bf51d69ce28916073faed5022797af81af5fb86383b59695ee8c6b9836e0"
-    },
-    "adapters.repo.runtime.materialization.node.supply": {
-      "path": "src/ethos/adapters/repo/runtime/materialization/node/supply.py",
-      "sha256": "2da73bca09b76fbf78e95bcbb3f671422e515bc6334140804dc182a4630a16ad"
-    },
-    "adapters.repo.runtime.materialization.node-package-supply": {
-      "path": "src/ethos/adapters/repo/runtime/materialization/node_package_supply.py",
-      "sha256": "c7b39c7badb7244b3e4fab00780a0e968a5b5defacbb03a0d1f1a693259ad13d"
-    },
-    "adapters.repo.runtime.materialization.python-environment": {
-      "path": "src/ethos/adapters/repo/runtime/materialization/python_environment.py",
-      "sha256": "6975d74845fa6cb8e3a750a4f6ce20b7a96b4c14b02190e225839657c8106325"
-    },
-    "adapters.repo.runtime.materialization.python-image": {
-      "path": "src/ethos/adapters/repo/runtime/materialization/python_image.py",
-      "sha256": "11026ee0c9f20c2ffe5fd59e8ea74629c527817912ad257db2b734238e4d8a95"
-    },
-    "adapters.repo.runtime.retirement": {
-      "path": "src/ethos/adapters/repo/runtime/retirement.py",
-      "sha256": "64c1f9377ee94ec54193d96949db969b10e2488aaa074ac56f88f33149373306"
-    },
-    "adapters.repo.runtime.selection": {
-      "path": "src/ethos/adapters/repo/runtime/selection.py",
-      "sha256": "296e3e5d795ac7c26b95ef0d45661cf55e2a5e1f1ea7610ddf0b79aa7ba9dadf"
-    },
-    "adapters.repo.runtime.source": {
-      "path": "src/ethos/adapters/repo/runtime/source.py",
-      "sha256": "5bf9cb3ffc93a72703abbdfd123956bcb11366b2ee08c5c03b47cc8eb37fd49c"
-    },
-    "adapters.repo.runtime.transition": {
-      "path": "src/ethos/adapters/repo/runtime/transition.py",
-      "sha256": "d059386c2c93dc4dc657f53633c0df8740bb424e4c02e312940e4348fababb06"
-    },
-    "adapters.repo.starter.init": {
-      "path": "src/ethos/adapters/repo/starter/__init__.py",
-      "sha256": "1de7997be7c3848bb17dba002975d2b242b7743dd3ee63f79575bbd1b65c48a6"
-    },
-    "adapters.repo.starter.evolution": {
-      "path": "src/ethos/adapters/repo/starter/evolution.py",
-      "sha256": "d0ecd3def268497f18ae24b69ba88c39f41f254e00709307c1eac8d35c444105"
-    },
-    "adapters.repo.starter.formation": {
-      "path": "src/ethos/adapters/repo/starter/formation.py",
-      "sha256": "ca02cd3b8f39bbaa7068f19bce62f4613cecbda717c2cdee74ca6f438f5dd81d"
-    },
-    "adapters.repo.starter.generation": {
-      "path": "src/ethos/adapters/repo/starter/generation.py",
-      "sha256": "037b0383badc92d1f2b8ae82e6bcaae124c11d21174e55125ffb0af1557d4b4d"
-    },
-    "adapters.repo.status.init": {
-      "path": "src/ethos/adapters/repo/status/__init__.py",
-      "sha256": "1c15948356c5f5b93850a7de588a34da36441ed3a5b39c082ae9be45d1d80b2d"
-    },
-    "adapters.repo.status.bindings": {
-      "path": "src/ethos/adapters/repo/status/bindings.py",
-      "sha256": "a523261f420ea015003b8ebd1bb2606471b7b8e37a02ac27e3f9915540e0bc81"
-    },
-    "adapters.repo.status.workspace": {
-      "path": "src/ethos/adapters/repo/status/workspace.py",
-      "sha256": "b0f4556f102e9f934a263723e309ef3004d0e4423aba72e104fdaae86d341f9a"
-    },
-    "adapters.repo.trust-anchor.init": {
-      "path": "src/ethos/adapters/repo/trust_anchor/__init__.py",
-      "sha256": "b400093e5d11c8f26537a5a69c743710558fb6acc869357d6f112f68f7517a39"
-    },
-    "adapters.repo.trust-anchor.authorization": {
-      "path": "src/ethos/adapters/repo/trust_anchor/authorization.py",
-      "sha256": "6f29ef01018e97430c8a5d13ea698bad764ced9eb854bcc196c1359448b29ddf"
-    },
-    "adapters.repo.trust-anchor.filesystem": {
-      "path": "src/ethos/adapters/repo/trust_anchor/filesystem.py",
-      "sha256": "19169695c8ff2999e6f58069a071bc90991dadf0089a9e4a11101767eeadc22a"
-    },
-    "adapters.repo.trust-anchor.verification": {
-      "path": "src/ethos/adapters/repo/trust_anchor/verification.py",
-      "sha256": "fed6ed548649daccf4cba58df39682eb5659b46bf3cd0f8725e164a30f931096"
-    },
-    "adapters.repo.worktree-effects": {
-      "path": "src/ethos/adapters/repo/worktree_effects.py",
-      "sha256": "063978cf5c3abf43bfe3b20f220054814c19f13eddff3701c9571f1a63bb000d"
-    },
-    "adapters.repo.worktree-postimage": {
-      "path": "src/ethos/adapters/repo/worktree_postimage.py",
-      "sha256": "d3e8ec4bc626128efd471510bff7c7d854065a35c9e188294a60b7b53c945b35"
-    },
-    "adapters.store.init": {
-      "path": "src/ethos/adapters/store/__init__.py",
-      "sha256": "04e30f0194aae47bd6f10b870be8549cf154f295690168a7f0006bd925051c40"
-    },
-    "adapters.store.content-addressed": {
-      "path": "src/ethos/adapters/store/content_addressed.py",
-      "sha256": "90763421da1297fb679f042b0636b90355c22c707b42a1439cc54e9be30dc5dd"
-    },
-    "adapters.store.custody": {
-      "path": "src/ethos/adapters/store/custody.py",
-      "sha256": "1526a3f753b92b77f99278789540104159c1096f71a833ec61e64b3b57bae363"
-    },
-    "adapters.store.state.init": {
-      "path": "src/ethos/adapters/store/state/__init__.py",
-      "sha256": "671a441e0266588fc754c7d4591639d936748a25d11e1a8049131b5eb90adc33"
-    },
-    "adapters.store.state.lease.init": {
-      "path": "src/ethos/adapters/store/state/lease/__init__.py",
-      "sha256": "da9f81964619b5e8a7cf471a4310e42965445ef29d24c1de2f29a5f03fb17086"
-    },
-    "adapters.store.state.lease.lifecycle.init": {
-      "path": "src/ethos/adapters/store/state/lease/lifecycle/__init__.py",
-      "sha256": "69c829b3efc9d896cbca22c41d49313c2388e4200cbcf750c0f77efaf81565cc"
-    },
-    "adapters.store.state.lease.lifecycle.effects": {
-      "path": "src/ethos/adapters/store/state/lease/lifecycle/effects.py",
-      "sha256": "9b38a4d4a6e15633c38084a7b3a757614ffa593f52d813744b863d7e0bc7d329"
-    },
-    "adapters.store.state.lease.lifecycle.transitions": {
-      "path": "src/ethos/adapters/store/state/lease/lifecycle/transitions.py",
-      "sha256": "f010ed123df9c2aee100c803fffec07bff1ac23215eaa222df92b36f630cf158"
-    },
-    "adapters.store.state.lease.projection": {
-      "path": "src/ethos/adapters/store/state/lease/projection.py",
-      "sha256": "28fcffe7469dcd5b87cc4fd4cee44b15ac7a52c263d48454429516ceed60b86b"
-    },
-    "adapters.store.state.schema": {
-      "path": "src/ethos/adapters/store/state/schema.py",
-      "sha256": "7e3c811d3b9719c929a74923bcba4a2c5d22417ceed2c5a738aa1b2497a1d1eb"
-    },
-    "adapters.toolchain.init": {
-      "path": "src/ethos/adapters/toolchain/__init__.py",
-      "sha256": "86a76d8dfe0998dcaf9a51a825c642315a5b80f4f82b42e4fd6e84b7ea4e2286"
-    },
-    "adapters.toolchain.mise": {
-      "path": "src/ethos/adapters/toolchain/mise.py",
-      "sha256": "486233ea8cfe4848417aa4ccd12d92a5422caf3520b1348247afae95c4030c07"
-    },
-    "assistants.init": {
-      "path": "src/ethos/assistants/__init__.py",
-      "sha256": "9385745cf3da65d5f4c49179703e152a34cd471cd06f71dfa783be239d2a459e"
-    },
-    "assistants.skills.init": {
-      "path": "src/ethos/assistants/skills/__init__.py",
-      "sha256": "04699310ac4f4e3d4eec9e90ec9527bf1529c2474a27ac765445a52cf3e4573b"
-    },
-    "assistants.skills.capabilities": {
-      "path": "src/ethos/assistants/skills/capabilities.py",
-      "sha256": "6132c58c177afad55f889316f31d7e4a6f3e37dfb5b4828dc8ef6ccc75fa8435"
-    },
-    "assistants.skills.packages": {
-      "path": "src/ethos/assistants/skills/packages.py",
-      "sha256": "b911225d5b93d8fc013dea2190a096207c1013e8ac6a6305b29c2da1304a2399"
-    },
-    "assistants.skills.portfolio": {
-      "path": "src/ethos/assistants/skills/portfolio.py",
-      "sha256": "aa1da83dc81bffbac9e383ac0408c6373d956a36f7320325ed73d7368b54ea33"
-    },
-    "cli": {
-      "path": "src/ethos/cli.py",
-      "sha256": "e122070fd3127640d3ed78a2271cd50ad49f09dbad45f5bd9efa315be1e81b18"
-    },
-    "contracts.init": {
-      "path": "src/ethos/contracts/__init__.py",
-      "sha256": "a4206506ceca6e3a148a53ce0b63c61e9328ebc84ee08e1ce6fbf882c588308e"
-    },
-    "contracts.admission": {
-      "path": "src/ethos/contracts/admission.py",
-      "sha256": "ad1a84bb66df96551b28a5705276d52149652ef48cf9e7d50fc840f0681210fc"
-    },
-    "contracts.artifacts.init": {
-      "path": "src/ethos/contracts/artifacts/__init__.py",
-      "sha256": "bc25b418c868b4596369fb520b4756ce620d1f580f96d8c4436f0a64f87c6bc6"
-    },
-    "contracts.artifacts.topology": {
-      "path": "src/ethos/contracts/artifacts/topology.py",
-      "sha256": "93a91ed2af07a393fc296cde1abd6c053d23a6e0bd7f7d8dfa121bcf823347fb"
-    },
-    "contracts.artifacts.topology.toml": {
-      "path": "src/ethos/contracts/artifacts/topology.toml",
-      "sha256": "24dbcbe7e2ac3f37ff5c6275eb2812d600c809950b27623c039e330498208004"
-    },
-    "contracts.branch.init": {
-      "path": "src/ethos/contracts/branch/__init__.py",
-      "sha256": "54ebd191eb04d284c89d64fa1a4e370cdb530e19ceb62e11db55032b6c216093"
-    },
-    "contracts.branch.roles": {
-      "path": "src/ethos/contracts/branch/roles.py",
-      "sha256": "9cd145b0a095454ac4c038efc0674a5b1acca075a57f33a48d3b249ba650f9fe"
-    },
-    "contracts.coordination": {
-      "path": "src/ethos/contracts/coordination.py",
-      "sha256": "8dd45b01fcd06c78e311afd5bc83f594c7e959df5dad9debb6ce3ddf48428d4c"
-    },
-    "contracts.evidence.init": {
-      "path": "src/ethos/contracts/evidence/__init__.py",
-      "sha256": "24559fc0c6c739d38637a2f8c47069f6c2dd27591f16e3a0c1ae678076156ea3"
-    },
-    "contracts.evidence.external": {
-      "path": "src/ethos/contracts/evidence/external.py",
-      "sha256": "384692e6721a1431908a81a71e2c23f86a20cf67484ac658dc14868f54da9b89"
-    },
-    "contracts.gates": {
-      "path": "src/ethos/contracts/gates.py",
-      "sha256": "e04c233ba70378bde343d184f23b22d0e531e1cde144a5386ffd4062fdd6fdcc"
-    },
-    "contracts.openspec.init": {
-      "path": "src/ethos/contracts/openspec/__init__.py",
-      "sha256": "7f6c153b6f653784932d4e1ad714e4242909e1a1a7ea6dbb816caf22c2e8dd5e"
-    },
-    "contracts.openspec.models": {
-      "path": "src/ethos/contracts/openspec/models.py",
-      "sha256": "e700f73997a6cda24bdfa0bcd288a536a427acf162ea458f103baa54336eb9c0"
-    },
-    "contracts.paradigm.init": {
-      "path": "src/ethos/contracts/paradigm/__init__.py",
-      "sha256": "4a4c88223b8d289a1204d2d3e4d8c8f086813ac94c62a64c4c85caadbf6df58a"
-    },
-    "contracts.paradigm.declaration": {
-      "path": "src/ethos/contracts/paradigm/declaration.py",
-      "sha256": "ca624ba670b5779a9be607e28a6af4ec0bf81e40a2435db7f0b18d995e60d5e2"
-    },
-    "contracts.paradigm.licenses.toml": {
-      "path": "src/ethos/contracts/paradigm/licenses.toml",
-      "sha256": "5123525dd48887bede632053d0b4d64699301625643cf2abcbfc847a3abd857b"
-    },
-    "contracts.paradigm.paradigm.toml": {
-      "path": "src/ethos/contracts/paradigm/paradigm.toml",
-      "sha256": "73cc2264c575ebc4eaa1b744e39247d159a4174c2ece267e2c0e877407103a6f"
-    },
-    "contracts.plan": {
-      "path": "src/ethos/contracts/plan.py",
-      "sha256": "d22010532d71758615042211fc4f7213ba635c70a54bec053d81efc4ac52cb9c"
-    },
-    "contracts.policy.init": {
-      "path": "src/ethos/contracts/policy/__init__.py",
-      "sha256": "d42f7cce4827d32cc69962df0a4bfd06dfea0b826fcf5c70020a4dda4f9ddbf6"
-    },
-    "contracts.policy.cel": {
-      "path": "src/ethos/contracts/policy/cel.py",
-      "sha256": "2c3030ed56afd9f0ce2c675d97abe36959af6e0174a842e0109ec0dfdb516db2"
-    },
-    "contracts.proof.init": {
-      "path": "src/ethos/contracts/proof/__init__.py",
-      "sha256": "251e4815daa24a50aaba4de8c784e20e88163f44302bc1bb0ffde1f6b0a17300"
-    },
-    "contracts.proof.plan": {
-      "path": "src/ethos/contracts/proof/plan.py",
-      "sha256": "14a8e0616f9e7d89b4517ce9cd2418efccd9729deecac887423379dc3a2a0b9d"
-    },
-    "contracts.publication": {
-      "path": "src/ethos/contracts/publication.py",
-      "sha256": "c557c34ca5c6672c2b2a3bf9e11a25abc0f21ada0c5a90730197f42b7b2f6b76"
-    },
-    "contracts.retirement": {
-      "path": "src/ethos/contracts/retirement.py",
-      "sha256": "ccb9beca43aa7a0346614a5dbc7489b063206b6fea4471e37e6d511d5d7e3990"
-    },
-    "contracts.rules": {
-      "path": "src/ethos/contracts/rules.py",
-      "sha256": "c297e60ed40977792976e05f08c3e3dc6466f574f8ce338432f0dfb788f5b199"
-    },
-    "contracts.semantic": {
-      "path": "src/ethos/contracts/semantic.py",
-      "sha256": "47a0cf30c241aef11565347c49bd0aefcad7fc00f6f6b8c29ba06bf023d01ec0"
-    },
-    "contracts.skill.init": {
-      "path": "src/ethos/contracts/skill/__init__.py",
-      "sha256": "23ec1bad0054667cff76f8a9eb7eb5c7adbf5fc68ac30f68a94798bd7aad3536"
-    },
-    "contracts.skill.activation": {
-      "path": "src/ethos/contracts/skill/activation.py",
-      "sha256": "7df891af8d69d18c50fb879793898a29f83be5bb500de62d4d75b71c62b0e6dd"
-    },
-    "contracts.system.init": {
-      "path": "src/ethos/contracts/system/__init__.py",
-      "sha256": "d2b187d983964530783a79e97f02569b0157b572cf0314fdb00d801e3afd0b15"
-    },
-    "contracts.system.contracts": {
-      "path": "src/ethos/contracts/system/contracts.py",
-      "sha256": "9fc15f4d275b55e5f2eb666e1bbb3674815cfde31ded53315f6bfe5f29cc8e93"
-    },
-    "contracts.value": {
-      "path": "src/ethos/contracts/value.py",
-      "sha256": "3cd032f6df46720e0762996e01a0bcf01fc39ad0d9d0fa2e1802908a5ef0264e"
-    },
-    "contracts.verdict": {
-      "path": "src/ethos/contracts/verdict.py",
-      "sha256": "6f34ff26430cd4b7036d6881bef59d9bd6fb34b43cef2adbaca203269db7eaa0"
-    },
-    "domain.init": {
-      "path": "src/ethos/domain/__init__.py",
-      "sha256": "99ee3cc3eab661e1df6286daf438afb3804d39dbdf1bca9941f42a82f6a8e9d3"
-    },
-    "domain.adoption": {
-      "path": "src/ethos/domain/adoption.py",
-      "sha256": "6c42bb528648b887f5e187e1bd8f74b5142e5a04fdad09dad26bdafb28b42217"
-    },
-    "domain.execution": {
-      "path": "src/ethos/domain/execution.py",
-      "sha256": "4b7fbfc6d399732247a1c1094ba58ad7f71fad6010e194fd0ee0a61471b10b7c"
-    },
-    "domain.inspection": {
-      "path": "src/ethos/domain/inspection.py",
-      "sha256": "ab7f154220105cdd3113186474382e3acc4125d55498056bda38b83a55a00366"
-    },
-    "domain.land.init": {
-      "path": "src/ethos/domain/land/__init__.py",
-      "sha256": "8021062f5c6a1deaa54a2d9456b0bd166c7989922eb1f8258a9da836f9009d5c"
-    },
-    "domain.land.closeout": {
-      "path": "src/ethos/domain/land/closeout.py",
-      "sha256": "81f2fd7e26634706d794cf6d7b6984fd4e1f106e8c76d14890c2955bec854cf8"
-    },
-    "domain.land.operation": {
-      "path": "src/ethos/domain/land/operation.py",
-      "sha256": "68c8da69931031805e47afe41e89e2b2a65b1c1f89128d86e82212f7ad73083c"
-    },
-    "domain.plan": {
-      "path": "src/ethos/domain/plan.py",
-      "sha256": "a5acdb6bb6de894af28e1f13ff071c25dd99d5433d39de45ac7f1d107ed790d5"
-    },
-    "domain.prove": {
-      "path": "src/ethos/domain/prove.py",
-      "sha256": "1d16cada457dbbac06c775cba11abd3d340bb5728af45c98922ec796648f0514"
-    },
-    "domain.publication.init": {
-      "path": "src/ethos/domain/publication/__init__.py",
-      "sha256": "61c36306212487096d37551665fb891a5f8fdac4a19cde7a49f6d57cbbd5eaf5"
-    },
-    "domain.publication.fallback": {
-      "path": "src/ethos/domain/publication/fallback.py",
-      "sha256": "7e3a56c1efada0bebe8199e9bb18ea86ca5d4db8a63d91249a618bea07c3017e"
-    },
-    "domain.publication.inspection": {
-      "path": "src/ethos/domain/publication/inspection.py",
-      "sha256": "516f58c23f513355a3d0ad0ba97abe6df5703cc83ef8f5ff4d36116f4f8c7e0f"
-    },
-    "domain.publication.operation": {
-      "path": "src/ethos/domain/publication/operation.py",
-      "sha256": "30e3bbd6a27d9d678229ea04e01e0bf6febf62c58512235beaf9604f6761c41a"
-    },
-    "domain.publication.request-gaps": {
-      "path": "src/ethos/domain/publication/request_gaps.py",
-      "sha256": "e9ac2a215021194fc4bc69be67d9eb8f51e3b74f38d00006d5aba3964ed2ada6"
-    },
-    "domain.quality.init": {
-      "path": "src/ethos/domain/quality/__init__.py",
-      "sha256": "a11d7f897e5c0b2e137796766f16aed7a5c816ee738556ceda9aeb0da9b98e37"
-    },
-    "domain.quality.nox": {
-      "path": "src/ethos/domain/quality/nox.py",
-      "sha256": "d017632b71a404eb43c1fc061e31608c08d70006032b148c23d871e19cc9a372"
-    },
-    "domain.source-budget.init": {
-      "path": "src/ethos/domain/source_budget/__init__.py",
-      "sha256": "e7db7258f7a7aa2a7c910b73ae9ffd14ef1667fa2b16c3d15995976ff36085d6"
-    },
-    "domain.source-budget.measurement": {
-      "path": "src/ethos/domain/source_budget/measurement.py",
-      "sha256": "1c3c950289a3ee16cceaf2297c616e12321b6941d46881eef372ff09759d1f49"
-    },
-    "domain.status": {
-      "path": "src/ethos/domain/status.py",
-      "sha256": "817c9452ae5f14683fbff56c9c2373137cfef3a5c134aa4cb020a0b79ac998ad"
-    },
-    "measure": {
-      "path": "src/ethos/measure.py",
-      "sha256": "8594774eed9ae8f620424e17aaf5bb72b443bd6be3773430ca8cda76e1724230"
-    },
-    "normalization.init": {
-      "path": "src/ethos/normalization/__init__.py",
-      "sha256": "604df7e0da16908d560e2516dacc40b09d0d3b1952b5a4c973d2faaf0263b47f"
-    },
-    "normalization.coercion": {
-      "path": "src/ethos/normalization/coercion.py",
-      "sha256": "3d162dd268be84b7a0b30cab739bec7ef8aef1a4f84b76dcf3fd5838f2fa44d0"
-    },
-    "repository.init": {
-      "path": "src/ethos/repository/__init__.py",
-      "sha256": "2590d68a76f5dcaf1a25c6da7a92466eea5b16198656d5e301bb27f8f465b160"
-    },
-    "repository.adoption.init": {
-      "path": "src/ethos/repository/adoption/__init__.py",
-      "sha256": "19e1bc3395fdb7d03a49d3bd71bdfece0b1b6e79ddb23f0004c93f9800c6407f"
-    },
-    "repository.adoption.fleet": {
-      "path": "src/ethos/repository/adoption/fleet.py",
-      "sha256": "497c2c87906542280b24fbfe0e357ef6eec6acbdd91cc50e0b4704be75683db9"
-    },
-    "repository.audit": {
-      "path": "src/ethos/repository/audit.py",
-      "sha256": "b5edc7cbf8d3609d6d7e1aea64a36133516169c1ddb56871bff42ca01832c1ee"
-    },
-    "repository.context": {
-      "path": "src/ethos/repository/context.py",
-      "sha256": "474a1d7af9f5457cb956e304a1947fd85b7fba168712e4f5f22106460c163d77"
-    },
-    "repository.design.init": {
-      "path": "src/ethos/repository/design/__init__.py",
-      "sha256": "e40b6fa9645468d282741ad8d90a7ad3a5b8cb477bcc697ce2e2aa1e6206b8f4"
-    },
-    "repository.design.integrity": {
-      "path": "src/ethos/repository/design/integrity.py",
-      "sha256": "382809054dc86574bfc25ad22033b8a9897e76986a28e4519a60d938c261462b"
-    },
-    "repository.openspec.init": {
-      "path": "src/ethos/repository/openspec/__init__.py",
-      "sha256": "1616ab5e03ea0662de70ca77eed31d579c8b3a5b710252bc4c58f4f29fee109f"
-    },
-    "repository.openspec.audit": {
-      "path": "src/ethos/repository/openspec/audit.py",
-      "sha256": "e8d71e5960417ddd3e233eb96b96fc983f63d45f673d1aa68351110a5f0d0d05"
-    },
-    "repository.openspec.identifiers": {
-      "path": "src/ethos/repository/openspec/identifiers.py",
-      "sha256": "ccd9f4623c83aea90bcaf3c0fb4645b39d7cb0b7d7334d8036e74d0e78fe43ac"
-    },
-    "repository.openspec.template-outline": {
-      "path": "src/ethos/repository/openspec/template_outline.py",
-      "sha256": "956053918462d21391e10541128c7cf7f34355d471be23b9d65d34152ca18696"
-    },
-    "repository.paradigm.init": {
-      "path": "src/ethos/repository/paradigm/__init__.py",
-      "sha256": "d875814bc8fdc62498689a1889ff18162a31e2d8c354fc943d64480080124394"
-    },
-    "repository.paradigm.documents": {
-      "path": "src/ethos/repository/paradigm/documents.py",
-      "sha256": "b9957eb9567204c06ad3ae8f86662bd639de184124ecb54290039bc2533d63f2"
-    },
-    "repository.paradigm.gap": {
-      "path": "src/ethos/repository/paradigm/gap.py",
-      "sha256": "5adb5872242ee493718449ab276e933aa3bcb67a4ef6ac79f9afab3cb1be2cc4"
-    },
-    "repository.paradigm.license": {
-      "path": "src/ethos/repository/paradigm/license.py",
-      "sha256": "c63fd8ed6321e79089ce093ded3a8c0bc427ebedc4475a79bf8d4ad6c07597fb"
-    },
-    "repository.paradigm.names": {
-      "path": "src/ethos/repository/paradigm/names.py",
-      "sha256": "19036d907e25d6dae317ba98459376162b3c0e38ac31afb79e5fca13f9350190"
-    },
-    "repository.paradigm.openspec": {
-      "path": "src/ethos/repository/paradigm/openspec.py",
-      "sha256": "48ac1330a5223a19473e0b2162e42809064211036e80bfd5db24faddb3ad1551"
-    },
-    "repository.paradigm.orchestration": {
-      "path": "src/ethos/repository/paradigm/orchestration.py",
-      "sha256": "19ecb844dbf26a1abe9baac7b229b136ecba24e6193c4199b5e3a929997f8453"
-    },
-    "repository.paradigm.parameters": {
-      "path": "src/ethos/repository/paradigm/parameters.py",
-      "sha256": "b16e1ab0584acc325a297fa301efed961d76a436409e2885e723fec9582bdf44"
-    },
-    "repository.paradigm.pipelines": {
-      "path": "src/ethos/repository/paradigm/pipelines.py",
-      "sha256": "7d2c6e395ebb04b68483bb3403ce6747b4aa63463371f2073cb090b7334b1995"
-    },
-    "repository.paradigm.repair": {
-      "path": "src/ethos/repository/paradigm/repair.py",
-      "sha256": "423dba62bcceef92bb2400258e67a8b7dabb2126bcfceeed0b1da3dd5b741e87"
-    },
-    "repository.paradigm.report": {
-      "path": "src/ethos/repository/paradigm/report.py",
-      "sha256": "8374b8796928daf7ecc77ddb97c7176d2c3c38aee639e945f4c55d04ad1a14f1"
-    },
-    "repository.paradigm.scripts": {
-      "path": "src/ethos/repository/paradigm/scripts.py",
-      "sha256": "523433612502664b447eae22d800c21ccd841eb1df9b33b4911fbd857e4ae6d1"
-    },
-    "repository.paradigm.size": {
-      "path": "src/ethos/repository/paradigm/size.py",
-      "sha256": "82f3391b6631dc7bb3ac1df4b5a8f7a47e2f8cb964f47227eadf6f734eda44ce"
-    },
-    "repository.paradigm.toolchain": {
-      "path": "src/ethos/repository/paradigm/toolchain.py",
-      "sha256": "798c35afa026d290890cb59027ad9a528c7d7f2d8e088f58da0cb70d4fd9129f"
-    },
-    "repository.paradigm.workspace": {
-      "path": "src/ethos/repository/paradigm/workspace.py",
-      "sha256": "2b3e8a4d0929788ceeb93e5fb97d5b2ca71bdf1c6bf1a02e24f232f3d04ac37a"
-    },
-    "repository.policy.init": {
-      "path": "src/ethos/repository/policy/__init__.py",
-      "sha256": "f2c5da66b1de1610b3a081a21b0e3722fd27204056a2fc9f9c2b23e64226e50d"
-    },
-    "repository.policy.artifact-entrypoints": {
-      "path": "src/ethos/repository/policy/artifact_entrypoints.py",
-      "sha256": "39cda6c5c4b259786a7da684fc0f608abd74cde39d10d801dec7642820ff418c"
-    },
-    "repository.policy.artifacts": {
-      "path": "src/ethos/repository/policy/artifacts.py",
-      "sha256": "e3e066f8f27d63ba4a5bd40494245c724df427ce88aa82ff92694d84a539761c"
-    },
-    "repository.policy.boundary.init": {
-      "path": "src/ethos/repository/policy/boundary/__init__.py",
-      "sha256": "38eeb4e4fb8597c5f72eca9879270ea95227f159ffa4db0ab5140d73350f1a2c"
-    },
-    "repository.policy.boundary.catalog": {
-      "path": "src/ethos/repository/policy/boundary/catalog.py",
-      "sha256": "470fc92a6c207c88fd0d8a19e703aeaf80223a67819629526b6652875674b82b"
-    },
-    "repository.policy.boundary.product": {
-      "path": "src/ethos/repository/policy/boundary/product.py",
-      "sha256": "919764f43593929707d278c7102573470a69f5e94e0e23b8ad4d2f498078f486"
-    },
-    "repository.policy.code-subjects": {
-      "path": "src/ethos/repository/policy/code_subjects.py",
-      "sha256": "584280134650eba7a45cc11d8b7ef31692145116b2d69deddb35fe56025b2ab9"
-    },
-    "repository.policy.commit": {
-      "path": "src/ethos/repository/policy/commit.py",
-      "sha256": "76a19beb12e7440b60475f80286be0f5d5e45ae0d30361ea6814f465266b2eb3"
-    },
-    "repository.policy.docstrings.init": {
-      "path": "src/ethos/repository/policy/docstrings/__init__.py",
-      "sha256": "0ad7c19042d8ca312a167caa07883f0f64ddec03023ee9a4895d928e581e4eab"
-    },
-    "repository.policy.docstrings.coverage": {
-      "path": "src/ethos/repository/policy/docstrings/coverage.py",
-      "sha256": "619ac651a30af65365838ba5e6ec06deaa3d2da0f0f06adeef572dd04c2fa8bd"
-    },
-    "repository.policy.docstrings.style": {
-      "path": "src/ethos/repository/policy/docstrings/style.py",
-      "sha256": "ea5d768e5cd203e71dd807b2ed6045c9a55b955e4b4712e428252a2c1a8d8cf1"
-    },
-    "repository.policy.gates": {
-      "path": "src/ethos/repository/policy/gates.py",
-      "sha256": "79530142774a35fb413637fca35edabcffa8fac461039b415b1a64cb5e5be8c9"
-    },
-    "repository.policy.layout.init": {
-      "path": "src/ethos/repository/policy/layout/__init__.py",
-      "sha256": "82eefcf49a0892d38eb1037220d574e189877ace0508a600c4db7b91c9548f08"
-    },
-    "repository.policy.layout.facades": {
-      "path": "src/ethos/repository/policy/layout/facades.py",
-      "sha256": "a20fcdf782ea66c5be4f48953ba47e25c39af7bbd0e9751f88f18a087046babc"
-    },
-    "repository.policy.layout.imports": {
-      "path": "src/ethos/repository/policy/layout/imports.py",
-      "sha256": "606244cb62086245690c8dced4e48f2cbd50b2b9965a603d69ab6a11356500fa"
-    },
-    "repository.policy.layout.naming": {
-      "path": "src/ethos/repository/policy/layout/naming.py",
-      "sha256": "ea50c3c0ddc72518096f7d1da7d88e8e33eb351becfe1bd63c84fac960b9722f"
-    },
-    "repository.policy.layout.policy": {
-      "path": "src/ethos/repository/policy/layout/policy.py",
-      "sha256": "2007947698e7ffb1b63143d9187592f528c9704b0adf8aaaa5cbf1d92f986484"
-    },
-    "repository.policy.layout.report": {
-      "path": "src/ethos/repository/policy/layout/report.py",
-      "sha256": "d6120bb623a2faf2df699363086d13fad0f5b6b7761f4df2ef984e37c1ab7cff"
-    },
-    "repository.policy.projections": {
-      "path": "src/ethos/repository/policy/projections.py",
-      "sha256": "40a301bb64bbd8a59f784acd513c5174f010dba102391b298a086c682a231b3b"
-    },
-    "repository.policy.quality.init": {
-      "path": "src/ethos/repository/policy/quality/__init__.py",
-      "sha256": "8af9c37e9b7aa1e0edf8d9ee07c9b9f0be12f13460135517ebe9caedf9e375ab"
-    },
-    "repository.policy.quality.dependency-acceptance": {
-      "path": "src/ethos/repository/policy/quality/dependency_acceptance.py",
-      "sha256": "89d9bfaa09a66c2475a204d0df0838a6738590bd8e4acec0cfa3b38478f514c5"
-    },
-    "repository.policy.quality.format-selection": {
-      "path": "src/ethos/repository/policy/quality/format_selection.py",
-      "sha256": "6e18f553ef6beb1218e987e46c3a4c494edc4012acbd4b29282d0d891d67d1b1"
-    },
-    "repository.policy.quality.formats": {
-      "path": "src/ethos/repository/policy/quality/formats.py",
-      "sha256": "eaaae21cce01ebfa0ee07b051f100a83b2970e277e8e38552fa570fe0446b004"
-    },
-    "repository.policy.quality.gate-composition": {
-      "path": "src/ethos/repository/policy/quality/gate_composition.py",
-      "sha256": "686bde808419f9922545ee6fda7eb62c950cb54e779f6a0dea993677fb2b79d7"
-    },
-    "repository.policy.quality.obligations": {
-      "path": "src/ethos/repository/policy/quality/obligations.py",
-      "sha256": "a4787f905dc75fc36bc0631632a94eb8cdcc45b54c1b5a4a028c10a6b69b36d6"
-    },
-    "repository.policy.quality.pytest": {
-      "path": "src/ethos/repository/policy/quality/pytest.py",
-      "sha256": "f1b28b15cdbf42a41a0445ce06b198322f60b89225662d5f8f6d2145c7e4cdde"
-    },
-    "repository.policy.quality.source-budget": {
-      "path": "src/ethos/repository/policy/quality/source_budget.py",
-      "sha256": "f78d457f9f9326a5b911a123e5dfbf704e398f74c5b896c8cfe2a78a56fde52e"
-    },
-    "repository.policy.quality.sources": {
-      "path": "src/ethos/repository/policy/quality/sources.py",
-      "sha256": "b53e521147af85dc324995ed600075266887d9141c5f2d37493725bae8f67324"
-    },
-    "repository.policy.quality.tool-configuration": {
-      "path": "src/ethos/repository/policy/quality/tool_configuration.py",
-      "sha256": "b709e4094a4b5073d1ef58745a1b69bb908cfa38d37cdf51d058ac6206d8682c"
-    },
-    "repository.policy.quality.upstream-fixes": {
-      "path": "src/ethos/repository/policy/quality/upstream_fixes.py",
-      "sha256": "b01a69c331aeb92e318523fcf6dea4d3e1347dc83c4ce9f83079eb0d36bbf8eb"
-    },
-    "repository.policy.quality-reports": {
-      "path": "src/ethos/repository/policy/quality_reports.py",
-      "sha256": "0b4f6b82a49c9db39fd7130dc38c411218ec071f1858d86dec9dd827ccc4cd11"
-    },
-    "repository.policy.references.init": {
-      "path": "src/ethos/repository/policy/references/__init__.py",
-      "sha256": "b16676a45bc598e087481021435e6639a91e0849daadac59abcf41ae20a4edd2"
-    },
-    "repository.policy.references.carriers": {
-      "path": "src/ethos/repository/policy/references/carriers.py",
-      "sha256": "fd8c83b133f0831683b8e2e7db0c4d5a0affee2c64f7fff241876d4c97f9ea37"
-    },
-    "repository.policy.references.closure": {
-      "path": "src/ethos/repository/policy/references/closure.py",
-      "sha256": "619fc46cb8de6498c32b7bae37bb5afc7fa6749b1b3d5114e4892cf427af63b0"
-    },
-    "repository.policy.references.commands": {
-      "path": "src/ethos/repository/policy/references/commands.py",
-      "sha256": "7e4ab4b491d1ab186bdb29c19f958102b1b33f656ae41d6e243038798f6653cb"
-    },
-    "repository.policy.references.declarations": {
-      "path": "src/ethos/repository/policy/references/declarations.py",
-      "sha256": "a985abd8215d8358fcaf02cbf3404cbe1911a47d84394fbf35e34db394c2b5e3"
-    },
-    "repository.policy.references.manifests": {
-      "path": "src/ethos/repository/policy/references/manifests.py",
-      "sha256": "e4873d15cbcecb0d95a43c5f3f1f304e362a2423c5b796174092a3a19ab0d634"
-    },
-    "repository.policy.references.markdown": {
-      "path": "src/ethos/repository/policy/references/markdown.py",
-      "sha256": "5223da330ddaae99570de2d798994ce019cf64e831086b133d3c4f5829c7ed85"
-    },
-    "repository.policy.references.observation": {
-      "path": "src/ethos/repository/policy/references/observation.py",
-      "sha256": "dc9917a9ef01ed7f8e7e065b6773b3d8809a88da0a0ad687ef4e9878fc23d02d"
-    },
-    "repository.policy.references.python-syntax": {
-      "path": "src/ethos/repository/policy/references/python_syntax.py",
-      "sha256": "1298793485104a0d2d2d03acfc988fbf388897b6c51ffb4882c9af80dc46f9ec"
-    },
-    "repository.policy.references.shell-vocabulary": {
-      "path": "src/ethos/repository/policy/references/shell_vocabulary.py",
-      "sha256": "686139754c95c8d439413d289828d3108b01828022f1702423c69f9cc6b9d4de"
-    },
-    "repository.policy.rules.init": {
-      "path": "src/ethos/repository/policy/rules/__init__.py",
-      "sha256": "6e686b994d1438da915505bbbc29cbb42e07155978446307129f468d62e74d8a"
-    },
-    "repository.policy.rules.compile": {
-      "path": "src/ethos/repository/policy/rules/compile.py",
-      "sha256": "f985ed8bda5bfd8f0965901902cbb9f543ba5e472be37d41fc62deea78ac3b83"
-    },
-    "repository.policy.rules.config": {
-      "path": "src/ethos/repository/policy/rules/config.py",
-      "sha256": "96abd8cdef25851b68995639a008cec0640dfaf11d740c33a380262f9ce9f1aa"
-    },
-    "repository.policy.schema": {
-      "path": "src/ethos/repository/policy/schema.py",
-      "sha256": "1cdc591259e81edbfdf5d946473d796134dcb96b024cbc24a601cec78725e6ab"
-    },
-    "repository.policy.surfaces": {
-      "path": "src/ethos/repository/policy/surfaces.py",
-      "sha256": "ead80cba8e046d1547c965cffd69e5c7190063a7d9abe7ccbb3e9307a4c75564"
-    },
-    "repository.profile": {
-      "path": "src/ethos/repository/profile.py",
-      "sha256": "9ccca4724a91e5fc9443e3b6f4bf147cbde49160e391b6e1acf9c334465951c9"
-    },
-    "repository.registry.init": {
-      "path": "src/ethos/repository/registry/__init__.py",
-      "sha256": "fca750bcb16f1c487cdc7da19fb6a44741ffebe8e7f990d23d5d47329be99e42"
-    },
-    "repository.registry.docs.init": {
-      "path": "src/ethos/repository/registry/docs/__init__.py",
-      "sha256": "f3d77bb9e5ba39afd1ffe511fdb00bf3cabc3d3d0532effd01b955cdebd373a5"
-    },
-    "repository.registry.docs.decisions": {
-      "path": "src/ethos/repository/registry/docs/decisions.py",
-      "sha256": "c89838c9209ba06c4998cfcdba44c80c79dde5783556feca550e2447e70dd3cf"
-    },
-    "repository.registry.docs.health": {
-      "path": "src/ethos/repository/registry/docs/health.py",
-      "sha256": "59786d6ac0323d12517504920fec201601201452f9a919366882826a1218a448"
-    },
-    "repository.registry.docs.links": {
-      "path": "src/ethos/repository/registry/docs/links.py",
-      "sha256": "4557a47be3de6fd68056b99ac8314736db4e361c768515907a68387020f00e12"
-    },
-    "repository.registry.docs.registry": {
-      "path": "src/ethos/repository/registry/docs/registry.py",
-      "sha256": "e2e4fa14007cdb527b433496e900dc0a432a8f6340f9a4322b24f6d4a4e98290"
-    },
-    "repository.release.init": {
-      "path": "src/ethos/repository/release/__init__.py",
-      "sha256": "3edd2bf029818e81eea65094def86e204183d26d01631afad6d776d50fcb6589"
-    },
-    "repository.release.admission": {
-      "path": "src/ethos/repository/release/admission.py",
-      "sha256": "816e4360d61c7705c9ea7ae2651cb323611d03eac382d5d32996a52e76616693"
-    },
-    "repository.release.changelog": {
-      "path": "src/ethos/repository/release/changelog.py",
-      "sha256": "7dad89201fe1842a13f331c9e1dafcb56e9056b3b0b178f9e41a2a5e8812e0e0"
-    },
-    "repository.release.configuration": {
-      "path": "src/ethos/repository/release/configuration.py",
-      "sha256": "e8c5a0876768a3823db24607e724f5b14a191578693e7ef5d89c6bcfad696b46"
-    },
-    "repository.release.identity": {
-      "path": "src/ethos/repository/release/identity.py",
-      "sha256": "336daa105bc4b95b532182e3d8bdd81eb540463673961896abf29d6358926ff7"
-    },
-    "repository.release.publication": {
-      "path": "src/ethos/repository/release/publication.py",
-      "sha256": "ac329ec56b2952520e917949e9384ff81759e49b3aa0eb3ca6b2fc7981f8200e"
-    },
-    "repository.release.resources": {
-      "path": "src/ethos/repository/release/resources.py",
-      "sha256": "d14a164483fa75522bea383bdeadf50f3e9a345e9efdb56a77184fc2f52d70df"
-    },
-    "resources.skills.ethos-repository-work.skill.md": {
-      "path": "src/ethos/resources/skills/ethos-repository-work/SKILL.md",
-      "sha256": "b91d0e97d8df6305350a187d0fb1f8ac2602265decd0f1d4d6e8baef2cf01014"
-    },
-    "result": {
-      "path": "src/ethos/result.py",
-      "sha256": "dd9702887e9cfd53a6b6cb78b689d0b729ca10152a4f0053bcaa5f43ef3d07fa"
-    },
-    "surface.init": {
-      "path": "src/ethos/surface/__init__.py",
-      "sha256": "57802544c42469f2d5f14055f4c2a419436dc3b4735b53abef06f2922944cd02"
-    },
-    "surface.cli.init": {
-      "path": "src/ethos/surface/cli/__init__.py",
-      "sha256": "95d28434802c19283944a0b6b829703598a56e5ed642abcad5cc0a618a890818"
-    },
-    "surface.cli.application": {
-      "path": "src/ethos/surface/cli/application.py",
-      "sha256": "e42fc439117dea43a4a3d021eca4da69f93dd87f6c608008f2c563c5b9b9bb69"
-    },
-    "surface.cli.hook.init": {
-      "path": "src/ethos/surface/cli/hook/__init__.py",
-      "sha256": "74cc7703c438c155cc93b5ab99536f9efa31970d7513842f392386155e2aaeaf"
-    },
-    "surface.cli.hook.commands": {
-      "path": "src/ethos/surface/cli/hook/commands.py",
-      "sha256": "e709530f181e820dec5c5b4a8085489a781d420c17a5872fbd4c3672003fa8e8"
-    },
-    "surface.cli.lane.init": {
-      "path": "src/ethos/surface/cli/lane/__init__.py",
-      "sha256": "318fbad22ededbd4e444b1c1b036235bca1a19a961252853c819e9ca5bd18fb7"
-    },
-    "surface.cli.lane.commit-signer": {
-      "path": "src/ethos/surface/cli/lane/commit_signer.py",
-      "sha256": "4ac72c46562d9ce6c6a11bf6d6a52b5c14c29e273e4cca77192dd466d74b10b5"
-    },
-    "surface.cli.lane.formatting": {
-      "path": "src/ethos/surface/cli/lane/formatting.py",
-      "sha256": "2cc494e6d9c8f69d5be9b69c0bbc4c819107d1da244cb15805d59463043a50dc"
-    },
-    "surface.cli.lane.handoff": {
-      "path": "src/ethos/surface/cli/lane/handoff.py",
-      "sha256": "f1862f6509897abfa1b5db2ac8e37c1bc4d59ded591beaf1207da3846b1bf53f"
-    },
-    "surface.cli.lane.lease": {
-      "path": "src/ethos/surface/cli/lane/lease.py",
-      "sha256": "650a0ae34c4219f8d962891972769d8e1862fefde065f4b4c0c4056721bf9b9b"
-    },
-    "surface.cli.lane.lifecycle": {
-      "path": "src/ethos/surface/cli/lane/lifecycle.py",
-      "sha256": "116a0c027f9f53cea871f440c8a47a39a5e27718662460d30d8aabbee8ce9e38"
-    },
-    "surface.cli.lane.paradigm-repair": {
-      "path": "src/ethos/surface/cli/lane/paradigm_repair.py",
-      "sha256": "19191fb1c27fe071c64de454a7aa80a2f56a48ecca5a16279606f8f961142985"
-    },
-    "surface.cli.lane.projections": {
-      "path": "src/ethos/surface/cli/lane/projections.py",
-      "sha256": "bdef01ec3b93955fca937f6f7eff2252e7021c7fa8528968bd548095fcd0d355"
-    },
-    "surface.cli.lane.retirement": {
-      "path": "src/ethos/surface/cli/lane/retirement.py",
-      "sha256": "803ed7a9779beea5cef7bc7499f57dd41d04d1ff563ea2598d3eb9f0d158d12a"
-    },
-    "surface.cli.output": {
-      "path": "src/ethos/surface/cli/output.py",
-      "sha256": "01b8f2773eacf6a54859f4e7f611ae037ea7bd353ebb39706c47064208ec55df"
-    },
-    "surface.cli.proof.init": {
-      "path": "src/ethos/surface/cli/proof/__init__.py",
-      "sha256": "d297998d4dd2e664f1bdd5cc459f282f0c706e84d6fce93b3e3d749ea8c3fb0a"
-    },
-    "surface.cli.proof.host": {
-      "path": "src/ethos/surface/cli/proof/host.py",
-      "sha256": "bee4c12955231cefc94be2373accd4b897550d033ac915b3d3e36dbc78b0bedc"
-    },
-    "surface.cli.proof.report": {
-      "path": "src/ethos/surface/cli/proof/report.py",
-      "sha256": "11ba78da40628c7d356f0b75e6dae107807cffea365d5c0405096a095643ae2d"
-    },
-    "surface.cli.root.init": {
-      "path": "src/ethos/surface/cli/root/__init__.py",
-      "sha256": "ee80e961bf556602d65abdad45a062e58696a020d5677abe4eaa72736d8c4a70"
-    },
-    "surface.cli.root.adoption": {
-      "path": "src/ethos/surface/cli/root/adoption.py",
-      "sha256": "c628fe80f1a4139399f4de0df382c8c5adb2d42d25530496802985d55ba22eb7"
-    },
-    "surface.cli.root.attestation": {
-      "path": "src/ethos/surface/cli/root/attestation.py",
-      "sha256": "59ccbdb9f10a624bb0f35a829059f48fc582bc72ec3afa0077bbfefffd9d45ee"
-    },
-    "surface.cli.root.inspection": {
-      "path": "src/ethos/surface/cli/root/inspection.py",
-      "sha256": "78053e70e614205df5b0ec83b7fbf4fc5a83a7b84326047b31e011d67746b4b8"
-    },
-    "surface.cli.root.land": {
-      "path": "src/ethos/surface/cli/root/land.py",
-      "sha256": "48ddd2902d63d4cc72ae8b6185c6df0e8ae4e60192a7548f43b5761f0fbe32e9"
-    },
-    "surface.cli.root.mcp": {
-      "path": "src/ethos/surface/cli/root/mcp.py",
-      "sha256": "1ee0b7073e6d1a67a8dcf1b11881ac0998b5556e4b19daa134bbbbfad66c8b78"
-    },
-    "surface.cli.root.planning": {
-      "path": "src/ethos/surface/cli/root/planning.py",
-      "sha256": "bf421cc47a2ac51d15ff78015d2a9c167a8d5ef5f3e6c349f71e7c336d22b32f"
-    },
-    "surface.cli.root.proof": {
-      "path": "src/ethos/surface/cli/root/proof.py",
-      "sha256": "04bfa7ddbad38290276f8be0ca73fa00a5e9eda9256397a06017494cd66c74cc"
-    },
-    "surface.cli.root.publish": {
-      "path": "src/ethos/surface/cli/root/publish.py",
-      "sha256": "c4a5c513bc80347d9f1732cd049abe3f2a1cb048d40d45539890092517a00d16"
-    },
-    "surface.cli.root.reference": {
-      "path": "src/ethos/surface/cli/root/reference.py",
-      "sha256": "d28e2bce9f098b8521e7ec3e69472a15115ef0eeb2f041539f8d30e35702c1b0"
-    },
-    "surface.cli.root-binding": {
-      "path": "src/ethos/surface/cli/root_binding.py",
-      "sha256": "61dc64d142578736ca74f49d8f2c19a507563f47057e958e6b04069885fb5891"
-    },
-    "surface.cli.version": {
-      "path": "src/ethos/surface/cli/version.py",
-      "sha256": "00132c492f088b856ccbf81d50566482cdfc296c42882db57ce0c1bd23b93b1e"
-    },
-    "surface.mcp.init": {
-      "path": "src/ethos/surface/mcp/__init__.py",
-      "sha256": "1864a78685866b281cf111d3c4c824ab1e248c27b394da20d694608bf1e51bfc"
-    },
-    "surface.mcp.server": {
-      "path": "src/ethos/surface/mcp/server.py",
-      "sha256": "5b7242cc991edd961cf331f30be5e79ad594258621c360f526238ed601c6a7af"
-    },
-    "surface.pytest.init": {
-      "path": "src/ethos/surface/pytest/__init__.py",
-      "sha256": "ed924850fb16ff0cdf9c87d8706a4018a8a12e9d685d134205232c7e945bcc0c"
-    },
-    "surface.pytest.plugin": {
-      "path": "src/ethos/surface/pytest/plugin.py",
-      "sha256": "d3e4643d8ba175df406e95e324670217658530a271799bde3b4071863d6f631f"
-    },
-    "system.readme.md": {
-      "path": "system/README.md",
-      "sha256": "ef652dbefaa2e6be8f23010bbcabcab849abde146bca3d10115ba63138e6913a"
-    },
-    "system.axioms.md": {
-      "path": "system/axioms.md",
-      "sha256": "6f2780f438029a6e053560362ff2c8bfde428c530952764542f995938ac61018"
-    },
-    "system.gates.toml": {
-      "path": "system/gates.toml",
-      "sha256": "faf84e499cfe2c6c50b91251972f19208ac6589f8b0507f37ff02c53decc6e1f"
-    },
-    "system.projections.readme.md": {
-      "path": "system/projections/README.md",
-      "sha256": "16b0e63a3aea14a05fd163b0395b2345336ecd38d8c5a9b16e63fdc14cf6b602"
-    },
-    "system.repository-gates.toml": {
-      "path": "system/repository-gates.toml",
-      "sha256": "419537360978ab36ab5e1f53a29cf0c0a36fe7f165733b606c9b01a86d0ebe64"
-    },
-    "system.schemas.contracts.readme.md": {
-      "path": "system/schemas/contracts/README.md",
-      "sha256": "3c37a9539c6f709d3a8d05a3aa4222916f76ad883c8bf75647ce9f6210fe093a"
-    },
-    "system.schemas.contracts.surfaces.schema.json": {
-      "path": "system/schemas/contracts/surfaces.schema.json",
-      "sha256": "af8245378b80ef574def5c53e9bdebf6acf634fd0125f258d1b0de69f8811eaa"
-    },
-    "system.schemas.kernel.assistant-projection.schema.json": {
-      "path": "system/schemas/kernel/assistant-projection.schema.json",
-      "sha256": "697973e59e17683039e3c558d9fd5cf559365450b626fb69ad04246b61101059"
-    },
-    "system.schemas.kernel.attestation.schema.json": {
-      "path": "system/schemas/kernel/attestation.schema.json",
-      "sha256": "66b457a05f4f9498aea74ad63d490ae99dd71593ce591dc9baf888e110066c31"
-    },
-    "system.schemas.kernel.commitment.schema.json": {
-      "path": "system/schemas/kernel/commitment.schema.json",
-      "sha256": "cc479321ea72997408d8d3fe9aaf6fe79dab48c27872d62a91a837b44e9711da"
-    },
-    "system.schemas.kernel.docs-registry.schema.json": {
-      "path": "system/schemas/kernel/docs-registry.schema.json",
-      "sha256": "2bb1a17c8a4e3bb60cff7b4665c2231acb6627994b2736ebd514c9d8c1abd79b"
-    },
-    "system.schemas.kernel.facts.schema.json": {
-      "path": "system/schemas/kernel/facts.schema.json",
-      "sha256": "1517fe1ebbc79af6e86e7983e7128d873c57f7865d220b7fe20424e4ec24475c"
-    },
-    "system.schemas.kernel.gate.schema.json": {
-      "path": "system/schemas/kernel/gate.schema.json",
-      "sha256": "5f10a3e6fd9f40377ea14618c0af2c9e69d646adfebb70880a3ec76de9485377"
-    },
-    "system.schemas.kernel.handoff-acknowledgement.schema.json": {
-      "path": "system/schemas/kernel/handoff-acknowledgement.schema.json",
-      "sha256": "e571c05e862c115b5bf6993bf3cf358a3e427ebd3d6beb1e8595cec03124b00d"
-    },
-    "system.schemas.kernel.handoff-package.schema.json": {
-      "path": "system/schemas/kernel/handoff-package.schema.json",
-      "sha256": "b28ef14b94535f7d47d1a1b34334604c5b3e36ab28dfc8ed7a455d624cccb84d"
-    },
-    "system.schemas.kernel.host-capability.schema.json": {
-      "path": "system/schemas/kernel/host-capability.schema.json",
-      "sha256": "e6a33d7cad4c9d7db1751a79c3cd65b1c9176d67dba61aa5a09b61b9eb669559"
-    },
-    "system.schemas.kernel.independent-verification-receipt.schema.json": {
-      "path": "system/schemas/kernel/independent-verification-receipt.schema.json",
-      "sha256": "32fe185882fc6e5d13e360d66fc5cef4fbd5133e3e38e2101bfce62c568db9b9"
-    },
-    "system.schemas.kernel.lane-lease.schema.json": {
-      "path": "system/schemas/kernel/lane-lease.schema.json",
-      "sha256": "a8821d1b66cb2a3b441c0f3eb14aae99b4093e41e9b863ef02b46233923ac777"
-    },
-    "system.schemas.kernel.mutation-decision.schema.json": {
-      "path": "system/schemas/kernel/mutation-decision.schema.json",
-      "sha256": "babb831970196f16495cf5165c261333b0a01921cd073c52027cbd4e47ef99ec"
-    },
-    "system.schemas.kernel.provenance.schema.json": {
-      "path": "system/schemas/kernel/provenance.schema.json",
-      "sha256": "f9b6446591bafbabc8333e89df0207fd8eb49a1bfd3f9bdeacb93ddfbe4764fb"
-    },
-    "system.schemas.kernel.result.schema.json": {
-      "path": "system/schemas/kernel/result.schema.json",
-      "sha256": "b446acd7156d667588bbe389858a92360af0017d781999977050e0509a00ac6e"
-    },
-    "system.schemas.kernel.rule.schema.json": {
-      "path": "system/schemas/kernel/rule.schema.json",
-      "sha256": "95d65a1059b03b7021087e8c801329b6184c9ae90b4aa06849f71d7a5b5e19bc"
-    },
-    "system.schemas.kernel.skill-activation.schema.json": {
-      "path": "system/schemas/kernel/skill-activation.schema.json",
-      "sha256": "7f461aaf238df631badcb4c4de55a902f4e3c9c3f626ac77a48a48b24579c191"
-    },
-    "system.schemas.kernel.skill-package-manifest.schema.json": {
-      "path": "system/schemas/kernel/skill-package-manifest.schema.json",
-      "sha256": "75c8394c395040bd55aa0aa9e5f413f0e9ceb7ed1c51d154a3481497aabb4789"
-    },
-    "system.schemas.kernel.skill-registry.schema.json": {
-      "path": "system/schemas/kernel/skill-registry.schema.json",
-      "sha256": "3fef0cc3bc5712f8811cf4f4cfcbeb3f7d53be439ad24b6174380591736c5306"
-    },
-    "system.schemas.kernel.transition-plan.schema.json": {
-      "path": "system/schemas/kernel/transition-plan.schema.json",
-      "sha256": "49d390927248edef9520f07f9a95f3b45021a9c5ab424873f3543f8fe766a379"
-    },
-    "system.schemas.kernel.workspace-status.schema.json": {
-      "path": "system/schemas/kernel/workspace-status.schema.json",
-      "sha256": "df5387b4720a561d5c8d03508914a60fcce4b429c76c7f572524c7927b7c1aa4"
-    },
-    "system.surfaces.toml": {
-      "path": "system/surfaces.toml",
-      "sha256": "8e8d93d1926c12ebf489a5db12c2e24c3331f9d64b3c1c19adbc97dda111cbff"
-    }
-  },
   "components": [
     {
       "id": "cli",
@@ -1894,42 +72,7 @@
         "commands": "status, plan, prove, land, publish, adopt, lane, hook, attestation, mcp",
         "launcher": "a thin npm package over the Python command plane"
       },
-      "sources": [
-        "distributions.npm.readme.md",
-        "distributions.npm.bin.ethos.mjs",
-        "distributions.npm.package.json",
-        "cli",
-        "surface.init",
-        "surface.cli.init",
-        "surface.cli.application",
-        "surface.cli.hook.init",
-        "surface.cli.hook.commands",
-        "surface.cli.lane.init",
-        "surface.cli.lane.commit-signer",
-        "surface.cli.lane.formatting",
-        "surface.cli.lane.handoff",
-        "surface.cli.lane.lease",
-        "surface.cli.lane.lifecycle",
-        "surface.cli.lane.paradigm-repair",
-        "surface.cli.lane.projections",
-        "surface.cli.lane.retirement",
-        "surface.cli.output",
-        "surface.cli.proof.init",
-        "surface.cli.proof.host",
-        "surface.cli.proof.report",
-        "surface.cli.root.init",
-        "surface.cli.root.adoption",
-        "surface.cli.root.attestation",
-        "surface.cli.root.inspection",
-        "surface.cli.root.land",
-        "surface.cli.root.mcp",
-        "surface.cli.root.planning",
-        "surface.cli.root.proof",
-        "surface.cli.root.publish",
-        "surface.cli.root.reference",
-        "surface.cli.root-binding",
-        "surface.cli.version"
-      ]
+      "files": ["src/ethos/cli.py", "src/ethos/surface/cli/", "distributions/npm/"]
     },
     {
       "id": "mcp-server",
@@ -1938,7 +81,7 @@
       "details": {
         "projects": "the same application operations over a root-bound transport"
       },
-      "sources": ["surface.mcp.init", "surface.mcp.server"]
+      "files": ["src/ethos/surface/mcp/"]
     },
     {
       "id": "skills",
@@ -1947,15 +90,10 @@
       "details": {
         "validates": "skill packages against the commands they declare"
       },
-      "sources": [
-        "assistants.init",
-        "assistants.skills.init",
-        "assistants.skills.capabilities",
-        "assistants.skills.packages",
-        "assistants.skills.portfolio",
-        "contracts.skill.init",
-        "contracts.skill.activation",
-        "resources.skills.ethos-repository-work.skill.md"
+      "files": [
+        "src/ethos/assistants/",
+        "src/ethos/resources/skills/",
+        "src/ethos/contracts/skill/"
       ]
     },
     {
@@ -1966,12 +104,10 @@
         "command": "ethos status",
         "answers": "role, gaps, foreign lanes and the next action"
       },
-      "sources": [
-        "adapters.repo.status.init",
-        "adapters.repo.status.bindings",
-        "adapters.repo.status.workspace",
-        "domain.inspection",
-        "domain.status"
+      "files": [
+        "src/ethos/domain/inspection.py",
+        "src/ethos/domain/status.py",
+        "src/ethos/adapters/repo/status/"
       ]
     },
     {
@@ -1982,12 +118,10 @@
         "command": "ethos plan",
         "compiles": "intent, rules and gates into planning results"
       },
-      "sources": [
-        "ethos.rules.toml",
-        "domain.plan",
-        "repository.policy.rules.init",
-        "repository.policy.rules.compile",
-        "repository.policy.rules.config"
+      "files": [
+        "src/ethos/domain/plan.py",
+        "src/ethos/repository/policy/rules/",
+        ".ethos/rules.toml"
       ]
     },
     {
@@ -1998,15 +132,13 @@
         "kernel": "(Commitment, Facts, prior Attestations) -> TransitionPlan -> new Attestations",
         "verdict": "pass, block or unknown; only pass admits an effect"
       },
-      "sources": [
-        "contracts.plan",
-        "contracts.policy.init",
-        "contracts.policy.cel",
-        "contracts.proof.init",
-        "contracts.proof.plan",
-        "contracts.rules",
-        "contracts.semantic",
-        "contracts.verdict"
+      "files": [
+        "src/ethos/contracts/plan.py",
+        "src/ethos/contracts/semantic.py",
+        "src/ethos/contracts/verdict.py",
+        "src/ethos/contracts/proof/",
+        "src/ethos/contracts/policy/",
+        "src/ethos/contracts/rules.py"
       ]
     },
     {
@@ -2016,39 +148,23 @@
       "details": {
         "holds": "typed values, public results and the kernel JSON schemas"
       },
-      "sources": [
-        "contracts.system.init",
-        "contracts.system.contracts",
-        "contracts.value",
-        "domain.execution",
-        "normalization.init",
-        "normalization.coercion",
-        "result",
-        "system.readme.md",
-        "system.axioms.md",
-        "system.projections.readme.md",
-        "system.schemas.contracts.readme.md",
-        "system.schemas.contracts.surfaces.schema.json",
-        "system.schemas.kernel.assistant-projection.schema.json",
-        "system.schemas.kernel.attestation.schema.json",
-        "system.schemas.kernel.commitment.schema.json",
-        "system.schemas.kernel.docs-registry.schema.json",
-        "system.schemas.kernel.facts.schema.json",
-        "system.schemas.kernel.gate.schema.json",
-        "system.schemas.kernel.handoff-acknowledgement.schema.json",
-        "system.schemas.kernel.handoff-package.schema.json",
-        "system.schemas.kernel.host-capability.schema.json",
-        "system.schemas.kernel.independent-verification-receipt.schema.json",
-        "system.schemas.kernel.lane-lease.schema.json",
-        "system.schemas.kernel.mutation-decision.schema.json",
-        "system.schemas.kernel.provenance.schema.json",
-        "system.schemas.kernel.result.schema.json",
-        "system.schemas.kernel.rule.schema.json",
-        "system.schemas.kernel.skill-activation.schema.json",
-        "system.schemas.kernel.skill-package-manifest.schema.json",
-        "system.schemas.kernel.skill-registry.schema.json",
-        "system.schemas.kernel.transition-plan.schema.json",
-        "system.schemas.kernel.workspace-status.schema.json"
+      "files": [
+        "src/ethos/contracts/value.py",
+        "src/ethos/contracts/system/",
+        "src/ethos/normalization/",
+        "src/ethos/result.py",
+        "src/ethos/domain/execution.py",
+        "system/schemas/",
+        "system/README.md",
+        "system/axioms.md",
+        "system/projections/",
+        "src/ethos/__init__.py",
+        "src/ethos/contracts/__init__.py",
+        "src/ethos/domain/__init__.py",
+        "src/ethos/adapters/__init__.py",
+        "src/ethos/repository/__init__.py",
+        "src/ethos/surface/__init__.py",
+        "src/ethos/adapters/mutation/__init__.py"
       ]
     },
     {
@@ -2059,40 +175,10 @@
         "compiles": "the official Change into a Commitment",
         "archives": "a completed Change with exact relocations"
       },
-      "sources": [
-        "adapters.openspec.init",
-        "adapters.openspec.archive-projection",
-        "adapters.openspec.archive-readiness",
-        "adapters.openspec.batch.mjs",
-        "adapters.openspec.cli",
-        "adapters.openspec.commitment",
-        "adapters.openspec.configuration.mjs",
-        "adapters.openspec.configuration",
-        "adapters.openspec.governance",
-        "adapters.openspec.lifecycle.init",
-        "adapters.openspec.lifecycle.archive-binding",
-        "adapters.openspec.lifecycle.archive-provenance",
-        "adapters.openspec.lifecycle.archive-transition",
-        "adapters.openspec.lifecycle.bootstrap",
-        "adapters.openspec.lifecycle.intent",
-        "adapters.openspec.lifecycle.report",
-        "adapters.openspec.lifecycle.root-repair",
-        "adapters.openspec.lifecycle.scope",
-        "adapters.openspec.lifecycle.template-repair",
-        "adapters.openspec.lifecycle.validation",
-        "adapters.openspec.observation",
-        "adapters.openspec.profile",
-        "adapters.openspec.projection",
-        "adapters.openspec.relocation.mjs",
-        "adapters.openspec.relocation",
-        "adapters.openspec.selection",
-        "adapters.openspec.template-conformance",
-        "contracts.openspec.init",
-        "contracts.openspec.models",
-        "repository.openspec.init",
-        "repository.openspec.audit",
-        "repository.openspec.identifiers",
-        "repository.openspec.template-outline"
+      "files": [
+        "src/ethos/adapters/openspec/",
+        "src/ethos/contracts/openspec/",
+        "src/ethos/repository/openspec/"
       ]
     },
     {
@@ -2102,11 +188,7 @@
       "details": {
         "resolves": "Lease authority, official intent and fresh path facts, once"
       },
-      "sources": [
-        "adapters.admission.current.init",
-        "adapters.admission.current.authority",
-        "adapters.admission.current.resolution"
-      ]
+      "files": ["src/ethos/adapters/admission/current/"]
     },
     {
       "id": "gate-policy",
@@ -2116,13 +198,13 @@
         "declares": "system/gates.toml and the profile's repository gates",
         "binds": "execution identities to selected sources"
       },
-      "sources": [
-        "adapters.repo.gate-policy",
-        "contracts.gates",
-        "repository.policy.code-subjects",
-        "repository.policy.gates",
-        "system.gates.toml",
-        "system.repository-gates.toml"
+      "files": [
+        "src/ethos/repository/policy/gates.py",
+        "src/ethos/repository/policy/code_subjects.py",
+        "src/ethos/adapters/repo/gate_policy.py",
+        "src/ethos/contracts/gates.py",
+        "system/gates.toml",
+        "system/repository-gates.toml"
       ]
     },
     {
@@ -2132,23 +214,12 @@
       "details": {
         "judges": "coverage, tests, dependencies and source budgets from native reports"
       },
-      "sources": [
-        "adapters.repo.dependency-acceptance",
-        "domain.source-budget.init",
-        "domain.source-budget.measurement",
-        "measure",
-        "repository.policy.quality.init",
-        "repository.policy.quality.dependency-acceptance",
-        "repository.policy.quality.format-selection",
-        "repository.policy.quality.formats",
-        "repository.policy.quality.gate-composition",
-        "repository.policy.quality.obligations",
-        "repository.policy.quality.pytest",
-        "repository.policy.quality.source-budget",
-        "repository.policy.quality.sources",
-        "repository.policy.quality.tool-configuration",
-        "repository.policy.quality.upstream-fixes",
-        "repository.policy.quality-reports"
+      "files": [
+        "src/ethos/repository/policy/quality/",
+        "src/ethos/repository/policy/quality_reports.py",
+        "src/ethos/domain/source_budget/",
+        "src/ethos/measure.py",
+        "src/ethos/adapters/repo/dependency_acceptance.py"
       ]
     },
     {
@@ -2159,10 +230,10 @@
         "runs": "the admitted gate DAG, bounded readers and exclusive writers",
         "admits": "one full proof per host under its load limit"
       },
-      "sources": [
-        "adapters.gates.proof-slot",
-        "adapters.gates.runner",
-        "adapters.gates.verification"
+      "files": [
+        "src/ethos/adapters/gates/runner.py",
+        "src/ethos/adapters/gates/proof_slot.py",
+        "src/ethos/adapters/gates/verification.py"
       ]
     },
     {
@@ -2173,36 +244,10 @@
         "captures": "each native tool's output once, with its receipts",
         "covers": "Python, JavaScript, formatting, configuration and provenance"
       },
-      "sources": [
-        "adapters.gates.init",
-        "adapters.gates.code-quality",
-        "adapters.gates.configuration",
-        "adapters.gates.formatting",
-        "adapters.gates.generated-artifacts",
-        "adapters.gates.javascript.init",
-        "adapters.gates.javascript.analysis.mjs",
-        "adapters.gates.javascript.analysis",
-        "adapters.gates.javascript.behavior",
-        "adapters.gates.javascript.execution",
-        "adapters.gates.javascript.reporter.mjs",
-        "adapters.gates.javascript.selection.mjs",
-        "adapters.gates.markdown.mjs",
-        "adapters.gates.native.init",
-        "adapters.gates.native.attempt",
-        "adapters.gates.native.evidence",
-        "adapters.gates.native.inputs",
-        "adapters.gates.native.python",
-        "adapters.gates.provenance.init",
-        "adapters.gates.provenance.archive.mjs",
-        "adapters.gates.provenance.observation",
-        "adapters.gates.python-quality",
-        "adapters.gates.python-target",
-        "adapters.gates.tool",
-        "adapters.gates.ty",
-        "domain.quality.init",
-        "domain.quality.nox",
-        "surface.pytest.init",
-        "surface.pytest.plugin"
+      "files": [
+        "src/ethos/adapters/gates/",
+        "src/ethos/domain/quality/",
+        "src/ethos/surface/pytest/"
       ]
     },
     {
@@ -2213,12 +258,12 @@
         "command": "ethos prove",
         "issues": "a proof Attestation for the exact HEAD"
       },
-      "sources": [
-        "adapters.mutation.proof",
-        "adapters.mutation.proof-admission",
-        "adapters.mutation.proof-artifacts",
-        "adapters.mutation.proof-validation",
-        "domain.prove"
+      "files": [
+        "src/ethos/adapters/mutation/proof.py",
+        "src/ethos/adapters/mutation/proof_admission.py",
+        "src/ethos/adapters/mutation/proof_artifacts.py",
+        "src/ethos/adapters/mutation/proof_validation.py",
+        "src/ethos/domain/prove.py"
       ]
     },
     {
@@ -2229,11 +274,11 @@
         "command": "ethos lane prewrite",
         "admits": "exact tracked write paths and patches"
       },
-      "sources": [
-        "adapters.admission.patch-admission",
-        "adapters.admission.paths",
-        "adapters.admission.prewrite",
-        "adapters.admission.shell"
+      "files": [
+        "src/ethos/adapters/admission/prewrite.py",
+        "src/ethos/adapters/admission/patch_admission.py",
+        "src/ethos/adapters/admission/paths.py",
+        "src/ethos/adapters/admission/shell.py"
       ]
     },
     {
@@ -2243,24 +288,10 @@
       "details": {
         "admits": "exact ref intents, protected moves and publication updates"
       },
-      "sources": [
-        "init",
-        "adapters.init",
-        "adapters.admission.init",
-        "adapters.admission.control.init",
-        "adapters.admission.control.replacement",
-        "adapters.admission.evidence.init",
-        "adapters.admission.evidence.external",
-        "adapters.admission.git-admission",
-        "adapters.admission.publication",
-        "adapters.admission.ref-intent",
-        "adapters.admission.ref-move-policy",
-        "adapters.admission.role-rename",
-        "adapters.admission.transitions",
-        "contracts.init",
-        "contracts.admission",
-        "contracts.evidence.init",
-        "contracts.evidence.external"
+      "files": [
+        "src/ethos/adapters/admission/",
+        "src/ethos/contracts/admission.py",
+        "src/ethos/contracts/evidence/"
       ]
     },
     {
@@ -2271,10 +302,9 @@
         "requires": "--authorize, --expect-head and current facts",
         "names": "the bounded recovery for each gap"
       },
-      "sources": [
-        "adapters.mutation.decision",
-        "adapters.mutation.remediation.init",
-        "adapters.mutation.remediation.guidance"
+      "files": [
+        "src/ethos/adapters/mutation/decision.py",
+        "src/ethos/adapters/mutation/remediation/"
       ]
     },
     {
@@ -2285,15 +315,7 @@
         "command": "ethos hook install",
         "guards": "commits, pushes and ref moves through native Git hooks"
       },
-      "sources": [
-        "adapters.repo.hook.init",
-        "adapters.repo.hook.activation",
-        "adapters.repo.hook.admission",
-        "adapters.repo.hook.binding",
-        "adapters.repo.hook.binding.toml",
-        "adapters.repo.hook.observation",
-        "adapters.repo.hook.protocol"
-      ]
+      "files": ["src/ethos/adapters/repo/hook/"]
     },
     {
       "id": "runtime",
@@ -2303,33 +325,7 @@
         "selects": "one immutable runtime through runtime/CURRENT, ROLLBACK kept",
         "supplies": "tools from the exact mise lock"
       },
-      "sources": [
-        "adapters.repo.runtime.init",
-        "adapters.repo.runtime.authority",
-        "adapters.repo.runtime.binding",
-        "adapters.repo.runtime.filesystem",
-        "adapters.repo.runtime.host-store",
-        "adapters.repo.runtime.interpreter",
-        "adapters.repo.runtime.inventory-memo",
-        "adapters.repo.runtime.manifest",
-        "adapters.repo.runtime.materialization.init",
-        "adapters.repo.runtime.materialization.dependency-supply",
-        "adapters.repo.runtime.materialization.effect",
-        "adapters.repo.runtime.materialization.host-retention",
-        "adapters.repo.runtime.materialization.input-resolution",
-        "adapters.repo.runtime.materialization.native-supply",
-        "adapters.repo.runtime.materialization.node.init",
-        "adapters.repo.runtime.materialization.node.supply",
-        "adapters.repo.runtime.materialization.node-package-supply",
-        "adapters.repo.runtime.materialization.python-environment",
-        "adapters.repo.runtime.materialization.python-image",
-        "adapters.repo.runtime.retirement",
-        "adapters.repo.runtime.selection",
-        "adapters.repo.runtime.source",
-        "adapters.repo.runtime.transition",
-        "adapters.toolchain.init",
-        "adapters.toolchain.mise"
-      ]
+      "files": ["src/ethos/adapters/repo/runtime/", "src/ethos/adapters/toolchain/"]
     },
     {
       "id": "handoff",
@@ -2338,14 +334,7 @@
       "details": {
         "moves": "a Work Lane between hosts as one content-addressed package"
       },
-      "sources": [
-        "adapters.mutation.lane-lifecycle.handoff.init",
-        "adapters.mutation.lane-lifecycle.handoff.destination-cleanup",
-        "adapters.mutation.lane-lifecycle.handoff.destination-import",
-        "adapters.mutation.lane-lifecycle.handoff.destination-objects",
-        "adapters.mutation.lane-lifecycle.handoff.package",
-        "adapters.mutation.lane-lifecycle.handoff.transfer"
-      ]
+      "files": ["src/ethos/adapters/mutation/lane_lifecycle/handoff/"]
     },
     {
       "id": "lease",
@@ -2354,20 +343,11 @@
       "details": {
         "binds": "holder, generation and expiry in state.sqlite in the Git common directory"
       },
-      "sources": [
-        "adapters.mutation.lane-lifecycle.lease.init",
-        "adapters.mutation.lane-lifecycle.lease.acquisition",
-        "adapters.mutation.lane-lifecycle.lease.operation",
-        "adapters.mutation.lane-lifecycle.lease.takeover",
-        "adapters.repo.coordination",
-        "adapters.store.state.init",
-        "adapters.store.state.lease.init",
-        "adapters.store.state.lease.lifecycle.init",
-        "adapters.store.state.lease.lifecycle.effects",
-        "adapters.store.state.lease.lifecycle.transitions",
-        "adapters.store.state.lease.projection",
-        "adapters.store.state.schema",
-        "contracts.coordination"
+      "files": [
+        "src/ethos/adapters/mutation/lane_lifecycle/lease/",
+        "src/ethos/adapters/store/state/",
+        "src/ethos/contracts/coordination.py",
+        "src/ethos/adapters/repo/coordination.py"
       ]
     },
     {
@@ -2378,23 +358,7 @@
         "commands": "lane start, refresh-base, archive-change",
         "starts": "an owned branch and worktree from the candidate"
       },
-      "sources": [
-        "adapters.mutation.lane-lifecycle.init",
-        "adapters.mutation.lane-lifecycle.archive.init",
-        "adapters.mutation.lane-lifecycle.archive.command",
-        "adapters.mutation.lane-lifecycle.archive.compensation",
-        "adapters.mutation.lane-lifecycle.archive.effect",
-        "adapters.mutation.lane-lifecycle.candidate.init",
-        "adapters.mutation.lane-lifecycle.candidate.materialization",
-        "adapters.mutation.lane-lifecycle.candidate-projection",
-        "adapters.mutation.lane-lifecycle.change-overlay",
-        "adapters.mutation.lane-lifecycle.merge",
-        "adapters.mutation.lane-lifecycle.merge-actions",
-        "adapters.mutation.lane-lifecycle.start",
-        "adapters.mutation.lane-lifecycle.work-lane-refresh",
-        "adapters.mutation.lane-lifecycle.work-lane-refresh-record",
-        "adapters.mutation.lane-lifecycle.work-lane-refresh-report"
-      ]
+      "files": ["src/ethos/adapters/mutation/lane_lifecycle/"]
     },
     {
       "id": "retirement",
@@ -2403,20 +367,10 @@
       "details": {
         "retires": "landed, superseded, absorbed or abandoned lanes at their expected head"
       },
-      "sources": [
-        "adapters.mutation.lane-retirement.init",
-        "adapters.mutation.lane-retirement.abandonment",
-        "adapters.mutation.lane-retirement.absorbed",
-        "adapters.mutation.lane-retirement.content",
-        "adapters.mutation.lane-retirement.continuation",
-        "adapters.mutation.lane-retirement.effects",
-        "adapters.mutation.lane-retirement.linked",
-        "adapters.mutation.lane-retirement.linked-admission",
-        "adapters.mutation.lane-retirement.linked-effect",
-        "adapters.mutation.lane-retirement.operation",
-        "adapters.mutation.worktree.init",
-        "adapters.mutation.worktree.detached-cleanup",
-        "contracts.retirement"
+      "files": [
+        "src/ethos/adapters/mutation/lane_retirement/",
+        "src/ethos/contracts/retirement.py",
+        "src/ethos/adapters/mutation/worktree/"
       ]
     },
     {
@@ -2427,20 +381,12 @@
         "command": "ethos land",
         "promotes": "a proven lane to candidate, then dev, then main"
       },
-      "sources": [
-        "adapters.mutation.init",
-        "adapters.mutation.accepted.init",
-        "adapters.mutation.accepted.admission",
-        "adapters.mutation.accepted.promotion",
-        "adapters.mutation.accepted.release",
-        "adapters.mutation.accepted.signature",
-        "adapters.mutation.branch-roles",
-        "adapters.mutation.landing",
-        "contracts.branch.init",
-        "contracts.branch.roles",
-        "domain.land.init",
-        "domain.land.closeout",
-        "domain.land.operation"
+      "files": [
+        "src/ethos/adapters/mutation/landing.py",
+        "src/ethos/adapters/mutation/accepted/",
+        "src/ethos/adapters/mutation/branch_roles.py",
+        "src/ethos/domain/land/",
+        "src/ethos/contracts/branch/"
       ]
     },
     {
@@ -2451,21 +397,11 @@
         "command": "ethos publish",
         "pushes": "exact refs to each peer, with a receipt"
       },
-      "sources": [
-        "adapters.mutation.publication.init",
-        "adapters.mutation.publication.absorption",
-        "adapters.mutation.publication.attestation",
-        "adapters.mutation.publication.execution",
-        "adapters.mutation.publication.observation",
-        "adapters.mutation.publication.request",
-        "adapters.mutation.publication.retirement",
-        "contracts.publication",
-        "domain.publication.init",
-        "domain.publication.fallback",
-        "domain.publication.inspection",
-        "domain.publication.operation",
-        "domain.publication.request-gaps",
-        "repository.release.publication"
+      "files": [
+        "src/ethos/adapters/mutation/publication/",
+        "src/ethos/domain/publication/",
+        "src/ethos/contracts/publication.py",
+        "src/ethos/repository/release/publication.py"
       ]
     },
     {
@@ -2475,19 +411,16 @@
       "details": {
         "executes": "exact compare-and-swap ref, worktree and merge effects, then attests them"
       },
-      "sources": [
-        "adapters.repo.config-effects",
-        "adapters.repo.git-effect-admission",
-        "adapters.repo.git-effect-attestation",
-        "adapters.repo.git-effect-observation",
-        "adapters.repo.git-effects",
-        "adapters.repo.git-ref-worktrees",
-        "adapters.repo.merge.init",
-        "adapters.repo.merge.effect",
-        "adapters.repo.merge.observation",
-        "adapters.repo.merge.recovery",
-        "adapters.repo.native-effect-attestation",
-        "adapters.repo.worktree-effects"
+      "files": [
+        "src/ethos/adapters/repo/git_effect_admission.py",
+        "src/ethos/adapters/repo/git_effect_attestation.py",
+        "src/ethos/adapters/repo/git_effect_observation.py",
+        "src/ethos/adapters/repo/git_effects.py",
+        "src/ethos/adapters/repo/worktree_effects.py",
+        "src/ethos/adapters/repo/git_ref_worktrees.py",
+        "src/ethos/adapters/repo/config_effects.py",
+        "src/ethos/adapters/repo/native_effect_attestation.py",
+        "src/ethos/adapters/repo/merge/"
       ]
     },
     {
@@ -2497,21 +430,10 @@
       "details": {
         "enforces": "the commit grammar and SSH signatures against the trust anchor"
       },
-      "sources": [
-        "adapters.repo.commit.init",
-        "adapters.repo.commit.admission",
-        "adapters.repo.commit.conservation",
-        "adapters.repo.commit.creation",
-        "adapters.repo.commit.history",
-        "adapters.repo.commit.integration",
-        "adapters.repo.commit.provenance",
-        "adapters.repo.commit.rewrite",
-        "adapters.repo.commit.signature",
-        "adapters.repo.trust-anchor.init",
-        "adapters.repo.trust-anchor.authorization",
-        "adapters.repo.trust-anchor.filesystem",
-        "adapters.repo.trust-anchor.verification",
-        "repository.policy.commit"
+      "files": [
+        "src/ethos/adapters/repo/commit/",
+        "src/ethos/adapters/repo/trust_anchor/",
+        "src/ethos/repository/policy/commit.py"
       ]
     },
     {
@@ -2521,15 +443,13 @@
       "details": {
         "applies": "native projection, format and carrier patches against exact preimages"
       },
-      "sources": [
-        "adapters.mutation.carrier-edit",
-        "adapters.mutation.paradigm-repair",
-        "adapters.mutation.projection",
-        "adapters.mutation.source-format",
-        "adapters.projections.init",
-        "adapters.projections.compiler",
-        "adapters.projections.cue",
-        "repository.policy.projections"
+      "files": [
+        "src/ethos/adapters/mutation/carrier_edit.py",
+        "src/ethos/adapters/mutation/projection.py",
+        "src/ethos/adapters/mutation/source_format.py",
+        "src/ethos/adapters/mutation/paradigm_repair.py",
+        "src/ethos/adapters/projections/",
+        "src/ethos/repository/policy/projections.py"
       ]
     },
     {
@@ -2540,27 +460,7 @@
         "declares": "names, documents, OpenSpec, toolchain, pipelines and size for every repository",
         "repairs": "gaps deterministically"
       },
-      "sources": [
-        "contracts.paradigm.init",
-        "contracts.paradigm.declaration",
-        "contracts.paradigm.licenses.toml",
-        "contracts.paradigm.paradigm.toml",
-        "repository.paradigm.init",
-        "repository.paradigm.documents",
-        "repository.paradigm.gap",
-        "repository.paradigm.license",
-        "repository.paradigm.names",
-        "repository.paradigm.openspec",
-        "repository.paradigm.orchestration",
-        "repository.paradigm.parameters",
-        "repository.paradigm.pipelines",
-        "repository.paradigm.repair",
-        "repository.paradigm.report",
-        "repository.paradigm.scripts",
-        "repository.paradigm.size",
-        "repository.paradigm.toolchain",
-        "repository.paradigm.workspace"
-      ]
+      "files": ["src/ethos/repository/paradigm/", "src/ethos/contracts/paradigm/"]
     },
     {
       "id": "docs-registry",
@@ -2569,16 +469,7 @@
       "details": {
         "checks": "documentation health, links and design ownership"
       },
-      "sources": [
-        "repository.design.init",
-        "repository.design.integrity",
-        "repository.registry.init",
-        "repository.registry.docs.init",
-        "repository.registry.docs.decisions",
-        "repository.registry.docs.health",
-        "repository.registry.docs.links",
-        "repository.registry.docs.registry"
-      ]
+      "files": ["src/ethos/repository/registry/", "src/ethos/repository/design/"]
     },
     {
       "id": "repository-audit",
@@ -2587,39 +478,11 @@
       "details": {
         "combines": "layout, references, boundary, docstring and artifact findings"
       },
-      "sources": [
-        "contracts.artifacts.init",
-        "contracts.artifacts.topology",
-        "contracts.artifacts.topology.toml",
-        "repository.audit",
-        "repository.policy.init",
-        "repository.policy.artifact-entrypoints",
-        "repository.policy.artifacts",
-        "repository.policy.boundary.init",
-        "repository.policy.boundary.catalog",
-        "repository.policy.boundary.product",
-        "repository.policy.docstrings.init",
-        "repository.policy.docstrings.coverage",
-        "repository.policy.docstrings.style",
-        "repository.policy.layout.init",
-        "repository.policy.layout.facades",
-        "repository.policy.layout.imports",
-        "repository.policy.layout.naming",
-        "repository.policy.layout.policy",
-        "repository.policy.layout.report",
-        "repository.policy.references.init",
-        "repository.policy.references.carriers",
-        "repository.policy.references.closure",
-        "repository.policy.references.commands",
-        "repository.policy.references.declarations",
-        "repository.policy.references.manifests",
-        "repository.policy.references.markdown",
-        "repository.policy.references.observation",
-        "repository.policy.references.python-syntax",
-        "repository.policy.references.shell-vocabulary",
-        "repository.policy.schema",
-        "repository.policy.surfaces",
-        "system.surfaces.toml"
+      "files": [
+        "src/ethos/repository/audit.py",
+        "src/ethos/repository/policy/",
+        "src/ethos/contracts/artifacts/",
+        "system/surfaces.toml"
       ]
     },
     {
@@ -2629,11 +492,11 @@
       "details": {
         "loads": ".ethos/profile.toml with strict roots and policy boundaries"
       },
-      "sources": [
-        "ethos.profile.toml",
-        "adapters.repo.profile",
-        "repository.context",
-        "repository.profile"
+      "files": [
+        "src/ethos/repository/profile.py",
+        "src/ethos/repository/context.py",
+        "src/ethos/adapters/repo/profile.py",
+        ".ethos/profile.toml"
       ]
     },
     {
@@ -2644,18 +507,11 @@
         "command": "ethos adopt",
         "forms": "a new repository from a starter, or binds an existing one"
       },
-      "sources": [
-        "adapters.repo.init",
-        "adapters.repo.adoption",
-        "adapters.repo.starter.init",
-        "adapters.repo.starter.evolution",
-        "adapters.repo.starter.formation",
-        "adapters.repo.starter.generation",
-        "domain.init",
-        "domain.adoption",
-        "repository.init",
-        "repository.adoption.init",
-        "repository.adoption.fleet"
+      "files": [
+        "src/ethos/domain/adoption.py",
+        "src/ethos/adapters/repo/adoption.py",
+        "src/ethos/adapters/repo/starter/",
+        "src/ethos/repository/adoption/"
       ]
     },
     {
@@ -2665,15 +521,10 @@
       "details": {
         "compiles": "release declarations and the build identity of each distribution"
       },
-      "sources": [
-        "ethos.release.toml",
-        "adapters.repo.release",
-        "repository.release.init",
-        "repository.release.admission",
-        "repository.release.changelog",
-        "repository.release.configuration",
-        "repository.release.identity",
-        "repository.release.resources"
+      "files": [
+        "src/ethos/repository/release/",
+        "src/ethos/adapters/repo/release.py",
+        ".ethos/release.toml"
       ]
     },
     {
@@ -2683,10 +534,10 @@
       "details": {
         "holds": "the only persistent semantic results, a Git-native set"
       },
-      "sources": [
-        "adapters.repo.attestation-lifetime",
-        "adapters.repo.attestation-lifetime-facts",
-        "adapters.repo.attestation-set"
+      "files": [
+        "src/ethos/adapters/repo/attestation_set.py",
+        "src/ethos/adapters/repo/attestation_lifetime.py",
+        "src/ethos/adapters/repo/attestation_lifetime_facts.py"
       ]
     },
     {
@@ -2696,11 +547,7 @@
       "details": {
         "holds": "content-addressed evidence bytes bound by Attestation members"
       },
-      "sources": [
-        "adapters.store.init",
-        "adapters.store.content-addressed",
-        "adapters.store.custody"
-      ]
+      "files": ["src/ethos/adapters/store/"]
     },
     {
       "id": "git-read",
@@ -2709,21 +556,10 @@
       "details": {
         "reads": "Git facts, objects, content and processes without effects"
       },
-      "sources": [
-        "adapters.open-files",
-        "adapters.process",
-        "adapters.repo.content.init",
-        "adapters.repo.content.observation",
-        "adapters.repo.content.source",
-        "adapters.repo.dirty.init",
-        "adapters.repo.dirty.change-provenance",
-        "adapters.repo.git",
-        "adapters.repo.git-attributes",
-        "adapters.repo.git-object",
-        "adapters.repo.git-object-sandbox",
-        "adapters.repo.git-patch",
-        "adapters.repo.invocation-facts",
-        "adapters.repo.worktree-postimage"
+      "files": [
+        "src/ethos/adapters/repo/",
+        "src/ethos/adapters/process.py",
+        "src/ethos/adapters/open_files.py"
       ]
     },
     {
@@ -2732,8 +568,7 @@
       "kind": "tool",
       "details": {
         "owns": "objects, refs, worktrees and hooks"
-      },
-      "sources": ["adapters.repo.git", "adapters.process"]
+      }
     },
     {
       "id": "openspec-cli",
@@ -2741,8 +576,7 @@
       "kind": "tool",
       "details": {
         "package": "@fission-ai/openspec, locked by the repository"
-      },
-      "sources": ["adapters.openspec.cli"]
+      }
     },
     {
       "id": "native-tools",
@@ -2750,8 +584,7 @@
       "kind": "tool",
       "details": {
         "for example": "pytest, ruff, ty, eslint, vale, mise"
-      },
-      "sources": ["adapters.gates.tool", "adapters.toolchain.mise"]
+      }
     },
     {
       "id": "forges",
@@ -2759,8 +592,7 @@
       "kind": "peer",
       "details": {
         "peers": "GitLab and GitHub, each with its own CI"
-      },
-      "sources": ["ethos.release.toml", "repository.release.publication"]
+      }
     }
   ],
   "relations": [
@@ -2769,10 +601,10 @@
       "from": "cli",
       "to": "status",
       "label": "runs status",
-      "sources": [
-        "surface.cli.lane.lifecycle",
-        "surface.cli.root.inspection",
-        "surface.cli.root.proof"
+      "files": [
+        "src/ethos/surface/cli/lane/lifecycle.py",
+        "src/ethos/surface/cli/root/inspection.py",
+        "src/ethos/surface/cli/root/proof.py"
       ]
     },
     {
@@ -2780,24 +612,24 @@
       "from": "cli",
       "to": "planning",
       "label": "runs plan",
-      "sources": ["surface.cli.root.planning"]
+      "files": ["src/ethos/surface/cli/root/planning.py"]
     },
     {
       "id": "cli-proof",
       "from": "cli",
       "to": "proof",
       "label": "runs prove",
-      "sources": ["surface.cli.lane.lifecycle", "surface.cli.root.proof"]
+      "files": ["src/ethos/surface/cli/lane/lifecycle.py", "src/ethos/surface/cli/root/proof.py"]
     },
     {
       "id": "cli-landing",
       "from": "cli",
       "to": "landing",
       "label": "runs land",
-      "sources": [
-        "surface.cli.lane.commit-signer",
-        "surface.cli.lane.lifecycle",
-        "surface.cli.root.land"
+      "files": [
+        "src/ethos/surface/cli/lane/commit_signer.py",
+        "src/ethos/surface/cli/lane/lifecycle.py",
+        "src/ethos/surface/cli/root/land.py"
       ]
     },
     {
@@ -2805,143 +637,146 @@
       "from": "cli",
       "to": "publication",
       "label": "runs publish",
-      "sources": ["surface.cli.root.publish"]
+      "files": ["src/ethos/surface/cli/root/publish.py"]
     },
     {
       "id": "cli-work-lane",
       "from": "cli",
       "to": "work-lane",
       "label": "runs lane",
-      "sources": ["surface.cli.lane.lifecycle"]
+      "files": ["src/ethos/surface/cli/lane/lifecycle.py"]
     },
     {
       "id": "cli-prewrite-admission",
       "from": "cli",
       "to": "prewrite-admission",
       "label": "runs prewrite",
-      "sources": ["surface.cli.hook.commands", "surface.cli.lane.lifecycle"]
+      "files": ["src/ethos/surface/cli/hook/commands.py", "src/ethos/surface/cli/lane/lifecycle.py"]
     },
     {
       "id": "cli-retirement",
       "from": "cli",
       "to": "retirement",
       "label": "runs lane retire",
-      "sources": ["surface.cli.lane.lifecycle", "surface.cli.lane.retirement"]
+      "files": [
+        "src/ethos/surface/cli/lane/lifecycle.py",
+        "src/ethos/surface/cli/lane/retirement.py"
+      ]
     },
     {
       "id": "cli-handoff",
       "from": "cli",
       "to": "handoff",
       "label": "runs handoff",
-      "sources": ["surface.cli.lane.handoff"]
+      "files": ["src/ethos/surface/cli/lane/handoff.py"]
     },
     {
       "id": "cli-hooks",
       "from": "cli",
       "to": "hooks",
       "label": "runs hook install",
-      "sources": ["surface.cli.hook.commands"]
+      "files": ["src/ethos/surface/cli/hook/commands.py"]
     },
     {
       "id": "cli-attestation-set",
       "from": "cli",
       "to": "attestation-set",
       "label": "queries",
-      "sources": ["surface.cli.root.attestation"]
+      "files": ["src/ethos/surface/cli/root/attestation.py"]
     },
     {
       "id": "mcp-server-status",
       "from": "mcp-server",
       "to": "status",
       "label": "projects",
-      "sources": ["surface.mcp.server"]
+      "files": ["src/ethos/surface/mcp/server.py"]
     },
     {
       "id": "mcp-server-planning",
       "from": "mcp-server",
       "to": "planning",
       "label": "projects",
-      "sources": ["surface.mcp.server"]
+      "files": ["src/ethos/surface/mcp/server.py"]
     },
     {
       "id": "mcp-server-landing",
       "from": "mcp-server",
       "to": "landing",
       "label": "projects",
-      "sources": ["surface.mcp.server"]
+      "files": ["src/ethos/surface/mcp/server.py"]
     },
     {
       "id": "mcp-server-publication",
       "from": "mcp-server",
       "to": "publication",
       "label": "projects",
-      "sources": ["surface.mcp.server"]
+      "files": ["src/ethos/surface/mcp/server.py"]
     },
     {
       "id": "mcp-server-adoption",
       "from": "mcp-server",
       "to": "adoption",
       "label": "projects",
-      "sources": ["surface.mcp.server"]
+      "files": ["src/ethos/surface/mcp/server.py"]
     },
     {
       "id": "cli-adoption",
       "from": "cli",
       "to": "adoption",
       "label": "runs adopt",
-      "sources": ["surface.cli.root.adoption"]
+      "files": ["src/ethos/surface/cli/root/adoption.py"]
     },
     {
       "id": "status-current-resolution",
       "from": "status",
       "to": "current-resolution",
       "label": "resolves scope",
-      "sources": ["adapters.repo.status.workspace", "domain.inspection"]
+      "files": ["src/ethos/adapters/repo/status/workspace.py", "src/ethos/domain/inspection.py"]
     },
     {
       "id": "status-openspec-intent",
       "from": "status",
       "to": "openspec-intent",
       "label": "reads the Change",
-      "sources": ["domain.inspection", "domain.status"]
+      "files": ["src/ethos/domain/inspection.py", "src/ethos/domain/status.py"]
     },
     {
       "id": "planning-current-resolution",
       "from": "planning",
       "to": "current-resolution",
       "label": "resolves intent",
-      "sources": ["domain.plan"]
+      "files": ["src/ethos/domain/plan.py"]
     },
     {
       "id": "planning-gate-policy",
       "from": "planning",
       "to": "gate-policy",
       "label": "selects gates",
-      "sources": ["domain.plan", "repository.policy.rules.compile"]
+      "files": ["src/ethos/domain/plan.py", "src/ethos/repository/policy/rules/compile.py"]
     },
     {
       "id": "planning-kernel",
       "from": "planning",
       "to": "kernel",
       "label": "compiles",
-      "sources": ["domain.plan", "repository.policy.rules.compile"]
+      "files": ["src/ethos/domain/plan.py", "src/ethos/repository/policy/rules/compile.py"]
     },
     {
       "id": "planning-skills",
       "from": "planning",
       "to": "skills",
       "label": "activates skills",
-      "sources": ["domain.plan"]
+      "files": ["src/ethos/domain/plan.py"]
     },
     {
       "id": "planning-paradigm",
       "from": "planning",
       "to": "paradigm",
       "label": "reads declaration",
-      "sources": [
-        "domain.plan",
-        "repository.policy.rules.compile",
-        "repository.policy.rules.config"
+      "files": [
+        "src/ethos/domain/plan.py",
+        "src/ethos/repository/policy/rules/compile.py",
+        "src/ethos/repository/policy/rules/config.py"
       ]
     },
     {
@@ -2949,49 +784,57 @@
       "from": "current-resolution",
       "to": "openspec-intent",
       "label": "selects the Change",
-      "sources": ["adapters.admission.current.resolution"]
+      "files": ["src/ethos/adapters/admission/current/resolution.py"]
     },
     {
       "id": "current-resolution-kernel",
       "from": "current-resolution",
       "to": "kernel",
       "label": "builds Commitment",
-      "sources": ["adapters.admission.current.authority", "adapters.admission.current.resolution"]
+      "files": [
+        "src/ethos/adapters/admission/current/authority.py",
+        "src/ethos/adapters/admission/current/resolution.py"
+      ]
     },
     {
       "id": "current-resolution-lease",
       "from": "current-resolution",
       "to": "lease",
       "label": "reads the Lease",
-      "sources": ["adapters.admission.current.authority"]
+      "files": ["src/ethos/adapters/admission/current/authority.py"]
     },
     {
       "id": "kernel-contracts",
       "from": "kernel",
       "to": "contracts",
       "label": "uses typed values",
-      "sources": ["contracts.plan", "contracts.proof.plan", "contracts.rules", "contracts.semantic"]
+      "files": [
+        "src/ethos/contracts/plan.py",
+        "src/ethos/contracts/proof/plan.py",
+        "src/ethos/contracts/rules.py",
+        "src/ethos/contracts/semantic.py"
+      ]
     },
     {
       "id": "openspec-intent-openspec-cli",
       "from": "openspec-intent",
       "to": "openspec-cli",
       "label": "runs the official CLI",
-      "sources": ["adapters.openspec.cli", "adapters.openspec.init"]
+      "files": ["src/ethos/adapters/openspec/cli.py", "src/ethos/adapters/openspec/__init__.py"]
     },
     {
       "id": "openspec-intent-kernel",
       "from": "openspec-intent",
       "to": "kernel",
       "label": "compiles Commitment",
-      "sources": [
-        "adapters.openspec.commitment",
-        "adapters.openspec.lifecycle.archive-transition",
-        "adapters.openspec.lifecycle.intent",
-        "adapters.openspec.lifecycle.scope",
-        "adapters.openspec.profile",
-        "adapters.openspec.relocation",
-        "repository.openspec.audit"
+      "files": [
+        "src/ethos/adapters/openspec/commitment.py",
+        "src/ethos/adapters/openspec/lifecycle/archive_transition.py",
+        "src/ethos/adapters/openspec/lifecycle/intent.py",
+        "src/ethos/adapters/openspec/lifecycle/scope.py",
+        "src/ethos/adapters/openspec/profile.py",
+        "src/ethos/adapters/openspec/relocation.py",
+        "src/ethos/repository/openspec/audit.py"
       ]
     },
     {
@@ -2999,39 +842,42 @@
       "from": "gate-policy",
       "to": "quality-policy",
       "label": "composes floors",
-      "sources": ["adapters.repo.gate-policy", "repository.policy.gates"]
+      "files": ["src/ethos/adapters/repo/gate_policy.py", "src/ethos/repository/policy/gates.py"]
     },
     {
       "id": "gate-policy-profile",
       "from": "gate-policy",
       "to": "profile",
       "label": "reads profile",
-      "sources": ["adapters.repo.gate-policy", "repository.policy.gates"]
+      "files": ["src/ethos/adapters/repo/gate_policy.py", "src/ethos/repository/policy/gates.py"]
     },
     {
       "id": "proof-gate-policy",
       "from": "proof",
       "to": "gate-policy",
       "label": "resolves gates",
-      "sources": ["adapters.mutation.proof", "adapters.mutation.proof-admission"]
+      "files": [
+        "src/ethos/adapters/mutation/proof.py",
+        "src/ethos/adapters/mutation/proof_admission.py"
+      ]
     },
     {
       "id": "proof-current-resolution",
       "from": "proof",
       "to": "current-resolution",
       "label": "resolves authority",
-      "sources": ["adapters.mutation.proof"]
+      "files": ["src/ethos/adapters/mutation/proof.py"]
     },
     {
       "id": "proof-kernel",
       "from": "proof",
       "to": "kernel",
       "label": "validates closure",
-      "sources": [
-        "adapters.mutation.proof",
-        "adapters.mutation.proof-admission",
-        "adapters.mutation.proof-artifacts",
-        "adapters.mutation.proof-validation"
+      "files": [
+        "src/ethos/adapters/mutation/proof.py",
+        "src/ethos/adapters/mutation/proof_admission.py",
+        "src/ethos/adapters/mutation/proof_artifacts.py",
+        "src/ethos/adapters/mutation/proof_validation.py"
       ]
     },
     {
@@ -3039,101 +885,124 @@
       "from": "proof",
       "to": "attestation-set",
       "label": "records proof",
-      "sources": ["adapters.mutation.proof", "adapters.mutation.proof-admission"]
+      "files": [
+        "src/ethos/adapters/mutation/proof.py",
+        "src/ethos/adapters/mutation/proof_admission.py"
+      ]
     },
     {
       "id": "proof-evidence-store",
       "from": "proof",
       "to": "evidence-store",
       "label": "stores artifacts",
-      "sources": ["adapters.mutation.proof-artifacts"]
+      "files": ["src/ethos/adapters/mutation/proof_artifacts.py"]
     },
     {
       "id": "proof-runtime",
       "from": "proof",
       "to": "runtime",
       "label": "binds the runtime",
-      "sources": ["adapters.mutation.proof", "adapters.mutation.proof-admission"]
+      "files": [
+        "src/ethos/adapters/mutation/proof.py",
+        "src/ethos/adapters/mutation/proof_admission.py"
+      ]
     },
     {
       "id": "gate-runner-native-evidence",
       "from": "gate-runner",
       "to": "native-evidence",
       "label": "captures",
-      "sources": ["adapters.gates.runner", "adapters.gates.verification"]
+      "files": ["src/ethos/adapters/gates/runner.py", "src/ethos/adapters/gates/verification.py"]
     },
     {
       "id": "gate-runner-gate-policy",
       "from": "gate-runner",
       "to": "gate-policy",
       "label": "binds identities",
-      "sources": ["adapters.gates.runner", "adapters.gates.verification"]
+      "files": ["src/ethos/adapters/gates/runner.py", "src/ethos/adapters/gates/verification.py"]
     },
     {
       "id": "cli-gate-runner",
       "from": "cli",
       "to": "gate-runner",
       "label": "executes gates",
-      "sources": ["surface.cli.proof.host", "surface.cli.root.proof"]
+      "files": ["src/ethos/surface/cli/proof/host.py", "src/ethos/surface/cli/root/proof.py"]
     },
     {
       "id": "native-evidence-native-tools",
       "from": "native-evidence",
       "to": "native-tools",
       "label": "runs",
-      "sources": ["adapters.gates.init", "adapters.gates.tool", "adapters.toolchain.mise"]
+      "files": [
+        "src/ethos/adapters/gates/__init__.py",
+        "src/ethos/adapters/gates/tool.py",
+        "src/ethos/adapters/toolchain/mise.py"
+      ]
     },
     {
       "id": "native-evidence-evidence-store",
       "from": "native-evidence",
       "to": "evidence-store",
       "label": "keeps receipts",
-      "sources": ["adapters.gates.javascript.execution", "adapters.gates.native.attempt"]
+      "files": [
+        "src/ethos/adapters/gates/javascript/execution.py",
+        "src/ethos/adapters/gates/native/attempt.py"
+      ]
     },
     {
       "id": "prewrite-admission-current-resolution",
       "from": "prewrite-admission",
       "to": "current-resolution",
       "label": "checks authority",
-      "sources": ["adapters.admission.prewrite"]
+      "files": ["src/ethos/adapters/admission/prewrite.py"]
     },
     {
       "id": "prewrite-admission-lease",
       "from": "prewrite-admission",
       "to": "lease",
       "label": "checks holder",
-      "sources": ["adapters.admission.prewrite"]
+      "files": ["src/ethos/adapters/admission/prewrite.py"]
     },
     {
       "id": "prewrite-admission-openspec-intent",
       "from": "prewrite-admission",
       "to": "openspec-intent",
       "label": "attributes paths",
-      "sources": ["adapters.admission.patch-admission", "adapters.admission.prewrite"]
+      "files": [
+        "src/ethos/adapters/admission/patch_admission.py",
+        "src/ethos/adapters/admission/prewrite.py"
+      ]
     },
     {
       "id": "hooks-git",
       "from": "hooks",
       "to": "git",
       "label": "installs hooks",
-      "sources": ["adapters.process", "adapters.repo.git", "adapters.repo.hook.init"]
+      "files": [
+        "src/ethos/adapters/process.py",
+        "src/ethos/adapters/repo/git.py",
+        "src/ethos/adapters/repo/hook/__init__.py"
+      ]
     },
     {
       "id": "git-hooks",
       "from": "git",
       "to": "hooks",
       "label": "runs hooks",
-      "sources": ["adapters.repo.hook.binding.toml", "adapters.repo.hook.protocol"]
+      "files": [
+        "src/ethos/adapters/repo/hook/binding.toml",
+        "src/ethos/adapters/repo/hook/protocol.py"
+      ]
     },
     {
       "id": "hooks-runtime",
       "from": "hooks",
       "to": "runtime",
       "label": "selects runtime",
-      "sources": [
-        "adapters.repo.hook.activation",
-        "adapters.repo.hook.admission",
-        "adapters.repo.hook.observation"
+      "files": [
+        "src/ethos/adapters/repo/hook/activation.py",
+        "src/ethos/adapters/repo/hook/admission.py",
+        "src/ethos/adapters/repo/hook/observation.py"
       ]
     },
     {
@@ -3141,17 +1010,21 @@
       "from": "cli",
       "to": "ref-admission",
       "label": "admits hook effects",
-      "sources": ["cli", "surface.cli.application", "surface.cli.hook.commands"]
+      "files": [
+        "src/ethos/cli.py",
+        "src/ethos/surface/cli/application.py",
+        "src/ethos/surface/cli/hook/commands.py"
+      ]
     },
     {
       "id": "ref-admission-lease",
       "from": "ref-admission",
       "to": "lease",
       "label": "checks the Lease",
-      "sources": [
-        "adapters.admission.ref-move-policy",
-        "adapters.admission.role-rename",
-        "adapters.admission.transitions"
+      "files": [
+        "src/ethos/adapters/admission/ref_move_policy.py",
+        "src/ethos/adapters/admission/role_rename.py",
+        "src/ethos/adapters/admission/transitions.py"
       ]
     },
     {
@@ -3159,11 +1032,11 @@
       "from": "ref-admission",
       "to": "proof",
       "label": "requires proof",
-      "sources": [
-        "adapters.admission.control.replacement",
-        "adapters.admission.git-admission",
-        "adapters.admission.publication",
-        "adapters.admission.ref-move-policy"
+      "files": [
+        "src/ethos/adapters/admission/control/replacement.py",
+        "src/ethos/adapters/admission/git_admission.py",
+        "src/ethos/adapters/admission/publication.py",
+        "src/ethos/adapters/admission/ref_move_policy.py"
       ]
     },
     {
@@ -3171,23 +1044,23 @@
       "from": "work-lane",
       "to": "lease",
       "label": "acquires",
-      "sources": ["adapters.mutation.lane-lifecycle.start"]
+      "files": ["src/ethos/adapters/mutation/lane_lifecycle/start.py"]
     },
     {
       "id": "work-lane-git-effects",
       "from": "work-lane",
       "to": "git-effects",
       "label": "creates refs, worktrees",
-      "sources": [
-        "adapters.mutation.lane-lifecycle.archive.command",
-        "adapters.mutation.lane-lifecycle.archive.compensation",
-        "adapters.mutation.lane-lifecycle.archive.effect",
-        "adapters.mutation.lane-lifecycle.candidate.materialization",
-        "adapters.mutation.lane-lifecycle.candidate-projection",
-        "adapters.mutation.lane-lifecycle.merge",
-        "adapters.mutation.lane-lifecycle.start",
-        "adapters.mutation.lane-lifecycle.work-lane-refresh",
-        "adapters.mutation.lane-lifecycle.work-lane-refresh-record"
+      "files": [
+        "src/ethos/adapters/mutation/lane_lifecycle/archive/command.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/archive/compensation.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/archive/effect.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/candidate/materialization.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/candidate_projection.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/merge.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/start.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/work_lane_refresh.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/work_lane_refresh_record.py"
       ]
     },
     {
@@ -3195,12 +1068,12 @@
       "from": "work-lane",
       "to": "commits",
       "label": "admits commits",
-      "sources": [
-        "adapters.mutation.lane-lifecycle.archive.command",
-        "adapters.mutation.lane-lifecycle.archive.effect",
-        "adapters.mutation.lane-lifecycle.candidate.materialization",
-        "adapters.mutation.lane-lifecycle.start",
-        "adapters.mutation.lane-lifecycle.work-lane-refresh"
+      "files": [
+        "src/ethos/adapters/mutation/lane_lifecycle/archive/command.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/archive/effect.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/candidate/materialization.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/start.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/work_lane_refresh.py"
       ]
     },
     {
@@ -3208,11 +1081,11 @@
       "from": "work-lane",
       "to": "openspec-intent",
       "label": "archives the Change",
-      "sources": [
-        "adapters.mutation.lane-lifecycle.archive.command",
-        "adapters.mutation.lane-lifecycle.archive.compensation",
-        "adapters.mutation.lane-lifecycle.archive.effect",
-        "adapters.mutation.lane-lifecycle.merge"
+      "files": [
+        "src/ethos/adapters/mutation/lane_lifecycle/archive/command.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/archive/compensation.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/archive/effect.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/merge.py"
       ]
     },
     {
@@ -3220,11 +1093,11 @@
       "from": "work-lane",
       "to": "hooks",
       "label": "activates hooks",
-      "sources": [
-        "adapters.mutation.lane-lifecycle.candidate-projection",
-        "adapters.mutation.lane-lifecycle.merge",
-        "adapters.mutation.lane-lifecycle.start",
-        "adapters.mutation.lane-lifecycle.work-lane-refresh"
+      "files": [
+        "src/ethos/adapters/mutation/lane_lifecycle/candidate_projection.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/merge.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/start.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/work_lane_refresh.py"
       ]
     },
     {
@@ -3232,11 +1105,11 @@
       "from": "handoff",
       "to": "git-effects",
       "label": "installs objects",
-      "sources": [
-        "adapters.mutation.lane-lifecycle.handoff.destination-cleanup",
-        "adapters.mutation.lane-lifecycle.handoff.destination-import",
-        "adapters.mutation.lane-lifecycle.handoff.destination-objects",
-        "adapters.mutation.lane-lifecycle.handoff.package"
+      "files": [
+        "src/ethos/adapters/mutation/lane_lifecycle/handoff/destination_cleanup.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/handoff/destination_import.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/handoff/destination_objects.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/handoff/package.py"
       ]
     },
     {
@@ -3244,9 +1117,9 @@
       "from": "retirement",
       "to": "lease",
       "label": "ends the Lease",
-      "sources": [
-        "adapters.mutation.lane-retirement.absorbed",
-        "adapters.mutation.lane-retirement.operation"
+      "files": [
+        "src/ethos/adapters/mutation/lane_retirement/absorbed.py",
+        "src/ethos/adapters/mutation/lane_retirement/operation.py"
       ]
     },
     {
@@ -3254,13 +1127,13 @@
       "from": "retirement",
       "to": "git-effects",
       "label": "removes worktree, ref",
-      "sources": [
-        "adapters.mutation.lane-retirement.abandonment",
-        "adapters.mutation.lane-retirement.absorbed",
-        "adapters.mutation.lane-retirement.effects",
-        "adapters.mutation.lane-retirement.linked-effect",
-        "adapters.mutation.lane-retirement.operation",
-        "adapters.mutation.worktree.detached-cleanup"
+      "files": [
+        "src/ethos/adapters/mutation/lane_retirement/abandonment.py",
+        "src/ethos/adapters/mutation/lane_retirement/absorbed.py",
+        "src/ethos/adapters/mutation/lane_retirement/effects.py",
+        "src/ethos/adapters/mutation/lane_retirement/linked_effect.py",
+        "src/ethos/adapters/mutation/lane_retirement/operation.py",
+        "src/ethos/adapters/mutation/worktree/detached_cleanup.py"
       ]
     },
     {
@@ -3268,11 +1141,11 @@
       "from": "landing",
       "to": "mutation-admission",
       "label": "admits land",
-      "sources": [
-        "adapters.mutation.accepted.admission",
-        "adapters.mutation.landing",
-        "domain.land.closeout",
-        "domain.land.operation"
+      "files": [
+        "src/ethos/adapters/mutation/accepted/admission.py",
+        "src/ethos/adapters/mutation/landing.py",
+        "src/ethos/domain/land/closeout.py",
+        "src/ethos/domain/land/operation.py"
       ]
     },
     {
@@ -3280,11 +1153,11 @@
       "from": "landing",
       "to": "proof",
       "label": "requires proof",
-      "sources": [
-        "adapters.mutation.accepted.promotion",
-        "adapters.mutation.accepted.release",
-        "adapters.mutation.landing",
-        "domain.land.closeout"
+      "files": [
+        "src/ethos/adapters/mutation/accepted/promotion.py",
+        "src/ethos/adapters/mutation/accepted/release.py",
+        "src/ethos/adapters/mutation/landing.py",
+        "src/ethos/domain/land/closeout.py"
       ]
     },
     {
@@ -3292,12 +1165,12 @@
       "from": "landing",
       "to": "git-effects",
       "label": "moves refs by CAS",
-      "sources": [
-        "adapters.mutation.accepted.promotion",
-        "adapters.mutation.accepted.release",
-        "adapters.mutation.accepted.signature",
-        "adapters.mutation.branch-roles",
-        "adapters.mutation.landing"
+      "files": [
+        "src/ethos/adapters/mutation/accepted/promotion.py",
+        "src/ethos/adapters/mutation/accepted/release.py",
+        "src/ethos/adapters/mutation/accepted/signature.py",
+        "src/ethos/adapters/mutation/branch_roles.py",
+        "src/ethos/adapters/mutation/landing.py"
       ]
     },
     {
@@ -3305,26 +1178,26 @@
       "from": "mutation-admission",
       "to": "proof",
       "label": "selects proof",
-      "sources": ["adapters.mutation.decision"]
+      "files": ["src/ethos/adapters/mutation/decision.py"]
     },
     {
       "id": "mutation-admission-git-effects",
       "from": "mutation-admission",
       "to": "git-effects",
       "label": "admits effects",
-      "sources": ["adapters.mutation.decision"]
+      "files": ["src/ethos/adapters/mutation/decision.py"]
     },
     {
       "id": "publication-ref-admission",
       "from": "publication",
       "to": "ref-admission",
       "label": "admits updates",
-      "sources": [
-        "adapters.mutation.publication.execution",
-        "adapters.mutation.publication.retirement",
-        "domain.publication.inspection",
-        "domain.publication.operation",
-        "domain.publication.request-gaps"
+      "files": [
+        "src/ethos/adapters/mutation/publication/execution.py",
+        "src/ethos/adapters/mutation/publication/retirement.py",
+        "src/ethos/domain/publication/inspection.py",
+        "src/ethos/domain/publication/operation.py",
+        "src/ethos/domain/publication/request_gaps.py"
       ]
     },
     {
@@ -3332,17 +1205,20 @@
       "from": "publication",
       "to": "proof",
       "label": "requires proof",
-      "sources": ["adapters.mutation.publication.execution", "domain.publication.inspection"]
+      "files": [
+        "src/ethos/adapters/mutation/publication/execution.py",
+        "src/ethos/domain/publication/inspection.py"
+      ]
     },
     {
       "id": "publication-forges",
       "from": "publication",
       "to": "forges",
       "label": "pushes refs",
-      "sources": [
-        "adapters.mutation.publication.init",
-        "ethos.release.toml",
-        "repository.release.publication"
+      "files": [
+        "src/ethos/adapters/mutation/publication/__init__.py",
+        ".ethos/release.toml",
+        "src/ethos/repository/release/publication.py"
       ]
     },
     {
@@ -3350,10 +1226,10 @@
       "from": "git-effects",
       "to": "ref-admission",
       "label": "claims ref intent",
-      "sources": [
-        "adapters.repo.git-effect-admission",
-        "adapters.repo.git-effect-observation",
-        "adapters.repo.git-effects"
+      "files": [
+        "src/ethos/adapters/repo/git_effect_admission.py",
+        "src/ethos/adapters/repo/git_effect_observation.py",
+        "src/ethos/adapters/repo/git_effects.py"
       ]
     },
     {
@@ -3361,16 +1237,16 @@
       "from": "git-effects",
       "to": "kernel",
       "label": "compiles the effect plan",
-      "sources": [
-        "adapters.repo.git-effect-admission",
-        "adapters.repo.git-effect-attestation",
-        "adapters.repo.git-effect-observation",
-        "adapters.repo.git-effects",
-        "adapters.repo.merge.effect",
-        "adapters.repo.merge.observation",
-        "adapters.repo.merge.recovery",
-        "adapters.repo.native-effect-attestation",
-        "adapters.repo.worktree-effects"
+      "files": [
+        "src/ethos/adapters/repo/git_effect_admission.py",
+        "src/ethos/adapters/repo/git_effect_attestation.py",
+        "src/ethos/adapters/repo/git_effect_observation.py",
+        "src/ethos/adapters/repo/git_effects.py",
+        "src/ethos/adapters/repo/merge/effect.py",
+        "src/ethos/adapters/repo/merge/observation.py",
+        "src/ethos/adapters/repo/merge/recovery.py",
+        "src/ethos/adapters/repo/native_effect_attestation.py",
+        "src/ethos/adapters/repo/worktree_effects.py"
       ]
     },
     {
@@ -3378,45 +1254,60 @@
       "from": "git-effects",
       "to": "git",
       "label": "update-ref --stdin",
-      "sources": ["adapters.process", "adapters.repo.config-effects", "adapters.repo.git"]
+      "files": [
+        "src/ethos/adapters/process.py",
+        "src/ethos/adapters/repo/config_effects.py",
+        "src/ethos/adapters/repo/git.py"
+      ]
     },
     {
       "id": "git-read-git",
       "from": "git-read",
       "to": "git",
       "label": "reads",
-      "sources": ["adapters.open-files", "adapters.process", "adapters.repo.git"]
+      "files": [
+        "src/ethos/adapters/open_files.py",
+        "src/ethos/adapters/process.py",
+        "src/ethos/adapters/repo/git.py"
+      ]
     },
     {
       "id": "attestation-set-evidence-store",
       "from": "attestation-set",
       "to": "evidence-store",
       "label": "binds custody",
-      "sources": ["adapters.repo.attestation-set"]
+      "files": ["src/ethos/adapters/repo/attestation_set.py"]
     },
     {
       "id": "attestation-set-git",
       "from": "attestation-set",
       "to": "git",
       "label": "stores a set ref",
-      "sources": ["adapters.process", "adapters.repo.attestation-lifetime", "adapters.repo.git"]
+      "files": [
+        "src/ethos/adapters/process.py",
+        "src/ethos/adapters/repo/attestation_lifetime.py",
+        "src/ethos/adapters/repo/git.py"
+      ]
     },
     {
       "id": "projections-prewrite-admission",
       "from": "projections",
       "to": "prewrite-admission",
       "label": "admits the patch",
-      "sources": ["adapters.mutation.carrier-edit", "adapters.mutation.source-format"]
+      "files": [
+        "src/ethos/adapters/mutation/carrier_edit.py",
+        "src/ethos/adapters/mutation/source_format.py"
+      ]
     },
     {
       "id": "cli-projections",
       "from": "cli",
       "to": "projections",
       "label": "runs lane project, format",
-      "sources": [
-        "surface.cli.lane.formatting",
-        "surface.cli.lane.paradigm-repair",
-        "surface.cli.lane.projections"
+      "files": [
+        "src/ethos/surface/cli/lane/formatting.py",
+        "src/ethos/surface/cli/lane/paradigm_repair.py",
+        "src/ethos/surface/cli/lane/projections.py"
       ]
     },
     {
@@ -3424,13 +1315,13 @@
       "from": "repository-audit",
       "to": "paradigm",
       "label": "checks conformance",
-      "sources": [
-        "repository.audit",
-        "repository.policy.references.carriers",
-        "repository.policy.references.closure",
-        "repository.policy.references.declarations",
-        "repository.policy.references.observation",
-        "repository.policy.surfaces"
+      "files": [
+        "src/ethos/repository/audit.py",
+        "src/ethos/repository/policy/references/carriers.py",
+        "src/ethos/repository/policy/references/closure.py",
+        "src/ethos/repository/policy/references/declarations.py",
+        "src/ethos/repository/policy/references/observation.py",
+        "src/ethos/repository/policy/surfaces.py"
       ]
     },
     {
@@ -3438,10 +1329,10 @@
       "from": "repository-audit",
       "to": "docs-registry",
       "label": "checks docs",
-      "sources": [
-        "repository.audit",
-        "repository.policy.references.closure",
-        "repository.policy.schema"
+      "files": [
+        "src/ethos/repository/audit.py",
+        "src/ethos/repository/policy/references/closure.py",
+        "src/ethos/repository/policy/schema.py"
       ]
     },
     {
@@ -3449,24 +1340,24 @@
       "from": "repository-audit",
       "to": "commits",
       "label": "compiles commit policy",
-      "sources": ["repository.audit"]
+      "files": ["src/ethos/repository/audit.py"]
     },
     {
       "id": "repository-audit-skills",
       "from": "repository-audit",
       "to": "skills",
       "label": "checks skills",
-      "sources": ["repository.audit", "repository.policy.schema"]
+      "files": ["src/ethos/repository/audit.py", "src/ethos/repository/policy/schema.py"]
     },
     {
       "id": "repository-audit-release",
       "from": "repository-audit",
       "to": "release",
       "label": "checks release",
-      "sources": [
-        "repository.audit",
-        "repository.policy.references.declarations",
-        "repository.policy.schema"
+      "files": [
+        "src/ethos/repository/audit.py",
+        "src/ethos/repository/policy/references/declarations.py",
+        "src/ethos/repository/policy/schema.py"
       ]
     },
     {
@@ -3474,24 +1365,28 @@
       "from": "adoption",
       "to": "git",
       "label": "forms, binds",
-      "sources": ["adapters.process", "adapters.repo.git", "adapters.repo.init"]
+      "files": [
+        "src/ethos/adapters/process.py",
+        "src/ethos/adapters/repo/git.py",
+        "src/ethos/adapters/repo/__init__.py"
+      ]
     },
     {
       "id": "runtime-release",
       "from": "runtime",
       "to": "release",
       "label": "admits identity",
-      "sources": [
-        "adapters.repo.runtime.authority",
-        "adapters.repo.runtime.manifest",
-        "adapters.repo.runtime.materialization.effect",
-        "adapters.repo.runtime.materialization.input-resolution",
-        "adapters.repo.runtime.materialization.native-supply",
-        "adapters.repo.runtime.materialization.node-package-supply",
-        "adapters.repo.runtime.retirement",
-        "adapters.repo.runtime.selection",
-        "adapters.repo.runtime.source",
-        "adapters.repo.runtime.transition"
+      "files": [
+        "src/ethos/adapters/repo/runtime/authority.py",
+        "src/ethos/adapters/repo/runtime/manifest.py",
+        "src/ethos/adapters/repo/runtime/materialization/effect.py",
+        "src/ethos/adapters/repo/runtime/materialization/input_resolution.py",
+        "src/ethos/adapters/repo/runtime/materialization/native_supply.py",
+        "src/ethos/adapters/repo/runtime/materialization/node_package_supply.py",
+        "src/ethos/adapters/repo/runtime/retirement.py",
+        "src/ethos/adapters/repo/runtime/selection.py",
+        "src/ethos/adapters/repo/runtime/source.py",
+        "src/ethos/adapters/repo/runtime/transition.py"
       ]
     },
     {
@@ -3499,14 +1394,18 @@
       "from": "runtime",
       "to": "native-tools",
       "label": "resolves mise supply",
-      "sources": ["adapters.gates.tool", "adapters.repo.runtime.init", "adapters.toolchain.mise"]
+      "files": [
+        "src/ethos/adapters/gates/tool.py",
+        "src/ethos/adapters/repo/runtime/__init__.py",
+        "src/ethos/adapters/toolchain/mise.py"
+      ]
     },
     {
       "id": "landing-release",
       "from": "landing",
       "to": "release",
       "label": "selects release refs",
-      "sources": ["adapters.mutation.accepted.release"]
+      "files": ["src/ethos/adapters/mutation/accepted/release.py"]
     }
   ],
   "views": [

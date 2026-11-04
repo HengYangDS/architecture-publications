@@ -3,8 +3,8 @@
 [`model.json`](model.json) is an Architecture Model of how AIGW turns one
 reviewed configuration into guarded native projections in every admitted
 client. It pins `aigw-cli` at v0.6.0
-(`9c26591fb3efec088075a7ba18b6dae6d840eacf`) and cites all 210 production
-files of its coverage scope by SHA-256: `cmd/`, `internal/`, the team manifest
+(`9c26591fb3efec088075a7ba18b6dae6d840eacf`), and its components own all 210
+production files of its coverage scope: `cmd/`, `internal/`, the team manifest
 and `go.mod`. Twenty-two components, forty-three relations and six views show
 the configuration and its owners, the admitted clients and their seam, what a
 command reports, the program itself and one projection from plan to
@@ -24,21 +24,21 @@ clients in step, why one guarded transaction, what AIGW leaves to others, how
 it is released and what is still open. Each claim cites a line range at
 v0.6.0, and the diagrams the draft names sit beside it.
 
-Each component cites every production file that ordered path rules attribute
-to it. A relation is kept only when a Go import backs it, and cites the
-importing package's files. The scope leaves out the tests beside the code with
-`**/*_test.go` and their inputs, and the repository's tools, CI and
-documentation. AIGW does not maintain this model, and a built delivery is not
-an AIGW endorsement.
+Each component claims the directories and files its path rules name, and each
+production file goes to its most specific claim. A relation is kept only when
+a Go import backs it, and cites the importing package's files. The scope leaves
+out the tests beside the code with `**/*_test.go` and their inputs, and the
+repository's tools, CI and documentation. AIGW does not maintain this model,
+and a built delivery is not an AIGW endorsement.
 
 ```sh
 archpub check publications/aigw-client/model.json --repo <aigw-cli checkout>
 archpub build publications/aigw-client/model.json --repo <aigw-cli checkout> --out build/aigw-client
 ```
 
-Checking the work needs an Architecture Publisher that reads a glob in a
-coverage path and delivers a guide as the page; building the overview needs
-Typst 0.15.1 on the path.
+Checking the work needs an Architecture Publisher that reads model version 2
+and a glob in a coverage path and delivers a guide as the page; building the
+overview needs Typst 0.15.1 on the path.
 
 [`source.json`](source.json) records the original claim model and edition
 project with their digests. Both are retained at the preservation commit it

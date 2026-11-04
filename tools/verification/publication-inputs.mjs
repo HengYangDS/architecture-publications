@@ -11,7 +11,6 @@ const COMPOSITION = /^[^/\\]+\.typ$/;
 /** A guide the publisher delivers as the page: an Archify draft in a directory of its own. */
 const GUIDE = /^(?!\.\.?\/)[^/\\]+\/[^/\\]+\.archify\.md$/;
 const REVISION = /^([0-9a-f]{40}|[0-9a-f]{64})$/;
-const DIGEST = /^[0-9a-f]{64}$/;
 
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const readJson = async (file) => JSON.parse(await readFile(file, "utf8"));
@@ -60,14 +59,12 @@ export async function verifyCustody(directory, repositoryRoot) {
 export async function verifyModel(directory) {
   const model = await readJson(path.join(directory, "model.json"));
   assert.equal(model.format, MODEL_FORMAT);
-  assert.equal(model.version, 1);
+  assert.equal(model.version, 2);
   assert.ok(typeof model.id === "string" && model.id.length > 0);
   assert.match(model.repository?.revision ?? "", REVISION);
-  const sources = Object.entries(model.sources ?? {});
-  assert.ok(sources.length > 0, "the model cites no sources");
-  for (const [id, source] of sources) {
-    assert.match(source.sha256 ?? "", DIGEST, `source ${id} declares no digest`);
-  }
+  // The publisher reads each claimed file at the revision and records its digest in the delivery.
+  const claims = (model.components ?? []).flatMap((component) => component.files ?? []);
+  assert.ok(claims.length > 0, "the model claims no files");
   // The publisher names a view's poster, panel and viewer by its own title.
   for (const view of model.views ?? []) {
     const title = typeof view.title === "string" ? view.title.trim() : "";

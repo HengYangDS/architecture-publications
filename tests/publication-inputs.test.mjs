@@ -23,13 +23,12 @@ test("every work is one pinned model with verified custody and a unique id", asy
 
 const model = (id) => ({
   format: "architecture-publisher.model",
-  version: 1,
+  version: 2,
   id,
   title: "Shop",
   question: "How does an order reach the warehouse?",
   repository: { name: "shop", revision: "a".repeat(40) },
-  sources: { orders: { path: "orders.go", sha256: "b".repeat(64) } },
-  components: [{ id: "orders", label: "Orders" }],
+  components: [{ id: "orders", label: "Orders", files: ["orders.go"] }],
   relations: [],
 });
 
@@ -57,7 +56,7 @@ test("a model is refused unless it is the publisher's format pinned exactly", as
         copy.format = "architecture.claim-model/v2";
       },
       (copy) => {
-        copy.version = 2;
+        copy.version = 1;
       },
       (copy) => {
         copy.repository.revision = "a".repeat(7);
@@ -66,10 +65,10 @@ test("a model is refused unless it is the publisher's format pinned exactly", as
         delete copy.repository;
       },
       (copy) => {
-        delete copy.sources.orders.sha256;
+        copy.components[0].files = [];
       },
       (copy) => {
-        delete copy.sources;
+        delete copy.components[0].files;
       },
     ]) {
       const copy = structuredClone(model("shop"));
