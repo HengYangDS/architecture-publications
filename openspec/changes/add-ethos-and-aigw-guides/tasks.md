@@ -12,4 +12,4 @@
 
 ## 3. Verification
 
-- [ ] 3.1 Build the ETHOS and AIGW works with that publisher; verify each page is its guide, recorded in the manifest with its sources verified.
+- [x] 3.1 Build the ETHOS and AIGW works with that publisher; verify each page is its guide, recorded in the manifest with its sources verified. At `181b5cb` the ETHOS build delivers 11 posters and the AIGW build 6, each with its overview and its guide as the page; each manifest records the guide at showcase with its sources verified.
