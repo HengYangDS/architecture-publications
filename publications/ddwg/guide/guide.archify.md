@@ -59,8 +59,8 @@ The guidelines are a documentation repository that members and Agents read witho
 @source contrib-cut title="Cut and tag the release" path="CONTRIBUTING.md" lines=244:275
 @source contrib-publish title="Publish on the selected Forge" path="CONTRIBUTING.md" lines=289:302
 @source contrib-verify title="Verify the published edition" path="CONTRIBUTING.md" lines=344:349
-@source openspec-change title="One active Change" path="openspec/README.md" lines=3:12
-@source openspec-ethos title="ETHOS owns admission and closeout" path="openspec/README.md" lines=30:41
+@source change-record title="One active Change" path="openspec/README.md" lines=3:12
+@source change-admission title="ETHOS owns admission and closeout" path="openspec/README.md" lines=30:41
 @source specs-index title="The six capabilities" path="openspec/specs/README.md" lines=3:20
 @source gd-entry title="Task-oriented guidance discovery" path="openspec/specs/guidance-discovery/spec.md" lines=11:19
 @source gd-owner title="Unique normative owner" path="openspec/specs/guidance-discovery/spec.md" lines=43:48
@@ -143,7 +143,7 @@ The working loop runs frame, analyze, decide, execute, verify and learn. These a
 
 ## Which specs state what the guidelines must do? {#p-specs}
 
-Six capability specs in the OpenSpec workspace hold the accepted requirements. Requirements enter them only through an official Change.[](source:specs-index)[](source:openspec-change)
+Six capability specs in the OpenSpec workspace hold the accepted requirements. Requirements enter them only through an official Change.[](source:specs-index)[](source:change-record)
 
 | Capability            | Concern                   | What it binds                                                                                                          |
 | --------------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
@@ -162,29 +162,29 @@ Installed ETHOS owns attribution, the lane lease, admission, proof, acceptance a
 
 @sequence id=change-flow title="One change, from proposal to publication"
 | actor ch-maintainer | Maintainer | external |
-| actor ch-change | Official Change | backend | source:openspec-change |
-| actor ch-ethos | Installed ETHOS | security | source:openspec-ethos |
+| actor ch-change | Official Change | backend | source:change-record |
+| actor ch-runtime | Installed ETHOS | security | source:change-admission |
 | actor ch-forge | Selected Forge | cloud | source:gov-peers |
 | phase | Propose |
 | ch-maintainer | ch-change | proposal, design, deltas, tasks |
-| ch-maintainer | ch-ethos | status, then an owned lane |
+| ch-maintainer | ch-runtime | status, then an owned lane |
 | phase | Write |
-| ch-maintainer | ch-ethos | prewrite the exact paths |
-| ch-ethos | ch-maintainer | pass | return |
-| ch-maintainer | ch-ethos | signed commit through the hooks |
+| ch-maintainer | ch-runtime | prewrite the exact paths |
+| ch-runtime | ch-maintainer | pass | return |
+| ch-maintainer | ch-runtime | signed commit through the hooks |
 | phase | Prove and accept |
-| ch-maintainer | ch-ethos | prove the exact HEAD | emphasis |
-| ch-ethos | ch-maintainer | pass, block or unknown | return |
-| ch-maintainer | ch-ethos | accept into dev |
+| ch-maintainer | ch-runtime | prove the exact HEAD | emphasis |
+| ch-runtime | ch-maintainer | pass, block or unknown | return |
+| ch-maintainer | ch-runtime | accept into dev |
 | phase | Close |
 | ch-maintainer | ch-change | archive as a new commit |
-| ch-maintainer | ch-ethos | prove the archive commit |
+| ch-maintainer | ch-runtime | prove the archive commit |
 | ch-maintainer | ch-forge | publish to this peer |
 
 @steps id=change-steps
-| step-ch-change | Official Change | Carries the proposal, design, specification deltas and task progress; a method pack or a decision record cannot replace it.[](source:openspec-change)[](source:dr4-decision) | change-flow | ch-change |
-| step-ch-ethos | Installed ETHOS | Admits the exact paths just before a write, and its Git hooks admit each commit and push.[](source:agents-change)[](source:contrib-audience) | change-flow | ch-ethos |
-| step-ch-prove | Installed ETHOS | Proof runs the full graph at the exact HEAD; a refusal is never bypassed by a raw push.[](source:contrib-prove) | change-flow | ch-ethos |
+| step-ch-change | Official Change | Carries the proposal, design, specification deltas and task progress; a method pack or a decision record cannot replace it.[](source:change-record)[](source:dr4-decision) | change-flow | ch-change |
+| step-ch-runtime | Installed ETHOS | Admits the exact paths just before a write, and its Git hooks admit each commit and push.[](source:agents-change)[](source:contrib-audience) | change-flow | ch-runtime |
+| step-ch-prove | Installed ETHOS | Proof runs the full graph at the exact HEAD; a refusal is never bypassed by a raw push.[](source:contrib-prove) | change-flow | ch-runtime |
 | step-ch-archive | Official Change | Acceptance into dev does not close delivery; the archive commit needs its own signature, proof and publication.[](source:gov-archive) | change-flow | ch-change |
 | step-ch-forge | Selected Forge | Each peer is published and verified on its own; one peer's result proves nothing about the other.[](source:gov-peers) | change-flow | ch-forge |
 

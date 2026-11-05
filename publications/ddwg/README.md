@@ -35,7 +35,7 @@ records a link, a named path or a requirement by which one component routes a
 reader to another, places a duty with it, constrains it, or generates, installs
 or runs it, and cites the files that make that reference. The links between the
 seven topics, links back to an entry or a hub page, and pointers that another
-document already holds are listed in [`notes.md`](notes.md) instead of drawn.
+document already holds are not drawn.
 The scope leaves out the archived Change history. The repository's owners do
 not maintain this model, and a built delivery is not their endorsement.
 
