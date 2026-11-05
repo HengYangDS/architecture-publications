@@ -8,4 +8,4 @@
 
 ## 2. Verification
 
-- [ ] 2.1 Build the four works with Architecture Publisher 0.8.0; verify each delivers its posters, its overview and its guide as the page, and every page preview fits at 1440 × 900.
+- [x] 2.1 Build the four works with Architecture Publisher 0.8.0; verify each delivers its posters, its overview and its guide as the page, and every page preview fits at 1440 × 900. At `4a6af87`, Architecture Publisher 0.8.0 builds the posters of each work (DDWG 6, filmkit 6, the proxy 6, Architecture Publisher 6), its overview and its guide as the page; all 30 page previews fit at 1440 × 900.
