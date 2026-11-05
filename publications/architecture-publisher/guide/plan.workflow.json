@@ -1,0 +1,243 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "How a build chooses its views",
+    "output": "plan.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/architecture-publisher",
+      "provider": "github",
+      "revision": "a2f42242494ef918094a81147793d53c54718f8c"
+    },
+    "legend": {
+      "entries": {
+        "security": {
+          "label": "question"
+        },
+        "backend": {
+          "label": "publisher step"
+        },
+        "external": {
+          "label": "outcome"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "plan-lane-declared",
+      "label": "Declared"
+    },
+    {
+      "id": "plan-lane-planned",
+      "label": "Planned by the publisher"
+    },
+    {
+      "id": "plan-lane-refused",
+      "label": "Refused",
+      "variant": "exception"
+    }
+  ],
+  "mainPath": ["plan-declared", "plan-admit", "plan-draw"],
+  "nodes": [
+    {
+      "id": "plan-declared",
+      "lane": "plan-lane-declared",
+      "col": 0,
+      "type": "security",
+      "label": "Views declared?",
+      "sources": [
+        {
+          "path": "src/plan/views.mjs",
+          "line": 135,
+          "end_line": 140,
+          "label": "Declared"
+        }
+      ]
+    },
+    {
+      "id": "plan-admit",
+      "lane": "plan-lane-declared",
+      "col": 1,
+      "type": "backend",
+      "label": "Admit each declared view",
+      "sources": [
+        {
+          "path": "src/plan/views.mjs",
+          "line": 200,
+          "end_line": 223,
+          "label": "Admission"
+        }
+      ]
+    },
+    {
+      "id": "plan-draw",
+      "lane": "plan-lane-declared",
+      "col": 4,
+      "type": "external",
+      "label": "Views to draw",
+      "sources": [
+        {
+          "path": "src/plan/views.mjs",
+          "line": 130,
+          "end_line": 134,
+          "label": "Plan"
+        }
+      ]
+    },
+    {
+      "id": "plan-whole",
+      "lane": "plan-lane-planned",
+      "col": 1,
+      "type": "backend",
+      "label": "One view of every component",
+      "sources": [
+        {
+          "path": "src/plan/views.mjs",
+          "line": 141,
+          "end_line": 146,
+          "label": "Whole model"
+        }
+      ]
+    },
+    {
+      "id": "plan-fits",
+      "lane": "plan-lane-planned",
+      "col": 2,
+      "type": "security",
+      "label": "Fits one poster?",
+      "sources": [
+        {
+          "path": "src/plan/views.mjs",
+          "line": 147,
+          "end_line": 148,
+          "label": "Fits"
+        }
+      ]
+    },
+    {
+      "id": "plan-groups",
+      "lane": "plan-lane-planned",
+      "col": 3,
+      "type": "security",
+      "label": "Groups declared?",
+      "sources": [
+        {
+          "path": "src/plan/views.mjs",
+          "line": 149,
+          "end_line": 154,
+          "label": "Groups"
+        }
+      ]
+    },
+    {
+      "id": "plan-overview",
+      "lane": "plan-lane-planned",
+      "col": 4,
+      "type": "backend",
+      "label": "Group overview and views",
+      "sources": [
+        {
+          "path": "src/plan/views.mjs",
+          "line": 52,
+          "end_line": 57,
+          "label": "Overview"
+        }
+      ]
+    },
+    {
+      "id": "plan-refused",
+      "lane": "plan-lane-refused",
+      "col": 3,
+      "type": "external",
+      "label": "Plan refused",
+      "sources": [
+        {
+          "path": "src/plan/views.mjs",
+          "line": 149,
+          "end_line": 154,
+          "label": "Refusal"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "plan-e-admit",
+      "from": "plan-declared",
+      "to": "plan-admit",
+      "role": "main",
+      "label": "yes",
+      "variant": "emphasis"
+    },
+    {
+      "id": "plan-e-draw",
+      "from": "plan-admit",
+      "to": "plan-draw",
+      "role": "main"
+    },
+    {
+      "id": "plan-e-whole",
+      "from": "plan-declared",
+      "to": "plan-whole",
+      "role": "branch",
+      "label": "no"
+    },
+    {
+      "id": "plan-e-fits",
+      "from": "plan-whole",
+      "to": "plan-fits",
+      "role": "branch"
+    },
+    {
+      "id": "plan-e-fit-yes",
+      "from": "plan-fits",
+      "to": "plan-draw",
+      "role": "branch",
+      "label": "yes"
+    },
+    {
+      "id": "plan-e-fit-no",
+      "from": "plan-fits",
+      "to": "plan-groups",
+      "role": "branch",
+      "label": "no"
+    },
+    {
+      "id": "plan-e-group-yes",
+      "from": "plan-groups",
+      "to": "plan-overview",
+      "role": "branch",
+      "label": "yes"
+    },
+    {
+      "id": "plan-e-overview",
+      "from": "plan-overview",
+      "to": "plan-draw",
+      "role": "branch"
+    },
+    {
+      "id": "plan-e-group-no",
+      "from": "plan-groups",
+      "to": "plan-refused",
+      "role": "error",
+      "label": "no"
+    }
+  ],
+  "semanticChecks": {
+    "allowedRoots": ["plan-declared"],
+    "allowedTerminals": ["plan-draw", "plan-refused"],
+    "requiredEdges": [
+      {
+        "from": "plan-declared",
+        "to": "plan-admit"
+      },
+      {
+        "from": "plan-groups",
+        "to": "plan-refused"
+      }
+    ]
+  }
+}

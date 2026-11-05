@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "What filmkit reads, runs and writes",
+    "output": "context.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/filmkit.git",
+      "provider": "github",
+      "revision": "0d56c27c12d84464d20560c07d7edd154578f279"
+    }
+  },
+  "components": [
+    {
+      "id": "ctx-author",
+      "type": "external",
+      "label": "Film author",
+      "sublabel": "writes the film",
+      "pos": [40, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 5,
+          "end_line": 5,
+          "label": "Film"
+        }
+      ],
+      "icon": "person"
+    },
+    {
+      "id": "ctx-film",
+      "type": "external",
+      "label": "Film repository",
+      "sublabel": "declaration, scripts, picture",
+      "pos": [280, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 18,
+          "end_line": 27,
+          "label": "Layout"
+        }
+      ]
+    },
+    {
+      "id": "ctx-models",
+      "type": "external",
+      "label": "Speech models",
+      "sublabel": "voice, aligner, recognizer",
+      "pos": [520, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/filmkit/narration/snapshots.py",
+          "line": 58,
+          "end_line": 86,
+          "label": "Pins"
+        }
+      ]
+    },
+    {
+      "id": "ctx-supply",
+      "type": "cloud",
+      "label": "Supply step",
+      "sublabel": "the only network step",
+      "pos": [760, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/filmkit/supply.py",
+          "line": 1,
+          "end_line": 7,
+          "label": "Supply"
+        }
+      ]
+    },
+    {
+      "id": "ctx-engine",
+      "type": "security",
+      "label": "filmkit engine",
+      "sublabel": "one action per edition",
+      "pos": [280, 190],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/filmkit/produce.py",
+          "line": 45,
+          "end_line": 59,
+          "label": "Actions"
+        }
+      ]
+    },
+    {
+      "id": "ctx-browser",
+      "type": "external",
+      "label": "HyperFrames, Chrome",
+      "sublabel": "the film's npm packages",
+      "pos": [520, 190],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/filmkit/picture/rendering.py",
+          "line": 181,
+          "end_line": 191,
+          "label": "Renderer"
+        }
+      ]
+    },
+    {
+      "id": "ctx-build",
+      "type": "database",
+      "label": "Build folder",
+      "sublabel": "media and records",
+      "pos": [40, 340],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/filmkit/production.py",
+          "line": 109,
+          "end_line": 119,
+          "label": "Places"
+        }
+      ]
+    },
+    {
+      "id": "ctx-host",
+      "type": "external",
+      "label": "FFmpeg, ExifTool, rsync",
+      "sublabel": "host tools",
+      "pos": [280, 340],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 9,
+          "end_line": 12,
+          "label": "Requirements"
+        }
+      ]
+    },
+    {
+      "id": "ctx-documents",
+      "type": "database",
+      "label": "Documents folder",
+      "sublabel": "21 delivered members",
+      "pos": [520, 340],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/filmkit/delivery/documents_folder.py",
+          "line": 1,
+          "end_line": 16,
+          "label": "Delivery"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "ctx-writes",
+      "from": "ctx-author",
+      "to": "ctx-film",
+      "label": "writes"
+    },
+    {
+      "id": "ctx-reads",
+      "from": "ctx-engine",
+      "to": "ctx-film",
+      "label": "reads"
+    },
+    {
+      "id": "ctx-downloads",
+      "from": "ctx-supply",
+      "to": "ctx-models",
+      "label": "downloads"
+    },
+    {
+      "id": "ctx-installs",
+      "from": "ctx-supply",
+      "to": "ctx-browser",
+      "label": "installs"
+    },
+    {
+      "id": "ctx-narrates",
+      "from": "ctx-engine",
+      "to": "ctx-models",
+      "label": "narrates, aligns"
+    },
+    {
+      "id": "ctx-renders",
+      "from": "ctx-engine",
+      "to": "ctx-browser",
+      "label": "renders, audits",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ctx-encodes",
+      "from": "ctx-engine",
+      "to": "ctx-host",
+      "label": "encodes, probes"
+    },
+    {
+      "id": "ctx-records",
+      "from": "ctx-engine",
+      "to": "ctx-build",
+      "label": "writes records"
+    },
+    {
+      "id": "ctx-delivers",
+      "from": "ctx-engine",
+      "to": "ctx-documents",
+      "label": "delivers"
+    }
+  ]
+}

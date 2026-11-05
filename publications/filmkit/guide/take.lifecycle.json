@@ -1,0 +1,195 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "A thought's take, from seed to soundtrack",
+    "output": "take.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/filmkit.git",
+      "provider": "github",
+      "revision": "0d56c27c12d84464d20560c07d7edd154578f279"
+    }
+  },
+  "mainPath": ["take-narrated", "take-judged", "take-selected", "take-assembled"],
+  "states": [
+    {
+      "id": "take-narrated",
+      "type": "start",
+      "label": "Narrated",
+      "sublabel": "from a seed or retake",
+      "sources": [
+        {
+          "path": "src/filmkit/narration/synthesis.py",
+          "line": 176,
+          "end_line": 194,
+          "label": "Plan"
+        },
+        {
+          "path": "src/filmkit/narration/group_generation.py",
+          "line": 172,
+          "end_line": 209,
+          "label": "Record"
+        }
+      ]
+    },
+    {
+      "id": "take-judged",
+      "type": "decision",
+      "label": "Judged",
+      "sublabel": "does it end whole?",
+      "sources": [
+        {
+          "path": "src/filmkit/narration/take_edges.py",
+          "line": 157,
+          "end_line": 184,
+          "label": "Ending"
+        }
+      ]
+    },
+    {
+      "id": "take-selected",
+      "type": "active",
+      "label": "Selected",
+      "sublabel": "bound to the script",
+      "sources": [
+        {
+          "path": "src/filmkit/narration/selection.py",
+          "line": 65,
+          "end_line": 97,
+          "label": "Select"
+        }
+      ]
+    },
+    {
+      "id": "take-assembled",
+      "type": "success",
+      "label": "Assembled",
+      "sublabel": "one program level",
+      "sources": [
+        {
+          "path": "src/filmkit/soundtrack/assembly.py",
+          "line": 461,
+          "end_line": 539,
+          "label": "Assemble"
+        }
+      ]
+    },
+    {
+      "id": "take-abrupt",
+      "type": "failure",
+      "label": "Abrupt",
+      "sublabel": "cut inside a syllable",
+      "sources": [
+        {
+          "path": "src/filmkit/soundtrack/assembly.py",
+          "line": 122,
+          "end_line": 142,
+          "label": "Refuse"
+        }
+      ]
+    },
+    {
+      "id": "take-auditioned",
+      "type": "waiting",
+      "label": "Auditioned",
+      "sublabel": "other seeds, run-ons",
+      "sources": [
+        {
+          "path": "src/filmkit/narration/audition.py",
+          "line": 67,
+          "end_line": 91,
+          "label": "Propose"
+        }
+      ]
+    },
+    {
+      "id": "take-released",
+      "type": "waiting",
+      "label": "Released",
+      "sublabel": "declared for its join",
+      "sources": [
+        {
+          "path": "src/filmkit/soundtrack/policy.py",
+          "line": 159,
+          "end_line": 170,
+          "label": "Releases"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "id": "take-t-judge",
+      "from": "take-narrated",
+      "to": "take-judged",
+      "label": "judge"
+    },
+    {
+      "id": "take-t-natural",
+      "from": "take-judged",
+      "to": "take-selected",
+      "label": "natural"
+    },
+    {
+      "id": "take-t-assemble",
+      "from": "take-selected",
+      "to": "take-assembled",
+      "label": "assemble"
+    },
+    {
+      "id": "take-t-abrupt",
+      "from": "take-judged",
+      "to": "take-abrupt",
+      "label": "abrupt",
+      "variant": "security"
+    },
+    {
+      "id": "take-t-audition",
+      "from": "take-abrupt",
+      "to": "take-auditioned",
+      "label": "audition",
+      "variant": "dashed"
+    },
+    {
+      "id": "take-t-retake",
+      "from": "take-auditioned",
+      "to": "take-narrated",
+      "label": "bind a retake",
+      "variant": "dashed"
+    },
+    {
+      "id": "take-t-release",
+      "from": "take-abrupt",
+      "to": "take-released",
+      "label": "declare a release",
+      "variant": "dashed"
+    },
+    {
+      "id": "take-t-released",
+      "from": "take-released",
+      "to": "take-selected",
+      "label": "tail faded",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "What a whole ending is",
+      "items": [
+        "The last 30 ms are quiet.",
+        "The last syllable dies away instead of stopping in under 6 ms."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "How a thought recovers",
+      "items": [
+        "An audition narrates other seeds or a run-on cut in the quiet.",
+        "A retake binds the SHA-256 of its text and speech."
+      ]
+    }
+  ]
+}

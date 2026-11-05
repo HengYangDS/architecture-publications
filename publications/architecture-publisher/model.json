@@ -4,22 +4,34 @@
   "id": "architecture-publisher",
   "title": "Architecture Publisher",
   "question": "How does Architecture Publisher turn an architecture model into posters, a page and an overview?",
-  "summary": "An editor runs archpub on a model or a LikeC4 workspace. One build validates the model, verifies its sources, plans its views, lays each out on one grid and writes 16:9 poster pages, a native Archify explainer page, the overview its author composes in Typst and a manifest of their digests and evidence; archpub check also counts what the model covers of its repository.",
-  "attribution": "Architecture Publications, read from the Architecture Publisher source",
-  "scope": "The publisher package and its vendored supplies; not the repository's quality tooling or CI",
+  "summary": "An author runs archpub on a model. A build validates it, gives each file in its scope to the component that claims it at the pinned revision, plans the views and lays each out on one grid. It writes 16:9 posters, one Archify page, which is the author's guide when the model names one, the overview the author composes in Typst, and a manifest of their digests; a named reviewer accepts the delivery before it is published.",
+  "scope": "Architecture Publisher as released at v0.8.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
   "limits": [
-    "Curated from the selected modules at the pinned revision; relations describe calls between those modules, not every function"
+    "Each component claims the directories and files its path rules name, and each file in the scope goes to its most specific claim; a relation cites the modules that import or call the other component.",
+    "Relations are imports and process calls in the source, not runtime order; the shared refusal type and the child environment are not drawn as relations.",
+    "The vendored programs, fonts and artwork that the supply manifests list, and the repository's tests, tools, documentation, OpenSpec changes and CI, are outside the scope."
   ],
+  "attribution": "Architecture Publications, read from the Architecture Publisher source",
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "97c2079a33d1772343593d6609145b5dd6d41358"
+    "revision": "a2f42242494ef918094a81147793d53c54718f8c"
   },
+  "coverage": {
+    "include": ["src/", "package.json", "renderers/*/supply/supply.json", "supplies/*/supply.json"]
+  },
+  "overview": "overview.typ",
+  "guide": "guide/guide.archify.md",
   "kinds": {
-    "person": {
-      "label": "person",
+    "author": {
+      "label": "author",
       "category": "person",
       "icon": "user-pen"
+    },
+    "reviewer": {
+      "label": "reviewer",
+      "category": "person",
+      "icon": "user-check"
     },
     "command": {
       "label": "command line",
@@ -56,6 +68,11 @@
       "category": "external",
       "icon": "git-branch"
     },
+    "tool": {
+      "label": "external tool",
+      "category": "external",
+      "icon": "type"
+    },
     "store": {
       "label": "delivery store",
       "category": "external",
@@ -64,143 +81,121 @@
   },
   "components": [
     {
-      "id": "editor",
-      "label": "Editor",
-      "kind": "person",
+      "id": "author",
+      "label": "Author",
+      "kind": "author",
       "details": {
-        "writes": "the model"
+        "writes": "the model, its overview and its guide"
+      }
+    },
+    {
+      "id": "reviewer",
+      "label": "Reviewer",
+      "kind": "reviewer",
+      "details": {
+        "accepts": "one unchanged delivery, by name"
       }
     },
     {
       "id": "cli",
       "label": "archpub",
       "kind": "command",
-      "files": ["src/cli/run.mjs", "src/cli/main.mjs", "src/refusal.mjs"]
+      "details": {
+        "commands": "check, build, import likec4, scaffold guide, migrate, accept, publish",
+        "exits": "0 done, 1 refused, 2 usage, 3 failure"
+      },
+      "files": ["src/cli/", "src/refusal.mjs", "package.json"]
     },
     {
       "id": "importer",
       "label": "LikeC4 importer",
       "kind": "stage",
       "details": {
-        "parses": "LikeC4 sources"
+        "parses": "a LikeC4 workspace in a sandboxed worker"
       },
-      "files": ["src/importers/likec4.mjs", "src/importers/likec4-worker.mjs"]
+      "files": ["src/importers/"]
     },
     {
-      "id": "builder",
-      "label": "Delivery builder",
+      "id": "migration",
+      "label": "Model migration",
       "kind": "stage",
       "details": {
-        "writes": "one delivery"
+        "converts": "a version 1 source catalog into version 2 claims"
       },
-      "files": ["src/build.mjs"]
-    },
-    {
-      "id": "acceptance",
-      "label": "Publication",
-      "kind": "stage",
-      "details": {
-        "keeps": "accepted copies"
-      },
-      "files": ["src/delivery.mjs"]
+      "files": ["src/importers/model.mjs"]
     },
     {
       "id": "model",
       "label": "Model loader",
       "kind": "check",
       "details": {
-        "refuses": "invalid fields"
+        "validates": "version 2, every problem with its JSON path"
       },
-      "files": ["src/model/load.mjs", "src/model/schema.json", "src/model/paths.mjs"]
+      "files": ["src/model/"]
+    },
+    {
+      "id": "builder",
+      "label": "Delivery builder",
+      "kind": "stage",
+      "details": {
+        "writes": "one delivery, renamed into place when complete"
+      },
+      "files": ["src/build.mjs"]
     },
     {
       "id": "binding",
-      "label": "Source binding",
+      "label": "File binding",
       "kind": "check",
       "details": {
-        "reads": "Git at a revision"
+        "gives": "each file in the scope to its most specific claim",
+        "reads": "Git at the pinned revision, never changing the checkout"
       },
-      "files": ["src/sources/bind.mjs", "src/sources/git.mjs", "src/environment.mjs"]
+      "files": ["src/sources/", "src/environment.mjs"]
+    },
+    {
+      "id": "scope",
+      "label": "Coverage scope",
+      "kind": "check",
+      "details": {
+        "matches": "include and exclude paths and globs, as Git matches them"
+      },
+      "files": ["src/sources/scope.mjs"]
+    },
+    {
+      "id": "coverage",
+      "label": "Coverage report",
+      "kind": "check",
+      "details": {
+        "counts": "files in scope, owned, uncovered and excluded"
+      },
+      "files": ["src/sources/coverage.mjs"]
+    },
+    {
+      "id": "worklist",
+      "label": "Re-pin worklist",
+      "kind": "check",
+      "details": {
+        "lists": "what moving the pin changes for each claim, relation and citation"
+      },
+      "files": ["src/sources/worklist.mjs"]
     },
     {
       "id": "plan",
       "label": "Reading plan",
       "kind": "engine",
       "details": {
-        "chooses": "the views"
+        "chooses": "the declared views, one whole view or one per group"
       },
-      "files": ["src/plan/views.mjs"]
-    },
-    {
-      "id": "poster",
-      "label": "Poster composer",
-      "kind": "medium",
-      "details": {
-        "draws": "2400 × 1350 px pages"
-      },
-      "files": [
-        "src/poster/compose/edition.mjs",
-        "src/poster/compose/candidates.mjs",
-        "src/poster/compose/drawing.mjs",
-        "src/poster/compose/gates.mjs",
-        "src/poster/compose/ranking.mjs",
-        "src/poster/page.mjs",
-        "src/poster/plate.mjs",
-        "src/poster/figure.mjs",
-        "src/poster/blocks.mjs",
-        "src/poster/balance.mjs",
-        "src/poster/corners.mjs",
-        "src/poster/justify.mjs",
-        "src/poster/tokens.mjs"
-      ]
-    },
-    {
-      "id": "map",
-      "label": "Explainer page",
-      "kind": "medium",
-      "details": {
-        "delivers": "native Archify"
-      },
-      "files": [
-        "src/map/explainer.mjs",
-        "src/map/archify.mjs",
-        "src/map/choice.mjs",
-        "src/map/routes.mjs"
-      ]
+      "files": ["src/plan/"]
     },
     {
       "id": "layout",
       "label": "Grid layout",
       "kind": "engine",
       "details": {
-        "places": "equal cards"
+        "places": "cards on one column lattice"
       },
-      "files": ["src/layout/grid.mjs"]
-    },
-    {
-      "id": "supplies",
-      "label": "Supplies",
-      "kind": "supply",
-      "details": {
-        "verified": "by digest"
-      },
-      "files": ["src/supply.mjs"]
-    },
-    {
-      "id": "repository",
-      "label": "Repository",
-      "kind": "repository",
-      "details": {
-        "holds": "the source"
-      }
-    },
-    {
-      "id": "publication-root",
-      "label": "Publication root",
-      "kind": "store",
-      "details": {
-        "keeps": "versions"
-      }
+      "files": ["src/layout/"]
     },
     {
       "id": "rows",
@@ -236,13 +231,7 @@
       "details": {
         "routes": "each channel"
       },
-      "files": [
-        "src/layout/channel-solver/conflicts.mjs",
-        "src/layout/channel-solver/options.mjs",
-        "src/layout/channel-solver/search.mjs",
-        "src/layout/channel-solver/solution.mjs",
-        "src/layout/channel-solver/tracks.mjs"
-      ]
+      "files": ["src/layout/channel-solver/"]
     },
     {
       "id": "measure",
@@ -252,6 +241,15 @@
         "refuses": "any overlap"
       },
       "files": ["src/layout/measure.mjs"]
+    },
+    {
+      "id": "poster",
+      "label": "Poster composer",
+      "kind": "medium",
+      "details": {
+        "draws": "2400 × 1350 px pages of one to three views"
+      },
+      "files": ["src/poster/"]
     },
     {
       "id": "typefaces",
@@ -281,30 +279,6 @@
       "files": ["src/kinds.mjs", "src/icons.mjs"]
     },
     {
-      "id": "coverage",
-      "label": "Coverage report",
-      "kind": "check",
-      "details": {
-        "counts": "cited, uncovered and moved files"
-      },
-      "files": ["src/sources/coverage.mjs"]
-    },
-    {
-      "id": "overview",
-      "label": "Overview typesetter",
-      "kind": "medium",
-      "details": {
-        "typesets": "the author's composition with Typst"
-      },
-      "files": [
-        "src/overview/typeset.mjs",
-        "src/overview/house.typ",
-        "src/overview/checks.mjs",
-        "src/overview/lint.mjs",
-        "src/overview/glyphs.mjs"
-      ]
-    },
-    {
       "id": "words",
       "label": "Words",
       "kind": "medium",
@@ -312,98 +286,281 @@
         "holds": "the publisher's words in five languages"
       },
       "files": ["src/locale.mjs"]
+    },
+    {
+      "id": "map",
+      "label": "Explainer page",
+      "kind": "medium",
+      "details": {
+        "delivers": "one native Archify explainer, one panel per view without a guide"
+      },
+      "files": ["src/map/"]
+    },
+    {
+      "id": "guide",
+      "label": "Guide",
+      "kind": "medium",
+      "details": {
+        "delivers": "the author's Archify draft as the page",
+        "verifies": "every cited range at the pinned revision"
+      },
+      "files": ["src/map/guide.mjs"]
+    },
+    {
+      "id": "overview",
+      "label": "Overview typesetter",
+      "kind": "medium",
+      "details": {
+        "typesets": "the author's composition in the house class"
+      },
+      "files": ["src/overview/"]
+    },
+    {
+      "id": "acceptance",
+      "label": "Acceptance and publication",
+      "kind": "stage",
+      "details": {
+        "records": "the reviewer and the manifest digest",
+        "copies": "only an accepted delivery"
+      },
+      "files": ["src/delivery.mjs"]
+    },
+    {
+      "id": "supplies",
+      "label": "Supplies",
+      "kind": "supply",
+      "details": {
+        "holds": "Archify, resvg, the LikeC4 parser, fonts and icons",
+        "verified": "by digest"
+      },
+      "files": ["src/supply.mjs", "renderers/", "supplies/"]
+    },
+    {
+      "id": "repository",
+      "label": "Repository",
+      "kind": "repository",
+      "details": {
+        "holds": "the source at the pinned revision"
+      }
+    },
+    {
+      "id": "typst",
+      "label": "Typst",
+      "kind": "tool",
+      "details": {
+        "version": "0.15.1, on the path"
+      }
+    },
+    {
+      "id": "publication-root",
+      "label": "Publication root",
+      "kind": "store",
+      "details": {
+        "keeps": "versions"
+      }
     }
   ],
   "relations": [
     {
-      "id": "runs",
-      "from": "editor",
+      "id": "author-cli",
+      "from": "author",
       "to": "cli",
-      "label": "runs"
+      "label": "runs check, build"
     },
     {
-      "id": "imports",
+      "id": "reviewer-cli",
+      "from": "reviewer",
+      "to": "cli",
+      "label": "runs accept, publish"
+    },
+    {
+      "id": "cli-importer",
       "from": "cli",
       "to": "importer",
       "label": "import likec4",
       "files": ["src/cli/run.mjs"]
     },
     {
-      "id": "builds",
+      "id": "cli-migration",
       "from": "cli",
-      "to": "builder",
-      "label": "build, check",
+      "to": "migration",
+      "label": "migrate",
       "files": ["src/cli/run.mjs"]
     },
     {
-      "id": "accepts",
+      "id": "cli-builder",
+      "from": "cli",
+      "to": "builder",
+      "label": "check, build, scaffold",
+      "files": ["src/cli/run.mjs"]
+    },
+    {
+      "id": "cli-acceptance",
       "from": "cli",
       "to": "acceptance",
       "label": "accept, publish",
       "files": ["src/cli/run.mjs"]
     },
     {
-      "id": "validates",
+      "id": "importer-model",
       "from": "importer",
       "to": "model",
       "label": "validates",
       "files": ["src/importers/likec4.mjs"]
     },
     {
-      "id": "parses",
+      "id": "importer-supplies",
       "from": "importer",
       "to": "supplies",
       "label": "parses with LikeC4",
       "files": ["src/importers/likec4.mjs"]
     },
     {
-      "id": "loads",
+      "id": "importer-words",
+      "from": "importer",
+      "to": "words",
+      "label": "sets its words",
+      "files": ["src/importers/likec4.mjs"]
+    },
+    {
+      "id": "migration-model",
+      "from": "migration",
+      "to": "model",
+      "label": "reads, validates",
+      "files": ["src/importers/model.mjs"]
+    },
+    {
+      "id": "builder-model",
       "from": "builder",
       "to": "model",
       "label": "loads",
       "files": ["src/build.mjs"]
     },
     {
-      "id": "binds",
+      "id": "builder-binding",
       "from": "builder",
       "to": "binding",
-      "label": "binds sources",
+      "label": "binds files",
       "files": ["src/build.mjs"]
     },
     {
-      "id": "plans",
+      "id": "builder-coverage",
+      "from": "builder",
+      "to": "coverage",
+      "label": "measures coverage",
+      "files": ["src/build.mjs"]
+    },
+    {
+      "id": "builder-plan",
       "from": "builder",
       "to": "plan",
       "label": "plans views",
       "files": ["src/build.mjs"]
     },
     {
-      "id": "composes",
+      "id": "builder-poster",
       "from": "builder",
       "to": "poster",
       "label": "composes posters",
       "files": ["src/build.mjs"]
     },
     {
-      "id": "maps",
-      "from": "builder",
-      "to": "map",
-      "label": "writes the page",
-      "files": ["src/build.mjs"]
-    },
-    {
-      "id": "rasterizes",
+      "id": "builder-raster",
       "from": "builder",
       "to": "raster",
       "label": "rasterizes",
       "files": ["src/build.mjs"]
     },
     {
-      "id": "reads",
+      "id": "builder-map",
+      "from": "builder",
+      "to": "map",
+      "label": "writes the page",
+      "files": ["src/build.mjs"]
+    },
+    {
+      "id": "builder-guide",
+      "from": "builder",
+      "to": "guide",
+      "label": "reads the guide",
+      "files": ["src/build.mjs"]
+    },
+    {
+      "id": "builder-overview",
+      "from": "builder",
+      "to": "overview",
+      "label": "typesets the overview",
+      "files": ["src/build.mjs"]
+    },
+    {
+      "id": "binding-scope",
+      "from": "binding",
+      "to": "scope",
+      "label": "splits the scope",
+      "files": ["src/sources/bind.mjs"]
+    },
+    {
+      "id": "binding-repository",
       "from": "binding",
       "to": "repository",
       "label": "reads at the revision",
-      "files": ["src/sources/git.mjs"]
+      "files": ["src/sources/bind.mjs", "src/sources/git.mjs"]
+    },
+    {
+      "id": "scope-repository",
+      "from": "scope",
+      "to": "repository",
+      "label": "lists, matches globs",
+      "files": ["src/sources/scope.mjs"]
+    },
+    {
+      "id": "coverage-scope",
+      "from": "coverage",
+      "to": "scope",
+      "label": "counts the scope",
+      "files": ["src/sources/coverage.mjs"]
+    },
+    {
+      "id": "coverage-worklist",
+      "from": "coverage",
+      "to": "worklist",
+      "label": "lists re-pin work",
+      "files": ["src/sources/coverage.mjs"]
+    },
+    {
+      "id": "coverage-repository",
+      "from": "coverage",
+      "to": "repository",
+      "label": "counts commits",
+      "files": ["src/sources/coverage.mjs"]
+    },
+    {
+      "id": "worklist-binding",
+      "from": "worklist",
+      "to": "binding",
+      "label": "resolves both commits",
+      "files": ["src/sources/worklist.mjs"]
+    },
+    {
+      "id": "worklist-repository",
+      "from": "worklist",
+      "to": "repository",
+      "label": "diffs two commits",
+      "files": ["src/sources/worklist.mjs"]
+    },
+    {
+      "id": "guide-map",
+      "from": "guide",
+      "to": "map",
+      "label": "validates, delivers",
+      "files": ["src/map/guide.mjs"]
+    },
+    {
+      "id": "guide-repository",
+      "from": "guide",
+      "to": "repository",
+      "label": "clones at the revision",
+      "files": ["src/map/guide.mjs"]
     },
     {
       "id": "poster-layout",
@@ -413,6 +570,32 @@
       "files": ["src/poster/plate.mjs"]
     },
     {
+      "id": "poster-typefaces",
+      "from": "poster",
+      "to": "typefaces",
+      "label": "sets text",
+      "files": ["src/poster/plate.mjs"]
+    },
+    {
+      "id": "poster-presentation",
+      "from": "poster",
+      "to": "presentation",
+      "label": "styles cards",
+      "files": [
+        "src/poster/blocks.mjs",
+        "src/poster/compose/candidates.mjs",
+        "src/poster/figure.mjs",
+        "src/poster/plate.mjs"
+      ]
+    },
+    {
+      "id": "poster-words",
+      "from": "poster",
+      "to": "words",
+      "label": "sets its words",
+      "files": ["src/poster/blocks.mjs", "src/poster/plate.mjs"]
+    },
+    {
       "id": "map-layout",
       "from": "map",
       "to": "layout",
@@ -420,149 +603,121 @@
       "files": ["src/map/archify.mjs"]
     },
     {
-      "id": "delivers",
-      "from": "map",
-      "to": "supplies",
-      "label": "runs Archify",
-      "files": ["src/map/archify.mjs"]
-    },
-    {
-      "id": "copies",
-      "from": "acceptance",
-      "to": "publication-root",
-      "label": "copies accepted deliveries",
-      "files": ["src/delivery.mjs"]
-    },
-    {
-      "id": "builds-rows",
-      "from": "layout",
-      "to": "rows",
-      "label": "builds rows",
-      "files": ["src/layout/grid.mjs"]
-    },
-    {
-      "id": "places",
-      "from": "layout",
-      "to": "placement",
-      "label": "places cards",
-      "files": ["src/layout/grid.mjs"]
-    },
-    {
-      "id": "wires-up",
-      "from": "layout",
-      "to": "wires",
-      "label": "builds wires",
-      "files": ["src/layout/grid.mjs"]
-    },
-    {
-      "id": "routes",
-      "from": "layout",
-      "to": "solver",
-      "label": "routes channels",
-      "files": ["src/layout/grid.mjs"]
-    },
-    {
-      "id": "measures",
-      "from": "layout",
-      "to": "measure",
-      "label": "measures",
-      "files": ["src/layout/grid.mjs"]
-    },
-    {
-      "id": "sets",
-      "from": "poster",
-      "to": "typefaces",
-      "label": "sets text",
-      "files": ["src/poster/plate.mjs"]
-    },
-    {
-      "id": "styles",
-      "from": "poster",
-      "to": "presentation",
-      "label": "styles cards",
-      "files": ["src/poster/plate.mjs"]
-    },
-    {
-      "id": "types",
+      "id": "map-presentation",
       "from": "map",
       "to": "presentation",
       "label": "types components",
       "files": ["src/map/archify.mjs"]
     },
     {
-      "id": "fonts",
+      "id": "map-words",
+      "from": "map",
+      "to": "words",
+      "label": "words the page",
+      "files": ["src/map/archify.mjs", "src/map/explainer.mjs"]
+    },
+    {
+      "id": "map-supplies",
+      "from": "map",
+      "to": "supplies",
+      "label": "runs Archify",
+      "files": ["src/map/archify.mjs"]
+    },
+    {
+      "id": "layout-rows",
+      "from": "layout",
+      "to": "rows",
+      "label": "builds rows",
+      "files": ["src/layout/grid.mjs"]
+    },
+    {
+      "id": "layout-placement",
+      "from": "layout",
+      "to": "placement",
+      "label": "places cards",
+      "files": ["src/layout/grid.mjs"]
+    },
+    {
+      "id": "layout-wires",
+      "from": "layout",
+      "to": "wires",
+      "label": "builds wires",
+      "files": ["src/layout/grid.mjs"]
+    },
+    {
+      "id": "layout-solver",
+      "from": "layout",
+      "to": "solver",
+      "label": "routes channels",
+      "files": ["src/layout/grid.mjs"]
+    },
+    {
+      "id": "layout-measure",
+      "from": "layout",
+      "to": "measure",
+      "label": "measures",
+      "files": ["src/layout/grid.mjs"]
+    },
+    {
+      "id": "typefaces-supplies",
       "from": "typefaces",
       "to": "supplies",
       "label": "loads fonts",
       "files": ["src/poster/text.mjs"]
     },
     {
-      "id": "icons",
+      "id": "presentation-supplies",
       "from": "presentation",
       "to": "supplies",
       "label": "loads icons",
       "files": ["src/icons.mjs"]
     },
     {
-      "id": "renders",
+      "id": "raster-supplies",
       "from": "raster",
       "to": "supplies",
       "label": "renders with resvg",
       "files": ["src/poster/raster.mjs"]
     },
     {
-      "id": "measures-coverage",
-      "from": "builder",
-      "to": "coverage",
-      "label": "measures coverage",
-      "files": ["src/build.mjs"]
-    },
-    {
-      "id": "reads-history",
-      "from": "coverage",
-      "to": "repository",
-      "label": "reads two revisions",
-      "files": ["src/sources/coverage.mjs"]
-    },
-    {
-      "id": "typesets",
-      "from": "builder",
-      "to": "overview",
-      "label": "typesets the overview",
-      "files": ["src/build.mjs"]
-    },
-    {
-      "id": "faces",
+      "id": "overview-supplies",
       "from": "overview",
       "to": "supplies",
       "label": "sets the house faces",
+      "files": ["src/overview/glyphs.mjs", "src/overview/typeset.mjs"]
+    },
+    {
+      "id": "overview-typst",
+      "from": "overview",
+      "to": "typst",
+      "label": "runs Typst",
       "files": ["src/overview/typeset.mjs"]
     },
     {
-      "id": "poster-words",
-      "from": "poster",
-      "to": "words",
-      "label": "sets its words",
-      "files": ["src/poster/plate.mjs"]
+      "id": "acceptance-builder",
+      "from": "acceptance",
+      "to": "builder",
+      "label": "verifies the manifest",
+      "files": ["src/delivery.mjs"]
     },
     {
-      "id": "page-words",
-      "from": "map",
-      "to": "words",
-      "label": "words the page",
-      "files": ["src/map/explainer.mjs"]
+      "id": "acceptance-publication-root",
+      "from": "acceptance",
+      "to": "publication-root",
+      "label": "copies accepted deliveries",
+      "files": ["src/delivery.mjs"]
     }
   ],
   "views": [
     {
       "id": "overview",
       "title": "One build, end to end",
-      "question": "Which parts does one build pass through, from the editor to an accepted, published delivery?",
+      "question": "Which parts does one build pass through, from the author's model to a published delivery?",
       "tiers": [
         {
           "id": "people",
-          "label": "Editor",
-          "members": ["editor"]
+          "label": "People",
+          "members": ["author", "reviewer"]
         },
         {
           "id": "commands",
@@ -572,7 +727,7 @@
         {
           "id": "stages",
           "label": "Stages",
-          "members": ["importer", "builder", "acceptance"]
+          "members": ["builder", "acceptance"]
         },
         {
           "id": "media",
@@ -582,32 +737,21 @@
         {
           "id": "outside",
           "label": "Outside the package",
-          "members": ["repository", "publication-root"]
+          "members": ["publication-root"]
         }
       ]
     },
     {
-      "id": "checks",
-      "title": "Checks",
-      "question": "What does a build check before it draws, and what does archpub check report about the repository?",
-      "summary": "The model is validated, its sources are read from Git at the pinned revision and the views are planned before anything is drawn; archpub check also counts what the model cites and covers and how far the repository has moved since its pin.",
-      "tiers": [
-        {
-          "id": "build",
-          "label": "Build",
-          "members": ["builder"]
-        },
-        {
-          "id": "checks",
-          "label": "Checks",
-          "members": ["model", "binding", "coverage", "plan"]
-        },
-        {
-          "id": "outside",
-          "label": "Outside the package",
-          "members": ["repository"]
-        }
-      ]
+      "id": "files",
+      "title": "Files at the pinned revision",
+      "question": "How does a build give each file to its owner at the pinned revision, and what does archpub check report?",
+      "members": ["builder", "model", "binding", "scope", "coverage", "worklist", "repository"]
+    },
+    {
+      "id": "models",
+      "title": "Where a model comes from",
+      "question": "How does a model reach the publisher: written by its author, imported from LikeC4 or migrated from version 1?",
+      "members": ["author", "cli", "importer", "migration", "model", "words", "supplies"]
     },
     {
       "id": "layout",
@@ -633,59 +777,35 @@
       ]
     },
     {
-      "id": "media",
-      "title": "Media",
-      "question": "What draws the posters, the page and the overview, and which supplies do they use?",
-      "summary": "The poster outlines its text with the bundled fonts and draws Lucide icons; resvg renders its PNG. The map hands grid positions to native Archify. The overview is the author's Typst composition, set in the house faces.",
-      "tiers": [
-        {
-          "id": "build",
-          "label": "Build",
-          "members": ["builder"]
-        },
-        {
-          "id": "media",
-          "label": "Media",
-          "members": ["poster", "map", "overview"]
-        },
-        {
-          "id": "parts",
-          "label": "Parts",
-          "members": ["typefaces", "presentation", "raster", "words"]
-        },
-        {
-          "id": "supplies",
-          "label": "Supplies",
-          "members": ["supplies"]
-        }
+      "id": "posters",
+      "title": "Poster pages",
+      "question": "What turns the planned views into poster pages, and which supplies do they use?",
+      "members": [
+        "builder",
+        "plan",
+        "poster",
+        "typefaces",
+        "presentation",
+        "raster",
+        "words",
+        "supplies"
       ]
     },
     {
-      "id": "import",
-      "title": "LikeC4 import",
-      "question": "How does a LikeC4 workspace become a model?",
-      "summary": "archpub import likec4 parses the workspace with the bundled LikeC4 parser in a worker under Node's permission model, writes the leaf elements, relations, groups and element views in the model's language, and warns about nested parents, relations it cannot connect, two-way relations and other view types.",
-      "tiers": [
-        {
-          "id": "commands",
-          "label": "Command line",
-          "members": ["cli"]
-        },
-        {
-          "id": "import",
-          "label": "Import",
-          "members": ["importer"]
-        },
-        {
-          "id": "parts",
-          "label": "Parts",
-          "members": ["model", "words", "supplies"]
-        }
+      "id": "page",
+      "title": "The page and the overview",
+      "question": "How are the interactive page and the overview made, and what do they check?",
+      "members": [
+        "builder",
+        "map",
+        "guide",
+        "overview",
+        "presentation",
+        "words",
+        "supplies",
+        "typst",
+        "repository"
       ]
     }
-  ],
-  "coverage": {
-    "include": ["src/"]
-  },
-  "overview": "overview.typ"
+  ]
 }

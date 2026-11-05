@@ -1,0 +1,176 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "When one request may be sent again",
+    "output": "exchange.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
+      "provider": "github",
+      "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+    }
+  },
+  "mainPath": ["ex-sending", "ex-sent", "ex-held", "ex-committed"],
+  "states": [
+    {
+      "id": "ex-sending",
+      "type": "start",
+      "label": "Sending",
+      "sublabel": "connect, write",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/relay/upstream.py",
+          "line": 341,
+          "end_line": 366,
+          "label": "Send"
+        }
+      ]
+    },
+    {
+      "id": "ex-sent",
+      "type": "active",
+      "label": "Sent completely",
+      "sublabel": "awaiting headers",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/relay/upstream.py",
+          "line": 388,
+          "end_line": 401,
+          "label": "Response"
+        }
+      ]
+    },
+    {
+      "id": "ex-held",
+      "type": "waiting",
+      "label": "Before content",
+      "sublabel": "events held",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/relay/sse.py",
+          "line": 122,
+          "end_line": 162,
+          "label": "Held events"
+        }
+      ]
+    },
+    {
+      "id": "ex-committed",
+      "type": "success",
+      "label": "Committed",
+      "sublabel": "events delivered",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/relay/sse.py",
+          "line": 310,
+          "end_line": 314,
+          "label": "Terminator"
+        }
+      ]
+    },
+    {
+      "id": "ex-unknown",
+      "type": "failure",
+      "label": "Outcome unknown",
+      "sublabel": "502, not resent",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/relay/downstream.py",
+          "line": 389,
+          "end_line": 406,
+          "label": "Outcome unknown"
+        }
+      ]
+    },
+    {
+      "id": "ex-expired",
+      "type": "failure",
+      "label": "Deadline expired",
+      "sublabel": "504",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/relay/downstream.py",
+          "line": 374,
+          "end_line": 386,
+          "label": "Deadline"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "id": "ex-t-complete",
+      "from": "ex-sending",
+      "to": "ex-sent",
+      "label": "sent"
+    },
+    {
+      "id": "ex-t-stream",
+      "from": "ex-sent",
+      "to": "ex-held",
+      "label": "stream"
+    },
+    {
+      "id": "ex-t-content",
+      "from": "ex-held",
+      "to": "ex-committed",
+      "label": "content"
+    },
+    {
+      "id": "ex-t-classified",
+      "from": "ex-sent",
+      "to": "ex-sending",
+      "label": "retry",
+      "variant": "dashed"
+    },
+    {
+      "id": "ex-t-reopen",
+      "from": "ex-held",
+      "to": "ex-sending",
+      "label": "reopen",
+      "variant": "dashed"
+    },
+    {
+      "id": "ex-t-expired",
+      "from": "ex-sending",
+      "to": "ex-expired",
+      "label": "deadline",
+      "variant": "security"
+    },
+    {
+      "id": "ex-t-lost",
+      "from": "ex-sent",
+      "to": "ex-unknown",
+      "label": "lost",
+      "variant": "security"
+    },
+    {
+      "id": "ex-t-ended",
+      "from": "ex-held",
+      "to": "ex-unknown",
+      "label": "ended",
+      "variant": "security"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "May be sent again",
+      "items": [
+        "A send that failed before the request was complete.",
+        "A request the provider refused with a classified error.",
+        "A stream that reported response.failed before any content."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Never sent again",
+      "items": [
+        "A complete request whose connection was then lost.",
+        "A stream that ended before content without response.failed."
+      ]
+    }
+  ]
+}

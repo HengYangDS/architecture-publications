@@ -1,0 +1,974 @@
+{
+  "format": "architecture-publisher.model",
+  "version": 2,
+  "id": "ddwg",
+  "title": "Data Department Work Guidelines",
+  "question": "How do the Data Department work guidelines lead a reader to the rule that owns a task, and how is a change to them proposed, checked and released?",
+  "summary": "One task map routes each work question to one of seven topics under the charter. Six OpenSpec capability specs state what the guidance and its upkeep must do, installed ETHOS admits and proves every change, and each Forge receives the signed edition on its own.",
+  "scope": "The guidelines as released at v8.0.0: the entries, the task map, the seven topics, the decision records, the maintenance documents, the OpenSpec workspace with its six capability specs, and the ETHOS, tool, check and CI configuration that keeps them.",
+  "limits": [
+    "A relation records a link, a named path or a requirement by which one component routes a reader to another, places a duty with it, constrains it, or generates, installs or runs it; it cites the files that make that reference.",
+    "Links between the seven topics, links back to an entry, the task map or the governance page, and pointers that another document already holds are listed in the notes rather than drawn.",
+    "The archived Change history is outside the scope; documents and checks are described, not their observed use by the department."
+  ],
+  "attribution": "Architecture Publications, read from the Data Department Work Guidelines source",
+  "repository": {
+    "name": "data-department-work-guidelines",
+    "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
+    "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42"
+  },
+  "coverage": {
+    "exclude": [
+      {
+        "path": "openspec/changes/archive/",
+        "reason": "Completed Changes are kept as history; the repository treats them as historical inputs, not current rules or proof."
+      }
+    ]
+  },
+  "overview": "overview.typ",
+  "guide": "guide/guide.archify.md",
+  "kinds": {
+    "reader": {
+      "label": "reader",
+      "category": "person",
+      "icon": "users"
+    },
+    "entry": {
+      "label": "entry",
+      "category": "frontend",
+      "icon": "door-open"
+    },
+    "map": {
+      "label": "reading map",
+      "category": "frontend",
+      "icon": "map"
+    },
+    "topic": {
+      "label": "normative topic",
+      "category": "backend",
+      "icon": "book-open-text"
+    },
+    "record": {
+      "label": "decision record",
+      "category": "database",
+      "icon": "scroll-text"
+    },
+    "policy": {
+      "label": "governance page",
+      "category": "security",
+      "icon": "landmark"
+    },
+    "procedure": {
+      "label": "procedure",
+      "category": "backend",
+      "icon": "list-checks"
+    },
+    "workspace": {
+      "label": "OpenSpec workspace",
+      "category": "messagebus",
+      "icon": "folder-git-2"
+    },
+    "spec": {
+      "label": "capability spec",
+      "category": "security",
+      "icon": "file-check"
+    },
+    "declaration": {
+      "label": "ETHOS declaration",
+      "category": "security",
+      "icon": "file-cog"
+    },
+    "identity": {
+      "label": "edition record",
+      "category": "database",
+      "icon": "tag"
+    },
+    "input": {
+      "label": "native input",
+      "category": "backend",
+      "icon": "sliders-horizontal"
+    },
+    "projection": {
+      "label": "generated CI",
+      "category": "cloud",
+      "icon": "workflow"
+    },
+    "tool": {
+      "label": "external tool",
+      "category": "external",
+      "icon": "wrench"
+    },
+    "peer": {
+      "label": "Forge peer",
+      "category": "external",
+      "icon": "cloud"
+    }
+  },
+  "components": [
+    {
+      "id": "members",
+      "label": "Members and Agents",
+      "kind": "reader",
+      "details": {
+        "read": "the guidelines without installing software"
+      }
+    },
+    {
+      "id": "repository-entry",
+      "label": "Repository entry",
+      "kind": "entry",
+      "details": {
+        "leads": "from purpose to the task map",
+        "grants": "reuse under the MIT License"
+      },
+      "files": ["README.md", "LICENSE"]
+    },
+    {
+      "id": "agent-entry",
+      "label": "Agent entry",
+      "kind": "entry",
+      "details": {
+        "bounds": "an Agent's delegated scope; people keep authorization and acceptance"
+      },
+      "files": ["AGENTS.md"]
+    },
+    {
+      "id": "task-map",
+      "label": "Task map",
+      "kind": "map",
+      "details": {
+        "routes": "each work question to the section that owns it",
+        "first": "the route for an urgent failure or breach"
+      },
+      "files": ["docs/README.md"]
+    },
+    {
+      "id": "charter",
+      "label": "Charter",
+      "kind": "topic",
+      "details": {
+        "owns": "two kinds of authority, four hard boundaries, risk levels L0 to L2"
+      },
+      "files": ["docs/charter.md"]
+    },
+    {
+      "id": "decide",
+      "label": "Analysis and decisions",
+      "kind": "topic",
+      "details": {
+        "owns": "problem framing, failure diagnosis, comparable options"
+      },
+      "files": ["docs/decide.md"]
+    },
+    {
+      "id": "deliver",
+      "label": "Execution and delivery",
+      "kind": "topic",
+      "details": {
+        "owns": "preconditions, completion conditions, named work states"
+      },
+      "files": ["docs/deliver.md"]
+    },
+    {
+      "id": "data",
+      "label": "Data quality and adoption",
+      "kind": "topic",
+      "details": {
+        "owns": "eight admission conditions, use admission, data changes"
+      },
+      "files": ["docs/data.md"]
+    },
+    {
+      "id": "communicate",
+      "label": "Communication",
+      "kind": "topic",
+      "details": {
+        "owns": "updates, decision documents, escalation, writing"
+      },
+      "files": ["docs/communicate.md"]
+    },
+    {
+      "id": "human-agent",
+      "label": "Human–AI collaboration",
+      "kind": "topic",
+      "details": {
+        "owns": "delegation, Agent execution, checking Agent output"
+      },
+      "files": ["docs/human-agent.md"]
+    },
+    {
+      "id": "evolve",
+      "label": "Practice and evolution",
+      "kind": "topic",
+      "details": {
+        "owns": "practice admission, review cadence, emergencies"
+      },
+      "files": ["docs/evolve.md"]
+    },
+    {
+      "id": "decision-records",
+      "label": "Decision records",
+      "kind": "record",
+      "details": {
+        "keeps": "DR-0001, DR-0004 and DR-0005, five sections each"
+      },
+      "files": ["docs/decisions/"]
+    },
+    {
+      "id": "governance",
+      "label": "Repository change and release",
+      "kind": "policy",
+      "details": {
+        "owns": "change authority, release, runner and retirement boundaries"
+      },
+      "files": ["docs/governance/"]
+    },
+    {
+      "id": "configuration-map",
+      "label": "Configuration map",
+      "kind": "map",
+      "details": {
+        "locates": "the native input behind each check"
+      },
+      "files": ["docs/governance/configuration.md"]
+    },
+    {
+      "id": "contributing",
+      "label": "Contributing",
+      "kind": "procedure",
+      "details": {
+        "owns": "the commands to edit, verify, prepare ETHOS and publish"
+      },
+      "files": ["CONTRIBUTING.md"]
+    },
+    {
+      "id": "openspec-workspace",
+      "label": "OpenSpec workspace",
+      "kind": "workspace",
+      "details": {
+        "carries": "each material change as one official Change",
+        "indexes": "the six capability specs"
+      },
+      "files": ["openspec/"]
+    },
+    {
+      "id": "spec-guidance-discovery",
+      "label": "Guidance discovery",
+      "kind": "spec",
+      "details": {
+        "concern": "find the right guidance"
+      },
+      "files": ["openspec/specs/guidance-discovery/"]
+    },
+    {
+      "id": "spec-work-practice",
+      "label": "Work practice",
+      "kind": "spec",
+      "details": {
+        "concern": "apply it to actual work"
+      },
+      "files": ["openspec/specs/work-practice/"]
+    },
+    {
+      "id": "spec-quality",
+      "label": "Document quality",
+      "kind": "spec",
+      "details": {
+        "concern": "maintain readable source"
+      },
+      "files": ["openspec/specs/quality/"]
+    },
+    {
+      "id": "spec-verification",
+      "label": "Verification",
+      "kind": "spec",
+      "details": {
+        "concern": "establish checked results"
+      },
+      "files": ["openspec/specs/verification/"]
+    },
+    {
+      "id": "spec-repository-governance",
+      "label": "Repository governance",
+      "kind": "spec",
+      "details": {
+        "concern": "change or accept source"
+      },
+      "files": ["openspec/specs/repository-governance/"]
+    },
+    {
+      "id": "spec-publication",
+      "label": "Publication",
+      "kind": "spec",
+      "details": {
+        "concern": "publish or retire assets"
+      },
+      "files": ["openspec/specs/publication/"]
+    },
+    {
+      "id": "ethos-profile",
+      "label": "ETHOS profile",
+      "kind": "declaration",
+      "details": {
+        "declares": "the seven normative sources, every path material, no gates of its own"
+      },
+      "files": [".ethos/profile.toml"]
+    },
+    {
+      "id": "release-declaration",
+      "label": "Release declaration",
+      "kind": "declaration",
+      "details": {
+        "binds": "the GitLab and GitHub peers, protected v* tags, the accepted mirror"
+      },
+      "files": [".ethos/release.toml"]
+    },
+    {
+      "id": "edition",
+      "label": "Version and Changelog",
+      "kind": "identity",
+      "details": {
+        "edition": "8.0.0",
+        "follows": "SemVer 2.0.0 and Keep a Changelog 1.1.0"
+      },
+      "files": ["VERSION", "CHANGELOG.md"]
+    },
+    {
+      "id": "tool-supply",
+      "label": "Tool supply",
+      "kind": "input",
+      "details": {
+        "pins": "ETHOS 0.2.0-alpha.25 through Mise and its lock"
+      },
+      "files": [".config/mise/"]
+    },
+    {
+      "id": "check-inputs",
+      "label": "Check inputs",
+      "kind": "input",
+      "details": {
+        "holds": "Prettier, Taplo, Vale and Lychee policy, Git text and ignore rules"
+      },
+      "files": [".config/checks/", ".editorconfig", ".gitattributes", ".gitignore"]
+    },
+    {
+      "id": "ci-parameters",
+      "label": "CI parameters",
+      "kind": "input",
+      "details": {
+        "declares": "runners, deadlines and the Mise bootstrap; no jobs of its own"
+      },
+      "files": [".config/ci/", ".config/checks/ci-projection/"]
+    },
+    {
+      "id": "pipelines",
+      "label": "Generated pipelines",
+      "kind": "projection",
+      "details": {
+        "runs": "the full ETHOS graph on Linux, macOS and Windows"
+      },
+      "files": [".github/", ".gitlab-ci.yml"]
+    },
+    {
+      "id": "ethos",
+      "label": "Installed ETHOS",
+      "kind": "tool",
+      "details": {
+        "owns": "admission, checks, proof, acceptance and publication"
+      }
+    },
+    {
+      "id": "forges",
+      "label": "GitLab and GitHub",
+      "kind": "peer",
+      "details": {
+        "each": "its own refs, CI jobs and Release"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "members-repository-entry",
+      "from": "members",
+      "to": "repository-entry",
+      "label": "reads first",
+      "files": ["README.md"]
+    },
+    {
+      "id": "members-agent-entry",
+      "from": "members",
+      "to": "agent-entry",
+      "label": "Agents start at",
+      "files": ["AGENTS.md", "README.md"]
+    },
+    {
+      "id": "repository-entry-task-map",
+      "from": "repository-entry",
+      "to": "task-map",
+      "label": "leads to",
+      "files": ["README.md"]
+    },
+    {
+      "id": "repository-entry-contributing",
+      "from": "repository-entry",
+      "to": "contributing",
+      "label": "points maintainers to",
+      "files": ["README.md"]
+    },
+    {
+      "id": "agent-entry-task-map",
+      "from": "agent-entry",
+      "to": "task-map",
+      "label": "starts at",
+      "files": ["AGENTS.md"]
+    },
+    {
+      "id": "agent-entry-charter",
+      "from": "agent-entry",
+      "to": "charter",
+      "label": "authority, boundaries",
+      "files": ["AGENTS.md"]
+    },
+    {
+      "id": "agent-entry-governance",
+      "from": "agent-entry",
+      "to": "governance",
+      "label": "read before a change",
+      "files": ["AGENTS.md"]
+    },
+    {
+      "id": "task-map-charter",
+      "from": "task-map",
+      "to": "charter",
+      "label": "authority, risk",
+      "files": ["docs/README.md"]
+    },
+    {
+      "id": "task-map-decide",
+      "from": "task-map",
+      "to": "decide",
+      "label": "frame, diagnose",
+      "files": ["docs/README.md"]
+    },
+    {
+      "id": "task-map-deliver",
+      "from": "task-map",
+      "to": "deliver",
+      "label": "act, close",
+      "files": ["docs/README.md"]
+    },
+    {
+      "id": "task-map-data",
+      "from": "task-map",
+      "to": "data",
+      "label": "qualify, change data",
+      "files": ["docs/README.md"]
+    },
+    {
+      "id": "task-map-communicate",
+      "from": "task-map",
+      "to": "communicate",
+      "label": "update, escalate",
+      "files": ["docs/README.md"]
+    },
+    {
+      "id": "task-map-human-agent",
+      "from": "task-map",
+      "to": "human-agent",
+      "label": "delegate",
+      "files": ["docs/README.md"]
+    },
+    {
+      "id": "task-map-evolve",
+      "from": "task-map",
+      "to": "evolve",
+      "label": "emergencies, practice",
+      "files": ["docs/README.md"]
+    },
+    {
+      "id": "task-map-decision-records",
+      "from": "task-map",
+      "to": "decision-records",
+      "label": "reasons",
+      "files": ["docs/README.md"]
+    },
+    {
+      "id": "task-map-governance",
+      "from": "task-map",
+      "to": "governance",
+      "label": "change authority",
+      "files": ["docs/README.md"]
+    },
+    {
+      "id": "decide-charter",
+      "from": "decide",
+      "to": "charter",
+      "label": "risk levels",
+      "files": ["docs/decide.md"]
+    },
+    {
+      "id": "deliver-charter",
+      "from": "deliver",
+      "to": "charter",
+      "label": "risk levels",
+      "files": ["docs/deliver.md"]
+    },
+    {
+      "id": "data-charter",
+      "from": "data",
+      "to": "charter",
+      "label": "risk levels",
+      "files": ["docs/data.md"]
+    },
+    {
+      "id": "human-agent-charter",
+      "from": "human-agent",
+      "to": "charter",
+      "label": "risk levels",
+      "files": ["docs/human-agent.md"]
+    },
+    {
+      "id": "evolve-charter",
+      "from": "evolve",
+      "to": "charter",
+      "label": "hard boundaries",
+      "files": ["docs/evolve.md"]
+    },
+    {
+      "id": "decision-records-charter",
+      "from": "decision-records",
+      "to": "charter",
+      "label": "current definition",
+      "files": ["docs/decisions/dr-0001-human-ai-collaboration.md"]
+    },
+    {
+      "id": "decision-records-human-agent",
+      "from": "decision-records",
+      "to": "human-agent",
+      "label": "permitted behavior",
+      "files": ["docs/decisions/dr-0001-human-ai-collaboration.md"]
+    },
+    {
+      "id": "decision-records-openspec-workspace",
+      "from": "decision-records",
+      "to": "openspec-workspace",
+      "label": "lifecycle, closure",
+      "files": [
+        "docs/decisions/README.md",
+        "docs/decisions/dr-0004-official-lifecycle.md",
+        "docs/decisions/dr-0005-change-closure-scope.md"
+      ]
+    },
+    {
+      "id": "governance-contributing",
+      "from": "governance",
+      "to": "contributing",
+      "label": "procedures",
+      "files": ["docs/governance/README.md"]
+    },
+    {
+      "id": "governance-configuration-map",
+      "from": "governance",
+      "to": "configuration-map",
+      "label": "native inputs",
+      "files": ["docs/governance/README.md"]
+    },
+    {
+      "id": "governance-decision-records",
+      "from": "governance",
+      "to": "decision-records",
+      "label": "durable rationale",
+      "files": ["docs/governance/README.md"]
+    },
+    {
+      "id": "governance-openspec-workspace",
+      "from": "governance",
+      "to": "openspec-workspace",
+      "label": "Change authority",
+      "files": ["docs/governance/README.md"]
+    },
+    {
+      "id": "governance-ethos-profile",
+      "from": "governance",
+      "to": "ethos-profile",
+      "label": "no gates",
+      "files": ["docs/governance/README.md"]
+    },
+    {
+      "id": "governance-release-declaration",
+      "from": "governance",
+      "to": "release-declaration",
+      "label": "peers, mirror",
+      "files": ["docs/governance/README.md"]
+    },
+    {
+      "id": "governance-edition",
+      "from": "governance",
+      "to": "edition",
+      "label": "release identity",
+      "files": ["docs/governance/README.md"]
+    },
+    {
+      "id": "contributing-tool-supply",
+      "from": "contributing",
+      "to": "tool-supply",
+      "label": "bootstrap",
+      "files": ["CONTRIBUTING.md"]
+    },
+    {
+      "id": "contributing-ethos",
+      "from": "contributing",
+      "to": "ethos",
+      "label": "status, prove, publish",
+      "files": ["CONTRIBUTING.md"]
+    },
+    {
+      "id": "contributing-edition",
+      "from": "contributing",
+      "to": "edition",
+      "label": "prepare, cut",
+      "files": ["CONTRIBUTING.md"]
+    },
+    {
+      "id": "contributing-forges",
+      "from": "contributing",
+      "to": "forges",
+      "label": "create Releases",
+      "files": ["CONTRIBUTING.md"]
+    },
+    {
+      "id": "configuration-map-check-inputs",
+      "from": "configuration-map",
+      "to": "check-inputs",
+      "label": "check policy",
+      "files": ["docs/governance/configuration.md"]
+    },
+    {
+      "id": "configuration-map-tool-supply",
+      "from": "configuration-map",
+      "to": "tool-supply",
+      "label": "ETHOS installation",
+      "files": ["docs/governance/configuration.md"]
+    },
+    {
+      "id": "configuration-map-ci-parameters",
+      "from": "configuration-map",
+      "to": "ci-parameters",
+      "label": "CI parameters",
+      "files": ["docs/governance/configuration.md"]
+    },
+    {
+      "id": "openspec-workspace-ethos",
+      "from": "openspec-workspace",
+      "to": "ethos",
+      "label": "validate, plan",
+      "files": ["openspec/README.md", "openspec/config.yaml"]
+    },
+    {
+      "id": "spec-guidance-discovery-repository-entry",
+      "from": "spec-guidance-discovery",
+      "to": "repository-entry",
+      "label": "one human entry",
+      "files": ["openspec/specs/guidance-discovery/spec.md"]
+    },
+    {
+      "id": "spec-guidance-discovery-agent-entry",
+      "from": "spec-guidance-discovery",
+      "to": "agent-entry",
+      "label": "one Agent entry",
+      "files": ["openspec/specs/guidance-discovery/spec.md"]
+    },
+    {
+      "id": "spec-guidance-discovery-task-map",
+      "from": "spec-guidance-discovery",
+      "to": "task-map",
+      "label": "one task map",
+      "files": ["openspec/specs/guidance-discovery/spec.md"]
+    },
+    {
+      "id": "spec-work-practice-decide",
+      "from": "spec-work-practice",
+      "to": "decide",
+      "label": "framing, records",
+      "files": ["openspec/specs/work-practice/spec.md"]
+    },
+    {
+      "id": "spec-work-practice-deliver",
+      "from": "spec-work-practice",
+      "to": "deliver",
+      "label": "plans, states",
+      "files": ["openspec/specs/work-practice/spec.md"]
+    },
+    {
+      "id": "spec-work-practice-data",
+      "from": "spec-work-practice",
+      "to": "data",
+      "label": "data roles, use",
+      "files": ["openspec/specs/work-practice/spec.md"]
+    },
+    {
+      "id": "spec-work-practice-communicate",
+      "from": "spec-work-practice",
+      "to": "communicate",
+      "label": "purpose, writing",
+      "files": ["openspec/specs/work-practice/spec.md"]
+    },
+    {
+      "id": "spec-work-practice-human-agent",
+      "from": "spec-work-practice",
+      "to": "human-agent",
+      "label": "Agent boundaries",
+      "files": ["openspec/specs/work-practice/spec.md"]
+    },
+    {
+      "id": "spec-work-practice-evolve",
+      "from": "spec-work-practice",
+      "to": "evolve",
+      "label": "feedback, cadence",
+      "files": ["openspec/specs/work-practice/spec.md"]
+    },
+    {
+      "id": "spec-quality-check-inputs",
+      "from": "spec-quality",
+      "to": "check-inputs",
+      "label": "native policy",
+      "files": ["openspec/specs/quality/spec.md"]
+    },
+    {
+      "id": "spec-quality-ethos",
+      "from": "spec-quality",
+      "to": "ethos",
+      "label": "installed checks",
+      "files": ["openspec/specs/quality/spec.md"]
+    },
+    {
+      "id": "spec-verification-ethos-profile",
+      "from": "spec-verification",
+      "to": "ethos-profile",
+      "label": "no proof gates",
+      "files": ["openspec/specs/verification/spec.md"]
+    },
+    {
+      "id": "spec-verification-ci-parameters",
+      "from": "spec-verification",
+      "to": "ci-parameters",
+      "label": "one CUE owner",
+      "files": ["openspec/specs/verification/spec.md"]
+    },
+    {
+      "id": "spec-verification-pipelines",
+      "from": "spec-verification",
+      "to": "pipelines",
+      "label": "generated YAML",
+      "files": ["openspec/specs/verification/spec.md"]
+    },
+    {
+      "id": "spec-repository-governance-openspec-workspace",
+      "from": "spec-repository-governance",
+      "to": "openspec-workspace",
+      "label": "owns intent",
+      "files": ["openspec/specs/repository-governance/spec.md"]
+    },
+    {
+      "id": "spec-repository-governance-release-declaration",
+      "from": "spec-repository-governance",
+      "to": "release-declaration",
+      "label": "peers, mirror",
+      "files": ["openspec/specs/repository-governance/spec.md"]
+    },
+    {
+      "id": "spec-repository-governance-forges",
+      "from": "spec-repository-governance",
+      "to": "forges",
+      "label": "one signed graph",
+      "files": ["openspec/specs/repository-governance/spec.md"]
+    },
+    {
+      "id": "spec-publication-edition",
+      "from": "spec-publication",
+      "to": "edition",
+      "label": "VERSION, tag",
+      "files": ["openspec/specs/publication/spec.md"]
+    },
+    {
+      "id": "spec-publication-pipelines",
+      "from": "spec-publication",
+      "to": "pipelines",
+      "label": "hosted jobs",
+      "files": ["openspec/specs/publication/spec.md"]
+    },
+    {
+      "id": "spec-publication-forges",
+      "from": "spec-publication",
+      "to": "forges",
+      "label": "both Forges",
+      "files": ["openspec/specs/publication/spec.md"]
+    },
+    {
+      "id": "ethos-profile-openspec-workspace",
+      "from": "ethos-profile",
+      "to": "openspec-workspace",
+      "label": "every path in a Change",
+      "files": [".ethos/profile.toml"]
+    },
+    {
+      "id": "ethos-profile-ethos",
+      "from": "ethos-profile",
+      "to": "ethos",
+      "label": "binds the repository",
+      "files": [".ethos/profile.toml"]
+    },
+    {
+      "id": "release-declaration-pipelines",
+      "from": "release-declaration",
+      "to": "pipelines",
+      "label": "CI surfaces",
+      "files": [".ethos/release.toml"]
+    },
+    {
+      "id": "release-declaration-forges",
+      "from": "release-declaration",
+      "to": "forges",
+      "label": "publication peers",
+      "files": [".ethos/release.toml"]
+    },
+    {
+      "id": "tool-supply-ethos",
+      "from": "tool-supply",
+      "to": "ethos",
+      "label": "installs",
+      "files": [".config/mise/config.toml", ".config/mise/mise.lock"]
+    },
+    {
+      "id": "check-inputs-ethos",
+      "from": "check-inputs",
+      "to": "ethos",
+      "label": "configures",
+      "files": ["docs/governance/configuration.md"]
+    },
+    {
+      "id": "ci-parameters-pipelines",
+      "from": "ci-parameters",
+      "to": "pipelines",
+      "label": "generates",
+      "files": [".config/checks/ci-projection/policy.toml", ".config/ci/pipeline.cue"]
+    },
+    {
+      "id": "pipelines-tool-supply",
+      "from": "pipelines",
+      "to": "tool-supply",
+      "label": "install locked",
+      "files": [".github/workflows/ci.yml", ".gitlab-ci.yml"]
+    },
+    {
+      "id": "pipelines-ethos",
+      "from": "pipelines",
+      "to": "ethos",
+      "label": "full graph",
+      "files": [".github/workflows/ci.yml", ".gitlab-ci.yml"]
+    },
+    {
+      "id": "pipelines-forges",
+      "from": "pipelines",
+      "to": "forges",
+      "label": "run on",
+      "files": [".github/workflows/ci.yml", ".gitlab-ci.yml"]
+    }
+  ],
+  "views": [
+    {
+      "id": "overview",
+      "title": "Seven topics under one charter",
+      "question": "How does the task map route a work question to the one topic that owns its rule?",
+      "members": [
+        "agent-entry",
+        "task-map",
+        "charter",
+        "decide",
+        "deliver",
+        "data",
+        "communicate",
+        "human-agent",
+        "evolve"
+      ]
+    },
+    {
+      "id": "readers",
+      "title": "Where readers start",
+      "question": "Where do members, Agents and maintainers start, and where does each entry lead?",
+      "members": [
+        "members",
+        "repository-entry",
+        "agent-entry",
+        "task-map",
+        "governance",
+        "decision-records",
+        "contributing",
+        "spec-guidance-discovery"
+      ]
+    },
+    {
+      "id": "practice",
+      "title": "What work practice asks of each topic",
+      "question": "Which duties does the work-practice capability place on each topic, and which rules do the topics share?",
+      "members": [
+        "spec-work-practice",
+        "decision-records",
+        "charter",
+        "decide",
+        "deliver",
+        "data",
+        "communicate",
+        "human-agent",
+        "evolve"
+      ]
+    },
+    {
+      "id": "change",
+      "title": "One change, proposed and admitted",
+      "question": "How is a change to the guidelines proposed, recorded and admitted?",
+      "members": [
+        "governance",
+        "contributing",
+        "configuration-map",
+        "decision-records",
+        "openspec-workspace",
+        "ethos-profile",
+        "ethos",
+        "spec-repository-governance",
+        "spec-verification"
+      ]
+    },
+    {
+      "id": "checks",
+      "title": "What the checks read",
+      "question": "Which native inputs do the installed checks read, locally and in CI?",
+      "members": [
+        "configuration-map",
+        "check-inputs",
+        "tool-supply",
+        "ci-parameters",
+        "pipelines",
+        "ethos",
+        "spec-quality",
+        "spec-verification",
+        "contributing"
+      ]
+    },
+    {
+      "id": "release",
+      "title": "An edition on two Forges",
+      "question": "How is an edition cut and published on GitLab and GitHub?",
+      "members": [
+        "governance",
+        "contributing",
+        "edition",
+        "release-declaration",
+        "pipelines",
+        "forges",
+        "spec-publication",
+        "spec-repository-governance"
+      ]
+    }
+  ]
+}

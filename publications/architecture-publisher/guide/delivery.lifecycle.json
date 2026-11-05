@@ -1,0 +1,162 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "A delivery, from staging to publication",
+    "output": "delivery.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/architecture-publisher",
+      "provider": "github",
+      "revision": "a2f42242494ef918094a81147793d53c54718f8c"
+    }
+  },
+  "mainPath": ["life-delivered", "life-accepted", "life-published"],
+  "states": [
+    {
+      "id": "life-delivered",
+      "type": "start",
+      "label": "Build in place",
+      "sublabel": "staged, then renamed in",
+      "sources": [
+        {
+          "path": "src/build.mjs",
+          "line": 347,
+          "end_line": 356,
+          "label": "Staging"
+        },
+        {
+          "path": "src/build.mjs",
+          "line": 423,
+          "end_line": 439,
+          "label": "Rename"
+        }
+      ]
+    },
+    {
+      "id": "life-accepted",
+      "type": "decision",
+      "label": "Accepted build",
+      "sublabel": "a named reviewer",
+      "sources": [
+        {
+          "path": "src/delivery.mjs",
+          "line": 52,
+          "end_line": 77,
+          "label": "Accept"
+        }
+      ]
+    },
+    {
+      "id": "life-published",
+      "type": "success",
+      "label": "Published copy",
+      "sublabel": "root/id/version",
+      "sources": [
+        {
+          "path": "src/delivery.mjs",
+          "line": 79,
+          "end_line": 136,
+          "label": "Publish"
+        }
+      ]
+    },
+    {
+      "id": "life-changed",
+      "type": "failure",
+      "label": "delivery_changed",
+      "sublabel": "an artifact differs",
+      "sources": [
+        {
+          "path": "src/delivery.mjs",
+          "line": 28,
+          "end_line": 34,
+          "label": "Changed"
+        }
+      ]
+    },
+    {
+      "id": "life-conflict",
+      "type": "failure",
+      "label": "publish_conflict",
+      "sublabel": "another delivery there",
+      "sources": [
+        {
+          "path": "src/delivery.mjs",
+          "line": 111,
+          "end_line": 116,
+          "label": "Conflict"
+        }
+      ]
+    },
+    {
+      "id": "life-same",
+      "type": "neutral",
+      "label": "Identical copy",
+      "sublabel": "nothing changes",
+      "sources": [
+        {
+          "path": "src/delivery.mjs",
+          "line": 111,
+          "end_line": 116,
+          "label": "Identical"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "id": "life-t-accept",
+      "from": "life-delivered",
+      "to": "life-accepted",
+      "label": "accept"
+    },
+    {
+      "id": "life-t-publish",
+      "from": "life-accepted",
+      "to": "life-published",
+      "label": "publish"
+    },
+    {
+      "id": "life-t-changed",
+      "from": "life-delivered",
+      "to": "life-changed",
+      "label": "verify",
+      "variant": "security"
+    },
+    {
+      "id": "life-t-conflict",
+      "from": "life-accepted",
+      "to": "life-conflict",
+      "label": "differs",
+      "variant": "security"
+    },
+    {
+      "id": "life-t-same",
+      "from": "life-accepted",
+      "to": "life-same",
+      "label": "identical",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "What acceptance records",
+      "items": [
+        "The SHA-256 of the manifest it accepts.",
+        "The model id, the reviewer and an optional note."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "What publication checks again",
+      "items": [
+        "Every artifact against the manifest.",
+        "An acceptance of that same manifest.",
+        "The copy, before it is renamed into place."
+      ]
+    }
+  ]
+}

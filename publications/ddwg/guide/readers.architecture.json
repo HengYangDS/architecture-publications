@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Where readers and maintainers start",
+    "output": "readers.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
+      "provider": "github",
+      "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42"
+    }
+  },
+  "components": [
+    {
+      "id": "rd-members",
+      "type": "external",
+      "icon": "person",
+      "label": "Members and Agents",
+      "sublabel": "read, install nothing",
+      "pos": [40, 110],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 15,
+          "end_line": 16,
+          "label": "Readers"
+        }
+      ]
+    },
+    {
+      "id": "rd-readme",
+      "type": "frontend",
+      "label": "Repository entry",
+      "sublabel": "README.md",
+      "pos": [330, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 8,
+          "end_line": 10,
+          "label": "Entry"
+        }
+      ]
+    },
+    {
+      "id": "rd-agents",
+      "type": "frontend",
+      "label": "Agent entry",
+      "sublabel": "AGENTS.md",
+      "pos": [620, 180],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "AGENTS.md",
+          "line": 3,
+          "end_line": 7,
+          "label": "Agent entry"
+        }
+      ]
+    },
+    {
+      "id": "rd-map",
+      "type": "backend",
+      "label": "Task map",
+      "sublabel": "docs/README.md",
+      "pos": [620, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 11,
+          "end_line": 15,
+          "label": "Task map"
+        }
+      ]
+    },
+    {
+      "id": "rd-maintainers",
+      "type": "external",
+      "icon": "person",
+      "label": "Maintainers",
+      "sublabel": "change, check, publish",
+      "pos": [40, 320],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "CONTRIBUTING.md",
+          "line": 3,
+          "end_line": 4,
+          "label": "Audience"
+        }
+      ]
+    },
+    {
+      "id": "rd-contributing",
+      "type": "backend",
+      "label": "Contributing",
+      "sublabel": "the commands",
+      "pos": [330, 320],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "CONTRIBUTING.md",
+          "line": 6,
+          "end_line": 11,
+          "label": "Before editing"
+        }
+      ]
+    },
+    {
+      "id": "rd-governance",
+      "type": "security",
+      "label": "Repository change and release",
+      "sublabel": "the boundaries",
+      "pos": [620, 320],
+      "size": [190, 64],
+      "sources": [
+        {
+          "path": "docs/governance/README.md",
+          "line": 24,
+          "end_line": 25,
+          "label": "Boundaries"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "rd-e-home",
+      "from": "rd-members",
+      "to": "rd-readme",
+      "label": "start"
+    },
+    {
+      "id": "rd-e-agents",
+      "from": "rd-members",
+      "to": "rd-agents",
+      "label": "Agents"
+    },
+    {
+      "id": "rd-e-route",
+      "from": "rd-readme",
+      "to": "rd-map",
+      "label": "work question",
+      "variant": "emphasis"
+    },
+    {
+      "id": "rd-e-agent-map",
+      "from": "rd-agents",
+      "to": "rd-map",
+      "label": "start at"
+    },
+    {
+      "id": "rd-e-agent-gov",
+      "from": "rd-agents",
+      "to": "rd-governance",
+      "label": "before a change"
+    },
+    {
+      "id": "rd-e-maintain",
+      "from": "rd-maintainers",
+      "to": "rd-contributing",
+      "label": "read first"
+    },
+    {
+      "id": "rd-e-bounds",
+      "from": "rd-contributing",
+      "to": "rd-governance",
+      "label": "boundaries"
+    }
+  ]
+}

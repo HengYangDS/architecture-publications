@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "diagram_type": "tree",
+  "meta": {
+    "title": "What the re-pin worklist lists",
+    "output": "worklist.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/architecture-publisher",
+      "provider": "github",
+      "revision": "a2f42242494ef918094a81147793d53c54718f8c"
+    }
+  },
+  "layout": {
+    "direction": "right"
+  },
+  "nodes": [
+    {
+      "id": "wl-root",
+      "label": "Re-pin worklist",
+      "sublabel": "pin to a later commit",
+      "sources": [
+        {
+          "path": "src/sources/worklist.mjs",
+          "line": 97,
+          "end_line": 110,
+          "label": "Worklist"
+        }
+      ]
+    },
+    {
+      "id": "wl-components",
+      "label": "Per component",
+      "parent": "wl-root",
+      "sources": [
+        {
+          "path": "src/sources/worklist.mjs",
+          "line": 117,
+          "end_line": 139,
+          "label": "Components"
+        }
+      ]
+    },
+    {
+      "id": "wl-modified",
+      "label": "Owned file modified",
+      "parent": "wl-components"
+    },
+    {
+      "id": "wl-moved",
+      "label": "Owned file moved",
+      "sublabel": "with its new owner",
+      "parent": "wl-components"
+    },
+    {
+      "id": "wl-deleted",
+      "label": "Owned file deleted",
+      "parent": "wl-components"
+    },
+    {
+      "id": "wl-taken",
+      "label": "Files taken in",
+      "parent": "wl-components"
+    },
+    {
+      "id": "wl-relations",
+      "label": "Per relation",
+      "parent": "wl-root",
+      "sources": [
+        {
+          "path": "src/sources/worklist.mjs",
+          "line": 148,
+          "end_line": 153,
+          "label": "Relations"
+        }
+      ]
+    },
+    {
+      "id": "wl-cited",
+      "label": "Cited file changed",
+      "parent": "wl-relations"
+    },
+    {
+      "id": "wl-refused",
+      "label": "Refused at the later commit",
+      "parent": "wl-root",
+      "sources": [
+        {
+          "path": "src/sources/worklist.mjs",
+          "line": 154,
+          "end_line": 168,
+          "label": "Refused"
+        }
+      ]
+    },
+    {
+      "id": "wl-claim",
+      "label": "Claim owns no file",
+      "parent": "wl-refused"
+    },
+    {
+      "id": "wl-gone",
+      "label": "Relation file gone",
+      "parent": "wl-refused"
+    },
+    {
+      "id": "wl-uncovered",
+      "label": "Newly uncovered files",
+      "parent": "wl-root",
+      "sources": [
+        {
+          "path": "src/sources/worklist.mjs",
+          "line": 169,
+          "end_line": 171,
+          "label": "Uncovered"
+        }
+      ]
+    },
+    {
+      "id": "wl-citations",
+      "label": "Cited line ranges",
+      "parent": "wl-root",
+      "sources": [
+        {
+          "path": "src/sources/worklist.mjs",
+          "line": 63,
+          "end_line": 95,
+          "label": "Citations"
+        }
+      ]
+    },
+    {
+      "id": "wl-range-same",
+      "label": "Range the same",
+      "parent": "wl-citations"
+    },
+    {
+      "id": "wl-range-shifted",
+      "label": "Range shifted",
+      "parent": "wl-citations"
+    },
+    {
+      "id": "wl-range-moved",
+      "label": "Range moved",
+      "parent": "wl-citations"
+    },
+    {
+      "id": "wl-range-touched",
+      "label": "Range touched",
+      "parent": "wl-citations"
+    },
+    {
+      "id": "wl-range-gone",
+      "label": "Range gone",
+      "parent": "wl-citations"
+    }
+  ]
+}

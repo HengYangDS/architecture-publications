@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "diagram_type": "tree",
+  "meta": {
+    "title": "What one request keeps, rewrites, removes and refuses",
+    "locale": "en",
+    "output": "projection.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
+      "provider": "github",
+      "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+    }
+  },
+  "layout": {
+    "direction": "right"
+  },
+  "nodes": [
+    {
+      "id": "pr-root",
+      "label": "One Responses request"
+    },
+    {
+      "id": "pr-kept",
+      "label": "Kept",
+      "parent": "pr-root"
+    },
+    {
+      "id": "pr-dialogue",
+      "label": "Dialogue messages",
+      "sublabel": "user, assistant, developer, system",
+      "parent": "pr-kept",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/input.py",
+          "line": 135,
+          "end_line": 171,
+          "label": "Messages"
+        }
+      ]
+    },
+    {
+      "id": "pr-pairs",
+      "label": "Tool calls with their outputs",
+      "sublabel": "function and custom tools",
+      "parent": "pr-kept",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/items.py",
+          "line": 97,
+          "end_line": 108,
+          "label": "Paired outputs"
+        }
+      ]
+    },
+    {
+      "id": "pr-controls",
+      "label": "Current-turn controls",
+      "sublabel": "additional_tools, compaction_trigger",
+      "parent": "pr-kept",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/items.py",
+          "line": 134,
+          "end_line": 142,
+          "label": "Controls"
+        }
+      ]
+    },
+    {
+      "id": "pr-agent",
+      "label": "Encrypted agent messages",
+      "sublabel": "envelope and ciphertext as sent",
+      "parent": "pr-kept",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/input.py",
+          "line": 198,
+          "end_line": 209,
+          "label": "Native envelope"
+        }
+      ]
+    },
+    {
+      "id": "pr-rewritten",
+      "label": "Rewritten",
+      "parent": "pr-root"
+    },
+    {
+      "id": "pr-store",
+      "label": "store=false",
+      "sublabel": "on every request",
+      "parent": "pr-rewritten",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/projection.py",
+          "line": 96,
+          "end_line": 98,
+          "label": "Store"
+        }
+      ]
+    },
+    {
+      "id": "pr-empty",
+      "label": "An empty tool output",
+      "sublabel": "a fixed textual marker",
+      "parent": "pr-rewritten",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/input.py",
+          "line": 361,
+          "end_line": 369,
+          "label": "Marker"
+        }
+      ]
+    },
+    {
+      "id": "pr-delivery",
+      "label": "A later tool result",
+      "sublabel": "an attributed assistant message",
+      "parent": "pr-rewritten",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/input.py",
+          "line": 384,
+          "end_line": 395,
+          "label": "Delivery"
+        }
+      ]
+    },
+    {
+      "id": "pr-removed",
+      "label": "Removed",
+      "parent": "pr-root"
+    },
+    {
+      "id": "pr-bindings",
+      "label": "Provider bindings",
+      "sublabel": "previous response, conversation, cache key",
+      "parent": "pr-removed",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/projection.py",
+          "line": 99,
+          "end_line": 101,
+          "label": "Bindings"
+        }
+      ]
+    },
+    {
+      "id": "pr-reasoning",
+      "label": "Reasoning history",
+      "sublabel": "items and encrypted content",
+      "parent": "pr-removed",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/items.py",
+          "line": 82,
+          "end_line": 82,
+          "label": "Reasoning"
+        },
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/projection.py",
+          "line": 103,
+          "end_line": 110,
+          "label": "Include"
+        }
+      ]
+    },
+    {
+      "id": "pr-references",
+      "label": "Stored references",
+      "sublabel": "item references, compaction, search calls",
+      "parent": "pr-removed",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/items.py",
+          "line": 83,
+          "end_line": 91,
+          "label": "Dropped kinds"
+        }
+      ]
+    },
+    {
+      "id": "pr-images",
+      "label": "Unreplayable images",
+      "sublabel": "local or malformed image URLs",
+      "parent": "pr-removed",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/content.py",
+          "line": 121,
+          "end_line": 128,
+          "label": "Images"
+        }
+      ]
+    },
+    {
+      "id": "pr-refused",
+      "label": "Refused before upstream I/O",
+      "parent": "pr-root"
+    },
+    {
+      "id": "pr-unknown",
+      "label": "Unknown types",
+      "sublabel": "items and content blocks",
+      "parent": "pr-refused",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/input.py",
+          "line": 486,
+          "end_line": 491,
+          "label": "Unknown"
+        }
+      ]
+    },
+    {
+      "id": "pr-drift",
+      "label": "Kinds with no portable form",
+      "sublabel": "patch, MCP, shell, computer calls",
+      "parent": "pr-refused",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/items.py",
+          "line": 56,
+          "end_line": 75,
+          "label": "Schema drift"
+        }
+      ]
+    },
+    {
+      "id": "pr-orphan",
+      "label": "Broken tool relationships",
+      "sublabel": "an output before its call",
+      "parent": "pr-refused",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/items.py",
+          "line": 306,
+          "end_line": 311,
+          "label": "Orphan output"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "How the overview is typeset and checked",
+    "output": "overview.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/architecture-publisher",
+      "provider": "github",
+      "revision": "a2f42242494ef918094a81147793d53c54718f8c"
+    },
+    "legend": {
+      "entries": {
+        "security": {
+          "label": "check"
+        },
+        "backend": {
+          "label": "publisher step"
+        },
+        "external": {
+          "label": "outcome"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "ov-lane-typeset",
+      "label": "Typeset"
+    },
+    {
+      "id": "ov-lane-refused",
+      "label": "Refused",
+      "variant": "exception"
+    }
+  ],
+  "mainPath": ["ov-composition", "ov-typst", "ov-stage", "ov-boxes", "ov-check", "ov-compile"],
+  "nodes": [
+    {
+      "id": "ov-composition",
+      "lane": "ov-lane-typeset",
+      "col": 0,
+      "type": "security",
+      "label": "Composition there?",
+      "sources": [
+        {
+          "path": "src/build.mjs",
+          "line": 116,
+          "end_line": 135,
+          "label": "Composition"
+        }
+      ]
+    },
+    {
+      "id": "ov-typst",
+      "lane": "ov-lane-typeset",
+      "col": 1,
+      "type": "security",
+      "label": "Typst 0.15.1 on the path?",
+      "sources": [
+        {
+          "path": "src/overview/typeset.mjs",
+          "line": 45,
+          "end_line": 61,
+          "label": "Typst version"
+        }
+      ]
+    },
+    {
+      "id": "ov-stage",
+      "lane": "ov-lane-typeset",
+      "col": 2,
+      "type": "backend",
+      "label": "Stage and lint",
+      "sources": [
+        {
+          "path": "src/overview/typeset.mjs",
+          "line": 84,
+          "end_line": 115,
+          "label": "Stage"
+        }
+      ]
+    },
+    {
+      "id": "ov-boxes",
+      "lane": "ov-lane-typeset",
+      "col": 3,
+      "type": "backend",
+      "label": "Read the text boxes",
+      "sources": [
+        {
+          "path": "src/overview/typeset.mjs",
+          "line": 216,
+          "end_line": 229,
+          "label": "Boxes"
+        }
+      ]
+    },
+    {
+      "id": "ov-check",
+      "lane": "ov-lane-typeset",
+      "col": 4,
+      "type": "security",
+      "label": "Text inside and apart?",
+      "sources": [
+        {
+          "path": "src/overview/checks.mjs",
+          "line": 22,
+          "end_line": 56,
+          "label": "Checks"
+        }
+      ]
+    },
+    {
+      "id": "ov-compile",
+      "lane": "ov-lane-typeset",
+      "col": 5,
+      "type": "external",
+      "label": "overview.svg and PNG",
+      "sources": [
+        {
+          "path": "src/overview/typeset.mjs",
+          "line": 230,
+          "end_line": 247,
+          "label": "Compile"
+        }
+      ]
+    },
+    {
+      "id": "ov-refused",
+      "lane": "ov-lane-refused",
+      "col": 2,
+      "type": "external",
+      "label": "Overview refused",
+      "sources": [
+        {
+          "path": "src/overview/typeset.mjs",
+          "line": 136,
+          "end_line": 167,
+          "label": "Refusals"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "ov-e-typst",
+      "from": "ov-composition",
+      "to": "ov-typst",
+      "role": "main",
+      "label": "yes"
+    },
+    {
+      "id": "ov-e-stage",
+      "from": "ov-typst",
+      "to": "ov-stage",
+      "role": "main",
+      "label": "yes"
+    },
+    {
+      "id": "ov-e-boxes",
+      "from": "ov-stage",
+      "to": "ov-boxes",
+      "role": "main"
+    },
+    {
+      "id": "ov-e-check",
+      "from": "ov-boxes",
+      "to": "ov-check",
+      "role": "main"
+    },
+    {
+      "id": "ov-e-compile",
+      "from": "ov-check",
+      "to": "ov-compile",
+      "role": "main",
+      "label": "yes",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ov-e-missing",
+      "from": "ov-composition",
+      "to": "ov-refused",
+      "role": "error",
+      "label": "no"
+    },
+    {
+      "id": "ov-e-no-typst",
+      "from": "ov-typst",
+      "to": "ov-refused",
+      "role": "error",
+      "label": "no"
+    },
+    {
+      "id": "ov-e-lint",
+      "from": "ov-stage",
+      "to": "ov-refused",
+      "role": "error",
+      "label": "house rule broken"
+    },
+    {
+      "id": "ov-e-text",
+      "from": "ov-check",
+      "to": "ov-refused",
+      "role": "error",
+      "label": "no"
+    }
+  ],
+  "semanticChecks": {
+    "allowedRoots": ["ov-composition"],
+    "allowedTerminals": ["ov-compile", "ov-refused"],
+    "requiredEdges": [
+      {
+        "from": "ov-check",
+        "to": "ov-compile"
+      },
+      {
+        "from": "ov-composition",
+        "to": "ov-refused"
+      }
+    ]
+  }
+}

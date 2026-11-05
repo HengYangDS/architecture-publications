@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "diagram_type": "tree",
+  "meta": {
+    "title": "What an installation writes, and where, on macOS",
+    "locale": "en",
+    "output": "disk.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
+      "provider": "github",
+      "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+    }
+  },
+  "layout": {
+    "direction": "right"
+  },
+  "nodes": [
+    {
+      "id": "dk-root",
+      "label": "One installation"
+    },
+    {
+      "id": "dk-data",
+      "label": "Data root",
+      "sublabel": "Application Support/openai-responses-proxy",
+      "parent": "dk-root",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/runtime/config.py",
+          "line": 155,
+          "end_line": 165,
+          "label": "Data root"
+        }
+      ]
+    },
+    {
+      "id": "dk-selector",
+      "label": "payload-selection.json",
+      "sublabel": "the active generation and its predecessor",
+      "parent": "dk-data",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/serving/identity.py",
+          "line": 20,
+          "end_line": 23,
+          "label": "Selector"
+        }
+      ]
+    },
+    {
+      "id": "dk-installed",
+      "label": "release-install-state.json",
+      "sublabel": "release, receipt digest, command path",
+      "parent": "dk-data",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/transaction/completion.py",
+          "line": 48,
+          "end_line": 60,
+          "label": "Installed state"
+        }
+      ]
+    },
+    {
+      "id": "dk-generations",
+      "label": "generations/",
+      "sublabel": "one immutable directory per transaction",
+      "parent": "dk-data"
+    },
+    {
+      "id": "dk-active",
+      "label": "Active generation",
+      "sublabel": "bin/, providers.toml, manifest, receipt, runtime-config.json",
+      "parent": "dk-generations",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/serving/inventory.py",
+          "line": 11,
+          "end_line": 17,
+          "label": "Members"
+        }
+      ]
+    },
+    {
+      "id": "dk-predecessor",
+      "label": "Predecessor generation",
+      "sublabel": "kept for one rollback",
+      "parent": "dk-generations",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/generation.py",
+          "line": 131,
+          "end_line": 154,
+          "label": "Select"
+        }
+      ]
+    },
+    {
+      "id": "dk-transaction",
+      "label": "Transaction journal",
+      "sublabel": "beside the data root, only while one is open",
+      "parent": "dk-root",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/records.py",
+          "line": 25,
+          "end_line": 37,
+          "label": "Journal"
+        }
+      ]
+    },
+    {
+      "id": "dk-state",
+      "label": "State root",
+      "sublabel": "Library/Logs/openai-responses-proxy",
+      "parent": "dk-root",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/runtime/config.py",
+          "line": 168,
+          "end_line": 184,
+          "label": "State root"
+        }
+      ]
+    },
+    {
+      "id": "dk-logs",
+      "label": "proxy.log, watchdog.log",
+      "sublabel": "bounded, rotated, mode 0600",
+      "parent": "dk-state",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/runtime/bounded_log.py",
+          "line": 81,
+          "end_line": 108,
+          "label": "Append"
+        }
+      ]
+    },
+    {
+      "id": "dk-lock",
+      "label": "lifecycle.lock",
+      "sublabel": "one lifecycle writer at a time",
+      "parent": "dk-state",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/cli/application.py",
+          "line": 96,
+          "end_line": 115,
+          "label": "Lock"
+        }
+      ]
+    },
+    {
+      "id": "dk-command",
+      "label": "Command link",
+      "sublabel": "~/.local/bin/openai-responses-proxy",
+      "parent": "dk-root",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/command.py",
+          "line": 34,
+          "end_line": 48,
+          "label": "Command path"
+        }
+      ]
+    },
+    {
+      "id": "dk-agent",
+      "label": "Launch agent",
+      "sublabel": "LaunchAgents/openai-responses-proxy.watchdog.plist",
+      "parent": "dk-root",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/supervision/macos.py",
+          "line": 49,
+          "end_line": 51,
+          "label": "Plist path"
+        }
+      ]
+    }
+  ]
+}

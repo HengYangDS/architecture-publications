@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "diagram_type": "tree",
+  "meta": {
+    "title": "Which section owns which work question",
+    "locale": "en",
+    "output": "topics.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
+      "provider": "github",
+      "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42"
+    }
+  },
+  "layout": {
+    "direction": "right"
+  },
+  "nodes": [
+    {
+      "id": "tp-map",
+      "label": "Task map",
+      "sublabel": "docs/README.md",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 9,
+          "end_line": 15,
+          "label": "Task map"
+        }
+      ]
+    },
+    {
+      "id": "tp-urgent",
+      "label": "Urgent failure or breach",
+      "sublabel": "emergencies, first",
+      "parent": "tp-map",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 14,
+          "end_line": 15,
+          "label": "Urgent"
+        }
+      ]
+    },
+    {
+      "id": "tp-direction",
+      "label": "Direction and decisions",
+      "parent": "tp-map",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 17,
+          "end_line": 28,
+          "label": "Direction"
+        }
+      ]
+    },
+    {
+      "id": "tp-charter",
+      "label": "Charter",
+      "sublabel": "authority, risk levels",
+      "parent": "tp-direction",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 19,
+          "end_line": 21,
+          "label": "Charter"
+        }
+      ]
+    },
+    {
+      "id": "tp-decide",
+      "label": "Analysis and decisions",
+      "sublabel": "frame, diagnose, compare",
+      "parent": "tp-direction",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 22,
+          "end_line": 28,
+          "label": "Decide"
+        }
+      ]
+    },
+    {
+      "id": "tp-delivery",
+      "label": "Data and delivery",
+      "parent": "tp-map",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 30,
+          "end_line": 46,
+          "label": "Data and delivery"
+        }
+      ]
+    },
+    {
+      "id": "tp-data",
+      "label": "Data quality and adoption",
+      "sublabel": "qualify, change data",
+      "parent": "tp-delivery",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 32,
+          "end_line": 43,
+          "label": "Data"
+        }
+      ]
+    },
+    {
+      "id": "tp-deliver",
+      "label": "Execution and delivery",
+      "sublabel": "check, verify, close",
+      "parent": "tp-delivery",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 44,
+          "end_line": 46,
+          "label": "Deliver"
+        }
+      ]
+    },
+    {
+      "id": "tp-collab",
+      "label": "Collaboration and improvement",
+      "parent": "tp-map",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 48,
+          "end_line": 64,
+          "label": "Collaboration"
+        }
+      ]
+    },
+    {
+      "id": "tp-communicate",
+      "label": "Communication",
+      "sublabel": "update, escalate",
+      "parent": "tp-collab",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 50,
+          "end_line": 53,
+          "label": "Communicate"
+        }
+      ]
+    },
+    {
+      "id": "tp-agent",
+      "label": "Human–AI collaboration",
+      "sublabel": "delegate, check output",
+      "parent": "tp-collab",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 54,
+          "end_line": 58,
+          "label": "Delegate"
+        }
+      ]
+    },
+    {
+      "id": "tp-evolve",
+      "label": "Practice and evolution",
+      "sublabel": "coach, improve practice",
+      "parent": "tp-collab",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 59,
+          "end_line": 64,
+          "label": "Evolve"
+        }
+      ]
+    },
+    {
+      "id": "tp-maintain",
+      "label": "Maintain this repository",
+      "parent": "tp-map",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 78,
+          "end_line": 88,
+          "label": "Maintain"
+        }
+      ]
+    },
+    {
+      "id": "tp-records",
+      "label": "Decision records",
+      "sublabel": "reasons for choices",
+      "parent": "tp-maintain",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 84,
+          "end_line": 86,
+          "label": "Decisions"
+        }
+      ]
+    },
+    {
+      "id": "tp-governance",
+      "label": "Repository change and release",
+      "sublabel": "OpenSpec and ETHOS",
+      "parent": "tp-maintain",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 84,
+          "end_line": 85,
+          "label": "Governance"
+        }
+      ]
+    }
+  ]
+}

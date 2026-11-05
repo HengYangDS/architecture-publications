@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Who keeps the listener running",
+    "output": "running.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
+      "provider": "github",
+      "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+    }
+  },
+  "components": [
+    {
+      "id": "run-cli",
+      "type": "frontend",
+      "label": "Command line",
+      "sublabel": "install, status, reload",
+      "pos": [40, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/control.py",
+          "line": 32,
+          "end_line": 48,
+          "label": "Health read"
+        }
+      ]
+    },
+    {
+      "id": "run-manager",
+      "type": "external",
+      "label": "Native service manager",
+      "sublabel": "launchd, systemd, tasks",
+      "pos": [300, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/supervision/macos.py",
+          "line": 123,
+          "end_line": 136,
+          "label": "Launch agent"
+        }
+      ]
+    },
+    {
+      "id": "run-watchdog",
+      "type": "backend",
+      "label": "Watchdog",
+      "sublabel": "checks the port every 15 s",
+      "pos": [300, 180],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/supervision/watchdog.py",
+          "line": 102,
+          "end_line": 137,
+          "label": "Loop"
+        }
+      ]
+    },
+    {
+      "id": "run-journal",
+      "type": "database",
+      "label": "Transaction journal",
+      "sublabel": "open while a change runs",
+      "pos": [560, 180],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/records.py",
+          "line": 40,
+          "end_line": 60,
+          "label": "Status"
+        }
+      ]
+    },
+    {
+      "id": "run-listener",
+      "type": "frontend",
+      "label": "Loopback listener",
+      "sublabel": "127.0.0.1:8792",
+      "pos": [300, 320],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/serving/entrypoint.py",
+          "line": 160,
+          "end_line": 193,
+          "label": "Run"
+        }
+      ]
+    },
+    {
+      "id": "run-carrier",
+      "type": "database",
+      "label": "runtime-config.json",
+      "sublabel": "settings of each role",
+      "pos": [560, 320],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/runtime_spec.py",
+          "line": 152,
+          "end_line": 159,
+          "label": "Activate"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "run-registers",
+      "from": "run-cli",
+      "to": "run-manager",
+      "label": "registers, removes"
+    },
+    {
+      "id": "run-restarts",
+      "from": "run-manager",
+      "to": "run-watchdog",
+      "label": "starts, restarts",
+      "variant": "emphasis"
+    },
+    {
+      "id": "run-waits",
+      "from": "run-watchdog",
+      "to": "run-journal",
+      "label": "waits while open",
+      "variant": "dashed"
+    },
+    {
+      "id": "run-spawns",
+      "from": "run-watchdog",
+      "to": "run-listener",
+      "label": "starts a closed port"
+    },
+    {
+      "id": "run-loads",
+      "from": "run-listener",
+      "to": "run-carrier",
+      "label": "loads its settings",
+      "variant": "dashed"
+    },
+    {
+      "id": "run-reads",
+      "from": "run-cli",
+      "to": "run-listener",
+      "label": "reads /healthz"
+    }
+  ]
+}

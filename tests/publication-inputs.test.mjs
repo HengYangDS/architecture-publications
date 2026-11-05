@@ -18,7 +18,14 @@ const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 
 test("every work is one pinned model with verified custody and a unique id", async () => {
   const works = await verifyPublications(path.join(root, "publications"), root);
-  assert.deepEqual([...works.values()].sort(), ["aigw-client", "architecture-publisher", "ethos"]);
+  assert.deepEqual([...works.values()].sort(), [
+    "aigw-client",
+    "architecture-publisher",
+    "ddwg",
+    "ethos",
+    "filmkit",
+    "openai-responses-proxy",
+  ]);
 });
 
 const model = (id) => ({

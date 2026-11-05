@@ -1,0 +1,981 @@
+{
+  "format": "architecture-publisher.model",
+  "version": 2,
+  "id": "openai-responses-proxy",
+  "title": "OpenAI Responses Proxy",
+  "question": "How does OpenAI Responses Proxy make a Codex Responses turn portable across third-party providers, and how does it install and keep its own listener running?",
+  "summary": "A loopback listener rebuilds each Responses request in one closed grammar with store=false, sends it to the provider its path names within one total deadline, and retries only what the failure class allows. A signed release installs through one journaled transaction as an immutable generation; an upgrade hands the listening socket to the new process, and a watchdog under the native service manager restarts a stopped listener.",
+  "scope": "The OpenAI Responses Proxy product as released at v5.1.9: the openai_responses_proxy package with its provider manifest, pyproject.toml and VERSION.",
+  "limits": [
+    "Each component owns the files its claims name; a relation cites the files that import or call the other component.",
+    "A relation stands for an import or a process call that carries behaviour; imports used only for an exception class, a type, a shared helper or the product's names are not drawn.",
+    "Tests, the repository tools, the OpenSpec specifications and change history, the documents and CI are outside the scope, each excluded with its reason."
+  ],
+  "attribution": "Architecture Publications, read from the OpenAI Responses Proxy source",
+  "repository": {
+    "name": "openai-responses-proxy",
+    "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
+    "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+  },
+  "coverage": {
+    "exclude": [
+      {
+        "path": "openspec/",
+        "reason": "OpenSpec: the current capability specifications and the archive of every change. They state and record the requirements that the code in scope implements."
+      },
+      {
+        "path": "tests/",
+        "reason": "Tests of the package and of the repository tools; they verify the product rather than form it."
+      },
+      {
+        "path": "tools/",
+        "reason": "Repository-only operations: CI projection, quality and performance checks, native release construction, signing and Forge publication. The installed product never imports them."
+      },
+      {
+        "path": ".config/",
+        "reason": "Configuration of the checks, the CI graph, the runners and the locked toolchain."
+      },
+      {
+        "path": "docs/",
+        "reason": "The repository's documents on architecture, decisions, evidence, governance and Forge operations; the guide cites them at their lines."
+      },
+      {
+        "path": ".ethos/",
+        "reason": "The repository's ETHOS profile, workspace and release peers."
+      },
+      {
+        "path": ".github/",
+        "reason": "GitHub Actions workflows for branch admission and verification."
+      },
+      {
+        "path": ".gitlab-ci.yml",
+        "reason": "The GitLab CI pipeline."
+      },
+      {
+        "path": "noxfile.py",
+        "reason": "Nox sessions that run the checks and build release candidates."
+      },
+      {
+        "path": "uv.lock",
+        "reason": "The resolved lock of the development and release environments; pyproject.toml, in scope, declares the five runtime dependencies."
+      },
+      {
+        "path": "package*.json",
+        "reason": "The Node development tools, OpenSpec and Prettier, with their lock."
+      },
+      {
+        "path": "README.md",
+        "reason": "The product's own account of installation, operation, compatibility and the request boundary; the guide cites it at its lines."
+      },
+      {
+        "path": "CHANGELOG.md",
+        "reason": "The release history."
+      },
+      {
+        "path": "CONTRIBUTING.md",
+        "reason": "The development, verification and release workflow."
+      },
+      {
+        "path": "AGENTS.md",
+        "reason": "Entry points and the authority order for agents working in the repository."
+      },
+      {
+        "path": "LICENSE",
+        "reason": "The MIT licence, which the release archive carries beside the executable; it states terms, not structure."
+      },
+      {
+        "path": ".editorconfig",
+        "reason": "Editor settings of the checkout."
+      },
+      {
+        "path": ".gitattributes",
+        "reason": "Git attributes of the checkout."
+      },
+      {
+        "path": ".gitignore",
+        "reason": "Paths Git leaves untracked."
+      }
+    ]
+  },
+  "overview": "overview.typ",
+  "guide": "guide/guide.archify.md",
+  "kinds": {
+    "client": {
+      "label": "client",
+      "category": "external",
+      "icon": "app-window"
+    },
+    "provider": {
+      "label": "provider",
+      "category": "external",
+      "icon": "cloud"
+    },
+    "host": {
+      "label": "host service",
+      "category": "external",
+      "icon": "monitor-cog"
+    },
+    "endpoint": {
+      "label": "loopback endpoint",
+      "category": "frontend",
+      "icon": "radio-tower"
+    },
+    "interface": {
+      "label": "command line",
+      "category": "frontend",
+      "icon": "square-terminal"
+    },
+    "relay": {
+      "label": "relay step",
+      "category": "backend",
+      "icon": "arrow-right-left"
+    },
+    "transport": {
+      "label": "network transport",
+      "category": "cloud",
+      "icon": "cable"
+    },
+    "grammar": {
+      "label": "request grammar",
+      "category": "security",
+      "icon": "file-check"
+    },
+    "gate": {
+      "label": "admission",
+      "category": "security",
+      "icon": "shield-check"
+    },
+    "registry": {
+      "label": "route registry",
+      "category": "messagebus",
+      "icon": "list-ordered"
+    },
+    "observer": {
+      "label": "telemetry",
+      "category": "cloud",
+      "icon": "gauge"
+    },
+    "identity": {
+      "label": "runtime identity",
+      "category": "security",
+      "icon": "fingerprint"
+    },
+    "coordinator": {
+      "label": "lifecycle coordinator",
+      "category": "backend",
+      "icon": "workflow"
+    },
+    "state": {
+      "label": "installed state",
+      "category": "database",
+      "icon": "database"
+    },
+    "supervisor": {
+      "label": "supervision",
+      "category": "backend",
+      "icon": "heart-pulse"
+    },
+    "foundation": {
+      "label": "foundation",
+      "category": "backend",
+      "icon": "package"
+    }
+  },
+  "components": [
+    {
+      "id": "client",
+      "label": "Responses client",
+      "kind": "client",
+      "details": {
+        "for example": "Codex, Hermes or a Responses SDK on a qualified route",
+        "owns": "conversations, tool state and per-conversation model selection"
+      }
+    },
+    {
+      "id": "listener",
+      "label": "Loopback listener",
+      "kind": "endpoint",
+      "details": {
+        "binds": "127.0.0.1 on port 8792 unless installed otherwise",
+        "serves": "/healthz, /control/drain, /control/handoff and /<provider>/v1/responses and models",
+        "starts": "only from a payload whose digests it has verified"
+      },
+      "files": [
+        "src/openai_responses_proxy/serving/server.py",
+        "src/openai_responses_proxy/serving/"
+      ]
+    },
+    {
+      "id": "request-admission",
+      "label": "Request admission",
+      "kind": "gate",
+      "details": {
+        "reads": "one length-framed body within 30 s and 64 MiB",
+        "drains": "Responses admission for a bounded lease",
+        "controls": "drain and handoff only from a loopback client with a loopback Host and no Origin"
+      },
+      "files": ["src/openai_responses_proxy/relay/admission.py"]
+    },
+    {
+      "id": "responses-relay",
+      "label": "Responses relay",
+      "kind": "relay",
+      "details": {
+        "orders": "route, body, projection, delegation, cooldown, admission, exchange, delivery",
+        "relays": "model catalog reads once, without Responses policy"
+      },
+      "files": [
+        "src/openai_responses_proxy/relay/responses.py",
+        "src/openai_responses_proxy/relay/"
+      ]
+    },
+    {
+      "id": "replay-projection",
+      "label": "Replay projection",
+      "kind": "grammar",
+      "details": {
+        "sends": "store=false, without response, conversation or cache bindings",
+        "keeps": "portable dialogue and complete tool call and output pairs",
+        "refuses": "unknown or unsafe structure before any upstream I/O"
+      },
+      "files": [
+        "src/openai_responses_proxy/protocol/replay/projection.py",
+        "src/openai_responses_proxy/protocol/replay/",
+        "src/openai_responses_proxy/protocol/__init__.py"
+      ]
+    },
+    {
+      "id": "agent-delivery",
+      "label": "Agent delivery",
+      "kind": "grammar",
+      "details": {
+        "aliases": "collaboration as collaboration_plaintext on a plaintext route",
+        "restores": "the native namespace once readable arguments arrive"
+      },
+      "files": ["src/openai_responses_proxy/protocol/agent_delivery.py"]
+    },
+    {
+      "id": "bounded-recovery",
+      "label": "Bounded recovery",
+      "kind": "grammar",
+      "details": {
+        "derives": "strictly smaller, pair-safe requests from the projected one",
+        "keeps": "the latest user turn and the current-turn controls"
+      },
+      "files": [
+        "src/openai_responses_proxy/protocol/recovery/execution.py",
+        "src/openai_responses_proxy/protocol/recovery/"
+      ]
+    },
+    {
+      "id": "upstream-exchange",
+      "label": "Upstream exchange",
+      "kind": "relay",
+      "details": {
+        "retries": "only what the failure class allows, within one total deadline",
+        "cools": "one provider after a 429 or an exhausted 503"
+      },
+      "files": [
+        "src/openai_responses_proxy/relay/exchange.py",
+        "src/openai_responses_proxy/relay/cooldown.py"
+      ]
+    },
+    {
+      "id": "upstream-transport",
+      "label": "Upstream transport",
+      "kind": "transport",
+      "details": {
+        "bounds": "DNS, connection, TLS, writes and reads by the exchange deadline",
+        "reuses": "an idle keep-alive connection at most 30 s old",
+        "refuses": "redirects; a complete request is never sent twice"
+      },
+      "files": [
+        "src/openai_responses_proxy/relay/upstream.py",
+        "src/openai_responses_proxy/relay/connections.py"
+      ]
+    },
+    {
+      "id": "response-delivery",
+      "label": "Response delivery",
+      "kind": "relay",
+      "details": {
+        "validates": "a terminal JSON body, or each SSE event before it is written",
+        "holds": "events before content, so a pre-content response.failed can be reopened"
+      },
+      "files": [
+        "src/openai_responses_proxy/relay/sse.py",
+        "src/openai_responses_proxy/relay/downstream.py",
+        "src/openai_responses_proxy/protocol/response.py"
+      ]
+    },
+    {
+      "id": "telemetry",
+      "label": "Telemetry and logs",
+      "kind": "observer",
+      "details": {
+        "counts": "secret-free counters, failure classes and the last failure",
+        "logs": "bounded lines without prompts, tokens, headers or bodies"
+      },
+      "files": [
+        "src/openai_responses_proxy/relay/telemetry.py",
+        "src/openai_responses_proxy/relay/operational_log.py"
+      ]
+    },
+    {
+      "id": "provider-registry",
+      "label": "Provider registry",
+      "kind": "registry",
+      "details": {
+        "routes": "aihubmix, dmxapi and ucloud, and one optional /upstream",
+        "policy": "dmxapi retries its exact 477 empty_response once"
+      },
+      "files": [
+        "src/openai_responses_proxy/providers/manifest.toml",
+        "src/openai_responses_proxy/providers/registry.py",
+        "src/openai_responses_proxy/providers/"
+      ]
+    },
+    {
+      "id": "provider",
+      "label": "Provider endpoint",
+      "kind": "provider",
+      "details": {
+        "admitted": "DMXAPI, UCloud and AIHubMix, or one explicit upstream",
+        "owns": "model execution, quotas and availability"
+      }
+    },
+    {
+      "id": "listener-handoff",
+      "label": "Listener handoff",
+      "kind": "coordinator",
+      "details": {
+        "passes": "the listening socket to a successor process",
+        "steps": "PREPARE, READY, COMMIT, SERVING, FINALIZE, or abort and resume"
+      },
+      "files": [
+        "src/openai_responses_proxy/serving/handoff/transaction.py",
+        "src/openai_responses_proxy/serving/handoff/"
+      ]
+    },
+    {
+      "id": "runtime-identity",
+      "label": "Runtime identity",
+      "kind": "identity",
+      "details": {
+        "freezes": "release, payload, receipt and manifest digests before startup",
+        "names": "the private roles: listener, watchdog, handoff child and prewarm"
+      },
+      "files": [
+        "src/openai_responses_proxy/serving/identity.py",
+        "src/openai_responses_proxy/serving/inventory.py",
+        "src/openai_responses_proxy/serving/digest.py",
+        "src/openai_responses_proxy/serving/roles.py"
+      ]
+    },
+    {
+      "id": "runtime-settings",
+      "label": "Runtime settings",
+      "kind": "foundation",
+      "details": {
+        "keeps": "runtime-config.json beside each generation; an upgrade keeps its limits",
+        "validates": "port, timeouts and body, stream and catalog limits",
+        "provides": "bounded logs, the loopback transport and clean child environments"
+      },
+      "files": [
+        "src/openai_responses_proxy/runtime/config.py",
+        "src/openai_responses_proxy/runtime/",
+        "src/openai_responses_proxy/lifecycle/runtime_spec.py",
+        "src/openai_responses_proxy/lifecycle/context.py"
+      ]
+    },
+    {
+      "id": "command-line",
+      "label": "Command line",
+      "kind": "interface",
+      "details": {
+        "commands": "install, status, doctor, reload, rollback, recover, uninstall",
+        "roles": "private listener, watchdog, handoff-child and prewarm modes",
+        "output": "a human page or stable JSON, with one next command",
+        "names": "the command, service and environment prefix, the version and every public error"
+      },
+      "files": [
+        "src/openai_responses_proxy/cli/application.py",
+        "src/openai_responses_proxy/cli/",
+        "src/openai_responses_proxy/product_identity.py",
+        "src/openai_responses_proxy/errors.py",
+        "src/openai_responses_proxy/json_value.py",
+        "src/openai_responses_proxy/__init__.py",
+        "pyproject.toml",
+        "VERSION"
+      ]
+    },
+    {
+      "id": "lifecycle-commands",
+      "label": "Lifecycle commands",
+      "kind": "coordinator",
+      "details": {
+        "reads": "status from the payload, the service, the listener and any transaction",
+        "changes": "install, reload, rollback, recover and uninstall, one at a time under a lock"
+      },
+      "files": [
+        "src/openai_responses_proxy/lifecycle/control.py",
+        "src/openai_responses_proxy/lifecycle/install.py",
+        "src/openai_responses_proxy/lifecycle/uninstall.py",
+        "src/openai_responses_proxy/lifecycle/"
+      ]
+    },
+    {
+      "id": "release-admission",
+      "label": "Release admission",
+      "kind": "gate",
+      "details": {
+        "verifies": "SHA256SUMS.sig with ssh-keygen against the operator's trust anchor",
+        "admits": "one platform archive whose every member matches its manifest"
+      },
+      "files": ["src/openai_responses_proxy/lifecycle/artifact.py"]
+    },
+    {
+      "id": "payload-transaction",
+      "label": "Payload transaction",
+      "kind": "state",
+      "details": {
+        "journals": "prepared, materialized, activated, then finalized or rolled back",
+        "recovers": "an interrupted transaction from its journal and the running listener"
+      },
+      "files": [
+        "src/openai_responses_proxy/lifecycle/transaction/execution.py",
+        "src/openai_responses_proxy/lifecycle/transaction/",
+        "src/openai_responses_proxy/lifecycle/records.py"
+      ]
+    },
+    {
+      "id": "owned-files",
+      "label": "Owned files",
+      "kind": "state",
+      "details": {
+        "materializes": "the admitted bytes as a new generation and prewarms its executable",
+        "links": "the user's command to the newest selected release",
+        "deletes": "only exact recorded files; unknown content stays"
+      },
+      "files": [
+        "src/openai_responses_proxy/lifecycle/candidate.py",
+        "src/openai_responses_proxy/lifecycle/projection.py",
+        "src/openai_responses_proxy/lifecycle/owned_files.py",
+        "src/openai_responses_proxy/lifecycle/command.py"
+      ]
+    },
+    {
+      "id": "generation-selector",
+      "label": "Generation selector",
+      "kind": "state",
+      "details": {
+        "selects": "the active immutable generation and at most one predecessor",
+        "retires": "every other generation by its recorded bytes"
+      },
+      "files": [
+        "src/openai_responses_proxy/lifecycle/generation.py",
+        "src/openai_responses_proxy/lifecycle/rollback.py"
+      ]
+    },
+    {
+      "id": "deployment",
+      "label": "Deployment",
+      "kind": "coordinator",
+      "details": {
+        "chooses": "a handoff that keeps admission open, or a drained replacement of an older runtime",
+        "proves": "the successor's identity before the transaction finalizes"
+      },
+      "files": [
+        "src/openai_responses_proxy/lifecycle/deployment/apply.py",
+        "src/openai_responses_proxy/lifecycle/deployment/"
+      ]
+    },
+    {
+      "id": "native-supervision",
+      "label": "Native supervision",
+      "kind": "supervisor",
+      "details": {
+        "registers": "a launchd agent, a systemd user unit or a scheduled task",
+        "stops": "only processes whose executable and private role it proves"
+      },
+      "files": [
+        "src/openai_responses_proxy/lifecycle/supervision/native_service.py",
+        "src/openai_responses_proxy/lifecycle/supervision/"
+      ]
+    },
+    {
+      "id": "watchdog",
+      "label": "Watchdog",
+      "kind": "supervisor",
+      "details": {
+        "checks": "the listener port every 15 s",
+        "starts": "the listener on a closed port, waiting while a transaction is open and not yet activated"
+      },
+      "files": ["src/openai_responses_proxy/lifecycle/supervision/watchdog.py"]
+    },
+    {
+      "id": "service-manager",
+      "label": "Native service manager",
+      "kind": "host",
+      "details": {
+        "macOS": "launchd, in the GUI login or the Background domain",
+        "Linux": "the systemd user manager",
+        "Windows": "Task Scheduler, for the current user"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "client-listener",
+      "from": "client",
+      "to": "listener",
+      "label": "sends Responses turns",
+      "files": ["src/openai_responses_proxy/serving/server.py"]
+    },
+    {
+      "id": "listener-responses-relay",
+      "from": "listener",
+      "to": "responses-relay",
+      "label": "relays provider routes",
+      "files": ["src/openai_responses_proxy/serving/server.py"]
+    },
+    {
+      "id": "listener-request-admission",
+      "from": "listener",
+      "to": "request-admission",
+      "label": "counts handlers, drains",
+      "files": [
+        "src/openai_responses_proxy/serving/control.py",
+        "src/openai_responses_proxy/serving/entrypoint.py",
+        "src/openai_responses_proxy/serving/server.py"
+      ]
+    },
+    {
+      "id": "listener-listener-handoff",
+      "from": "listener",
+      "to": "listener-handoff",
+      "label": "hands off its socket",
+      "files": [
+        "src/openai_responses_proxy/serving/control.py",
+        "src/openai_responses_proxy/serving/entrypoint.py"
+      ]
+    },
+    {
+      "id": "listener-runtime-identity",
+      "from": "listener",
+      "to": "runtime-identity",
+      "label": "freezes its payload",
+      "files": ["src/openai_responses_proxy/serving/entrypoint.py"]
+    },
+    {
+      "id": "responses-relay-request-admission",
+      "from": "responses-relay",
+      "to": "request-admission",
+      "label": "admits each Response",
+      "files": ["src/openai_responses_proxy/relay/responses.py"]
+    },
+    {
+      "id": "responses-relay-provider-registry",
+      "from": "responses-relay",
+      "to": "provider-registry",
+      "label": "resolves the route",
+      "files": ["src/openai_responses_proxy/relay/responses.py"]
+    },
+    {
+      "id": "responses-relay-replay-projection",
+      "from": "responses-relay",
+      "to": "replay-projection",
+      "label": "projects the body",
+      "files": ["src/openai_responses_proxy/relay/responses.py"]
+    },
+    {
+      "id": "responses-relay-agent-delivery",
+      "from": "responses-relay",
+      "to": "agent-delivery",
+      "label": "selects delegation",
+      "files": ["src/openai_responses_proxy/relay/responses.py"]
+    },
+    {
+      "id": "responses-relay-upstream-exchange",
+      "from": "responses-relay",
+      "to": "upstream-exchange",
+      "label": "opens the exchange",
+      "files": ["src/openai_responses_proxy/relay/responses.py"]
+    },
+    {
+      "id": "responses-relay-response-delivery",
+      "from": "responses-relay",
+      "to": "response-delivery",
+      "label": "delivers JSON or SSE",
+      "files": ["src/openai_responses_proxy/relay/responses.py"]
+    },
+    {
+      "id": "upstream-exchange-upstream-transport",
+      "from": "upstream-exchange",
+      "to": "upstream-transport",
+      "label": "sends within the deadline",
+      "files": ["src/openai_responses_proxy/relay/exchange.py"]
+    },
+    {
+      "id": "upstream-exchange-bounded-recovery",
+      "from": "upstream-exchange",
+      "to": "bounded-recovery",
+      "label": "derives a smaller retry",
+      "files": ["src/openai_responses_proxy/relay/exchange.py"]
+    },
+    {
+      "id": "upstream-exchange-provider-registry",
+      "from": "upstream-exchange",
+      "to": "provider-registry",
+      "label": "applies the wire policy",
+      "files": ["src/openai_responses_proxy/relay/exchange.py"]
+    },
+    {
+      "id": "upstream-exchange-response-delivery",
+      "from": "upstream-exchange",
+      "to": "response-delivery",
+      "label": "sends terminal failures",
+      "files": ["src/openai_responses_proxy/relay/exchange.py"]
+    },
+    {
+      "id": "upstream-exchange-telemetry",
+      "from": "upstream-exchange",
+      "to": "telemetry",
+      "label": "classifies outcomes",
+      "files": ["src/openai_responses_proxy/relay/exchange.py"]
+    },
+    {
+      "id": "upstream-transport-provider",
+      "from": "upstream-transport",
+      "to": "provider",
+      "label": "sends without redirects",
+      "files": ["src/openai_responses_proxy/relay/upstream.py"]
+    },
+    {
+      "id": "provider-registry-provider",
+      "from": "provider-registry",
+      "to": "provider",
+      "label": "names each origin",
+      "files": ["src/openai_responses_proxy/providers/manifest.toml"]
+    },
+    {
+      "id": "response-delivery-upstream-transport",
+      "from": "response-delivery",
+      "to": "upstream-transport",
+      "label": "reads within the deadline",
+      "files": [
+        "src/openai_responses_proxy/relay/downstream.py",
+        "src/openai_responses_proxy/relay/sse.py"
+      ]
+    },
+    {
+      "id": "response-delivery-agent-delivery",
+      "from": "response-delivery",
+      "to": "agent-delivery",
+      "label": "restores native delivery",
+      "files": [
+        "src/openai_responses_proxy/relay/downstream.py",
+        "src/openai_responses_proxy/relay/sse.py"
+      ]
+    },
+    {
+      "id": "response-delivery-telemetry",
+      "from": "response-delivery",
+      "to": "telemetry",
+      "label": "counts stream outcomes",
+      "files": [
+        "src/openai_responses_proxy/relay/downstream.py",
+        "src/openai_responses_proxy/relay/sse.py"
+      ]
+    },
+    {
+      "id": "bounded-recovery-replay-projection",
+      "from": "bounded-recovery",
+      "to": "replay-projection",
+      "label": "re-projects each derivation",
+      "files": [
+        "src/openai_responses_proxy/protocol/recovery/execution.py",
+        "src/openai_responses_proxy/protocol/recovery/input.py"
+      ]
+    },
+    {
+      "id": "agent-delivery-replay-projection",
+      "from": "agent-delivery",
+      "to": "replay-projection",
+      "label": "shares the call grammar",
+      "files": ["src/openai_responses_proxy/protocol/agent_delivery.py"]
+    },
+    {
+      "id": "listener-handoff-runtime-identity",
+      "from": "listener-handoff",
+      "to": "runtime-identity",
+      "label": "checks the successor",
+      "files": ["src/openai_responses_proxy/serving/handoff/transaction.py"]
+    },
+    {
+      "id": "command-line-lifecycle-commands",
+      "from": "command-line",
+      "to": "lifecycle-commands",
+      "label": "runs public commands",
+      "files": ["src/openai_responses_proxy/cli/application.py"]
+    },
+    {
+      "id": "command-line-runtime-settings",
+      "from": "command-line",
+      "to": "runtime-settings",
+      "label": "activates the carrier",
+      "files": ["src/openai_responses_proxy/cli/application.py"]
+    },
+    {
+      "id": "lifecycle-commands-release-admission",
+      "from": "lifecycle-commands",
+      "to": "release-admission",
+      "label": "admits the signed asset",
+      "files": ["src/openai_responses_proxy/lifecycle/install.py"]
+    },
+    {
+      "id": "lifecycle-commands-payload-transaction",
+      "from": "lifecycle-commands",
+      "to": "payload-transaction",
+      "label": "begins, recovers",
+      "files": [
+        "src/openai_responses_proxy/lifecycle/control.py",
+        "src/openai_responses_proxy/lifecycle/install.py",
+        "src/openai_responses_proxy/lifecycle/uninstall.py"
+      ]
+    },
+    {
+      "id": "lifecycle-commands-deployment",
+      "from": "lifecycle-commands",
+      "to": "deployment",
+      "label": "installs, reloads, rolls back",
+      "files": [
+        "src/openai_responses_proxy/lifecycle/control.py",
+        "src/openai_responses_proxy/lifecycle/install.py"
+      ]
+    },
+    {
+      "id": "payload-transaction-release-admission",
+      "from": "payload-transaction",
+      "to": "release-admission",
+      "label": "claims the verified bytes",
+      "files": ["src/openai_responses_proxy/lifecycle/transaction/execution.py"]
+    },
+    {
+      "id": "payload-transaction-owned-files",
+      "from": "payload-transaction",
+      "to": "owned-files",
+      "label": "materializes, links, purges",
+      "files": [
+        "src/openai_responses_proxy/lifecycle/records.py",
+        "src/openai_responses_proxy/lifecycle/transaction/completion.py",
+        "src/openai_responses_proxy/lifecycle/transaction/execution.py",
+        "src/openai_responses_proxy/lifecycle/transaction/recovery.py"
+      ]
+    },
+    {
+      "id": "payload-transaction-generation-selector",
+      "from": "payload-transaction",
+      "to": "generation-selector",
+      "label": "selects, restores, prunes",
+      "files": [
+        "src/openai_responses_proxy/lifecycle/transaction/completion.py",
+        "src/openai_responses_proxy/lifecycle/transaction/execution.py",
+        "src/openai_responses_proxy/lifecycle/transaction/recovery.py"
+      ]
+    },
+    {
+      "id": "payload-transaction-runtime-settings",
+      "from": "payload-transaction",
+      "to": "runtime-settings",
+      "label": "writes the candidate carrier",
+      "files": [
+        "src/openai_responses_proxy/lifecycle/records.py",
+        "src/openai_responses_proxy/lifecycle/transaction/completion.py",
+        "src/openai_responses_proxy/lifecycle/transaction/execution.py",
+        "src/openai_responses_proxy/lifecycle/transaction/recovery.py"
+      ]
+    },
+    {
+      "id": "generation-selector-runtime-identity",
+      "from": "generation-selector",
+      "to": "runtime-identity",
+      "label": "shares the selector schema",
+      "files": [
+        "src/openai_responses_proxy/lifecycle/generation.py",
+        "src/openai_responses_proxy/lifecycle/rollback.py"
+      ]
+    },
+    {
+      "id": "generation-selector-owned-files",
+      "from": "generation-selector",
+      "to": "owned-files",
+      "label": "removes recorded bytes",
+      "files": ["src/openai_responses_proxy/lifecycle/generation.py"]
+    },
+    {
+      "id": "deployment-payload-transaction",
+      "from": "deployment",
+      "to": "payload-transaction",
+      "label": "commits, activates, finalizes",
+      "files": ["src/openai_responses_proxy/lifecycle/deployment/apply.py"]
+    },
+    {
+      "id": "deployment-listener-handoff",
+      "from": "deployment",
+      "to": "listener-handoff",
+      "label": "requests the handoff",
+      "files": ["src/openai_responses_proxy/lifecycle/deployment/handoff.py"]
+    },
+    {
+      "id": "deployment-listener",
+      "from": "deployment",
+      "to": "listener",
+      "label": "drains, reads /healthz",
+      "files": ["src/openai_responses_proxy/lifecycle/deployment/handoff.py"]
+    },
+    {
+      "id": "deployment-native-supervision",
+      "from": "deployment",
+      "to": "native-supervision",
+      "label": "rebinds supervision",
+      "files": [
+        "src/openai_responses_proxy/lifecycle/deployment/apply.py",
+        "src/openai_responses_proxy/lifecycle/deployment/handoff.py"
+      ]
+    },
+    {
+      "id": "deployment-runtime-identity",
+      "from": "deployment",
+      "to": "runtime-identity",
+      "label": "proves the successor",
+      "files": [
+        "src/openai_responses_proxy/lifecycle/deployment/apply.py",
+        "src/openai_responses_proxy/lifecycle/deployment/handoff.py"
+      ]
+    },
+    {
+      "id": "native-supervision-service-manager",
+      "from": "native-supervision",
+      "to": "service-manager",
+      "label": "registers the watchdog",
+      "files": [
+        "src/openai_responses_proxy/lifecycle/supervision/macos.py",
+        "src/openai_responses_proxy/lifecycle/supervision/linux.py",
+        "src/openai_responses_proxy/lifecycle/supervision/windows.py"
+      ]
+    },
+    {
+      "id": "service-manager-watchdog",
+      "from": "service-manager",
+      "to": "watchdog",
+      "label": "starts, restarts",
+      "files": [
+        "src/openai_responses_proxy/lifecycle/supervision/macos.py",
+        "src/openai_responses_proxy/lifecycle/supervision/linux.py",
+        "src/openai_responses_proxy/lifecycle/supervision/windows.py"
+      ]
+    },
+    {
+      "id": "watchdog-listener",
+      "from": "watchdog",
+      "to": "listener",
+      "label": "starts the listener role",
+      "files": ["src/openai_responses_proxy/lifecycle/supervision/watchdog.py"]
+    },
+    {
+      "id": "watchdog-payload-transaction",
+      "from": "watchdog",
+      "to": "payload-transaction",
+      "label": "waits out a transaction",
+      "files": ["src/openai_responses_proxy/lifecycle/supervision/watchdog.py"]
+    }
+  ],
+  "views": [
+    {
+      "id": "request-path",
+      "title": "One Responses turn, from the client to a provider",
+      "question": "Which parts does one Responses turn cross between the client and its provider?",
+      "members": [
+        "client",
+        "listener",
+        "request-admission",
+        "responses-relay",
+        "replay-projection",
+        "upstream-exchange",
+        "upstream-transport",
+        "response-delivery",
+        "provider"
+      ]
+    },
+    {
+      "id": "portability",
+      "title": "What leaves the listener",
+      "question": "How does a request become portable across providers, and how is a refused one made smaller?",
+      "members": [
+        "responses-relay",
+        "replay-projection",
+        "agent-delivery",
+        "bounded-recovery",
+        "upstream-exchange",
+        "response-delivery",
+        "provider-registry"
+      ]
+    },
+    {
+      "id": "failures",
+      "title": "Failures bounded per provider",
+      "question": "How are upstream failures retried, cooled and reported without holding up another provider?",
+      "members": [
+        "upstream-exchange",
+        "upstream-transport",
+        "bounded-recovery",
+        "provider-registry",
+        "response-delivery",
+        "telemetry",
+        "provider"
+      ]
+    },
+    {
+      "id": "install",
+      "title": "One install, one transaction",
+      "question": "How does a signed release asset become the selected generation, and what can be rolled back?",
+      "members": [
+        "command-line",
+        "lifecycle-commands",
+        "release-admission",
+        "payload-transaction",
+        "owned-files",
+        "generation-selector",
+        "deployment",
+        "runtime-settings"
+      ]
+    },
+    {
+      "id": "handoff",
+      "title": "A new listener without a dropped turn",
+      "question": "How do an upgrade and a reload move the listening socket to a new process?",
+      "members": [
+        "deployment",
+        "listener",
+        "listener-handoff",
+        "runtime-identity",
+        "request-admission",
+        "native-supervision",
+        "generation-selector"
+      ]
+    },
+    {
+      "id": "supervision",
+      "title": "Kept running by the operating system",
+      "question": "Who starts the listener and keeps it running?",
+      "members": [
+        "native-supervision",
+        "service-manager",
+        "watchdog",
+        "listener",
+        "payload-transaction"
+      ]
+    }
+  ]
+}

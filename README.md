@@ -16,6 +16,14 @@ diagram checks.
 - [Architecture Publisher](publications/architecture-publisher/README.md): how
   Architecture Publisher turns an architecture model into posters, a page and an
   overview.
+- [Data Department Work Guidelines](publications/ddwg/README.md): how the
+  guidelines lead a reader to the rule that owns a task, and how a change to them
+  is proposed, checked and released.
+- [filmkit](publications/filmkit/README.md): how filmkit rebuilds a film's two
+  editions from its tracked sources, and what holds each step to its inputs.
+- [OpenAI Responses Proxy](publications/openai-responses-proxy/README.md): how
+  the proxy makes a Codex Responses turn portable across third-party providers,
+  and how it installs and keeps its own listener running.
 
 A model pins the described repository to a full commit. Each component claims
 the directories and files it owns, and each relation names the files that

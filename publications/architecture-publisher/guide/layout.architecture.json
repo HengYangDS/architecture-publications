@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "One grid for both media",
+    "output": "layout.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/architecture-publisher",
+      "provider": "github",
+      "revision": "a2f42242494ef918094a81147793d53c54718f8c"
+    }
+  },
+  "components": [
+    {
+      "id": "lay-poster",
+      "type": "frontend",
+      "label": "Poster composer",
+      "sublabel": "its own type sizes",
+      "pos": [250, 30],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/poster/plate.mjs",
+          "line": 80,
+          "end_line": 80,
+          "label": "Poster layout"
+        }
+      ]
+    },
+    {
+      "id": "lay-page",
+      "type": "frontend",
+      "label": "Explainer page",
+      "sublabel": "Archify's text metrics",
+      "pos": [630, 30],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/map/archify.mjs",
+          "line": 172,
+          "end_line": 180,
+          "label": "Diagram layout"
+        }
+      ]
+    },
+    {
+      "id": "lay-grid",
+      "type": "backend",
+      "label": "Grid layout",
+      "sublabel": "one column lattice",
+      "pos": [440, 170],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/layout/grid.mjs",
+          "line": 86,
+          "end_line": 119,
+          "label": "layoutView"
+        }
+      ]
+    },
+    {
+      "id": "lay-rows",
+      "type": "backend",
+      "label": "Rows",
+      "sublabel": "tiers or relations",
+      "pos": [60, 320],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "src/layout/rows.mjs",
+          "line": 1,
+          "end_line": 6,
+          "label": "Rows"
+        }
+      ]
+    },
+    {
+      "id": "lay-placement",
+      "type": "backend",
+      "label": "Placement",
+      "sublabel": "minimum cost",
+      "pos": [250, 320],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "src/layout/placement.mjs",
+          "line": 149,
+          "end_line": 162,
+          "label": "placeRows"
+        }
+      ]
+    },
+    {
+      "id": "lay-wires",
+      "type": "backend",
+      "label": "Wires",
+      "sublabel": "buses and corridors",
+      "pos": [440, 320],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "src/layout/channels.mjs",
+          "line": 60,
+          "end_line": 68,
+          "label": "buildWires"
+        }
+      ]
+    },
+    {
+      "id": "lay-solver",
+      "type": "backend",
+      "label": "Channel solver",
+      "sublabel": "one channel at a time",
+      "pos": [630, 320],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "src/layout/channel-solver/search.mjs",
+          "line": 42,
+          "end_line": 55,
+          "label": "solveChannel"
+        }
+      ]
+    },
+    {
+      "id": "lay-measure",
+      "type": "security",
+      "label": "Neatness measure",
+      "sublabel": "rejects any overlap",
+      "pos": [820, 320],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "src/layout/measure.mjs",
+          "line": 1,
+          "end_line": 4,
+          "label": "Measure"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "lay-poster-grid",
+      "from": "lay-poster",
+      "to": "lay-grid",
+      "label": "lays out"
+    },
+    {
+      "id": "lay-page-grid",
+      "from": "lay-page",
+      "to": "lay-grid",
+      "label": "lays out"
+    },
+    {
+      "id": "lay-grid-rows",
+      "from": "lay-grid",
+      "to": "lay-rows"
+    },
+    {
+      "id": "lay-grid-placement",
+      "from": "lay-grid",
+      "to": "lay-placement"
+    },
+    {
+      "id": "lay-grid-wires",
+      "from": "lay-grid",
+      "to": "lay-wires"
+    },
+    {
+      "id": "lay-grid-solver",
+      "from": "lay-grid",
+      "to": "lay-solver"
+    },
+    {
+      "id": "lay-grid-measure",
+      "from": "lay-grid",
+      "to": "lay-measure",
+      "variant": "security"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "src/layout/",
+      "wraps": ["lay-grid", "lay-rows", "lay-placement", "lay-wires", "lay-solver", "lay-measure"]
+    }
+  ]
+}

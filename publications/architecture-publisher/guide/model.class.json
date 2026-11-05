@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "What a version 2 model holds",
+    "subtitle": "Components claim files, relations cite them, and views choose what to draw.",
+    "output": "model.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/architecture-publisher",
+      "provider": "github",
+      "revision": "a2f42242494ef918094a81147793d53c54718f8c"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "model-file",
+      "label": "model.json",
+      "kind": "record",
+      "sublabel": "one model, one question",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "version",
+          "type": "2"
+        },
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "question",
+          "type": "string"
+        },
+        {
+          "name": "repository",
+          "type": "name, url, revision"
+        },
+        {
+          "name": "overview",
+          "type": ".typ path"
+        },
+        {
+          "name": "guide",
+          "type": ".archify.md path"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/model/load.mjs",
+          "line": 39,
+          "end_line": 48,
+          "label": "Fields"
+        }
+      ]
+    },
+    {
+      "id": "model-coverage",
+      "label": "coverage{}",
+      "kind": "record",
+      "sublabel": "the paths it describes",
+      "row": 0,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "include",
+          "type": "paths and globs"
+        },
+        {
+          "name": "exclude",
+          "type": "path and reason"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/model/paths.mjs",
+          "line": 35,
+          "end_line": 75,
+          "label": "Coverage"
+        }
+      ]
+    },
+    {
+      "id": "model-relations",
+      "label": "relations[]",
+      "kind": "record",
+      "sublabel": "two components, its evidence",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "from",
+          "type": "component id"
+        },
+        {
+          "name": "to",
+          "type": "component id"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        },
+        {
+          "name": "files",
+          "type": "cited files"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/model/load.mjs",
+          "line": 286,
+          "end_line": 295,
+          "label": "Relations"
+        }
+      ]
+    },
+    {
+      "id": "model-components",
+      "label": "components[]",
+      "kind": "record",
+      "sublabel": "what the architecture is",
+      "row": 1,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        },
+        {
+          "name": "kind",
+          "type": "kind id"
+        },
+        {
+          "name": "details",
+          "type": "name to text"
+        },
+        {
+          "name": "status",
+          "type": "implemented, planned, retired"
+        },
+        {
+          "name": "files",
+          "type": "claimed paths"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/model/load.mjs",
+          "line": 273,
+          "end_line": 284,
+          "label": "Components"
+        }
+      ]
+    },
+    {
+      "id": "model-views",
+      "label": "views[]",
+      "kind": "record",
+      "sublabel": "one poster plate each",
+      "row": 1,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "question",
+          "type": "string"
+        },
+        {
+          "name": "tiers | members",
+          "type": "exactly one"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/model/load.mjs",
+          "line": 355,
+          "end_line": 384,
+          "label": "Views"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "holds-components",
+      "from": "model-file",
+      "to": "model-components",
+      "kind": "composition",
+      "label": "one or more"
+    },
+    {
+      "id": "holds-relations",
+      "from": "model-file",
+      "to": "model-relations",
+      "kind": "composition",
+      "label": "holds"
+    },
+    {
+      "id": "holds-views",
+      "from": "model-file",
+      "to": "model-views",
+      "kind": "composition",
+      "label": "holds"
+    },
+    {
+      "id": "holds-coverage",
+      "from": "model-file",
+      "to": "model-coverage",
+      "kind": "composition",
+      "label": "scopes"
+    },
+    {
+      "id": "relation-ends",
+      "from": "model-relations",
+      "to": "model-components",
+      "kind": "association",
+      "label": "from, to"
+    },
+    {
+      "id": "view-members",
+      "from": "model-views",
+      "to": "model-components",
+      "kind": "association",
+      "label": "draws"
+    }
+  ]
+}

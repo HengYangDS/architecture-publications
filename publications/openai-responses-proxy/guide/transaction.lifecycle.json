@@ -1,0 +1,189 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "One payload transaction, from a verified asset to a serving generation",
+    "output": "transaction.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
+      "provider": "github",
+      "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+    }
+  },
+  "mainPath": ["tx-prepared", "tx-materialized", "tx-activated", "tx-finalized"],
+  "states": [
+    {
+      "id": "tx-prepared",
+      "type": "start",
+      "label": "Prepared",
+      "sublabel": "journal written",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/transaction/execution.py",
+          "line": 377,
+          "end_line": 454,
+          "label": "Begin"
+        }
+      ]
+    },
+    {
+      "id": "tx-materialized",
+      "type": "active",
+      "label": "Materialized",
+      "sublabel": "new generation",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/transaction/execution.py",
+          "line": 133,
+          "end_line": 199,
+          "label": "Materialize"
+        }
+      ]
+    },
+    {
+      "id": "tx-activated",
+      "type": "active",
+      "label": "Activated",
+      "sublabel": "selector switched",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/transaction/execution.py",
+          "line": 201,
+          "end_line": 236,
+          "label": "Activate"
+        }
+      ]
+    },
+    {
+      "id": "tx-finalized",
+      "type": "success",
+      "label": "Finalized",
+      "sublabel": "listener proved",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/transaction/completion.py",
+          "line": 40,
+          "end_line": 61,
+          "label": "Finalize"
+        }
+      ]
+    },
+    {
+      "id": "tx-recovery",
+      "type": "waiting",
+      "label": "Recovery required",
+      "sublabel": "unconfirmed",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/transaction/execution.py",
+          "line": 280,
+          "end_line": 300,
+          "label": "Preserve"
+        }
+      ]
+    },
+    {
+      "id": "tx-rolled-back",
+      "type": "failure",
+      "label": "Rolled back",
+      "sublabel": "prior restored",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/transaction/execution.py",
+          "line": 255,
+          "end_line": 271,
+          "label": "Roll back"
+        }
+      ]
+    },
+    {
+      "id": "tx-closed",
+      "type": "neutral",
+      "label": "Closed",
+      "sublabel": "nothing written",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/transaction/recovery.py",
+          "line": 109,
+          "end_line": 116,
+          "label": "Close"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "id": "tx-t-materialize",
+      "from": "tx-prepared",
+      "to": "tx-materialized",
+      "label": "write"
+    },
+    {
+      "id": "tx-t-activate",
+      "from": "tx-materialized",
+      "to": "tx-activated",
+      "label": "select"
+    },
+    {
+      "id": "tx-t-finalize",
+      "from": "tx-activated",
+      "to": "tx-finalized",
+      "label": "prove"
+    },
+    {
+      "id": "tx-t-close",
+      "from": "tx-prepared",
+      "to": "tx-closed",
+      "label": "recover",
+      "variant": "dashed"
+    },
+    {
+      "id": "tx-t-candidate-failed",
+      "from": "tx-materialized",
+      "to": "tx-rolled-back",
+      "label": "fails",
+      "variant": "security"
+    },
+    {
+      "id": "tx-t-unconfirmed",
+      "from": "tx-activated",
+      "to": "tx-recovery",
+      "label": "unconfirmed",
+      "variant": "security"
+    },
+    {
+      "id": "tx-t-recover-forward",
+      "from": "tx-recovery",
+      "to": "tx-finalized",
+      "label": "serves",
+      "variant": "dashed"
+    },
+    {
+      "id": "tx-t-recover-back",
+      "from": "tx-recovery",
+      "to": "tx-rolled-back",
+      "label": "restores",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "What the journal holds",
+      "items": [
+        "The transaction, its release and receipt digest, and its state.",
+        "The exact path and digest of every file it may delete."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "What recovery decides from",
+      "items": [
+        "The journal, the selector and the installed-state record.",
+        "The identity the running listener reports on /healthz."
+      ]
+    }
+  ]
+}

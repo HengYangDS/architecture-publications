@@ -1,0 +1,952 @@
+{
+  "format": "architecture-publisher.model",
+  "version": 2,
+  "id": "filmkit",
+  "title": "filmkit",
+  "question": "How does filmkit rebuild a film's two editions from its tracked sources, and what holds each step to its inputs?",
+  "summary": "filmkit narrates each edition thought by thought with a pinned local voice model, assembles one soundtrack at one program level, times the captions, gates and renders the picture, and packages a UHD master and a captioned 1080p film. Each step records the SHA-256 of what it read, and a later step refuses a record bound to other bytes.",
+  "scope": "The filmkit engine as released at v0.9.0: the src/filmkit package, with its Python modules, Node tools and watch list, and the pyproject.toml and VERSION that package it.",
+  "limits": [
+    "Each component cites every file the rules attribute to it; a relation cites the modules that make its call or run its process.",
+    "Relations are calls and process calls in the source, not runtime order, and not every call is drawn: reads of the film record and the spoken units, which most modules make, and the calls that verification and review make across the build are named in component details.",
+    "Tests, the sample film, the OpenSpec specifications and Changes, the documentation and the repository's tooling and CI are outside the scope."
+  ],
+  "attribution": "Architecture Publications, read from the filmkit source",
+  "repository": {
+    "name": "filmkit",
+    "url": "https://github.com/HengYangDS/filmkit.git",
+    "revision": "0d56c27c12d84464d20560c07d7edd154578f279"
+  },
+  "coverage": {
+    "exclude": [
+      {
+        "path": "tests/",
+        "reason": "The engine's Python and Node tests."
+      },
+      {
+        "path": "examples/",
+        "reason": "The sample film that the tests load and the local acceptance builds; its text is written for the tests and is no film's source."
+      },
+      {
+        "path": "openspec/",
+        "reason": "The engine's OpenSpec specifications and archived Changes: its accepted requirements and change history."
+      },
+      {
+        "path": "*.md",
+        "reason": "The README, the agent entry, the contributing guide and the change log; the guide cites them at the same revision."
+      },
+      {
+        "path": "LICENSE",
+        "reason": "The MIT licence."
+      },
+      {
+        "path": "NOTICE",
+        "reason": "The copyright notice and the licences of the sample film's assets and of the software and models a build installs."
+      },
+      {
+        "path": "uv.lock",
+        "reason": "The development lock; a film locks filmkit and its dependencies in its own project."
+      },
+      {
+        "path": "package.json",
+        "reason": "The npm packages that the tests and the sample film use; a film declares its own."
+      },
+      {
+        "path": "package-lock.json",
+        "reason": "The lock of those npm packages."
+      },
+      {
+        "path": ".config/",
+        "reason": "Tool configuration: the Mise tasks and lock, linters, formatters and the CI projection."
+      },
+      {
+        "path": ".ethos/",
+        "reason": "The repository's ETHOS binding and release peers."
+      },
+      {
+        "path": "system/",
+        "reason": "The proof sets that ETHOS and hosted CI run for this repository."
+      },
+      {
+        "path": ".github/",
+        "reason": "The GitHub Actions workflow."
+      },
+      {
+        "path": ".gitlab-ci.yml",
+        "reason": "The GitLab CI pipeline."
+      },
+      {
+        "path": ".editorconfig",
+        "reason": "Editor settings."
+      },
+      {
+        "path": ".gitattributes",
+        "reason": "Git attributes."
+      },
+      {
+        "path": ".gitignore",
+        "reason": "Git ignore rules."
+      }
+    ]
+  },
+  "overview": "overview.typ",
+  "guide": "guide/guide.archify.md",
+  "kinds": {
+    "command": {
+      "label": "command",
+      "category": "frontend",
+      "icon": "square-terminal"
+    },
+    "contract": {
+      "label": "contract",
+      "category": "backend",
+      "icon": "file-cog"
+    },
+    "check": {
+      "label": "check",
+      "category": "security",
+      "icon": "shield-check"
+    },
+    "narration": {
+      "label": "narration step",
+      "category": "backend",
+      "icon": "mic"
+    },
+    "step": {
+      "label": "production step",
+      "category": "backend",
+      "icon": "workflow"
+    },
+    "adapter": {
+      "label": "adapter",
+      "category": "messagebus",
+      "icon": "plug"
+    },
+    "film": {
+      "label": "the film",
+      "category": "external",
+      "icon": "folder-git-2"
+    },
+    "tool": {
+      "label": "outside tool",
+      "category": "external",
+      "icon": "wrench"
+    },
+    "reviewer": {
+      "label": "reviewer",
+      "category": "person",
+      "icon": "user-check"
+    }
+  },
+  "components": [
+    {
+      "id": "production-command",
+      "label": "Production command",
+      "kind": "command",
+      "details": {
+        "runs": "one production action for one edition",
+        "actions": "select, assemble, refresh-captions, stage-picture, check-picture, render-picture, validate-picture, package-metadata, package-film"
+      },
+      "files": ["src/filmkit/produce.py"]
+    },
+    {
+      "id": "narration-command",
+      "label": "Narration command",
+      "kind": "command",
+      "details": {
+        "runs": "the word checks, then synthesis, alignment and transcription",
+        "refuses": "before any speech model loads, and in a dry run too"
+      },
+      "files": ["src/filmkit/narration/__init__.py", "src/filmkit/narration/narrate.py"]
+    },
+    {
+      "id": "film-and-editions",
+      "label": "Film and editions",
+      "kind": "contract",
+      "details": {
+        "finds": "the film that FILMKIT_ROOT names, or the nearest content/film.toml",
+        "declares": "file prefix, editions, fonts, review policy and source manifest, checked before any work",
+        "fixes": "60 fps, 48 kHz, -16.5 LUFS, a UHD master and a captioned 1080p film"
+      },
+      "files": [
+        "src/filmkit/__init__.py",
+        "src/filmkit/py.typed",
+        "src/filmkit/repository.py",
+        "src/filmkit/film.py",
+        "src/filmkit/production.py",
+        "src/filmkit/specification.py",
+        "src/filmkit/sources.py"
+      ]
+    },
+    {
+      "id": "word-checks",
+      "label": "Word checks",
+      "kind": "check",
+      "details": {
+        "concepts": "each segment says its declared concepts in approved words, and no counterexample appears",
+        "readings": "each watched Chinese character has a declared reading, and each name a spoken form"
+      },
+      "files": [
+        "src/filmkit/concepts.py",
+        "src/filmkit/narration/readings.py",
+        "src/filmkit/narration/watched-characters.toml"
+      ]
+    },
+    {
+      "id": "thought-takes",
+      "label": "Thought takes",
+      "kind": "narration",
+      "details": {
+        "narrates": "each thought natively with the pinned voice model, from the cast's seed or retake",
+        "derives": "each thought's spoken text through the film's pronunciation contract",
+        "reuses": "a take whose request fingerprint and recording still match",
+        "judges": "whether a take ends naturally"
+      },
+      "files": [
+        "src/filmkit/narration/pronunciation.py",
+        "src/filmkit/narration/synthesis.py",
+        "src/filmkit/narration/group_generation.py",
+        "src/filmkit/narration/voice_model.py",
+        "src/filmkit/narration/thought_groups.py",
+        "src/filmkit/narration/take_edges.py",
+        "src/filmkit/narration/run_on.py",
+        "src/filmkit/narration/retakes.py"
+      ]
+    },
+    {
+      "id": "auditions",
+      "label": "Auditions and script edits",
+      "kind": "narration",
+      "details": {
+        "auditions": "other seeds of a thought, and proposes a take that ends naturally",
+        "binds": "the chosen seed to the thought's exact text and speech",
+        "edits": "thoughts in place, moving each retake with its text"
+      },
+      "files": ["src/filmkit/narration/audition.py", "src/filmkit/narration/script_edits.py"]
+    },
+    {
+      "id": "alignment",
+      "label": "Alignment and selection",
+      "kind": "narration",
+      "details": {
+        "aligns": "each recording to its exact text with the pinned forced aligner",
+        "transcribes": "each recording as a recognition proxy, not certification",
+        "selects": "the recordings and alignment bound to the current script and cast"
+      },
+      "files": [
+        "src/filmkit/narration/alignment.py",
+        "src/filmkit/narration/alignment_records.py",
+        "src/filmkit/narration/transcription.py",
+        "src/filmkit/narration/recognition.py",
+        "src/filmkit/narration/receipts.py",
+        "src/filmkit/narration/selection.py"
+      ]
+    },
+    {
+      "id": "supply",
+      "label": "Supply",
+      "kind": "adapter",
+      "details": {
+        "installs": "the pinned browser build and three speech models, each checked against its digests",
+        "network": "the only step that reaches it"
+      },
+      "files": ["src/filmkit/supply.py", "src/filmkit/narration/snapshots.py"]
+    },
+    {
+      "id": "spoken-units",
+      "label": "Spoken units",
+      "kind": "contract",
+      "details": {
+        "names": "the spoken units, punctuation roles, joins and thought spans that sound, captions and audits share"
+      },
+      "files": ["src/filmkit/narration/spoken_units.py"]
+    },
+    {
+      "id": "soundtrack",
+      "label": "Soundtrack assembly",
+      "kind": "step",
+      "details": {
+        "assembles": "the selected takes with designed pauses at one program level",
+        "refuses": "a take that ends abruptly without a declared release",
+        "writes": "the soundtrack, the timeline and the assembly receipt"
+      },
+      "files": ["src/filmkit/soundtrack/"]
+    },
+    {
+      "id": "captions",
+      "label": "Captions",
+      "kind": "step",
+      "details": {
+        "times": "one-line cues on the exact aligned words, never across a thought",
+        "writes": "SRT, VTT, the transcript, the chapters and their metadata"
+      },
+      "files": ["src/filmkit/captions/"]
+    },
+    {
+      "id": "picture-gate",
+      "label": "Picture gate",
+      "kind": "check",
+      "details": {
+        "audits": "every frame at 1/30 s, each label's sync with its words, and motion at 30 fps",
+        "binds": "composition, timeline, stylesheet, fonts and engine version in the gate record"
+      },
+      "files": ["src/filmkit/picture/gates.py", "src/filmkit/picture/sync_audit.py"]
+    },
+    {
+      "id": "tool-runner",
+      "label": "Node tool runner",
+      "kind": "adapter",
+      "details": {
+        "runs": "the engine's Node tools with the film's npm packages, from a copy in the film's tool cache",
+        "measures": "text by the advance widths of the film's declared faces"
+      },
+      "files": ["src/filmkit/tools.py", "src/filmkit/picture/metrics.py"]
+    },
+    {
+      "id": "picture-audits",
+      "label": "Picture audits",
+      "kind": "check",
+      "details": {
+        "runs": "the film's composition headlessly on a canvas stand-in",
+        "measures": "layout, legibility, balance, typography, label traces and motion"
+      },
+      "files": [
+        "src/filmkit/picture/frame-audit.mjs",
+        "src/filmkit/picture/frame-audit/",
+        "src/filmkit/picture/motion-audit.mjs",
+        "src/filmkit/picture/motion-audit/",
+        "src/filmkit/picture/headless-composition.mjs",
+        "src/filmkit/picture/seat-marks.mjs",
+        "src/filmkit/picture/rules/"
+      ]
+    },
+    {
+      "id": "browser-checks",
+      "label": "Browser checks",
+      "kind": "check",
+      "details": {
+        "checks": "the staged picture's geometry and the delivered players in Chrome Headless Shell",
+        "paints": "each edition's cover from the staged picture"
+      },
+      "files": [
+        "src/filmkit/picture/geometry-check.mjs",
+        "src/filmkit/picture/headless-browser.mjs",
+        "src/filmkit/delivery/player-check.mjs"
+      ]
+    },
+    {
+      "id": "picture-rendering",
+      "label": "Picture rendering",
+      "kind": "step",
+      "details": {
+        "stages": "the composition, timeline and fonts as one renderer document, bound in stage.json",
+        "renders": "with HyperFrames only after a passing gate record",
+        "validates": "the rendered picture's frames, size and cadence",
+        "scans": "a rendered film for speech over a still picture"
+      },
+      "files": [
+        "src/filmkit/picture/__init__.py",
+        "src/filmkit/picture/rendering.py",
+        "src/filmkit/picture/still_scan.py"
+      ]
+    },
+    {
+      "id": "packaging",
+      "label": "Packaging",
+      "kind": "step",
+      "details": {
+        "packages": "a UHD master and a captioned 1080p film, with cover, release tags and chapters",
+        "derives": "the viewing package: cover, subtitles, transcript, chapters and player",
+        "sets": "the chapter track's language in place"
+      },
+      "files": [
+        "src/filmkit/delivery/__init__.py",
+        "src/filmkit/delivery/packaging.py",
+        "src/filmkit/delivery/track_language.py"
+      ]
+    },
+    {
+      "id": "verification",
+      "label": "Verification",
+      "kind": "check",
+      "details": {
+        "verifies": "sources, narration custody, the render, both packages, every decoded film and the review",
+        "writes": "nothing; it reads and decodes"
+      },
+      "files": ["src/filmkit/delivery/verification.py"]
+    },
+    {
+      "id": "reproduction",
+      "label": "Reproduction",
+      "kind": "check",
+      "details": {
+        "compares": "a rebuild with the published release: bytes, decoded audio, container, and each frame's PSNR"
+      },
+      "files": ["src/filmkit/delivery/reproduction.py"]
+    },
+    {
+      "id": "delivery",
+      "label": "Delivery",
+      "kind": "step",
+      "details": {
+        "delivers": "the 21 delivery members to the film's Documents folder, then reads them back",
+        "serves": "local review media with byte ranges"
+      },
+      "files": ["src/filmkit/delivery/documents_folder.py", "src/filmkit/delivery/media_server.py"]
+    },
+    {
+      "id": "review",
+      "label": "Review",
+      "kind": "check",
+      "details": {
+        "prepares": "an independent review round: set-aside, player binding, prompts and records",
+        "measures": "rate, pauses, endings, levels, recognition and the picture records",
+        "judges": "each thought's ending by the criterion the assembly uses"
+      },
+      "files": ["src/filmkit/review/"]
+    },
+    {
+      "id": "media-probe",
+      "label": "Media probe",
+      "kind": "adapter",
+      "details": {
+        "reads": "streams, frame cadence, complete decodes and loudness through FFprobe and FFmpeg"
+      },
+      "files": ["src/filmkit/media.py"]
+    },
+    {
+      "id": "engine-package",
+      "label": "Engine package",
+      "kind": "contract",
+      "details": {
+        "packages": "src/filmkit as one wheel, its Node tools included",
+        "version": "0.9.0, from VERSION",
+        "depends": "mlx-audio 0.6.4, NumPy, Pillow, Pydantic and pypinyin"
+      },
+      "files": ["pyproject.toml", "VERSION"]
+    },
+    {
+      "id": "film-repository",
+      "label": "Film repository",
+      "kind": "film",
+      "details": {
+        "holds": "the declaration, scripts, casts, pronunciation contract, pages, review policy and picture composition"
+      }
+    },
+    {
+      "id": "speech-models",
+      "label": "Speech models",
+      "kind": "tool",
+      "details": {
+        "models": "Qwen3-TTS 1.7B, Qwen3-ASR 0.6B and Qwen3-ForcedAligner 0.6B",
+        "runtime": "mlx-audio 0.6.4 on MLX"
+      }
+    },
+    {
+      "id": "renderer",
+      "label": "Renderer and browser",
+      "kind": "tool",
+      "details": {
+        "renderer": "HyperFrames 0.9.9 with GSAP, from the film's npm packages",
+        "browser": "Chrome Headless Shell 152.0.7977.30"
+      }
+    },
+    {
+      "id": "host-tools",
+      "label": "Host tools",
+      "kind": "tool",
+      "details": {
+        "tools": "FFmpeg with VideoToolbox, ExifTool and rsync 3, from Homebrew"
+      }
+    },
+    {
+      "id": "reviewer",
+      "label": "Independent reviewer",
+      "kind": "reviewer",
+      "details": {
+        "scores": "each edition on the film's declared dimensions"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "narration-command-thought-takes",
+      "from": "narration-command",
+      "to": "thought-takes",
+      "label": "runs synthesis",
+      "files": ["src/filmkit/narration/narrate.py"]
+    },
+    {
+      "id": "narration-command-alignment",
+      "from": "narration-command",
+      "to": "alignment",
+      "label": "runs alignment, transcription",
+      "files": ["src/filmkit/narration/narrate.py"]
+    },
+    {
+      "id": "narration-command-word-checks",
+      "from": "narration-command",
+      "to": "word-checks",
+      "label": "checks words first",
+      "files": ["src/filmkit/narration/narrate.py"]
+    },
+    {
+      "id": "narration-command-film-and-editions",
+      "from": "narration-command",
+      "to": "film-and-editions",
+      "label": "takes an edition",
+      "files": ["src/filmkit/narration/narrate.py"]
+    },
+    {
+      "id": "production-command-film-and-editions",
+      "from": "production-command",
+      "to": "film-and-editions",
+      "label": "takes an edition",
+      "files": ["src/filmkit/produce.py"]
+    },
+    {
+      "id": "production-command-alignment",
+      "from": "production-command",
+      "to": "alignment",
+      "label": "selects",
+      "files": ["src/filmkit/produce.py"]
+    },
+    {
+      "id": "production-command-soundtrack",
+      "from": "production-command",
+      "to": "soundtrack",
+      "label": "assembles",
+      "files": ["src/filmkit/produce.py"]
+    },
+    {
+      "id": "production-command-captions",
+      "from": "production-command",
+      "to": "captions",
+      "label": "refreshes captions",
+      "files": ["src/filmkit/produce.py"]
+    },
+    {
+      "id": "production-command-picture-gate",
+      "from": "production-command",
+      "to": "picture-gate",
+      "label": "checks the picture",
+      "files": ["src/filmkit/produce.py"]
+    },
+    {
+      "id": "production-command-picture-rendering",
+      "from": "production-command",
+      "to": "picture-rendering",
+      "label": "stages, renders, validates",
+      "files": ["src/filmkit/produce.py"]
+    },
+    {
+      "id": "production-command-packaging",
+      "from": "production-command",
+      "to": "packaging",
+      "label": "packages",
+      "files": ["src/filmkit/produce.py"]
+    },
+    {
+      "id": "film-and-editions-film-repository",
+      "from": "film-and-editions",
+      "to": "film-repository",
+      "label": "reads the declaration",
+      "files": ["src/filmkit/film.py", "src/filmkit/repository.py"]
+    },
+    {
+      "id": "word-checks-film-and-editions",
+      "from": "word-checks",
+      "to": "film-and-editions",
+      "label": "reads scripts, source manifest",
+      "files": ["src/filmkit/concepts.py", "src/filmkit/narration/readings.py"]
+    },
+    {
+      "id": "word-checks-thought-takes",
+      "from": "word-checks",
+      "to": "thought-takes",
+      "label": "derives spoken thoughts",
+      "files": ["src/filmkit/concepts.py", "src/filmkit/narration/readings.py"]
+    },
+    {
+      "id": "thought-takes-supply",
+      "from": "thought-takes",
+      "to": "supply",
+      "label": "verifies the voice snapshot",
+      "files": ["src/filmkit/narration/group_generation.py", "src/filmkit/narration/voice_model.py"]
+    },
+    {
+      "id": "thought-takes-speech-models",
+      "from": "thought-takes",
+      "to": "speech-models",
+      "label": "narrates with Qwen3-TTS",
+      "files": ["src/filmkit/narration/group_generation.py", "src/filmkit/narration/synthesis.py"]
+    },
+    {
+      "id": "alignment-thought-takes",
+      "from": "alignment",
+      "to": "thought-takes",
+      "label": "checks takes, spoken text",
+      "files": ["src/filmkit/narration/alignment.py", "src/filmkit/narration/selection.py"]
+    },
+    {
+      "id": "alignment-supply",
+      "from": "alignment",
+      "to": "supply",
+      "label": "verifies aligner, recognizer",
+      "files": ["src/filmkit/narration/alignment.py", "src/filmkit/narration/transcription.py"]
+    },
+    {
+      "id": "alignment-speech-models",
+      "from": "alignment",
+      "to": "speech-models",
+      "label": "aligns, transcribes",
+      "files": ["src/filmkit/narration/alignment.py", "src/filmkit/narration/transcription.py"]
+    },
+    {
+      "id": "auditions-thought-takes",
+      "from": "auditions",
+      "to": "thought-takes",
+      "label": "narrates seeds, binds retakes",
+      "files": ["src/filmkit/narration/audition.py", "src/filmkit/narration/script_edits.py"]
+    },
+    {
+      "id": "auditions-alignment",
+      "from": "auditions",
+      "to": "alignment",
+      "label": "aligns, transcribes takes",
+      "files": ["src/filmkit/narration/audition.py"]
+    },
+    {
+      "id": "supply-speech-models",
+      "from": "supply",
+      "to": "speech-models",
+      "label": "downloads, checks",
+      "files": ["src/filmkit/supply.py"]
+    },
+    {
+      "id": "supply-renderer",
+      "from": "supply",
+      "to": "renderer",
+      "label": "installs the browser build",
+      "files": ["src/filmkit/supply.py"]
+    },
+    {
+      "id": "soundtrack-alignment",
+      "from": "soundtrack",
+      "to": "alignment",
+      "label": "checks the selection",
+      "files": ["src/filmkit/soundtrack/assembly.py"]
+    },
+    {
+      "id": "soundtrack-thought-takes",
+      "from": "soundtrack",
+      "to": "thought-takes",
+      "label": "refuses abrupt takes",
+      "files": ["src/filmkit/soundtrack/assembly.py"]
+    },
+    {
+      "id": "soundtrack-captions",
+      "from": "soundtrack",
+      "to": "captions",
+      "label": "times captions",
+      "files": ["src/filmkit/soundtrack/assembly.py"]
+    },
+    {
+      "id": "soundtrack-spoken-units",
+      "from": "soundtrack",
+      "to": "spoken-units",
+      "label": "measures joins, thoughts",
+      "files": [
+        "src/filmkit/soundtrack/assembly.py",
+        "src/filmkit/soundtrack/level.py",
+        "src/filmkit/soundtrack/pauses.py",
+        "src/filmkit/soundtrack/policy.py",
+        "src/filmkit/soundtrack/quiet.py"
+      ]
+    },
+    {
+      "id": "soundtrack-media-probe",
+      "from": "soundtrack",
+      "to": "media-probe",
+      "label": "meters the program level",
+      "files": ["src/filmkit/soundtrack/level.py"]
+    },
+    {
+      "id": "captions-spoken-units",
+      "from": "captions",
+      "to": "spoken-units",
+      "label": "reads punctuation, units",
+      "files": [
+        "src/filmkit/captions/chinese.py",
+        "src/filmkit/captions/english.py",
+        "src/filmkit/captions/timing.py"
+      ]
+    },
+    {
+      "id": "media-probe-host-tools",
+      "from": "media-probe",
+      "to": "host-tools",
+      "label": "probes, decodes, meters",
+      "files": ["src/filmkit/media.py"]
+    },
+    {
+      "id": "picture-gate-tool-runner",
+      "from": "picture-gate",
+      "to": "tool-runner",
+      "label": "runs the audits",
+      "files": ["src/filmkit/picture/gates.py"]
+    },
+    {
+      "id": "picture-gate-picture-rendering",
+      "from": "picture-gate",
+      "to": "picture-rendering",
+      "label": "binds composition, faces",
+      "files": ["src/filmkit/picture/gates.py", "src/filmkit/picture/sync_audit.py"]
+    },
+    {
+      "id": "picture-gate-engine-package",
+      "from": "picture-gate",
+      "to": "engine-package",
+      "label": "binds the engine version",
+      "files": ["src/filmkit/picture/gates.py"]
+    },
+    {
+      "id": "tool-runner-picture-audits",
+      "from": "tool-runner",
+      "to": "picture-audits",
+      "label": "runs frame, motion audits",
+      "files": ["src/filmkit/tools.py"]
+    },
+    {
+      "id": "tool-runner-browser-checks",
+      "from": "tool-runner",
+      "to": "browser-checks",
+      "label": "runs geometry, player checks",
+      "files": ["src/filmkit/tools.py"]
+    },
+    {
+      "id": "tool-runner-picture-rendering",
+      "from": "tool-runner",
+      "to": "picture-rendering",
+      "label": "requires the renderer",
+      "files": ["src/filmkit/tools.py", "src/filmkit/picture/metrics.py"]
+    },
+    {
+      "id": "tool-runner-engine-package",
+      "from": "tool-runner",
+      "to": "engine-package",
+      "label": "copies its Node tools",
+      "files": ["src/filmkit/tools.py"]
+    },
+    {
+      "id": "picture-audits-film-repository",
+      "from": "picture-audits",
+      "to": "film-repository",
+      "label": "runs the composition",
+      "files": ["src/filmkit/picture/headless-composition.mjs"]
+    },
+    {
+      "id": "browser-checks-picture-audits",
+      "from": "browser-checks",
+      "to": "picture-audits",
+      "label": "shares the frame rules",
+      "files": ["src/filmkit/picture/geometry-check.mjs"]
+    },
+    {
+      "id": "browser-checks-renderer",
+      "from": "browser-checks",
+      "to": "renderer",
+      "label": "drives the browser",
+      "files": ["src/filmkit/picture/headless-browser.mjs"]
+    },
+    {
+      "id": "picture-rendering-renderer",
+      "from": "picture-rendering",
+      "to": "renderer",
+      "label": "renders with HyperFrames",
+      "files": ["src/filmkit/picture/rendering.py"]
+    },
+    {
+      "id": "picture-rendering-film-repository",
+      "from": "picture-rendering",
+      "to": "film-repository",
+      "label": "inlines the composition",
+      "files": ["src/filmkit/picture/rendering.py"]
+    },
+    {
+      "id": "picture-rendering-media-probe",
+      "from": "picture-rendering",
+      "to": "media-probe",
+      "label": "probes the render",
+      "files": ["src/filmkit/picture/rendering.py"]
+    },
+    {
+      "id": "packaging-picture-rendering",
+      "from": "packaging",
+      "to": "picture-rendering",
+      "label": "validates the picture",
+      "files": ["src/filmkit/delivery/packaging.py"]
+    },
+    {
+      "id": "packaging-media-probe",
+      "from": "packaging",
+      "to": "media-probe",
+      "label": "checks each finished film",
+      "files": ["src/filmkit/delivery/packaging.py"]
+    },
+    {
+      "id": "packaging-host-tools",
+      "from": "packaging",
+      "to": "host-tools",
+      "label": "encodes, tags",
+      "files": ["src/filmkit/delivery/packaging.py"]
+    },
+    {
+      "id": "verification-packaging",
+      "from": "verification",
+      "to": "packaging",
+      "label": "checks both packages",
+      "files": ["src/filmkit/delivery/verification.py"]
+    },
+    {
+      "id": "verification-media-probe",
+      "from": "verification",
+      "to": "media-probe",
+      "label": "decodes each film",
+      "files": ["src/filmkit/delivery/verification.py"]
+    },
+    {
+      "id": "verification-review",
+      "from": "verification",
+      "to": "review",
+      "label": "reads the review floors",
+      "files": ["src/filmkit/delivery/verification.py"]
+    },
+    {
+      "id": "reproduction-verification",
+      "from": "reproduction",
+      "to": "verification",
+      "label": "accepts the published review",
+      "files": ["src/filmkit/delivery/reproduction.py"]
+    },
+    {
+      "id": "reproduction-host-tools",
+      "from": "reproduction",
+      "to": "host-tools",
+      "label": "compares frames, audio",
+      "files": ["src/filmkit/delivery/reproduction.py"]
+    },
+    {
+      "id": "delivery-packaging",
+      "from": "delivery",
+      "to": "packaging",
+      "label": "reads the members",
+      "files": ["src/filmkit/delivery/documents_folder.py"]
+    },
+    {
+      "id": "delivery-host-tools",
+      "from": "delivery",
+      "to": "host-tools",
+      "label": "rsync, shasum",
+      "files": ["src/filmkit/delivery/documents_folder.py"]
+    },
+    {
+      "id": "review-reviewer",
+      "from": "review",
+      "to": "reviewer",
+      "label": "writes prompts",
+      "files": ["src/filmkit/review/round.py"]
+    }
+  ],
+  "views": [
+    {
+      "id": "overview",
+      "title": "From a film's sources to its delivered films",
+      "question": "Which commands carry one edition from its script to its two delivered films?",
+      "members": [
+        "narration-command",
+        "thought-takes",
+        "production-command",
+        "soundtrack",
+        "captions",
+        "picture-gate",
+        "picture-rendering",
+        "packaging"
+      ]
+    },
+    {
+      "id": "film",
+      "title": "What the engine reads from a film",
+      "question": "What does the engine read from the film it builds, and what must hold before narration?",
+      "members": [
+        "film-repository",
+        "film-and-editions",
+        "production-command",
+        "narration-command",
+        "word-checks",
+        "thought-takes",
+        "picture-rendering",
+        "picture-audits"
+      ]
+    },
+    {
+      "id": "narration",
+      "title": "Narration and its supply",
+      "question": "How is each thought narrated, auditioned and aligned, and what does the supply install first?",
+      "members": [
+        "narration-command",
+        "thought-takes",
+        "alignment",
+        "auditions",
+        "supply",
+        "speech-models",
+        "renderer"
+      ]
+    },
+    {
+      "id": "sound",
+      "title": "One assembly for sound and captions",
+      "question": "How do the selected takes become one soundtrack, a timeline and its captions?",
+      "members": [
+        "production-command",
+        "alignment",
+        "thought-takes",
+        "soundtrack",
+        "captions",
+        "spoken-units",
+        "media-probe",
+        "host-tools"
+      ]
+    },
+    {
+      "id": "picture",
+      "title": "The picture's gate and render",
+      "question": "What audits the picture before it renders, and what renders it?",
+      "members": [
+        "picture-gate",
+        "tool-runner",
+        "picture-audits",
+        "browser-checks",
+        "picture-rendering",
+        "renderer",
+        "engine-package",
+        "media-probe"
+      ]
+    },
+    {
+      "id": "acceptance",
+      "title": "Packaging, verification, delivery and review",
+      "question": "How are the films packaged, verified, delivered, reviewed and reproduced?",
+      "members": [
+        "packaging",
+        "verification",
+        "reproduction",
+        "delivery",
+        "review",
+        "reviewer",
+        "media-probe",
+        "host-tools"
+      ]
+    }
+  ]
+}

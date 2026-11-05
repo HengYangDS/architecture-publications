@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Who sends traffic through the proxy, and what it touches",
+    "output": "context.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
+      "provider": "github",
+      "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+    }
+  },
+  "components": [
+    {
+      "id": "ctx-control",
+      "type": "external",
+      "label": "Client control plane",
+      "sublabel": "base URL, credentials",
+      "pos": [40, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 25,
+          "end_line": 30,
+          "label": "Owners"
+        }
+      ]
+    },
+    {
+      "id": "ctx-operator",
+      "type": "external",
+      "icon": "person",
+      "label": "Operator",
+      "sublabel": "signed asset, trust anchor",
+      "pos": [270, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 84,
+          "end_line": 87,
+          "label": "Install"
+        }
+      ]
+    },
+    {
+      "id": "ctx-client",
+      "type": "frontend",
+      "label": "Responses client",
+      "sublabel": "Codex, Hermes, an SDK",
+      "pos": [40, 180],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 32,
+          "end_line": 37,
+          "label": "Admitted clients"
+        }
+      ]
+    },
+    {
+      "id": "ctx-proxy",
+      "type": "security",
+      "label": "OpenAI Responses Proxy",
+      "sublabel": "127.0.0.1:8792",
+      "pos": [270, 180],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 3,
+          "end_line": 7,
+          "label": "What it is"
+        }
+      ]
+    },
+    {
+      "id": "ctx-providers",
+      "type": "cloud",
+      "label": "Provider endpoints",
+      "sublabel": "DMXAPI, UCloud, AIHubMix",
+      "pos": [500, 180],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 120,
+          "end_line": 130,
+          "label": "Routes"
+        }
+      ]
+    },
+    {
+      "id": "ctx-service",
+      "type": "external",
+      "label": "Native service manager",
+      "sublabel": "launchd, systemd, tasks",
+      "pos": [270, 320],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 62,
+          "end_line": 70,
+          "label": "Watchdog"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "ctx-selects",
+      "from": "ctx-control",
+      "to": "ctx-client",
+      "label": "sets the base URL",
+      "variant": "dashed"
+    },
+    {
+      "id": "ctx-operates",
+      "from": "ctx-operator",
+      "to": "ctx-proxy",
+      "label": "install, status, reload"
+    },
+    {
+      "id": "ctx-turns",
+      "from": "ctx-client",
+      "to": "ctx-proxy",
+      "label": "Responses turns",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ctx-requests",
+      "from": "ctx-proxy",
+      "to": "ctx-providers",
+      "label": "portable requests"
+    },
+    {
+      "id": "ctx-keeps",
+      "from": "ctx-service",
+      "to": "ctx-proxy",
+      "label": "keeps the watchdog"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "One user's machine",
+      "wraps": ["ctx-control", "ctx-operator", "ctx-client", "ctx-proxy", "ctx-service"]
+    }
+  ]
+}
