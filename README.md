@@ -75,3 +75,7 @@ Run `npm run format:check` to check formatting and `npm run format:fix` to fix
 it. Prettier formats the Markdown, YAML, JSON and JavaScript files and Taplo
 the TOML files, both locked by npm, with their configuration under
 `.config/checks/`.
+
+## License
+
+The models, guides and tools are under the [MIT License](LICENSE).

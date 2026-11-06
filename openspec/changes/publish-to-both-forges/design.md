@@ -24,8 +24,10 @@ them before this Change. Each described repository is public on GitHub.
   keeps them in its Git configuration, `remote.gitlab.url` and
   `remote.gitlab.forgeRepository`, and `.ethos/release.toml` names only the
   remote. GitHub's address is public and stays in the declaration.
-- **`main` mirrors `dev`.** The works have no release cycle of their own, so
-  `mirror = "accepted_ff"` keeps one accepted head, as the film repositories do.
+- **`main` mirrors `dev`, and nothing is tagged.** The works have no release
+  cycle of their own, because each pins its repository's release. So
+  `mirror = "accepted_ff"` keeps one accepted head, and the repository declares
+  no release tags, version or change log.
 - **mise owns the tools CI needs.** The lock names Node and the ETHOS console
   with their checksums. It is written in format 3, which the CI runners' mise
   2026.10.25 reads.

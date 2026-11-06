@@ -1,6 +1,3 @@
-[protected_refs]
-tags = ["v*"]
-
 [publication]
 local_verification_command = "ethos prove --host --execute --full --json"
 local_installation_command = "mise run bootstrap"

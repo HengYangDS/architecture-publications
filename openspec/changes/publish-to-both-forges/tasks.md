@@ -1,6 +1,6 @@
 ## 1. Forges
 
-- [x] 1.1 Declare GitHub and GitLab as publication peers with `main` mirroring `dev`, and no GitLab address in a tracked file; verify `ethos publish` reports a valid topology. Checked before the push, once the remotes exist in the accepted root.
+- [ ] 1.1 Declare GitHub and GitLab as publication peers with `main` mirroring `dev`, and no GitLab address in a tracked file; verify `ethos publish` reports a valid topology.
 - [x] 1.2 Lock Node 26.13.0 and ETHOS 0.2.0-beta.4 through mise; verify `mise install --locked` with the runners' mise 2026.10.25 installs both on a fresh store. On a fresh store, the official mise 2026.10.25 (SHA-256 equal to its release's) under `MISE_SAFE=1` and `MISE_LOCKED=1` installed both, and they report ETHOS 0.2.0-beta.4 and Node v26.13.0.
 - [x] 1.3 Project the verification into GitHub Actions and GitLab CI; verify `ethos lane project --check` reports no drift. It reports none for `.github/workflows/ci.yml` and `.gitlab-ci.yml`.
 
