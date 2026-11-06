@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "a2f42242494ef918094a81147793d53c54718f8c"
+      "revision": "5a26416d50d01d1d65d03546605005cfa93933b5"
     }
   },
   "mainPath": ["life-delivered", "life-accepted", "life-published"],

@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "0d56c27c12d84464d20560c07d7edd154578f279"
+      "revision": "9a14f17892399465fbe8a7f36f34b1578af21027"
     }
   },
   "mainPath": ["take-narrated", "take-judged", "take-selected", "take-assembled"],
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "src/filmkit/narration/take_edges.py",
-          "line": 157,
-          "end_line": 184,
+          "line": 159,
+          "end_line": 186,
           "label": "Ending"
         }
       ]
@@ -70,8 +70,8 @@
       "sources": [
         {
           "path": "src/filmkit/soundtrack/assembly.py",
-          "line": 461,
-          "end_line": 539,
+          "line": 463,
+          "end_line": 541,
           "label": "Assemble"
         }
       ]
@@ -98,8 +98,8 @@
       "sources": [
         {
           "path": "src/filmkit/narration/audition.py",
-          "line": 67,
-          "end_line": 91,
+          "line": 76,
+          "end_line": 101,
           "label": "Propose"
         }
       ]

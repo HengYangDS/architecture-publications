@@ -7,7 +7,7 @@
 - [A layout with an overlap is never drawn](block:p-layout), and a view that no layout draws is refused, not shrunk.[](source:contract-layout-floor)
 - [Only an accepted delivery is published](block:p-accept), and never over a different one.[](source:contract-acceptance)
 
-@answer scope="Architecture Publisher v0.8.0 · commit a2f4224 · its source and its own documents · re-pin counts measured on 2026-11-05"
+@answer scope="Architecture Publisher v0.9.0 · commit 5a26416 · its source and its own documents · re-pin counts measured on 2026-11-05"
 @meta locale=en style=editorial
 @source contract-product title="The product" path="docs/product-contract.md" lines=13:20
 @source contract-meaning title="Who owns meaning and form" path="docs/product-contract.md" lines=22:27
@@ -32,27 +32,27 @@
 @source model-groups title="Groups" path="docs/reference/model.md" lines=319:325
 @source model-views title="Views" path="docs/reference/model.md" lines=329:337
 @source model-views-plan title="Declared and planned views" path="docs/reference/model.md" lines=349:353
-@source ops-check title="archpub check" path="docs/reference/operations.md" lines=47:57
-@source ops-build title="archpub build" path="docs/reference/operations.md" lines=58:60
-@source ops-media title="Media, widths and quality" path="docs/reference/operations.md" lines=61:69
-@source ops-migrate title="Import, scaffold and migrate" path="docs/reference/operations.md" lines=70:80
-@source ops-exit title="Exit status and refusals" path="docs/reference/operations.md" lines=85:91
-@source ops-rows title="Rows, placement and channels" path="docs/reference/operations.md" lines=98:112
-@source ops-overlap title="A layout never overlaps" path="docs/reference/operations.md" lines=113:118
-@source ops-poster-page title="A poster page" path="docs/reference/operations.md" lines=140:144
-@source ops-gates title="The four balance gates" path="docs/reference/operations.md" lines=151:155
-@source ops-sparse title="Sparse pages and refusals" path="docs/reference/operations.md" lines=159:167
-@source ops-text title="Outlined text and PNG widths" path="docs/reference/operations.md" lines=167:172
-@source ops-page title="The generated page" path="docs/reference/operations.md" lines=174:184
-@source ops-page-grid title="The page's diagrams on the same grid" path="docs/reference/operations.md" lines=185:190
-@source ops-overview title="The overview" path="docs/reference/operations.md" lines=251:264
-@source ops-guide title="The guide" path="docs/reference/operations.md" lines=268:275
-@source ops-guide-clone title="Sources verified at the revision" path="docs/reference/operations.md" lines=277:285
-@source ops-scaffold title="A starting guide" path="docs/reference/operations.md" lines=287:289
-@source ops-delivery title="The delivery's files" path="docs/reference/operations.md" lines=296:306
-@source ops-manifest title="The manifest" path="docs/reference/operations.md" lines=308:324
-@source ops-accept title="archpub accept" path="docs/reference/operations.md" lines=328:330
-@source ops-publish title="archpub publish" path="docs/reference/operations.md" lines=332:336
+@source ops-check title="archpub check" path="docs/reference/operations.md" lines=59:69
+@source ops-build title="archpub build" path="docs/reference/operations.md" lines=70:72
+@source ops-media title="Media, widths and quality" path="docs/reference/operations.md" lines=73:81
+@source ops-migrate title="Import, scaffold and migrate" path="docs/reference/operations.md" lines=82:92
+@source ops-exit title="Exit status and refusals" path="docs/reference/operations.md" lines=97:103
+@source ops-rows title="Rows, placement and channels" path="docs/reference/operations.md" lines=110:124
+@source ops-overlap title="A layout never overlaps" path="docs/reference/operations.md" lines=125:130
+@source ops-poster-page title="A poster page" path="docs/reference/operations.md" lines=152:156
+@source ops-gates title="The four balance gates" path="docs/reference/operations.md" lines=163:167
+@source ops-sparse title="Sparse pages and refusals" path="docs/reference/operations.md" lines=171:179
+@source ops-text title="Outlined text and PNG widths" path="docs/reference/operations.md" lines=179:184
+@source ops-page title="The generated page" path="docs/reference/operations.md" lines=186:196
+@source ops-page-grid title="The page's diagrams on the same grid" path="docs/reference/operations.md" lines=197:202
+@source ops-overview title="The overview" path="docs/reference/operations.md" lines=263:276
+@source ops-guide title="The guide" path="docs/reference/operations.md" lines=280:287
+@source ops-guide-clone title="Sources verified at the revision" path="docs/reference/operations.md" lines=289:297
+@source ops-scaffold title="A starting guide" path="docs/reference/operations.md" lines=299:301
+@source ops-delivery title="The delivery's files" path="docs/reference/operations.md" lines=308:318
+@source ops-manifest title="The manifest" path="docs/reference/operations.md" lines=320:336
+@source ops-accept title="archpub accept" path="docs/reference/operations.md" lines=340:342
+@source ops-publish title="archpub publish" path="docs/reference/operations.md" lines=344:348
 @source readme-layout title="Layout is a grid" path="README.md" lines=86:93
 @source build-prepare title="One build's route" path="src/build.mjs" lines=137:176
 @source build-composition title="A missing composition" path="src/build.mjs" lines=116:135

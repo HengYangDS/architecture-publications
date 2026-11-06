@@ -2,8 +2,8 @@
 
 [`model.json`](model.json) is an Architecture Model of how Architecture
 Publisher turns an architecture model into posters, a page and an overview. It
-pins `architecture-publisher` at v0.8.0
-(`a2f42242494ef918094a81147793d53c54718f8c`), and its components own all 66
+pins `architecture-publisher` at v0.9.0
+(`5a26416d50d01d1d65d03546605005cfa93933b5`), and its components own all 66
 files of its coverage scope: the publisher's source under `src/`, its
 `package.json` and the manifests of its six vendored supplies. Thirty-one
 components, forty-nine relations and six views show one build from the author
@@ -20,9 +20,10 @@ one build: what a model holds, how each file finds its owner at the pinned
 revision, which views are drawn and how one is laid out, when a poster page is
 printed, how the page and the overview are made and checked, what the manifest
 binds and how a delivery is accepted and published. It ends with what moving
-the pin changes. Each claim about the product cites a line range at v0.8.0, and
+the pin changes. Each claim about the product cites a line range at v0.9.0, and
 the diagrams the draft names sit beside it. The re-pin counts were measured on
-2026-11-05, when this work moved from `97c2079` to v0.8.0.
+2026-11-05, when this work moved from `97c2079` to v0.8.0. The move to v0.9.0
+changed no claim; 23 cited ranges moved to their new lines.
 
 Each component claims the directories and files its path rules name, and each
 file goes to its most specific claim, so every file in the scope has one owner;

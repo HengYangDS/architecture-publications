@@ -2,8 +2,8 @@
 
 [`model.json`](model.json) is an Architecture Model of how AIGW turns one
 reviewed configuration into guarded native projections in every admitted
-client. It pins `aigw-cli` at v0.6.0
-(`9c26591fb3efec088075a7ba18b6dae6d840eacf`), and its components own all 210
+client. It pins `aigw-cli` at v0.6.1
+(`abf05858f4092a3baf9acea0d5d7488b26898aa5`), and its components own all 208
 production files of its coverage scope: `cmd/`, `internal/`, the team manifest
 and `go.mod`. Twenty-two components, forty-three relations and six views show
 the configuration and its owners, the admitted clients and their seam, what a
@@ -22,7 +22,7 @@ rollback and where a client's Token comes from. It ends with how much each
 check proves, how a provider's model becomes a Route, the parts that keep the
 clients in step, why one guarded transaction, what AIGW leaves to others, how
 it is released and what is still open. Each claim cites a line range at
-v0.6.0, and the diagrams the draft names sit beside it.
+v0.6.1, and the diagrams the draft names sit beside it.
 
 Each component claims the directories and files its path rules name, and each
 production file goes to its most specific claim. A relation is kept only when

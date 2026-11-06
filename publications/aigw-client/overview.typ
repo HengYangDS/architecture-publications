@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([AIGW], [One reviewed configuration, projected into every client], [A local control plane: AIGW turns reviewed configuration into bounded native-client projections, runs only for a command or a credential read, and never carries a request.], read-from: [Read from 210 files, each cited by its SHA-256.], claim-x: 124pt)
+#masthead([AIGW], [One reviewed configuration, projected into every client], [A local control plane: AIGW turns reviewed configuration into bounded native-client projections, runs only for a command or a credential read, and never carries a request.], read-from: [Read from 208 files, each cited by its SHA-256.], claim-x: 124pt)
 
 // ── Band 1: the configuration, its projection into each client, the clients' own traffic ──
 #head(48pt, 132pt, [Control plane · AIGW])

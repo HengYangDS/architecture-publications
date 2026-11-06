@@ -5,7 +5,7 @@
   "title": "Architecture Publisher",
   "question": "How does Architecture Publisher turn an architecture model into posters, a page and an overview?",
   "summary": "An author runs archpub on a model. A build validates it, gives each file in its scope to the component that claims it at the pinned revision, plans the views and lays each out on one grid. It writes 16:9 posters, one Archify page, which is the author's guide when the model names one, the overview the author composes in Typst, and a manifest of their digests; a named reviewer accepts the delivery before it is published.",
-  "scope": "Architecture Publisher as released at v0.8.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
+  "scope": "Architecture Publisher as released at v0.9.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
   "limits": [
     "Each component claims the directories and files its path rules name, and each file in the scope goes to its most specific claim; a relation cites the modules that import or call the other component.",
     "Relations are imports and process calls in the source, not runtime order; the shared refusal type and the child environment are not drawn as relations.",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "a2f42242494ef918094a81147793d53c54718f8c"
+    "revision": "5a26416d50d01d1d65d03546605005cfa93933b5"
   },
   "coverage": {
     "include": ["src/", "package.json", "renderers/*/supply/supply.json", "supplies/*/supply.json"]

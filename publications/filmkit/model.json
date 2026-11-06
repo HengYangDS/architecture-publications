@@ -5,7 +5,7 @@
   "title": "filmkit",
   "question": "How does filmkit rebuild a film's two editions from its tracked sources, and what holds each step to its inputs?",
   "summary": "filmkit narrates each edition thought by thought with a pinned local voice model, assembles one soundtrack at one program level, times the captions, gates and renders the picture, and packages a UHD master and a captioned 1080p film. Each step records the SHA-256 of what it read, and a later step refuses a record bound to other bytes.",
-  "scope": "The filmkit engine as released at v0.9.0: the src/filmkit package, with its Python modules, Node tools and watch list, and the pyproject.toml and VERSION that package it.",
+  "scope": "The filmkit engine as released at v0.10.0: the src/filmkit package, with its Python modules, Node tools and watch list, and the pyproject.toml and VERSION that package it.",
   "limits": [
     "Each component cites every file the rules attribute to it; a relation cites the modules that make its call or run its process.",
     "Relations are calls and process calls in the source, not runtime order, and not every call is drawn: reads of the film record and the spoken units, which most modules make, and the calls that verification and review make across the build are named in component details.",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "filmkit",
     "url": "https://github.com/HengYangDS/filmkit.git",
-    "revision": "0d56c27c12d84464d20560c07d7edd154578f279"
+    "revision": "9a14f17892399465fbe8a7f36f34b1578af21027"
   },
   "coverage": {
     "exclude": [
@@ -145,9 +145,9 @@
       "kind": "command",
       "details": {
         "runs": "one production action for one edition",
-        "actions": "select, assemble, refresh-captions, stage-picture, check-picture, render-picture, validate-picture, package-metadata, package-film"
+        "actions": "select, assemble, refresh-captions, stage-picture, check-picture, preflight, render-picture, validate-picture, package-metadata, package-film"
       },
-      "files": ["src/filmkit/produce.py"]
+      "files": ["src/filmkit/produce.py", "src/filmkit/preflight.py"]
     },
     {
       "id": "narration-command",
@@ -287,10 +287,14 @@
       "label": "Picture gate",
       "kind": "check",
       "details": {
-        "audits": "every frame at 1/30 s, each label's sync with its words, and motion at 30 fps",
+        "audits": "every frame at 1/30 s, each label's sync with its words, the opening title and each text's contrast, and motion at 30 fps",
         "binds": "composition, timeline, stylesheet, fonts and engine version in the gate record"
       },
-      "files": ["src/filmkit/picture/gates.py", "src/filmkit/picture/sync_audit.py"]
+      "files": [
+        "src/filmkit/picture/gates.py",
+        "src/filmkit/picture/sync_audit.py",
+        "src/filmkit/picture/text_trace.py"
+      ]
     },
     {
       "id": "tool-runner",
@@ -308,7 +312,7 @@
       "kind": "check",
       "details": {
         "runs": "the film's composition headlessly on a canvas stand-in",
-        "measures": "layout, legibility, balance, typography, label traces and motion"
+        "measures": "layout, legibility, balance, typography, the label and text traces, and motion"
       },
       "files": [
         "src/filmkit/picture/frame-audit.mjs",
@@ -400,7 +404,7 @@
       "kind": "check",
       "details": {
         "prepares": "an independent review round: set-aside, player binding, prompts and records",
-        "measures": "rate, pauses, endings, levels, recognition and the picture records",
+        "measures": "rate, pauses, endings, levels, voice clarity, recognition and the picture records",
         "judges": "each thought's ending by the criterion the assembly uses"
       },
       "files": ["src/filmkit/review/"]
@@ -420,7 +424,7 @@
       "kind": "contract",
       "details": {
         "packages": "src/filmkit as one wheel, its Node tools included",
-        "version": "0.9.0, from VERSION",
+        "version": "0.10.0, from VERSION",
         "depends": "mlx-audio 0.6.4, NumPy, Pillow, Pydantic and pypinyin"
       },
       "files": ["pyproject.toml", "VERSION"]
@@ -502,7 +506,7 @@
       "from": "production-command",
       "to": "film-and-editions",
       "label": "takes an edition",
-      "files": ["src/filmkit/produce.py"]
+      "files": ["src/filmkit/produce.py", "src/filmkit/preflight.py"]
     },
     {
       "id": "production-command-alignment",
@@ -537,14 +541,14 @@
       "from": "production-command",
       "to": "picture-rendering",
       "label": "stages, renders, validates",
-      "files": ["src/filmkit/produce.py"]
+      "files": ["src/filmkit/produce.py", "src/filmkit/preflight.py"]
     },
     {
       "id": "production-command-packaging",
       "from": "production-command",
       "to": "packaging",
       "label": "packages",
-      "files": ["src/filmkit/produce.py"]
+      "files": ["src/filmkit/produce.py", "src/filmkit/preflight.py"]
     },
     {
       "id": "film-and-editions-film-repository",
@@ -855,7 +859,7 @@
       "from": "review",
       "to": "reviewer",
       "label": "writes prompts",
-      "files": ["src/filmkit/review/round.py"]
+      "files": ["src/filmkit/review/round.py", "src/filmkit/review/prompts.py"]
     }
   ],
   "views": [

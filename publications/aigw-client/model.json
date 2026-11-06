@@ -5,7 +5,7 @@
   "title": "AIGW Client Projection",
   "question": "How does AIGW turn one reviewed configuration into guarded native projections in every admitted client?",
   "summary": "AIGW keeps Accounts, Routes and Client Bindings in one locked configuration and its Tokens in one selected store, and projects each client's bounded region through one adapter seam as a guarded, compensated transaction. It never carries a request.",
-  "scope": "The AIGW program as released at v0.6.0: its production Go packages, the command entry point, the team manifest and go.mod.",
+  "scope": "The AIGW program as released at v0.6.1: its production Go packages, the command entry point, the team manifest and go.mod.",
   "limits": [
     "Each component cites every production file the rules attribute to it; a relation cites the files of the packages that import the other component.",
     "Tests, their inputs and the repository's tools, CI and documentation are outside the scope."
@@ -14,7 +14,7 @@
   "repository": {
     "name": "aigw-cli",
     "url": "https://github.com/HengYangDS/aigw-cli.git",
-    "revision": "9c26591fb3efec088075a7ba18b6dae6d840eacf"
+    "revision": "abf05858f4092a3baf9acea0d5d7488b26898aa5"
   },
   "coverage": {
     "include": ["cmd/", "internal/", "manifests/", "go.mod"],
@@ -906,8 +906,6 @@
         "internal/terminal/document.go",
         "internal/terminal/errors.go",
         "internal/terminal/password.go",
-        "internal/terminal/password_unix.go",
-        "internal/terminal/password_windows.go",
         "internal/terminal/prompt.go",
         "internal/terminal/render.go",
         "internal/terminal/target.go",

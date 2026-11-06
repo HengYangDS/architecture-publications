@@ -7,7 +7,7 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 - [No client file holds a Token](block:p-token): a helper reads it from one selected store when the client asks.[](source:helper-projection)
 - [Each check proves one more thing](block:p-ready), and a synchronized file is not an answered request.[](source:experience-readiness)
 
-@answer scope="AIGW v0.6.0 · commit 9c26591 · its source and its own documents"
+@answer scope="AIGW v0.6.1 · commit abf0585 · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What AIGW is" path="README.md" lines=3:6
 @source readme-install title="Install" path="README.md" lines=29:41
