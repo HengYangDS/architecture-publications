@@ -40,8 +40,9 @@ them.
 
 ## Local checks
 
-`npm run bootstrap` installs the locked npm packages. `npm run check` runs the formatters' checks
-and the input tests, and `npm run fix` applies the formatters: Prettier for Markdown, YAML, JSON and
+`mise install --locked` installs the locked Node and ETHOS, and `mise run bootstrap` the locked npm
+packages. `mise run check` runs the formatters' checks and the input tests, and `mise run fix`
+applies the formatters: Prettier for Markdown, YAML, JSON and
 JavaScript, and Taplo for TOML, configured under `.config/checks/`.
 
 ## Change through ETHOS
@@ -54,6 +55,6 @@ Every change follows an ETHOS Work Lane and an OpenSpec Change:
 3. Commit the change; the Change's `tasks.md` is its only progress record.
 4. Archive the Change, run `ethos prove --full --execute --json` on the archived head, then
    `ethos land` and close out.
+5. `ethos publish` sends the accepted head to GitHub and GitLab, whose CI runs the same proof.
 
-The repository has no forge, so landing ends on the local accepted branch. Write new prose in
-English, and keep each document within 500 lines that are not blank.
+Write new prose in English, and keep each document within 500 lines that are not blank.

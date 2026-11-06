@@ -73,5 +73,5 @@ ETHOS coverage and static-analysis providers, plus `npm run format:check`.
 
 Run `npm run format:check` to check formatting and `npm run format:fix` to fix
 it. Prettier formats the Markdown, YAML, JSON and JavaScript files and Taplo
-the TOML files, both from the host's installation with their configuration
-under `.config/checks/`.
+the TOML files, both locked by npm, with their configuration under
+`.config/checks/`.
