@@ -6,4 +6,4 @@
 
 ## 2. Verification
 
-- [ ] 2.1 Build the three works with Architecture Publisher 0.9.0; verify each delivers its posters, its overview and its guide as the page.
+- [x] 2.1 Build the three works with Architecture Publisher 0.9.0; verify each delivers its posters, its overview and its guide as the page. Architecture Publisher 0.9.0 builds each work from the bytes committed at `911ed95`: its posters (Architecture Publisher 6, AIGW 6, filmkit 6), its overview and its guide as the page, which passes Archify's validate, deliver and check gates.
