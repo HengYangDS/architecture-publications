@@ -1,0 +1,31 @@
+min_version = "2026.10.14"
+
+[settings]
+locked = true
+
+# The repository's common verbs; the npm scripts they call own the commands.
+[tasks.bootstrap]
+description = "Install the locked npm packages"
+run = "npm run bootstrap"
+
+[tasks.check]
+description = "Check the formatting and the works' inputs without writing"
+run = "npm run check"
+
+[tasks.fix]
+description = "Apply the formatters"
+run = "npm run fix"
+
+[tools]
+node = "26.13.0"
+
+# The ETHOS release declaration as published with v0.2.0-beta.4.
+[tools."http:ethos"]
+version = "0.2.0-beta.4"
+
+[tools."http:ethos".platforms]
+linux-arm64 = { url = "https://github.com/HengYangDS/ethos/releases/download/v0.2.0-beta.4/ethos-0.2.0-beta.4-linux-arm64.tar.gz", checksum = "sha256:4bc7978bfcc92374b586802acbda0427be2e2c15257d704bfd1c923e86bccf62", bin_path = "ethos/bin" }
+linux-x64 = { url = "https://github.com/HengYangDS/ethos/releases/download/v0.2.0-beta.4/ethos-0.2.0-beta.4-linux-x64.tar.gz", checksum = "sha256:1553b3eb0e2859a7cd19b7dc66a81d2efec844d401c60792eb6e5162c196cc79", bin_path = "ethos/bin" }
+macos-arm64 = { url = "https://github.com/HengYangDS/ethos/releases/download/v0.2.0-beta.4/ethos-0.2.0-beta.4-macos-arm64.tar.gz", checksum = "sha256:1fea7ca20468a31ddd9aa7daaad8408bdf5992d90f0430274bdfef09a2e01a3e", bin_path = "ethos/bin" }
+windows-arm64 = { url = "https://github.com/HengYangDS/ethos/releases/download/v0.2.0-beta.4/ethos-0.2.0-beta.4-windows-arm64.tar.gz", checksum = "sha256:c635b1b9de0df412da241c93c7c0108cb015634834ab49949855291fb4cc26b7", bin_path = "ethos/bin" }
+windows-x64 = { url = "https://github.com/HengYangDS/ethos/releases/download/v0.2.0-beta.4/ethos-0.2.0-beta.4-windows-x64.tar.gz", checksum = "sha256:5c19d68ca00d013fab69eec85160b860d986f07d14eaa0425d69932a3c616307", bin_path = "ethos/bin" }
