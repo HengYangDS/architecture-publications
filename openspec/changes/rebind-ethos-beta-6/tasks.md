@@ -1,0 +1,10 @@
+## 1. Runtime
+
+- [x] 1.1 Replace the 0.2.0-beta.5 declaration in `.config/mise/config.toml` with the one published with 0.2.0-beta.6, checked against the release's `SHA256SUMS` and asset digests, and lock it again with native `mise lock` from Mise 2026.10.25; done when the lock holds 0.2.0-beta.6 for every platform it held 0.2.0-beta.5 for, no 0.2.0-beta.5 entry remains, the Node entries are unchanged and `lockfile_version` stays 3. The release read back with all five platforms, each declaration checksum equal to `SHA256SUMS` and to the asset digest. The official Mise 2026.10.25 binary wrote the lock: it holds 0.2.0-beta.6 for the same six platforms, each checksum equal to `SHA256SUMS`, with no 0.2.0-beta.5 entry, identical Node entries and `lockfile_version = 3`.
+- [x] 1.2 Bind the repository family to the 0.2.0-beta.6 runtime with the locked console's `hook install`, keeping 0.2.0-beta.5 as the rollback, remove GitHub's `forge_repository` and the two command fields with `ethos lane repair-paradigm --apply`, and record `remote.github.forgeRepository` locally; done when `ethos status` reports the lane ready under the 0.2.0-beta.6 runtime with no retired-field gap and both peers resolve. The locked console reports 0.2.0-beta.6 (`727ee0579ba1`, OpenSpec 1.16.0), and `hook install` binds the family to runtime `0ca012761d1c` with rollback `a4492b26ceca` (0.2.0-beta.5). The repair removed GitHub's `forge_repository`, both command fields and the emptied `[publication]` header; both peers remain declared. `status` passes with no gap, and the publication probes for `gitlab` and `github` are ready to publish without a local key for GitHub, so none was recorded.
+
+## Workflow follow-up
+
+- Archive this Change and prove the archived head once.
+- Publish the archived head as a proposal to GitHub and GitLab, and wait for GitHub's `verify (macos-latest)` job and GitLab's macOS review job for that exact commit.
+- Then land, close out, publish `dev` and `main` to GitHub and GitLab, observe the protected jobs on the landed head, and retire the proposal refs and the lane.
