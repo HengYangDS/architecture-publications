@@ -27,8 +27,7 @@ publish from the canonical root. The hosted jobs run Mise 2026.10.25, which
 - Remove the retired fields only through `ethos lane repair-paradigm --apply`, so no value is
   echoed and the repair is the paradigm's own.
 - Record GitHub's public web repository in the local `remote.github.forgeRepository`, the native
-  key that review observation reads for an SSH remote, only if the peer is reported unresolved; it
-  stays untracked.
+  key that review observation reads for an SSH remote; it stays untracked.
 
 ## Risks / Trade-offs
 
@@ -42,6 +41,6 @@ publish from the canonical root. The hosted jobs run Mise 2026.10.25, which
 ## Migration Plan
 
 Copy the declaration, lock it, install the locked supply, bind the runtime, repair the declaration,
-record the local key if needed, run the gates, prove the archived head and qualify it on GitHub and GitLab. To
-roll back, restore the 0.2.0-beta.5 declaration, lock and fields in a new Change, then bind the
+record the local key, run the gates, prove the archived head and qualify it on GitHub and GitLab.
+To roll back, restore the 0.2.0-beta.5 declaration, lock and fields in a new Change, then bind the
 retained runtime with the current console's `hook install --runtime <0.2.0-beta.5 runtime>`.

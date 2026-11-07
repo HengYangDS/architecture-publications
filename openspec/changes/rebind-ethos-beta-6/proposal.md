@@ -14,8 +14,8 @@ Its adopter-facing changes since 0.2.0-beta.5 are these:
   declares GitHub's `forge_repository` and both command fields.
 - Review observation resolves a peer's web repository from the clone's local
   `remote.<name>.forgeRepository`, else from an `http` or `https` remote without userinfo. Both
-  remotes are SSH; the clone holds GitLab's key, and review observation resolves GitHub's public
-  repository without one.
+  remotes are SSH, so each peer needs the local key; the clone held GitLab's, and this move
+  records GitHub's.
 - Result schema 3 bounds large results and gives `next` its final vocabulary. A retirement receipt
   applies only with `--retire`, which the dry run's continuation carries.
 - A rollback across the repaired declaration refuses until the predecessor's declaration is restored
@@ -29,8 +29,8 @@ Its adopter-facing changes since 0.2.0-beta.5 are these:
 - Bind the repository family to the 0.2.0-beta.6 runtime through the locked console's
   `hook install`, keeping the 0.2.0-beta.5 runtime as the rollback.
 - Remove GitHub's `forge_repository` and the two command fields from `.ethos/release.toml` with the
-  deterministic paradigm repair. Record GitHub's web repository in the clone's local
-  `remote.github.forgeRepository` only if review observation reports the peer unresolved.
+  deterministic paradigm repair, and record GitHub's web repository in the clone's local
+  `remote.github.forgeRepository`, because its SSH remote leaves it unresolved otherwise.
 
 ## Capabilities
 
