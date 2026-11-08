@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "读者和维护者从哪里开始",
+    "output": "readers.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
+      "provider": "github",
+      "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42"
+    }
+  },
+  "components": [
+    {
+      "id": "rd-members",
+      "type": "external",
+      "icon": "person",
+      "label": "成员和智能体",
+      "sublabel": "阅读，无需安装",
+      "pos": [40, 110],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 15,
+          "end_line": 16,
+          "label": "读者"
+        }
+      ]
+    },
+    {
+      "id": "rd-readme",
+      "type": "frontend",
+      "label": "仓库入口",
+      "sublabel": "README.md",
+      "pos": [330, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 8,
+          "end_line": 10,
+          "label": "入口"
+        }
+      ]
+    },
+    {
+      "id": "rd-agents",
+      "type": "frontend",
+      "label": "智能体入口",
+      "sublabel": "AGENTS.md",
+      "pos": [620, 180],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "AGENTS.md",
+          "line": 3,
+          "end_line": 7,
+          "label": "智能体入口"
+        }
+      ]
+    },
+    {
+      "id": "rd-map",
+      "type": "backend",
+      "label": "任务地图",
+      "sublabel": "docs/README.md",
+      "pos": [620, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 11,
+          "end_line": 15,
+          "label": "任务地图"
+        }
+      ]
+    },
+    {
+      "id": "rd-maintainers",
+      "type": "external",
+      "icon": "person",
+      "label": "维护者",
+      "sublabel": "修改、检查、发布",
+      "pos": [40, 320],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "CONTRIBUTING.md",
+          "line": 3,
+          "end_line": 4,
+          "label": "读者对象"
+        }
+      ]
+    },
+    {
+      "id": "rd-contributing",
+      "type": "backend",
+      "label": "贡献指南",
+      "sublabel": "命令",
+      "pos": [330, 320],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "CONTRIBUTING.md",
+          "line": 6,
+          "end_line": 11,
+          "label": "编辑之前"
+        }
+      ]
+    },
+    {
+      "id": "rd-governance",
+      "type": "security",
+      "label": "仓库变更与发布",
+      "sublabel": "边界",
+      "pos": [620, 320],
+      "size": [190, 64],
+      "sources": [
+        {
+          "path": "docs/governance/README.md",
+          "line": 24,
+          "end_line": 25,
+          "label": "边界"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "rd-e-home",
+      "from": "rd-members",
+      "to": "rd-readme",
+      "label": "起步"
+    },
+    {
+      "id": "rd-e-agents",
+      "from": "rd-members",
+      "to": "rd-agents",
+      "label": "智能体"
+    },
+    {
+      "id": "rd-e-route",
+      "from": "rd-readme",
+      "to": "rd-map",
+      "label": "工作问题",
+      "variant": "emphasis"
+    },
+    {
+      "id": "rd-e-agent-map",
+      "from": "rd-agents",
+      "to": "rd-map",
+      "label": "起步于"
+    },
+    {
+      "id": "rd-e-agent-gov",
+      "from": "rd-agents",
+      "to": "rd-governance",
+      "label": "改动之前"
+    },
+    {
+      "id": "rd-e-maintain",
+      "from": "rd-maintainers",
+      "to": "rd-contributing",
+      "label": "先读"
+    },
+    {
+      "id": "rd-e-bounds",
+      "from": "rd-contributing",
+      "to": "rd-governance",
+      "label": "边界"
+    }
+  ]
+}

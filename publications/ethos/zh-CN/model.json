@@ -1,0 +1,1608 @@
+{
+  "format": "architecture-publisher.model",
+  "version": 3,
+  "id": "ethos",
+  "locale": "zh-CN",
+  "title": "ETHOS",
+  "question": "ETHOS 如何把正式意图和刚观察到的事实变成经过证明的仓库改动，又要求每个仓库守住什么？",
+  "summary": "ETHOS 把 OpenSpec 正式变更、刚观察到的事实和先前的核验记录编译成一份 TransitionPlan，只在 pass 时准入每项改动，并要求每个受治理的仓库（包括它自己）遵守同一套已声明的结构。",
+  "scope": "v0.2.0-beta.6 发布版本中的 ETHOS 产品：src/ethos 包、system/ 中的声明、npm 启动器，以及仓库自身的 .ethos 绑定。",
+  "limits": [
+    "每个组件引用规则归给它的全部文件；每条关系引用导入另一组件的模块。",
+    "关系是源码中的导入和进程调用，不代表运行时顺序或设计意图。"
+  ],
+  "repository": {
+    "name": "ethos",
+    "url": "https://github.com/HengYangDS/ethos.git",
+    "revision": "727ee0579ba1fb9e391b5c44ce9fb2c208390199",
+    "browse": "https://github.com/HengYangDS/ethos/blob/{revision}/{path}"
+  },
+  "coverage": {
+    "include": ["src/ethos/", "system/", "distributions/npm/", ".ethos/"]
+  },
+  "overview": "overview.typ",
+  "guide": "guide/guide.archify.md",
+  "kinds": {
+    "surface": {
+      "label": "入口",
+      "category": "frontend",
+      "icon": "square-terminal"
+    },
+    "service": {
+      "label": "ETHOS 模块",
+      "category": "backend",
+      "icon": "workflow"
+    },
+    "contract": {
+      "label": "契约",
+      "category": "backend",
+      "icon": "file-cog"
+    },
+    "admission": {
+      "label": "准入",
+      "category": "security",
+      "icon": "shield-check"
+    },
+    "policy": {
+      "label": "策略",
+      "category": "security",
+      "icon": "list-checks"
+    },
+    "store": {
+      "label": "Git 公共目录存储",
+      "category": "database",
+      "icon": "database"
+    },
+    "tool": {
+      "label": "外部工具",
+      "category": "external",
+      "icon": "wrench"
+    },
+    "peer": {
+      "label": "代码托管平台",
+      "category": "external",
+      "icon": "cloud"
+    }
+  },
+  "components": [
+    {
+      "id": "cli",
+      "label": "CLI",
+      "kind": "surface",
+      "details": {
+        "命令": "status、plan、prove、land、publish、adopt、lane、hook、attestation、mcp",
+        "启动器": "架在 Python 命令平面之上的轻量 npm 包"
+      },
+      "files": ["src/ethos/cli.py", "src/ethos/surface/cli/", "distributions/npm/"]
+    },
+    {
+      "id": "mcp-server",
+      "label": "MCP 服务器",
+      "kind": "surface",
+      "details": {
+        "投影": "同样的应用操作，经由绑定根目录的传输"
+      },
+      "files": ["src/ethos/surface/mcp/"]
+    },
+    {
+      "id": "skills",
+      "label": "Agent 技能",
+      "kind": "surface",
+      "details": {
+        "校验": "技能包与其声明的命令是否相符"
+      },
+      "files": [
+        "src/ethos/assistants/",
+        "src/ethos/resources/skills/",
+        "src/ethos/contracts/skill/"
+      ]
+    },
+    {
+      "id": "status",
+      "label": "状态",
+      "kind": "service",
+      "details": {
+        "命令": "ethos status",
+        "回答": "角色、缺口、他人的通道和下一步"
+      },
+      "files": [
+        "src/ethos/domain/inspection.py",
+        "src/ethos/domain/status.py",
+        "src/ethos/adapters/repo/status/"
+      ]
+    },
+    {
+      "id": "planning",
+      "label": "规划",
+      "kind": "service",
+      "details": {
+        "命令": "ethos plan",
+        "编译": "从意图、规则和门禁得到规划结果"
+      },
+      "files": [
+        "src/ethos/domain/plan.py",
+        "src/ethos/repository/policy/rules/",
+        ".ethos/rules.toml"
+      ]
+    },
+    {
+      "id": "kernel",
+      "label": "TransitionPlan",
+      "kind": "contract",
+      "details": {
+        "内核": "(Commitment, Facts, 先前的核验记录) -> TransitionPlan -> 新的核验记录",
+        "判定": "pass、block 或 unknown；只有 pass 才准入改动"
+      },
+      "files": [
+        "src/ethos/contracts/plan.py",
+        "src/ethos/contracts/semantic.py",
+        "src/ethos/contracts/verdict.py",
+        "src/ethos/contracts/proof/",
+        "src/ethos/contracts/policy/",
+        "src/ethos/contracts/rules.py",
+        "src/ethos/contracts/outcome.py"
+      ]
+    },
+    {
+      "id": "contracts",
+      "label": "契约与 Schema",
+      "kind": "contract",
+      "details": {
+        "持有": "带类型的值、公开结果和内核 JSON Schema"
+      },
+      "files": [
+        "src/ethos/contracts/value.py",
+        "src/ethos/contracts/system/",
+        "src/ethos/normalization/",
+        "src/ethos/result.py",
+        "src/ethos/domain/execution.py",
+        "system/schemas/",
+        "system/README.md",
+        "system/axioms.md",
+        "src/ethos/__init__.py",
+        "src/ethos/contracts/__init__.py",
+        "src/ethos/domain/__init__.py",
+        "src/ethos/adapters/__init__.py",
+        "src/ethos/repository/__init__.py",
+        "src/ethos/surface/__init__.py",
+        "src/ethos/adapters/mutation/__init__.py",
+        "src/ethos/contracts/next_step.py",
+        "src/ethos/surface/runtime_identity.py"
+      ]
+    },
+    {
+      "id": "openspec-intent",
+      "label": "OpenSpec 意图",
+      "kind": "service",
+      "details": {
+        "编译": "从正式变更得到 Commitment",
+        "归档": "已完成的正式变更，附带确切的迁移"
+      },
+      "files": [
+        "src/ethos/adapters/openspec/",
+        "src/ethos/contracts/openspec/",
+        "src/ethos/repository/openspec/"
+      ]
+    },
+    {
+      "id": "current-resolution",
+      "label": "当前状态解析",
+      "kind": "admission",
+      "details": {
+        "解析": "租约赋予的决定权、正式意图和刚观察到的路径事实，仅一次"
+      },
+      "files": ["src/ethos/adapters/admission/current/"]
+    },
+    {
+      "id": "gate-policy",
+      "label": "门禁策略",
+      "kind": "policy",
+      "details": {
+        "声明": "system/gates.toml 和配置中的仓库门禁",
+        "绑定": "执行身份与所选的来源"
+      },
+      "files": [
+        "src/ethos/repository/policy/gates.py",
+        "src/ethos/repository/policy/code_subjects.py",
+        "src/ethos/adapters/repo/gate_policy.py",
+        "src/ethos/contracts/gates.py",
+        "system/gates.toml",
+        "system/repository-gates.toml"
+      ]
+    },
+    {
+      "id": "quality-policy",
+      "label": "质量责任",
+      "kind": "policy",
+      "details": {
+        "判断": "覆盖率、测试、依赖和源码预算，依据原生报告"
+      },
+      "files": [
+        "src/ethos/repository/policy/quality/",
+        "src/ethos/repository/policy/quality_reports.py",
+        "src/ethos/domain/source_budget/",
+        "src/ethos/measure.py",
+        "src/ethos/adapters/repo/dependency_acceptance.py"
+      ]
+    },
+    {
+      "id": "gate-runner",
+      "label": "门禁运行器",
+      "kind": "service",
+      "details": {
+        "运行": "已准入的门禁 DAG，读者有界、写者独占",
+        "准入": "每台主机一个完整证明，在其负载上限之内"
+      },
+      "files": [
+        "src/ethos/adapters/gates/runner.py",
+        "src/ethos/adapters/gates/proof_slot.py",
+        "src/ethos/adapters/gates/verification.py"
+      ]
+    },
+    {
+      "id": "native-evidence",
+      "label": "原生证据",
+      "kind": "service",
+      "details": {
+        "捕获": "每个原生工具的输出，仅一次，附带回执",
+        "覆盖": "Python、JavaScript、格式、配置文件和来源"
+      },
+      "files": [
+        "src/ethos/adapters/gates/",
+        "src/ethos/domain/quality/",
+        "src/ethos/surface/pytest/"
+      ]
+    },
+    {
+      "id": "proof",
+      "label": "证明核验记录",
+      "kind": "service",
+      "details": {
+        "命令": "ethos prove",
+        "签发": "确切 HEAD 的证明核验记录"
+      },
+      "files": [
+        "src/ethos/adapters/mutation/proof.py",
+        "src/ethos/adapters/mutation/proof_admission.py",
+        "src/ethos/adapters/mutation/proof_artifacts.py",
+        "src/ethos/adapters/mutation/proof_validation.py",
+        "src/ethos/domain/prove.py",
+        "src/ethos/adapters/mutation/proof_record.py"
+      ]
+    },
+    {
+      "id": "prewrite-admission",
+      "label": "写前准入",
+      "kind": "admission",
+      "details": {
+        "命令": "ethos lane prewrite",
+        "准入": "受版本管理的确切写入路径和补丁"
+      },
+      "files": [
+        "src/ethos/adapters/admission/prewrite.py",
+        "src/ethos/adapters/admission/patch_admission.py",
+        "src/ethos/adapters/admission/paths.py",
+        "src/ethos/adapters/admission/shell.py"
+      ]
+    },
+    {
+      "id": "ref-admission",
+      "label": "引用准入",
+      "kind": "admission",
+      "details": {
+        "准入": "确切的引用意图、受保护引用的移动和平台发布的更新"
+      },
+      "files": [
+        "src/ethos/adapters/admission/",
+        "src/ethos/contracts/admission.py",
+        "src/ethos/contracts/evidence/"
+      ]
+    },
+    {
+      "id": "mutation-admission",
+      "label": "改动决策",
+      "kind": "admission",
+      "details": {
+        "要求": "--authorize、--expect-head 和当前事实",
+        "指明": "每个缺口的有界恢复办法"
+      },
+      "files": [
+        "src/ethos/adapters/mutation/decision.py",
+        "src/ethos/adapters/mutation/remediation/"
+      ]
+    },
+    {
+      "id": "hooks",
+      "label": "钩子协议",
+      "kind": "admission",
+      "details": {
+        "命令": "ethos hook install",
+        "守护": "提交、推送和引用移动，经由原生 Git 钩子"
+      },
+      "files": ["src/ethos/adapters/repo/hook/"]
+    },
+    {
+      "id": "runtime",
+      "label": "分代运行时",
+      "kind": "store",
+      "details": {
+        "选择": "一个不可变运行时，经由 runtime/CURRENT；保留 ROLLBACK",
+        "供应": "来自确切 mise 锁文件的工具"
+      },
+      "files": ["src/ethos/adapters/repo/runtime/", "src/ethos/adapters/toolchain/"]
+    },
+    {
+      "id": "handoff",
+      "label": "通道交接",
+      "kind": "service",
+      "details": {
+        "转移": "工作通道跨主机，整体作为一个内容寻址的包"
+      },
+      "files": ["src/ethos/adapters/mutation/lane_lifecycle/handoff/"]
+    },
+    {
+      "id": "lease",
+      "label": "通道租约",
+      "kind": "store",
+      "details": {
+        "绑定": "持有者、代次和到期时间，记在 Git 公共目录的 state.sqlite 中"
+      },
+      "files": [
+        "src/ethos/adapters/mutation/lane_lifecycle/lease/",
+        "src/ethos/adapters/store/state/",
+        "src/ethos/contracts/coordination.py",
+        "src/ethos/adapters/repo/coordination.py"
+      ]
+    },
+    {
+      "id": "work-lane",
+      "label": "工作通道",
+      "kind": "service",
+      "details": {
+        "命令": "lane start、refresh-base、archive-change",
+        "创建": "从候选分支出发的自有分支和工作区"
+      },
+      "files": ["src/ethos/adapters/mutation/lane_lifecycle/"]
+    },
+    {
+      "id": "retirement",
+      "label": "通道退役",
+      "kind": "service",
+      "details": {
+        "退役": "已落地、被取代、被吸收或已放弃的通道，在其预期的头提交上"
+      },
+      "files": [
+        "src/ethos/adapters/mutation/lane_retirement/",
+        "src/ethos/contracts/retirement.py",
+        "src/ethos/adapters/mutation/worktree/"
+      ]
+    },
+    {
+      "id": "landing",
+      "label": "落地与验收",
+      "kind": "service",
+      "details": {
+        "命令": "ethos land",
+        "提升": "已证明的通道，依次到候选分支、dev 和 main"
+      },
+      "files": [
+        "src/ethos/adapters/mutation/landing.py",
+        "src/ethos/adapters/mutation/accepted/",
+        "src/ethos/adapters/mutation/branch_roles.py",
+        "src/ethos/domain/land/",
+        "src/ethos/contracts/branch/"
+      ]
+    },
+    {
+      "id": "publication",
+      "label": "平台发布",
+      "kind": "service",
+      "details": {
+        "命令": "ethos publish",
+        "推送": "确切的引用至每个平台，附带回执"
+      },
+      "files": [
+        "src/ethos/adapters/mutation/publication/",
+        "src/ethos/domain/publication/",
+        "src/ethos/contracts/publication.py",
+        "src/ethos/repository/release/publication.py"
+      ]
+    },
+    {
+      "id": "git-effects",
+      "label": "Git 改动引擎",
+      "kind": "service",
+      "details": {
+        "执行": "确切的 compare-and-swap 式引用、工作区和合并改动，随后写下核验记录"
+      },
+      "files": [
+        "src/ethos/adapters/repo/git_effect_admission.py",
+        "src/ethos/adapters/repo/git_effect_attestation.py",
+        "src/ethos/adapters/repo/git_effect_observation.py",
+        "src/ethos/adapters/repo/git_effects.py",
+        "src/ethos/adapters/repo/worktree_effects.py",
+        "src/ethos/adapters/repo/git_ref_worktrees.py",
+        "src/ethos/adapters/repo/config_effects.py",
+        "src/ethos/adapters/repo/native_effect_attestation.py",
+        "src/ethos/adapters/repo/merge/"
+      ]
+    },
+    {
+      "id": "commits",
+      "label": "提交与签名",
+      "kind": "admission",
+      "details": {
+        "强制": "提交信息语法，以及对照信任锚的 SSH 签名"
+      },
+      "files": [
+        "src/ethos/adapters/repo/commit/",
+        "src/ethos/adapters/repo/trust_anchor/",
+        "src/ethos/repository/policy/commit.py"
+      ]
+    },
+    {
+      "id": "projections",
+      "label": "投影与编辑",
+      "kind": "service",
+      "details": {
+        "应用": "原生投影、格式化和载体补丁，以确切的修改前内容为基准"
+      },
+      "files": [
+        "src/ethos/adapters/mutation/carrier_edit.py",
+        "src/ethos/adapters/mutation/projection.py",
+        "src/ethos/adapters/mutation/source_format.py",
+        "src/ethos/adapters/mutation/paradigm_repair.py",
+        "src/ethos/adapters/projections/",
+        "src/ethos/repository/policy/projections.py"
+      ]
+    },
+    {
+      "id": "paradigm",
+      "label": "仓库范式",
+      "kind": "policy",
+      "details": {
+        "声明": "每个仓库的命名、文档、OpenSpec、工具链、流水线和尺寸",
+        "修复": "以确定性方式补齐缺口"
+      },
+      "files": ["src/ethos/repository/paradigm/", "src/ethos/contracts/paradigm/"]
+    },
+    {
+      "id": "docs-registry",
+      "label": "文档注册表",
+      "kind": "policy",
+      "details": {
+        "检查": "文档健康状况、链接和设计归属"
+      },
+      "files": ["src/ethos/repository/registry/", "src/ethos/repository/design/"]
+    },
+    {
+      "id": "repository-audit",
+      "label": "仓库审计",
+      "kind": "policy",
+      "details": {
+        "汇总": "布局、引用关系、边界、文档字符串和产物方面的发现"
+      },
+      "files": [
+        "src/ethos/repository/audit.py",
+        "src/ethos/repository/policy/",
+        "src/ethos/contracts/artifacts/",
+        "system/surfaces.toml"
+      ]
+    },
+    {
+      "id": "profile",
+      "label": "配置",
+      "kind": "policy",
+      "details": {
+        "加载": ".ethos/profile.toml，带严格的根目录和策略边界"
+      },
+      "files": [
+        "src/ethos/repository/profile.py",
+        "src/ethos/repository/context.py",
+        "src/ethos/adapters/repo/profile.py",
+        ".ethos/profile.toml"
+      ]
+    },
+    {
+      "id": "adoption",
+      "label": "接入",
+      "kind": "service",
+      "details": {
+        "命令": "ethos adopt",
+        "建立": "基于起始模板的新仓库，或绑定一个现有仓库"
+      },
+      "files": [
+        "src/ethos/domain/adoption.py",
+        "src/ethos/adapters/repo/adoption.py",
+        "src/ethos/adapters/repo/starter/",
+        "src/ethos/repository/adoption/"
+      ]
+    },
+    {
+      "id": "release",
+      "label": "发布身份",
+      "kind": "policy",
+      "details": {
+        "编译": "发布声明，以及每个分发包的构建身份"
+      },
+      "files": [
+        "src/ethos/repository/release/",
+        "src/ethos/adapters/repo/release.py",
+        ".ethos/release.toml"
+      ]
+    },
+    {
+      "id": "attestation-set",
+      "label": "核验记录集",
+      "kind": "store",
+      "details": {
+        "持有": "唯一持久的语义结果；它是一个 Git 原生集合"
+      },
+      "files": [
+        "src/ethos/adapters/repo/attestation_set.py",
+        "src/ethos/adapters/repo/attestation_lifetime.py",
+        "src/ethos/adapters/repo/attestation_lifetime_facts.py"
+      ]
+    },
+    {
+      "id": "evidence-store",
+      "label": "证据保管",
+      "kind": "store",
+      "details": {
+        "持有": "内容寻址的证据字节，由核验记录的成员绑定"
+      },
+      "files": ["src/ethos/adapters/store/"]
+    },
+    {
+      "id": "git-read",
+      "label": "Git 与进程观察",
+      "kind": "service",
+      "details": {
+        "读取": "Git 事实、对象、内容和进程，不做改动"
+      },
+      "files": [
+        "src/ethos/adapters/repo/",
+        "src/ethos/adapters/process.py",
+        "src/ethos/adapters/open_files.py"
+      ]
+    },
+    {
+      "id": "git",
+      "label": "Git",
+      "kind": "tool",
+      "details": {
+        "拥有": "对象、引用、工作区和钩子"
+      }
+    },
+    {
+      "id": "openspec-cli",
+      "label": "OpenSpec CLI",
+      "kind": "tool",
+      "details": {
+        "包": "@fission-ai/openspec，版本由仓库锁定"
+      }
+    },
+    {
+      "id": "native-tools",
+      "label": "原生工具",
+      "kind": "tool",
+      "details": {
+        "例如": "pytest、ruff、ty、eslint、vale、mise"
+      }
+    },
+    {
+      "id": "forges",
+      "label": "代码托管平台",
+      "kind": "peer",
+      "details": {
+        "平台": "GitLab 和 GitHub，各有自己的 CI"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "cli-status",
+      "from": "cli",
+      "to": "status",
+      "label": "运行 status",
+      "files": [
+        "src/ethos/surface/cli/lane/lease.py",
+        "src/ethos/surface/cli/lane/lifecycle.py",
+        "src/ethos/surface/cli/root/inspection.py",
+        "src/ethos/surface/cli/root/proof.py"
+      ]
+    },
+    {
+      "id": "cli-planning",
+      "from": "cli",
+      "to": "planning",
+      "label": "运行 plan",
+      "files": ["src/ethos/surface/cli/root/planning.py"]
+    },
+    {
+      "id": "cli-proof",
+      "from": "cli",
+      "to": "proof",
+      "label": "运行 prove",
+      "files": ["src/ethos/surface/cli/lane/lifecycle.py", "src/ethos/surface/cli/root/proof.py"]
+    },
+    {
+      "id": "cli-landing",
+      "from": "cli",
+      "to": "landing",
+      "label": "运行 land",
+      "files": [
+        "src/ethos/surface/cli/lane/commit_signer.py",
+        "src/ethos/surface/cli/lane/lifecycle.py",
+        "src/ethos/surface/cli/root/land.py"
+      ]
+    },
+    {
+      "id": "cli-publication",
+      "from": "cli",
+      "to": "publication",
+      "label": "运行 publish",
+      "files": ["src/ethos/surface/cli/root/publish.py"]
+    },
+    {
+      "id": "cli-work-lane",
+      "from": "cli",
+      "to": "work-lane",
+      "label": "运行 lane",
+      "files": ["src/ethos/surface/cli/lane/lifecycle.py"]
+    },
+    {
+      "id": "cli-prewrite-admission",
+      "from": "cli",
+      "to": "prewrite-admission",
+      "label": "运行 prewrite",
+      "files": ["src/ethos/surface/cli/hook/commands.py", "src/ethos/surface/cli/lane/lifecycle.py"]
+    },
+    {
+      "id": "cli-retirement",
+      "from": "cli",
+      "to": "retirement",
+      "label": "运行 lane retire",
+      "files": [
+        "src/ethos/surface/cli/lane/lifecycle.py",
+        "src/ethos/surface/cli/lane/retirement.py"
+      ]
+    },
+    {
+      "id": "cli-handoff",
+      "from": "cli",
+      "to": "handoff",
+      "label": "运行 handoff",
+      "files": ["src/ethos/surface/cli/lane/handoff.py"]
+    },
+    {
+      "id": "cli-hooks",
+      "from": "cli",
+      "to": "hooks",
+      "label": "运行 hook install",
+      "files": ["src/ethos/surface/cli/hook/commands.py"]
+    },
+    {
+      "id": "cli-attestation-set",
+      "from": "cli",
+      "to": "attestation-set",
+      "label": "查询",
+      "files": ["src/ethos/surface/cli/root/attestation.py"]
+    },
+    {
+      "id": "mcp-server-status",
+      "from": "mcp-server",
+      "to": "status",
+      "label": "投影",
+      "files": ["src/ethos/surface/mcp/server.py"]
+    },
+    {
+      "id": "mcp-server-planning",
+      "from": "mcp-server",
+      "to": "planning",
+      "label": "投影",
+      "files": ["src/ethos/surface/mcp/server.py"]
+    },
+    {
+      "id": "mcp-server-landing",
+      "from": "mcp-server",
+      "to": "landing",
+      "label": "投影",
+      "files": ["src/ethos/surface/mcp/server.py"]
+    },
+    {
+      "id": "mcp-server-publication",
+      "from": "mcp-server",
+      "to": "publication",
+      "label": "投影",
+      "files": ["src/ethos/surface/mcp/server.py"]
+    },
+    {
+      "id": "mcp-server-adoption",
+      "from": "mcp-server",
+      "to": "adoption",
+      "label": "投影",
+      "files": ["src/ethos/surface/mcp/server.py"]
+    },
+    {
+      "id": "cli-adoption",
+      "from": "cli",
+      "to": "adoption",
+      "label": "运行 adopt",
+      "files": ["src/ethos/surface/cli/root/adoption.py"]
+    },
+    {
+      "id": "status-current-resolution",
+      "from": "status",
+      "to": "current-resolution",
+      "label": "解析范围",
+      "files": ["src/ethos/adapters/repo/status/workspace.py", "src/ethos/domain/inspection.py"]
+    },
+    {
+      "id": "status-openspec-intent",
+      "from": "status",
+      "to": "openspec-intent",
+      "label": "读取正式变更",
+      "files": ["src/ethos/domain/inspection.py", "src/ethos/domain/status.py"]
+    },
+    {
+      "id": "planning-current-resolution",
+      "from": "planning",
+      "to": "current-resolution",
+      "label": "解析意图",
+      "files": ["src/ethos/domain/plan.py"]
+    },
+    {
+      "id": "planning-gate-policy",
+      "from": "planning",
+      "to": "gate-policy",
+      "label": "选择门禁",
+      "files": ["src/ethos/domain/plan.py", "src/ethos/repository/policy/rules/compile.py"]
+    },
+    {
+      "id": "planning-kernel",
+      "from": "planning",
+      "to": "kernel",
+      "label": "编译",
+      "files": ["src/ethos/domain/plan.py", "src/ethos/repository/policy/rules/compile.py"]
+    },
+    {
+      "id": "planning-skills",
+      "from": "planning",
+      "to": "skills",
+      "label": "激活技能",
+      "files": ["src/ethos/domain/plan.py"]
+    },
+    {
+      "id": "planning-paradigm",
+      "from": "planning",
+      "to": "paradigm",
+      "label": "读取声明",
+      "files": [
+        "src/ethos/domain/plan.py",
+        "src/ethos/repository/policy/rules/compile.py",
+        "src/ethos/repository/policy/rules/config.py"
+      ]
+    },
+    {
+      "id": "current-resolution-openspec-intent",
+      "from": "current-resolution",
+      "to": "openspec-intent",
+      "label": "选择正式变更",
+      "files": ["src/ethos/adapters/admission/current/resolution.py"]
+    },
+    {
+      "id": "current-resolution-kernel",
+      "from": "current-resolution",
+      "to": "kernel",
+      "label": "构建 Commitment",
+      "files": [
+        "src/ethos/adapters/admission/current/authority.py",
+        "src/ethos/adapters/admission/current/resolution.py"
+      ]
+    },
+    {
+      "id": "current-resolution-lease",
+      "from": "current-resolution",
+      "to": "lease",
+      "label": "读取租约",
+      "files": ["src/ethos/adapters/admission/current/authority.py"]
+    },
+    {
+      "id": "kernel-contracts",
+      "from": "kernel",
+      "to": "contracts",
+      "label": "使用带类型的值",
+      "files": [
+        "src/ethos/contracts/outcome.py",
+        "src/ethos/contracts/plan.py",
+        "src/ethos/contracts/proof/plan.py",
+        "src/ethos/contracts/rules.py",
+        "src/ethos/contracts/semantic.py"
+      ]
+    },
+    {
+      "id": "openspec-intent-openspec-cli",
+      "from": "openspec-intent",
+      "to": "openspec-cli",
+      "label": "运行官方 CLI",
+      "files": ["src/ethos/adapters/openspec/cli.py", "src/ethos/adapters/openspec/__init__.py"]
+    },
+    {
+      "id": "openspec-intent-kernel",
+      "from": "openspec-intent",
+      "to": "kernel",
+      "label": "编译 Commitment",
+      "files": [
+        "src/ethos/adapters/openspec/commitment.py",
+        "src/ethos/adapters/openspec/lifecycle/archive_transition.py",
+        "src/ethos/adapters/openspec/lifecycle/intent.py",
+        "src/ethos/adapters/openspec/lifecycle/scope.py",
+        "src/ethos/adapters/openspec/profile.py",
+        "src/ethos/adapters/openspec/relocation.py",
+        "src/ethos/repository/openspec/audit.py"
+      ]
+    },
+    {
+      "id": "gate-policy-quality-policy",
+      "from": "gate-policy",
+      "to": "quality-policy",
+      "label": "组合底线",
+      "files": ["src/ethos/adapters/repo/gate_policy.py", "src/ethos/repository/policy/gates.py"]
+    },
+    {
+      "id": "gate-policy-profile",
+      "from": "gate-policy",
+      "to": "profile",
+      "label": "读取配置",
+      "files": ["src/ethos/adapters/repo/gate_policy.py", "src/ethos/repository/policy/gates.py"]
+    },
+    {
+      "id": "proof-gate-policy",
+      "from": "proof",
+      "to": "gate-policy",
+      "label": "解析门禁",
+      "files": [
+        "src/ethos/adapters/mutation/proof.py",
+        "src/ethos/adapters/mutation/proof_admission.py"
+      ]
+    },
+    {
+      "id": "proof-current-resolution",
+      "from": "proof",
+      "to": "current-resolution",
+      "label": "解析决定权",
+      "files": ["src/ethos/adapters/mutation/proof.py"]
+    },
+    {
+      "id": "proof-kernel",
+      "from": "proof",
+      "to": "kernel",
+      "label": "校验闭包",
+      "files": [
+        "src/ethos/adapters/mutation/proof.py",
+        "src/ethos/adapters/mutation/proof_admission.py",
+        "src/ethos/adapters/mutation/proof_artifacts.py",
+        "src/ethos/adapters/mutation/proof_record.py",
+        "src/ethos/adapters/mutation/proof_validation.py"
+      ]
+    },
+    {
+      "id": "proof-attestation-set",
+      "from": "proof",
+      "to": "attestation-set",
+      "label": "记录证明",
+      "files": [
+        "src/ethos/adapters/mutation/proof.py",
+        "src/ethos/adapters/mutation/proof_admission.py"
+      ]
+    },
+    {
+      "id": "proof-evidence-store",
+      "from": "proof",
+      "to": "evidence-store",
+      "label": "存放产物",
+      "files": ["src/ethos/adapters/mutation/proof_artifacts.py"]
+    },
+    {
+      "id": "proof-runtime",
+      "from": "proof",
+      "to": "runtime",
+      "label": "绑定运行时",
+      "files": [
+        "src/ethos/adapters/mutation/proof.py",
+        "src/ethos/adapters/mutation/proof_admission.py"
+      ]
+    },
+    {
+      "id": "gate-runner-native-evidence",
+      "from": "gate-runner",
+      "to": "native-evidence",
+      "label": "捕获",
+      "files": [
+        "src/ethos/adapters/gates/proof_slot.py",
+        "src/ethos/adapters/gates/runner.py",
+        "src/ethos/adapters/gates/verification.py"
+      ]
+    },
+    {
+      "id": "gate-runner-gate-policy",
+      "from": "gate-runner",
+      "to": "gate-policy",
+      "label": "绑定身份",
+      "files": ["src/ethos/adapters/gates/runner.py", "src/ethos/adapters/gates/verification.py"]
+    },
+    {
+      "id": "cli-gate-runner",
+      "from": "cli",
+      "to": "gate-runner",
+      "label": "执行门禁",
+      "files": ["src/ethos/surface/cli/proof/host.py", "src/ethos/surface/cli/root/proof.py"]
+    },
+    {
+      "id": "native-evidence-native-tools",
+      "from": "native-evidence",
+      "to": "native-tools",
+      "label": "运行",
+      "files": [
+        "src/ethos/adapters/gates/__init__.py",
+        "src/ethos/adapters/gates/tool.py",
+        "src/ethos/adapters/toolchain/mise.py"
+      ]
+    },
+    {
+      "id": "native-evidence-evidence-store",
+      "from": "native-evidence",
+      "to": "evidence-store",
+      "label": "保存回执",
+      "files": [
+        "src/ethos/adapters/gates/javascript/execution.py",
+        "src/ethos/adapters/gates/native/attempt.py"
+      ]
+    },
+    {
+      "id": "prewrite-admission-current-resolution",
+      "from": "prewrite-admission",
+      "to": "current-resolution",
+      "label": "核对决定权",
+      "files": ["src/ethos/adapters/admission/prewrite.py"]
+    },
+    {
+      "id": "prewrite-admission-lease",
+      "from": "prewrite-admission",
+      "to": "lease",
+      "label": "核对持有者",
+      "files": ["src/ethos/adapters/admission/prewrite.py"]
+    },
+    {
+      "id": "prewrite-admission-openspec-intent",
+      "from": "prewrite-admission",
+      "to": "openspec-intent",
+      "label": "认定路径归属",
+      "files": [
+        "src/ethos/adapters/admission/patch_admission.py",
+        "src/ethos/adapters/admission/prewrite.py"
+      ]
+    },
+    {
+      "id": "hooks-git",
+      "from": "hooks",
+      "to": "git",
+      "label": "安装钩子",
+      "files": [
+        "src/ethos/adapters/process.py",
+        "src/ethos/adapters/repo/git.py",
+        "src/ethos/adapters/repo/hook/__init__.py"
+      ]
+    },
+    {
+      "id": "git-hooks",
+      "from": "git",
+      "to": "hooks",
+      "label": "运行钩子",
+      "files": [
+        "src/ethos/adapters/repo/hook/binding.toml",
+        "src/ethos/adapters/repo/hook/protocol.py"
+      ]
+    },
+    {
+      "id": "hooks-runtime",
+      "from": "hooks",
+      "to": "runtime",
+      "label": "选择运行时",
+      "files": [
+        "src/ethos/adapters/repo/hook/activation.py",
+        "src/ethos/adapters/repo/hook/admission.py",
+        "src/ethos/adapters/repo/hook/exit.py",
+        "src/ethos/adapters/repo/hook/exit_plan.py",
+        "src/ethos/adapters/repo/hook/observation.py",
+        "src/ethos/adapters/repo/hook/rollback.py"
+      ]
+    },
+    {
+      "id": "cli-ref-admission",
+      "from": "cli",
+      "to": "ref-admission",
+      "label": "准入钩子的改动",
+      "files": [
+        "src/ethos/cli.py",
+        "src/ethos/surface/cli/application.py",
+        "src/ethos/surface/cli/hook/commands.py"
+      ]
+    },
+    {
+      "id": "ref-admission-lease",
+      "from": "ref-admission",
+      "to": "lease",
+      "label": "核对租约",
+      "files": [
+        "src/ethos/adapters/admission/ref_move_policy.py",
+        "src/ethos/adapters/admission/role_rename.py",
+        "src/ethos/adapters/admission/transitions.py"
+      ]
+    },
+    {
+      "id": "ref-admission-proof",
+      "from": "ref-admission",
+      "to": "proof",
+      "label": "要求证明",
+      "files": [
+        "src/ethos/adapters/admission/control/replacement.py",
+        "src/ethos/adapters/admission/git_admission.py",
+        "src/ethos/adapters/admission/publication.py",
+        "src/ethos/adapters/admission/ref_move_policy.py"
+      ]
+    },
+    {
+      "id": "work-lane-lease",
+      "from": "work-lane",
+      "to": "lease",
+      "label": "获取",
+      "files": ["src/ethos/adapters/mutation/lane_lifecycle/start.py"]
+    },
+    {
+      "id": "work-lane-git-effects",
+      "from": "work-lane",
+      "to": "git-effects",
+      "label": "创建引用、工作区",
+      "files": [
+        "src/ethos/adapters/mutation/lane_lifecycle/archive/command.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/archive/compensation.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/archive/effect.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/candidate/materialization.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/candidate_projection.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/merge.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/start.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/work_lane_refresh.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/work_lane_refresh_record.py"
+      ]
+    },
+    {
+      "id": "work-lane-commits",
+      "from": "work-lane",
+      "to": "commits",
+      "label": "准入提交",
+      "files": [
+        "src/ethos/adapters/mutation/lane_lifecycle/archive/command.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/archive/effect.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/candidate/materialization.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/start.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/work_lane_refresh.py"
+      ]
+    },
+    {
+      "id": "work-lane-openspec-intent",
+      "from": "work-lane",
+      "to": "openspec-intent",
+      "label": "归档正式变更",
+      "files": [
+        "src/ethos/adapters/mutation/lane_lifecycle/archive/command.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/archive/compensation.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/archive/effect.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/merge.py"
+      ]
+    },
+    {
+      "id": "work-lane-hooks",
+      "from": "work-lane",
+      "to": "hooks",
+      "label": "激活钩子",
+      "files": [
+        "src/ethos/adapters/mutation/lane_lifecycle/candidate_projection.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/merge.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/start.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/work_lane_refresh.py"
+      ]
+    },
+    {
+      "id": "handoff-git-effects",
+      "from": "handoff",
+      "to": "git-effects",
+      "label": "安装对象",
+      "files": [
+        "src/ethos/adapters/mutation/lane_lifecycle/handoff/destination_cleanup.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/handoff/destination_import.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/handoff/destination_objects.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/handoff/package.py"
+      ]
+    },
+    {
+      "id": "retirement-lease",
+      "from": "retirement",
+      "to": "lease",
+      "label": "结束租约",
+      "files": [
+        "src/ethos/adapters/mutation/lane_retirement/absorbed.py",
+        "src/ethos/adapters/mutation/lane_retirement/operation.py"
+      ]
+    },
+    {
+      "id": "retirement-git-effects",
+      "from": "retirement",
+      "to": "git-effects",
+      "label": "移除工作区、引用",
+      "files": [
+        "src/ethos/adapters/mutation/lane_retirement/abandonment.py",
+        "src/ethos/adapters/mutation/lane_retirement/absorbed.py",
+        "src/ethos/adapters/mutation/lane_retirement/effects.py",
+        "src/ethos/adapters/mutation/lane_retirement/linked_effect.py",
+        "src/ethos/adapters/mutation/lane_retirement/operation.py",
+        "src/ethos/adapters/mutation/worktree/detached_cleanup.py"
+      ]
+    },
+    {
+      "id": "landing-mutation-admission",
+      "from": "landing",
+      "to": "mutation-admission",
+      "label": "准入 land",
+      "files": [
+        "src/ethos/adapters/mutation/accepted/admission.py",
+        "src/ethos/adapters/mutation/landing.py",
+        "src/ethos/domain/land/closeout.py",
+        "src/ethos/domain/land/operation.py"
+      ]
+    },
+    {
+      "id": "landing-proof",
+      "from": "landing",
+      "to": "proof",
+      "label": "要求证明",
+      "files": [
+        "src/ethos/adapters/mutation/accepted/promotion.py",
+        "src/ethos/adapters/mutation/accepted/release.py",
+        "src/ethos/adapters/mutation/landing.py",
+        "src/ethos/domain/land/closeout.py"
+      ]
+    },
+    {
+      "id": "landing-git-effects",
+      "from": "landing",
+      "to": "git-effects",
+      "label": "以 CAS 移动引用",
+      "files": [
+        "src/ethos/adapters/mutation/accepted/promotion.py",
+        "src/ethos/adapters/mutation/accepted/release.py",
+        "src/ethos/adapters/mutation/accepted/retag.py",
+        "src/ethos/adapters/mutation/accepted/signature.py",
+        "src/ethos/adapters/mutation/branch_roles.py",
+        "src/ethos/adapters/mutation/landing.py"
+      ]
+    },
+    {
+      "id": "mutation-admission-proof",
+      "from": "mutation-admission",
+      "to": "proof",
+      "label": "选择证明",
+      "files": ["src/ethos/adapters/mutation/decision.py"]
+    },
+    {
+      "id": "mutation-admission-git-effects",
+      "from": "mutation-admission",
+      "to": "git-effects",
+      "label": "准入改动",
+      "files": ["src/ethos/adapters/mutation/decision.py"]
+    },
+    {
+      "id": "publication-ref-admission",
+      "from": "publication",
+      "to": "ref-admission",
+      "label": "准入更新",
+      "files": [
+        "src/ethos/adapters/mutation/publication/execution.py",
+        "src/ethos/adapters/mutation/publication/retirement.py",
+        "src/ethos/domain/publication/inspection.py",
+        "src/ethos/domain/publication/operation.py",
+        "src/ethos/domain/publication/request_gaps.py"
+      ]
+    },
+    {
+      "id": "publication-proof",
+      "from": "publication",
+      "to": "proof",
+      "label": "要求证明",
+      "files": ["src/ethos/domain/publication/inspection.py"]
+    },
+    {
+      "id": "publication-forges",
+      "from": "publication",
+      "to": "forges",
+      "label": "推送引用",
+      "files": [
+        "src/ethos/adapters/mutation/publication/__init__.py",
+        ".ethos/release.toml",
+        "src/ethos/repository/release/publication.py"
+      ]
+    },
+    {
+      "id": "git-effects-ref-admission",
+      "from": "git-effects",
+      "to": "ref-admission",
+      "label": "申报引用意图",
+      "files": [
+        "src/ethos/adapters/repo/git_effect_admission.py",
+        "src/ethos/adapters/repo/git_effect_observation.py",
+        "src/ethos/adapters/repo/git_effects.py"
+      ]
+    },
+    {
+      "id": "git-effects-kernel",
+      "from": "git-effects",
+      "to": "kernel",
+      "label": "编译改动计划",
+      "files": [
+        "src/ethos/adapters/repo/git_effect_admission.py",
+        "src/ethos/adapters/repo/git_effect_attestation.py",
+        "src/ethos/adapters/repo/git_effect_observation.py",
+        "src/ethos/adapters/repo/git_effects.py",
+        "src/ethos/adapters/repo/merge/effect.py",
+        "src/ethos/adapters/repo/merge/observation.py",
+        "src/ethos/adapters/repo/merge/recovery.py",
+        "src/ethos/adapters/repo/native_effect_attestation.py",
+        "src/ethos/adapters/repo/worktree_effects.py"
+      ]
+    },
+    {
+      "id": "git-effects-git",
+      "from": "git-effects",
+      "to": "git",
+      "label": "update-ref --stdin",
+      "files": [
+        "src/ethos/adapters/process.py",
+        "src/ethos/adapters/repo/config_effects.py",
+        "src/ethos/adapters/repo/git.py"
+      ]
+    },
+    {
+      "id": "git-read-git",
+      "from": "git-read",
+      "to": "git",
+      "label": "读取",
+      "files": [
+        "src/ethos/adapters/open_files.py",
+        "src/ethos/adapters/process.py",
+        "src/ethos/adapters/repo/git.py"
+      ]
+    },
+    {
+      "id": "attestation-set-evidence-store",
+      "from": "attestation-set",
+      "to": "evidence-store",
+      "label": "绑定保管",
+      "files": ["src/ethos/adapters/repo/attestation_set.py"]
+    },
+    {
+      "id": "attestation-set-git",
+      "from": "attestation-set",
+      "to": "git",
+      "label": "存放集合引用",
+      "files": [
+        "src/ethos/adapters/process.py",
+        "src/ethos/adapters/repo/attestation_lifetime.py",
+        "src/ethos/adapters/repo/git.py"
+      ]
+    },
+    {
+      "id": "projections-prewrite-admission",
+      "from": "projections",
+      "to": "prewrite-admission",
+      "label": "准入补丁",
+      "files": [
+        "src/ethos/adapters/mutation/carrier_edit.py",
+        "src/ethos/adapters/mutation/source_format.py"
+      ]
+    },
+    {
+      "id": "cli-projections",
+      "from": "cli",
+      "to": "projections",
+      "label": "运行 lane project、format",
+      "files": [
+        "src/ethos/surface/cli/lane/formatting.py",
+        "src/ethos/surface/cli/lane/paradigm_repair.py",
+        "src/ethos/surface/cli/lane/projections.py"
+      ]
+    },
+    {
+      "id": "repository-audit-paradigm",
+      "from": "repository-audit",
+      "to": "paradigm",
+      "label": "检查符合性",
+      "files": [
+        "src/ethos/repository/audit.py",
+        "src/ethos/repository/policy/boundary/catalog.py",
+        "src/ethos/repository/policy/references/carriers.py",
+        "src/ethos/repository/policy/references/closure.py",
+        "src/ethos/repository/policy/references/declarations.py",
+        "src/ethos/repository/policy/references/observation.py",
+        "src/ethos/repository/policy/surfaces.py"
+      ]
+    },
+    {
+      "id": "repository-audit-docs-registry",
+      "from": "repository-audit",
+      "to": "docs-registry",
+      "label": "检查文档",
+      "files": [
+        "src/ethos/repository/audit.py",
+        "src/ethos/repository/policy/references/closure.py",
+        "src/ethos/repository/policy/schema.py"
+      ]
+    },
+    {
+      "id": "repository-audit-commits",
+      "from": "repository-audit",
+      "to": "commits",
+      "label": "编译提交策略",
+      "files": ["src/ethos/repository/audit.py"]
+    },
+    {
+      "id": "repository-audit-skills",
+      "from": "repository-audit",
+      "to": "skills",
+      "label": "检查技能",
+      "files": ["src/ethos/repository/audit.py", "src/ethos/repository/policy/schema.py"]
+    },
+    {
+      "id": "repository-audit-release",
+      "from": "repository-audit",
+      "to": "release",
+      "label": "检查发布",
+      "files": [
+        "src/ethos/repository/audit.py",
+        "src/ethos/repository/policy/references/declarations.py",
+        "src/ethos/repository/policy/schema.py"
+      ]
+    },
+    {
+      "id": "adoption-git",
+      "from": "adoption",
+      "to": "git",
+      "label": "建立、绑定",
+      "files": [
+        "src/ethos/adapters/process.py",
+        "src/ethos/adapters/repo/git.py",
+        "src/ethos/adapters/repo/__init__.py"
+      ]
+    },
+    {
+      "id": "runtime-release",
+      "from": "runtime",
+      "to": "release",
+      "label": "准入身份",
+      "files": [
+        "src/ethos/adapters/repo/runtime/authority.py",
+        "src/ethos/adapters/repo/runtime/manifest.py",
+        "src/ethos/adapters/repo/runtime/materialization/effect.py",
+        "src/ethos/adapters/repo/runtime/materialization/input_resolution.py",
+        "src/ethos/adapters/repo/runtime/materialization/native_supply.py",
+        "src/ethos/adapters/repo/runtime/materialization/node_package_supply.py",
+        "src/ethos/adapters/repo/runtime/retirement.py",
+        "src/ethos/adapters/repo/runtime/selection.py",
+        "src/ethos/adapters/repo/runtime/source.py",
+        "src/ethos/adapters/repo/runtime/transition.py"
+      ]
+    },
+    {
+      "id": "runtime-native-tools",
+      "from": "runtime",
+      "to": "native-tools",
+      "label": "解析 mise 供应",
+      "files": [
+        "src/ethos/adapters/gates/tool.py",
+        "src/ethos/adapters/repo/runtime/__init__.py",
+        "src/ethos/adapters/toolchain/mise.py"
+      ]
+    },
+    {
+      "id": "landing-release",
+      "from": "landing",
+      "to": "release",
+      "label": "选择发布引用",
+      "files": [
+        "src/ethos/adapters/mutation/accepted/release.py",
+        "src/ethos/adapters/mutation/accepted/retag.py"
+      ]
+    }
+  ],
+  "views": [
+    {
+      "id": "overview",
+      "title": "一次改动：从意图到已验收分支",
+      "question": "一次改动如何从 OpenSpec 正式变更走到已验收分支上一次经过证明的提交？",
+      "members": [
+        "openspec-intent",
+        "work-lane",
+        "prewrite-admission",
+        "proof",
+        "landing",
+        "mutation-admission",
+        "git-effects",
+        "attestation-set"
+      ]
+    },
+    {
+      "id": "status",
+      "title": "一个检出的现状",
+      "question": "ethos status 如何读出一个检出的角色、缺口和下一步？",
+      "members": [
+        "cli",
+        "status",
+        "current-resolution",
+        "openspec-intent",
+        "lease",
+        "landing",
+        "proof",
+        "kernel"
+      ]
+    },
+    {
+      "id": "intent",
+      "title": "意图编译成计划",
+      "question": "ETHOS 如何把正式变更和刚观察到的事实编译成一份 TransitionPlan？",
+      "members": [
+        "cli",
+        "planning",
+        "current-resolution",
+        "openspec-intent",
+        "kernel",
+        "contracts",
+        "gate-policy",
+        "skills",
+        "openspec-cli"
+      ]
+    },
+    {
+      "id": "proof",
+      "title": "一个确切 HEAD 的证明",
+      "question": "一个确切 HEAD 的证明如何产生、判断和保存？",
+      "members": [
+        "cli",
+        "proof",
+        "gate-runner",
+        "gate-policy",
+        "quality-policy",
+        "native-evidence",
+        "evidence-store",
+        "attestation-set",
+        "native-tools"
+      ]
+    },
+    {
+      "id": "admission",
+      "title": "什么可以改动仓库",
+      "question": "哪些检查准入写入、提交或引用移动，决定权又由谁持有？",
+      "members": [
+        "cli",
+        "prewrite-admission",
+        "ref-admission",
+        "current-resolution",
+        "openspec-intent",
+        "lease",
+        "hooks",
+        "git-effects",
+        "projections"
+      ]
+    },
+    {
+      "id": "lanes",
+      "title": "工作通道：从开始到退役",
+      "question": "工作通道如何开始、在主机之间转移、落地和退役？",
+      "members": [
+        "cli",
+        "work-lane",
+        "handoff",
+        "retirement",
+        "landing",
+        "mutation-admission",
+        "lease",
+        "git-effects"
+      ]
+    },
+    {
+      "id": "commits",
+      "title": "通道可以做的提交",
+      "question": "通道如何准入自己的提交，并绑定守护这些提交的钩子？",
+      "members": [
+        "work-lane",
+        "commits",
+        "hooks",
+        "openspec-intent",
+        "repository-audit",
+        "kernel",
+        "git-effects",
+        "git"
+      ]
+    },
+    {
+      "id": "peers",
+      "title": "发布到每个平台",
+      "question": "已验收的头提交如何到达每个代码托管平台，它的发布又由什么绑定？",
+      "members": [
+        "cli",
+        "publication",
+        "ref-admission",
+        "proof",
+        "landing",
+        "release",
+        "forges",
+        "git-read",
+        "git"
+      ]
+    },
+    {
+      "id": "structure",
+      "title": "每个受治理仓库共有的结构",
+      "question": "ETHOS 在自身和每个接入仓库中，对仓库结构声明并检查些什么？",
+      "members": [
+        "repository-audit",
+        "paradigm",
+        "docs-registry",
+        "skills",
+        "release",
+        "adoption",
+        "profile",
+        "gate-policy",
+        "attestation-set",
+        "git"
+      ]
+    },
+    {
+      "id": "runtime",
+      "title": "每个钩子运行的运行时",
+      "question": "仓库如何绑定一个不可变的运行时，让普通 Git 命令也经过准入？",
+      "members": [
+        "cli",
+        "hooks",
+        "runtime",
+        "ref-admission",
+        "proof",
+        "release",
+        "native-evidence",
+        "native-tools",
+        "attestation-set"
+      ]
+    },
+    {
+      "id": "surfaces",
+      "title": "一种含义，所有入口",
+      "question": "人、Agent 和 Git 如何触达同样的操作？",
+      "members": [
+        "cli",
+        "mcp-server",
+        "status",
+        "planning",
+        "landing",
+        "publication",
+        "adoption",
+        "paradigm",
+        "projections"
+      ]
+    }
+  ],
+  "editors": [
+    {
+      "name": "Yang HENG"
+    }
+  ],
+  "license": "MIT"
+}

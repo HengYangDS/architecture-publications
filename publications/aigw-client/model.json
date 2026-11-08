@@ -91,7 +91,7 @@
       "kind": "interface",
       "details": {
         "command": "aigw credential",
-        "serves": "a client's own Token on demand, never on standard output"
+        "serves": "a client's own Token on demand, on standard output, where it never writes a diagnostic"
       },
       "files": ["internal/cli/credential/"]
     },

@@ -1,0 +1,170 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "从经审阅的清单到可用的客户端",
+    "output": "rollout.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/aigw-cli.git",
+      "provider": "github",
+      "revision": "abf05858f4092a3baf9acea0d5d7488b26898aa5"
+    },
+    "legend": {
+      "entries": {
+        "backend": {
+          "label": "步骤"
+        },
+        "external": {
+          "label": "AIGW 之外"
+        },
+        "security": {
+          "label": "凭据"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "rollout-lane-maintainer",
+      "label": "维护者"
+    },
+    {
+      "id": "rollout-lane-member",
+      "label": "成员"
+    }
+  ],
+  "mainPath": [
+    "rollout-curate",
+    "rollout-publish",
+    "rollout-import",
+    "rollout-connect",
+    "rollout-check"
+  ],
+  "nodes": [
+    {
+      "id": "rollout-curate",
+      "lane": "rollout-lane-maintainer",
+      "col": 0,
+      "type": "backend",
+      "label": "编订清单",
+      "sources": [
+        {
+          "path": "docs/guides/team-rollout.md",
+          "line": 17,
+          "end_line": 22,
+          "label": "Curate"
+        }
+      ]
+    },
+    {
+      "id": "rollout-publish",
+      "lane": "rollout-lane-maintainer",
+      "col": 1,
+      "type": "backend",
+      "label": "按标签发布",
+      "sources": [
+        {
+          "path": "docs/guides/team-rollout.md",
+          "line": 24,
+          "end_line": 29,
+          "label": "Publish"
+        }
+      ]
+    },
+    {
+      "id": "rollout-install",
+      "lane": "rollout-lane-member",
+      "col": 1,
+      "type": "external",
+      "label": "安装 AIGW",
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 29,
+          "end_line": 41,
+          "label": "Install"
+        }
+      ]
+    },
+    {
+      "id": "rollout-import",
+      "lane": "rollout-lane-member",
+      "col": 2,
+      "type": "backend",
+      "label": "导入清单",
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 94,
+          "end_line": 102,
+          "label": "Import"
+        }
+      ]
+    },
+    {
+      "id": "rollout-connect",
+      "lane": "rollout-lane-member",
+      "col": 3,
+      "type": "security",
+      "label": "连接一个账户",
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 101,
+          "end_line": 108,
+          "label": "Connect"
+        }
+      ]
+    },
+    {
+      "id": "rollout-check",
+      "lane": "rollout-lane-member",
+      "col": 4,
+      "type": "backend",
+      "label": "同步并检查",
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 118,
+          "end_line": 125,
+          "label": "Activate"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "rollout-e-publish",
+      "from": "rollout-curate",
+      "to": "rollout-publish",
+      "role": "main"
+    },
+    {
+      "id": "rollout-e-import",
+      "from": "rollout-publish",
+      "to": "rollout-import",
+      "role": "main",
+      "variant": "emphasis"
+    },
+    {
+      "id": "rollout-e-installed",
+      "from": "rollout-install",
+      "to": "rollout-import",
+      "role": "main"
+    },
+    {
+      "id": "rollout-e-connect",
+      "from": "rollout-import",
+      "to": "rollout-connect",
+      "role": "main"
+    },
+    {
+      "id": "rollout-e-check",
+      "from": "rollout-connect",
+      "to": "rollout-check",
+      "role": "main"
+    }
+  ]
+}

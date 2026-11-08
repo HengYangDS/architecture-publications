@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "filmkit 读取、运行和写出什么",
+    "output": "context.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/filmkit.git",
+      "provider": "github",
+      "revision": "d6de89569ddb336363186ca99c39e5a45d018cb1"
+    }
+  },
+  "components": [
+    {
+      "id": "ctx-author",
+      "type": "external",
+      "label": "影片作者",
+      "sublabel": "编写影片",
+      "pos": [40, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 5,
+          "end_line": 5,
+          "label": "Film"
+        }
+      ],
+      "icon": "person"
+    },
+    {
+      "id": "ctx-film",
+      "type": "external",
+      "label": "影片仓库",
+      "sublabel": "声明、脚本、画面",
+      "pos": [280, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 18,
+          "end_line": 26,
+          "label": "Layout"
+        }
+      ]
+    },
+    {
+      "id": "ctx-models",
+      "type": "external",
+      "label": "语音模型",
+      "sublabel": "合成模型、对齐器、识别器",
+      "pos": [520, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/filmkit/narration/snapshots.py",
+          "line": 58,
+          "end_line": 86,
+          "label": "Pins"
+        }
+      ]
+    },
+    {
+      "id": "ctx-supply",
+      "type": "cloud",
+      "label": "供给步骤",
+      "sublabel": "唯一联网的步骤",
+      "pos": [760, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/filmkit/supply.py",
+          "line": 1,
+          "end_line": 7,
+          "label": "Supply"
+        }
+      ]
+    },
+    {
+      "id": "ctx-engine",
+      "type": "security",
+      "label": "filmkit 引擎",
+      "sublabel": "每个动作一个语言版",
+      "pos": [280, 190],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/filmkit/produce.py",
+          "line": 63,
+          "end_line": 89,
+          "label": "Actions"
+        }
+      ]
+    },
+    {
+      "id": "ctx-browser",
+      "type": "external",
+      "label": "HyperFrames、Chrome",
+      "sublabel": "影片的 npm 包",
+      "pos": [520, 190],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/filmkit/picture/rendering.py",
+          "line": 191,
+          "end_line": 201,
+          "label": "Renderer"
+        }
+      ]
+    },
+    {
+      "id": "ctx-build",
+      "type": "database",
+      "label": "构建文件夹",
+      "sublabel": "媒体和记录",
+      "pos": [40, 340],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/filmkit/production.py",
+          "line": 125,
+          "end_line": 141,
+          "label": "Places"
+        }
+      ]
+    },
+    {
+      "id": "ctx-host",
+      "type": "external",
+      "label": "FFmpeg、ExifTool、rsync",
+      "sublabel": "主机工具",
+      "pos": [280, 340],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 9,
+          "end_line": 12,
+          "label": "Requirements"
+        }
+      ]
+    },
+    {
+      "id": "ctx-documents",
+      "type": "database",
+      "label": "Documents 文件夹",
+      "sublabel": "25 个交付项",
+      "pos": [520, 340],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/filmkit/delivery/documents_folder.py",
+          "line": 1,
+          "end_line": 27,
+          "label": "Delivery"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "ctx-writes",
+      "from": "ctx-author",
+      "to": "ctx-film",
+      "label": "编写"
+    },
+    {
+      "id": "ctx-reads",
+      "from": "ctx-engine",
+      "to": "ctx-film",
+      "label": "读取"
+    },
+    {
+      "id": "ctx-downloads",
+      "from": "ctx-supply",
+      "to": "ctx-models",
+      "label": "下载"
+    },
+    {
+      "id": "ctx-installs",
+      "from": "ctx-supply",
+      "to": "ctx-browser",
+      "label": "安装"
+    },
+    {
+      "id": "ctx-narrates",
+      "from": "ctx-engine",
+      "to": "ctx-models",
+      "label": "朗读、对齐"
+    },
+    {
+      "id": "ctx-renders",
+      "from": "ctx-engine",
+      "to": "ctx-browser",
+      "label": "渲染、审查",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ctx-encodes",
+      "from": "ctx-engine",
+      "to": "ctx-host",
+      "label": "编码、探测"
+    },
+    {
+      "id": "ctx-records",
+      "from": "ctx-engine",
+      "to": "ctx-build",
+      "label": "写记录"
+    },
+    {
+      "id": "ctx-delivers",
+      "from": "ctx-engine",
+      "to": "ctx-documents",
+      "label": "交付"
+    }
+  ]
+}

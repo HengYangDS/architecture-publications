@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "diagram_type": "tree",
+  "meta": {
+    "title": "哪个章节负责哪类工作问题",
+    "locale": "zh-CN",
+    "output": "topics.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
+      "provider": "github",
+      "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42"
+    }
+  },
+  "layout": {
+    "direction": "right"
+  },
+  "nodes": [
+    {
+      "id": "tp-map",
+      "label": "任务地图",
+      "sublabel": "docs/README.md",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 9,
+          "end_line": 15,
+          "label": "任务地图"
+        }
+      ]
+    },
+    {
+      "id": "tp-urgent",
+      "label": "紧急故障或越界",
+      "sublabel": "紧急情况，最先",
+      "parent": "tp-map",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 14,
+          "end_line": 15,
+          "label": "紧急"
+        }
+      ]
+    },
+    {
+      "id": "tp-direction",
+      "label": "方向与决策",
+      "parent": "tp-map",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 17,
+          "end_line": 28,
+          "label": "方向"
+        }
+      ]
+    },
+    {
+      "id": "tp-charter",
+      "label": "章程",
+      "sublabel": "依据、风险分级",
+      "parent": "tp-direction",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 19,
+          "end_line": 21,
+          "label": "章程"
+        }
+      ]
+    },
+    {
+      "id": "tp-decide",
+      "label": "分析与决策",
+      "sublabel": "界定、诊断、比较",
+      "parent": "tp-direction",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 22,
+          "end_line": 28,
+          "label": "决策"
+        }
+      ]
+    },
+    {
+      "id": "tp-delivery",
+      "label": "数据与交付",
+      "parent": "tp-map",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 30,
+          "end_line": 46,
+          "label": "数据与交付"
+        }
+      ]
+    },
+    {
+      "id": "tp-data",
+      "label": "数据质量与采用",
+      "sublabel": "证明适合、变更数据",
+      "parent": "tp-delivery",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 32,
+          "end_line": 43,
+          "label": "数据"
+        }
+      ]
+    },
+    {
+      "id": "tp-deliver",
+      "label": "执行与交付",
+      "sublabel": "检查、核验、收尾",
+      "parent": "tp-delivery",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 44,
+          "end_line": 46,
+          "label": "交付"
+        }
+      ]
+    },
+    {
+      "id": "tp-collab",
+      "label": "协作与改进",
+      "parent": "tp-map",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 48,
+          "end_line": 64,
+          "label": "协作"
+        }
+      ]
+    },
+    {
+      "id": "tp-communicate",
+      "label": "沟通",
+      "sublabel": "汇报、上报",
+      "parent": "tp-collab",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 50,
+          "end_line": 53,
+          "label": "沟通"
+        }
+      ]
+    },
+    {
+      "id": "tp-agent",
+      "label": "人与人工智能的协作",
+      "sublabel": "委托、检查输出",
+      "parent": "tp-collab",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 54,
+          "end_line": 58,
+          "label": "委托"
+        }
+      ]
+    },
+    {
+      "id": "tp-evolve",
+      "label": "实践与演进",
+      "sublabel": "辅导、改进实践",
+      "parent": "tp-collab",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 59,
+          "end_line": 64,
+          "label": "演进"
+        }
+      ]
+    },
+    {
+      "id": "tp-maintain",
+      "label": "维护本仓库",
+      "parent": "tp-map",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 78,
+          "end_line": 88,
+          "label": "维护"
+        }
+      ]
+    },
+    {
+      "id": "tp-records",
+      "label": "决策记录",
+      "sublabel": "选择的理由",
+      "parent": "tp-maintain",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 84,
+          "end_line": 86,
+          "label": "决策"
+        }
+      ]
+    },
+    {
+      "id": "tp-governance",
+      "label": "仓库变更与发布",
+      "sublabel": "OpenSpec 和 ETHOS",
+      "parent": "tp-maintain",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 84,
+          "end_line": 85,
+          "label": "治理"
+        }
+      ]
+    }
+  ]
+}

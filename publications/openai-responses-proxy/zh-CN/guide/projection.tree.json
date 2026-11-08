@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "diagram_type": "tree",
+  "meta": {
+    "title": "一个请求保留、改写、去除和拒绝的内容",
+    "locale": "zh-CN",
+    "output": "projection.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
+      "provider": "github",
+      "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+    }
+  },
+  "layout": {
+    "direction": "right"
+  },
+  "nodes": [
+    {
+      "id": "pr-root",
+      "label": "一个 Responses 请求"
+    },
+    {
+      "id": "pr-kept",
+      "label": "保留",
+      "parent": "pr-root"
+    },
+    {
+      "id": "pr-dialogue",
+      "label": "对话消息",
+      "sublabel": "user、assistant、developer、system",
+      "parent": "pr-kept",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/input.py",
+          "line": 135,
+          "end_line": 171,
+          "label": "消息"
+        }
+      ]
+    },
+    {
+      "id": "pr-pairs",
+      "label": "工具调用及其输出",
+      "sublabel": "function 与 custom 工具",
+      "parent": "pr-kept",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/items.py",
+          "line": 97,
+          "end_line": 108,
+          "label": "配对的输出"
+        }
+      ]
+    },
+    {
+      "id": "pr-controls",
+      "label": "本轮控制项",
+      "sublabel": "additional_tools、compaction_trigger",
+      "parent": "pr-kept",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/items.py",
+          "line": 134,
+          "end_line": 142,
+          "label": "控制项"
+        }
+      ]
+    },
+    {
+      "id": "pr-agent",
+      "label": "加密的 Agent 消息",
+      "sublabel": "信封和密文，原样保留",
+      "parent": "pr-kept",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/input.py",
+          "line": 198,
+          "end_line": 209,
+          "label": "原生信封"
+        }
+      ]
+    },
+    {
+      "id": "pr-rewritten",
+      "label": "改写",
+      "parent": "pr-root"
+    },
+    {
+      "id": "pr-store",
+      "label": "store=false",
+      "sublabel": "每个请求都设置",
+      "parent": "pr-rewritten",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/projection.py",
+          "line": 96,
+          "end_line": 98,
+          "label": "Store"
+        }
+      ]
+    },
+    {
+      "id": "pr-empty",
+      "label": "空的工具输出",
+      "sublabel": "改为固定的文本标记",
+      "parent": "pr-rewritten",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/input.py",
+          "line": 361,
+          "end_line": 369,
+          "label": "标记"
+        }
+      ]
+    },
+    {
+      "id": "pr-delivery",
+      "label": "后到的工具结果",
+      "sublabel": "改为注明归属的 assistant 消息",
+      "parent": "pr-rewritten",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/input.py",
+          "line": 384,
+          "end_line": 395,
+          "label": "投递"
+        }
+      ]
+    },
+    {
+      "id": "pr-removed",
+      "label": "去除",
+      "parent": "pr-root"
+    },
+    {
+      "id": "pr-bindings",
+      "label": "提供商绑定",
+      "sublabel": "前一个 response、conversation、缓存键",
+      "parent": "pr-removed",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/projection.py",
+          "line": 99,
+          "end_line": 101,
+          "label": "绑定"
+        }
+      ]
+    },
+    {
+      "id": "pr-reasoning",
+      "label": "推理历史",
+      "sublabel": "条目和加密内容",
+      "parent": "pr-removed",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/items.py",
+          "line": 82,
+          "end_line": 82,
+          "label": "推理内容"
+        },
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/projection.py",
+          "line": 103,
+          "end_line": 110,
+          "label": "Include"
+        }
+      ]
+    },
+    {
+      "id": "pr-references",
+      "label": "已存储的引用",
+      "sublabel": "条目引用、压缩、搜索调用",
+      "parent": "pr-removed",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/items.py",
+          "line": 83,
+          "end_line": 91,
+          "label": "丢弃的类型"
+        }
+      ]
+    },
+    {
+      "id": "pr-images",
+      "label": "无法重放的图像",
+      "sublabel": "本地或格式错误的图像 URL",
+      "parent": "pr-removed",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/content.py",
+          "line": 121,
+          "end_line": 128,
+          "label": "图像"
+        }
+      ]
+    },
+    {
+      "id": "pr-refused",
+      "label": "在上游 I/O 之前拒绝",
+      "parent": "pr-root"
+    },
+    {
+      "id": "pr-unknown",
+      "label": "未知类型",
+      "sublabel": "条目和内容块",
+      "parent": "pr-refused",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/input.py",
+          "line": 486,
+          "end_line": 491,
+          "label": "未知"
+        }
+      ]
+    },
+    {
+      "id": "pr-drift",
+      "label": "无可移植形式的类型",
+      "sublabel": "patch、MCP、shell、computer 调用",
+      "parent": "pr-refused",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/items.py",
+          "line": 56,
+          "end_line": 75,
+          "label": "模式漂移"
+        }
+      ]
+    },
+    {
+      "id": "pr-orphan",
+      "label": "残缺的工具关系",
+      "sublabel": "输出先于其调用",
+      "parent": "pr-refused",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/protocol/replay/items.py",
+          "line": 306,
+          "end_line": 311,
+          "label": "孤立的输出"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "diagram_type": "tree",
+  "meta": {
+    "title": "macOS 上一次安装写入什么、写在哪里",
+    "locale": "zh-CN",
+    "output": "disk.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
+      "provider": "github",
+      "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+    }
+  },
+  "layout": {
+    "direction": "right"
+  },
+  "nodes": [
+    {
+      "id": "dk-root",
+      "label": "一次安装"
+    },
+    {
+      "id": "dk-data",
+      "label": "数据根目录",
+      "sublabel": "Application Support/openai-responses-proxy",
+      "parent": "dk-root",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/runtime/config.py",
+          "line": 155,
+          "end_line": 165,
+          "label": "数据根目录"
+        }
+      ]
+    },
+    {
+      "id": "dk-selector",
+      "label": "payload-selection.json",
+      "sublabel": "活动代及其前代",
+      "parent": "dk-data",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/serving/identity.py",
+          "line": 20,
+          "end_line": 23,
+          "label": "选择器"
+        }
+      ]
+    },
+    {
+      "id": "dk-installed",
+      "label": "release-install-state.json",
+      "sublabel": "发布版本、回执摘要、命令路径",
+      "parent": "dk-data",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/transaction/completion.py",
+          "line": 48,
+          "end_line": 60,
+          "label": "安装状态"
+        }
+      ]
+    },
+    {
+      "id": "dk-generations",
+      "label": "generations/",
+      "sublabel": "每个事务一个不可变目录",
+      "parent": "dk-data"
+    },
+    {
+      "id": "dk-active",
+      "label": "活动代",
+      "sublabel": "bin/、providers.toml、清单、回执、runtime-config.json",
+      "parent": "dk-generations",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/serving/inventory.py",
+          "line": 11,
+          "end_line": 17,
+          "label": "成员"
+        }
+      ]
+    },
+    {
+      "id": "dk-predecessor",
+      "label": "前代",
+      "sublabel": "留作一次回滚",
+      "parent": "dk-generations",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/generation.py",
+          "line": 131,
+          "end_line": 154,
+          "label": "选定"
+        }
+      ]
+    },
+    {
+      "id": "dk-transaction",
+      "label": "事务日志",
+      "sublabel": "位于数据根目录旁，仅在事务未结时存在",
+      "parent": "dk-root",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/records.py",
+          "line": 25,
+          "end_line": 37,
+          "label": "事务日志"
+        }
+      ]
+    },
+    {
+      "id": "dk-state",
+      "label": "状态根目录",
+      "sublabel": "Library/Logs/openai-responses-proxy",
+      "parent": "dk-root",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/runtime/config.py",
+          "line": 168,
+          "end_line": 184,
+          "label": "状态根目录"
+        }
+      ]
+    },
+    {
+      "id": "dk-logs",
+      "label": "proxy.log、watchdog.log",
+      "sublabel": "有界、轮转、权限 0600",
+      "parent": "dk-state",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/runtime/bounded_log.py",
+          "line": 81,
+          "end_line": 108,
+          "label": "追加"
+        }
+      ]
+    },
+    {
+      "id": "dk-lock",
+      "label": "lifecycle.lock",
+      "sublabel": "同一时刻一个生命周期写入者",
+      "parent": "dk-state",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/cli/application.py",
+          "line": 96,
+          "end_line": 115,
+          "label": "锁"
+        }
+      ]
+    },
+    {
+      "id": "dk-command",
+      "label": "命令链接",
+      "sublabel": "~/.local/bin/openai-responses-proxy",
+      "parent": "dk-root",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/command.py",
+          "line": 34,
+          "end_line": 48,
+          "label": "命令路径"
+        }
+      ]
+    },
+    {
+      "id": "dk-agent",
+      "label": "launchd 代理",
+      "sublabel": "LaunchAgents/openai-responses-proxy.watchdog.plist",
+      "parent": "dk-root",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/supervision/macos.py",
+          "line": 49,
+          "end_line": 51,
+          "label": "plist 路径"
+        }
+      ]
+    }
+  ]
+}

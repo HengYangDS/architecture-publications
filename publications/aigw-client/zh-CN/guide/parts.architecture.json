@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "一份经审阅的配置，投影到每个客户端",
+    "output": "parts.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/aigw-cli.git",
+      "provider": "github",
+      "revision": "abf05858f4092a3baf9acea0d5d7488b26898aa5"
+    }
+  },
+  "components": [
+    {
+      "id": "parts-store",
+      "type": "database",
+      "label": "配置存储",
+      "sublabel": "同一把锁下的 config.toml",
+      "pos": [70, 30],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "internal/store/store.go",
+          "line": 131,
+          "end_line": 134,
+          "label": "Commit"
+        }
+      ]
+    },
+    {
+      "id": "parts-sync",
+      "type": "backend",
+      "label": "同步",
+      "sublabel": "一次带守卫的事务",
+      "pos": [365, 30],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "internal/app/synchronization/transaction.go",
+          "line": 40,
+          "end_line": 118,
+          "label": "commit"
+        }
+      ]
+    },
+    {
+      "id": "parts-seam",
+      "type": "backend",
+      "label": "适配器接缝",
+      "sublabel": "每个客户端一份契约",
+      "pos": [365, 170],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "internal/adapter/registry.go",
+          "line": 93,
+          "end_line": 111,
+          "label": "Adapter"
+        }
+      ]
+    },
+    {
+      "id": "parts-codex",
+      "type": "external",
+      "label": "Codex",
+      "sublabel": "~/.codex/config.toml",
+      "pos": [50, 340],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "internal/adapter/codex/reconcile.go",
+          "line": 88,
+          "end_line": 92,
+          "label": "Rollback"
+        }
+      ]
+    },
+    {
+      "id": "parts-claude-code",
+      "type": "external",
+      "label": "Claude Code",
+      "sublabel": "~/.claude/settings.json",
+      "pos": [260, 340],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "internal/adapter/claude/settings.go",
+          "line": 95,
+          "end_line": 100,
+          "label": "Rollback"
+        }
+      ]
+    },
+    {
+      "id": "parts-claude-desktop",
+      "type": "external",
+      "label": "Claude Desktop",
+      "sublabel": "Claude-3p/configLibrary",
+      "pos": [470, 340],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "internal/adapter/claudedesktop/configuration.go",
+          "line": 288,
+          "end_line": 295,
+          "label": "Rollback"
+        }
+      ]
+    },
+    {
+      "id": "parts-hermes",
+      "type": "external",
+      "label": "Hermes",
+      "sublabel": "~/.hermes/config.yaml",
+      "pos": [680, 340],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "internal/adapter/hermes/projection.go",
+          "line": 356,
+          "end_line": 366,
+          "label": "Rollback"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "persists",
+      "from": "parts-sync",
+      "to": "parts-store",
+      "label": "持久化"
+    },
+    {
+      "id": "plans-applies",
+      "from": "parts-sync",
+      "to": "parts-seam",
+      "label": "规划、应用",
+      "variant": "emphasis"
+    },
+    {
+      "id": "codex-implements",
+      "from": "parts-codex",
+      "to": "parts-seam",
+      "label": "实现"
+    },
+    {
+      "id": "claude-code-implements",
+      "from": "parts-claude-code",
+      "to": "parts-seam",
+      "label": "实现"
+    },
+    {
+      "id": "claude-desktop-implements",
+      "from": "parts-claude-desktop",
+      "to": "parts-seam",
+      "label": "实现"
+    },
+    {
+      "id": "hermes-implements",
+      "from": "parts-hermes",
+      "to": "parts-seam",
+      "label": "实现"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "受支持的客户端",
+      "wraps": ["parts-codex", "parts-claude-code", "parts-claude-desktop", "parts-hermes"]
+    }
+  ]
+}

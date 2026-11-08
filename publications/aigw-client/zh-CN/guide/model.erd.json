@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "diagram_type": "erd",
+  "meta": {
+    "title": "AIGW 的配置包含什么",
+    "locale": "zh-CN",
+    "output": "model.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/HengYangDS/aigw-cli.git",
+      "provider": "github",
+      "revision": "abf05858f4092a3baf9acea0d5d7488b26898aa5"
+    }
+  },
+  "layout": {
+    "mode": "grid",
+    "gapX": 72,
+    "gapY": 38
+  },
+  "entities": [
+    {
+      "id": "erd-binding",
+      "label": "客户端绑定",
+      "tag": "config.toml",
+      "row": 0,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "client",
+          "type": "string",
+          "key": "pk"
+        },
+        {
+          "name": "route",
+          "type": "string",
+          "key": "fk",
+          "references": "erd-route.id"
+        },
+        {
+          "name": "enabled",
+          "type": "bool"
+        },
+        {
+          "name": "protocol",
+          "type": "EndpointProtocol"
+        },
+        {
+          "name": "authentication",
+          "type": "Authentication"
+        }
+      ],
+      "sources": [
+        {
+          "path": "internal/domain/clients.go",
+          "line": 200,
+          "end_line": 216,
+          "label": "ClientBinding"
+        }
+      ],
+      "width": 244
+    },
+    {
+      "id": "erd-route",
+      "label": "路由",
+      "tag": "config.toml",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "key": "pk"
+        },
+        {
+          "name": "account",
+          "type": "string",
+          "key": "fk",
+          "references": "erd-account.id"
+        },
+        {
+          "name": "model",
+          "type": "string",
+          "key": "fk",
+          "references": "erd-model.id"
+        },
+        {
+          "name": "upstream_model",
+          "type": "string"
+        },
+        {
+          "name": "lifecycle",
+          "type": "RouteLifecycle"
+        }
+      ],
+      "sources": [
+        {
+          "path": "internal/domain/model.go",
+          "line": 102,
+          "end_line": 113,
+          "label": "Route"
+        }
+      ]
+    },
+    {
+      "id": "erd-model",
+      "label": "模型",
+      "tag": "config.toml",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "key": "pk"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        }
+      ],
+      "sources": [
+        {
+          "path": "internal/domain/model.go",
+          "line": 94,
+          "end_line": 100,
+          "label": "Model"
+        }
+      ],
+      "width": 244
+    },
+    {
+      "id": "erd-account",
+      "label": "账户",
+      "tag": "config.toml",
+      "row": 1,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "key": "pk"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        },
+        {
+          "name": "endpoints",
+          "type": "Endpoints"
+        }
+      ],
+      "sources": [
+        {
+          "path": "internal/domain/model.go",
+          "line": 85,
+          "end_line": 92,
+          "label": "Account"
+        }
+      ]
+    },
+    {
+      "id": "erd-token",
+      "label": "账户令牌",
+      "tag": "令牌存储",
+      "row": 1,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "account",
+          "type": "string",
+          "key": ["pk", "fk"],
+          "references": "erd-account.id"
+        },
+        {
+          "name": "token",
+          "type": "secret"
+        }
+      ],
+      "sources": [
+        {
+          "path": "docs/architecture/security-model.md",
+          "line": 13,
+          "end_line": 16,
+          "label": "Credential storage"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel-selects",
+      "from": "erd-binding",
+      "to": "erd-route",
+      "label": "选用",
+      "fromCardinality": "many",
+      "toCardinality": "one"
+    },
+    {
+      "id": "rel-uses",
+      "from": "erd-route",
+      "to": "erd-account",
+      "label": "使用",
+      "fromCardinality": "many",
+      "toCardinality": "one"
+    },
+    {
+      "id": "rel-exposes",
+      "from": "erd-route",
+      "to": "erd-model",
+      "label": "暴露",
+      "fromCardinality": "many",
+      "toCardinality": "one"
+    },
+    {
+      "id": "rel-authenticates",
+      "from": "erd-token",
+      "to": "erd-account",
+      "label": "认证",
+      "fromCardinality": "one",
+      "toCardinality": "one",
+      "fromOptional": true
+    }
+  ]
+}

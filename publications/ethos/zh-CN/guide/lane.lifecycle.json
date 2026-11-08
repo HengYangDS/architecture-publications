@@ -1,0 +1,215 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "工作通道：从开始到退役",
+    "output": "lane.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/ethos.git",
+      "provider": "github",
+      "revision": "727ee0579ba1fb9e391b5c44ce9fb2c208390199"
+    }
+  },
+  "mainPath": ["lane-started", "lane-writing", "lane-proven", "lane-accepted"],
+  "states": [
+    {
+      "id": "lane-started",
+      "type": "start",
+      "label": "通道已开始",
+      "sublabel": "自有通道",
+      "sources": [
+        {
+          "path": "src/ethos/adapters/mutation/lane_lifecycle/start.py",
+          "line": 343,
+          "end_line": 353,
+          "label": "开始"
+        }
+      ]
+    },
+    {
+      "id": "lane-writing",
+      "type": "active",
+      "label": "写入中",
+      "sublabel": "已准入的路径",
+      "sources": [
+        {
+          "path": "src/ethos/adapters/admission/prewrite.py",
+          "line": 60,
+          "end_line": 72,
+          "label": "写前准入"
+        }
+      ]
+    },
+    {
+      "id": "lane-proven",
+      "type": "decision",
+      "label": "头提交已证明",
+      "sublabel": "一个确切的头提交",
+      "sources": [
+        {
+          "path": "src/ethos/adapters/mutation/proof.py",
+          "line": 417,
+          "end_line": 422,
+          "label": "证明"
+        },
+        {
+          "path": "docs/architecture/runner-and-mutation.md",
+          "line": 97,
+          "end_line": 104,
+          "label": "归档"
+        }
+      ]
+    },
+    {
+      "id": "lane-accepted",
+      "type": "success",
+      "label": "头提交已验收",
+      "sublabel": "随后退役",
+      "sources": [
+        {
+          "path": "src/ethos/adapters/mutation/landing.py",
+          "line": 45,
+          "end_line": 58,
+          "label": "落地"
+        },
+        {
+          "path": "docs/architecture/runner-and-mutation.md",
+          "line": 129,
+          "end_line": 131,
+          "label": "收尾"
+        },
+        {
+          "path": "docs/architecture/runner-and-mutation.md",
+          "line": 88,
+          "end_line": 92,
+          "label": "退役"
+        }
+      ]
+    },
+    {
+      "id": "lane-stale",
+      "type": "waiting",
+      "label": "基线过时",
+      "sublabel": "候选分支已前进",
+      "sources": [
+        {
+          "path": "docs/architecture/runner-and-mutation.md",
+          "line": 43,
+          "end_line": 46,
+          "label": "过时"
+        }
+      ]
+    },
+    {
+      "id": "lane-refused",
+      "type": "failure",
+      "label": "证明被拒",
+      "sublabel": "未获准入",
+      "sources": [
+        {
+          "path": "docs/architecture/runner-and-mutation.md",
+          "line": 104,
+          "end_line": 107,
+          "label": "补偿"
+        }
+      ]
+    },
+    {
+      "id": "lane-unowned",
+      "type": "waiting",
+      "label": "通道无主",
+      "sublabel": "租约失效",
+      "sources": [
+        {
+          "path": "docs/governance/product-design-contract.md",
+          "line": 273,
+          "end_line": 277,
+          "label": "协调"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "id": "lane-t-write",
+      "from": "lane-started",
+      "to": "lane-writing",
+      "label": "写前准入"
+    },
+    {
+      "id": "lane-t-prove",
+      "from": "lane-writing",
+      "to": "lane-proven",
+      "label": "证明"
+    },
+    {
+      "id": "lane-t-accept",
+      "from": "lane-proven",
+      "to": "lane-accepted",
+      "label": "验收"
+    },
+    {
+      "id": "lane-t-stale",
+      "from": "lane-proven",
+      "to": "lane-stale",
+      "label": "基线移动",
+      "variant": "security"
+    },
+    {
+      "id": "lane-t-refresh",
+      "from": "lane-stale",
+      "to": "lane-writing",
+      "label": "刷新基线",
+      "variant": "dashed"
+    },
+    {
+      "id": "lane-t-refused",
+      "from": "lane-writing",
+      "to": "lane-refused",
+      "label": "失败",
+      "variant": "security"
+    },
+    {
+      "id": "lane-t-compensate",
+      "from": "lane-refused",
+      "to": "lane-writing",
+      "label": "补偿",
+      "variant": "dashed"
+    },
+    {
+      "id": "lane-t-unowned",
+      "from": "lane-writing",
+      "to": "lane-unowned",
+      "label": "租约失效",
+      "variant": "security"
+    },
+    {
+      "id": "lane-t-reacquire",
+      "from": "lane-unowned",
+      "to": "lane-writing",
+      "label": "重新获取",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "谁可以写入",
+      "items": [
+        "只有租约持有者能在通道里写入。",
+        "租约只有四个字段：通道、持有者、代次和到期时间。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "通道如何恢复",
+      "items": [
+        "基线过时：把通道重放到候选分支上。",
+        "证明被拒：退回归档前的头提交。",
+        "通道无主：重新获取、转移或退役。"
+      ]
+    }
+  ]
+}

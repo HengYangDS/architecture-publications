@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "谁触达 ETHOS，它又作用于什么",
+    "output": "context.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/ethos.git",
+      "provider": "github",
+      "revision": "727ee0579ba1fb9e391b5c44ce9fb2c208390199"
+    }
+  },
+  "components": [
+    {
+      "id": "ctx-people",
+      "type": "external",
+      "icon": "person",
+      "label": "人",
+      "sublabel": "CLI",
+      "pos": [40, 40],
+      "size": [160, 64],
+      "sources": [
+        {
+          "path": "docs/governance/product-design-contract.md",
+          "line": 370,
+          "end_line": 372,
+          "label": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "ctx-agents",
+      "type": "external",
+      "label": "AI Agent",
+      "sublabel": "MCP 与技能",
+      "pos": [40, 150],
+      "size": [160, 64],
+      "sources": [
+        {
+          "path": "docs/architecture/mcp-server.md",
+          "line": 18,
+          "end_line": 21,
+          "label": "MCP"
+        }
+      ]
+    },
+    {
+      "id": "ctx-programs",
+      "type": "external",
+      "label": "程序",
+      "sublabel": "Python SDK",
+      "pos": [40, 260],
+      "size": [160, 64],
+      "sources": [
+        {
+          "path": "docs/governance/product-design-contract.md",
+          "line": 373,
+          "end_line": 374,
+          "label": "SDK"
+        }
+      ]
+    },
+    {
+      "id": "ctx-service",
+      "type": "backend",
+      "label": "应用服务",
+      "sublabel": "一套带类型的操作",
+      "pos": [250, 150],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "docs/plans/terminal-governance-product-design.md",
+          "line": 394,
+          "end_line": 397,
+          "label": "服务"
+        }
+      ]
+    },
+    {
+      "id": "ctx-kernel",
+      "type": "security",
+      "label": "信任内核",
+      "sublabel": "编译、准入、写下核验记录",
+      "pos": [470, 150],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "docs/governance/product-design-contract.md",
+          "line": 25,
+          "end_line": 30,
+          "label": "内核"
+        }
+      ]
+    },
+    {
+      "id": "ctx-ci",
+      "type": "cloud",
+      "label": "CI 与代码托管平台",
+      "sublabel": "原生投影",
+      "pos": [470, 290],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "docs/governance/product-design-contract.md",
+          "line": 378,
+          "end_line": 378,
+          "label": "CI"
+        }
+      ]
+    },
+    {
+      "id": "ctx-standards",
+      "type": "external",
+      "label": "标准与工具",
+      "sublabel": "只经适配器",
+      "pos": [470, 10],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "docs/architecture/protocol-contracts.md",
+          "line": 18,
+          "end_line": 22,
+          "label": "适配器"
+        }
+      ]
+    },
+    {
+      "id": "ctx-git",
+      "type": "database",
+      "label": "Git",
+      "sublabel": "你的仓库",
+      "pos": [690, 90],
+      "size": [160, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 26,
+          "end_line": 29,
+          "label": "原生"
+        }
+      ]
+    },
+    {
+      "id": "ctx-spec",
+      "type": "backend",
+      "label": "OpenSpec",
+      "sublabel": "正式变更",
+      "pos": [690, 210],
+      "size": [160, 64],
+      "sources": [
+        {
+          "path": "docs/governance/product-design-contract.md",
+          "line": 119,
+          "end_line": 126,
+          "label": "载体"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "ctx-cli",
+      "from": "ctx-people",
+      "to": "ctx-service",
+      "label": "CLI"
+    },
+    {
+      "id": "ctx-mcp",
+      "from": "ctx-agents",
+      "to": "ctx-service",
+      "label": "MCP"
+    },
+    {
+      "id": "ctx-sdk",
+      "from": "ctx-programs",
+      "to": "ctx-service",
+      "label": "SDK"
+    },
+    {
+      "id": "ctx-same",
+      "from": "ctx-service",
+      "to": "ctx-kernel",
+      "label": "同样的操作"
+    },
+    {
+      "id": "ctx-effects",
+      "from": "ctx-kernel",
+      "to": "ctx-git",
+      "label": "确切的 CAS 改动",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ctx-compiles",
+      "from": "ctx-kernel",
+      "to": "ctx-spec",
+      "label": "编译正式变更"
+    },
+    {
+      "id": "ctx-projects",
+      "from": "ctx-ci",
+      "to": "ctx-kernel",
+      "label": "同样的证明"
+    },
+    {
+      "id": "ctx-adapts",
+      "from": "ctx-kernel",
+      "to": "ctx-standards",
+      "label": "适配器",
+      "variant": "dashed"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "security-group",
+      "label": "ETHOS",
+      "wraps": ["ctx-service", "ctx-kernel"]
+    }
+  ]
+}

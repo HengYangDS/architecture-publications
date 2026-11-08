@@ -1,0 +1,225 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "总览如何排版和检查",
+    "output": "overview.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/architecture-publisher",
+      "provider": "github",
+      "revision": "1861b7ccbb6d57378d3e5f69ffc328579eec991b"
+    },
+    "legend": {
+      "entries": {
+        "security": {
+          "label": "检查"
+        },
+        "backend": {
+          "label": "出版工具步骤"
+        },
+        "external": {
+          "label": "结果"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "ov-lane-typeset",
+      "label": "排版"
+    },
+    {
+      "id": "ov-lane-refused",
+      "label": "拒绝",
+      "variant": "exception"
+    }
+  ],
+  "mainPath": ["ov-composition", "ov-typst", "ov-stage", "ov-boxes", "ov-check", "ov-compile"],
+  "nodes": [
+    {
+      "id": "ov-composition",
+      "lane": "ov-lane-typeset",
+      "col": 0,
+      "type": "security",
+      "label": "编排存在？",
+      "sources": [
+        {
+          "path": "src/build.mjs",
+          "line": 106,
+          "end_line": 125,
+          "label": "Composition"
+        }
+      ]
+    },
+    {
+      "id": "ov-typst",
+      "lane": "ov-lane-typeset",
+      "col": 1,
+      "type": "security",
+      "label": "Typst 0.15.1 在 PATH 上？",
+      "sources": [
+        {
+          "path": "src/overview/typeset.mjs",
+          "line": 34,
+          "end_line": 50,
+          "label": "Typst version"
+        }
+      ]
+    },
+    {
+      "id": "ov-stage",
+      "lane": "ov-lane-typeset",
+      "col": 2,
+      "type": "backend",
+      "label": "暂存并检查代码规范",
+      "sources": [
+        {
+          "path": "src/overview/typeset.mjs",
+          "line": 73,
+          "end_line": 109,
+          "label": "Stage"
+        }
+      ]
+    },
+    {
+      "id": "ov-boxes",
+      "lane": "ov-lane-typeset",
+      "col": 3,
+      "type": "backend",
+      "label": "读取文本框",
+      "sources": [
+        {
+          "path": "src/overview/typeset.mjs",
+          "line": 178,
+          "end_line": 217,
+          "label": "Boxes"
+        }
+      ]
+    },
+    {
+      "id": "ov-check",
+      "lane": "ov-lane-typeset",
+      "col": 4,
+      "type": "security",
+      "label": "文字在界内且不相叠？",
+      "sources": [
+        {
+          "path": "src/overview/checks.mjs",
+          "line": 22,
+          "end_line": 56,
+          "label": "Checks"
+        }
+      ]
+    },
+    {
+      "id": "ov-compile",
+      "lane": "ov-lane-typeset",
+      "col": 5,
+      "type": "external",
+      "label": "排入图册",
+      "sources": [
+        {
+          "path": "docs/reference/operations.md",
+          "line": 314,
+          "end_line": 317,
+          "label": "In the edition"
+        }
+      ]
+    },
+    {
+      "id": "ov-refused",
+      "lane": "ov-lane-refused",
+      "col": 2,
+      "type": "external",
+      "label": "总览被拒绝",
+      "sources": [
+        {
+          "path": "src/overview/typeset.mjs",
+          "line": 130,
+          "end_line": 161,
+          "label": "Refusals"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "ov-e-typst",
+      "from": "ov-composition",
+      "to": "ov-typst",
+      "role": "main",
+      "label": "是"
+    },
+    {
+      "id": "ov-e-stage",
+      "from": "ov-typst",
+      "to": "ov-stage",
+      "role": "main",
+      "label": "是"
+    },
+    {
+      "id": "ov-e-boxes",
+      "from": "ov-stage",
+      "to": "ov-boxes",
+      "role": "main"
+    },
+    {
+      "id": "ov-e-check",
+      "from": "ov-boxes",
+      "to": "ov-check",
+      "role": "main"
+    },
+    {
+      "id": "ov-e-compile",
+      "from": "ov-check",
+      "to": "ov-compile",
+      "role": "main",
+      "label": "是",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ov-e-missing",
+      "from": "ov-composition",
+      "to": "ov-refused",
+      "role": "error",
+      "label": "否"
+    },
+    {
+      "id": "ov-e-no-typst",
+      "from": "ov-typst",
+      "to": "ov-refused",
+      "role": "error",
+      "label": "否"
+    },
+    {
+      "id": "ov-e-lint",
+      "from": "ov-stage",
+      "to": "ov-refused",
+      "role": "error",
+      "label": "违反本社规则"
+    },
+    {
+      "id": "ov-e-text",
+      "from": "ov-check",
+      "to": "ov-refused",
+      "role": "error",
+      "label": "否"
+    }
+  ],
+  "semanticChecks": {
+    "allowedRoots": ["ov-composition"],
+    "allowedTerminals": ["ov-compile", "ov-refused"],
+    "requiredEdges": [
+      {
+        "from": "ov-check",
+        "to": "ov-compile"
+      },
+      {
+        "from": "ov-composition",
+        "to": "ov-refused"
+      }
+    ]
+  }
+}

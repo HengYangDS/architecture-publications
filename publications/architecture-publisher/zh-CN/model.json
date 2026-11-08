@@ -1,0 +1,830 @@
+{
+  "format": "architecture-publisher.model",
+  "version": 3,
+  "id": "architecture-publisher",
+  "locale": "zh-CN",
+  "title": "Architecture Publisher",
+  "question": "Architecture Publisher 如何把架构模型变成图册和页面？",
+  "summary": "作者对模型运行 archpub。一次构建会校验模型，在钉定修订上把范围内的每个文件交给认领它的组件，规划视图，并把每个视图布局在同一套网格上。它排版一部图册，收入作者编排的总览和每个视图的一幅图版；写出一个 Archify 页面，模型指定了导读时，这个页面就是作者的导读；还写出记录它们摘要的清单。交付物出版前，由一位具名审阅人验收。",
+  "scope": "以 v0.10.1 发布的 Architecture Publisher：出版工具在 src/ 下的源码、它的包清单，以及各随附物料的清单。",
+  "limits": [
+    "每个组件认领其路径规则所列的目录和文件，范围内的每个文件归于最具体的认领；关系引用导入或调用另一组件的模块。",
+    "关系是源码中的导入和进程调用，不是运行时顺序；共用的拒绝类型和子进程环境不画作关系。",
+    "物料清单所列的随附程序、字体和图稿，以及仓库的测试、工具、文档、OpenSpec 正式变更和 CI，都在范围之外。"
+  ],
+  "repository": {
+    "name": "architecture-publisher",
+    "url": "https://github.com/HengYangDS/architecture-publisher",
+    "revision": "1861b7ccbb6d57378d3e5f69ffc328579eec991b",
+    "browse": "https://github.com/HengYangDS/architecture-publisher/blob/{revision}/{path}"
+  },
+  "coverage": {
+    "include": ["src/", "package.json", "renderers/*/supply/supply.json", "supplies/*/supply.json"]
+  },
+  "overview": "overview.typ",
+  "guide": "guide/guide.archify.md",
+  "kinds": {
+    "author": {
+      "label": "作者",
+      "category": "person",
+      "icon": "user-pen"
+    },
+    "reviewer": {
+      "label": "审阅人",
+      "category": "person",
+      "icon": "user-check"
+    },
+    "command": {
+      "label": "命令行",
+      "category": "frontend",
+      "icon": "square-terminal"
+    },
+    "stage": {
+      "label": "阶段",
+      "category": "backend",
+      "icon": "workflow"
+    },
+    "check": {
+      "label": "检查",
+      "category": "security",
+      "icon": "shield-check"
+    },
+    "engine": {
+      "label": "布局引擎",
+      "category": "backend",
+      "icon": "layout-grid"
+    },
+    "medium": {
+      "label": "媒介",
+      "category": "frontend",
+      "icon": "image"
+    },
+    "supply": {
+      "label": "随附物料",
+      "category": "database",
+      "icon": "package"
+    },
+    "repository": {
+      "label": "仓库",
+      "category": "external",
+      "icon": "git-branch"
+    },
+    "tool": {
+      "label": "外部工具",
+      "category": "external",
+      "icon": "type"
+    },
+    "store": {
+      "label": "交付物存储",
+      "category": "external",
+      "icon": "folder-open"
+    }
+  },
+  "components": [
+    {
+      "id": "author",
+      "label": "作者",
+      "kind": "author",
+      "details": {
+        "编写": "模型及其总览和导读"
+      }
+    },
+    {
+      "id": "reviewer",
+      "label": "审阅人",
+      "kind": "reviewer",
+      "details": {
+        "验收": "一份未改动的交付物，署名"
+      }
+    },
+    {
+      "id": "cli",
+      "label": "archpub",
+      "kind": "command",
+      "details": {
+        "命令": "check、build、import likec4、scaffold guide、migrate、accept、publish",
+        "退出": "0 完成、1 拒绝、2 误用、3 失败"
+      },
+      "files": ["src/cli/", "src/refusal.mjs", "package.json"]
+    },
+    {
+      "id": "importer",
+      "label": "LikeC4 导入器",
+      "kind": "stage",
+      "details": {
+        "解析": "LikeC4 工作空间，在沙箱工作进程中"
+      },
+      "files": ["src/importers/"]
+    },
+    {
+      "id": "migration",
+      "label": "模型迁移",
+      "kind": "stage",
+      "details": {
+        "转换": "第 1、2 版模型转为第 3 版模型，第 1 版来源目录转为认领"
+      },
+      "files": ["src/importers/model.mjs"]
+    },
+    {
+      "id": "model",
+      "label": "模型加载器",
+      "kind": "check",
+      "details": {
+        "校验": "第 3 版，每个问题附 JSON 路径"
+      },
+      "files": ["src/model/"]
+    },
+    {
+      "id": "builder",
+      "label": "交付物构建器",
+      "kind": "stage",
+      "details": {
+        "写出": "一份交付物，完成后重命名就位"
+      },
+      "files": ["src/build.mjs"]
+    },
+    {
+      "id": "binding",
+      "label": "文件绑定",
+      "kind": "check",
+      "details": {
+        "分配": "范围内的每个文件，归最具体的认领",
+        "读取": "钉定修订上的 Git，从不改动检出"
+      },
+      "files": ["src/sources/", "src/environment.mjs"]
+    },
+    {
+      "id": "scope",
+      "label": "覆盖范围",
+      "kind": "check",
+      "details": {
+        "匹配": "包含与排除的路径和 glob，与 Git 的匹配一致"
+      },
+      "files": ["src/sources/scope.mjs"]
+    },
+    {
+      "id": "coverage",
+      "label": "覆盖报告",
+      "kind": "check",
+      "details": {
+        "统计": "范围内、已归属、未覆盖和已排除的文件"
+      },
+      "files": ["src/sources/coverage.mjs"]
+    },
+    {
+      "id": "worklist",
+      "label": "重新钉定工作清单",
+      "kind": "check",
+      "details": {
+        "列出": "钉定修订移动后，每项认领、关系和引用的变化"
+      },
+      "files": ["src/sources/worklist.mjs"]
+    },
+    {
+      "id": "plan",
+      "label": "阅读规划",
+      "kind": "engine",
+      "details": {
+        "选择": "声明的视图、一个整体视图或每组一个视图"
+      },
+      "files": ["src/plan/"]
+    },
+    {
+      "id": "layout",
+      "label": "网格布局",
+      "kind": "engine",
+      "details": {
+        "摆放": "同一套列栅格上的卡片"
+      },
+      "files": ["src/layout/"]
+    },
+    {
+      "id": "rows",
+      "label": "行",
+      "kind": "engine",
+      "details": {
+        "排序": "层级或分层"
+      },
+      "files": ["src/layout/rows.mjs"]
+    },
+    {
+      "id": "placement",
+      "label": "摆放",
+      "kind": "engine",
+      "details": {
+        "求解": "精确的位置"
+      },
+      "files": ["src/layout/placement.mjs", "src/layout/permutations.mjs"]
+    },
+    {
+      "id": "wires",
+      "label": "连线",
+      "kind": "engine",
+      "details": {
+        "形成": "总线和走廊"
+      },
+      "files": ["src/layout/channels.mjs"]
+    },
+    {
+      "id": "solver",
+      "label": "通道求解器",
+      "kind": "engine",
+      "details": {
+        "布线": "每条通道"
+      },
+      "files": ["src/layout/channel-solver/"]
+    },
+    {
+      "id": "measure",
+      "label": "整洁度量",
+      "kind": "check",
+      "details": {
+        "拒绝": "任何重叠"
+      },
+      "files": ["src/layout/measure.mjs"]
+    },
+    {
+      "id": "plates",
+      "label": "图版编排器",
+      "kind": "medium",
+      "details": {
+        "编排": "每个视图编为图册正文区的一幅图版，取三种宽度中连线不变差的最窄者",
+        "记录": "每幅图版未通过的平衡门槛，供审阅人查看"
+      },
+      "files": ["src/poster/"]
+    },
+    {
+      "id": "typefaces",
+      "label": "字体",
+      "kind": "medium",
+      "details": {
+        "度量": "图中文字，以 Source Sans 3 和 Noto Sans CJK SC 计，与图册排版一致"
+      },
+      "files": ["src/poster/text.mjs", "src/breaks.mjs"]
+    },
+    {
+      "id": "presentation",
+      "label": "类型与图标",
+      "kind": "medium",
+      "details": {
+        "映射": "类型到图标"
+      },
+      "files": ["src/kinds.mjs", "src/icons.mjs"]
+    },
+    {
+      "id": "words",
+      "label": "用语",
+      "kind": "medium",
+      "details": {
+        "存放": "出版工具五种语言用语"
+      },
+      "files": ["src/locale.mjs"]
+    },
+    {
+      "id": "map",
+      "label": "讲解页",
+      "kind": "medium",
+      "details": {
+        "交付": "一份原生 Archify 讲解页，无导读时每个视图占一个面板"
+      },
+      "files": ["src/map/"]
+    },
+    {
+      "id": "guide",
+      "label": "导读",
+      "kind": "medium",
+      "details": {
+        "交付": "作者的 Archify 草稿，作为页面",
+        "核验": "钉定修订上的每个引用区间"
+      },
+      "files": ["src/map/guide.mjs"]
+    },
+    {
+      "id": "overview",
+      "label": "本社版式与总览",
+      "kind": "medium",
+      "details": {
+        "存放": "本社版式及其设计令牌，图册据此排版",
+        "检查": "作者的编排，即其代码规范、文本框和字形"
+      },
+      "files": ["src/overview/", "src/house.json"]
+    },
+    {
+      "id": "edition",
+      "label": "图册",
+      "kind": "medium",
+      "details": {
+        "排版": "图册记录、每幅图版和总览，由 Typst 一遍排出，符合 PDF/A-3a 与 PDF/UA-1",
+        "渲染": "总览页和每幅图版页，按各宽度输出 PNG",
+        "设定": "自身的用语，用模型的语言"
+      },
+      "files": ["src/edition/"]
+    },
+    {
+      "id": "acceptance",
+      "label": "验收与出版",
+      "kind": "stage",
+      "details": {
+        "记录": "审阅人和清单摘要",
+        "复制": "仅已验收的交付物"
+      },
+      "files": ["src/delivery.mjs"]
+    },
+    {
+      "id": "supplies",
+      "label": "物料",
+      "kind": "supply",
+      "details": {
+        "存放": "Archify、LikeC4 解析器、字体与本社字体、opentype.js 和图标",
+        "核验": "按摘要"
+      },
+      "files": ["src/supply.mjs", "renderers/", "supplies/"]
+    },
+    {
+      "id": "repository",
+      "label": "仓库",
+      "kind": "repository",
+      "details": {
+        "存放": "钉定修订上的源码"
+      }
+    },
+    {
+      "id": "typst",
+      "label": "Typst",
+      "kind": "tool",
+      "details": {
+        "版本": "0.15.1，在 PATH 上"
+      }
+    },
+    {
+      "id": "publication-root",
+      "label": "出版根目录",
+      "kind": "store",
+      "details": {
+        "保留": "各个版本"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "author-cli",
+      "from": "author",
+      "to": "cli",
+      "label": "运行 check、build"
+    },
+    {
+      "id": "reviewer-cli",
+      "from": "reviewer",
+      "to": "cli",
+      "label": "运行 accept、publish"
+    },
+    {
+      "id": "cli-importer",
+      "from": "cli",
+      "to": "importer",
+      "label": "import likec4",
+      "files": ["src/cli/run.mjs"]
+    },
+    {
+      "id": "cli-migration",
+      "from": "cli",
+      "to": "migration",
+      "label": "migrate",
+      "files": ["src/cli/run.mjs"]
+    },
+    {
+      "id": "cli-builder",
+      "from": "cli",
+      "to": "builder",
+      "label": "check、build、scaffold",
+      "files": ["src/cli/run.mjs"]
+    },
+    {
+      "id": "cli-acceptance",
+      "from": "cli",
+      "to": "acceptance",
+      "label": "accept、publish",
+      "files": ["src/cli/run.mjs"]
+    },
+    {
+      "id": "importer-model",
+      "from": "importer",
+      "to": "model",
+      "label": "校验",
+      "files": ["src/importers/likec4.mjs"]
+    },
+    {
+      "id": "importer-supplies",
+      "from": "importer",
+      "to": "supplies",
+      "label": "用 LikeC4 解析",
+      "files": ["src/importers/likec4.mjs"]
+    },
+    {
+      "id": "importer-words",
+      "from": "importer",
+      "to": "words",
+      "label": "设定用语",
+      "files": ["src/importers/likec4.mjs"]
+    },
+    {
+      "id": "migration-model",
+      "from": "migration",
+      "to": "model",
+      "label": "读取、校验",
+      "files": ["src/importers/model.mjs"]
+    },
+    {
+      "id": "builder-model",
+      "from": "builder",
+      "to": "model",
+      "label": "加载",
+      "files": ["src/build.mjs"]
+    },
+    {
+      "id": "builder-binding",
+      "from": "builder",
+      "to": "binding",
+      "label": "绑定文件",
+      "files": ["src/build.mjs"]
+    },
+    {
+      "id": "builder-coverage",
+      "from": "builder",
+      "to": "coverage",
+      "label": "度量覆盖",
+      "files": ["src/build.mjs"]
+    },
+    {
+      "id": "builder-plan",
+      "from": "builder",
+      "to": "plan",
+      "label": "规划视图",
+      "files": ["src/build.mjs"]
+    },
+    {
+      "id": "builder-plates",
+      "from": "builder",
+      "to": "plates",
+      "label": "编排图版",
+      "files": ["src/build.mjs"]
+    },
+    {
+      "id": "builder-edition",
+      "from": "builder",
+      "to": "edition",
+      "label": "排版图册",
+      "files": ["src/build.mjs"]
+    },
+    {
+      "id": "builder-map",
+      "from": "builder",
+      "to": "map",
+      "label": "写出页面",
+      "files": ["src/build.mjs"]
+    },
+    {
+      "id": "builder-guide",
+      "from": "builder",
+      "to": "guide",
+      "label": "读取导读",
+      "files": ["src/build.mjs"]
+    },
+    {
+      "id": "builder-overview",
+      "from": "builder",
+      "to": "overview",
+      "label": "检查总览",
+      "files": ["src/build.mjs"]
+    },
+    {
+      "id": "binding-scope",
+      "from": "binding",
+      "to": "scope",
+      "label": "划分范围",
+      "files": ["src/sources/bind.mjs"]
+    },
+    {
+      "id": "binding-repository",
+      "from": "binding",
+      "to": "repository",
+      "label": "按修订读取",
+      "files": ["src/sources/bind.mjs", "src/sources/git.mjs"]
+    },
+    {
+      "id": "scope-repository",
+      "from": "scope",
+      "to": "repository",
+      "label": "列出、匹配 glob",
+      "files": ["src/sources/scope.mjs"]
+    },
+    {
+      "id": "coverage-scope",
+      "from": "coverage",
+      "to": "scope",
+      "label": "统计范围",
+      "files": ["src/sources/coverage.mjs"]
+    },
+    {
+      "id": "coverage-worklist",
+      "from": "coverage",
+      "to": "worklist",
+      "label": "列出重新钉定工作",
+      "files": ["src/sources/coverage.mjs"]
+    },
+    {
+      "id": "coverage-repository",
+      "from": "coverage",
+      "to": "repository",
+      "label": "统计提交",
+      "files": ["src/sources/coverage.mjs"]
+    },
+    {
+      "id": "worklist-binding",
+      "from": "worklist",
+      "to": "binding",
+      "label": "解析两个提交",
+      "files": ["src/sources/worklist.mjs"]
+    },
+    {
+      "id": "worklist-repository",
+      "from": "worklist",
+      "to": "repository",
+      "label": "比较两个提交",
+      "files": ["src/sources/worklist.mjs"]
+    },
+    {
+      "id": "guide-map",
+      "from": "guide",
+      "to": "map",
+      "label": "校验、交付",
+      "files": ["src/map/guide.mjs"]
+    },
+    {
+      "id": "guide-repository",
+      "from": "guide",
+      "to": "repository",
+      "label": "按修订克隆",
+      "files": ["src/map/guide.mjs"]
+    },
+    {
+      "id": "plates-layout",
+      "from": "plates",
+      "to": "layout",
+      "label": "布局",
+      "files": ["src/poster/plate.mjs"]
+    },
+    {
+      "id": "plates-typefaces",
+      "from": "plates",
+      "to": "typefaces",
+      "label": "断行",
+      "files": ["src/poster/plate.mjs"]
+    },
+    {
+      "id": "plates-presentation",
+      "from": "plates",
+      "to": "presentation",
+      "label": "设定卡片样式",
+      "files": ["src/poster/compose/plates.mjs", "src/poster/figure.mjs", "src/poster/plate.mjs"]
+    },
+    {
+      "id": "plates-words",
+      "from": "plates",
+      "to": "words",
+      "label": "设定用语",
+      "files": ["src/poster/compose/plates.mjs", "src/poster/plate.mjs"]
+    },
+    {
+      "id": "map-layout",
+      "from": "map",
+      "to": "layout",
+      "label": "布局",
+      "files": ["src/map/archify.mjs"]
+    },
+    {
+      "id": "map-presentation",
+      "from": "map",
+      "to": "presentation",
+      "label": "标注组件类型",
+      "files": ["src/map/archify.mjs"]
+    },
+    {
+      "id": "map-words",
+      "from": "map",
+      "to": "words",
+      "label": "设定页面用语",
+      "files": ["src/map/archify.mjs", "src/map/explainer.mjs"]
+    },
+    {
+      "id": "map-supplies",
+      "from": "map",
+      "to": "supplies",
+      "label": "运行 Archify",
+      "files": ["src/map/archify.mjs"]
+    },
+    {
+      "id": "layout-rows",
+      "from": "layout",
+      "to": "rows",
+      "label": "生成各行",
+      "files": ["src/layout/grid.mjs"]
+    },
+    {
+      "id": "layout-placement",
+      "from": "layout",
+      "to": "placement",
+      "label": "摆放卡片",
+      "files": ["src/layout/grid.mjs"]
+    },
+    {
+      "id": "layout-wires",
+      "from": "layout",
+      "to": "wires",
+      "label": "生成连线",
+      "files": ["src/layout/grid.mjs"]
+    },
+    {
+      "id": "layout-solver",
+      "from": "layout",
+      "to": "solver",
+      "label": "为通道布线",
+      "files": ["src/layout/grid.mjs"]
+    },
+    {
+      "id": "layout-measure",
+      "from": "layout",
+      "to": "measure",
+      "label": "度量",
+      "files": ["src/layout/grid.mjs"]
+    },
+    {
+      "id": "typefaces-supplies",
+      "from": "typefaces",
+      "to": "supplies",
+      "label": "加载字体",
+      "files": ["src/poster/text.mjs"]
+    },
+    {
+      "id": "presentation-supplies",
+      "from": "presentation",
+      "to": "supplies",
+      "label": "加载图标",
+      "files": ["src/icons.mjs"]
+    },
+    {
+      "id": "overview-supplies",
+      "from": "overview",
+      "to": "supplies",
+      "label": "用本社字体排版",
+      "files": ["src/overview/glyphs.mjs", "src/overview/typeset.mjs"]
+    },
+    {
+      "id": "overview-typst",
+      "from": "overview",
+      "to": "typst",
+      "label": "运行 Typst",
+      "files": ["src/overview/typeset.mjs"]
+    },
+    {
+      "id": "edition-overview",
+      "from": "edition",
+      "to": "overview",
+      "label": "暂存本社版式",
+      "files": ["src/edition/typeset.mjs"]
+    },
+    {
+      "id": "edition-typst",
+      "from": "edition",
+      "to": "typst",
+      "label": "运行 Typst",
+      "files": ["src/edition/typeset.mjs"]
+    },
+    {
+      "id": "edition-supplies",
+      "from": "edition",
+      "to": "supplies",
+      "label": "用本社字体排版",
+      "files": ["src/edition/typeset.mjs"]
+    },
+    {
+      "id": "edition-words",
+      "from": "edition",
+      "to": "words",
+      "label": "设定用语",
+      "files": ["src/edition/words.mjs"]
+    },
+    {
+      "id": "acceptance-builder",
+      "from": "acceptance",
+      "to": "builder",
+      "label": "核验清单",
+      "files": ["src/delivery.mjs"]
+    },
+    {
+      "id": "acceptance-publication-root",
+      "from": "acceptance",
+      "to": "publication-root",
+      "label": "复制已验收交付物",
+      "files": ["src/delivery.mjs"]
+    }
+  ],
+  "views": [
+    {
+      "id": "overview",
+      "title": "一次构建，从头到尾",
+      "question": "一次构建从作者的模型到出版的交付物，要经过哪些部分？",
+      "tiers": [
+        {
+          "id": "people",
+          "label": "人员",
+          "members": ["author", "reviewer"]
+        },
+        {
+          "id": "commands",
+          "label": "命令行",
+          "members": ["cli"]
+        },
+        {
+          "id": "stages",
+          "label": "阶段",
+          "members": ["builder", "acceptance"]
+        },
+        {
+          "id": "media",
+          "label": "媒介",
+          "members": ["plates", "edition", "map"]
+        },
+        {
+          "id": "outside",
+          "label": "软件包之外",
+          "members": ["publication-root"]
+        }
+      ]
+    },
+    {
+      "id": "files",
+      "title": "钉定修订上的文件",
+      "question": "构建如何在钉定修订上把每个文件交给所属组件？archpub check 报告什么？",
+      "members": ["builder", "model", "binding", "scope", "coverage", "worklist", "repository"]
+    },
+    {
+      "id": "models",
+      "title": "模型从何而来",
+      "question": "模型如何来到出版工具：由作者编写、从 LikeC4 导入，还是从早期版本迁移？",
+      "members": ["author", "cli", "importer", "migration", "model", "words", "supplies"]
+    },
+    {
+      "id": "layout",
+      "title": "网格布局",
+      "question": "同一套网格如何既布局图版，又布局页面中的图？",
+      "summary": "行来自层级或关系。摆放精确求解卡片位置，连线把关系归为总线和走廊，通道求解器为每条通道布线；整洁度量拒绝任何重叠。",
+      "tiers": [
+        {
+          "id": "media",
+          "label": "媒介",
+          "members": ["plates", "map"]
+        },
+        {
+          "id": "grid",
+          "label": "网格",
+          "members": ["layout"]
+        },
+        {
+          "id": "parts",
+          "label": "机制",
+          "members": ["rows", "placement", "wires", "solver", "measure"]
+        }
+      ]
+    },
+    {
+      "id": "edition",
+      "title": "图册",
+      "question": "什么把规划好的视图变成图册？它用到哪些物料？",
+      "members": [
+        "builder",
+        "plan",
+        "plates",
+        "typefaces",
+        "presentation",
+        "words",
+        "edition",
+        "overview",
+        "typst",
+        "supplies"
+      ]
+    },
+    {
+      "id": "page",
+      "title": "页面",
+      "question": "交互页面如何生成？它检查什么？",
+      "members": ["builder", "map", "guide", "presentation", "words", "supplies", "repository"]
+    }
+  ],
+  "editors": [
+    {
+      "name": "Yang HENG"
+    }
+  ],
+  "license": "MIT"
+}

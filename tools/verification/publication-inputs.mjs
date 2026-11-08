@@ -11,6 +11,10 @@ const COMPOSITION = /^[^/\\]+\.typ$/;
 /** A guide the publisher delivers as the page: an Archify draft in a directory of its own. */
 const GUIDE = /^(?!\.\.?\/)[^/\\]+\/[^/\\]+\.archify\.md$/;
 const REVISION = /^([0-9a-f]{40}|[0-9a-f]{64})$/;
+/** The languages the publisher reads; a work's translation lives in a directory named by one. */
+const LOCALES = new Set(["en", "zh-CN", "zh-TW", "es", "ko"]);
+/** What a translation holds beside its overview and guide: its model and the table that fixes its terms. */
+const TRANSLATION_FILES = new Set(["model.json", "concepts.md"]);
 
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const readJson = async (file) => JSON.parse(await readFile(file, "utf8"));
@@ -83,8 +87,12 @@ async function holdsDraft(directory, draft) {
   return names.includes(draft);
 }
 
-export async function verifyWork(directory, repositoryRoot) {
-  const { overview, guide } = await readJson(path.join(directory, "model.json"));
+/**
+ * The files a model's directory holds: the given files, the overview composition the model names and the directory of
+ * the guide it names, which may hold regular files only. Returns the file names and the directories it did not claim.
+ */
+async function modelFiles(directory, model, files, kind) {
+  const { overview, guide } = model;
   // A model may name its overview composition, which the work then holds beside it.
   assert.ok(
     overview === undefined || (typeof overview === "string" && COMPOSITION.test(overview)),
@@ -96,22 +104,51 @@ export async function verifyWork(directory, repositoryRoot) {
     `the guide ${guide} is not an Archify draft in a directory of its own`,
   );
   const [guideDirectory, draft] = guide ? guide.split("/") : [];
-  const allowed = new Set([...WORK_FILES, ...(overview ? [overview] : [])]);
+  const allowed = new Set([...files, ...(overview ? [overview] : [])]);
   const names = [];
+  const others = [];
   let guideHeld = false;
   for (const entry of await readdir(directory, { withFileTypes: true })) {
     if (entry.isDirectory() && entry.name === guideDirectory) {
       guideHeld = await holdsDraft(path.join(directory, entry.name), draft);
       continue;
     }
-    assert.ok(entry.isFile() && allowed.has(entry.name), `${entry.name} is not a work file`);
+    if (entry.isDirectory() && kind === "work" && LOCALES.has(entry.name)) {
+      others.push(entry.name);
+      continue;
+    }
+    assert.ok(entry.isFile() && allowed.has(entry.name), `${entry.name} is not a ${kind} file`);
     names.push(entry.name);
   }
-  assert.ok(names.includes("README.md") && names.includes("model.json"));
   assert.ok(!overview || names.includes(overview), `the overview ${overview} is missing`);
   assert.ok(!guide || guideHeld, `the guide ${guide} is missing`);
-  if (names.includes("source.json")) await verifyCustody(directory, repositoryRoot);
+  return { names, translations: others };
+}
+
+/**
+ * A work's translation: a model in the directory's locale that translates the work's model, pinned to its revision,
+ * with the table that fixes each term's rendering.
+ */
+export async function verifyTranslation(directory, original) {
+  const locale = path.basename(directory);
+  const model = await readJson(path.join(directory, "model.json"));
+  assert.equal(model.locale, locale, `${locale} holds a ${model.locale} model`);
+  assert.equal(model.id, original.id, `${locale} translates ${model.id}, not ${original.id}`);
+  const [pinned, work] = [model.repository?.revision, original.repository?.revision];
+  assert.equal(pinned, work, `${locale} pins ${pinned}, not the work's ${work}`);
+  const { names } = await modelFiles(directory, model, TRANSLATION_FILES, "translation");
+  assert.ok(names.includes("concepts.md"), `${locale} holds no concepts.md`);
   return verifyModel(directory);
+}
+
+export async function verifyWork(directory, repositoryRoot) {
+  const model = await readJson(path.join(directory, "model.json"));
+  const { names, translations } = await modelFiles(directory, model, WORK_FILES, "work");
+  assert.ok(names.includes("README.md") && names.includes("model.json"));
+  if (names.includes("source.json")) await verifyCustody(directory, repositoryRoot);
+  const id = await verifyModel(directory);
+  for (const locale of translations) await verifyTranslation(path.join(directory, locale), model);
+  return id;
 }
 
 export async function verifyPublications(publications, repositoryRoot) {

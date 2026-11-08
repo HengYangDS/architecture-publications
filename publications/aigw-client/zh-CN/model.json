@@ -1,0 +1,1027 @@
+{
+  "format": "architecture-publisher.model",
+  "version": 3,
+  "id": "aigw-client",
+  "locale": "zh-CN",
+  "title": "AIGW 客户端投影",
+  "question": "AIGW 如何把一份经审阅的配置，变成每个已准入客户端中带守卫的原生投影？",
+  "summary": "AIGW 把账户、路由和客户端绑定存于一份加锁的配置，把令牌存于一个选定的存储；它经由同一个适配器接缝，以一次带守卫、可补偿的事务，投影每个客户端的有界区域。请求从不经过它。",
+  "scope": "v0.6.1 发布版本中的 AIGW 程序：它的生产 Go 包、命令入口、团队清单和 go.mod。",
+  "limits": [
+    "每个组件引用规则划归给它的全部生产文件；一条关系引用的文件，来自导入另一个组件的那些包。",
+    "测试及其输入，以及仓库的工具、CI 和文档，都不在范围之内。"
+  ],
+  "repository": {
+    "name": "aigw-cli",
+    "url": "https://github.com/HengYangDS/aigw-cli.git",
+    "revision": "abf05858f4092a3baf9acea0d5d7488b26898aa5",
+    "browse": "https://github.com/HengYangDS/aigw-cli/blob/{revision}/{path}"
+  },
+  "coverage": {
+    "include": ["cmd/", "internal/", "manifests/", "go.mod"],
+    "exclude": [
+      {
+        "path": "**/*_test.go",
+        "reason": "Go keeps each package's tests beside its code; they are not its architecture."
+      },
+      {
+        "path": "cmd/aigw/testdata/",
+        "reason": "Inputs of the command tests."
+      }
+    ]
+  },
+  "overview": "overview.typ",
+  "guide": "guide/guide.archify.md",
+  "kinds": {
+    "interface": {
+      "label": "接口",
+      "category": "frontend",
+      "icon": "square-terminal"
+    },
+    "coordinator": {
+      "label": "协调者",
+      "category": "backend",
+      "icon": "workflow"
+    },
+    "observer": {
+      "label": "观测者",
+      "category": "cloud",
+      "icon": "radar"
+    },
+    "registry": {
+      "label": "注册表",
+      "category": "messagebus",
+      "icon": "list-ordered"
+    },
+    "contract": {
+      "label": "契约",
+      "category": "security",
+      "icon": "file-cog"
+    },
+    "boundary": {
+      "label": "边界",
+      "category": "security",
+      "icon": "shield-check"
+    },
+    "authority": {
+      "label": "权威来源",
+      "category": "database",
+      "icon": "database"
+    },
+    "client": {
+      "label": "客户端",
+      "category": "external",
+      "icon": "app-window"
+    }
+  },
+  "components": [
+    {
+      "id": "program-entry",
+      "label": "程序",
+      "kind": "interface",
+      "details": {
+        "启动": "命令行应用"
+      },
+      "files": ["cmd/aigw/"]
+    },
+    {
+      "id": "commands",
+      "label": "命令",
+      "kind": "interface",
+      "details": {
+        "命令": "setup、use、sync、check、verify、rotate、rollback、doctor、update 等",
+        "结构": "每条命令一个包，只经由 invocation 共享行为"
+      },
+      "files": ["internal/cli/"]
+    },
+    {
+      "id": "credential-helper",
+      "label": "凭据助手",
+      "kind": "interface",
+      "details": {
+        "命令": "aigw credential",
+        "提供": "按需把客户端自己的令牌写到标准输出，诊断信息从不写在那里"
+      },
+      "files": ["internal/cli/credential/"]
+    },
+    {
+      "id": "terminal",
+      "label": "终端",
+      "kind": "interface",
+      "details": {
+        "渲染": "供人阅读的输出与 JSON 输出、提示、错误；不导入任何用例"
+      },
+      "files": ["internal/terminal/"]
+    },
+    {
+      "id": "use-cases",
+      "label": "用例",
+      "kind": "coordinator",
+      "details": {
+        "返回": "多条命令共用的值，交给终端渲染"
+      },
+      "files": ["internal/app/"]
+    },
+    {
+      "id": "renaming",
+      "label": "重命名",
+      "kind": "coordinator",
+      "details": {
+        "迁移": "账户或路由的标识，分两个阶段"
+      },
+      "files": ["internal/app/renaming/"]
+    },
+    {
+      "id": "activation",
+      "label": "激活",
+      "kind": "coordinator",
+      "details": {
+        "判定": "一次操作的已启用客户端范围"
+      },
+      "files": ["internal/app/activation/"]
+    },
+    {
+      "id": "synchronization",
+      "label": "同步",
+      "kind": "coordinator",
+      "details": {
+        "收敛": "客户端绑定及其投影",
+        "提交": "一次配置转换，连同带守卫的补偿"
+      },
+      "files": ["internal/app/synchronization/"]
+    },
+    {
+      "id": "readiness",
+      "label": "就绪状态",
+      "kind": "coordinator",
+      "details": {
+        "状态": "已配置、端点已检查、推理已检查、已推迟、降级、无效、不可用"
+      },
+      "files": ["internal/app/readiness/"]
+    },
+    {
+      "id": "diagnostics",
+      "label": "诊断",
+      "kind": "observer",
+      "details": {
+        "观测": "有界、脱敏的端点与认证健康状况"
+      },
+      "files": ["internal/app/diagnostics/", "internal/provider/"]
+    },
+    {
+      "id": "client-admission",
+      "label": "客户端准入",
+      "kind": "registry",
+      "details": {
+        "列出": "按准入顺序排列的内置适配器"
+      },
+      "files": ["internal/clients/"]
+    },
+    {
+      "id": "adapter-seam",
+      "label": "适配器接缝",
+      "kind": "contract",
+      "details": {
+        "操作": ["发现", "收敛", "规划", "应用", "检视", "验证", "撤回"],
+        "证明": "每个适配器，对照同一个契约测试套件"
+      },
+      "files": [
+        "internal/adapter/registry.go",
+        "internal/adapter/support.go",
+        "internal/adapter/adapters.go",
+        "internal/adapter/contract/",
+        "internal/adapter/surface/",
+        "internal/adapter/verification/"
+      ]
+    },
+    {
+      "id": "discovery",
+      "label": "发现",
+      "kind": "observer",
+      "details": {
+        "观测": "主机上的客户端和路径，但不采纳它们"
+      },
+      "files": ["internal/adapter/discovery/"]
+    },
+    {
+      "id": "codex",
+      "label": "Codex",
+      "kind": "client",
+      "details": {
+        "投影": "~/.codex/config.toml 中的一块有界区域，及其模型目录"
+      },
+      "files": ["internal/adapter/codex/"]
+    },
+    {
+      "id": "claude-code",
+      "label": "Claude Code",
+      "kind": "client",
+      "details": {
+        "投影": "~/.claude/settings.json"
+      },
+      "files": ["internal/adapter/claude/"]
+    },
+    {
+      "id": "claude-desktop",
+      "label": "Claude Desktop",
+      "kind": "client",
+      "details": {
+        "投影": "独立的第三方推理库"
+      },
+      "files": ["internal/adapter/claudedesktop/"]
+    },
+    {
+      "id": "hermes",
+      "label": "Hermes",
+      "kind": "client",
+      "details": {
+        "投影": "其提供商目录、协议和模型"
+      },
+      "files": ["internal/adapter/hermes/"]
+    },
+    {
+      "id": "program-updates",
+      "label": "程序更新",
+      "kind": "boundary",
+      "details": {
+        "解析": "来自两个代码托管平台的已签名发布版本",
+        "安装": "经验证的便携程序，保留一个前一版本"
+      },
+      "files": ["internal/program/"]
+    },
+    {
+      "id": "credentials",
+      "label": "凭据存储",
+      "kind": "authority",
+      "details": {
+        "拥有": "账户令牌，存于一个选定的后端：原生密钥环、DPAPI 或属主专用文件"
+      },
+      "files": ["internal/secret/"]
+    },
+    {
+      "id": "configuration-store",
+      "label": "配置存储",
+      "kind": "authority",
+      "details": {
+        "拥有": "同一把锁下的 config.toml，及其检查点和模式迁移"
+      },
+      "files": ["internal/store/"]
+    },
+    {
+      "id": "domain",
+      "label": "领域",
+      "kind": "authority",
+      "details": {
+        "拥有": "账户、模型、路由、推荐、客户端绑定和团队清单",
+        "导入": "仅标准库"
+      },
+      "files": ["internal/domain/", "manifests/", "go.mod"]
+    },
+    {
+      "id": "platform",
+      "label": "平台",
+      "kind": "boundary",
+      "details": {
+        "拥有": "AIGW 自有的路径、带守卫的文件写入及其回滚、有界子进程"
+      },
+      "files": ["internal/platform/"]
+    }
+  ],
+  "relations": [
+    {
+      "id": "program-entry-commands",
+      "from": "program-entry",
+      "to": "commands",
+      "label": "启动",
+      "files": ["cmd/aigw/main.go"]
+    },
+    {
+      "id": "program-entry-client-admission",
+      "from": "program-entry",
+      "to": "client-admission",
+      "label": "准入客户端",
+      "files": ["cmd/aigw/main.go"]
+    },
+    {
+      "id": "program-entry-program-updates",
+      "from": "program-entry",
+      "to": "program-updates",
+      "label": "安装、更新",
+      "files": ["cmd/aigw/main.go"]
+    },
+    {
+      "id": "commands-use-cases",
+      "from": "commands",
+      "to": "use-cases",
+      "label": "运行",
+      "files": [
+        "internal/cli/app.go",
+        "internal/cli/catalog/catalog.go",
+        "internal/cli/check/check.go",
+        "internal/cli/doctor/doctor.go",
+        "internal/cli/doctor/wording.go",
+        "internal/cli/invocation/accounts.go",
+        "internal/cli/invocation/context.go",
+        "internal/cli/invocation/preview.go",
+        "internal/cli/invocation/readiness.go",
+        "internal/cli/invocation/rename.go",
+        "internal/cli/models/models.go",
+        "internal/cli/repair/repair.go",
+        "internal/cli/status/report.go",
+        "internal/cli/status/status.go",
+        "internal/cli/status/status_render.go",
+        "internal/cli/sync/sync.go",
+        "internal/cli/update/custody.go",
+        "internal/cli/update/preview.go",
+        "internal/cli/update/update.go"
+      ]
+    },
+    {
+      "id": "commands-synchronization",
+      "from": "commands",
+      "to": "synchronization",
+      "label": "收敛",
+      "files": [
+        "internal/cli/invocation/accounts.go",
+        "internal/cli/invocation/context.go",
+        "internal/cli/invocation/preview.go",
+        "internal/cli/invocation/readiness.go",
+        "internal/cli/invocation/rename.go",
+        "internal/cli/sync/sync.go"
+      ]
+    },
+    {
+      "id": "commands-activation",
+      "from": "commands",
+      "to": "activation",
+      "label": "划定范围",
+      "files": [
+        "internal/cli/check/check.go",
+        "internal/cli/doctor/doctor.go",
+        "internal/cli/doctor/wording.go",
+        "internal/cli/rotate/rotate.go",
+        "internal/cli/setup/manifest.go",
+        "internal/cli/setup/setup.go",
+        "internal/cli/status/report.go",
+        "internal/cli/status/status.go",
+        "internal/cli/status/status_render.go",
+        "internal/cli/sync/sync.go",
+        "internal/cli/use/retries.go",
+        "internal/cli/use/use.go"
+      ]
+    },
+    {
+      "id": "commands-terminal",
+      "from": "commands",
+      "to": "terminal",
+      "label": "渲染",
+      "files": [
+        "internal/cli/account/account.go",
+        "internal/cli/account/documents.go",
+        "internal/cli/account/rename.go",
+        "internal/cli/add/add.go",
+        "internal/cli/app.go",
+        "internal/cli/balance/balance.go",
+        "internal/cli/catalog/catalog.go",
+        "internal/cli/check/check.go",
+        "internal/cli/client/client.go",
+        "internal/cli/client/documents.go",
+        "internal/cli/config/config.go",
+        "internal/cli/config/migration.go",
+        "internal/cli/doctor/doctor.go",
+        "internal/cli/doctor/wording.go",
+        "internal/cli/install/install.go",
+        "internal/cli/installation/installation.go",
+        "internal/cli/invocation/accounts.go",
+        "internal/cli/invocation/context.go",
+        "internal/cli/invocation/preview.go",
+        "internal/cli/invocation/readiness.go",
+        "internal/cli/invocation/rename.go",
+        "internal/cli/models/models.go",
+        "internal/cli/repair/repair.go",
+        "internal/cli/rollback/rollback.go",
+        "internal/cli/rotate/rotate.go",
+        "internal/cli/route/documents.go",
+        "internal/cli/route/rename.go",
+        "internal/cli/route/route.go",
+        "internal/cli/setup/manifest.go",
+        "internal/cli/setup/setup.go",
+        "internal/cli/status/report.go",
+        "internal/cli/status/status.go",
+        "internal/cli/status/status_render.go",
+        "internal/cli/sync/sync.go",
+        "internal/cli/test/test.go",
+        "internal/cli/uninstall/uninstall.go",
+        "internal/cli/update/custody.go",
+        "internal/cli/update/preview.go",
+        "internal/cli/update/update.go",
+        "internal/cli/use/retries.go",
+        "internal/cli/use/use.go",
+        "internal/cli/verify/verify.go"
+      ]
+    },
+    {
+      "id": "commands-credential-helper",
+      "from": "commands",
+      "to": "credential-helper",
+      "label": "注册",
+      "files": ["internal/cli/app.go"]
+    },
+    {
+      "id": "credential-helper-credentials",
+      "from": "credential-helper",
+      "to": "credentials",
+      "label": "读取一个令牌",
+      "files": ["internal/cli/credential/credential.go"]
+    },
+    {
+      "id": "credential-helper-configuration-store",
+      "from": "credential-helper",
+      "to": "configuration-store",
+      "label": "读取绑定",
+      "files": ["internal/cli/credential/credential.go"]
+    },
+    {
+      "id": "use-cases-synchronization",
+      "from": "use-cases",
+      "to": "synchronization",
+      "label": "提交",
+      "files": [
+        "internal/app/catalog.go",
+        "internal/app/dependencies.go",
+        "internal/app/entrypoint.go",
+        "internal/app/status.go"
+      ]
+    },
+    {
+      "id": "use-cases-renaming",
+      "from": "use-cases",
+      "to": "renaming",
+      "label": "重命名",
+      "files": [
+        "internal/app/catalog.go",
+        "internal/app/dependencies.go",
+        "internal/app/entrypoint.go",
+        "internal/app/status.go"
+      ]
+    },
+    {
+      "id": "use-cases-readiness",
+      "from": "use-cases",
+      "to": "readiness",
+      "label": "报告",
+      "files": [
+        "internal/app/catalog.go",
+        "internal/app/dependencies.go",
+        "internal/app/entrypoint.go",
+        "internal/app/status.go"
+      ]
+    },
+    {
+      "id": "use-cases-diagnostics",
+      "from": "use-cases",
+      "to": "diagnostics",
+      "label": "探测",
+      "files": [
+        "internal/app/catalog.go",
+        "internal/app/dependencies.go",
+        "internal/app/entrypoint.go",
+        "internal/app/status.go"
+      ]
+    },
+    {
+      "id": "renaming-synchronization",
+      "from": "renaming",
+      "to": "synchronization",
+      "label": "提交",
+      "files": [
+        "internal/app/renaming/credentials.go",
+        "internal/app/renaming/finalization.go",
+        "internal/app/renaming/model.go",
+        "internal/app/renaming/planning.go",
+        "internal/app/renaming/workflow.go"
+      ]
+    },
+    {
+      "id": "renaming-credentials",
+      "from": "renaming",
+      "to": "credentials",
+      "label": "移动令牌",
+      "files": [
+        "internal/app/renaming/credentials.go",
+        "internal/app/renaming/finalization.go",
+        "internal/app/renaming/model.go",
+        "internal/app/renaming/planning.go",
+        "internal/app/renaming/workflow.go"
+      ]
+    },
+    {
+      "id": "activation-readiness",
+      "from": "activation",
+      "to": "readiness",
+      "label": "判定",
+      "files": ["internal/app/activation/activation.go"]
+    },
+    {
+      "id": "readiness-diagnostics",
+      "from": "readiness",
+      "to": "diagnostics",
+      "label": "读取健康状况",
+      "files": ["internal/app/readiness/state.go"]
+    },
+    {
+      "id": "synchronization-adapter-seam",
+      "from": "synchronization",
+      "to": "adapter-seam",
+      "label": "规划、应用",
+      "files": [
+        "internal/app/synchronization/account_connection.go",
+        "internal/app/synchronization/preview.go",
+        "internal/app/synchronization/projection.go",
+        "internal/app/synchronization/selection.go",
+        "internal/app/synchronization/setup.go",
+        "internal/app/synchronization/synchronizer.go",
+        "internal/app/synchronization/transaction.go"
+      ]
+    },
+    {
+      "id": "synchronization-discovery",
+      "from": "synchronization",
+      "to": "discovery",
+      "label": "观测",
+      "files": [
+        "internal/app/synchronization/account_connection.go",
+        "internal/app/synchronization/preview.go",
+        "internal/app/synchronization/projection.go",
+        "internal/app/synchronization/selection.go",
+        "internal/app/synchronization/setup.go",
+        "internal/app/synchronization/synchronizer.go",
+        "internal/app/synchronization/transaction.go"
+      ]
+    },
+    {
+      "id": "synchronization-configuration-store",
+      "from": "synchronization",
+      "to": "configuration-store",
+      "label": "持久化",
+      "files": [
+        "internal/app/synchronization/account_connection.go",
+        "internal/app/synchronization/preview.go",
+        "internal/app/synchronization/projection.go",
+        "internal/app/synchronization/selection.go",
+        "internal/app/synchronization/setup.go",
+        "internal/app/synchronization/synchronizer.go",
+        "internal/app/synchronization/transaction.go"
+      ]
+    },
+    {
+      "id": "synchronization-credentials",
+      "from": "synchronization",
+      "to": "credentials",
+      "label": "检查读取器",
+      "files": [
+        "internal/app/synchronization/account_connection.go",
+        "internal/app/synchronization/preview.go",
+        "internal/app/synchronization/projection.go",
+        "internal/app/synchronization/selection.go",
+        "internal/app/synchronization/setup.go",
+        "internal/app/synchronization/synchronizer.go",
+        "internal/app/synchronization/transaction.go"
+      ]
+    },
+    {
+      "id": "synchronization-domain",
+      "from": "synchronization",
+      "to": "domain",
+      "label": "校验",
+      "files": [
+        "internal/app/synchronization/account_connection.go",
+        "internal/app/synchronization/preview.go",
+        "internal/app/synchronization/projection.go",
+        "internal/app/synchronization/selection.go",
+        "internal/app/synchronization/setup.go",
+        "internal/app/synchronization/synchronizer.go",
+        "internal/app/synchronization/transaction.go"
+      ]
+    },
+    {
+      "id": "client-admission-codex",
+      "from": "client-admission",
+      "to": "codex",
+      "label": "准入",
+      "files": ["internal/clients/clients.go"]
+    },
+    {
+      "id": "client-admission-claude-code",
+      "from": "client-admission",
+      "to": "claude-code",
+      "label": "准入",
+      "files": ["internal/clients/clients.go"]
+    },
+    {
+      "id": "client-admission-claude-desktop",
+      "from": "client-admission",
+      "to": "claude-desktop",
+      "label": "准入",
+      "files": ["internal/clients/clients.go"]
+    },
+    {
+      "id": "client-admission-hermes",
+      "from": "client-admission",
+      "to": "hermes",
+      "label": "准入",
+      "files": ["internal/clients/clients.go"]
+    },
+    {
+      "id": "codex-adapter-seam",
+      "from": "codex",
+      "to": "adapter-seam",
+      "label": "实现",
+      "files": [
+        "internal/adapter/codex/adapter.go",
+        "internal/adapter/codex/adapter_selection.go",
+        "internal/adapter/codex/adapter_verify.go",
+        "internal/adapter/codex/adoption.go",
+        "internal/adapter/codex/catalog.go",
+        "internal/adapter/codex/catalog_reference_unix.go",
+        "internal/adapter/codex/catalog_reference_windows.go",
+        "internal/adapter/codex/client.go",
+        "internal/adapter/codex/config.go",
+        "internal/adapter/codex/conflict.go",
+        "internal/adapter/codex/extensions.go",
+        "internal/adapter/codex/live_verification.go",
+        "internal/adapter/codex/provider.go",
+        "internal/adapter/codex/reconcile.go",
+        "internal/adapter/codex/scheduler.go",
+        "internal/adapter/codex/selection.go",
+        "internal/adapter/codex/surfaces.go",
+        "internal/adapter/codex/targets.go"
+      ]
+    },
+    {
+      "id": "claude-code-adapter-seam",
+      "from": "claude-code",
+      "to": "adapter-seam",
+      "label": "实现",
+      "files": [
+        "internal/adapter/claude/adapter.go",
+        "internal/adapter/claude/adapter_verify.go",
+        "internal/adapter/claude/inspection.go",
+        "internal/adapter/claude/live_verification.go",
+        "internal/adapter/claude/native_paths.go",
+        "internal/adapter/claude/plan.go",
+        "internal/adapter/claude/settings.go"
+      ]
+    },
+    {
+      "id": "claude-desktop-adapter-seam",
+      "from": "claude-desktop",
+      "to": "adapter-seam",
+      "label": "实现",
+      "files": [
+        "internal/adapter/claudedesktop/adapter.go",
+        "internal/adapter/claudedesktop/configuration.go",
+        "internal/adapter/claudedesktop/identity.go",
+        "internal/adapter/claudedesktop/native_paths.go",
+        "internal/adapter/claudedesktop/profile.go"
+      ]
+    },
+    {
+      "id": "hermes-adapter-seam",
+      "from": "hermes",
+      "to": "adapter-seam",
+      "label": "实现",
+      "files": [
+        "internal/adapter/hermes/adapter.go",
+        "internal/adapter/hermes/adapter_verification_unix.go",
+        "internal/adapter/hermes/adapter_verification_windows.go",
+        "internal/adapter/hermes/document.go",
+        "internal/adapter/hermes/gateway.go",
+        "internal/adapter/hermes/projection.go",
+        "internal/adapter/hermes/selection.go",
+        "internal/adapter/hermes/verification_home_unix.go",
+        "internal/adapter/hermes/verification_home_windows.go"
+      ]
+    },
+    {
+      "id": "codex-platform",
+      "from": "codex",
+      "to": "platform",
+      "label": "带守卫写入",
+      "files": [
+        "internal/adapter/codex/adapter.go",
+        "internal/adapter/codex/adapter_selection.go",
+        "internal/adapter/codex/adapter_verify.go",
+        "internal/adapter/codex/adoption.go",
+        "internal/adapter/codex/catalog.go",
+        "internal/adapter/codex/catalog_reference_unix.go",
+        "internal/adapter/codex/catalog_reference_windows.go",
+        "internal/adapter/codex/client.go",
+        "internal/adapter/codex/config.go",
+        "internal/adapter/codex/conflict.go",
+        "internal/adapter/codex/extensions.go",
+        "internal/adapter/codex/live_verification.go",
+        "internal/adapter/codex/provider.go",
+        "internal/adapter/codex/reconcile.go",
+        "internal/adapter/codex/scheduler.go",
+        "internal/adapter/codex/selection.go",
+        "internal/adapter/codex/surfaces.go",
+        "internal/adapter/codex/targets.go"
+      ]
+    },
+    {
+      "id": "claude-code-platform",
+      "from": "claude-code",
+      "to": "platform",
+      "label": "带守卫写入",
+      "files": [
+        "internal/adapter/claude/adapter.go",
+        "internal/adapter/claude/adapter_verify.go",
+        "internal/adapter/claude/inspection.go",
+        "internal/adapter/claude/live_verification.go",
+        "internal/adapter/claude/native_paths.go",
+        "internal/adapter/claude/plan.go",
+        "internal/adapter/claude/settings.go"
+      ]
+    },
+    {
+      "id": "claude-desktop-platform",
+      "from": "claude-desktop",
+      "to": "platform",
+      "label": "带守卫写入",
+      "files": [
+        "internal/adapter/claudedesktop/adapter.go",
+        "internal/adapter/claudedesktop/configuration.go",
+        "internal/adapter/claudedesktop/identity.go",
+        "internal/adapter/claudedesktop/native_paths.go",
+        "internal/adapter/claudedesktop/profile.go"
+      ]
+    },
+    {
+      "id": "hermes-platform",
+      "from": "hermes",
+      "to": "platform",
+      "label": "带守卫写入",
+      "files": [
+        "internal/adapter/hermes/adapter.go",
+        "internal/adapter/hermes/adapter_verification_unix.go",
+        "internal/adapter/hermes/adapter_verification_windows.go",
+        "internal/adapter/hermes/document.go",
+        "internal/adapter/hermes/gateway.go",
+        "internal/adapter/hermes/projection.go",
+        "internal/adapter/hermes/selection.go",
+        "internal/adapter/hermes/verification_home_unix.go",
+        "internal/adapter/hermes/verification_home_windows.go"
+      ]
+    },
+    {
+      "id": "adapter-seam-discovery",
+      "from": "adapter-seam",
+      "to": "discovery",
+      "label": "发现",
+      "files": [
+        "internal/adapter/adapters.go",
+        "internal/adapter/registry.go",
+        "internal/adapter/support.go"
+      ]
+    },
+    {
+      "id": "adapter-seam-domain",
+      "from": "adapter-seam",
+      "to": "domain",
+      "label": "读取规格",
+      "files": [
+        "internal/adapter/adapters.go",
+        "internal/adapter/contract/contract.go",
+        "internal/adapter/registry.go",
+        "internal/adapter/support.go",
+        "internal/adapter/verification/verify.go"
+      ]
+    },
+    {
+      "id": "configuration-store-domain",
+      "from": "configuration-store",
+      "to": "domain",
+      "label": "编码",
+      "files": [
+        "internal/store/capabilities.go",
+        "internal/store/checkpoint.go",
+        "internal/store/components.go",
+        "internal/store/forwarding.go",
+        "internal/store/manifest.go",
+        "internal/store/migration.go",
+        "internal/store/ordering.go",
+        "internal/store/retry_store.go",
+        "internal/store/store.go",
+        "internal/store/store_errors.go"
+      ]
+    },
+    {
+      "id": "configuration-store-platform",
+      "from": "configuration-store",
+      "to": "platform",
+      "label": "加锁、写入",
+      "files": [
+        "internal/store/capabilities.go",
+        "internal/store/checkpoint.go",
+        "internal/store/components.go",
+        "internal/store/forwarding.go",
+        "internal/store/manifest.go",
+        "internal/store/migration.go",
+        "internal/store/ordering.go",
+        "internal/store/retry_store.go",
+        "internal/store/store.go",
+        "internal/store/store_errors.go"
+      ]
+    },
+    {
+      "id": "credentials-platform",
+      "from": "credentials",
+      "to": "platform",
+      "label": "属主专用文件",
+      "files": [
+        "internal/secret/command.go",
+        "internal/secret/command_unix.go",
+        "internal/secret/command_windows.go",
+        "internal/secret/diagnostic.go",
+        "internal/secret/entrypoint.go",
+        "internal/secret/entrypoint_unix.go",
+        "internal/secret/entrypoint_windows.go",
+        "internal/secret/env.go",
+        "internal/secret/file_store.go",
+        "internal/secret/file_transaction.go",
+        "internal/secret/file_unix.go",
+        "internal/secret/file_windows.go",
+        "internal/secret/keyring.go",
+        "internal/secret/memory.go",
+        "internal/secret/native/keychain_darwin.go",
+        "internal/secret/native/keychain_darwin_nocgo.go",
+        "internal/secret/native/migration_darwin.go",
+        "internal/secret/native/provider.go",
+        "internal/secret/native/provider_darwin.go",
+        "internal/secret/native/provider_keyring.go",
+        "internal/secret/native/provider_linux.go",
+        "internal/secret/native/provider_other.go",
+        "internal/secret/native/provider_windows.go",
+        "internal/secret/native/subprocess.go",
+        "internal/secret/predecessor_darwin.go",
+        "internal/secret/predecessor_other.go",
+        "internal/secret/program.go",
+        "internal/secret/recovery.go",
+        "internal/secret/replacement.go",
+        "internal/secret/scoped.go",
+        "internal/secret/selection.go",
+        "internal/secret/store.go"
+      ]
+    },
+    {
+      "id": "diagnostics-domain",
+      "from": "diagnostics",
+      "to": "domain",
+      "label": "构建探测",
+      "files": [
+        "internal/app/diagnostics/probe.go",
+        "internal/provider/dmxapi/probe.go",
+        "internal/provider/registry.go"
+      ]
+    },
+    {
+      "id": "program-updates-platform",
+      "from": "program-updates",
+      "to": "platform",
+      "label": "安装",
+      "files": [
+        "internal/program/candidate.go",
+        "internal/program/github.go",
+        "internal/program/gitlab.go",
+        "internal/program/inspect.go",
+        "internal/program/install.go",
+        "internal/program/ownership.go",
+        "internal/program/portable.go",
+        "internal/program/preview.go",
+        "internal/program/source.go",
+        "internal/program/transition.go",
+        "internal/program/update.go",
+        "internal/program/version.go"
+      ]
+    },
+    {
+      "id": "terminal-domain",
+      "from": "terminal",
+      "to": "domain",
+      "label": "渲染",
+      "files": [
+        "internal/terminal/continuation.go",
+        "internal/terminal/document.go",
+        "internal/terminal/errors.go",
+        "internal/terminal/password.go",
+        "internal/terminal/prompt.go",
+        "internal/terminal/render.go",
+        "internal/terminal/target.go",
+        "internal/terminal/terminal.go",
+        "internal/terminal/terminal_unix.go",
+        "internal/terminal/terminal_windows.go"
+      ]
+    }
+  ],
+  "views": [
+    {
+      "id": "overview",
+      "title": "一份经审阅的配置，投影到每个客户端",
+      "question": "一份经审阅的配置，如何在每个已准入的客户端中成为带守卫的投影？",
+      "members": [
+        "commands",
+        "use-cases",
+        "synchronization",
+        "configuration-store",
+        "adapter-seam",
+        "codex",
+        "claude-code",
+        "claude-desktop",
+        "hermes"
+      ]
+    },
+    {
+      "id": "authority",
+      "title": "哪些状态归谁",
+      "question": "配置、令牌和主机路径各由谁拥有，又由谁读取？",
+      "members": [
+        "commands",
+        "credential-helper",
+        "synchronization",
+        "renaming",
+        "configuration-store",
+        "credentials",
+        "domain",
+        "platform"
+      ]
+    },
+    {
+      "id": "adapters",
+      "title": "已准入的客户端及其接缝",
+      "question": "客户端适配器如何准入，如何遵守同一份契约，又如何只做带守卫的写入？",
+      "members": [
+        "program-entry",
+        "client-admission",
+        "adapter-seam",
+        "discovery",
+        "codex",
+        "claude-code",
+        "claude-desktop",
+        "hermes",
+        "platform"
+      ]
+    },
+    {
+      "id": "readiness",
+      "title": "命令能报告什么",
+      "question": "命令如何决定报告什么、下一步做什么？",
+      "members": [
+        "commands",
+        "use-cases",
+        "activation",
+        "readiness",
+        "diagnostics",
+        "renaming",
+        "synchronization",
+        "terminal",
+        "domain"
+      ]
+    },
+    {
+      "id": "program",
+      "title": "程序本身",
+      "question": "程序如何启动、准入它的客户端，并替换自身？",
+      "members": [
+        "program-entry",
+        "commands",
+        "client-admission",
+        "program-updates",
+        "credential-helper",
+        "credentials",
+        "configuration-store",
+        "platform"
+      ]
+    },
+    {
+      "id": "projection",
+      "title": "一次投影：从规划到补偿",
+      "question": "一次投影在哪里读取、规划、写入和补偿？",
+      "members": [
+        "synchronization",
+        "discovery",
+        "adapter-seam",
+        "domain",
+        "configuration-store",
+        "credentials",
+        "platform"
+      ]
+    }
+  ],
+  "editors": [
+    {
+      "name": "Yang HENG"
+    }
+  ],
+  "license": "MIT"
+}

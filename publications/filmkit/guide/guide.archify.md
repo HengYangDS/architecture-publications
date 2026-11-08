@@ -17,7 +17,7 @@ filmkit rebuilds a film's Chinese and English editions from the film's own repos
 @source readme-neither title="A film without either check" path="README.md" lines=66:66
 @source readme-gate title="The picture gate" path="README.md" lines=78:78
 @source readme-metrics title="Text measured with the film's fonts" path="README.md" lines=80:80
-@source readme-balance title="Balance in every frame" path="README.md" lines=80:80
+@source readme-balance title="Balance in every frame" path="README.md" lines=82:82
 @source readme-install title="Installing the engine in a film" path="README.md" lines=160:170
 @source readme-commands title="Commands" path="README.md" lines=176:192
 @source readme-endings title="Whole endings" path="README.md" lines=196:198

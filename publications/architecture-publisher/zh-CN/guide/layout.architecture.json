@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "两种媒介共用一套网格",
+    "output": "layout.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/architecture-publisher",
+      "provider": "github",
+      "revision": "1861b7ccbb6d57378d3e5f69ffc328579eec991b"
+    }
+  },
+  "components": [
+    {
+      "id": "lay-plates",
+      "type": "frontend",
+      "label": "图版编排器",
+      "sublabel": "自己的字号档",
+      "pos": [250, 30],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/poster/plate.mjs",
+          "line": 89,
+          "end_line": 89,
+          "label": "Plate layout"
+        }
+      ]
+    },
+    {
+      "id": "lay-page",
+      "type": "frontend",
+      "label": "讲解页",
+      "sublabel": "Archify 的文字度量",
+      "pos": [630, 30],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/map/archify.mjs",
+          "line": 172,
+          "end_line": 180,
+          "label": "Diagram layout"
+        }
+      ]
+    },
+    {
+      "id": "lay-grid",
+      "type": "backend",
+      "label": "网格布局",
+      "sublabel": "同一套列栅格",
+      "pos": [440, 170],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/layout/grid.mjs",
+          "line": 86,
+          "end_line": 119,
+          "label": "layoutView"
+        }
+      ]
+    },
+    {
+      "id": "lay-rows",
+      "type": "backend",
+      "label": "行",
+      "sublabel": "层级或关系",
+      "pos": [60, 320],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "src/layout/rows.mjs",
+          "line": 1,
+          "end_line": 6,
+          "label": "Rows"
+        }
+      ]
+    },
+    {
+      "id": "lay-placement",
+      "type": "backend",
+      "label": "摆放",
+      "sublabel": "代价最小",
+      "pos": [250, 320],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "src/layout/placement.mjs",
+          "line": 149,
+          "end_line": 162,
+          "label": "placeRows"
+        }
+      ]
+    },
+    {
+      "id": "lay-wires",
+      "type": "backend",
+      "label": "连线",
+      "sublabel": "总线和走廊",
+      "pos": [440, 320],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "src/layout/channels.mjs",
+          "line": 60,
+          "end_line": 68,
+          "label": "buildWires"
+        }
+      ]
+    },
+    {
+      "id": "lay-solver",
+      "type": "backend",
+      "label": "通道求解器",
+      "sublabel": "一次一条通道",
+      "pos": [630, 320],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "src/layout/channel-solver/search.mjs",
+          "line": 42,
+          "end_line": 55,
+          "label": "solveChannel"
+        }
+      ]
+    },
+    {
+      "id": "lay-measure",
+      "type": "security",
+      "label": "整洁度量",
+      "sublabel": "拒绝任何重叠",
+      "pos": [820, 320],
+      "size": [170, 64],
+      "sources": [
+        {
+          "path": "src/layout/measure.mjs",
+          "line": 1,
+          "end_line": 4,
+          "label": "Measure"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "lay-plates-grid",
+      "from": "lay-plates",
+      "to": "lay-grid",
+      "label": "布局"
+    },
+    {
+      "id": "lay-page-grid",
+      "from": "lay-page",
+      "to": "lay-grid",
+      "label": "布局"
+    },
+    {
+      "id": "lay-grid-rows",
+      "from": "lay-grid",
+      "to": "lay-rows"
+    },
+    {
+      "id": "lay-grid-placement",
+      "from": "lay-grid",
+      "to": "lay-placement"
+    },
+    {
+      "id": "lay-grid-wires",
+      "from": "lay-grid",
+      "to": "lay-wires"
+    },
+    {
+      "id": "lay-grid-solver",
+      "from": "lay-grid",
+      "to": "lay-solver"
+    },
+    {
+      "id": "lay-grid-measure",
+      "from": "lay-grid",
+      "to": "lay-measure",
+      "variant": "security"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "src/layout/",
+      "wraps": ["lay-grid", "lay-rows", "lay-placement", "lay-wires", "lay-solver", "lay-measure"]
+    }
+  ]
+}

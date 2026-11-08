@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "谁会用到 AIGW，它又触及什么",
+    "output": "context.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/aigw-cli.git",
+      "provider": "github",
+      "revision": "abf05858f4092a3baf9acea0d5d7488b26898aa5"
+    }
+  },
+  "components": [
+    {
+      "id": "ctx-maintainer",
+      "type": "external",
+      "icon": "person",
+      "label": "团队维护者",
+      "sublabel": "编订清单",
+      "pos": [40, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "docs/guides/team-rollout.md",
+          "line": 15,
+          "end_line": 29,
+          "label": "Maintainer"
+        }
+      ]
+    },
+    {
+      "id": "ctx-manifest",
+      "type": "backend",
+      "label": "团队清单",
+      "sublabel": "经审阅，不含令牌",
+      "pos": [270, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "docs/concepts/product-concepts.md",
+          "line": 57,
+          "end_line": 62,
+          "label": "Manifest"
+        }
+      ]
+    },
+    {
+      "id": "ctx-member",
+      "type": "external",
+      "icon": "person",
+      "label": "团队成员",
+      "sublabel": "运行 aigw",
+      "pos": [40, 180],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 94,
+          "end_line": 102,
+          "label": "Setup"
+        }
+      ]
+    },
+    {
+      "id": "ctx-control",
+      "type": "security",
+      "label": "AIGW 控制面",
+      "sublabel": "配置与投影",
+      "pos": [270, 180],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 3,
+          "end_line": 6,
+          "label": "What AIGW is"
+        }
+      ]
+    },
+    {
+      "id": "ctx-clients",
+      "type": "frontend",
+      "label": "受支持的客户端",
+      "sublabel": "Codex、Claude、Hermes",
+      "pos": [500, 180],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 255,
+          "end_line": 261,
+          "label": "Adapters"
+        }
+      ]
+    },
+    {
+      "id": "ctx-endpoints",
+      "type": "cloud",
+      "label": "提供商端点",
+      "sublabel": "直连或经由网关",
+      "pos": [730, 180],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 278,
+          "end_line": 280,
+          "label": "Endpoints"
+        }
+      ]
+    },
+    {
+      "id": "ctx-store",
+      "type": "database",
+      "label": "令牌存储",
+      "sublabel": "一个选定的后端",
+      "pos": [270, 320],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 158,
+          "end_line": 163,
+          "label": "Credentials"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "ctx-publishes",
+      "from": "ctx-maintainer",
+      "to": "ctx-manifest",
+      "label": "按标签发布"
+    },
+    {
+      "id": "ctx-runs",
+      "from": "ctx-member",
+      "to": "ctx-control",
+      "label": "setup、use、sync"
+    },
+    {
+      "id": "ctx-imports",
+      "from": "ctx-control",
+      "to": "ctx-manifest",
+      "label": "导入"
+    },
+    {
+      "id": "ctx-projects",
+      "from": "ctx-control",
+      "to": "ctx-clients",
+      "label": "有界区域",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ctx-keeps",
+      "from": "ctx-control",
+      "to": "ctx-store",
+      "label": "保管令牌"
+    },
+    {
+      "id": "ctx-reads",
+      "from": "ctx-clients",
+      "to": "ctx-store",
+      "label": "经助手读取",
+      "variant": "dashed"
+    },
+    {
+      "id": "ctx-requests",
+      "from": "ctx-clients",
+      "to": "ctx-endpoints",
+      "label": "自行请求"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "一位成员的机器",
+      "wraps": ["ctx-member", "ctx-control", "ctx-clients", "ctx-store"]
+    }
+  ]
+}

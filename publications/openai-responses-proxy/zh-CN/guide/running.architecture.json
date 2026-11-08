@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "谁让监听器持续运行",
+    "output": "running.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
+      "provider": "github",
+      "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+    }
+  },
+  "components": [
+    {
+      "id": "run-cli",
+      "type": "frontend",
+      "label": "命令行",
+      "sublabel": "install、status、reload",
+      "pos": [40, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/control.py",
+          "line": 32,
+          "end_line": 48,
+          "label": "读取健康状态"
+        }
+      ]
+    },
+    {
+      "id": "run-manager",
+      "type": "external",
+      "label": "原生服务管理器",
+      "sublabel": "launchd、systemd、计划任务",
+      "pos": [300, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/supervision/macos.py",
+          "line": 123,
+          "end_line": 136,
+          "label": "launchd 代理"
+        }
+      ]
+    },
+    {
+      "id": "run-watchdog",
+      "type": "backend",
+      "label": "看门狗",
+      "sublabel": "每 15 秒检查端口",
+      "pos": [300, 180],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/supervision/watchdog.py",
+          "line": 102,
+          "end_line": 137,
+          "label": "循环"
+        }
+      ]
+    },
+    {
+      "id": "run-journal",
+      "type": "database",
+      "label": "事务日志",
+      "sublabel": "变更执行期间存在",
+      "pos": [560, 180],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/records.py",
+          "line": 40,
+          "end_line": 60,
+          "label": "状态"
+        }
+      ]
+    },
+    {
+      "id": "run-listener",
+      "type": "frontend",
+      "label": "回环监听器",
+      "sublabel": "127.0.0.1:8792",
+      "pos": [300, 320],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/serving/entrypoint.py",
+          "line": 160,
+          "end_line": 193,
+          "label": "运行"
+        }
+      ]
+    },
+    {
+      "id": "run-carrier",
+      "type": "database",
+      "label": "runtime-config.json",
+      "sublabel": "各角色的设置",
+      "pos": [560, 320],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/runtime_spec.py",
+          "line": 152,
+          "end_line": 159,
+          "label": "激活"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "run-registers",
+      "from": "run-cli",
+      "to": "run-manager",
+      "label": "注册、移除"
+    },
+    {
+      "id": "run-restarts",
+      "from": "run-manager",
+      "to": "run-watchdog",
+      "label": "启动、重启",
+      "variant": "emphasis"
+    },
+    {
+      "id": "run-waits",
+      "from": "run-watchdog",
+      "to": "run-journal",
+      "label": "未结时等待",
+      "variant": "dashed"
+    },
+    {
+      "id": "run-spawns",
+      "from": "run-watchdog",
+      "to": "run-listener",
+      "label": "端口关闭时启动"
+    },
+    {
+      "id": "run-loads",
+      "from": "run-listener",
+      "to": "run-carrier",
+      "label": "加载其设置",
+      "variant": "dashed"
+    },
+    {
+      "id": "run-reads",
+      "from": "run-cli",
+      "to": "run-listener",
+      "label": "读取 /healthz"
+    }
+  ]
+}

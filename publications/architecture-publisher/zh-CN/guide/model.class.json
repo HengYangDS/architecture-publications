@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "第 3 版模型包含什么",
+    "subtitle": "组件认领文件，关系引用文件，视图选择画什么。",
+    "output": "model.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/architecture-publisher",
+      "provider": "github",
+      "revision": "1861b7ccbb6d57378d3e5f69ffc328579eec991b"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "model-file",
+      "label": "model.json",
+      "kind": "record",
+      "sublabel": "一个模型，一个问题",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "version",
+          "type": "3"
+        },
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "question",
+          "type": "string"
+        },
+        {
+          "name": "repository",
+          "type": "name, url, browse, revision"
+        },
+        {
+          "name": "overview",
+          "type": ".typ path"
+        },
+        {
+          "name": "guide",
+          "type": ".archify.md path"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/model/load.mjs",
+          "line": 36,
+          "end_line": 48,
+          "label": "Fields"
+        }
+      ]
+    },
+    {
+      "id": "model-coverage",
+      "label": "coverage{}",
+      "kind": "record",
+      "sublabel": "它描述的路径",
+      "row": 0,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "include",
+          "type": "paths and globs"
+        },
+        {
+          "name": "exclude",
+          "type": "path and reason"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/model/paths.mjs",
+          "line": 35,
+          "end_line": 75,
+          "label": "Coverage"
+        }
+      ]
+    },
+    {
+      "id": "model-relations",
+      "label": "relations[]",
+      "kind": "record",
+      "sublabel": "两个组件及其证据",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "from",
+          "type": "component id"
+        },
+        {
+          "name": "to",
+          "type": "component id"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        },
+        {
+          "name": "files",
+          "type": "cited files"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/model/load.mjs",
+          "line": 313,
+          "end_line": 322,
+          "label": "Relations"
+        }
+      ]
+    },
+    {
+      "id": "model-components",
+      "label": "components[]",
+      "kind": "record",
+      "sublabel": "架构是什么",
+      "row": 1,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        },
+        {
+          "name": "kind",
+          "type": "kind id"
+        },
+        {
+          "name": "details",
+          "type": "name to text"
+        },
+        {
+          "name": "status",
+          "type": "implemented, planned, retired"
+        },
+        {
+          "name": "files",
+          "type": "claimed paths"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/model/load.mjs",
+          "line": 300,
+          "end_line": 311,
+          "label": "Components"
+        }
+      ]
+    },
+    {
+      "id": "model-views",
+      "label": "views[]",
+      "kind": "record",
+      "sublabel": "各成一幅图版",
+      "row": 1,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "question",
+          "type": "string"
+        },
+        {
+          "name": "tiers | members",
+          "type": "exactly one"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/model/load.mjs",
+          "line": 382,
+          "end_line": 411,
+          "label": "Views"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "holds-components",
+      "from": "model-file",
+      "to": "model-components",
+      "kind": "composition",
+      "label": "一个或多个"
+    },
+    {
+      "id": "holds-relations",
+      "from": "model-file",
+      "to": "model-relations",
+      "kind": "composition",
+      "label": "包含"
+    },
+    {
+      "id": "holds-views",
+      "from": "model-file",
+      "to": "model-views",
+      "kind": "composition",
+      "label": "包含"
+    },
+    {
+      "id": "holds-coverage",
+      "from": "model-file",
+      "to": "model-coverage",
+      "kind": "composition",
+      "label": "划定范围"
+    },
+    {
+      "id": "relation-ends",
+      "from": "model-relations",
+      "to": "model-components",
+      "kind": "association",
+      "label": "from, to"
+    },
+    {
+      "id": "view-members",
+      "from": "model-views",
+      "to": "model-components",
+      "kind": "association",
+      "label": "绘出"
+    }
+  ]
+}

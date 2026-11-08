@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "各主题在哪里交接工作",
+    "output": "handoffs.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
+      "provider": "github",
+      "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42"
+    }
+  },
+  "components": [
+    {
+      "id": "ho-agent",
+      "type": "frontend",
+      "label": "人与人工智能的协作",
+      "sublabel": "委托、智能体输出",
+      "pos": [40, 40],
+      "size": [190, 64],
+      "sources": [
+        {
+          "path": "docs/human-agent.md",
+          "line": 114,
+          "end_line": 133,
+          "label": "智能体执行"
+        }
+      ]
+    },
+    {
+      "id": "ho-decide",
+      "type": "backend",
+      "label": "分析与决策",
+      "sublabel": "界定、方案",
+      "pos": [310, 40],
+      "size": [190, 64],
+      "sources": [
+        {
+          "path": "docs/decide.md",
+          "line": 156,
+          "end_line": 162,
+          "label": "记录"
+        }
+      ]
+    },
+    {
+      "id": "ho-communicate",
+      "type": "backend",
+      "label": "沟通",
+      "sublabel": "决策文档",
+      "pos": [580, 40],
+      "size": [190, 64],
+      "sources": [
+        {
+          "path": "docs/communicate.md",
+          "line": 112,
+          "end_line": 127,
+          "label": "决策文档"
+        }
+      ]
+    },
+    {
+      "id": "ho-data",
+      "type": "database",
+      "label": "数据质量与采用",
+      "sublabel": "准入、使用",
+      "pos": [40, 220],
+      "size": [190, 64],
+      "sources": [
+        {
+          "path": "docs/data.md",
+          "line": 78,
+          "end_line": 96,
+          "label": "准入"
+        }
+      ]
+    },
+    {
+      "id": "ho-deliver",
+      "type": "security",
+      "label": "执行与交付",
+      "sublabel": "完成、状态",
+      "pos": [310, 220],
+      "size": [190, 64],
+      "sources": [
+        {
+          "path": "docs/deliver.md",
+          "line": 52,
+          "end_line": 64,
+          "label": "收尾"
+        }
+      ]
+    },
+    {
+      "id": "ho-evolve",
+      "type": "backend",
+      "label": "实践与演进",
+      "sublabel": "紧急情况",
+      "pos": [580, 220],
+      "size": [190, 64],
+      "sources": [
+        {
+          "path": "docs/evolve.md",
+          "line": 218,
+          "end_line": 233,
+          "label": "紧急情况"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "ho-e-model",
+      "from": "ho-agent",
+      "to": "ho-decide",
+      "label": "最小模型"
+    },
+    {
+      "id": "ho-e-record",
+      "from": "ho-decide",
+      "to": "ho-communicate",
+      "label": "记录"
+    },
+    {
+      "id": "ho-e-use",
+      "from": "ho-agent",
+      "to": "ho-data",
+      "label": "用途决策"
+    },
+    {
+      "id": "ho-e-act",
+      "from": "ho-decide",
+      "to": "ho-deliver",
+      "label": "行动开始后",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ho-e-claim",
+      "from": "ho-data",
+      "to": "ho-deliver",
+      "label": "论断收尾"
+    },
+    {
+      "id": "ho-e-report",
+      "from": "ho-communicate",
+      "to": "ho-deliver",
+      "label": "完成报告"
+    },
+    {
+      "id": "ho-e-urgent",
+      "from": "ho-deliver",
+      "to": "ho-evolve",
+      "label": "紧急"
+    }
+  ]
+}

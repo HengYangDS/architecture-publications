@@ -1,0 +1,176 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "一个请求何时可以再发",
+    "output": "exchange.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
+      "provider": "github",
+      "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+    }
+  },
+  "mainPath": ["ex-sending", "ex-sent", "ex-held", "ex-committed"],
+  "states": [
+    {
+      "id": "ex-sending",
+      "type": "start",
+      "label": "发送中",
+      "sublabel": "连接、写入",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/relay/upstream.py",
+          "line": 341,
+          "end_line": 366,
+          "label": "发送"
+        }
+      ]
+    },
+    {
+      "id": "ex-sent",
+      "type": "active",
+      "label": "已完整发出",
+      "sublabel": "等待响应头",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/relay/upstream.py",
+          "line": 388,
+          "end_line": 401,
+          "label": "响应"
+        }
+      ]
+    },
+    {
+      "id": "ex-held",
+      "type": "waiting",
+      "label": "内容之前",
+      "sublabel": "事件已暂存",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/relay/sse.py",
+          "line": 122,
+          "end_line": 162,
+          "label": "暂存的事件"
+        }
+      ]
+    },
+    {
+      "id": "ex-committed",
+      "type": "success",
+      "label": "已提交",
+      "sublabel": "事件已投递",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/relay/sse.py",
+          "line": 310,
+          "end_line": 314,
+          "label": "终止符"
+        }
+      ]
+    },
+    {
+      "id": "ex-unknown",
+      "type": "failure",
+      "label": "结果未知",
+      "sublabel": "502，不重发",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/relay/downstream.py",
+          "line": 389,
+          "end_line": 406,
+          "label": "结果未知"
+        }
+      ]
+    },
+    {
+      "id": "ex-expired",
+      "type": "failure",
+      "label": "时限已到",
+      "sublabel": "504",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/relay/downstream.py",
+          "line": 374,
+          "end_line": 386,
+          "label": "时限"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "id": "ex-t-complete",
+      "from": "ex-sending",
+      "to": "ex-sent",
+      "label": "已发出"
+    },
+    {
+      "id": "ex-t-stream",
+      "from": "ex-sent",
+      "to": "ex-held",
+      "label": "流"
+    },
+    {
+      "id": "ex-t-content",
+      "from": "ex-held",
+      "to": "ex-committed",
+      "label": "内容"
+    },
+    {
+      "id": "ex-t-classified",
+      "from": "ex-sent",
+      "to": "ex-sending",
+      "label": "重试",
+      "variant": "dashed"
+    },
+    {
+      "id": "ex-t-reopen",
+      "from": "ex-held",
+      "to": "ex-sending",
+      "label": "重开",
+      "variant": "dashed"
+    },
+    {
+      "id": "ex-t-expired",
+      "from": "ex-sending",
+      "to": "ex-expired",
+      "label": "时限",
+      "variant": "security"
+    },
+    {
+      "id": "ex-t-lost",
+      "from": "ex-sent",
+      "to": "ex-unknown",
+      "label": "断连",
+      "variant": "security"
+    },
+    {
+      "id": "ex-t-ended",
+      "from": "ex-held",
+      "to": "ex-unknown",
+      "label": "结束",
+      "variant": "security"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "可以再发",
+      "items": [
+        "请求发完之前就失败的发送。",
+        "提供商以已归类错误拒绝的请求。",
+        "在任何内容之前报告 response.failed 的流。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "绝不再发",
+      "items": [
+        "已完整发出、随后连接中断的请求。",
+        "在内容之前结束、且未报告 response.failed 的流。"
+      ]
+    }
+  ]
+}

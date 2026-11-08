@@ -1,0 +1,192 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "一个意群的录音，从种子到音轨",
+    "output": "take.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/filmkit.git",
+      "provider": "github",
+      "revision": "d6de89569ddb336363186ca99c39e5a45d018cb1"
+    }
+  },
+  "mainPath": ["take-narrated", "take-judged", "take-selected", "take-assembled"],
+  "states": [
+    {
+      "id": "take-narrated",
+      "type": "start",
+      "label": "已朗读",
+      "sublabel": "来自种子或重录",
+      "sources": [
+        {
+          "path": "src/filmkit/narration/synthesis.py",
+          "line": 176,
+          "end_line": 194,
+          "label": "Plan"
+        },
+        {
+          "path": "src/filmkit/narration/group_generation.py",
+          "line": 172,
+          "end_line": 209,
+          "label": "Record"
+        }
+      ]
+    },
+    {
+      "id": "take-judged",
+      "type": "decision",
+      "label": "已判定",
+      "sublabel": "是否完整收尾？",
+      "sources": [
+        {
+          "path": "src/filmkit/narration/take_edges.py",
+          "line": 159,
+          "end_line": 186,
+          "label": "Ending"
+        }
+      ]
+    },
+    {
+      "id": "take-selected",
+      "type": "active",
+      "label": "已选定",
+      "sublabel": "绑定到脚本",
+      "sources": [
+        {
+          "path": "src/filmkit/narration/selection.py",
+          "line": 73,
+          "end_line": 108,
+          "label": "Select"
+        }
+      ]
+    },
+    {
+      "id": "take-assembled",
+      "type": "success",
+      "label": "已拼接",
+      "sublabel": "统一的节目响度",
+      "sources": [
+        {
+          "path": "src/filmkit/soundtrack/assembly.py",
+          "line": 480,
+          "end_line": 561,
+          "label": "Assemble"
+        }
+      ]
+    },
+    {
+      "id": "take-abrupt",
+      "type": "failure",
+      "label": "收尾突兀",
+      "sublabel": "断在音节中途",
+      "sources": [
+        {
+          "path": "src/filmkit/soundtrack/assembly.py",
+          "line": 127,
+          "end_line": 147,
+          "label": "Refuse"
+        }
+      ]
+    },
+    {
+      "id": "take-auditioned",
+      "type": "waiting",
+      "label": "已试音",
+      "sublabel": "其他种子、连读",
+      "sources": [
+        {
+          "path": "src/filmkit/narration/audition.py",
+          "line": 86,
+          "end_line": 112,
+          "label": "Propose"
+        }
+      ]
+    },
+    {
+      "id": "take-released",
+      "type": "waiting",
+      "label": "尾音淡出",
+      "sublabel": "为衔接而声明",
+      "sources": [
+        {
+          "path": "src/filmkit/soundtrack/policy.py",
+          "line": 159,
+          "end_line": 170,
+          "label": "Releases"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "id": "take-t-judge",
+      "from": "take-narrated",
+      "to": "take-judged",
+      "label": "判定"
+    },
+    {
+      "id": "take-t-natural",
+      "from": "take-judged",
+      "to": "take-selected",
+      "label": "自然收尾"
+    },
+    {
+      "id": "take-t-assemble",
+      "from": "take-selected",
+      "to": "take-assembled",
+      "label": "拼接"
+    },
+    {
+      "id": "take-t-abrupt",
+      "from": "take-judged",
+      "to": "take-abrupt",
+      "label": "突兀",
+      "variant": "security"
+    },
+    {
+      "id": "take-t-audition",
+      "from": "take-abrupt",
+      "to": "take-auditioned",
+      "label": "试音",
+      "variant": "dashed"
+    },
+    {
+      "id": "take-t-retake",
+      "from": "take-auditioned",
+      "to": "take-narrated",
+      "label": "绑定重录",
+      "variant": "dashed"
+    },
+    {
+      "id": "take-t-release",
+      "from": "take-abrupt",
+      "to": "take-released",
+      "label": "声明尾音淡出",
+      "variant": "dashed"
+    },
+    {
+      "id": "take-t-released",
+      "from": "take-released",
+      "to": "take-selected",
+      "label": "尾音已淡出",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "什么是完整收尾",
+      "items": ["最后 30 ms 是安静的。", "最后一个音节渐渐消失，而不是在不到 6 ms 内骤停。"]
+    },
+    {
+      "dot": "amber",
+      "title": "意群怎样补救",
+      "items": [
+        "试音用其他种子朗读，或连读后在静音处剪开。",
+        "重录绑定其文本和朗读文本的 SHA-256。"
+      ]
+    }
+  ]
+}

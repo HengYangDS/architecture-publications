@@ -1,0 +1,982 @@
+{
+  "format": "architecture-publisher.model",
+  "version": 3,
+  "id": "filmkit",
+  "locale": "zh-CN",
+  "title": "filmkit",
+  "question": "filmkit 怎样从一部影片受版本管理的源文件重建它的两个语言版？每一步又靠什么与自己的输入绑定？",
+  "summary": "filmkit 用锁定版本的本地语音合成模型逐个意群朗读每个语言版，按统一的节目响度拼接出一条音轨，为字幕定时，让画面先过门禁再渲染，并打包出一份超高清母版和一部带字幕的 1080p 观看版。每一步都记下所读内容的 SHA-256；绑定了其他字节的记录，后面的步骤会拒绝。",
+  "scope": "filmkit 引擎在 v0.16.0 发布时的状态：src/filmkit 包及其 Python 模块、Node 工具和关注列表，以及为它打包的 pyproject.toml 和 VERSION。",
+  "limits": [
+    "每个组件都引用规则归给它的全部文件；每条关系引用发起该调用或运行该进程的模块。",
+    "关系表示源码中的调用和进程调用，不表示运行顺序，也没有画出每一次调用：多数模块都会读取影片记录和朗读单元，核验和评审会在整个构建中发起调用，这些都写在组件详情里。",
+    "测试、样例影片、OpenSpec 规格与正式变更、文档，以及仓库的工具链和 CI，都不在范围内。"
+  ],
+  "repository": {
+    "name": "filmkit",
+    "url": "https://github.com/HengYangDS/filmkit.git",
+    "revision": "d6de89569ddb336363186ca99c39e5a45d018cb1",
+    "browse": "https://github.com/HengYangDS/filmkit/blob/{revision}/{path}"
+  },
+  "coverage": {
+    "exclude": [
+      {
+        "path": "tests/",
+        "reason": "The engine's Python and Node tests."
+      },
+      {
+        "path": "examples/",
+        "reason": "The sample film that the tests load and the local acceptance builds; its text is written for the tests and is no film's source."
+      },
+      {
+        "path": "openspec/",
+        "reason": "The engine's OpenSpec specifications and archived Changes: its accepted requirements and change history."
+      },
+      {
+        "path": "*.md",
+        "reason": "The README, the agent entry, the contributing guide and the change log; the guide cites them at the same revision."
+      },
+      {
+        "path": "LICENSE",
+        "reason": "The MIT licence."
+      },
+      {
+        "path": "NOTICE",
+        "reason": "The copyright notice and the licences of the sample film's assets and of the software and models a build installs."
+      },
+      {
+        "path": "uv.lock",
+        "reason": "The development lock; a film locks filmkit and its dependencies in its own project."
+      },
+      {
+        "path": "package.json",
+        "reason": "The npm packages that the tests and the sample film use; a film declares its own."
+      },
+      {
+        "path": "package-lock.json",
+        "reason": "The lock of those npm packages."
+      },
+      {
+        "path": ".config/",
+        "reason": "Tool configuration: the Mise tasks and lock, linters, formatters and the CI projection."
+      },
+      {
+        "path": ".ethos/",
+        "reason": "The repository's ETHOS binding and release peers."
+      },
+      {
+        "path": "system/",
+        "reason": "The proof sets that ETHOS and hosted CI run for this repository."
+      },
+      {
+        "path": ".github/",
+        "reason": "The GitHub Actions workflow."
+      },
+      {
+        "path": ".gitlab-ci.yml",
+        "reason": "The GitLab CI pipeline."
+      },
+      {
+        "path": ".editorconfig",
+        "reason": "Editor settings."
+      },
+      {
+        "path": ".gitattributes",
+        "reason": "Git attributes."
+      },
+      {
+        "path": ".gitignore",
+        "reason": "Git ignore rules."
+      }
+    ]
+  },
+  "overview": "overview.typ",
+  "guide": "guide/guide.archify.md",
+  "kinds": {
+    "command": {
+      "label": "命令",
+      "category": "frontend",
+      "icon": "square-terminal"
+    },
+    "contract": {
+      "label": "契约",
+      "category": "backend",
+      "icon": "file-cog"
+    },
+    "check": {
+      "label": "检查",
+      "category": "security",
+      "icon": "shield-check"
+    },
+    "narration": {
+      "label": "旁白步骤",
+      "category": "backend",
+      "icon": "mic"
+    },
+    "step": {
+      "label": "制作步骤",
+      "category": "backend",
+      "icon": "workflow"
+    },
+    "adapter": {
+      "label": "适配器",
+      "category": "messagebus",
+      "icon": "plug"
+    },
+    "film": {
+      "label": "影片",
+      "category": "external",
+      "icon": "folder-git-2"
+    },
+    "tool": {
+      "label": "外部工具",
+      "category": "external",
+      "icon": "wrench"
+    },
+    "reviewer": {
+      "label": "评审人",
+      "category": "person",
+      "icon": "user-check"
+    }
+  },
+  "components": [
+    {
+      "id": "production-command",
+      "label": "制作命令",
+      "kind": "command",
+      "details": {
+        "运行": "为一个语言版执行一个制作动作",
+        "动作": "select, assemble, refresh-captions, stage-picture, check-picture, preflight, render-picture, validate-picture, compare-pictures, package-metadata, package-film"
+      },
+      "files": ["src/filmkit/produce.py", "src/filmkit/preflight.py"]
+    },
+    {
+      "id": "narration-command",
+      "label": "旁白命令",
+      "kind": "command",
+      "details": {
+        "运行": "先做字词检查，再做语音合成、对齐和转写",
+        "拒绝": "在任何语音模型加载之前；试运行也一样"
+      },
+      "files": ["src/filmkit/narration/__init__.py", "src/filmkit/narration/narrate.py"]
+    },
+    {
+      "id": "film-and-editions",
+      "label": "影片与语言版",
+      "kind": "contract",
+      "details": {
+        "查找": "FILMKIT_ROOT 指定的影片，或最近的 content/film.toml",
+        "声明": "文件前缀、语言版、字体、播放器配色、评审规则和来源清单，开工前先检查",
+        "固定": "60 fps、48 kHz、-16.5 LUFS，以及超高清母版和 1080p 观看版，各有带字幕和无字幕两种"
+      },
+      "files": [
+        "src/filmkit/__init__.py",
+        "src/filmkit/py.typed",
+        "src/filmkit/repository.py",
+        "src/filmkit/film.py",
+        "src/filmkit/production.py",
+        "src/filmkit/specification.py",
+        "src/filmkit/sources.py"
+      ]
+    },
+    {
+      "id": "word-checks",
+      "label": "字词检查",
+      "kind": "check",
+      "details": {
+        "概念": "每个段落都用认可的说法讲出声明的概念，且不出现反例",
+        "读音": "关注列表里的每个汉字都有声明的读音，每个名称都有读法",
+        "术语": "每个声明的拉丁字母术语，交给旁白时拼写统一，读音与人工听过确认无误的那一处一致"
+      },
+      "files": [
+        "src/filmkit/concepts.py",
+        "src/filmkit/narration/readings.py",
+        "src/filmkit/narration/watched-characters.toml",
+        "src/filmkit/narration/terms.py"
+      ]
+    },
+    {
+      "id": "thought-takes",
+      "label": "意群录音",
+      "kind": "narration",
+      "details": {
+        "朗读": "用锁定版本的语音合成模型原生朗读每个意群，按配音设定的种子或重录",
+        "推导": "按影片的读音契约推导每个意群的朗读文本",
+        "复用": "请求指纹和录音文件都仍然一致的录音",
+        "判定": "录音是否自然收尾"
+      },
+      "files": [
+        "src/filmkit/narration/pronunciation.py",
+        "src/filmkit/narration/synthesis.py",
+        "src/filmkit/narration/group_generation.py",
+        "src/filmkit/narration/voice_model.py",
+        "src/filmkit/narration/thought_groups.py",
+        "src/filmkit/narration/take_edges.py",
+        "src/filmkit/narration/run_on.py",
+        "src/filmkit/narration/retakes.py"
+      ]
+    },
+    {
+      "id": "auditions",
+      "label": "试音与脚本修改",
+      "kind": "narration",
+      "details": {
+        "试音": "一个意群的其他种子，并推荐一条自然收尾的录音",
+        "绑定": "把选中的种子绑定到该意群的确切文本和朗读文本",
+        "修改": "原地修改意群，每条重录随其文本移动"
+      },
+      "files": ["src/filmkit/narration/audition.py", "src/filmkit/narration/script_edits.py"]
+    },
+    {
+      "id": "alignment",
+      "label": "对齐与选定",
+      "kind": "narration",
+      "details": {
+        "对齐": "用锁定版本的强制对齐器，把每份录音文件对齐到它的确切文本",
+        "转写": "每份录音文件，只作识别的替代指标，不作认证",
+        "选定": "选出与当前脚本和配音设定绑定的录音文件和对齐结果，并守住影片的停顿上限和声明的术语"
+      },
+      "files": [
+        "src/filmkit/narration/alignment.py",
+        "src/filmkit/narration/alignment_records.py",
+        "src/filmkit/narration/transcription.py",
+        "src/filmkit/narration/recognition.py",
+        "src/filmkit/narration/receipts.py",
+        "src/filmkit/narration/selection.py"
+      ]
+    },
+    {
+      "id": "supply",
+      "label": "供给",
+      "kind": "adapter",
+      "details": {
+        "安装": "锁定版本的浏览器构建和三个语音模型，各自按摘要检查",
+        "网络": "唯一会访问网络的步骤"
+      },
+      "files": ["src/filmkit/supply.py", "src/filmkit/narration/snapshots.py"]
+    },
+    {
+      "id": "spoken-units",
+      "label": "朗读单元",
+      "kind": "contract",
+      "details": {
+        "命名": "声音、字幕和审查共用的朗读单元、标点角色、衔接和意群跨度",
+        "测量": "每个词边界上听得到的停顿，选定和拼接为它设上限；以及意群之间的变化幅度，供人工试听"
+      },
+      "files": ["src/filmkit/narration/spoken_units.py", "src/filmkit/narration/flow.py"]
+    },
+    {
+      "id": "soundtrack",
+      "label": "音轨拼接",
+      "kind": "step",
+      "details": {
+        "拼接": "选定的录音，加上设计停顿，按统一的节目响度",
+        "拒绝": "未声明尾音淡出却收尾突兀的录音、超出上限的无标点停顿，以及读音与参照处不符的声明术语",
+        "写出": "音轨、时间线和拼接回执"
+      },
+      "files": ["src/filmkit/soundtrack/"]
+    },
+    {
+      "id": "captions",
+      "label": "字幕",
+      "kind": "step",
+      "details": {
+        "定时": "单行字幕条，卡在对齐的确切词上，从不跨意群",
+        "写出": "SRT、VTT、讲稿、章节及章节元数据"
+      },
+      "files": ["src/filmkit/captions/"]
+    },
+    {
+      "id": "picture-gate",
+      "label": "画面门禁",
+      "kind": "check",
+      "details": {
+        "审查": "以 1/30 s 为间隔的每一帧、每个标签与其词句的同步、片头标题和每段文字的对比度，以及 30 fps 下的动效",
+        "绑定": "在门禁记录里绑定画面合成、时间线、样式表、字体和引擎版本"
+      },
+      "files": [
+        "src/filmkit/picture/gates.py",
+        "src/filmkit/picture/sync_audit.py",
+        "src/filmkit/picture/text_trace.py"
+      ]
+    },
+    {
+      "id": "tool-runner",
+      "label": "Node 工具运行器",
+      "kind": "adapter",
+      "details": {
+        "运行": "从影片工具缓存里的副本，用影片的 npm 包运行引擎的 Node 工具",
+        "测量": "按影片声明字体的步进宽度测量文字"
+      },
+      "files": ["src/filmkit/tools.py", "src/filmkit/picture/metrics.py"]
+    },
+    {
+      "id": "picture-audits",
+      "label": "画面审查",
+      "kind": "check",
+      "details": {
+        "运行": "在 canvas 替身上无头运行影片的画面合成",
+        "测量": "版面、易读性、平衡、排版、标签与文字轨迹，以及动效",
+        "比对": "每个无字幕帧的绘制内容，与带字幕帧去掉字幕绘制后的内容"
+      },
+      "files": [
+        "src/filmkit/picture/frame-audit.mjs",
+        "src/filmkit/picture/frame-audit/",
+        "src/filmkit/picture/motion-audit.mjs",
+        "src/filmkit/picture/motion-audit/",
+        "src/filmkit/picture/headless-composition.mjs",
+        "src/filmkit/picture/seat-marks.mjs",
+        "src/filmkit/picture/rules/",
+        "src/filmkit/picture/caption-equivalence.mjs"
+      ]
+    },
+    {
+      "id": "browser-checks",
+      "label": "浏览器检查",
+      "kind": "check",
+      "details": {
+        "检查": "在 Chrome Headless Shell 里检查预置画面的几何和交付的播放器",
+        "绘制": "从预置画面绘制每个语言版的封面",
+        "画出": "逐帧审查找到的每段整圈弧线，找出浏览器画不出墨迹的弧"
+      },
+      "files": [
+        "src/filmkit/picture/geometry-check.mjs",
+        "src/filmkit/picture/headless-browser.mjs",
+        "src/filmkit/delivery/player-check.mjs",
+        "src/filmkit/delivery/player-read.mjs",
+        "src/filmkit/delivery/player-frames.mjs",
+        "src/filmkit/delivery/player-verdict.mjs",
+        "src/filmkit/picture/whole-turns.mjs"
+      ]
+    },
+    {
+      "id": "picture-rendering",
+      "label": "画面渲染",
+      "kind": "step",
+      "details": {
+        "预置": "把画面合成、时间线和字体预置成一份渲染器文档，绑定在 stage.json 中",
+        "渲染": "两份画面，带字幕的和无字幕的；有了通过的门禁记录，才交给 HyperFrames 渲染",
+        "校验": "每份渲染画面的帧、尺寸和帧节奏",
+        "扫描": "渲染出的影片里画面静止时仍在说话的地方",
+        "比对": "每个语言版的两份画面，打包前完成；二者只能在字幕上不同"
+      },
+      "files": [
+        "src/filmkit/picture/__init__.py",
+        "src/filmkit/picture/rendering.py",
+        "src/filmkit/picture/still_scan.py",
+        "src/filmkit/picture/equivalence.py"
+      ]
+    },
+    {
+      "id": "packaging",
+      "label": "打包",
+      "kind": "step",
+      "details": {
+        "打包": "四部成片：超高清母版和 1080p 观看版，各有带字幕和无字幕两种，附封面、发布元数据标签和章节",
+        "派生": "观看包：封面、字幕文件、讲稿、章节和由引擎渲染的播放器",
+        "设置": "原地设置章节轨的语言"
+      },
+      "files": [
+        "src/filmkit/delivery/__init__.py",
+        "src/filmkit/delivery/packaging.py",
+        "src/filmkit/delivery/track_language.py",
+        "src/filmkit/delivery/player.py",
+        "src/filmkit/delivery/player-page.js"
+      ]
+    },
+    {
+      "id": "verification",
+      "label": "核验",
+      "kind": "check",
+      "details": {
+        "核验": "来源、旁白保管链、两份渲染及其等效性、两个包、解码后的每部成片和评审",
+        "写出": "无；只读取和解码"
+      },
+      "files": ["src/filmkit/delivery/verification.py"]
+    },
+    {
+      "id": "reproduction",
+      "label": "复现",
+      "kind": "check",
+      "details": {
+        "比对": "重建结果与已发布版本的字节、解码后的音频、封装容器和每帧的 PSNR"
+      },
+      "files": ["src/filmkit/delivery/reproduction.py"]
+    },
+    {
+      "id": "delivery",
+      "label": "交付",
+      "kind": "step",
+      "details": {
+        "交付": "把 25 个交付项送到影片的 Documents 文件夹，再读回",
+        "提供": "本地评审媒体，支持按字节范围读取",
+        "读回": "rsync 改动任何内容之前，先用真实浏览器读一遍入口页和两个播放器"
+      },
+      "files": ["src/filmkit/delivery/documents_folder.py", "src/filmkit/delivery/media_server.py"]
+    },
+    {
+      "id": "review",
+      "label": "评审",
+      "kind": "check",
+      "details": {
+        "准备": "一轮独立评审，含封存、播放器绑定、提示词和记录",
+        "测量": "语速、停顿、收尾、响度、嗓音清晰度、识别结果和画面记录",
+        "判定": "每个意群的收尾，标准与拼接步骤相同"
+      },
+      "files": ["src/filmkit/review/"]
+    },
+    {
+      "id": "media-probe",
+      "label": "媒体探测",
+      "kind": "adapter",
+      "details": {
+        "读取": "流、帧节奏、完整解码结果和响度，用 FFprobe 和 FFmpeg"
+      },
+      "files": ["src/filmkit/media.py"]
+    },
+    {
+      "id": "engine-package",
+      "label": "引擎包",
+      "kind": "contract",
+      "details": {
+        "打包": "把 src/filmkit 打成一个 wheel，含其 Node 工具",
+        "版本": "0.16.0，取自 VERSION",
+        "依赖": "mlx-audio 0.6.4、NumPy、Pillow、Pydantic 和 pypinyin"
+      },
+      "files": ["pyproject.toml", "VERSION"]
+    },
+    {
+      "id": "film-repository",
+      "label": "影片仓库",
+      "kind": "film",
+      "details": {
+        "存放": "声明、脚本、配音设定、读音契约、页面、评审规则和画面合成"
+      }
+    },
+    {
+      "id": "speech-models",
+      "label": "语音模型",
+      "kind": "tool",
+      "details": {
+        "模型": "Qwen3-TTS 1.7B、Qwen3-ASR 0.6B 和 Qwen3-ForcedAligner 0.6B",
+        "运行时": "MLX 上的 mlx-audio 0.6.4"
+      }
+    },
+    {
+      "id": "renderer",
+      "label": "渲染器与浏览器",
+      "kind": "tool",
+      "details": {
+        "渲染器": "HyperFrames 0.9.9 与 GSAP，来自影片的 npm 包",
+        "浏览器": "Chrome Headless Shell 152.0.7977.30"
+      }
+    },
+    {
+      "id": "host-tools",
+      "label": "主机工具",
+      "kind": "tool",
+      "details": {
+        "工具": "带 VideoToolbox 的 FFmpeg、ExifTool 和 rsync 3，来自 Homebrew"
+      }
+    },
+    {
+      "id": "reviewer",
+      "label": "独立评审人",
+      "kind": "reviewer",
+      "details": {
+        "打分": "按影片声明的维度为每个语言版打分"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "narration-command-thought-takes",
+      "from": "narration-command",
+      "to": "thought-takes",
+      "label": "运行语音合成",
+      "files": ["src/filmkit/narration/narrate.py"]
+    },
+    {
+      "id": "narration-command-alignment",
+      "from": "narration-command",
+      "to": "alignment",
+      "label": "运行对齐、转写",
+      "files": ["src/filmkit/narration/narrate.py"]
+    },
+    {
+      "id": "narration-command-word-checks",
+      "from": "narration-command",
+      "to": "word-checks",
+      "label": "先查字词",
+      "files": ["src/filmkit/narration/narrate.py"]
+    },
+    {
+      "id": "narration-command-film-and-editions",
+      "from": "narration-command",
+      "to": "film-and-editions",
+      "label": "指定语言版",
+      "files": ["src/filmkit/narration/narrate.py"]
+    },
+    {
+      "id": "production-command-film-and-editions",
+      "from": "production-command",
+      "to": "film-and-editions",
+      "label": "指定语言版",
+      "files": ["src/filmkit/produce.py", "src/filmkit/preflight.py"]
+    },
+    {
+      "id": "production-command-alignment",
+      "from": "production-command",
+      "to": "alignment",
+      "label": "选定",
+      "files": ["src/filmkit/produce.py"]
+    },
+    {
+      "id": "production-command-soundtrack",
+      "from": "production-command",
+      "to": "soundtrack",
+      "label": "拼接",
+      "files": ["src/filmkit/produce.py"]
+    },
+    {
+      "id": "production-command-captions",
+      "from": "production-command",
+      "to": "captions",
+      "label": "刷新字幕",
+      "files": ["src/filmkit/produce.py"]
+    },
+    {
+      "id": "production-command-picture-gate",
+      "from": "production-command",
+      "to": "picture-gate",
+      "label": "检查画面",
+      "files": ["src/filmkit/produce.py"]
+    },
+    {
+      "id": "production-command-picture-rendering",
+      "from": "production-command",
+      "to": "picture-rendering",
+      "label": "预置、渲染、比对",
+      "files": ["src/filmkit/produce.py", "src/filmkit/preflight.py"]
+    },
+    {
+      "id": "production-command-packaging",
+      "from": "production-command",
+      "to": "packaging",
+      "label": "打包",
+      "files": ["src/filmkit/produce.py", "src/filmkit/preflight.py"]
+    },
+    {
+      "id": "film-and-editions-film-repository",
+      "from": "film-and-editions",
+      "to": "film-repository",
+      "label": "读取声明",
+      "files": ["src/filmkit/film.py", "src/filmkit/repository.py"]
+    },
+    {
+      "id": "word-checks-film-and-editions",
+      "from": "word-checks",
+      "to": "film-and-editions",
+      "label": "读取脚本、来源清单",
+      "files": [
+        "src/filmkit/concepts.py",
+        "src/filmkit/narration/readings.py",
+        "src/filmkit/narration/terms.py"
+      ]
+    },
+    {
+      "id": "word-checks-thought-takes",
+      "from": "word-checks",
+      "to": "thought-takes",
+      "label": "推导意群朗读文本",
+      "files": ["src/filmkit/concepts.py", "src/filmkit/narration/readings.py"]
+    },
+    {
+      "id": "thought-takes-supply",
+      "from": "thought-takes",
+      "to": "supply",
+      "label": "核验合成模型快照",
+      "files": ["src/filmkit/narration/group_generation.py", "src/filmkit/narration/voice_model.py"]
+    },
+    {
+      "id": "thought-takes-speech-models",
+      "from": "thought-takes",
+      "to": "speech-models",
+      "label": "用 Qwen3-TTS 朗读",
+      "files": ["src/filmkit/narration/group_generation.py", "src/filmkit/narration/synthesis.py"]
+    },
+    {
+      "id": "alignment-thought-takes",
+      "from": "alignment",
+      "to": "thought-takes",
+      "label": "检查录音、朗读文本",
+      "files": ["src/filmkit/narration/alignment.py", "src/filmkit/narration/selection.py"]
+    },
+    {
+      "id": "alignment-supply",
+      "from": "alignment",
+      "to": "supply",
+      "label": "核验对齐器、识别器",
+      "files": ["src/filmkit/narration/alignment.py", "src/filmkit/narration/transcription.py"]
+    },
+    {
+      "id": "alignment-speech-models",
+      "from": "alignment",
+      "to": "speech-models",
+      "label": "对齐、转写",
+      "files": ["src/filmkit/narration/alignment.py", "src/filmkit/narration/transcription.py"]
+    },
+    {
+      "id": "auditions-thought-takes",
+      "from": "auditions",
+      "to": "thought-takes",
+      "label": "朗读种子、绑定重录",
+      "files": ["src/filmkit/narration/audition.py", "src/filmkit/narration/script_edits.py"]
+    },
+    {
+      "id": "auditions-alignment",
+      "from": "auditions",
+      "to": "alignment",
+      "label": "对齐、转写录音",
+      "files": ["src/filmkit/narration/audition.py"]
+    },
+    {
+      "id": "supply-speech-models",
+      "from": "supply",
+      "to": "speech-models",
+      "label": "下载、检查",
+      "files": ["src/filmkit/supply.py"]
+    },
+    {
+      "id": "supply-renderer",
+      "from": "supply",
+      "to": "renderer",
+      "label": "安装浏览器构建",
+      "files": ["src/filmkit/supply.py"]
+    },
+    {
+      "id": "soundtrack-alignment",
+      "from": "soundtrack",
+      "to": "alignment",
+      "label": "检查选定结果",
+      "files": ["src/filmkit/soundtrack/assembly.py"]
+    },
+    {
+      "id": "soundtrack-thought-takes",
+      "from": "soundtrack",
+      "to": "thought-takes",
+      "label": "拒绝突兀录音",
+      "files": ["src/filmkit/soundtrack/assembly.py"]
+    },
+    {
+      "id": "soundtrack-captions",
+      "from": "soundtrack",
+      "to": "captions",
+      "label": "为字幕定时",
+      "files": ["src/filmkit/soundtrack/assembly.py"]
+    },
+    {
+      "id": "soundtrack-spoken-units",
+      "from": "soundtrack",
+      "to": "spoken-units",
+      "label": "测量衔接、意群",
+      "files": [
+        "src/filmkit/soundtrack/assembly.py",
+        "src/filmkit/soundtrack/level.py",
+        "src/filmkit/soundtrack/pauses.py",
+        "src/filmkit/soundtrack/policy.py",
+        "src/filmkit/soundtrack/quiet.py"
+      ]
+    },
+    {
+      "id": "soundtrack-media-probe",
+      "from": "soundtrack",
+      "to": "media-probe",
+      "label": "测量节目响度",
+      "files": ["src/filmkit/soundtrack/level.py"]
+    },
+    {
+      "id": "captions-spoken-units",
+      "from": "captions",
+      "to": "spoken-units",
+      "label": "读取标点、单元",
+      "files": [
+        "src/filmkit/captions/chinese.py",
+        "src/filmkit/captions/english.py",
+        "src/filmkit/captions/timing.py"
+      ]
+    },
+    {
+      "id": "media-probe-host-tools",
+      "from": "media-probe",
+      "to": "host-tools",
+      "label": "探测、解码、测响度",
+      "files": ["src/filmkit/media.py"]
+    },
+    {
+      "id": "picture-gate-tool-runner",
+      "from": "picture-gate",
+      "to": "tool-runner",
+      "label": "运行审查",
+      "files": ["src/filmkit/picture/gates.py"]
+    },
+    {
+      "id": "picture-gate-picture-rendering",
+      "from": "picture-gate",
+      "to": "picture-rendering",
+      "label": "绑定画面合成、字体",
+      "files": ["src/filmkit/picture/gates.py", "src/filmkit/picture/sync_audit.py"]
+    },
+    {
+      "id": "picture-gate-engine-package",
+      "from": "picture-gate",
+      "to": "engine-package",
+      "label": "绑定引擎版本",
+      "files": ["src/filmkit/picture/gates.py"]
+    },
+    {
+      "id": "tool-runner-picture-audits",
+      "from": "tool-runner",
+      "to": "picture-audits",
+      "label": "运行逐帧、动效审查",
+      "files": ["src/filmkit/tools.py"]
+    },
+    {
+      "id": "tool-runner-browser-checks",
+      "from": "tool-runner",
+      "to": "browser-checks",
+      "label": "运行几何、播放器检查",
+      "files": ["src/filmkit/tools.py"]
+    },
+    {
+      "id": "tool-runner-picture-rendering",
+      "from": "tool-runner",
+      "to": "picture-rendering",
+      "label": "要求指定渲染器",
+      "files": ["src/filmkit/tools.py", "src/filmkit/picture/metrics.py"]
+    },
+    {
+      "id": "tool-runner-engine-package",
+      "from": "tool-runner",
+      "to": "engine-package",
+      "label": "复制 Node 工具",
+      "files": ["src/filmkit/tools.py"]
+    },
+    {
+      "id": "picture-audits-film-repository",
+      "from": "picture-audits",
+      "to": "film-repository",
+      "label": "运行画面合成",
+      "files": ["src/filmkit/picture/headless-composition.mjs"]
+    },
+    {
+      "id": "browser-checks-picture-audits",
+      "from": "browser-checks",
+      "to": "picture-audits",
+      "label": "共用帧规则",
+      "files": ["src/filmkit/picture/geometry-check.mjs"]
+    },
+    {
+      "id": "browser-checks-renderer",
+      "from": "browser-checks",
+      "to": "renderer",
+      "label": "驱动浏览器",
+      "files": ["src/filmkit/picture/headless-browser.mjs"]
+    },
+    {
+      "id": "picture-rendering-renderer",
+      "from": "picture-rendering",
+      "to": "renderer",
+      "label": "用 HyperFrames 渲染",
+      "files": ["src/filmkit/picture/rendering.py"]
+    },
+    {
+      "id": "picture-rendering-film-repository",
+      "from": "picture-rendering",
+      "to": "film-repository",
+      "label": "内联画面合成",
+      "files": ["src/filmkit/picture/rendering.py"]
+    },
+    {
+      "id": "picture-rendering-media-probe",
+      "from": "picture-rendering",
+      "to": "media-probe",
+      "label": "探测渲染结果",
+      "files": ["src/filmkit/picture/rendering.py"]
+    },
+    {
+      "id": "packaging-picture-rendering",
+      "from": "packaging",
+      "to": "picture-rendering",
+      "label": "校验两份画面",
+      "files": ["src/filmkit/delivery/packaging.py"]
+    },
+    {
+      "id": "packaging-media-probe",
+      "from": "packaging",
+      "to": "media-probe",
+      "label": "检查每部成片",
+      "files": ["src/filmkit/delivery/packaging.py"]
+    },
+    {
+      "id": "packaging-host-tools",
+      "from": "packaging",
+      "to": "host-tools",
+      "label": "编码、写标签",
+      "files": ["src/filmkit/delivery/packaging.py"]
+    },
+    {
+      "id": "verification-packaging",
+      "from": "verification",
+      "to": "packaging",
+      "label": "检查两个包",
+      "files": ["src/filmkit/delivery/verification.py"]
+    },
+    {
+      "id": "verification-media-probe",
+      "from": "verification",
+      "to": "media-probe",
+      "label": "解码每部成片",
+      "files": ["src/filmkit/delivery/verification.py"]
+    },
+    {
+      "id": "verification-review",
+      "from": "verification",
+      "to": "review",
+      "label": "读取评审下限",
+      "files": ["src/filmkit/delivery/verification.py"]
+    },
+    {
+      "id": "reproduction-verification",
+      "from": "reproduction",
+      "to": "verification",
+      "label": "验收已发布的评审",
+      "files": ["src/filmkit/delivery/reproduction.py"]
+    },
+    {
+      "id": "reproduction-host-tools",
+      "from": "reproduction",
+      "to": "host-tools",
+      "label": "比对帧、音频",
+      "files": ["src/filmkit/delivery/reproduction.py"]
+    },
+    {
+      "id": "delivery-packaging",
+      "from": "delivery",
+      "to": "packaging",
+      "label": "读取交付项",
+      "files": ["src/filmkit/delivery/documents_folder.py"]
+    },
+    {
+      "id": "delivery-host-tools",
+      "from": "delivery",
+      "to": "host-tools",
+      "label": "rsync、shasum",
+      "files": ["src/filmkit/delivery/documents_folder.py"]
+    },
+    {
+      "id": "review-reviewer",
+      "from": "review",
+      "to": "reviewer",
+      "label": "写提示词",
+      "files": ["src/filmkit/review/round.py", "src/filmkit/review/prompts.py"]
+    }
+  ],
+  "views": [
+    {
+      "id": "overview",
+      "title": "从影片源文件到交付成片",
+      "question": "哪些命令把一个语言版从脚本一路带到四部交付成片？",
+      "members": [
+        "narration-command",
+        "thought-takes",
+        "production-command",
+        "soundtrack",
+        "captions",
+        "picture-gate",
+        "picture-rendering",
+        "packaging"
+      ]
+    },
+    {
+      "id": "film",
+      "title": "引擎从影片读取什么",
+      "question": "引擎从它构建的影片读取什么？朗读之前必须满足什么？",
+      "members": [
+        "film-repository",
+        "film-and-editions",
+        "production-command",
+        "narration-command",
+        "word-checks",
+        "thought-takes",
+        "picture-rendering",
+        "picture-audits"
+      ]
+    },
+    {
+      "id": "narration",
+      "title": "旁白及其供给",
+      "question": "每个意群怎样朗读、试音和对齐？供给步骤先安装什么？",
+      "members": [
+        "narration-command",
+        "thought-takes",
+        "alignment",
+        "auditions",
+        "supply",
+        "speech-models",
+        "renderer"
+      ]
+    },
+    {
+      "id": "sound",
+      "title": "声音与字幕出自同一次拼接",
+      "question": "选定的录音怎样变成一条音轨、一份时间线及其字幕？",
+      "members": [
+        "production-command",
+        "alignment",
+        "thought-takes",
+        "soundtrack",
+        "captions",
+        "spoken-units",
+        "media-probe",
+        "host-tools"
+      ]
+    },
+    {
+      "id": "picture",
+      "title": "画面的门禁与渲染",
+      "question": "渲染之前由什么审查画面？又由什么渲染？",
+      "members": [
+        "picture-gate",
+        "tool-runner",
+        "picture-audits",
+        "browser-checks",
+        "picture-rendering",
+        "renderer",
+        "engine-package",
+        "media-probe"
+      ]
+    },
+    {
+      "id": "acceptance",
+      "title": "打包、核验、交付与评审",
+      "question": "成片怎样打包、核验、交付、评审和复现？",
+      "members": [
+        "packaging",
+        "verification",
+        "reproduction",
+        "delivery",
+        "review",
+        "reviewer",
+        "media-probe",
+        "host-tools"
+      ]
+    }
+  ],
+  "editors": [
+    {
+      "name": "Yang HENG"
+    }
+  ],
+  "license": "MIT"
+}

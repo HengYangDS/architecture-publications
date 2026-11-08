@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "承载一次改动的组件",
+    "output": "parts.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/ethos.git",
+      "provider": "github",
+      "revision": "727ee0579ba1fb9e391b5c44ce9fb2c208390199"
+    }
+  },
+  "components": [
+    {
+      "id": "part-intent",
+      "type": "backend",
+      "label": "OpenSpec 意图",
+      "sublabel": "正式变更",
+      "pos": [40, 40],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "src/ethos/adapters/openspec/commitment.py",
+          "line": 45,
+          "end_line": 57,
+          "label": "编译"
+        }
+      ]
+    },
+    {
+      "id": "part-plan",
+      "type": "backend",
+      "label": "TransitionPlan",
+      "sublabel": "检查、决策、改动",
+      "pos": [280, 40],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "src/ethos/contracts/plan.py",
+          "line": 170,
+          "end_line": 182,
+          "label": "计划"
+        }
+      ]
+    },
+    {
+      "id": "part-proof",
+      "type": "database",
+      "label": "证明核验记录",
+      "sublabel": "一个确切的 HEAD",
+      "pos": [520, 40],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "src/ethos/adapters/mutation/proof.py",
+          "line": 417,
+          "end_line": 422,
+          "label": "证明"
+        }
+      ]
+    },
+    {
+      "id": "part-landing",
+      "type": "backend",
+      "label": "落地与验收",
+      "sublabel": "先候选分支，再已验收",
+      "pos": [760, 40],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "src/ethos/adapters/mutation/landing.py",
+          "line": 45,
+          "end_line": 58,
+          "label": "落地"
+        }
+      ]
+    },
+    {
+      "id": "part-prewrite",
+      "type": "security",
+      "label": "写前准入",
+      "sublabel": "每次受版本管理的写入之前",
+      "pos": [40, 220],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "src/ethos/adapters/admission/prewrite.py",
+          "line": 60,
+          "end_line": 72,
+          "label": "守卫"
+        }
+      ]
+    },
+    {
+      "id": "part-lane",
+      "type": "backend",
+      "label": "工作通道",
+      "sublabel": "分支、工作区、租约",
+      "pos": [280, 220],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "src/ethos/adapters/mutation/lane_lifecycle/start.py",
+          "line": 343,
+          "end_line": 353,
+          "label": "开始"
+        }
+      ]
+    },
+    {
+      "id": "part-hooks",
+      "type": "security",
+      "label": "钩子协议",
+      "sublabel": "每个钩子一次准入",
+      "pos": [520, 220],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "src/ethos/adapters/repo/hook/protocol.py",
+          "line": 21,
+          "end_line": 34,
+          "label": "钩子"
+        }
+      ]
+    },
+    {
+      "id": "part-publication",
+      "type": "backend",
+      "label": "平台发布",
+      "sublabel": "GitLab 与 GitHub，确切的 force-with-lease",
+      "pos": [760, 220],
+      "size": [180, 68],
+      "sources": [
+        {
+          "path": "src/ethos/adapters/mutation/publication/execution.py",
+          "line": 45,
+          "end_line": 62,
+          "label": "推送"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "edge-compiles",
+      "from": "part-intent",
+      "to": "part-plan",
+      "label": "编译"
+    },
+    {
+      "id": "edge-validates",
+      "from": "part-proof",
+      "to": "part-plan",
+      "label": "校验"
+    },
+    {
+      "id": "edge-landing-requires",
+      "from": "part-landing",
+      "to": "part-proof",
+      "label": "要求",
+      "variant": "emphasis"
+    },
+    {
+      "id": "edge-attributes",
+      "from": "part-prewrite",
+      "to": "part-intent",
+      "label": "认定路径归属"
+    },
+    {
+      "id": "edge-holder",
+      "from": "part-prewrite",
+      "to": "part-lane",
+      "label": "核对持有者"
+    },
+    {
+      "id": "edge-activates",
+      "from": "part-lane",
+      "to": "part-hooks",
+      "label": "激活"
+    },
+    {
+      "id": "edge-publication-requires",
+      "from": "part-publication",
+      "to": "part-proof",
+      "label": "要求"
+    }
+  ]
+}

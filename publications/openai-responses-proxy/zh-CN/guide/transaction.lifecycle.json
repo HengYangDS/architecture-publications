@@ -1,0 +1,186 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "一个载荷事务：从已验证的资产到正在服务的一代",
+    "output": "transaction.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
+      "provider": "github",
+      "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+    }
+  },
+  "mainPath": ["tx-prepared", "tx-materialized", "tx-activated", "tx-finalized"],
+  "states": [
+    {
+      "id": "tx-prepared",
+      "type": "start",
+      "label": "已准备",
+      "sublabel": "事务日志已写入",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/transaction/execution.py",
+          "line": 377,
+          "end_line": 454,
+          "label": "开始"
+        }
+      ]
+    },
+    {
+      "id": "tx-materialized",
+      "type": "active",
+      "label": "已物化",
+      "sublabel": "新的一代",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/transaction/execution.py",
+          "line": 133,
+          "end_line": 199,
+          "label": "物化"
+        }
+      ]
+    },
+    {
+      "id": "tx-activated",
+      "type": "active",
+      "label": "已激活",
+      "sublabel": "选择器已切换",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/transaction/execution.py",
+          "line": 201,
+          "end_line": 236,
+          "label": "激活"
+        }
+      ]
+    },
+    {
+      "id": "tx-finalized",
+      "type": "success",
+      "label": "已完结",
+      "sublabel": "监听器已证明",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/transaction/completion.py",
+          "line": 40,
+          "end_line": 61,
+          "label": "完结"
+        }
+      ]
+    },
+    {
+      "id": "tx-recovery",
+      "type": "waiting",
+      "label": "需要恢复",
+      "sublabel": "未确认",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/transaction/execution.py",
+          "line": 280,
+          "end_line": 300,
+          "label": "保留"
+        }
+      ]
+    },
+    {
+      "id": "tx-rolled-back",
+      "type": "failure",
+      "label": "已回滚",
+      "sublabel": "先前状态已还原",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/transaction/execution.py",
+          "line": 255,
+          "end_line": 271,
+          "label": "回滚"
+        }
+      ]
+    },
+    {
+      "id": "tx-closed",
+      "type": "neutral",
+      "label": "已关闭",
+      "sublabel": "未写入任何内容",
+      "sources": [
+        {
+          "path": "src/openai_responses_proxy/lifecycle/transaction/recovery.py",
+          "line": 109,
+          "end_line": 116,
+          "label": "关闭"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "id": "tx-t-materialize",
+      "from": "tx-prepared",
+      "to": "tx-materialized",
+      "label": "写入"
+    },
+    {
+      "id": "tx-t-activate",
+      "from": "tx-materialized",
+      "to": "tx-activated",
+      "label": "选定"
+    },
+    {
+      "id": "tx-t-finalize",
+      "from": "tx-activated",
+      "to": "tx-finalized",
+      "label": "证明"
+    },
+    {
+      "id": "tx-t-close",
+      "from": "tx-prepared",
+      "to": "tx-closed",
+      "label": "recover",
+      "variant": "dashed"
+    },
+    {
+      "id": "tx-t-candidate-failed",
+      "from": "tx-materialized",
+      "to": "tx-rolled-back",
+      "label": "失败",
+      "variant": "security"
+    },
+    {
+      "id": "tx-t-unconfirmed",
+      "from": "tx-activated",
+      "to": "tx-recovery",
+      "label": "未确认",
+      "variant": "security"
+    },
+    {
+      "id": "tx-t-recover-forward",
+      "from": "tx-recovery",
+      "to": "tx-finalized",
+      "label": "服务",
+      "variant": "dashed"
+    },
+    {
+      "id": "tx-t-recover-back",
+      "from": "tx-recovery",
+      "to": "tx-rolled-back",
+      "label": "还原",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "事务日志记录什么",
+      "items": [
+        "事务本身、其发布版本与回执摘要，以及其状态。",
+        "它可能删除的每个文件的确切路径和摘要。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "恢复依据什么做判断",
+      "items": ["事务日志、选择器和安装状态记录。", "运行中的监听器在 /healthz 上报告的身份。"]
+    }
+  ]
+}

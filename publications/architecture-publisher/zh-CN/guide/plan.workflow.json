@@ -1,0 +1,243 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "构建如何选择视图",
+    "output": "plan.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/architecture-publisher",
+      "provider": "github",
+      "revision": "1861b7ccbb6d57378d3e5f69ffc328579eec991b"
+    },
+    "legend": {
+      "entries": {
+        "security": {
+          "label": "问题"
+        },
+        "backend": {
+          "label": "出版工具步骤"
+        },
+        "external": {
+          "label": "结果"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "plan-lane-declared",
+      "label": "已声明"
+    },
+    {
+      "id": "plan-lane-planned",
+      "label": "由出版工具规划"
+    },
+    {
+      "id": "plan-lane-refused",
+      "label": "拒绝",
+      "variant": "exception"
+    }
+  ],
+  "mainPath": ["plan-declared", "plan-admit", "plan-draw"],
+  "nodes": [
+    {
+      "id": "plan-declared",
+      "lane": "plan-lane-declared",
+      "col": 0,
+      "type": "security",
+      "label": "声明了视图？",
+      "sources": [
+        {
+          "path": "src/plan/views.mjs",
+          "line": 133,
+          "end_line": 138,
+          "label": "Declared"
+        }
+      ]
+    },
+    {
+      "id": "plan-admit",
+      "lane": "plan-lane-declared",
+      "col": 1,
+      "type": "backend",
+      "label": "逐一接纳声明的视图",
+      "sources": [
+        {
+          "path": "src/plan/views.mjs",
+          "line": 198,
+          "end_line": 221,
+          "label": "Admission"
+        }
+      ]
+    },
+    {
+      "id": "plan-draw",
+      "lane": "plan-lane-declared",
+      "col": 4,
+      "type": "external",
+      "label": "待绘视图",
+      "sources": [
+        {
+          "path": "src/plan/views.mjs",
+          "line": 128,
+          "end_line": 132,
+          "label": "Plan"
+        }
+      ]
+    },
+    {
+      "id": "plan-whole",
+      "lane": "plan-lane-planned",
+      "col": 1,
+      "type": "backend",
+      "label": "涵盖全部组件的视图",
+      "sources": [
+        {
+          "path": "src/plan/views.mjs",
+          "line": 139,
+          "end_line": 144,
+          "label": "Whole model"
+        }
+      ]
+    },
+    {
+      "id": "plan-fits",
+      "lane": "plan-lane-planned",
+      "col": 2,
+      "type": "security",
+      "label": "一幅图版容得下？",
+      "sources": [
+        {
+          "path": "src/plan/views.mjs",
+          "line": 145,
+          "end_line": 146,
+          "label": "Fits"
+        }
+      ]
+    },
+    {
+      "id": "plan-groups",
+      "lane": "plan-lane-planned",
+      "col": 3,
+      "type": "security",
+      "label": "声明了分组？",
+      "sources": [
+        {
+          "path": "src/plan/views.mjs",
+          "line": 147,
+          "end_line": 152,
+          "label": "Groups"
+        }
+      ]
+    },
+    {
+      "id": "plan-overview",
+      "lane": "plan-lane-planned",
+      "col": 4,
+      "type": "backend",
+      "label": "分组总览与各组视图",
+      "sources": [
+        {
+          "path": "src/plan/views.mjs",
+          "line": 50,
+          "end_line": 55,
+          "label": "Overview"
+        }
+      ]
+    },
+    {
+      "id": "plan-refused",
+      "lane": "plan-lane-refused",
+      "col": 3,
+      "type": "external",
+      "label": "规划被拒绝",
+      "sources": [
+        {
+          "path": "src/plan/views.mjs",
+          "line": 147,
+          "end_line": 152,
+          "label": "Refusal"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "plan-e-admit",
+      "from": "plan-declared",
+      "to": "plan-admit",
+      "role": "main",
+      "label": "是",
+      "variant": "emphasis"
+    },
+    {
+      "id": "plan-e-draw",
+      "from": "plan-admit",
+      "to": "plan-draw",
+      "role": "main"
+    },
+    {
+      "id": "plan-e-whole",
+      "from": "plan-declared",
+      "to": "plan-whole",
+      "role": "branch",
+      "label": "否"
+    },
+    {
+      "id": "plan-e-fits",
+      "from": "plan-whole",
+      "to": "plan-fits",
+      "role": "branch"
+    },
+    {
+      "id": "plan-e-fit-yes",
+      "from": "plan-fits",
+      "to": "plan-draw",
+      "role": "branch",
+      "label": "是"
+    },
+    {
+      "id": "plan-e-fit-no",
+      "from": "plan-fits",
+      "to": "plan-groups",
+      "role": "branch",
+      "label": "否"
+    },
+    {
+      "id": "plan-e-group-yes",
+      "from": "plan-groups",
+      "to": "plan-overview",
+      "role": "branch",
+      "label": "是"
+    },
+    {
+      "id": "plan-e-overview",
+      "from": "plan-overview",
+      "to": "plan-draw",
+      "role": "branch"
+    },
+    {
+      "id": "plan-e-group-no",
+      "from": "plan-groups",
+      "to": "plan-refused",
+      "role": "error",
+      "label": "否"
+    }
+  ],
+  "semanticChecks": {
+    "allowedRoots": ["plan-declared"],
+    "allowedTerminals": ["plan-draw", "plan-refused"],
+    "requiredEdges": [
+      {
+        "from": "plan-declared",
+        "to": "plan-admit"
+      },
+      {
+        "from": "plan-groups",
+        "to": "plan-refused"
+      }
+    ]
+  }
+}

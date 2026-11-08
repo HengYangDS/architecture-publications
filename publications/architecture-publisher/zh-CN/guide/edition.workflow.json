@@ -1,0 +1,244 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "视图如何成为图册中的一页",
+    "output": "edition.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/architecture-publisher",
+      "provider": "github",
+      "revision": "1861b7ccbb6d57378d3e5f69ffc328579eec991b"
+    },
+    "legend": {
+      "entries": {
+        "security": {
+          "label": "检查"
+        },
+        "backend": {
+          "label": "出版工具步骤"
+        },
+        "external": {
+          "label": "结果"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "ed-lane-plate",
+      "label": "图版"
+    },
+    {
+      "id": "ed-lane-typeset",
+      "label": "排版"
+    },
+    {
+      "id": "ed-lane-refused",
+      "label": "拒绝",
+      "variant": "exception"
+    }
+  ],
+  "mainPath": [
+    "ed-compose",
+    "ed-fits",
+    "ed-width",
+    "ed-gates",
+    "ed-typeset",
+    "ed-text",
+    "ed-images"
+  ],
+  "semanticChecks": {
+    "allowedRoots": ["ed-compose"],
+    "allowedTerminals": ["ed-images", "ed-refused"],
+    "requiredEdges": [
+      {
+        "from": "ed-text",
+        "to": "ed-images"
+      },
+      {
+        "from": "ed-fits",
+        "to": "ed-refused"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "ed-compose",
+      "lane": "ed-lane-plate",
+      "col": 0,
+      "type": "backend",
+      "label": "编排每个视图",
+      "sources": [
+        {
+          "path": "src/poster/compose/plates.mjs",
+          "line": 99,
+          "end_line": 110,
+          "label": "Compositions"
+        }
+      ]
+    },
+    {
+      "id": "ed-fits",
+      "lane": "ed-lane-plate",
+      "col": 1,
+      "type": "security",
+      "label": "正文区内能布局？",
+      "sources": [
+        {
+          "path": "src/poster/compose/plates.mjs",
+          "line": 149,
+          "end_line": 160,
+          "label": "Admitted"
+        }
+      ]
+    },
+    {
+      "id": "ed-width",
+      "lane": "ed-lane-plate",
+      "col": 2,
+      "type": "backend",
+      "label": "选定宽度",
+      "sources": [
+        {
+          "path": "src/poster/compose/plates.mjs",
+          "line": 203,
+          "end_line": 234,
+          "label": "Width"
+        }
+      ]
+    },
+    {
+      "id": "ed-gates",
+      "lane": "ed-lane-plate",
+      "col": 3,
+      "type": "backend",
+      "label": "度量四道门槛",
+      "sources": [
+        {
+          "path": "src/poster/compose/gates.mjs",
+          "line": 1,
+          "end_line": 24,
+          "label": "Gates"
+        }
+      ]
+    },
+    {
+      "id": "ed-typeset",
+      "lane": "ed-lane-typeset",
+      "col": 3,
+      "type": "backend",
+      "label": "一遍排版",
+      "sources": [
+        {
+          "path": "src/edition/typeset.mjs",
+          "line": 11,
+          "end_line": 14,
+          "label": "Edition"
+        }
+      ]
+    },
+    {
+      "id": "ed-text",
+      "lane": "ed-lane-typeset",
+      "col": 4,
+      "type": "security",
+      "label": "文字与度量一致？",
+      "sources": [
+        {
+          "path": "docs/reference/operations.md",
+          "line": 212,
+          "end_line": 215,
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "id": "ed-images",
+      "lane": "ed-lane-typeset",
+      "col": 5,
+      "type": "external",
+      "label": "PDF 与各页图像",
+      "sources": [
+        {
+          "path": "src/edition/typeset.mjs",
+          "line": 120,
+          "end_line": 141,
+          "label": "Images"
+        }
+      ]
+    },
+    {
+      "id": "ed-refused",
+      "lane": "ed-lane-refused",
+      "col": 2,
+      "type": "external",
+      "label": "图册被拒绝",
+      "sources": [
+        {
+          "path": "docs/reference/operations.md",
+          "line": 396,
+          "end_line": 401,
+          "label": "Refusals"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "ed-e-fits",
+      "from": "ed-compose",
+      "to": "ed-fits",
+      "role": "main"
+    },
+    {
+      "id": "ed-e-width",
+      "from": "ed-fits",
+      "to": "ed-width",
+      "role": "main",
+      "label": "是"
+    },
+    {
+      "id": "ed-e-gates",
+      "from": "ed-width",
+      "to": "ed-gates",
+      "role": "main"
+    },
+    {
+      "id": "ed-e-typeset",
+      "from": "ed-gates",
+      "to": "ed-typeset",
+      "role": "main",
+      "label": "记录未通过项"
+    },
+    {
+      "id": "ed-e-text",
+      "from": "ed-typeset",
+      "to": "ed-text",
+      "role": "main"
+    },
+    {
+      "id": "ed-e-images",
+      "from": "ed-text",
+      "to": "ed-images",
+      "role": "main",
+      "label": "是",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ed-e-unfittable",
+      "from": "ed-fits",
+      "to": "ed-refused",
+      "role": "error",
+      "label": "否"
+    },
+    {
+      "id": "ed-e-wider",
+      "from": "ed-text",
+      "to": "ed-refused",
+      "role": "error",
+      "label": "否"
+    }
+  ]
+}

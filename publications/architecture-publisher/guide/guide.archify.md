@@ -7,7 +7,7 @@
 - [A layout with an overlap is never drawn](block:p-layout), and a view that no layout draws is refused, not shrunk.[](source:contract-layout-floor)
 - [Only an accepted delivery is published](block:p-accept), and never over a different one.[](source:contract-acceptance)
 
-@answer scope="Architecture Publisher v0.10.0 · commit 548637c · its source and its own documents · re-pin counts measured on 2026-11-08"
+@answer scope="Architecture Publisher v0.10.1 · commit 1861b7c · its source and its own documents · re-pin counts measured on 2026-11-08"
 @meta locale=en style=editorial
 @source contract-product title="The product" path="docs/product-contract.md" lines=13:21
 @source contract-meaning title="Who owns meaning and form" path="docs/product-contract.md" lines=23:28

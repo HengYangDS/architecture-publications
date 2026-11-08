@@ -1,0 +1,155 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "交付物：从暂存到出版",
+    "output": "delivery.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/architecture-publisher",
+      "provider": "github",
+      "revision": "1861b7ccbb6d57378d3e5f69ffc328579eec991b"
+    }
+  },
+  "mainPath": ["life-delivered", "life-accepted", "life-published"],
+  "states": [
+    {
+      "id": "life-delivered",
+      "type": "start",
+      "label": "构建就位",
+      "sublabel": "先暂存，再重命名就位",
+      "sources": [
+        {
+          "path": "src/build.mjs",
+          "line": 364,
+          "end_line": 373,
+          "label": "Staging"
+        },
+        {
+          "path": "src/build.mjs",
+          "line": 490,
+          "end_line": 506,
+          "label": "Rename"
+        }
+      ]
+    },
+    {
+      "id": "life-accepted",
+      "type": "decision",
+      "label": "已验收的构建",
+      "sublabel": "一位具名审阅人",
+      "sources": [
+        {
+          "path": "src/delivery.mjs",
+          "line": 52,
+          "end_line": 77,
+          "label": "Accept"
+        }
+      ]
+    },
+    {
+      "id": "life-published",
+      "type": "success",
+      "label": "已出版的副本",
+      "sublabel": "root/id/version",
+      "sources": [
+        {
+          "path": "src/delivery.mjs",
+          "line": 79,
+          "end_line": 136,
+          "label": "Publish"
+        }
+      ]
+    },
+    {
+      "id": "life-changed",
+      "type": "failure",
+      "label": "delivery_changed",
+      "sublabel": "有产物不符",
+      "sources": [
+        {
+          "path": "src/delivery.mjs",
+          "line": 28,
+          "end_line": 34,
+          "label": "Changed"
+        }
+      ]
+    },
+    {
+      "id": "life-conflict",
+      "type": "failure",
+      "label": "publish_conflict",
+      "sublabel": "已有另一份交付物",
+      "sources": [
+        {
+          "path": "src/delivery.mjs",
+          "line": 111,
+          "end_line": 116,
+          "label": "Conflict"
+        }
+      ]
+    },
+    {
+      "id": "life-same",
+      "type": "neutral",
+      "label": "相同副本",
+      "sublabel": "什么也不改变",
+      "sources": [
+        {
+          "path": "src/delivery.mjs",
+          "line": 111,
+          "end_line": 116,
+          "label": "Identical"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "id": "life-t-accept",
+      "from": "life-delivered",
+      "to": "life-accepted",
+      "label": "验收"
+    },
+    {
+      "id": "life-t-publish",
+      "from": "life-accepted",
+      "to": "life-published",
+      "label": "出版"
+    },
+    {
+      "id": "life-t-changed",
+      "from": "life-delivered",
+      "to": "life-changed",
+      "label": "核验",
+      "variant": "security"
+    },
+    {
+      "id": "life-t-conflict",
+      "from": "life-accepted",
+      "to": "life-conflict",
+      "label": "不同",
+      "variant": "security"
+    },
+    {
+      "id": "life-t-same",
+      "from": "life-accepted",
+      "to": "life-same",
+      "label": "相同",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "验收记录什么",
+      "items": ["它所验收清单的 SHA-256。", "模型 id、审阅人和一段可选备注。"]
+    },
+    {
+      "dot": "amber",
+      "title": "出版时再查什么",
+      "items": ["每个产物与清单是否一致。", "针对同一份清单的验收。", "重命名就位前的副本。"]
+    }
+  ]
+}

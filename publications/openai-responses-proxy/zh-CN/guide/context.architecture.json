@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "谁经由代理发送流量，代理触及什么",
+    "output": "context.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
+      "provider": "github",
+      "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+    }
+  },
+  "components": [
+    {
+      "id": "ctx-control",
+      "type": "external",
+      "label": "客户端控制面",
+      "sublabel": "基础 URL、凭据",
+      "pos": [40, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 25,
+          "end_line": 30,
+          "label": "掌管方"
+        }
+      ]
+    },
+    {
+      "id": "ctx-operator",
+      "type": "external",
+      "icon": "person",
+      "label": "运维者",
+      "sublabel": "已签名资产、信任锚",
+      "pos": [270, 40],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 84,
+          "end_line": 87,
+          "label": "安装"
+        }
+      ]
+    },
+    {
+      "id": "ctx-client",
+      "type": "frontend",
+      "label": "Responses 客户端",
+      "sublabel": "Codex、Hermes、某个 SDK",
+      "pos": [40, 180],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 32,
+          "end_line": 37,
+          "label": "已准入的客户端"
+        }
+      ]
+    },
+    {
+      "id": "ctx-proxy",
+      "type": "security",
+      "label": "OpenAI Responses Proxy",
+      "sublabel": "127.0.0.1:8792",
+      "pos": [270, 180],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 3,
+          "end_line": 7,
+          "label": "代理是什么"
+        }
+      ]
+    },
+    {
+      "id": "ctx-providers",
+      "type": "cloud",
+      "label": "提供商端点",
+      "sublabel": "DMXAPI、UCloud、AIHubMix",
+      "pos": [500, 180],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 120,
+          "end_line": 130,
+          "label": "路由"
+        }
+      ]
+    },
+    {
+      "id": "ctx-service",
+      "type": "external",
+      "label": "原生服务管理器",
+      "sublabel": "launchd、systemd、计划任务",
+      "pos": [270, 320],
+      "size": [180, 64],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 62,
+          "end_line": 70,
+          "label": "看门狗"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "ctx-selects",
+      "from": "ctx-control",
+      "to": "ctx-client",
+      "label": "设置基础 URL",
+      "variant": "dashed"
+    },
+    {
+      "id": "ctx-operates",
+      "from": "ctx-operator",
+      "to": "ctx-proxy",
+      "label": "install、status、reload"
+    },
+    {
+      "id": "ctx-turns",
+      "from": "ctx-client",
+      "to": "ctx-proxy",
+      "label": "Responses 轮次",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ctx-requests",
+      "from": "ctx-proxy",
+      "to": "ctx-providers",
+      "label": "可移植的请求"
+    },
+    {
+      "id": "ctx-keeps",
+      "from": "ctx-service",
+      "to": "ctx-proxy",
+      "label": "保持看门狗运行"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "单个用户的机器",
+      "wraps": ["ctx-control", "ctx-operator", "ctx-client", "ctx-proxy", "ctx-service"]
+    }
+  ]
+}

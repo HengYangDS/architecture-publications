@@ -25,6 +25,12 @@ diagram checks.
   the proxy makes a Codex Responses turn portable across third-party providers,
   and how it installs and keeps its own listener running.
 
+Each work also holds its Chinese translation in `zh-CN/`: a `zh-CN` model of
+the same architecture, with the work's id and revision, its overview and guide
+in Chinese, and `concepts.md`, the table that fixes each term's rendering beside
+the file that defines the term. Built with `archpub build`, it gives the work's
+Chinese edition and page.
+
 A model pins the described repository to a full commit. Each component claims
 the directories and files it owns, and each relation names the files that
 support it; the publisher reads them at that commit and records each file's
@@ -56,8 +62,10 @@ delivery is published. Deliveries are not committed here.
 ## Input checks
 
 `npm test` checks that each work holds only its model, its README, an optional
-`source.json`, the overview composition its model names and the directory of
-the guide it names. It checks that each model is in the publisher's format with
+`source.json`, the overview composition its model names, the directory of
+the guide it names and its translations. A translation holds its model, its
+term table and the overview and guide it names, and its model must be in the
+directory's locale and name the work's id and revision. It checks that each model is in the publisher's format with
 a full revision, claims at least one file and titles every view, and that no
 two works share a model id. It does not run the publisher or a described
 product; `archpub check --repo` is the full validation.

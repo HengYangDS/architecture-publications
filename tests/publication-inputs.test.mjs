@@ -180,6 +180,39 @@ test("a work may hold the guide its model names in a directory of its own", asyn
   });
 });
 
+test("a work may hold a translation in its locale, bound to its id and revision", async () => {
+  await withDirectory(async (directory) => {
+    await writeWork(directory);
+    const translation = path.join(directory, "zh-CN");
+    const chinese = { ...model("shop"), locale: "zh-CN", title: "商店" };
+    await mkdir(translation);
+    await writeFile(path.join(translation, "model.json"), JSON.stringify(chinese));
+    await assert.rejects(verifyWork(directory, directory), /zh-CN holds no concepts\.md/);
+    await writeFile(path.join(translation, "concepts.md"), "| English | 中文 | Source |\n");
+    assert.equal(await verifyWork(directory, directory), "shop");
+    for (const [change, refusal] of [
+      [{ locale: "es" }, /zh-CN holds a es model/],
+      [{ id: "store" }, /zh-CN translates store, not shop/],
+      [
+        { repository: { name: "shop", revision: "b".repeat(40) } },
+        /zh-CN pins b{40}, not the work's a{40}/,
+      ],
+    ]) {
+      await writeFile(
+        path.join(translation, "model.json"),
+        JSON.stringify({ ...chinese, ...change }),
+      );
+      await assert.rejects(verifyWork(directory, directory), refusal);
+    }
+    await writeFile(path.join(translation, "model.json"), JSON.stringify(chinese));
+    await writeFile(path.join(translation, "README.md"), "# 商店\n");
+    await assert.rejects(verifyWork(directory, directory), /README\.md is not a translation file/);
+    await rm(path.join(translation, "README.md"));
+    await mkdir(path.join(directory, "fr-XX"));
+    await assert.rejects(verifyWork(directory, directory), /fr-XX is not a work file/);
+  });
+});
+
 test("two works may not publish under one id", async () => {
   await withDirectory(async (directory) => {
     await writeWork(path.join(directory, "first"));

@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "diagram_type": "tree",
+  "meta": {
+    "title": "重新钉定工作清单列出什么",
+    "output": "worklist.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/architecture-publisher",
+      "provider": "github",
+      "revision": "1861b7ccbb6d57378d3e5f69ffc328579eec991b"
+    }
+  },
+  "layout": {
+    "direction": "right"
+  },
+  "nodes": [
+    {
+      "id": "wl-root",
+      "label": "重新钉定工作清单",
+      "sublabel": "钉定到更晚的提交",
+      "sources": [
+        {
+          "path": "src/sources/worklist.mjs",
+          "line": 97,
+          "end_line": 110,
+          "label": "Worklist"
+        }
+      ]
+    },
+    {
+      "id": "wl-components",
+      "label": "每个组件",
+      "parent": "wl-root",
+      "sources": [
+        {
+          "path": "src/sources/worklist.mjs",
+          "line": 117,
+          "end_line": 139,
+          "label": "Components"
+        }
+      ]
+    },
+    {
+      "id": "wl-modified",
+      "label": "已归属文件被修改",
+      "parent": "wl-components"
+    },
+    {
+      "id": "wl-moved",
+      "label": "已归属文件被移动",
+      "sublabel": "附新的所属组件",
+      "parent": "wl-components"
+    },
+    {
+      "id": "wl-deleted",
+      "label": "已归属文件被删除",
+      "parent": "wl-components"
+    },
+    {
+      "id": "wl-taken",
+      "label": "新纳入的文件",
+      "parent": "wl-components"
+    },
+    {
+      "id": "wl-relations",
+      "label": "每个关系",
+      "parent": "wl-root",
+      "sources": [
+        {
+          "path": "src/sources/worklist.mjs",
+          "line": 148,
+          "end_line": 153,
+          "label": "Relations"
+        }
+      ]
+    },
+    {
+      "id": "wl-cited",
+      "label": "被引用文件有变化",
+      "parent": "wl-relations"
+    },
+    {
+      "id": "wl-refused",
+      "label": "在更晚提交上被拒绝",
+      "parent": "wl-root",
+      "sources": [
+        {
+          "path": "src/sources/worklist.mjs",
+          "line": 154,
+          "end_line": 168,
+          "label": "Refused"
+        }
+      ]
+    },
+    {
+      "id": "wl-claim",
+      "label": "无文件的认领",
+      "parent": "wl-refused"
+    },
+    {
+      "id": "wl-gone",
+      "label": "关系文件消失",
+      "parent": "wl-refused"
+    },
+    {
+      "id": "wl-uncovered",
+      "label": "新增未覆盖文件",
+      "parent": "wl-root",
+      "sources": [
+        {
+          "path": "src/sources/worklist.mjs",
+          "line": 169,
+          "end_line": 171,
+          "label": "Uncovered"
+        }
+      ]
+    },
+    {
+      "id": "wl-citations",
+      "label": "引用区间",
+      "parent": "wl-root",
+      "sources": [
+        {
+          "path": "src/sources/worklist.mjs",
+          "line": 63,
+          "end_line": 95,
+          "label": "Citations"
+        }
+      ]
+    },
+    {
+      "id": "wl-range-same",
+      "label": "区间不变",
+      "parent": "wl-citations"
+    },
+    {
+      "id": "wl-range-shifted",
+      "label": "区间偏移",
+      "parent": "wl-citations"
+    },
+    {
+      "id": "wl-range-moved",
+      "label": "区间随文件移动",
+      "parent": "wl-citations"
+    },
+    {
+      "id": "wl-range-touched",
+      "label": "区间被触及",
+      "parent": "wl-citations"
+    },
+    {
+      "id": "wl-range-gone",
+      "label": "区间消失",
+      "parent": "wl-citations"
+    }
+  ]
+}

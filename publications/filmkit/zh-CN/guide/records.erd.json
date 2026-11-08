@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "diagram_type": "erd",
+  "meta": {
+    "title": "每份记录绑定什么",
+    "locale": "zh-CN",
+    "output": "records.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/HengYangDS/filmkit.git",
+      "provider": "github",
+      "revision": "d6de89569ddb336363186ca99c39e5a45d018cb1"
+    }
+  },
+  "layout": {
+    "mode": "grid",
+    "gapX": 72,
+    "gapY": 38
+  },
+  "entities": [
+    {
+      "id": "rec-selection",
+      "label": "narration-selected.json",
+      "row": 0,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "script_sha256",
+          "type": "digest",
+          "key": "fk",
+          "references": "rec-script.sha256"
+        },
+        {
+          "name": "cast_sha256",
+          "type": "digest"
+        },
+        {
+          "name": "records",
+          "type": "recordings"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/filmkit/narration/selection.py",
+          "line": 97,
+          "end_line": 107,
+          "label": "Selection"
+        }
+      ]
+    },
+    {
+      "id": "rec-script",
+      "label": "film-script.json",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "sha256",
+          "type": "digest",
+          "key": "pk"
+        },
+        {
+          "name": "segments",
+          "type": "thoughts"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/filmkit/production.py",
+          "line": 103,
+          "end_line": 105,
+          "label": "Script"
+        }
+      ]
+    },
+    {
+      "id": "rec-assembly",
+      "label": "audio-assembly.json",
+      "row": 0,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "script_sha256",
+          "type": "digest",
+          "key": "fk",
+          "references": "rec-script.sha256"
+        },
+        {
+          "name": "soundtrack_sha256",
+          "type": "digest",
+          "key": "uk"
+        },
+        {
+          "name": "program_level",
+          "type": "LUFS"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/filmkit/soundtrack/assembly.py",
+          "line": 437,
+          "end_line": 477,
+          "label": "Receipt"
+        }
+      ]
+    },
+    {
+      "id": "rec-timeline",
+      "label": "timeline.json",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "sha256",
+          "type": "digest",
+          "key": "pk"
+        },
+        {
+          "name": "captions",
+          "type": "cues"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/filmkit/soundtrack/assembly.py",
+          "line": 541,
+          "end_line": 548,
+          "label": "Timeline"
+        }
+      ]
+    },
+    {
+      "id": "rec-stage",
+      "label": "stage.json",
+      "row": 1,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "script_sha256",
+          "type": "digest",
+          "key": "fk",
+          "references": "rec-script.sha256"
+        },
+        {
+          "name": "timeline_sha256",
+          "type": "digest",
+          "key": "fk",
+          "references": "rec-timeline.sha256"
+        },
+        {
+          "name": "template_sha256",
+          "type": "digest"
+        },
+        {
+          "name": "members",
+          "type": "staged files"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/filmkit/picture/rendering.py",
+          "line": 267,
+          "end_line": 283,
+          "label": "Stage"
+        }
+      ]
+    },
+    {
+      "id": "rec-package",
+      "label": "film-package.json",
+      "row": 1,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "soundtrack_sha256",
+          "type": "digest",
+          "key": "fk",
+          "references": "rec-assembly.soundtrack_sha256"
+        },
+        {
+          "name": "picture_sha256",
+          "type": "digest"
+        },
+        {
+          "name": "uncaptioned_picture_sha256",
+          "type": "digest"
+        },
+        {
+          "name": "caption_equivalence_sha256",
+          "type": "digest"
+        },
+        {
+          "name": "cover_sha256",
+          "type": "digest"
+        },
+        {
+          "name": "editions",
+          "type": "films"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/filmkit/delivery/packaging.py",
+          "line": 225,
+          "end_line": 266,
+          "label": "Package"
+        }
+      ],
+      "width": 272
+    },
+    {
+      "id": "rec-gates",
+      "label": "picture-gates.json",
+      "row": 2,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "timeline_sha256",
+          "type": "digest",
+          "key": "fk",
+          "references": "rec-timeline.sha256"
+        },
+        {
+          "name": "composition_sha256",
+          "type": "digest"
+        },
+        {
+          "name": "engine_version",
+          "type": "text"
+        },
+        {
+          "name": "verdict",
+          "type": "pass | refuse"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/filmkit/picture/gates.py",
+          "line": 422,
+          "end_line": 432,
+          "label": "Record"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel-selection-script",
+      "from": "rec-selection",
+      "to": "rec-script",
+      "label": "绑定",
+      "fromCardinality": "many",
+      "toCardinality": "one"
+    },
+    {
+      "id": "rel-assembly-script",
+      "from": "rec-assembly",
+      "to": "rec-script",
+      "label": "绑定",
+      "fromCardinality": "many",
+      "toCardinality": "one"
+    },
+    {
+      "id": "rel-stage-script",
+      "from": "rec-stage",
+      "to": "rec-script",
+      "label": "绑定",
+      "fromCardinality": "many",
+      "toCardinality": "one"
+    },
+    {
+      "id": "rel-stage-timeline",
+      "from": "rec-stage",
+      "to": "rec-timeline",
+      "label": "绑定",
+      "fromCardinality": "many",
+      "toCardinality": "one"
+    },
+    {
+      "id": "rel-gates-timeline",
+      "from": "rec-gates",
+      "to": "rec-timeline",
+      "label": "绑定",
+      "fromCardinality": "many",
+      "toCardinality": "one"
+    },
+    {
+      "id": "rel-package-assembly",
+      "from": "rec-package",
+      "to": "rec-assembly",
+      "label": "绑定音轨",
+      "fromCardinality": "many",
+      "toCardinality": "one"
+    }
+  ]
+}
