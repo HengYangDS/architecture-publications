@@ -9,20 +9,35 @@
     "repository": {
       "url": "https://github.com/HengYangDS/ethos.git",
       "provider": "github",
-      "revision": "424d325386784633839b1abf52a4ac394e412a76"
+      "revision": "727ee0579ba1fb9e391b5c44ce9fb2c208390199"
     },
     "legend": {
       "entries": {
-        "external": { "label": "input or outcome" },
-        "backend": { "label": "ETHOS step" },
-        "security": { "label": "admission" },
-        "database": { "label": "durable record" }
+        "external": {
+          "label": "input or outcome"
+        },
+        "backend": {
+          "label": "ETHOS step"
+        },
+        "security": {
+          "label": "admission"
+        },
+        "database": {
+          "label": "durable record"
+        }
       }
     }
   },
   "lanes": [
-    { "id": "plan-lane-admit", "label": "Admit" },
-    { "id": "plan-lane-refuse", "label": "Refuse", "variant": "exception" }
+    {
+      "id": "plan-lane-admit",
+      "label": "Admit"
+    },
+    {
+      "id": "plan-lane-refuse",
+      "label": "Refuse",
+      "variant": "exception"
+    }
   ],
   "mainPath": ["plan-inputs", "plan-compile", "plan-judge", "plan-effect", "plan-attest"],
   "nodes": [
@@ -118,8 +133,18 @@
     }
   ],
   "edges": [
-    { "id": "plan-e-compile", "from": "plan-inputs", "to": "plan-compile", "role": "main" },
-    { "id": "plan-e-judge", "from": "plan-compile", "to": "plan-judge", "role": "main" },
+    {
+      "id": "plan-e-compile",
+      "from": "plan-inputs",
+      "to": "plan-compile",
+      "role": "main"
+    },
+    {
+      "id": "plan-e-judge",
+      "from": "plan-compile",
+      "to": "plan-judge",
+      "role": "main"
+    },
     {
       "id": "plan-e-pass",
       "from": "plan-judge",
@@ -128,7 +153,12 @@
       "label": "yes",
       "variant": "emphasis"
     },
-    { "id": "plan-e-attest", "from": "plan-effect", "to": "plan-attest", "role": "main" },
+    {
+      "id": "plan-e-attest",
+      "from": "plan-effect",
+      "to": "plan-attest",
+      "role": "main"
+    },
     {
       "id": "plan-e-refuse",
       "from": "plan-judge",
@@ -141,8 +171,14 @@
     "allowedRoots": ["plan-inputs"],
     "allowedTerminals": ["plan-attest", "plan-stop"],
     "requiredEdges": [
-      { "from": "plan-judge", "to": "plan-effect" },
-      { "from": "plan-judge", "to": "plan-stop" }
+      {
+        "from": "plan-judge",
+        "to": "plan-effect"
+      },
+      {
+        "from": "plan-judge",
+        "to": "plan-stop"
+      }
     ]
   }
 }

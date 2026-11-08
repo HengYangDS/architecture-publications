@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([filmkit], [Each edition rebuilt from the film's own sources], [A local engine: filmkit narrates, assembles, captions, gates, renders and packages each edition of a narrated explainer film, and every step records the SHA-256 of what it read.], read-from: [Read from 94 files, each cited by its SHA-256.], claim-x: 124pt)
+#masthead([filmkit], [Each edition rebuilt from the film's own sources], [A local engine: filmkit narrates, assembles, captions, gates, renders and packages each edition of a narrated explainer film, and every step records the SHA-256 of what it read.], read-from: [Read from 110 files, each cited by its SHA-256.], claim-x: 124pt)
 
 // ── Band 1: one edition's route, from the declaration to a compared rebuild ──
 #let ys = 250pt
@@ -99,7 +99,7 @@
   ([stage.json], [the script, timeline, assembly, soundtrack and source manifest]),
   ([picture-gates], [the composition, timeline, stylesheet, fonts and engine version]),
   ([render receipt], [the staged document and the rendered picture]),
-  ([film-package], [the picture, soundtrack, cover, script and chapters]),
+  ([film-package], [both pictures, their equivalence, the soundtrack, cover, script and chapters]),
 )
 #for (k, (what, binds)) in records.enumerate() {
   tx(824pt, 554pt + k * 18pt, what, weight: "semibold")
@@ -111,7 +111,7 @@
 #hrule(744pt)
 #head(48pt, 770pt, [The film holds])
 #dl(48pt, 794pt, 110pt, 460pt, (
-  ([declaration], [file prefix, editions, fonts and review policy]),
+  ([declaration], [file prefix, editions, fonts, player colours and review policy]),
   ([scripts, casts], [each edition's text, thoughts, seeds and retakes]),
   ([composition], [the picture's template, script and style]),
 ))
@@ -123,10 +123,10 @@
 ))
 #head(1072pt, 770pt, [Delivered per edition])
 #dl(1072pt, 794pt, 72pt, 480pt, (
-  ([films], [a UHD master and a captioned 1080p film]),
+  ([films], [a UHD master and a 1080p film, each with captions and without]),
   ([viewing], [cover, SRT, VTT, transcript, chapters and player]),
   ([entry], [one language page leads to both players]),
 ))
 
 // ── Imprint ─────────────────────────────────────────────────────────────
-#imprint([Each view has its poster; the interactive page is the guide, every claim cited.])
+#imprint([Each view has its plate; the interactive page is the guide, every claim cited.])

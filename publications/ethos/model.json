@@ -1,20 +1,20 @@
 {
   "format": "architecture-publisher.model",
-  "version": 2,
+  "version": 3,
   "id": "ethos",
   "title": "ETHOS",
   "question": "How does ETHOS turn official intent and fresh facts into proven repository change, and what does it hold every repository to?",
   "summary": "ETHOS compiles an OpenSpec Change, fresh facts and prior Attestations into a TransitionPlan, admits each effect only on a pass, and holds every governed repository, itself included, to one declared structure.",
-  "scope": "The ETHOS product as released at v0.2.0-alpha.28: the src/ethos package, its system declarations, the npm launcher and the repository's own .ethos binding.",
+  "scope": "The ETHOS product as released at v0.2.0-beta.6: the src/ethos package, its system declarations, the npm launcher and the repository's own .ethos binding.",
   "limits": [
     "Each component cites every file the rules attribute to it; a relation cites the modules that import the other component.",
     "Relations are imports and process calls in the source, not runtime order or design intent."
   ],
-  "attribution": "Architecture Publications, read from the ETHOS source",
   "repository": {
     "name": "ethos",
     "url": "https://github.com/HengYangDS/ethos.git",
-    "revision": "424d325386784633839b1abf52a4ac394e412a76"
+    "revision": "727ee0579ba1fb9e391b5c44ce9fb2c208390199",
+    "browse": "https://github.com/HengYangDS/ethos/blob/{revision}/{path}"
   },
   "coverage": {
     "include": ["src/ethos/", "system/", "distributions/npm/", ".ethos/"]
@@ -138,7 +138,8 @@
         "src/ethos/contracts/verdict.py",
         "src/ethos/contracts/proof/",
         "src/ethos/contracts/policy/",
-        "src/ethos/contracts/rules.py"
+        "src/ethos/contracts/rules.py",
+        "src/ethos/contracts/outcome.py"
       ]
     },
     {
@@ -157,14 +158,15 @@
         "system/schemas/",
         "system/README.md",
         "system/axioms.md",
-        "system/projections/",
         "src/ethos/__init__.py",
         "src/ethos/contracts/__init__.py",
         "src/ethos/domain/__init__.py",
         "src/ethos/adapters/__init__.py",
         "src/ethos/repository/__init__.py",
         "src/ethos/surface/__init__.py",
-        "src/ethos/adapters/mutation/__init__.py"
+        "src/ethos/adapters/mutation/__init__.py",
+        "src/ethos/contracts/next_step.py",
+        "src/ethos/surface/runtime_identity.py"
       ]
     },
     {
@@ -263,7 +265,8 @@
         "src/ethos/adapters/mutation/proof_admission.py",
         "src/ethos/adapters/mutation/proof_artifacts.py",
         "src/ethos/adapters/mutation/proof_validation.py",
-        "src/ethos/domain/prove.py"
+        "src/ethos/domain/prove.py",
+        "src/ethos/adapters/mutation/proof_record.py"
       ]
     },
     {
@@ -602,6 +605,7 @@
       "to": "status",
       "label": "runs status",
       "files": [
+        "src/ethos/surface/cli/lane/lease.py",
         "src/ethos/surface/cli/lane/lifecycle.py",
         "src/ethos/surface/cli/root/inspection.py",
         "src/ethos/surface/cli/root/proof.py"
@@ -809,6 +813,7 @@
       "to": "contracts",
       "label": "uses typed values",
       "files": [
+        "src/ethos/contracts/outcome.py",
         "src/ethos/contracts/plan.py",
         "src/ethos/contracts/proof/plan.py",
         "src/ethos/contracts/rules.py",
@@ -877,6 +882,7 @@
         "src/ethos/adapters/mutation/proof.py",
         "src/ethos/adapters/mutation/proof_admission.py",
         "src/ethos/adapters/mutation/proof_artifacts.py",
+        "src/ethos/adapters/mutation/proof_record.py",
         "src/ethos/adapters/mutation/proof_validation.py"
       ]
     },
@@ -912,7 +918,11 @@
       "from": "gate-runner",
       "to": "native-evidence",
       "label": "captures",
-      "files": ["src/ethos/adapters/gates/runner.py", "src/ethos/adapters/gates/verification.py"]
+      "files": [
+        "src/ethos/adapters/gates/proof_slot.py",
+        "src/ethos/adapters/gates/runner.py",
+        "src/ethos/adapters/gates/verification.py"
+      ]
     },
     {
       "id": "gate-runner-gate-policy",
@@ -1002,7 +1012,10 @@
       "files": [
         "src/ethos/adapters/repo/hook/activation.py",
         "src/ethos/adapters/repo/hook/admission.py",
-        "src/ethos/adapters/repo/hook/observation.py"
+        "src/ethos/adapters/repo/hook/exit.py",
+        "src/ethos/adapters/repo/hook/exit_plan.py",
+        "src/ethos/adapters/repo/hook/observation.py",
+        "src/ethos/adapters/repo/hook/rollback.py"
       ]
     },
     {
@@ -1168,6 +1181,7 @@
       "files": [
         "src/ethos/adapters/mutation/accepted/promotion.py",
         "src/ethos/adapters/mutation/accepted/release.py",
+        "src/ethos/adapters/mutation/accepted/retag.py",
         "src/ethos/adapters/mutation/accepted/signature.py",
         "src/ethos/adapters/mutation/branch_roles.py",
         "src/ethos/adapters/mutation/landing.py"
@@ -1205,10 +1219,7 @@
       "from": "publication",
       "to": "proof",
       "label": "requires proof",
-      "files": [
-        "src/ethos/adapters/mutation/publication/execution.py",
-        "src/ethos/domain/publication/inspection.py"
-      ]
+      "files": ["src/ethos/domain/publication/inspection.py"]
     },
     {
       "id": "publication-forges",
@@ -1317,6 +1328,7 @@
       "label": "checks conformance",
       "files": [
         "src/ethos/repository/audit.py",
+        "src/ethos/repository/policy/boundary/catalog.py",
         "src/ethos/repository/policy/references/carriers.py",
         "src/ethos/repository/policy/references/closure.py",
         "src/ethos/repository/policy/references/declarations.py",
@@ -1405,7 +1417,10 @@
       "from": "landing",
       "to": "release",
       "label": "selects release refs",
-      "files": ["src/ethos/adapters/mutation/accepted/release.py"]
+      "files": [
+        "src/ethos/adapters/mutation/accepted/release.py",
+        "src/ethos/adapters/mutation/accepted/retag.py"
+      ]
     }
   ],
   "views": [
@@ -1582,5 +1597,11 @@
         "projections"
       ]
     }
-  ]
+  ],
+  "editors": [
+    {
+      "name": "Yang HENG"
+    }
+  ],
+  "license": "MIT"
 }

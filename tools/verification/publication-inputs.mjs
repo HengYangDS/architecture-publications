@@ -59,13 +59,13 @@ export async function verifyCustody(directory, repositoryRoot) {
 export async function verifyModel(directory) {
   const model = await readJson(path.join(directory, "model.json"));
   assert.equal(model.format, MODEL_FORMAT);
-  assert.equal(model.version, 2);
+  assert.equal(model.version, 3);
   assert.ok(typeof model.id === "string" && model.id.length > 0);
   assert.match(model.repository?.revision ?? "", REVISION);
   // The publisher reads each claimed file at the revision and records its digest in the delivery.
   const claims = (model.components ?? []).flatMap((component) => component.files ?? []);
   assert.ok(claims.length > 0, "the model claims no files");
-  // The publisher names a view's poster, panel and viewer by its own title.
+  // The publisher names a view's plate, panel and viewer by its own title.
   for (const view of model.views ?? []) {
     const title = typeof view.title === "string" ? view.title.trim() : "";
     assert.ok(title && title !== model.title, `view ${view.id} has no title of its own`);

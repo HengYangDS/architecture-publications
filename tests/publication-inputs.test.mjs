@@ -30,7 +30,7 @@ test("every work is one pinned model with verified custody and a unique id", asy
 
 const model = (id) => ({
   format: "architecture-publisher.model",
-  version: 2,
+  version: 3,
   id,
   title: "Shop",
   question: "How does an order reach the warehouse?",
@@ -63,7 +63,7 @@ test("a model is refused unless it is the publisher's format pinned exactly", as
         copy.format = "architecture.claim-model/v2";
       },
       (copy) => {
-        copy.version = 1;
+        copy.version = 2;
       },
       (copy) => {
         copy.repository.revision = "a".repeat(7);

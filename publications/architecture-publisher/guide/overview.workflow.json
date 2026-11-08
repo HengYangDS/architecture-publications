@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "5a26416d50d01d1d65d03546605005cfa93933b5"
+      "revision": "548637cc3867f6d58887111627c7ff104e1cc4b9"
     },
     "legend": {
       "entries": {
@@ -47,8 +47,8 @@
       "sources": [
         {
           "path": "src/build.mjs",
-          "line": 116,
-          "end_line": 135,
+          "line": 106,
+          "end_line": 125,
           "label": "Composition"
         }
       ]
@@ -62,8 +62,8 @@
       "sources": [
         {
           "path": "src/overview/typeset.mjs",
-          "line": 45,
-          "end_line": 61,
+          "line": 34,
+          "end_line": 50,
           "label": "Typst version"
         }
       ]
@@ -77,8 +77,8 @@
       "sources": [
         {
           "path": "src/overview/typeset.mjs",
-          "line": 84,
-          "end_line": 115,
+          "line": 73,
+          "end_line": 109,
           "label": "Stage"
         }
       ]
@@ -92,8 +92,8 @@
       "sources": [
         {
           "path": "src/overview/typeset.mjs",
-          "line": 216,
-          "end_line": 229,
+          "line": 178,
+          "end_line": 217,
           "label": "Boxes"
         }
       ]
@@ -118,13 +118,13 @@
       "lane": "ov-lane-typeset",
       "col": 5,
       "type": "external",
-      "label": "overview.svg and PNG",
+      "label": "Set in the edition",
       "sources": [
         {
-          "path": "src/overview/typeset.mjs",
-          "line": 230,
-          "end_line": 247,
-          "label": "Compile"
+          "path": "docs/reference/operations.md",
+          "line": 314,
+          "end_line": 317,
+          "label": "In the edition"
         }
       ]
     },
@@ -137,8 +137,8 @@
       "sources": [
         {
           "path": "src/overview/typeset.mjs",
-          "line": 136,
-          "end_line": 167,
+          "line": 130,
+          "end_line": 161,
           "label": "Refusals"
         }
       ]

@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "5a26416d50d01d1d65d03546605005cfa93933b5"
+      "revision": "548637cc3867f6d58887111627c7ff104e1cc4b9"
     }
   },
   "mainPath": ["life-delivered", "life-accepted", "life-published"],
@@ -22,14 +22,14 @@
       "sources": [
         {
           "path": "src/build.mjs",
-          "line": 347,
-          "end_line": 356,
+          "line": 364,
+          "end_line": 373,
           "label": "Staging"
         },
         {
           "path": "src/build.mjs",
-          "line": 423,
-          "end_line": 439,
+          "line": 490,
+          "end_line": 506,
           "label": "Rename"
         }
       ]

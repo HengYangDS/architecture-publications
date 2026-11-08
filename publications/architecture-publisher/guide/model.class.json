@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "class",
   "meta": {
-    "title": "What a version 2 model holds",
+    "title": "What a version 3 model holds",
     "subtitle": "Components claim files, relations cite them, and views choose what to draw.",
     "output": "model.html",
     "quality_profile": "showcase",
@@ -10,7 +10,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "5a26416d50d01d1d65d03546605005cfa93933b5"
+      "revision": "548637cc3867f6d58887111627c7ff104e1cc4b9"
     }
   },
   "layout": {
@@ -27,7 +27,7 @@
       "attributes": [
         {
           "name": "version",
-          "type": "2"
+          "type": "3"
         },
         {
           "name": "id",
@@ -39,7 +39,7 @@
         },
         {
           "name": "repository",
-          "type": "name, url, revision"
+          "type": "name, url, browse, revision"
         },
         {
           "name": "overview",
@@ -53,7 +53,7 @@
       "sources": [
         {
           "path": "src/model/load.mjs",
-          "line": 39,
+          "line": 36,
           "end_line": 48,
           "label": "Fields"
         }
@@ -113,8 +113,8 @@
       "sources": [
         {
           "path": "src/model/load.mjs",
-          "line": 286,
-          "end_line": 295,
+          "line": 313,
+          "end_line": 322,
           "label": "Relations"
         }
       ]
@@ -155,8 +155,8 @@
       "sources": [
         {
           "path": "src/model/load.mjs",
-          "line": 273,
-          "end_line": 284,
+          "line": 300,
+          "end_line": 311,
           "label": "Components"
         }
       ]
@@ -165,7 +165,7 @@
       "id": "model-views",
       "label": "views[]",
       "kind": "record",
-      "sublabel": "one poster plate each",
+      "sublabel": "one plate each",
       "row": 1,
       "col": 2,
       "attributes": [
@@ -185,8 +185,8 @@
       "sources": [
         {
           "path": "src/model/load.mjs",
-          "line": 355,
-          "end_line": 384,
+          "line": 382,
+          "end_line": 411,
           "label": "Views"
         }
       ]

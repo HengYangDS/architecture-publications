@@ -9,23 +9,23 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "5a26416d50d01d1d65d03546605005cfa93933b5"
+      "revision": "548637cc3867f6d58887111627c7ff104e1cc4b9"
     }
   },
   "components": [
     {
-      "id": "lay-poster",
+      "id": "lay-plates",
       "type": "frontend",
-      "label": "Poster composer",
-      "sublabel": "its own type sizes",
+      "label": "Plate composer",
+      "sublabel": "its own type steps",
       "pos": [250, 30],
       "size": [180, 64],
       "sources": [
         {
           "path": "src/poster/plate.mjs",
-          "line": 80,
-          "end_line": 80,
-          "label": "Poster layout"
+          "line": 89,
+          "end_line": 89,
+          "label": "Plate layout"
         }
       ]
     },
@@ -144,8 +144,8 @@
   ],
   "connections": [
     {
-      "id": "lay-poster-grid",
-      "from": "lay-poster",
+      "id": "lay-plates-grid",
+      "from": "lay-plates",
       "to": "lay-grid",
       "label": "lays out"
     },

@@ -1,6 +1,6 @@
 {
   "format": "architecture-publisher.model",
-  "version": 2,
+  "version": 3,
   "id": "openai-responses-proxy",
   "title": "OpenAI Responses Proxy",
   "question": "How does OpenAI Responses Proxy make a Codex Responses turn portable across third-party providers, and how does it install and keep its own listener running?",
@@ -11,11 +11,11 @@
     "A relation stands for an import or a process call that carries behaviour; imports used only for an exception class, a type, a shared helper or the product's names are not drawn.",
     "Tests, the repository tools, the OpenSpec specifications and change history, the documents and CI are outside the scope, each excluded with its reason."
   ],
-  "attribution": "Architecture Publications, read from the OpenAI Responses Proxy source",
   "repository": {
     "name": "openai-responses-proxy",
     "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
-    "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+    "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2",
+    "browse": "https://github.com/HengYangDS/openai-responses-proxy/blob/{revision}/{path}"
   },
   "coverage": {
     "exclude": [
@@ -977,5 +977,11 @@
         "payload-transaction"
       ]
     }
-  ]
+  ],
+  "editors": [
+    {
+      "name": "Yang HENG"
+    }
+  ],
+  "license": "MIT"
 }

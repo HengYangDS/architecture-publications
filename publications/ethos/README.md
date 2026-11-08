@@ -2,8 +2,8 @@
 
 [`model.json`](model.json) is an Architecture Model of how ETHOS turns
 official intent and fresh facts into proven repository change, and what it
-holds every repository to. It pins ETHOS at v0.2.0-alpha.28
-(`424d325386784633839b1abf52a4ac394e412a76`), and its components own all 455
+holds every repository to. It pins ETHOS at v0.2.0-beta.6
+(`727ee0579ba1fb9e391b5c44ce9fb2c208390199`), and its components own all 467
 files of its coverage scope: the `src/ethos` package, `system/`, the npm
 launcher in `distributions/npm/` and the repository's own `.ethos/` binding.
 Forty-one components and eighty-five relations are drawn in eleven views: one
@@ -26,8 +26,8 @@ shows what decides whether an effect runs, what one transition binds, the parts
 that carry a change and where one full proof spends its time. It ends with the
 evidence planes, why local proof is enough and when it is not, what every
 repository shares, the principles behind the design and what is still open.
-Each claim cites a line range at v0.2.0-alpha.28, and the diagrams the draft
-names sit beside it. The proof's timings were measured on 2026-11-03, on
+Each claim cites a line range at v0.2.0-beta.6, and the diagrams the draft
+names sit beside it. The proof's timings were measured on 2026-11-08, on
 Architecture Publisher's own proof under this ETHOS release.
 
 Each component claims the directories and files its path rules name, and each
@@ -44,7 +44,7 @@ archpub check publications/ethos/model.json --repo <ethos checkout>
 archpub build publications/ethos/model.json --repo <ethos checkout> --out build/ethos
 ```
 
-Checking the work needs an Architecture Publisher that reads model version 2
+Checking the work needs an Architecture Publisher that reads model version 3
 and delivers a guide as the page; building the overview needs Typst 0.15.1 on
 the path.
 

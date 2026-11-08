@@ -1,6 +1,6 @@
 {
   "format": "architecture-publisher.model",
-  "version": 2,
+  "version": 3,
   "id": "ddwg",
   "title": "Data Department Work Guidelines",
   "question": "How do the Data Department work guidelines lead a reader to the rule that owns a task, and how is a change to them proposed, checked and released?",
@@ -11,11 +11,11 @@
     "Links between the seven topics, links back to an entry, the task map or the governance page, and pointers that another document already holds are listed in the notes rather than drawn.",
     "The archived Change history is outside the scope; documents and checks are described, not their observed use by the department."
   ],
-  "attribution": "Architecture Publications, read from the Data Department Work Guidelines source",
   "repository": {
     "name": "data-department-work-guidelines",
     "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
-    "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42"
+    "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42",
+    "browse": "https://github.com/HengYangDS/data-department-work-guidelines/blob/{revision}/{path}"
   },
   "coverage": {
     "exclude": [
@@ -970,5 +970,11 @@
         "spec-repository-governance"
       ]
     }
-  ]
+  ],
+  "editors": [
+    {
+      "name": "Yang HENG"
+    }
+  ],
+  "license": "MIT"
 }

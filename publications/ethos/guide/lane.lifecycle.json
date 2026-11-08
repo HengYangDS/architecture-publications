@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/ethos.git",
       "provider": "github",
-      "revision": "424d325386784633839b1abf52a4ac394e412a76"
+      "revision": "727ee0579ba1fb9e391b5c44ce9fb2c208390199"
     }
   },
   "mainPath": ["lane-started", "lane-writing", "lane-proven", "lane-accepted"],
@@ -50,8 +50,8 @@
       "sources": [
         {
           "path": "src/ethos/adapters/mutation/proof.py",
-          "line": 406,
-          "end_line": 411,
+          "line": 417,
+          "end_line": 422,
           "label": "Proof"
         },
         {

@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "9a14f17892399465fbe8a7f36f34b1578af21027"
+      "revision": "d6de89569ddb336363186ca99c39e5a45d018cb1"
     }
   },
   "components": [
@@ -41,7 +41,7 @@
         {
           "path": "README.md",
           "line": 18,
-          "end_line": 27,
+          "end_line": 26,
           "label": "Layout"
         }
       ]
@@ -88,8 +88,8 @@
       "sources": [
         {
           "path": "src/filmkit/produce.py",
-          "line": 46,
-          "end_line": 61,
+          "line": 63,
+          "end_line": 89,
           "label": "Actions"
         }
       ]
@@ -104,8 +104,8 @@
       "sources": [
         {
           "path": "src/filmkit/picture/rendering.py",
-          "line": 181,
-          "end_line": 191,
+          "line": 191,
+          "end_line": 201,
           "label": "Renderer"
         }
       ]
@@ -120,8 +120,8 @@
       "sources": [
         {
           "path": "src/filmkit/production.py",
-          "line": 109,
-          "end_line": 119,
+          "line": 125,
+          "end_line": 141,
           "label": "Places"
         }
       ]
@@ -146,14 +146,14 @@
       "id": "ctx-documents",
       "type": "database",
       "label": "Documents folder",
-      "sublabel": "21 delivered members",
+      "sublabel": "25 delivered members",
       "pos": [520, 340],
       "size": [180, 64],
       "sources": [
         {
           "path": "src/filmkit/delivery/documents_folder.py",
           "line": 1,
-          "end_line": 16,
+          "end_line": 27,
           "label": "Delivery"
         }
       ]

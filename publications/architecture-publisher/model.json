@@ -1,21 +1,21 @@
 {
   "format": "architecture-publisher.model",
-  "version": 2,
+  "version": 3,
   "id": "architecture-publisher",
   "title": "Architecture Publisher",
-  "question": "How does Architecture Publisher turn an architecture model into posters, a page and an overview?",
-  "summary": "An author runs archpub on a model. A build validates it, gives each file in its scope to the component that claims it at the pinned revision, plans the views and lays each out on one grid. It writes 16:9 posters, one Archify page, which is the author's guide when the model names one, the overview the author composes in Typst, and a manifest of their digests; a named reviewer accepts the delivery before it is published.",
-  "scope": "Architecture Publisher as released at v0.9.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
+  "question": "How does Architecture Publisher turn an architecture model into a print edition and a page?",
+  "summary": "An author runs archpub on a model. A build validates it, gives each file in its scope to the component that claims it at the pinned revision, plans the views and lays each out on one grid. It typesets a print edition of the overview the author composes and one plate per view, writes one Archify page, which is the author's guide when the model names one, and a manifest of their digests; a named reviewer accepts the delivery before it is published.",
+  "scope": "Architecture Publisher as released at v0.10.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
   "limits": [
     "Each component claims the directories and files its path rules name, and each file in the scope goes to its most specific claim; a relation cites the modules that import or call the other component.",
     "Relations are imports and process calls in the source, not runtime order; the shared refusal type and the child environment are not drawn as relations.",
     "The vendored programs, fonts and artwork that the supply manifests list, and the repository's tests, tools, documentation, OpenSpec changes and CI, are outside the scope."
   ],
-  "attribution": "Architecture Publications, read from the Architecture Publisher source",
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "5a26416d50d01d1d65d03546605005cfa93933b5"
+    "revision": "548637cc3867f6d58887111627c7ff104e1cc4b9",
+    "browse": "https://github.com/HengYangDS/architecture-publisher/blob/{revision}/{path}"
   },
   "coverage": {
     "include": ["src/", "package.json", "renderers/*/supply/supply.json", "supplies/*/supply.json"]
@@ -120,7 +120,7 @@
       "label": "Model migration",
       "kind": "stage",
       "details": {
-        "converts": "a version 1 source catalog into version 2 claims"
+        "converts": "a version 1 or 2 model into version 3, a version 1 catalog into claims"
       },
       "files": ["src/importers/model.mjs"]
     },
@@ -129,7 +129,7 @@
       "label": "Model loader",
       "kind": "check",
       "details": {
-        "validates": "version 2, every problem with its JSON path"
+        "validates": "version 3, every problem with its JSON path"
       },
       "files": ["src/model/"]
     },
@@ -243,11 +243,12 @@
       "files": ["src/layout/measure.mjs"]
     },
     {
-      "id": "poster",
-      "label": "Poster composer",
+      "id": "plates",
+      "label": "Plate composer",
       "kind": "medium",
       "details": {
-        "draws": "2400 × 1350 px pages of one to three views"
+        "composes": "each view as one plate for the edition's body, at the narrowest of three widths that wires no worse",
+        "records": "the balance gates each plate misses, for the reviewer"
       },
       "files": ["src/poster/"]
     },
@@ -256,18 +257,9 @@
       "label": "Typefaces",
       "kind": "medium",
       "details": {
-        "outlines": "Noto Sans CJK and Noto Sans"
+        "measures": "figure text in Source Sans 3 and Noto Sans CJK SC, as the edition sets it"
       },
       "files": ["src/poster/text.mjs", "src/breaks.mjs"]
-    },
-    {
-      "id": "raster",
-      "label": "Raster",
-      "kind": "medium",
-      "details": {
-        "renders": "PNG"
-      },
-      "files": ["src/poster/raster.mjs"]
     },
     {
       "id": "presentation",
@@ -308,12 +300,24 @@
     },
     {
       "id": "overview",
-      "label": "Overview typesetter",
+      "label": "House class and overview",
       "kind": "medium",
       "details": {
-        "typesets": "the author's composition in the house class"
+        "holds": "the house class and its tokens, which typeset the edition",
+        "checks": "the author's composition: its lint, its text boxes and its glyphs"
       },
-      "files": ["src/overview/"]
+      "files": ["src/overview/", "src/house.json"]
+    },
+    {
+      "id": "edition",
+      "label": "Print edition",
+      "kind": "medium",
+      "details": {
+        "typesets": "the record, every plate and the overview in one Typst pass, as PDF/A-3a and PDF/UA-1",
+        "renders": "the overview's and each plate's page as PNG at each width",
+        "sets": "its own words in the model's language"
+      },
+      "files": ["src/edition/"]
     },
     {
       "id": "acceptance",
@@ -330,7 +334,7 @@
       "label": "Supplies",
       "kind": "supply",
       "details": {
-        "holds": "Archify, resvg, the LikeC4 parser, fonts and icons",
+        "holds": "Archify, the LikeC4 parser, the fonts and house faces, opentype.js and the icons",
         "verified": "by digest"
       },
       "files": ["src/supply.mjs", "renderers/", "supplies/"]
@@ -458,17 +462,17 @@
       "files": ["src/build.mjs"]
     },
     {
-      "id": "builder-poster",
+      "id": "builder-plates",
       "from": "builder",
-      "to": "poster",
-      "label": "composes posters",
+      "to": "plates",
+      "label": "composes plates",
       "files": ["src/build.mjs"]
     },
     {
-      "id": "builder-raster",
+      "id": "builder-edition",
       "from": "builder",
-      "to": "raster",
-      "label": "rasterizes",
+      "to": "edition",
+      "label": "typesets the edition",
       "files": ["src/build.mjs"]
     },
     {
@@ -489,7 +493,7 @@
       "id": "builder-overview",
       "from": "builder",
       "to": "overview",
-      "label": "typesets the overview",
+      "label": "checks the overview",
       "files": ["src/build.mjs"]
     },
     {
@@ -563,37 +567,32 @@
       "files": ["src/map/guide.mjs"]
     },
     {
-      "id": "poster-layout",
-      "from": "poster",
+      "id": "plates-layout",
+      "from": "plates",
       "to": "layout",
       "label": "lays out",
       "files": ["src/poster/plate.mjs"]
     },
     {
-      "id": "poster-typefaces",
-      "from": "poster",
+      "id": "plates-typefaces",
+      "from": "plates",
       "to": "typefaces",
-      "label": "sets text",
+      "label": "breaks lines",
       "files": ["src/poster/plate.mjs"]
     },
     {
-      "id": "poster-presentation",
-      "from": "poster",
+      "id": "plates-presentation",
+      "from": "plates",
       "to": "presentation",
       "label": "styles cards",
-      "files": [
-        "src/poster/blocks.mjs",
-        "src/poster/compose/candidates.mjs",
-        "src/poster/figure.mjs",
-        "src/poster/plate.mjs"
-      ]
+      "files": ["src/poster/compose/plates.mjs", "src/poster/figure.mjs", "src/poster/plate.mjs"]
     },
     {
-      "id": "poster-words",
-      "from": "poster",
+      "id": "plates-words",
+      "from": "plates",
       "to": "words",
       "label": "sets its words",
-      "files": ["src/poster/blocks.mjs", "src/poster/plate.mjs"]
+      "files": ["src/poster/compose/plates.mjs", "src/poster/plate.mjs"]
     },
     {
       "id": "map-layout",
@@ -673,13 +672,6 @@
       "files": ["src/icons.mjs"]
     },
     {
-      "id": "raster-supplies",
-      "from": "raster",
-      "to": "supplies",
-      "label": "renders with resvg",
-      "files": ["src/poster/raster.mjs"]
-    },
-    {
       "id": "overview-supplies",
       "from": "overview",
       "to": "supplies",
@@ -692,6 +684,34 @@
       "to": "typst",
       "label": "runs Typst",
       "files": ["src/overview/typeset.mjs"]
+    },
+    {
+      "id": "edition-overview",
+      "from": "edition",
+      "to": "overview",
+      "label": "stages the house class",
+      "files": ["src/edition/typeset.mjs"]
+    },
+    {
+      "id": "edition-typst",
+      "from": "edition",
+      "to": "typst",
+      "label": "runs Typst",
+      "files": ["src/edition/typeset.mjs"]
+    },
+    {
+      "id": "edition-supplies",
+      "from": "edition",
+      "to": "supplies",
+      "label": "sets the house faces",
+      "files": ["src/edition/typeset.mjs"]
+    },
+    {
+      "id": "edition-words",
+      "from": "edition",
+      "to": "words",
+      "label": "sets its words",
+      "files": ["src/edition/words.mjs"]
     },
     {
       "id": "acceptance-builder",
@@ -732,7 +752,7 @@
         {
           "id": "media",
           "label": "Media",
-          "members": ["poster", "map", "overview"]
+          "members": ["plates", "edition", "map"]
         },
         {
           "id": "outside",
@@ -750,19 +770,19 @@
     {
       "id": "models",
       "title": "Where a model comes from",
-      "question": "How does a model reach the publisher: written by its author, imported from LikeC4 or migrated from version 1?",
+      "question": "How does a model reach the publisher: written by its author, imported from LikeC4 or migrated from an earlier version?",
       "members": ["author", "cli", "importer", "migration", "model", "words", "supplies"]
     },
     {
       "id": "layout",
       "title": "Grid layout",
-      "question": "How does one grid lay out both the posters and the page's diagrams?",
+      "question": "How does one grid lay out both the plates and the page's diagrams?",
       "summary": "Rows come from tiers or relations. Placement solves card positions exactly, wires group relations into buses and corridors, and the channel solver routes each channel; the measure refuses any overlap.",
       "tiers": [
         {
           "id": "media",
           "label": "Media",
-          "members": ["poster", "map"]
+          "members": ["plates", "map"]
         },
         {
           "id": "grid",
@@ -777,35 +797,33 @@
       ]
     },
     {
-      "id": "posters",
-      "title": "Poster pages",
-      "question": "What turns the planned views into poster pages, and which supplies do they use?",
+      "id": "edition",
+      "title": "The print edition",
+      "question": "What turns the planned views into the print edition, and which supplies does it use?",
       "members": [
         "builder",
         "plan",
-        "poster",
+        "plates",
         "typefaces",
         "presentation",
-        "raster",
         "words",
+        "edition",
+        "overview",
+        "typst",
         "supplies"
       ]
     },
     {
       "id": "page",
-      "title": "The page and the overview",
-      "question": "How are the interactive page and the overview made, and what do they check?",
-      "members": [
-        "builder",
-        "map",
-        "guide",
-        "overview",
-        "presentation",
-        "words",
-        "supplies",
-        "typst",
-        "repository"
-      ]
+      "title": "The page",
+      "question": "How is the interactive page made, and what does it check?",
+      "members": ["builder", "map", "guide", "presentation", "words", "supplies", "repository"]
     }
-  ]
+  ],
+  "editors": [
+    {
+      "name": "Yang HENG"
+    }
+  ],
+  "license": "MIT"
 }

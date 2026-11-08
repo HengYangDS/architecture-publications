@@ -1,21 +1,21 @@
 {
   "format": "architecture-publisher.model",
-  "version": 2,
+  "version": 3,
   "id": "filmkit",
   "title": "filmkit",
   "question": "How does filmkit rebuild a film's two editions from its tracked sources, and what holds each step to its inputs?",
   "summary": "filmkit narrates each edition thought by thought with a pinned local voice model, assembles one soundtrack at one program level, times the captions, gates and renders the picture, and packages a UHD master and a captioned 1080p film. Each step records the SHA-256 of what it read, and a later step refuses a record bound to other bytes.",
-  "scope": "The filmkit engine as released at v0.10.0: the src/filmkit package, with its Python modules, Node tools and watch list, and the pyproject.toml and VERSION that package it.",
+  "scope": "The filmkit engine as released at v0.16.0: the src/filmkit package, with its Python modules, Node tools and watch list, and the pyproject.toml and VERSION that package it.",
   "limits": [
     "Each component cites every file the rules attribute to it; a relation cites the modules that make its call or run its process.",
     "Relations are calls and process calls in the source, not runtime order, and not every call is drawn: reads of the film record and the spoken units, which most modules make, and the calls that verification and review make across the build are named in component details.",
     "Tests, the sample film, the OpenSpec specifications and Changes, the documentation and the repository's tooling and CI are outside the scope."
   ],
-  "attribution": "Architecture Publications, read from the filmkit source",
   "repository": {
     "name": "filmkit",
     "url": "https://github.com/HengYangDS/filmkit.git",
-    "revision": "9a14f17892399465fbe8a7f36f34b1578af21027"
+    "revision": "d6de89569ddb336363186ca99c39e5a45d018cb1",
+    "browse": "https://github.com/HengYangDS/filmkit/blob/{revision}/{path}"
   },
   "coverage": {
     "exclude": [
@@ -145,7 +145,7 @@
       "kind": "command",
       "details": {
         "runs": "one production action for one edition",
-        "actions": "select, assemble, refresh-captions, stage-picture, check-picture, preflight, render-picture, validate-picture, package-metadata, package-film"
+        "actions": "select, assemble, refresh-captions, stage-picture, check-picture, preflight, render-picture, validate-picture, compare-pictures, package-metadata, package-film"
       },
       "files": ["src/filmkit/produce.py", "src/filmkit/preflight.py"]
     },
@@ -165,8 +165,8 @@
       "kind": "contract",
       "details": {
         "finds": "the film that FILMKIT_ROOT names, or the nearest content/film.toml",
-        "declares": "file prefix, editions, fonts, review policy and source manifest, checked before any work",
-        "fixes": "60 fps, 48 kHz, -16.5 LUFS, a UHD master and a captioned 1080p film"
+        "declares": "file prefix, editions, fonts, player colours, review policy and source manifest, checked before any work",
+        "fixes": "60 fps, 48 kHz, -16.5 LUFS, and a UHD master and a 1080p film, each with captions and without"
       },
       "files": [
         "src/filmkit/__init__.py",
@@ -184,12 +184,14 @@
       "kind": "check",
       "details": {
         "concepts": "each segment says its declared concepts in approved words, and no counterexample appears",
-        "readings": "each watched Chinese character has a declared reading, and each name a spoken form"
+        "readings": "each watched Chinese character has a declared reading, and each name a spoken form",
+        "terms": "each declared Latin-script term is spelled alike for the narrator and said like the occurrence a person heard correct"
       },
       "files": [
         "src/filmkit/concepts.py",
         "src/filmkit/narration/readings.py",
-        "src/filmkit/narration/watched-characters.toml"
+        "src/filmkit/narration/watched-characters.toml",
+        "src/filmkit/narration/terms.py"
       ]
     },
     {
@@ -231,7 +233,7 @@
       "details": {
         "aligns": "each recording to its exact text with the pinned forced aligner",
         "transcribes": "each recording as a recognition proxy, not certification",
-        "selects": "the recordings and alignment bound to the current script and cast"
+        "selects": "the recordings and alignment bound to the current script and cast, within the film's pause limits and declared terms"
       },
       "files": [
         "src/filmkit/narration/alignment.py",
@@ -257,9 +259,10 @@
       "label": "Spoken units",
       "kind": "contract",
       "details": {
-        "names": "the spoken units, punctuation roles, joins and thought spans that sound, captions and audits share"
+        "names": "the spoken units, punctuation roles, joins and thought spans that sound, captions and audits share",
+        "measures": "the heard pause at each word boundary, which selection and assembly limit, and the steps between thoughts, for listening"
       },
-      "files": ["src/filmkit/narration/spoken_units.py"]
+      "files": ["src/filmkit/narration/spoken_units.py", "src/filmkit/narration/flow.py"]
     },
     {
       "id": "soundtrack",
@@ -267,7 +270,7 @@
       "kind": "step",
       "details": {
         "assembles": "the selected takes with designed pauses at one program level",
-        "refuses": "a take that ends abruptly without a declared release",
+        "refuses": "a take that ends abruptly without a declared release, an unmarked pause above its limit, and a declared term said unlike its reference",
         "writes": "the soundtrack, the timeline and the assembly receipt"
       },
       "files": ["src/filmkit/soundtrack/"]
@@ -312,7 +315,8 @@
       "kind": "check",
       "details": {
         "runs": "the film's composition headlessly on a canvas stand-in",
-        "measures": "layout, legibility, balance, typography, the label and text traces, and motion"
+        "measures": "layout, legibility, balance, typography, the label and text traces, and motion",
+        "compares": "each uncaptioned frame's paints with the captioned frame's, less its caption paints"
       },
       "files": [
         "src/filmkit/picture/frame-audit.mjs",
@@ -321,7 +325,8 @@
         "src/filmkit/picture/motion-audit/",
         "src/filmkit/picture/headless-composition.mjs",
         "src/filmkit/picture/seat-marks.mjs",
-        "src/filmkit/picture/rules/"
+        "src/filmkit/picture/rules/",
+        "src/filmkit/picture/caption-equivalence.mjs"
       ]
     },
     {
@@ -330,12 +335,17 @@
       "kind": "check",
       "details": {
         "checks": "the staged picture's geometry and the delivered players in Chrome Headless Shell",
-        "paints": "each edition's cover from the staged picture"
+        "paints": "each edition's cover from the staged picture",
+        "draws": "each whole turn the frame audit found, to find the arcs the browser paints without ink"
       },
       "files": [
         "src/filmkit/picture/geometry-check.mjs",
         "src/filmkit/picture/headless-browser.mjs",
-        "src/filmkit/delivery/player-check.mjs"
+        "src/filmkit/delivery/player-check.mjs",
+        "src/filmkit/delivery/player-read.mjs",
+        "src/filmkit/delivery/player-frames.mjs",
+        "src/filmkit/delivery/player-verdict.mjs",
+        "src/filmkit/picture/whole-turns.mjs"
       ]
     },
     {
@@ -344,14 +354,16 @@
       "kind": "step",
       "details": {
         "stages": "the composition, timeline and fonts as one renderer document, bound in stage.json",
-        "renders": "with HyperFrames only after a passing gate record",
-        "validates": "the rendered picture's frames, size and cadence",
-        "scans": "a rendered film for speech over a still picture"
+        "renders": "both pictures, with captions and without, with HyperFrames only after a passing gate record",
+        "validates": "each rendered picture's frames, size and cadence",
+        "scans": "a rendered film for speech over a still picture",
+        "compares": "each edition's two pictures, which may differ only by their captions, before packaging"
       },
       "files": [
         "src/filmkit/picture/__init__.py",
         "src/filmkit/picture/rendering.py",
-        "src/filmkit/picture/still_scan.py"
+        "src/filmkit/picture/still_scan.py",
+        "src/filmkit/picture/equivalence.py"
       ]
     },
     {
@@ -359,14 +371,16 @@
       "label": "Packaging",
       "kind": "step",
       "details": {
-        "packages": "a UHD master and a captioned 1080p film, with cover, release tags and chapters",
-        "derives": "the viewing package: cover, subtitles, transcript, chapters and player",
+        "packages": "four films, a UHD master and a 1080p film each with captions and without, with cover, release tags and chapters",
+        "derives": "the viewing package: cover, subtitles, transcript, chapters and the player, which the engine renders",
         "sets": "the chapter track's language in place"
       },
       "files": [
         "src/filmkit/delivery/__init__.py",
         "src/filmkit/delivery/packaging.py",
-        "src/filmkit/delivery/track_language.py"
+        "src/filmkit/delivery/track_language.py",
+        "src/filmkit/delivery/player.py",
+        "src/filmkit/delivery/player-page.js"
       ]
     },
     {
@@ -374,7 +388,7 @@
       "label": "Verification",
       "kind": "check",
       "details": {
-        "verifies": "sources, narration custody, the render, both packages, every decoded film and the review",
+        "verifies": "sources, narration custody, both renders and their equivalence, both packages, every decoded film and the review",
         "writes": "nothing; it reads and decodes"
       },
       "files": ["src/filmkit/delivery/verification.py"]
@@ -393,8 +407,9 @@
       "label": "Delivery",
       "kind": "step",
       "details": {
-        "delivers": "the 21 delivery members to the film's Documents folder, then reads them back",
-        "serves": "local review media with byte ranges"
+        "delivers": "the 25 delivery members to the film's Documents folder, then reads them back",
+        "serves": "local review media with byte ranges",
+        "reads": "the entry page and both players back in a real browser before rsync changes anything"
       },
       "files": ["src/filmkit/delivery/documents_folder.py", "src/filmkit/delivery/media_server.py"]
     },
@@ -424,7 +439,7 @@
       "kind": "contract",
       "details": {
         "packages": "src/filmkit as one wheel, its Node tools included",
-        "version": "0.10.0, from VERSION",
+        "version": "0.16.0, from VERSION",
         "depends": "mlx-audio 0.6.4, NumPy, Pillow, Pydantic and pypinyin"
       },
       "files": ["pyproject.toml", "VERSION"]
@@ -540,7 +555,7 @@
       "id": "production-command-picture-rendering",
       "from": "production-command",
       "to": "picture-rendering",
-      "label": "stages, renders, validates",
+      "label": "stages, renders, compares",
       "files": ["src/filmkit/produce.py", "src/filmkit/preflight.py"]
     },
     {
@@ -562,7 +577,11 @@
       "from": "word-checks",
       "to": "film-and-editions",
       "label": "reads scripts, source manifest",
-      "files": ["src/filmkit/concepts.py", "src/filmkit/narration/readings.py"]
+      "files": [
+        "src/filmkit/concepts.py",
+        "src/filmkit/narration/readings.py",
+        "src/filmkit/narration/terms.py"
+      ]
     },
     {
       "id": "word-checks-thought-takes",
@@ -788,7 +807,7 @@
       "id": "packaging-picture-rendering",
       "from": "packaging",
       "to": "picture-rendering",
-      "label": "validates the picture",
+      "label": "validates both pictures",
       "files": ["src/filmkit/delivery/packaging.py"]
     },
     {
@@ -866,7 +885,7 @@
     {
       "id": "overview",
       "title": "From a film's sources to its delivered films",
-      "question": "Which commands carry one edition from its script to its two delivered films?",
+      "question": "Which commands carry one edition from its script to its four delivered films?",
       "members": [
         "narration-command",
         "thought-takes",
@@ -952,5 +971,11 @@
         "host-tools"
       ]
     }
-  ]
+  ],
+  "editors": [
+    {
+      "name": "Yang HENG"
+    }
+  ],
+  "license": "MIT"
 }

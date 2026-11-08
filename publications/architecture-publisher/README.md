@@ -1,29 +1,28 @@
 # Architecture Publisher
 
 [`model.json`](model.json) is an Architecture Model of how Architecture
-Publisher turns an architecture model into posters, a page and an overview. It
-pins `architecture-publisher` at v0.9.0
-(`5a26416d50d01d1d65d03546605005cfa93933b5`), and its components own all 66
+Publisher turns an architecture model into a print edition and a page. It pins
+`architecture-publisher` at v0.10.0
+(`548637cc3867f6d58887111627c7ff104e1cc4b9`), and its components own all 64
 files of its coverage scope: the publisher's source under `src/`, its
 `package.json` and the manifests of its six vendored supplies. Thirty-one
-components, forty-nine relations and six views show one build from the author
+components, fifty-two relations and six views show one build from the author
 to a published delivery, the files bound at the pinned revision, where a model
-comes from, the grid layout, the poster pages, and the page and the overview.
+comes from, the grid layout, the print edition and the page.
 
 [`overview.typ`](overview.typ) is the work's overview page, composed with the
 publisher's house class: the four owners of a build, the path one build takes
-between them to three media, and what each step refuses.
+between them to two media, and what each step refuses.
 
 [`guide/guide.archify.md`](guide/guide.archify.md) is the work's guide, an
 Archify explainer that Architecture Publisher delivers as its page. It follows
 one build: what a model holds, how each file finds its owner at the pinned
-revision, which views are drawn and how one is laid out, when a poster page is
-printed, how the page and the overview are made and checked, what the manifest
-binds and how a delivery is accepted and published. It ends with what moving
-the pin changes. Each claim about the product cites a line range at v0.9.0, and
-the diagrams the draft names sit beside it. The re-pin counts were measured on
-2026-11-05, when this work moved from `97c2079` to v0.8.0. The move to v0.9.0
-changed no claim; 23 cited ranges moved to their new lines.
+revision, which views are drawn and how one is laid out, how a view becomes a
+page of the print edition, how the page and the overview are made and checked,
+what the manifest binds and how a delivery is accepted and published. It ends
+with what moving the pin changes. Each claim about the product cites a line
+range at v0.10.0, and the diagrams the draft names sit beside it. The re-pin
+counts were measured on 2026-11-08, when this work moved from v0.9.0 to v0.10.0.
 
 Each component claims the directories and files its path rules name, and each
 file goes to its most specific claim, so every file in the scope has one owner;
@@ -41,6 +40,6 @@ archpub check publications/architecture-publisher/model.json --repo <architectur
 archpub build publications/architecture-publisher/model.json --repo <architecture-publisher checkout> --out build/architecture-publisher
 ```
 
-Checking the work needs an Architecture Publisher that reads model version 2
-and a glob in a coverage path and delivers a guide as the page; building the
-overview needs Typst 0.15.1 on the path.
+Checking and building the work needs Architecture Publisher 0.10.0 or later,
+which reads model version 3, and building the edition needs Typst 0.15.1 on the
+path.

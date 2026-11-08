@@ -7,7 +7,7 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 - [Every effect is compiled, judged, freshly admitted and applied by exact compare-and-swap](block:p-plan).[](source:invariants)
 - [Each kind of evidence proves only its own plane](block:p-evidence), so local proof is not anti-forgery assurance.[](source:planes)[](source:proof-boundary)
 
-@answer scope="ETHOS v0.2.0-alpha.28 · commit 424d325 · its source and its own documents · proof timings measured on 2026-11-03"
+@answer scope="ETHOS v0.2.0-beta.6 · commit 727ee05 · its source and its own documents · proof timings measured on 2026-11-08"
 @meta locale=en style=editorial
 @source kernel title="The kernel" path="README.md" lines=100:107
 @source native title="What stays native" path="README.md" lines=26:29
@@ -62,31 +62,31 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 @source publish-preview title="The publication preview" path="docs/architecture/runner-and-mutation.md" lines=197:200
 @source publish title="Publication to each peer" path="docs/architecture/runner-and-mutation.md" lines=206:212
 @source verdict title="The closed verdict" path="docs/architecture/runner-and-mutation.md" lines=233:233
-@source proof-gates title="Packaged gates and a repository's own" path="docs/reference/command-plane.md" lines=357:361
-@source load-limit title="The host load limit" path="docs/reference/command-plane.md" lines=368:368
-@source standard-proof title="Standard exact-source proof" path="docs/reference/command-plane.md" lines=433:442
+@source proof-gates title="Packaged gates and a repository's own" path="docs/reference/command-plane.md" lines=426:430
+@source load-limit title="Readiness, then the host load" path="docs/reference/command-plane.md" lines=437:437
+@source standard-proof title="Standard exact-source proof" path="docs/reference/command-plane.md" lines=502:511
 @source gates-floor title="The packaged proof sets" path="system/gates.toml" lines=5:7
-@source preflight title="Static gates before execution" path="src/ethos/adapters/gates/runner.py" lines=359:379
-@source ready-set title="A bounded compatible ready set" path="src/ethos/adapters/gates/runner.py" lines=382:407
+@source preflight title="The readiness tier before the tests" path="src/ethos/adapters/gates/runner.py" lines=367:399
+@source ready-set title="A bounded compatible ready set" path="src/ethos/adapters/gates/runner.py" lines=402:427
 @source proof-boundary title="DR-0006: the decision" path="docs/decisions/dr-0006-proof-trust-boundary.md" lines=37:47
 @source proof-alternatives title="DR-0006: rejected alternatives" path="docs/decisions/dr-0006-proof-trust-boundary.md" lines=49:56
 @source paradigm-context title="DR-0012: the drift that was found" path="docs/decisions/dr-0012-repository-paradigm.md" lines=21:34
 @source paradigm title="DR-0012: what the paradigm fixes" path="docs/decisions/dr-0012-repository-paradigm.md" lines=45:58
 @source paradigm-gap title="DR-0012: what a gap blocks" path="docs/decisions/dr-0012-repository-paradigm.md" lines=69:69
-@source commitment title="Compiling the Commitment" path="src/ethos/adapters/openspec/commitment.py" lines=44:56
+@source commitment title="Compiling the Commitment" path="src/ethos/adapters/openspec/commitment.py" lines=45:57
 @source commitment-class title="Commitment" path="src/ethos/contracts/semantic.py" lines=186:191
 @source facts-class title="Facts" path="src/ethos/contracts/semantic.py" lines=387:396
 @source attestation-class title="Attestation" path="src/ethos/contracts/semantic.py" lines=244:257
-@source plan-class title="TransitionPlan" path="src/ethos/contracts/plan.py" lines=180:192
-@source node-class title="PlanNode" path="src/ethos/contracts/plan.py" lines=45:53
-@source plan-inputs title="PlanInputs" path="src/ethos/contracts/plan.py" lines=90:97
+@source plan-class title="TransitionPlan" path="src/ethos/contracts/plan.py" lines=181:193
+@source node-class title="PlanNode" path="src/ethos/contracts/plan.py" lines=46:54
+@source plan-inputs title="PlanInputs" path="src/ethos/contracts/plan.py" lines=91:98
 @source prewrite title="The prewrite guard" path="src/ethos/adapters/admission/prewrite.py" lines=60:72
 @source lane title="Starting a Work Lane" path="src/ethos/adapters/mutation/lane_lifecycle/start.py" lines=343:353
-@source hook title="One hook entry point" path="src/ethos/adapters/repo/hook/protocol.py" lines=20:33
-@source proof title="The proof of one HEAD" path="src/ethos/adapters/mutation/proof.py" lines=406:411
+@source hook title="One hook entry point" path="src/ethos/adapters/repo/hook/protocol.py" lines=21:34
+@source proof title="The proof of one HEAD" path="src/ethos/adapters/mutation/proof.py" lines=417:422
 @source landing title="Landing on the candidate" path="src/ethos/adapters/mutation/landing.py" lines=45:58
-@source push title="An exact push to one peer" path="src/ethos/adapters/mutation/publication/execution.py" lines=44:55
-@source peers title="The declared peers" path=".ethos/release.toml" lines=16:29
+@source push title="An exact push to one peer" path="src/ethos/adapters/mutation/publication/execution.py" lines=45:56
+@source peers title="The declared peers" path=".ethos/release.toml" lines=12:25
 
 ## Who uses ETHOS, and what does it own? {#p-context}
 
@@ -217,9 +217,9 @@ The gates ETHOS packages for every repository run beside the gates a repository 
 @diagram waterfall id=proof-run source=proof.waterfall.json title="One full proof, gate by gate"
 
 @steps id=proof-steps
-| step-proof-wait | Waiting for host load | Admission waited 391 seconds until the host's load fell below the limit.[](source:load-limit) | proof-run | proof-wait |
-| step-proof-floor | ETHOS gates | Static gates ran first, in parallel, within capacity and without a conflicting gate.[](source:preflight)[](source:ready-set) | proof-run | proof-floor |
-| step-proof-own | Repository gates | Tests and packaging began only after every static gate passed; one behavior gate took 733 of the 821 seconds the gates ran.[](source:preflight) | proof-run | proof-own |
+| step-proof-ready | Readiness gates | Every gate that is neither a test nor a package gate ran first, in parallel within capacity; a failure among them ends the proof before it waits.[](source:preflight)[](source:ready-set) | proof-run | proof-ready |
+| step-proof-wait | Waiting for host load | The proof then waited 75 seconds, until two 1-minute load samples in a row were within the limit.[](source:load-limit) | proof-run | proof-wait |
+| step-proof-tests | Test and package gates | Tests and packaging ran last; one behavior gate took 701 of the proof's 874 seconds.[](source:preflight) | proof-run | proof-tests |
 
 ## What does each kind of evidence prove? {#p-evidence}
 

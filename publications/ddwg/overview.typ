@@ -129,4 +129,4 @@
 ))
 
 // ── Imprint ─────────────────────────────────────────────────────────────
-#imprint([Each view has its poster; the interactive page is the guide, every claim cited.])
+#imprint([Each view has its plate; the interactive page is the guide, every claim cited.])

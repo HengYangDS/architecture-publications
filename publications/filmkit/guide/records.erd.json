@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "9a14f17892399465fbe8a7f36f34b1578af21027"
+      "revision": "d6de89569ddb336363186ca99c39e5a45d018cb1"
     }
   },
   "layout": {
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "src/filmkit/narration/selection.py",
-          "line": 86,
-          "end_line": 96,
+          "line": 97,
+          "end_line": 107,
           "label": "Selection"
         }
       ]
@@ -67,8 +67,8 @@
       "sources": [
         {
           "path": "src/filmkit/production.py",
-          "line": 82,
-          "end_line": 84,
+          "line": 103,
+          "end_line": 105,
           "label": "Script"
         }
       ]
@@ -98,8 +98,8 @@
       "sources": [
         {
           "path": "src/filmkit/soundtrack/assembly.py",
-          "line": 420,
-          "end_line": 460,
+          "line": 437,
+          "end_line": 477,
           "label": "Receipt"
         }
       ]
@@ -123,8 +123,8 @@
       "sources": [
         {
           "path": "src/filmkit/soundtrack/assembly.py",
-          "line": 521,
-          "end_line": 528,
+          "line": 541,
+          "end_line": 548,
           "label": "Timeline"
         }
       ]
@@ -159,8 +159,8 @@
       "sources": [
         {
           "path": "src/filmkit/picture/rendering.py",
-          "line": 251,
-          "end_line": 266,
+          "line": 267,
+          "end_line": 283,
           "label": "Stage"
         }
       ]
@@ -182,6 +182,14 @@
           "type": "digest"
         },
         {
+          "name": "uncaptioned_picture_sha256",
+          "type": "digest"
+        },
+        {
+          "name": "caption_equivalence_sha256",
+          "type": "digest"
+        },
+        {
           "name": "cover_sha256",
           "type": "digest"
         },
@@ -193,11 +201,12 @@
       "sources": [
         {
           "path": "src/filmkit/delivery/packaging.py",
-          "line": 253,
-          "end_line": 291,
+          "line": 225,
+          "end_line": 266,
           "label": "Package"
         }
-      ]
+      ],
+      "width": 272
     },
     {
       "id": "rec-gates",
@@ -227,8 +236,8 @@
       "sources": [
         {
           "path": "src/filmkit/picture/gates.py",
-          "line": 223,
-          "end_line": 238,
+          "line": 422,
+          "end_line": 432,
           "label": "Record"
         }
       ]

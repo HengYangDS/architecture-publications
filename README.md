@@ -2,8 +2,8 @@
 
 Architecture models of selected systems, authored and published outside the
 systems they describe. Each work under `publications/` is one Architecture
-Model that Architecture Publisher (`archpub`) draws as posters and an
-interactive map. The described repositories gain no files, dependencies or
+Model that Architecture Publisher (`archpub`) draws as a print edition and an
+interactive page. The described repositories gain no files, dependencies or
 diagram checks.
 
 ## Works
@@ -14,8 +14,8 @@ diagram checks.
 - [AIGW Client Projection](publications/aigw-client/README.md): how one
   reviewed configuration becomes guarded native projections in every client.
 - [Architecture Publisher](publications/architecture-publisher/README.md): how
-  Architecture Publisher turns an architecture model into posters, a page and an
-  overview.
+  Architecture Publisher turns an architecture model into a print edition and a
+  page.
 - [Data Department Work Guidelines](publications/ddwg/README.md): how the
   guidelines lead a reader to the rule that owns a task, and how a change to them
   is proposed, checked and released.
@@ -28,17 +28,18 @@ diagram checks.
 A model pins the described repository to a full commit. Each component claims
 the directories and files it owns, and each relation names the files that
 support it; the publisher reads them at that commit and records each file's
-SHA-256 in the delivery's manifest. A model's `attribution` names this
-repository as the editor; a model or a delivery built from it is not an
-endorsement by the described project.
+SHA-256 in the delivery's manifest. A model's `editors` name the people who
+edited it; a model or a delivery built from it is not an endorsement by the
+described project.
 
 ## Building and publishing
 
 Run the publisher with a checkout of the described repository. `check` resolves
 every claim and cited file at the pinned revision without changing the
-checkout; `build` writes a new delivery under the ignored `build/` directory. A
-work whose model names an overview composition also gets its overview page,
-which needs Typst 0.15.1 on the path. A work whose model names a guide gets
+checkout; `build` writes a new delivery under the ignored `build/` directory.
+The works are model version 3, which Architecture Publisher 0.10.0 and later
+reads, and the print edition needs Typst 0.15.1 on the path. A work whose model
+names an overview composition gets it in its edition, after the contents. A work whose model names a guide gets
 that guide as its page, with every line range it cites checked at the pinned
 revision.
 

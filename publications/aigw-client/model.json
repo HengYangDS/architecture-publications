@@ -1,6 +1,6 @@
 {
   "format": "architecture-publisher.model",
-  "version": 2,
+  "version": 3,
   "id": "aigw-client",
   "title": "AIGW Client Projection",
   "question": "How does AIGW turn one reviewed configuration into guarded native projections in every admitted client?",
@@ -10,11 +10,11 @@
     "Each component cites every production file the rules attribute to it; a relation cites the files of the packages that import the other component.",
     "Tests, their inputs and the repository's tools, CI and documentation are outside the scope."
   ],
-  "attribution": "Architecture Publications, read from the AIGW source",
   "repository": {
     "name": "aigw-cli",
     "url": "https://github.com/HengYangDS/aigw-cli.git",
-    "revision": "abf05858f4092a3baf9acea0d5d7488b26898aa5"
+    "revision": "abf05858f4092a3baf9acea0d5d7488b26898aa5",
+    "browse": "https://github.com/HengYangDS/aigw-cli/blob/{revision}/{path}"
   },
   "coverage": {
     "include": ["cmd/", "internal/", "manifests/", "go.mod"],
@@ -1008,5 +1008,11 @@
         "platform"
       ]
     }
-  ]
+  ],
+  "editors": [
+    {
+      "name": "Yang HENG"
+    }
+  ],
+  "license": "MIT"
 }

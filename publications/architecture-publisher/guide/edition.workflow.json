@@ -1,0 +1,244 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "How a view becomes a page of the print edition",
+    "output": "edition.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/architecture-publisher",
+      "provider": "github",
+      "revision": "548637cc3867f6d58887111627c7ff104e1cc4b9"
+    },
+    "legend": {
+      "entries": {
+        "security": {
+          "label": "check"
+        },
+        "backend": {
+          "label": "publisher step"
+        },
+        "external": {
+          "label": "outcome"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "ed-lane-plate",
+      "label": "Plate"
+    },
+    {
+      "id": "ed-lane-typeset",
+      "label": "Typeset"
+    },
+    {
+      "id": "ed-lane-refused",
+      "label": "Refused",
+      "variant": "exception"
+    }
+  ],
+  "mainPath": [
+    "ed-compose",
+    "ed-fits",
+    "ed-width",
+    "ed-gates",
+    "ed-typeset",
+    "ed-text",
+    "ed-images"
+  ],
+  "semanticChecks": {
+    "allowedRoots": ["ed-compose"],
+    "allowedTerminals": ["ed-images", "ed-refused"],
+    "requiredEdges": [
+      {
+        "from": "ed-text",
+        "to": "ed-images"
+      },
+      {
+        "from": "ed-fits",
+        "to": "ed-refused"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "ed-compose",
+      "lane": "ed-lane-plate",
+      "col": 0,
+      "type": "backend",
+      "label": "Compose each view",
+      "sources": [
+        {
+          "path": "src/poster/compose/plates.mjs",
+          "line": 99,
+          "end_line": 110,
+          "label": "Compositions"
+        }
+      ]
+    },
+    {
+      "id": "ed-fits",
+      "lane": "ed-lane-plate",
+      "col": 1,
+      "type": "security",
+      "label": "Laid out in the body?",
+      "sources": [
+        {
+          "path": "src/poster/compose/plates.mjs",
+          "line": 149,
+          "end_line": 160,
+          "label": "Admitted"
+        }
+      ]
+    },
+    {
+      "id": "ed-width",
+      "lane": "ed-lane-plate",
+      "col": 2,
+      "type": "backend",
+      "label": "Choose its width",
+      "sources": [
+        {
+          "path": "src/poster/compose/plates.mjs",
+          "line": 203,
+          "end_line": 234,
+          "label": "Width"
+        }
+      ]
+    },
+    {
+      "id": "ed-gates",
+      "lane": "ed-lane-plate",
+      "col": 3,
+      "type": "backend",
+      "label": "Measure four gates",
+      "sources": [
+        {
+          "path": "src/poster/compose/gates.mjs",
+          "line": 1,
+          "end_line": 24,
+          "label": "Gates"
+        }
+      ]
+    },
+    {
+      "id": "ed-typeset",
+      "lane": "ed-lane-typeset",
+      "col": 3,
+      "type": "backend",
+      "label": "Typeset in one pass",
+      "sources": [
+        {
+          "path": "src/edition/typeset.mjs",
+          "line": 11,
+          "end_line": 14,
+          "label": "Edition"
+        }
+      ]
+    },
+    {
+      "id": "ed-text",
+      "lane": "ed-lane-typeset",
+      "col": 4,
+      "type": "security",
+      "label": "Text as measured?",
+      "sources": [
+        {
+          "path": "docs/reference/operations.md",
+          "line": 212,
+          "end_line": 215,
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "id": "ed-images",
+      "lane": "ed-lane-typeset",
+      "col": 5,
+      "type": "external",
+      "label": "PDF and page images",
+      "sources": [
+        {
+          "path": "src/edition/typeset.mjs",
+          "line": 120,
+          "end_line": 141,
+          "label": "Images"
+        }
+      ]
+    },
+    {
+      "id": "ed-refused",
+      "lane": "ed-lane-refused",
+      "col": 2,
+      "type": "external",
+      "label": "Edition refused",
+      "sources": [
+        {
+          "path": "docs/reference/operations.md",
+          "line": 396,
+          "end_line": 401,
+          "label": "Refusals"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "ed-e-fits",
+      "from": "ed-compose",
+      "to": "ed-fits",
+      "role": "main"
+    },
+    {
+      "id": "ed-e-width",
+      "from": "ed-fits",
+      "to": "ed-width",
+      "role": "main",
+      "label": "yes"
+    },
+    {
+      "id": "ed-e-gates",
+      "from": "ed-width",
+      "to": "ed-gates",
+      "role": "main"
+    },
+    {
+      "id": "ed-e-typeset",
+      "from": "ed-gates",
+      "to": "ed-typeset",
+      "role": "main",
+      "label": "misses recorded"
+    },
+    {
+      "id": "ed-e-text",
+      "from": "ed-typeset",
+      "to": "ed-text",
+      "role": "main"
+    },
+    {
+      "id": "ed-e-images",
+      "from": "ed-text",
+      "to": "ed-images",
+      "role": "main",
+      "label": "yes",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ed-e-unfittable",
+      "from": "ed-fits",
+      "to": "ed-refused",
+      "role": "error",
+      "label": "no"
+    },
+    {
+      "id": "ed-e-wider",
+      "from": "ed-text",
+      "to": "ed-refused",
+      "role": "error",
+      "label": "no"
+    }
+  ]
+}

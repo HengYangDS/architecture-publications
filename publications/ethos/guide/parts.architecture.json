@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/ethos.git",
       "provider": "github",
-      "revision": "424d325386784633839b1abf52a4ac394e412a76"
+      "revision": "727ee0579ba1fb9e391b5c44ce9fb2c208390199"
     }
   },
   "components": [
@@ -23,8 +23,8 @@
       "sources": [
         {
           "path": "src/ethos/adapters/openspec/commitment.py",
-          "line": 44,
-          "end_line": 56,
+          "line": 45,
+          "end_line": 57,
           "label": "Compile"
         }
       ]
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "src/ethos/contracts/plan.py",
-          "line": 169,
-          "end_line": 181,
+          "line": 170,
+          "end_line": 182,
           "label": "Plan"
         }
       ]
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "src/ethos/adapters/mutation/proof.py",
-          "line": 406,
-          "end_line": 411,
+          "line": 417,
+          "end_line": 422,
           "label": "Proof"
         }
       ]
@@ -119,8 +119,8 @@
       "sources": [
         {
           "path": "src/ethos/adapters/repo/hook/protocol.py",
-          "line": 20,
-          "end_line": 33,
+          "line": 21,
+          "end_line": 34,
           "label": "Hook"
         }
       ]
@@ -135,8 +135,8 @@
       "sources": [
         {
           "path": "src/ethos/adapters/mutation/publication/execution.py",
-          "line": 44,
-          "end_line": 61,
+          "line": 45,
+          "end_line": 62,
           "label": "Push"
         }
       ]
