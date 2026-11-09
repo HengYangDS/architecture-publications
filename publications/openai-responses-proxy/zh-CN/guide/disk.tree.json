@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "tree",
   "meta": {
-    "title": "macOS 上一次安装写入什么、写在哪里",
+    "title": "macOS 上，一次安装写入什么、写在哪里",
     "locale": "zh-CN",
     "output": "disk.html",
     "quality_profile": "showcase",
@@ -37,7 +37,7 @@
     {
       "id": "dk-selector",
       "label": "payload-selection.json",
-      "sublabel": "活动代及其前代",
+      "sublabel": "当前代及其前代",
       "parent": "dk-data",
       "sources": [
         {
@@ -70,7 +70,7 @@
     },
     {
       "id": "dk-active",
-      "label": "活动代",
+      "label": "当前代",
       "sublabel": "bin/、providers.toml、清单、回执、runtime-config.json",
       "parent": "dk-generations",
       "sources": [
@@ -127,7 +127,7 @@
     {
       "id": "dk-logs",
       "label": "proxy.log、watchdog.log",
-      "sublabel": "有界、轮转、权限 0600",
+      "sublabel": "大小受限、轮转、权限 0600",
       "parent": "dk-state",
       "sources": [
         {
@@ -168,7 +168,7 @@
     },
     {
       "id": "dk-agent",
-      "label": "launchd 代理",
+      "label": "launchd Agent",
       "sublabel": "LaunchAgents/openai-responses-proxy.watchdog.plist",
       "parent": "dk-root",
       "sources": [

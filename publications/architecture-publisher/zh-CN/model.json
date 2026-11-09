@@ -5,11 +5,11 @@
   "locale": "zh-CN",
   "title": "Architecture Publisher",
   "question": "Architecture Publisher 如何把架构模型变成图册和页面？",
-  "summary": "作者对模型运行 archpub。一次构建会校验模型，在钉定修订上把范围内的每个文件交给认领它的组件，规划视图，并把每个视图布局在同一套网格上。它排版一部图册，收入作者编排的总览和每个视图的一幅图版；写出一个 Archify 页面，模型指定了导读时，这个页面就是作者的导读；还写出记录它们摘要的清单。交付物出版前，由一位具名审阅人验收。",
-  "scope": "以 v0.10.1 发布的 Architecture Publisher：出版工具在 src/ 下的源码、它的包清单，以及各随附物料的清单。",
+  "summary": "作者用 archpub 处理模型。构建时先校验模型，按固定的修订把范围内的每个文件交给认领它的组件，再规划视图，把每个视图都布局在同一套网格上。随后排出一部图册，收入作者编排的总览，每个视图各占一幅图版；写出一个 Archify 页面，模型指定了导读时，页面就是作者写的导读；并写出一份清单，记录这些产物的摘要。交付物须经一位具名审阅人验收，才能出版。",
+  "scope": "v0.10.1 发布版的 Architecture Publisher：src/ 下的源码、包清单，以及各项随附物料的清单。",
   "limits": [
-    "每个组件认领其路径规则所列的目录和文件，范围内的每个文件归于最具体的认领；关系引用导入或调用另一组件的模块。",
-    "关系是源码中的导入和进程调用，不是运行时顺序；共用的拒绝类型和子进程环境不画作关系。",
+    "每个组件按路径规则认领目录和文件，范围内的每个文件都归最具体的那项认领；关系引用的是导入或调用另一组件的模块。",
+    "关系指源码中的导入和进程调用，并非运行时的先后顺序；共用的拒绝类型和子进程环境不画成关系。",
     "物料清单所列的随附程序、字体和图稿，以及仓库的测试、工具、文档、OpenSpec 正式变更和 CI，都在范围之外。"
   ],
   "repository": {
@@ -86,7 +86,7 @@
       "label": "作者",
       "kind": "author",
       "details": {
-        "编写": "模型及其总览和导读"
+        "编写": "模型、总览和导读"
       }
     },
     {
@@ -94,7 +94,7 @@
       "label": "审阅人",
       "kind": "reviewer",
       "details": {
-        "验收": "一份未改动的交付物，署名"
+        "验收": "一份未经改动的交付物，须署名"
       }
     },
     {
@@ -103,7 +103,7 @@
       "kind": "command",
       "details": {
         "命令": "check、build、import likec4、scaffold guide、migrate、accept、publish",
-        "退出": "0 完成、1 拒绝、2 误用、3 失败"
+        "退出码": "0 完成、1 拒绝、2 用法错误、3 失败"
       },
       "files": ["src/cli/", "src/refusal.mjs", "package.json"]
     },
@@ -112,7 +112,7 @@
       "label": "LikeC4 导入器",
       "kind": "stage",
       "details": {
-        "解析": "LikeC4 工作空间，在沙箱工作进程中"
+        "解析": "LikeC4 工作空间，在沙箱工作进程中完成"
       },
       "files": ["src/importers/"]
     },
@@ -121,7 +121,7 @@
       "label": "模型迁移",
       "kind": "stage",
       "details": {
-        "转换": "第 1、2 版模型转为第 3 版模型，第 1 版来源目录转为认领"
+        "转换": "第 1、2 版模型转成第 3 版，第 1 版来源目录转成认领"
       },
       "files": ["src/importers/model.mjs"]
     },
@@ -130,7 +130,7 @@
       "label": "模型加载器",
       "kind": "check",
       "details": {
-        "校验": "第 3 版，每个问题附 JSON 路径"
+        "校验": "第 3 版模型，每个问题都给出 JSON 路径"
       },
       "files": ["src/model/"]
     },
@@ -139,7 +139,7 @@
       "label": "交付物构建器",
       "kind": "stage",
       "details": {
-        "写出": "一份交付物，完成后重命名就位"
+        "写出": "一份交付物，写完才重命名就位"
       },
       "files": ["src/build.mjs"]
     },
@@ -149,7 +149,7 @@
       "kind": "check",
       "details": {
         "分配": "范围内的每个文件，归最具体的认领",
-        "读取": "钉定修订上的 Git，从不改动检出"
+        "读取": "Git 中固定的修订，绝不改动检出"
       },
       "files": ["src/sources/", "src/environment.mjs"]
     },
@@ -158,7 +158,7 @@
       "label": "覆盖范围",
       "kind": "check",
       "details": {
-        "匹配": "包含与排除的路径和 glob，与 Git 的匹配一致"
+        "匹配": "要包含和排除的路径与 glob，规则同 Git"
       },
       "files": ["src/sources/scope.mjs"]
     },
@@ -173,10 +173,10 @@
     },
     {
       "id": "worklist",
-      "label": "重新钉定工作清单",
+      "label": "重新固定工作清单",
       "kind": "check",
       "details": {
-        "列出": "钉定修订移动后，每项认领、关系和引用的变化"
+        "列出": "更换固定的修订后，每项认领、关系和引用的变化"
       },
       "files": ["src/sources/worklist.mjs"]
     },
@@ -194,7 +194,7 @@
       "label": "网格布局",
       "kind": "engine",
       "details": {
-        "摆放": "同一套列栅格上的卡片"
+        "摆放": "把卡片排在同一套列栅格上"
       },
       "files": ["src/layout/"]
     },
@@ -212,7 +212,7 @@
       "label": "摆放",
       "kind": "engine",
       "details": {
-        "求解": "精确的位置"
+        "位置": "精确求解"
       },
       "files": ["src/layout/placement.mjs", "src/layout/permutations.mjs"]
     },
@@ -221,7 +221,7 @@
       "label": "连线",
       "kind": "engine",
       "details": {
-        "形成": "总线和走廊"
+        "组成": "总线和走廊"
       },
       "files": ["src/layout/channels.mjs"]
     },
@@ -248,7 +248,7 @@
       "label": "图版编排器",
       "kind": "medium",
       "details": {
-        "编排": "每个视图编为图册正文区的一幅图版，取三种宽度中连线不变差的最窄者",
+        "编排": "每个视图排成图册正文区的一幅图版，三种宽度里取连线不变差的最窄一档",
         "记录": "每幅图版未通过的平衡门槛，供审阅人查看"
       },
       "files": ["src/poster/"]
@@ -258,7 +258,7 @@
       "label": "字体",
       "kind": "medium",
       "details": {
-        "度量": "图中文字，以 Source Sans 3 和 Noto Sans CJK SC 计，与图册排版一致"
+        "度量": "图中文字，按 Source Sans 3 和 Noto Sans CJK SC 计，与图册排版一致"
       },
       "files": ["src/poster/text.mjs", "src/breaks.mjs"]
     },
@@ -267,7 +267,7 @@
       "label": "类型与图标",
       "kind": "medium",
       "details": {
-        "映射": "类型到图标"
+        "映射": "从类型到图标"
       },
       "files": ["src/kinds.mjs", "src/icons.mjs"]
     },
@@ -276,7 +276,7 @@
       "label": "用语",
       "kind": "medium",
       "details": {
-        "存放": "出版工具五种语言用语"
+        "存放": "出版工具自己的用语，五种语言"
       },
       "files": ["src/locale.mjs"]
     },
@@ -285,7 +285,7 @@
       "label": "讲解页",
       "kind": "medium",
       "details": {
-        "交付": "一份原生 Archify 讲解页，无导读时每个视图占一个面板"
+        "交付": "一个原生 Archify 讲解页；没有导读时，每个视图占一个面板"
       },
       "files": ["src/map/"]
     },
@@ -294,18 +294,18 @@
       "label": "导读",
       "kind": "medium",
       "details": {
-        "交付": "作者的 Archify 草稿，作为页面",
-        "核验": "钉定修订上的每个引用区间"
+        "交付": "作者的 Archify 草稿，即页面本身",
+        "核验": "每个引用区间，以固定的修订为准"
       },
       "files": ["src/map/guide.mjs"]
     },
     {
       "id": "overview",
-      "label": "本社版式与总览",
+      "label": "版式类与总览",
       "kind": "medium",
       "details": {
-        "存放": "本社版式及其设计令牌，图册据此排版",
-        "检查": "作者的编排，即其代码规范、文本框和字形"
+        "存放": "版式类和版式设计令牌，图册据此排版",
+        "检查": "作者编排中的代码规范、文本框和字形"
       },
       "files": ["src/overview/", "src/house.json"]
     },
@@ -314,9 +314,9 @@
       "label": "图册",
       "kind": "medium",
       "details": {
-        "排版": "图册记录、每幅图版和总览，由 Typst 一遍排出，符合 PDF/A-3a 与 PDF/UA-1",
-        "渲染": "总览页和每幅图版页，按各宽度输出 PNG",
-        "设定": "自身的用语，用模型的语言"
+        "排版": "图册记录、各幅图版和总览，由 Typst 一遍排出，符合 PDF/A-3a 与 PDF/UA-1",
+        "渲染": "总览页和各图版页，按每种宽度输出 PNG",
+        "用语": "跟随模型的语言"
       },
       "files": ["src/edition/"]
     },
@@ -335,7 +335,7 @@
       "label": "物料",
       "kind": "supply",
       "details": {
-        "存放": "Archify、LikeC4 解析器、字体与本社字体、opentype.js 和图标",
+        "存放": "Archify、LikeC4 解析器、字体与版式字体、opentype.js 和图标",
         "核验": "按摘要"
       },
       "files": ["src/supply.mjs", "renderers/", "supplies/"]
@@ -345,7 +345,7 @@
       "label": "仓库",
       "kind": "repository",
       "details": {
-        "存放": "钉定修订上的源码"
+        "存放": "固定的修订对应的源码"
       }
     },
     {
@@ -353,7 +353,7 @@
       "label": "Typst",
       "kind": "tool",
       "details": {
-        "版本": "0.15.1，在 PATH 上"
+        "版本": "0.15.1，位于 PATH 中"
       }
     },
     {
@@ -424,7 +424,7 @@
       "id": "importer-words",
       "from": "importer",
       "to": "words",
-      "label": "设定用语",
+      "label": "选取用语",
       "files": ["src/importers/likec4.mjs"]
     },
     {
@@ -452,7 +452,7 @@
       "id": "builder-coverage",
       "from": "builder",
       "to": "coverage",
-      "label": "度量覆盖",
+      "label": "统计覆盖",
       "files": ["src/build.mjs"]
     },
     {
@@ -529,7 +529,7 @@
       "id": "coverage-worklist",
       "from": "coverage",
       "to": "worklist",
-      "label": "列出重新钉定工作",
+      "label": "列出重新固定的待办",
       "files": ["src/sources/coverage.mjs"]
     },
     {
@@ -585,14 +585,14 @@
       "id": "plates-presentation",
       "from": "plates",
       "to": "presentation",
-      "label": "设定卡片样式",
+      "label": "设置卡片样式",
       "files": ["src/poster/compose/plates.mjs", "src/poster/figure.mjs", "src/poster/plate.mjs"]
     },
     {
       "id": "plates-words",
       "from": "plates",
       "to": "words",
-      "label": "设定用语",
+      "label": "选取用语",
       "files": ["src/poster/compose/plates.mjs", "src/poster/plate.mjs"]
     },
     {
@@ -613,7 +613,7 @@
       "id": "map-words",
       "from": "map",
       "to": "words",
-      "label": "设定页面用语",
+      "label": "选取页面用语",
       "files": ["src/map/archify.mjs", "src/map/explainer.mjs"]
     },
     {
@@ -676,7 +676,7 @@
       "id": "overview-supplies",
       "from": "overview",
       "to": "supplies",
-      "label": "用本社字体排版",
+      "label": "用版式字体排版",
       "files": ["src/overview/glyphs.mjs", "src/overview/typeset.mjs"]
     },
     {
@@ -690,7 +690,7 @@
       "id": "edition-overview",
       "from": "edition",
       "to": "overview",
-      "label": "暂存本社版式",
+      "label": "暂存版式类",
       "files": ["src/edition/typeset.mjs"]
     },
     {
@@ -704,14 +704,14 @@
       "id": "edition-supplies",
       "from": "edition",
       "to": "supplies",
-      "label": "用本社字体排版",
+      "label": "用版式字体排版",
       "files": ["src/edition/typeset.mjs"]
     },
     {
       "id": "edition-words",
       "from": "edition",
       "to": "words",
-      "label": "设定用语",
+      "label": "选取用语",
       "files": ["src/edition/words.mjs"]
     },
     {
@@ -725,15 +725,15 @@
       "id": "acceptance-publication-root",
       "from": "acceptance",
       "to": "publication-root",
-      "label": "复制已验收交付物",
+      "label": "复制已验收的交付物",
       "files": ["src/delivery.mjs"]
     }
   ],
   "views": [
     {
       "id": "overview",
-      "title": "一次构建，从头到尾",
-      "question": "一次构建从作者的模型到出版的交付物，要经过哪些部分？",
+      "title": "一次构建的全程",
+      "question": "从作者的模型到出版的交付物，一次构建要经过哪些部分？",
       "tiers": [
         {
           "id": "people",
@@ -764,21 +764,21 @@
     },
     {
       "id": "files",
-      "title": "钉定修订上的文件",
-      "question": "构建如何在钉定修订上把每个文件交给所属组件？archpub check 报告什么？",
+      "title": "文件：取自固定的修订",
+      "question": "构建怎样按固定的修订把每个文件交给所属组件？archpub check 又报告些什么？",
       "members": ["builder", "model", "binding", "scope", "coverage", "worklist", "repository"]
     },
     {
       "id": "models",
       "title": "模型从何而来",
-      "question": "模型如何来到出版工具：由作者编写、从 LikeC4 导入，还是从早期版本迁移？",
+      "question": "出版工具拿到的模型从哪里来：作者编写、从 LikeC4 导入，还是从早期版本迁移？",
       "members": ["author", "cli", "importer", "migration", "model", "words", "supplies"]
     },
     {
       "id": "layout",
       "title": "网格布局",
       "question": "同一套网格如何既布局图版，又布局页面中的图？",
-      "summary": "行来自层级或关系。摆放精确求解卡片位置，连线把关系归为总线和走廊，通道求解器为每条通道布线；整洁度量拒绝任何重叠。",
+      "summary": "行由层级或关系决定。摆放精确求出卡片的位置，连线把关系归并成总线和走廊，通道求解器为每条通道布线；整洁度量拒绝任何重叠。",
       "tiers": [
         {
           "id": "media",
@@ -800,7 +800,7 @@
     {
       "id": "edition",
       "title": "图册",
-      "question": "什么把规划好的视图变成图册？它用到哪些物料？",
+      "question": "规划好的视图由谁排成图册？这一步用到哪些物料？",
       "members": [
         "builder",
         "plan",
@@ -817,7 +817,7 @@
     {
       "id": "page",
       "title": "页面",
-      "question": "交互页面如何生成？它检查什么？",
+      "question": "交互页面怎样生成？生成时检查什么？",
       "members": ["builder", "map", "guide", "presentation", "words", "supplies", "repository"]
     }
   ],

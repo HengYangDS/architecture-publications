@@ -2,7 +2,7 @@
   "schema_version": 2,
   "diagram_type": "workflow",
   "meta": {
-    "title": "TransitionPlan 如何准入一项改动",
+    "title": "TransitionPlan 怎样放行一项改动",
     "output": "plan.html",
     "quality_profile": "showcase",
     "locale": "zh-CN",
@@ -31,7 +31,7 @@
   "lanes": [
     {
       "id": "plan-lane-admit",
-      "label": "准入"
+      "label": "放行"
     },
     {
       "id": "plan-lane-refuse",

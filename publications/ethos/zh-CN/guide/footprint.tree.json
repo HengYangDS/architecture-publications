@@ -10,11 +10,11 @@
   "nodes": [
     {
       "id": "fp-root",
-      "label": "ETHOS 所在之处"
+      "label": "ETHOS 放在哪里"
     },
     {
       "id": "fp-checkout",
-      "label": "你的检出，受版本管理",
+      "label": "你的检出（受版本管理）",
       "parent": "fp-root"
     },
     {
@@ -24,7 +24,7 @@
     },
     {
       "id": "fp-spec",
-      "label": "openspec/，官方",
+      "label": "openspec/（官方）",
       "parent": "fp-checkout"
     },
     {

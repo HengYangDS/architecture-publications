@@ -4,12 +4,12 @@
   "id": "openai-responses-proxy",
   "locale": "zh-CN",
   "title": "OpenAI Responses Proxy",
-  "question": "OpenAI Responses Proxy 如何让一个 Codex Responses 轮次可跨第三方提供商移植？又如何安装自己的监听器，并让它持续运行？",
-  "summary": "回环监听器以 store=false 和一套封闭语法重建每个 Responses 请求，在一个总时限内把它发给路径所指的提供商，只做失败类别允许的重试。已签名的发布版本经一个记日志的事务安装为不可变的一代；升级把监听套接字交给新进程；监听器一旦停止，原生服务管理器之下的看门狗就会把它重启。",
+  "question": "OpenAI Responses Proxy 如何让一轮 Codex Responses 对话能在第三方提供商之间迁移？又如何安装自己的监听器，并让它持续运行？",
+  "summary": "回环监听器按一套封闭语法重建每个 Responses 请求，并设 store=false；请求发往路径所指的提供商，全程受同一个总时限约束，只有失败类别允许时才重试。已签名的发布版本由一个记入日志的事务完成安装，成为不可变的一代；升级时，监听套接字交给新进程；监听器一旦停止，系统服务管理器托管的看门狗就会重启它。",
   "scope": "v5.1.9 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
   "limits": [
-    "每个组件掌管其声明所指的文件；一条关系引用的是导入或调用另一组件的文件。",
-    "一条关系代表承载行为的导入或进程调用；只为异常类、类型、共享辅助函数或产品名称而做的导入不画出。",
+    "每个组件负责其声明中列出的文件；关系所引用的，是导入或调用另一组件的文件。",
+    "关系代表承载行为的导入或进程调用；仅为异常类、类型、共用辅助函数或产品名称而做的导入，图中不画。",
     "测试、仓库工具、OpenSpec 规范及其正式变更历史、文档和 CI 都不在范围内，各自注明了排除理由。"
   ],
   "repository": {
@@ -188,8 +188,8 @@
       "label": "Responses 客户端",
       "kind": "client",
       "details": {
-        "例如": "合格路由上的 Codex、Hermes 或 Responses SDK",
-        "掌管": "会话、工具状态和按会话选模型"
+        "例如": "走合格路由的 Codex、Hermes 或 Responses SDK",
+        "负责": "会话、工具状态和每个会话的模型选择"
       }
     },
     {
@@ -197,9 +197,9 @@
       "label": "回环监听器",
       "kind": "endpoint",
       "details": {
-        "绑定": "127.0.0.1 的 8792 端口，除非安装时另选",
-        "服务": "/healthz、/control/drain、/control/handoff，以及 /<provider>/v1/responses 与 models",
-        "启动": "只用摘要已由它验证的载荷"
+        "监听": "127.0.0.1 的 8792 端口，安装时可另选",
+        "路径": "/healthz、/control/drain、/control/handoff，以及 /<provider>/v1/responses 和 models",
+        "启动条件": "载荷的摘要已由它自己验证"
       },
       "files": [
         "src/openai_responses_proxy/serving/server.py",
@@ -211,9 +211,9 @@
       "label": "请求准入",
       "kind": "gate",
       "details": {
-        "读取": "30 秒、64 MiB 以内、按长度定界的单个请求体",
-        "排空": "Responses 准入，为期一个有界租约",
-        "控制": "排空与交接，只接受回环客户端、Host 为回环地址且不带 Origin 的请求"
+        "请求体": "只读一个，按长度定界，限时 30 秒、限长 64 MiB",
+        "排空": "暂停 Responses 准入，租约期有上限",
+        "控制": "排空和交接只接受回环客户端的请求，Host 须为回环地址，且不带 Origin"
       },
       "files": ["src/openai_responses_proxy/relay/admission.py"]
     },
@@ -222,8 +222,8 @@
       "label": "Responses 转发",
       "kind": "relay",
       "details": {
-        "依次": "路由、请求体、投影、委派、冷却、准入、交互、投递",
-        "转发": "模型目录读取，只转发一次，不施加 Responses 策略"
+        "处理顺序": "路由、请求体、投影、委派、冷却、准入、交互、投递",
+        "模型目录": "读取请求只转发一次，不套用 Responses 策略"
       },
       "files": [
         "src/openai_responses_proxy/relay/responses.py",
@@ -237,7 +237,7 @@
       "details": {
         "发送": "store=false，不带 response、conversation 或缓存绑定",
         "保留": "可移植的对话，以及完整的工具调用与输出配对",
-        "拒绝": "未知或不安全的结构，在任何上游 I/O 之前"
+        "拒绝": "未知或不安全的结构，此时尚无任何上游 I/O"
       },
       "files": [
         "src/openai_responses_proxy/protocol/replay/projection.py",
@@ -250,18 +250,18 @@
       "label": "Agent 投递",
       "kind": "grammar",
       "details": {
-        "别名": "在明文路由上把 collaboration 别名为 collaboration_plaintext",
-        "还原": "可读参数到达后，还原原生命名空间"
+        "别名": "明文路由上，collaboration 改用别名 collaboration_plaintext",
+        "还原": "可读参数到达后，换回原生命名空间"
       },
       "files": ["src/openai_responses_proxy/protocol/agent_delivery.py"]
     },
     {
       "id": "bounded-recovery",
-      "label": "有界恢复",
+      "label": "限次恢复",
       "kind": "grammar",
       "details": {
-        "派生": "从已投影的请求派生出严格更小、不拆配对的请求",
-        "保留": "最近一个用户轮次和本轮控制项"
+        "派生": "由投影后的请求得出严格更小、不拆配对的请求",
+        "保留": "最新一轮用户输入和本轮控制项"
       },
       "files": [
         "src/openai_responses_proxy/protocol/recovery/execution.py",
@@ -273,7 +273,7 @@
       "label": "上游交互",
       "kind": "relay",
       "details": {
-        "重试": "只做失败类别允许的，且在一个总时限内",
+        "重试": "失败类别允许才做，全程共用一个总时限",
         "冷却": "429 或重试耗尽的 503 后，只冷却该提供商"
       },
       "files": [
@@ -286,8 +286,8 @@
       "label": "上游传输",
       "kind": "transport",
       "details": {
-        "限定": "DNS、连接、TLS、写入和读取都受交互时限约束",
-        "复用": "空闲至多 30 秒的 keep-alive 连接",
+        "时限": "DNS、连接、TLS、写入和读取都不得超出交互时限",
+        "复用": "空闲不超过 30 秒的 keep-alive 连接",
         "拒绝": "重定向；完整发出的请求绝不再发"
       },
       "files": [
@@ -300,8 +300,8 @@
       "label": "响应投递",
       "kind": "relay",
       "details": {
-        "校验": "终态 JSON 响应体，或在写出前逐个校验 SSE 事件",
-        "暂存": "内容之前的事件，使内容前的 response.failed 可以重开"
+        "校验": "终态 JSON 响应体；SSE 事件则逐个校验后才写出",
+        "暂存": "内容出现之前的事件；此时遇到 response.failed 还能重新发起"
       },
       "files": [
         "src/openai_responses_proxy/relay/sse.py",
@@ -314,8 +314,8 @@
       "label": "遥测与日志",
       "kind": "observer",
       "details": {
-        "计数": "不含机密的计数器、失败类别和上次失败",
-        "日志": "有界的日志行，不含提示词、令牌、请求头或请求体"
+        "统计": "计数器、失败类别和上次失败，都不含机密",
+        "日志": "每行长度受限，不含提示词、令牌、请求头或请求体"
       },
       "files": [
         "src/openai_responses_proxy/relay/telemetry.py",
@@ -328,7 +328,7 @@
       "kind": "registry",
       "details": {
         "路由": "aihubmix、dmxapi 和 ucloud，以及一个可选的 /upstream",
-        "策略": "dmxapi 对确切的 477 empty_response 重试一次"
+        "策略": "dmxapi 遇到完全匹配的 477 empty_response 时重试一次"
       },
       "files": [
         "src/openai_responses_proxy/providers/manifest.toml",
@@ -342,7 +342,7 @@
       "kind": "provider",
       "details": {
         "已准入": "DMXAPI、UCloud 和 AIHubMix，或一个显式指定的上游",
-        "掌管": "模型执行、配额和可用性"
+        "负责": "模型执行、配额和可用性"
       }
     },
     {
@@ -350,7 +350,7 @@
       "label": "监听器交接",
       "kind": "coordinator",
       "details": {
-        "移交": "把监听套接字交给后继进程",
+        "移交": "监听套接字，交给后继进程",
         "步骤": "PREPARE、READY、COMMIT、SERVING、FINALIZE，或中止并恢复服务"
       },
       "files": [
@@ -363,8 +363,8 @@
       "label": "运行时身份",
       "kind": "identity",
       "details": {
-        "冻结": "启动前冻结发布版本、载荷、回执和清单摘要",
-        "命名": "各个私有角色，即监听器、看门狗、交接子进程和预热"
+        "冻结": "发布版本、载荷、回执和清单摘要，启动前就已固定",
+        "角色": "为各私有角色命名，即监听器、看门狗、交接子进程和预热"
       },
       "files": [
         "src/openai_responses_proxy/serving/identity.py",
@@ -378,9 +378,9 @@
       "label": "运行时设置",
       "kind": "foundation",
       "details": {
-        "保留": "每一代旁边的 runtime-config.json；升级时沿用其中的上限",
+        "保存": "runtime-config.json 放在每一代旁边，升级时沿用其中的上限",
         "校验": "端口、超时，以及请求体、流和模型目录的上限",
-        "提供": "有界日志、回环传输和干净的子进程环境"
+        "提供": "大小受限的日志、回环传输和干净的子进程环境"
       },
       "files": [
         "src/openai_responses_proxy/runtime/config.py",
@@ -396,8 +396,8 @@
       "details": {
         "命令": "install、status、doctor、reload、rollback、recover、uninstall",
         "角色": "私有的监听器、看门狗、交接子进程和预热模式",
-        "输出": "供人阅读的页面或稳定的 JSON，附一条下一步命令",
-        "命名": "命令、服务和环境变量前缀，版本号，以及每个公开错误"
+        "输出": "给人看的页面或格式稳定的 JSON，并附一条下一步命令",
+        "名称": "命令、服务和环境变量前缀，版本号，以及每个公开错误"
       },
       "files": [
         "src/openai_responses_proxy/cli/application.py",
@@ -430,8 +430,8 @@
       "label": "发布版本准入",
       "kind": "gate",
       "details": {
-        "验证": "用 ssh-keygen 对照运维者的信任锚验证 SHA256SUMS.sig",
-        "准入": "一个平台归档包，每个成员都与清单相符"
+        "验签": "用 ssh-keygen 对照运维人员的信任锚验证 SHA256SUMS.sig",
+        "准入": "单个平台归档包，内部每个成员都须与清单相符"
       },
       "files": ["src/openai_responses_proxy/lifecycle/artifact.py"]
     },
@@ -440,8 +440,8 @@
       "label": "载荷事务",
       "kind": "state",
       "details": {
-        "记日志": "已准备、已物化、已激活，最后是已完结或已回滚",
-        "恢复": "中断的事务，据其日志和运行中的监听器"
+        "日志记录": "已准备、已落盘、已激活，最后是已完结或已回滚",
+        "恢复": "依据事务日志和运行中的监听器，恢复中断的事务"
       },
       "files": [
         "src/openai_responses_proxy/lifecycle/transaction/execution.py",
@@ -454,8 +454,8 @@
       "label": "自有文件",
       "kind": "state",
       "details": {
-        "物化": "把已准入的字节物化为新的一代，并预热其可执行文件",
-        "链接": "把用户命令链接到选中的最新发布版本",
+        "落盘": "把通过准入的字节写成新的一代，并预热它的可执行文件",
+        "链接": "用户命令指向选中的最新发布版本",
         "删除": "只删已记录的确切文件；未知内容保留"
       },
       "files": [
@@ -470,8 +470,8 @@
       "label": "代选择器",
       "kind": "state",
       "details": {
-        "选定": "活动的不可变代，以及至多一个前代",
-        "退役": "其余各代，按已记录的字节"
+        "选定": "当前的不可变代，以及至多一个前代",
+        "退役": "其余各代，按记录下的字节移除"
       },
       "files": [
         "src/openai_responses_proxy/lifecycle/generation.py",
@@ -483,8 +483,8 @@
       "label": "部署",
       "kind": "coordinator",
       "details": {
-        "选择": "保持准入开放的交接；对较旧的运行时，则排空后替换",
-        "证明": "事务完结前，后继进程的身份"
+        "方式": "交接，准入全程开放；较旧的运行时则排空后替换",
+        "身份": "事务完结前，先证明后继进程的身份"
       },
       "files": [
         "src/openai_responses_proxy/lifecycle/deployment/apply.py",
@@ -493,11 +493,11 @@
     },
     {
       "id": "native-supervision",
-      "label": "原生监管",
+      "label": "系统服务监管",
       "kind": "supervisor",
       "details": {
-        "注册": "launchd 代理、systemd 用户单元或计划任务之一",
-        "停止": "只停止它能证明其可执行文件和私有角色的进程"
+        "注册": "launchd Agent、systemd 用户单元或计划任务之一",
+        "停止": "只停可执行文件和私有角色都经它证明的进程"
       },
       "files": [
         "src/openai_responses_proxy/lifecycle/supervision/native_service.py",
@@ -516,7 +516,7 @@
     },
     {
       "id": "service-manager",
-      "label": "原生服务管理器",
+      "label": "系统服务管理器",
       "kind": "host",
       "details": {
         "macOS": "launchd，位于 GUI 登录域或 Background 域",
@@ -565,14 +565,14 @@
       "id": "listener-runtime-identity",
       "from": "listener",
       "to": "runtime-identity",
-      "label": "冻结其载荷",
+      "label": "冻结自身载荷",
       "files": ["src/openai_responses_proxy/serving/entrypoint.py"]
     },
     {
       "id": "responses-relay-request-admission",
       "from": "responses-relay",
       "to": "request-admission",
-      "label": "准入每个 response",
+      "label": "逐个放行 response",
       "files": ["src/openai_responses_proxy/relay/responses.py"]
     },
     {
@@ -586,7 +586,7 @@
       "id": "responses-relay-replay-projection",
       "from": "responses-relay",
       "to": "replay-projection",
-      "label": "投影请求体",
+      "label": "重建请求体",
       "files": ["src/openai_responses_proxy/relay/responses.py"]
     },
     {
@@ -621,7 +621,7 @@
       "id": "upstream-exchange-bounded-recovery",
       "from": "upstream-exchange",
       "to": "bounded-recovery",
-      "label": "派生更小的重试",
+      "label": "派生更小的重试请求",
       "files": ["src/openai_responses_proxy/relay/exchange.py"]
     },
     {
@@ -635,7 +635,7 @@
       "id": "upstream-exchange-response-delivery",
       "from": "upstream-exchange",
       "to": "response-delivery",
-      "label": "发送终态失败",
+      "label": "发送最终失败结果",
       "files": ["src/openai_responses_proxy/relay/exchange.py"]
     },
     {
@@ -724,21 +724,21 @@
       "id": "command-line-runtime-settings",
       "from": "command-line",
       "to": "runtime-settings",
-      "label": "激活配置载体",
+      "label": "启用运行配置",
       "files": ["src/openai_responses_proxy/cli/application.py"]
     },
     {
       "id": "lifecycle-commands-release-admission",
       "from": "lifecycle-commands",
       "to": "release-admission",
-      "label": "准入已签名资产",
+      "label": "放行已签名资产",
       "files": ["src/openai_responses_proxy/lifecycle/install.py"]
     },
     {
       "id": "lifecycle-commands-payload-transaction",
       "from": "lifecycle-commands",
       "to": "payload-transaction",
-      "label": "开启、恢复",
+      "label": "开始、恢复",
       "files": [
         "src/openai_responses_proxy/lifecycle/control.py",
         "src/openai_responses_proxy/lifecycle/install.py",
@@ -759,14 +759,14 @@
       "id": "payload-transaction-release-admission",
       "from": "payload-transaction",
       "to": "release-admission",
-      "label": "认领已验证字节",
+      "label": "认领已验证的字节",
       "files": ["src/openai_responses_proxy/lifecycle/transaction/execution.py"]
     },
     {
       "id": "payload-transaction-owned-files",
       "from": "payload-transaction",
       "to": "owned-files",
-      "label": "物化、链接、清除",
+      "label": "落盘、链接、清除",
       "files": [
         "src/openai_responses_proxy/lifecycle/records.py",
         "src/openai_responses_proxy/lifecycle/transaction/completion.py",
@@ -789,7 +789,7 @@
       "id": "payload-transaction-runtime-settings",
       "from": "payload-transaction",
       "to": "runtime-settings",
-      "label": "写入候选配置载体",
+      "label": "写入候选运行配置",
       "files": [
         "src/openai_responses_proxy/lifecycle/records.py",
         "src/openai_responses_proxy/lifecycle/transaction/completion.py",
@@ -811,7 +811,7 @@
       "id": "generation-selector-owned-files",
       "from": "generation-selector",
       "to": "owned-files",
-      "label": "移除已记录字节",
+      "label": "移除已记录的字节",
       "files": ["src/openai_responses_proxy/lifecycle/generation.py"]
     },
     {
@@ -895,8 +895,8 @@
   "views": [
     {
       "id": "request-path",
-      "title": "一个 Responses 轮次，从客户端到提供商",
-      "question": "一个 Responses 轮次在客户端与其提供商之间要经过哪些部分？",
+      "title": "一轮 Responses 对话：从客户端到提供商",
+      "question": "一轮 Responses 对话，从客户端到提供商要经过哪些部分？",
       "members": [
         "client",
         "listener",
@@ -911,8 +911,8 @@
     },
     {
       "id": "portability",
-      "title": "离开监听器的内容",
-      "question": "请求如何变得可跨提供商移植？被拒的请求又如何缩小？",
+      "title": "发往提供商的请求",
+      "question": "请求怎样才能在提供商之间迁移？被拒的请求又怎样缩小？",
       "members": [
         "responses-relay",
         "replay-projection",
@@ -925,7 +925,7 @@
     },
     {
       "id": "failures",
-      "title": "失败以提供商为界",
+      "title": "失败按提供商隔离",
       "question": "上游失败如何重试、冷却和报告，而不耽误其他提供商？",
       "members": [
         "upstream-exchange",
@@ -954,7 +954,7 @@
     },
     {
       "id": "handoff",
-      "title": "换新监听器，不丢一个轮次",
+      "title": "换新监听器，一轮也不丢",
       "question": "升级和重载如何把监听套接字移到新进程？",
       "members": [
         "deployment",

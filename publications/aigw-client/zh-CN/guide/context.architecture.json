@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "谁会用到 AIGW，它又触及什么",
+    "title": "谁会用到 AIGW，它又牵涉到什么",
     "output": "context.html",
     "quality_profile": "showcase",
     "locale": "zh-CN",
@@ -34,7 +34,7 @@
       "id": "ctx-manifest",
       "type": "backend",
       "label": "团队清单",
-      "sublabel": "经审阅，不含令牌",
+      "sublabel": "审阅过，不含令牌",
       "pos": [270, 40],
       "size": [180, 64],
       "sources": [
@@ -67,7 +67,7 @@
       "id": "ctx-control",
       "type": "security",
       "label": "AIGW 控制面",
-      "sublabel": "配置与投影",
+      "sublabel": "配置与写入",
       "pos": [270, 180],
       "size": [180, 64],
       "sources": [
@@ -99,7 +99,7 @@
       "id": "ctx-endpoints",
       "type": "cloud",
       "label": "提供商端点",
-      "sublabel": "直连或经由网关",
+      "sublabel": "直连或走网关",
       "pos": [730, 180],
       "size": [180, 64],
       "sources": [
@@ -151,7 +151,7 @@
       "id": "ctx-projects",
       "from": "ctx-control",
       "to": "ctx-clients",
-      "label": "有界区域",
+      "label": "归 AIGW 管的一块",
       "variant": "emphasis"
     },
     {

@@ -2,7 +2,7 @@
   "schema_version": 2,
   "diagram_type": "workflow",
   "meta": {
-    "title": "从经审阅的清单到可用的客户端",
+    "title": "从审阅过的清单到可用的客户端",
     "output": "rollout.html",
     "quality_profile": "showcase",
     "locale": "zh-CN",

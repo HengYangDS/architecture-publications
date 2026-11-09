@@ -58,7 +58,7 @@
       "lane": "ov-lane-typeset",
       "col": 1,
       "type": "security",
-      "label": "Typst 0.15.1 在 PATH 上？",
+      "label": "Typst 0.15.1 在 PATH 中？",
       "sources": [
         {
           "path": "src/overview/typeset.mjs",
@@ -198,7 +198,7 @@
       "from": "ov-stage",
       "to": "ov-refused",
       "role": "error",
-      "label": "违反本社规则"
+      "label": "违反版式规则"
     },
     {
       "id": "ov-e-text",

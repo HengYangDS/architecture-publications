@@ -60,7 +60,7 @@
       "id": "route-admitted",
       "type": "success",
       "label": "已准入",
-      "sublabel": "经审阅的路由",
+      "sublabel": "审阅过的路由",
       "sources": [
         {
           "path": "docs/concepts/product-concepts.md",

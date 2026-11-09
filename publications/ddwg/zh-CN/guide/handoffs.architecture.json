@@ -115,7 +115,7 @@
       "id": "ho-e-model",
       "from": "ho-agent",
       "to": "ho-decide",
-      "label": "最小模型"
+      "label": "够用的模型"
     },
     {
       "id": "ho-e-record",
@@ -140,7 +140,7 @@
       "id": "ho-e-claim",
       "from": "ho-data",
       "to": "ho-deliver",
-      "label": "论断收尾"
+      "label": "完成说法收尾"
     },
     {
       "id": "ho-e-report",

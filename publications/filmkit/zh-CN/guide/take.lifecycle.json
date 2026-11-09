@@ -108,7 +108,7 @@
       "id": "take-released",
       "type": "waiting",
       "label": "尾音淡出",
-      "sublabel": "为衔接而声明",
+      "sublabel": "为这处衔接声明",
       "sources": [
         {
           "path": "src/filmkit/soundtrack/policy.py",
@@ -185,7 +185,7 @@
       "title": "意群怎样补救",
       "items": [
         "试音用其他种子朗读，或连读后在静音处剪开。",
-        "重录绑定其文本和朗读文本的 SHA-256。"
+        "重录绑定自身文本和朗读文本的 SHA-256。"
       ]
     }
   ]

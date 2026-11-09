@@ -65,8 +65,8 @@ the file at `548637cc` that defines or uses the term; the edition's own Chinese 
 | excluded                                                    | 已排除                                           | `src/sources/scope.mjs`                                                          |
 | coverage                                                    | 覆盖                                             | `src/sources/coverage.mjs`                                                       |
 | bind, binding                                               | 绑定                                             | `src/sources/bind.mjs`                                                           |
-| pin, pinned revision                                        | 钉定, 钉定修订                                   | `src/build.mjs`, `src/map/guide.mjs`                                             |
-| re-pin                                                      | 重新钉定                                         | `src/sources/worklist.mjs`                                                       |
+| pin, pinned revision                                        | 固定, 固定的修订                                 | `src/build.mjs`, `src/map/guide.mjs`                                             |
+| re-pin                                                      | 重新固定                                         | `src/sources/worklist.mjs`                                                       |
 | worklist                                                    | 工作清单                                         | `src/sources/worklist.mjs`                                                       |
 | revision                                                    | 修订                                             | `src/edition/words.mjs` (foot)                                                   |
 | repository                                                  | 仓库 (approved)                                  | `src/edition/words.mjs`                                                          |
@@ -108,9 +108,9 @@ the file at `548637cc` that defines or uses the term; the edition's own Chinese 
 | body (the edition's)                                        | 正文区                                           | `src/overview/house.typ`                                                         |
 | balance gate                                                | 平衡门槛                                         | `src/poster/compose/gates.mjs`                                                   |
 | typeface, face                                              | 字体                                             | `src/poster/text.mjs`                                                            |
-| house class                                                 | 本社版式                                         | `src/overview/house.typ`                                                         |
-| house faces                                                 | 本社字体                                         | `src/overview/glyphs.mjs`                                                        |
-| tokens (house tokens)                                       | 设计令牌                                         | `src/overview/house.typ`, `src/house.json`                                       |
+| house class                                                 | 版式类                                           | `src/overview/house.typ`                                                         |
+| house faces                                                 | 版式字体                                         | `src/overview/glyphs.mjs`                                                        |
+| tokens (house tokens)                                       | 版式设计令牌                                     | `src/overview/house.typ`, `src/house.json`                                       |
 | typeset, set                                                | 排版                                             | `src/edition/words.mjs` (typeset → 排版)                                         |
 | record (the edition's)                                      | 图册记录                                         | `src/edition/record.mjs`                                                         |
 | render                                                      | 渲染                                             | `src/edition/typeset.mjs`                                                        |
@@ -121,7 +121,7 @@ the file at `548637cc` that defines or uses the term; the edition's own Chinese 
 | kind                                                        | 类型                                             | `src/kinds.mjs`                                                                  |
 | icon                                                        | 图标                                             | `src/icons.mjs`                                                                  |
 | command line                                                | 命令行                                           | `src/cli/run.mjs`                                                                |
-| exits (detail), exit code; usage (exit 2)                   | 退出, 退出码; 误用                               | `src/cli/run.mjs`                                                                |
+| exits (detail), exit code; usage (exit 2)                   | 退出码; 用法错误                                 | `src/cli/run.mjs`                                                                |
 | external tool                                               | 外部工具                                         | this work's `model.json` kinds; external in `src/kinds.mjs`                      |
 | delivery store                                              | 交付物存储                                       | this work's `model.json` kinds; root in `src/delivery.mjs`                       |
 | OpenSpec change                                             | OpenSpec 正式变更 (approved)                     | `openspec/` (outside the scope)                                                  |
@@ -154,7 +154,7 @@ the file at `548637cc` that defines or uses the term; the edition's own Chinese 
 | showcase (quality)                                          | showcase (kept)                                  | `src/map/guide.mjs`                                                              |
 | temporary clone                                             | 临时克隆                                         | `src/map/guide.mjs`                                                              |
 | tracked file; Git object store                              | 已跟踪文件; Git 对象库                           | `src/sources/scope.mjs`, `src/sources/git.mjs`                                   |
-| house rule                                                  | 本社规则                                         | `src/overview/lint.mjs`                                                          |
+| house rule                                                  | 版式规则                                         | `src/overview/lint.mjs`                                                          |
 | lock (the edition's, as a lockfile)                         | 锁                                               | `docs/reference/model.md`                                                        |
 | shifted, moved, touched, gone (a cited range)               | 偏移, 移动, 触及, 消失                           | `src/sources/worklist.mjs`                                                       |
 | rasterizer (deleted at this pin)                            | 栅格化器                                         | this work's `guide/guide.archify.md`                                             |

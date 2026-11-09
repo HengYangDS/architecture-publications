@@ -65,7 +65,7 @@
     {
       "id": "ctx-supply",
       "type": "cloud",
-      "label": "供给步骤",
+      "label": "供应步骤",
       "sublabel": "唯一联网的步骤",
       "pos": [760, 40],
       "size": [180, 64],

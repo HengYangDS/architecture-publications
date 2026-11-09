@@ -129,7 +129,7 @@
       "id": "ex-t-reopen",
       "from": "ex-held",
       "to": "ex-sending",
-      "label": "重开",
+      "label": "重新发起",
       "variant": "dashed"
     },
     {
@@ -160,7 +160,7 @@
       "title": "可以再发",
       "items": [
         "请求发完之前就失败的发送。",
-        "提供商以已归类错误拒绝的请求。",
+        "提供商以已归类的错误拒绝的请求。",
         "在任何内容之前报告 response.failed 的流。"
       ]
     },

@@ -23,7 +23,7 @@ in this edition.
 | authorization                                                                 | 授权                                         | `concepts.toml` (authorization); `docs/human-agent.md`                            |
 | decision owner                                                                | 决策负责人                                   | `concepts.toml` (decision-owner); `docs/decide.md`                                |
 | owner (accountable person)                                                    | 负责人                                       | `docs/charter.md`                                                                 |
-| owner (the page that owns a rule); owns                                       | 归属；负责                                   | `openspec/specs/guidance-discovery/spec.md`                                       |
+| owner (the page that owns a rule); owns                                       | 只归一处；负责                               | `openspec/specs/guidance-discovery/spec.md`                                       |
 | verification; verify                                                          | 核验                                         | `concepts.toml` (verification); `docs/deliver.md`                                 |
 | qualify (data for a use)                                                      | 证明适合                                     | `concepts.toml` (qualified-for-use); `docs/data.md`                               |
 | entry; repository entry; Agent entry                                          | 入口；仓库入口；智能体入口                   | `README.md`; `AGENTS.md`                                                          |
@@ -103,8 +103,8 @@ in this edition.
 | ETHOS profile                                                                 | ETHOS 配置档                                 | `.ethos/profile.toml`                                                             |
 | normative source                                                              | 规范来源                                     | `.ethos/profile.toml`                                                             |
 | declaration; release declaration                                              | 声明；发布声明                               | `.ethos/release.toml`; `docs/governance/README.md`                                |
-| peer; publication peer                                                        | 对端；发布对端                               | `.ethos/release.toml`                                                             |
-| Forge peer                                                                    | 代码托管平台对端                             | `.ethos/release.toml`                                                             |
+| peer; publication peer                                                        | 平台；发布平台                               | `.ethos/release.toml`                                                             |
+| Forge peer                                                                    | 代码托管平台                                 | `.ethos/release.toml`                                                             |
 | accepted mirror                                                               | 已验收内容的镜像                             | `.ethos/release.toml`; `docs/governance/README.md`                                |
 | protected tag; tag                                                            | 受保护的标签；标签                           | `.ethos/release.toml`                                                             |
 | ref (Git ref)                                                                 | Git 引用                                     | `docs/governance/README.md`                                                       |
@@ -115,9 +115,9 @@ in this edition.
 | cut (a release)                                                               | 定版                                         | `docs/governance/README.md`; `CONTRIBUTING.md`                                    |
 | release identity                                                              | 发布标识                                     | `docs/governance/README.md`                                                       |
 | Changelog                                                                     | 变更日志                                     | `CHANGELOG.md`                                                                    |
-| publication plane                                                             | 发布平面                                     | `docs/governance/README.md`                                                       |
+| publication plane                                                             | 发布平台                                     | `docs/governance/README.md`                                                       |
 | distribution                                                                  | 分发                                         | `docs/governance/README.md`                                                       |
-| tool supply                                                                   | 工具供给                                     | `docs/governance/README.md`                                                       |
+| tool supply                                                                   | 工具供应                                     | `docs/governance/README.md`                                                       |
 | lock; pin; locked                                                             | 锁文件；固定；按锁文件                       | `.config/mise/mise.lock`; `docs/governance/README.md`                             |
 | bootstrap                                                                     | 引导安装                                     | `CONTRIBUTING.md`                                                                 |
 | CI parameters                                                                 | CI 参数                                      | `docs/governance/configuration.md`                                                |
@@ -125,24 +125,24 @@ in this edition.
 | deadline                                                                      | 时限                                         | `.config/ci/verification.toml`                                                    |
 | job; hosted job                                                               | 作业；托管作业                               | `docs/governance/README.md`                                                       |
 | pipeline; generated                                                           | 流水线；生成的                               | `docs/governance/configuration.md`                                                |
-| MIT License; the MIT grant                                                    | MIT License（名称不译）；MIT License 复用权  | LICENSE; `README.md`; `concepts.toml` (held-scope avoid words)                    |
+| MIT License; the MIT grant                                                    | MIT License（名称不译）；MIT License 授权    | LICENSE; `README.md`; `concepts.toml` (held-scope avoid words)                    |
 | view; plate; guide                                                            | 视图；图版；导读                             | this work's `README.md` (publication terms)                                       |
 | home page (the README)                                                        | 首页                                         | `README.md`; `openspec/specs/guidance-discovery/spec.md`                          |
 | example (guide page; Archify refuses 示例)                                    | 范例                                         | `openspec/specs/guidance-discovery/spec.md`                                       |
 | Direction and Decisions; Data and Delivery; Collaboration and Improvement     | 方向与决策；数据与交付；协作与改进           | `docs/README.md`                                                                  |
 | reading route; stage                                                          | 阅读路线；阶段                               | `docs/README.md`; `docs/deliver.md`                                               |
 | emergency route; urgent containment                                           | 紧急路线；紧急遏制                           | `docs/README.md`; `docs/deliver.md`                                               |
-| working loop: frame, analyze, decide, execute, verify, learn                  | 工作循环：界定、分析、决策、执行、核验、总结 | `docs/deliver.md`                                                                 |
-| smallest sufficient model                                                     | 最小充分模型                                 | `docs/human-agent.md`; `docs/decide.md`                                           |
+| working loop: frame, analyze, decide, execute, verify, learn                  | 工作循环：界定、分析、决定、执行、核验、总结 | `docs/deliver.md`                                                                 |
+| smallest sufficient model                                                     | 刚好够用的模型                               | `docs/human-agent.md`; `docs/decide.md`                                           |
 | execution preconditions                                                       | 执行前提条件                                 | `docs/human-agent.md`; `docs/deliver.md`                                          |
 | decision-document order                                                       | 决策文档的顺序                               | `docs/decide.md`; `docs/communicate.md`                                           |
 | completion report; evidence boundary                                          | 完成报告；证据边界                           | `docs/communicate.md`                                                             |
-| claim; completion claim                                                       | 论断；完成论断                               | `docs/data.md`; `docs/deliver.md`                                                 |
+| claim; completion claim                                                       | 说法；完成说法                               | `docs/data.md`; `docs/deliver.md`                                                 |
 | professional and use decisions                                                | 专业决策和用途决策                           | `docs/human-agent.md`; `docs/data.md`                                             |
 | contract; source contract                                                     | 契约；源文件契约                             | `concepts.toml` (contract); `CONTRIBUTING.md`                                     |
 | hook; Git-common hooks                                                        | 钩子；Git 钩子                               | brief (approved); `AGENTS.md`; `CONTRIBUTING.md`                                  |
 | method pack                                                                   | 方法包                                       | `AGENTS.md`; `docs/decisions/dr-0004-official-lifecycle.md`                       |
-| owned lane                                                                    | 自有工作通道                                 | `AGENTS.md`                                                                       |
+| owned lane                                                                    | 自己的工作通道                               | `AGENTS.md`                                                                       |
 | selected (Change, Forge, peer)                                                | 选定；所选                                   | `AGENTS.md`; `CONTRIBUTING.md`                                                    |
 | trusted SSH signature                                                         | 可信的 SSH 签名                              | `CONTRIBUTING.md`                                                                 |
 | source job; source CI                                                         | 源文件检查作业；源文件 CI                    | `CONTRIBUTING.md`                                                                 |
@@ -153,7 +153,7 @@ in this edition.
 | formatter                                                                     | 格式化工具                                   | `CONTRIBUTING.md`                                                                 |
 | verification parameters; runner declarations                                  | 核验参数；Runner 声明                        | `docs/governance/configuration.md`                                                |
 | common CI model                                                               | 通用模型                                     | `openspec/specs/verification/spec.md`; `.config/checks/ci-projection/policy.toml` |
-| spelling increment                                                            | 拼写增量                                     | `CONTRIBUTING.md`                                                                 |
+| spelling increment                                                            | 临时拼写词表                                 | `CONTRIBUTING.md`                                                                 |
 | editorial review                                                              | 编辑评审                                     | `openspec/specs/verification/spec.md`                                             |
 | working edit; candidate file                                                  | 工作区改动；候选文件                         | `CONTRIBUTING.md`                                                                 |
 | withdraw (a task); checkbox; check off                                        | 撤出；复选框；勾选                           | `docs/decisions/dr-0005-change-closure-scope.md`                                  |

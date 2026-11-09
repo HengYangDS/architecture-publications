@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "tree",
   "meta": {
-    "title": "一个请求保留、改写、去除和拒绝的内容",
+    "title": "一个请求里，哪些保留、改写、去除或拒绝",
     "locale": "zh-CN",
     "output": "projection.html",
     "quality_profile": "showcase",
@@ -231,7 +231,7 @@
     {
       "id": "pr-orphan",
       "label": "残缺的工具关系",
-      "sublabel": "输出先于其调用",
+      "sublabel": "输出先于调用出现",
       "parent": "pr-refused",
       "sources": [
         {

@@ -133,7 +133,7 @@
       "id": "rd-e-home",
       "from": "rd-members",
       "to": "rd-readme",
-      "label": "起步"
+      "label": "起点"
     },
     {
       "id": "rd-e-agents",
@@ -152,7 +152,7 @@
       "id": "rd-e-agent-map",
       "from": "rd-agents",
       "to": "rd-map",
-      "label": "起步于"
+      "label": "从这里读起"
     },
     {
       "id": "rd-e-agent-gov",

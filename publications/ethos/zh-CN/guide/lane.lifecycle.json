@@ -46,7 +46,7 @@
       "id": "lane-proven",
       "type": "decision",
       "label": "头提交已证明",
-      "sublabel": "一个确切的头提交",
+      "sublabel": "精确到一个头提交",
       "sources": [
         {
           "path": "src/ethos/adapters/mutation/proof.py",
@@ -204,7 +204,7 @@
     },
     {
       "dot": "amber",
-      "title": "通道如何恢复",
+      "title": "通道怎样恢复",
       "items": [
         "基线过时：把通道重放到候选分支上。",
         "证明被拒：退回归档前的头提交。",

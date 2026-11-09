@@ -32,7 +32,7 @@
     {
       "id": "tp-urgent",
       "label": "紧急故障或越界",
-      "sublabel": "紧急情况，最先",
+      "sublabel": "紧急情况，排在最前",
       "parent": "tp-map",
       "sources": [
         {

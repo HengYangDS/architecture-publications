@@ -47,7 +47,7 @@
       "id": "kernel-facts",
       "label": "Facts",
       "kind": "record",
-      "sublabel": "刚刚观察到，从不持久保存",
+      "sublabel": "当场观察，不持久保存",
       "row": 0,
       "col": 1,
       "attributes": [
@@ -115,7 +115,7 @@
       "id": "kernel-plan",
       "label": "TransitionPlan",
       "kind": "record",
-      "sublabel": "一次转换，以其摘要命名",
+      "sublabel": "一次转换，用摘要命名",
       "row": 1,
       "col": 1,
       "attributes": [
@@ -188,14 +188,14 @@
       "from": "kernel-plan",
       "to": "kernel-commitment",
       "kind": "dependency",
-      "label": "绑定其摘要"
+      "label": "绑定它的摘要"
     },
     {
       "id": "binds-facts",
       "from": "kernel-plan",
       "to": "kernel-facts",
       "kind": "dependency",
-      "label": "绑定其摘要"
+      "label": "绑定它的摘要"
     },
     {
       "id": "binds-prior",

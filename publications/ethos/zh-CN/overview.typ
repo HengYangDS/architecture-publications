@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([ETHOS · 问道], [意图先经编译和证明，仓库才会改动], [每一步都把正式意图和刚观察到的事实编译成一份 TransitionPlan；只有 pass 才准入改动，每次改动都是一次确切的 compare-and-swap，核验记录不授予任何决定权。], read-from: [取自 467 个文件，每个文件都以其 SHA-256 引用。], claim-x: 196pt)
+#masthead([ETHOS · 问道], [意图先编译、再证明，仓库才会改动], [每一步都把正式意图和当下的事实编译成一份 TransitionPlan。只有 pass 才放行改动，每次改动都是一次精确的 compare-and-swap，核验记录不授予任何决定权。], read-from: [依据 467 个文件写成，每个文件都注明 SHA-256。], claim-x: 196pt)
 
 // ── Band 1: the repository's roles above, one change below them ───────────
 #let ys = 236pt
@@ -15,7 +15,7 @@
 #head(1150pt, 132pt, [发布])
 #head(1318pt, 132pt, [平台])
 #tx(48pt, 152pt, [openspec/ · 正式变更], fill: soft)
-#tx(200pt, 152pt, [work/\* · 各有一个工作区和一份租约], fill: soft)
+#tx(200pt, 152pt, [work/\* · 每条一个工作区、一份租约], fill: soft)
 #tx(812pt, 152pt, [candidate/dev · land], fill: soft)
 #tx(982pt, 152pt, [dev · 收尾], fill: soft)
 #tx(1150pt, 152pt, [main · 签名的 v\* 标签], fill: soft)
@@ -31,7 +31,7 @@
   seg((x, 182pt), (x, ys - 12pt), w: 1.5pt, c: ochre, dash: (4pt, 3pt))
   down(x, ys - 8pt)
 }
-#tx(886pt, 177pt, [确切提交的证明核验记录], fill: ochre, style: "italic")
+#tx(886pt, 177pt, [精确到提交的证明核验记录], fill: ochre, style: "italic")
 
 // The change: one heavy line, three lanes in parallel, one at a time after them.
 #seg((112pt, ys), (208pt, ys), w: 4pt, c: green)
@@ -53,20 +53,20 @@
 #ring(1366pt, ys, r: 7pt, w: 2.6pt)
 
 // What each role does, set directly under it.
-#tx(48pt, 290pt, [OpenSpec 是唯一 \ 受版本管理的意图；\ 一项正式变更编译成 \ 一个 Commitment。], w: 140pt)
+#tx(48pt, 290pt, [受版本管理的意图 \ 只有 OpenSpec 一处；\ 一项正式变更编译成 \ 一个 Commitment。], w: 140pt)
 #dl(200pt, 290pt, 72pt, 290pt, (
-  ([开始], [从候选分支创建自有分支]),
-  ([写前准入], [写入前核对受版本管理的确切路径]),
-  ([提交], [由所选运行时的钩子准入]),
+  ([开始], [从候选分支拉出自己的分支]),
+  ([写前准入], [写入前逐条核对受版本管理的路径]),
+  ([提交], [由选定运行时的钩子放行]),
 ))
 #dl(500pt, 290pt, 66pt, 300pt, (
   ([归档], [官方归档，一次签名提交]),
-  ([证明], [确切 HEAD 的门禁图，存于 Git 旁]),
+  ([证明], [在指定的 HEAD 上跑门禁图，存于 Git 旁]),
 ))
 #tx(812pt, 290pt, [通道逐条落地；\ 基线过时则拒绝，由 \ #box[lane refresh-base] 重放。], w: 158pt)
-#tx(982pt, 290pt, [dev 只随已证明候选分支的收尾前进。], w: 150pt)
-#tx(1150pt, 290pt, [main 接收已验收 dev 的 \ 签名标签；由托管作业发布。], w: 166pt)
-#tx(1318pt, 290pt, [每个平台一次原子推送，各有回执；\ 不声称跨平台的原子性。], w: 234pt)
+#tx(982pt, 290pt, [候选分支证明通过、\ 完成收尾，dev 才前进。], w: 150pt)
+#tx(1150pt, 290pt, [main 接收已验收 dev 的 \ 签名标签，由托管作业发布。], w: 166pt)
+#tx(1318pt, 290pt, [每个平台一次原子推送，各留回执；\ 跨平台不作原子性承诺。], w: 234pt)
 
 // Band 1 foot: how a lane is held, and how a move is refused.
 #hrule(360pt, x1: 776pt)
@@ -74,14 +74,14 @@
 #dl(48pt, 384pt, 112pt, 728pt, (
   ([租约], [持有者、代次和到期时间记在 state.sqlite 中：每条通道只有一个归属方，可续约、恢复或接管]),
   ([写入顺序], [目标路径 · 仓库根目录 · 刷新上下文 · status · prewrite · 写入 · 写后审计]),
-  ([交接], [通道作为一个内容寻址的包在主机之间转移；revoke-source 结束旧租约]),
-  ([退役], [landed、superseded、absorbed-ref、abandon 或 recover，始终在预期的头提交上]),
+  ([交接], [通道打成一个内容寻址的包，在主机之间转移；revoke-source 结束旧租约]),
+  ([退役], [landed、superseded、absorbed-ref、abandon 或 recover，头提交始终要与预期一致]),
 ))
 #dl(824pt, 384pt, 140pt, 728pt, (
   ([无决定权], [没有 \-\-authorize 和 \-\-expect-head，什么都不会移动]),
   ([候选分支已分叉], [先用 candidate \-\-refresh-from-accepted 重置，再重放通道]),
-  ([未经证明的归档], [archive-change \-\-compensate 恢复归档前的确切头提交]),
-  ([未知或有未提交改动], [只观察，直到某个公开转换能推导出一个安全的改动]),
+  ([未经证明的归档], [archive-change \-\-compensate 精确退回归档前的头提交]),
+  ([未知或有未提交改动], [只观察，等某个公开转换能推出一项安全的改动]),
 ))
 
 // ── Band 2: the plan every step is, and the structure every repository shares ──
@@ -94,7 +94,7 @@
   (320pt, "编译", [检查、决策 \ 和改动], "tick", 92pt),
   (424pt, "排序", [一个 DAG；\ 输入相同，字节相同], "tick", 114pt),
   (536pt, "判定", none, "ring", 0pt),
-  (640pt, "改动", [一次确切的 \ compare-and-swap], "tick", 104pt),
+  (640pt, "改动", [一次精确的 \ compare-and-swap], "tick", 104pt),
 )
 #for (x, name, note, kind, nw) in steps {
   if kind == "ring" { ring(x, yk, r: 5pt, w: 2pt) } else { tick(x, yk, h: 12pt, w: 2pt) }
@@ -108,13 +108,13 @@
 #seg((536pt, yk + 6pt), (536pt, 652pt), (556pt, 652pt), w: 1.5pt, c: ochre, dash: (4pt, 3pt))
 #ring(563pt, 652pt, r: 4.5pt, w: 1.7pt, c: ochre)
 #tx(576pt, 656pt, [block 或 unknown：不做改动], fill: ochre, style: "italic")
-#tx(48pt, 700pt, [输入都是显式的值：编译不从环境读取文件、时钟、网络或进程。只有持有显式根目录、决定权、前置条件和预期状态的适配器，才会执行已准入的改动，并写下核验记录。], w: 728pt, fill: soft)
+#tx(48pt, 700pt, [输入都是显式的值，编译时不读环境里的文件、时钟、网络或进程。已放行的改动由适配器执行：适配器要持有显式的根目录、决定权、前置条件和预期状态，执行后写下核验记录。], w: 728pt, fill: soft)
 
-#head(824pt, 500pt, [每个受治理仓库共有的结构])
+#head(824pt, 500pt, [受治理仓库共有的结构])
 #let cols = (
   (824pt, [声明], (([profile.toml], [绑定、OpenSpec 路径]), ([范式], [命名、文档、工具链]), ([OpenSpec], [唯一受版本管理的意图]))),
   (1008pt, [检查], (([文档], [命名、许可证、链接]), ([尺寸], [统一的单文件上限]), ([流水线], [一个 CI 模型，覆盖每个平台]))),
-  (1192pt, [强制], (([提交], [信息语法和 SSH 签名]), ([布局], [导入解析到归属方]), ([投影], [只用原生生成器]))),
+  (1192pt, [强制], (([提交], [信息语法和 SSH 签名]), ([布局], [导入都指向归属方]), ([投影], [只用原生生成器]))),
   (1376pt, [存于 Git 旁], (([state.sqlite], [租约]), ([attestations-set], [持久的核验记录]), ([runtime/CURRENT], [一个运行时；保留 ROLLBACK]))),
 )
 #for (x, title, rows) in cols {
@@ -125,21 +125,21 @@
     tx(x, 586pt + k * 40pt, def, fill: soft)
   }
 }
-#tx(824pt, 700pt, [ETHOS 自己也守同一条底线。配置选择事实和门禁，但从不选择命令的含义。], w: 728pt, fill: soft)
+#tx(824pt, 700pt, [ETHOS 自己也守同一条底线。配置档可以选择事实和门禁，但决定不了命令的含义。], w: 728pt, fill: soft)
 
 // ── Band 3: how a repository is formed, how it is reached, how a lane ends ─
 #hrule(744pt)
 #head(48pt, 770pt, [建立或接入])
 #dl(48pt, 794pt, 152pt, 460pt, (
   ([adopt \-\-create], [用起始模板建立新仓库]),
-  ([adopt], [在其头提交上绑定现有仓库]),
+  ([adopt], [绑定现有仓库，以它的头提交为准]),
   ([adopt \-\-evolve-starter], [把起始模板的升级合并进候选分支]),
 ))
-#head(560pt, 770pt, [以同样方式触达])
+#head(560pt, 770pt, [入口不同，操作相同])
 #dl(560pt, 794pt, 72pt, 470pt, (
   ([CLI], [status、plan、prove、land、publish、lane 和 hook]),
-  ([MCP], [同样的操作，经由绑定根目录的传输]),
-  ([技能], [按所声明的命令校验的包]),
+  ([MCP], [同样的操作，每个服务实例绑定一个仓库根目录]),
+  ([技能], [技能包，按它声明的命令校验]),
 ))
 #head(1072pt, 770pt, [每条通道都明确结束])
 #dl(1072pt, 794pt, 72pt, 480pt, (
@@ -149,4 +149,4 @@
 ))
 
 // ── Imprint ─────────────────────────────────────────────────────────────
-#imprint([每个视图各有一张图版；交互页面就是指南，每项论断都附引用。])
+#imprint([每个视图一张图版；交互页面就是指南，每项论断都附引用。])

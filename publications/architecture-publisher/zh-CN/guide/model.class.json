@@ -63,7 +63,7 @@
       "id": "model-coverage",
       "label": "coverage{}",
       "kind": "record",
-      "sublabel": "它描述的路径",
+      "sublabel": "模型描述的路径",
       "row": 0,
       "col": 2,
       "attributes": [
@@ -89,7 +89,7 @@
       "id": "model-relations",
       "label": "relations[]",
       "kind": "record",
-      "sublabel": "两个组件及其证据",
+      "sublabel": "两个组件和证据",
       "row": 1,
       "col": 0,
       "attributes": [
@@ -233,7 +233,7 @@
       "from": "model-views",
       "to": "model-components",
       "kind": "association",
-      "label": "绘出"
+      "label": "画出"
     }
   ]
 }

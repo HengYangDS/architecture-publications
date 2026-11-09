@@ -113,7 +113,7 @@
       "id": "lay-solver",
       "type": "backend",
       "label": "通道求解器",
-      "sublabel": "一次一条通道",
+      "sublabel": "逐条通道求解",
       "pos": [630, 320],
       "size": [170, 64],
       "sources": [

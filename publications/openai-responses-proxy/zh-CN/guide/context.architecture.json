@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "谁经由代理发送流量，代理触及什么",
+    "title": "谁通过代理发送流量，代理又触及什么",
     "output": "context.html",
     "quality_profile": "showcase",
     "locale": "zh-CN",
@@ -25,7 +25,7 @@
           "path": "README.md",
           "line": 25,
           "end_line": 30,
-          "label": "掌管方"
+          "label": "责任方"
         }
       ]
     },
@@ -33,7 +33,7 @@
       "id": "ctx-operator",
       "type": "external",
       "icon": "person",
-      "label": "运维者",
+      "label": "运维人员",
       "sublabel": "已签名资产、信任锚",
       "pos": [270, 40],
       "size": [180, 64],
@@ -97,7 +97,7 @@
     {
       "id": "ctx-service",
       "type": "external",
-      "label": "原生服务管理器",
+      "label": "系统服务管理器",
       "sublabel": "launchd、systemd、计划任务",
       "pos": [270, 320],
       "size": [180, 64],

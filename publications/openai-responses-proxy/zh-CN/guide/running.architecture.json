@@ -32,7 +32,7 @@
     {
       "id": "run-manager",
       "type": "external",
-      "label": "原生服务管理器",
+      "label": "系统服务管理器",
       "sublabel": "launchd、systemd、计划任务",
       "pos": [300, 40],
       "size": [180, 64],
@@ -41,7 +41,7 @@
           "path": "src/openai_responses_proxy/lifecycle/supervision/macos.py",
           "line": 123,
           "end_line": 136,
-          "label": "launchd 代理"
+          "label": "launchd Agent"
         }
       ]
     },
@@ -141,7 +141,7 @@
       "id": "run-loads",
       "from": "run-listener",
       "to": "run-carrier",
-      "label": "加载其设置",
+      "label": "加载自己的设置",
       "variant": "dashed"
     },
     {

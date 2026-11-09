@@ -49,7 +49,7 @@
       "id": "part-proof",
       "type": "database",
       "label": "证明核验记录",
-      "sublabel": "一个确切的 HEAD",
+      "sublabel": "精确到一个 HEAD",
       "pos": [520, 40],
       "size": [180, 68],
       "sources": [
@@ -81,7 +81,7 @@
       "id": "part-prewrite",
       "type": "security",
       "label": "写前准入",
-      "sublabel": "每次受版本管理的写入之前",
+      "sublabel": "每次写受版本管理的文件之前",
       "pos": [40, 220],
       "size": [180, 68],
       "sources": [
@@ -129,7 +129,7 @@
       "id": "part-publication",
       "type": "backend",
       "label": "平台发布",
-      "sublabel": "GitLab 与 GitHub，确切的 force-with-lease",
+      "sublabel": "GitLab 与 GitHub，精确的 force-with-lease",
       "pos": [760, 220],
       "size": [180, 68],
       "sources": [

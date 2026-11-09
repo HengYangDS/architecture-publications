@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "谁触达 ETHOS，它又作用于什么",
+    "title": "谁在调用 ETHOS，它又作用于什么",
     "output": "context.html",
     "quality_profile": "showcase",
     "locale": "zh-CN",
@@ -114,7 +114,7 @@
       "id": "ctx-standards",
       "type": "external",
       "label": "标准与工具",
-      "sublabel": "只经适配器",
+      "sublabel": "只通过适配器",
       "pos": [470, 10],
       "size": [170, 64],
       "sources": [
@@ -188,7 +188,7 @@
       "id": "ctx-effects",
       "from": "ctx-kernel",
       "to": "ctx-git",
-      "label": "确切的 CAS 改动",
+      "label": "精确的 CAS 改动",
       "variant": "emphasis"
     },
     {

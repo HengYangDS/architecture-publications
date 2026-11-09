@@ -33,7 +33,7 @@ film editions are cited as `ethos-film` or `ddwg-film` with their file. An editi
 | voice model (Qwen3-TTS)                        | 语音合成模型                         | `src/filmkit/narration/synthesis.py`; `src/filmkit/narration/voice_model.py`                                   |
 | speech models                                  | 语音模型                             | `src/filmkit/supply.py`; `src/filmkit/narration/snapshots.py`                                                  |
 | synthesis                                      | 语音合成                             | `src/filmkit/narration/synthesis.py`                                                                           |
-| natively; native take                          | 原生；原生录音                       | `src/filmkit/narration/synthesis.py`; `src/filmkit/narration/thought_groups.py`                                |
+| natively; native take                          | 一次读完；一次读完的录音             | `src/filmkit/narration/synthesis.py`; `src/filmkit/narration/thought_groups.py`                                |
 | take (counted 条)                              | 录音                                 | `src/filmkit/narration/take_edges.py`                                                                          |
 | recording (the audio file)                     | 录音文件                             | `src/filmkit/narration/thought_groups.py`; `src/filmkit/narration/receipts.py`                                 |
 | seed                                           | 种子                                 | `examples/sample-film/content/narration.md`; `src/filmkit/narration/retakes.py`                                |
@@ -113,7 +113,7 @@ film editions are cited as `ethos-film` or `ddwg-film` with their file. An editi
 | review policy; review floors; dimensions       | 评审规则；评审下限；维度             | `README.md`; `src/filmkit/delivery/verification.py`                                                            |
 | prompts                                        | 提示词                               | `src/filmkit/review/prompts.py`                                                                                |
 | set-aside                                      | 封存                                 | `src/filmkit/review/round.py`                                                                                  |
-| supply; digests; snapshot                      | 供给；摘要；快照                     | `src/filmkit/supply.py`; `src/filmkit/narration/snapshots.py`                                                  |
+| supply; digests; snapshot                      | 供应；摘要；快照                     | `src/filmkit/supply.py`; `src/filmkit/narration/snapshots.py`                                                  |
 | browser build                                  | 浏览器构建                           | `src/filmkit/supply.py`                                                                                        |
 | media probe; frame cadence                     | 媒体探测；帧节奏                     | `src/filmkit/media.py`                                                                                         |
 | host tools                                     | 主机工具                             | `README.md`                                                                                                    |
@@ -134,7 +134,7 @@ film editions are cited as `ethos-film` or `ddwg-film` with their file. An editi
 | integrated loudness; true-peak ceiling         | 综合响度；真峰值上限                 | `src/filmkit/specification.py`                                                                                 |
 | mux                                            | 封装                                 | `src/filmkit/delivery/packaging.py`                                                                            |
 | caption band                                   | 字幕带                               | `src/filmkit/picture/equivalence.py`                                                                           |
-| finding; gated finding                         | 发现项；门禁发现项                   | `src/filmkit/picture/gates.py`                                                                                 |
+| finding; gated finding                         | 问题；门禁问题                       | `src/filmkit/picture/gates.py`                                                                                 |
 | off-centre                                     | 偏离中心                             | `README.md`                                                                                                    |
 | stage (of a scene); stage cut                  | 阶段；阶段切换                       | `README.md`; distinct from 预置 (staging the picture)                                                          |
 | finished composition; build-up                 | 已完成的构图；仍在搭建               | `README.md`                                                                                                    |

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "tree",
   "meta": {
-    "title": "重新钉定工作清单列出什么",
+    "title": "重新固定工作清单列出什么",
     "output": "worklist.html",
     "quality_profile": "showcase",
     "locale": "zh-CN",
@@ -18,8 +18,8 @@
   "nodes": [
     {
       "id": "wl-root",
-      "label": "重新钉定工作清单",
-      "sublabel": "钉定到更晚的提交",
+      "label": "重新固定工作清单",
+      "sublabel": "固定到更晚的提交",
       "sources": [
         {
           "path": "src/sources/worklist.mjs",
@@ -83,7 +83,7 @@
     },
     {
       "id": "wl-refused",
-      "label": "在更晚提交上被拒绝",
+      "label": "在更晚的提交上被拒绝",
       "parent": "wl-root",
       "sources": [
         {

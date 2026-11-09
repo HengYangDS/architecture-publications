@@ -3,12 +3,12 @@
   "version": 3,
   "id": "aigw-client",
   "locale": "zh-CN",
-  "title": "AIGW 客户端投影",
-  "question": "AIGW 如何把一份经审阅的配置，变成每个已准入客户端中带守卫的原生投影？",
-  "summary": "AIGW 把账户、路由和客户端绑定存于一份加锁的配置，把令牌存于一个选定的存储；它经由同一个适配器接缝，以一次带守卫、可补偿的事务，投影每个客户端的有界区域。请求从不经过它。",
-  "scope": "v0.6.1 发布版本中的 AIGW 程序：它的生产 Go 包、命令入口、团队清单和 go.mod。",
+  "title": "AIGW 统一客户端配置",
+  "question": "AIGW 怎样把一份审阅过的配置，受保护地写入每个已准入客户端的原生配置？",
+  "summary": "AIGW 把账户、路由和客户端绑定放在一份加锁的配置里，令牌放在选定的一个存储里。写入客户端时，它走统一的适配器接口，只改写每个客户端配置中归自己管的那一块；整个写入是一次受保护的事务，中途出错会补偿。请求绝不经过 AIGW。",
+  "scope": "v0.6.1 发布版本的 AIGW 程序：生产代码的 Go 包、命令入口、团队清单和 go.mod。",
   "limits": [
-    "每个组件引用规则划归给它的全部生产文件；一条关系引用的文件，来自导入另一个组件的那些包。",
+    "每个组件都列出规则划给它的全部生产代码文件；每条关系列出的，是导入另一方组件的那些包里的文件。",
     "测试及其输入，以及仓库的工具、CI 和文档，都不在范围之内。"
   ],
   "repository": {
@@ -80,7 +80,7 @@
       "label": "程序",
       "kind": "interface",
       "details": {
-        "启动": "命令行应用"
+        "入口": "命令行程序"
       },
       "files": ["cmd/aigw/"]
     },
@@ -89,8 +89,8 @@
       "label": "命令",
       "kind": "interface",
       "details": {
-        "命令": "setup、use、sync、check、verify、rotate、rollback、doctor、update 等",
-        "结构": "每条命令一个包，只经由 invocation 共享行为"
+        "包括": "setup、use、sync、check、verify、rotate、rollback、doctor、update 等",
+        "结构": "每条命令一个包，只通过 invocation 共享行为"
       },
       "files": ["internal/cli/"]
     },
@@ -100,7 +100,7 @@
       "kind": "interface",
       "details": {
         "命令": "aigw credential",
-        "提供": "按需把客户端自己的令牌写到标准输出，诊断信息从不写在那里"
+        "输出": "客户端需要时，把它自己的令牌写到标准输出；诊断信息绝不写到这里"
       },
       "files": ["internal/cli/credential/"]
     },
@@ -109,7 +109,7 @@
       "label": "终端",
       "kind": "interface",
       "details": {
-        "渲染": "供人阅读的输出与 JSON 输出、提示、错误；不导入任何用例"
+        "输出": "给人读的文字和 JSON、提示、错误；不导入任何用例"
       },
       "files": ["internal/terminal/"]
     },
@@ -127,7 +127,7 @@
       "label": "重命名",
       "kind": "coordinator",
       "details": {
-        "迁移": "账户或路由的标识，分两个阶段"
+        "职责": "分两个阶段迁移账户或路由的标识"
       },
       "files": ["internal/app/renaming/"]
     },
@@ -136,7 +136,7 @@
       "label": "激活",
       "kind": "coordinator",
       "details": {
-        "判定": "一次操作的已启用客户端范围"
+        "范围": "判定一次操作涉及哪些已启用的客户端"
       },
       "files": ["internal/app/activation/"]
     },
@@ -145,8 +145,8 @@
       "label": "同步",
       "kind": "coordinator",
       "details": {
-        "收敛": "客户端绑定及其投影",
-        "提交": "一次配置转换，连同带守卫的补偿"
+        "职责": "收敛客户端绑定和写入客户端的配置",
+        "事务": "提交一次配置变更，出错时受保护地补偿"
       },
       "files": ["internal/app/synchronization/"]
     },
@@ -164,7 +164,7 @@
       "label": "诊断",
       "kind": "observer",
       "details": {
-        "观测": "有界、脱敏的端点与认证健康状况"
+        "观测": "端点和认证的健康状况；探测有时限，结果会脱敏"
       },
       "files": ["internal/app/diagnostics/", "internal/provider/"]
     },
@@ -173,17 +173,17 @@
       "label": "客户端准入",
       "kind": "registry",
       "details": {
-        "列出": "按准入顺序排列的内置适配器"
+        "清单": "内置适配器，按准入顺序排列"
       },
       "files": ["internal/clients/"]
     },
     {
       "id": "adapter-seam",
-      "label": "适配器接缝",
+      "label": "适配器接口",
       "kind": "contract",
       "details": {
         "操作": ["发现", "收敛", "规划", "应用", "检视", "验证", "撤回"],
-        "证明": "每个适配器，对照同一个契约测试套件"
+        "测试": "每个适配器都要通过同一套契约测试"
       },
       "files": [
         "internal/adapter/registry.go",
@@ -199,7 +199,7 @@
       "label": "发现",
       "kind": "observer",
       "details": {
-        "观测": "主机上的客户端和路径，但不采纳它们"
+        "观测": "主机上的客户端和路径，只看不采纳"
       },
       "files": ["internal/adapter/discovery/"]
     },
@@ -208,7 +208,7 @@
       "label": "Codex",
       "kind": "client",
       "details": {
-        "投影": "~/.codex/config.toml 中的一块有界区域，及其模型目录"
+        "写入": "~/.codex/config.toml 中归 AIGW 管的一块，以及模型目录"
       },
       "files": ["internal/adapter/codex/"]
     },
@@ -217,7 +217,7 @@
       "label": "Claude Code",
       "kind": "client",
       "details": {
-        "投影": "~/.claude/settings.json"
+        "写入": "~/.claude/settings.json"
       },
       "files": ["internal/adapter/claude/"]
     },
@@ -226,7 +226,7 @@
       "label": "Claude Desktop",
       "kind": "client",
       "details": {
-        "投影": "独立的第三方推理库"
+        "写入": "单独的第三方推理库"
       },
       "files": ["internal/adapter/claudedesktop/"]
     },
@@ -235,7 +235,7 @@
       "label": "Hermes",
       "kind": "client",
       "details": {
-        "投影": "其提供商目录、协议和模型"
+        "写入": "提供商目录、协议和模型"
       },
       "files": ["internal/adapter/hermes/"]
     },
@@ -244,8 +244,8 @@
       "label": "程序更新",
       "kind": "boundary",
       "details": {
-        "解析": "来自两个代码托管平台的已签名发布版本",
-        "安装": "经验证的便携程序，保留一个前一版本"
+        "来源": "两个代码托管平台上已签名的发布版本",
+        "安装": "验证过的便携程序，并保留前一版本"
       },
       "files": ["internal/program/"]
     },
@@ -254,7 +254,7 @@
       "label": "凭据存储",
       "kind": "authority",
       "details": {
-        "拥有": "账户令牌，存于一个选定的后端：原生密钥环、DPAPI 或属主专用文件"
+        "管理": "账户令牌，放在选定的一个后端，可以是原生密钥环、DPAPI 或属主专用文件"
       },
       "files": ["internal/secret/"]
     },
@@ -263,7 +263,7 @@
       "label": "配置存储",
       "kind": "authority",
       "details": {
-        "拥有": "同一把锁下的 config.toml，及其检查点和模式迁移"
+        "管理": "一把锁保护的 config.toml，以及它的检查点和模式迁移"
       },
       "files": ["internal/store/"]
     },
@@ -272,8 +272,8 @@
       "label": "领域",
       "kind": "authority",
       "details": {
-        "拥有": "账户、模型、路由、推荐、客户端绑定和团队清单",
-        "导入": "仅标准库"
+        "管理": "账户、模型、路由、推荐、客户端绑定和团队清单",
+        "依赖": "只用标准库"
       },
       "files": ["internal/domain/", "manifests/", "go.mod"]
     },
@@ -282,7 +282,7 @@
       "label": "平台",
       "kind": "boundary",
       "details": {
-        "拥有": "AIGW 自有的路径、带守卫的文件写入及其回滚、有界子进程"
+        "管理": "AIGW 自己的路径、受保护的文件写入和回滚、受限的子进程"
       },
       "files": ["internal/platform/"]
     }
@@ -578,7 +578,7 @@
       "id": "synchronization-credentials",
       "from": "synchronization",
       "to": "credentials",
-      "label": "检查读取器",
+      "label": "检查读取程序",
       "files": [
         "internal/app/synchronization/account_connection.go",
         "internal/app/synchronization/preview.go",
@@ -707,7 +707,7 @@
       "id": "codex-platform",
       "from": "codex",
       "to": "platform",
-      "label": "带守卫写入",
+      "label": "受保护写入",
       "files": [
         "internal/adapter/codex/adapter.go",
         "internal/adapter/codex/adapter_selection.go",
@@ -733,7 +733,7 @@
       "id": "claude-code-platform",
       "from": "claude-code",
       "to": "platform",
-      "label": "带守卫写入",
+      "label": "受保护写入",
       "files": [
         "internal/adapter/claude/adapter.go",
         "internal/adapter/claude/adapter_verify.go",
@@ -748,7 +748,7 @@
       "id": "claude-desktop-platform",
       "from": "claude-desktop",
       "to": "platform",
-      "label": "带守卫写入",
+      "label": "受保护写入",
       "files": [
         "internal/adapter/claudedesktop/adapter.go",
         "internal/adapter/claudedesktop/configuration.go",
@@ -761,7 +761,7 @@
       "id": "hermes-platform",
       "from": "hermes",
       "to": "platform",
-      "label": "带守卫写入",
+      "label": "受保护写入",
       "files": [
         "internal/adapter/hermes/adapter.go",
         "internal/adapter/hermes/adapter_verification_unix.go",
@@ -927,8 +927,8 @@
   "views": [
     {
       "id": "overview",
-      "title": "一份经审阅的配置，投影到每个客户端",
-      "question": "一份经审阅的配置，如何在每个已准入的客户端中成为带守卫的投影？",
+      "title": "一份审阅过的配置，写入每个客户端",
+      "question": "一份审阅过的配置，怎样受保护地写入每个已准入的客户端？",
       "members": [
         "commands",
         "use-cases",
@@ -944,7 +944,7 @@
     {
       "id": "authority",
       "title": "哪些状态归谁",
-      "question": "配置、令牌和主机路径各由谁拥有，又由谁读取？",
+      "question": "配置、令牌和主机路径各归谁管，又有谁会读取？",
       "members": [
         "commands",
         "credential-helper",
@@ -958,8 +958,8 @@
     },
     {
       "id": "adapters",
-      "title": "已准入的客户端及其接缝",
-      "question": "客户端适配器如何准入，如何遵守同一份契约，又如何只做带守卫的写入？",
+      "title": "已准入的客户端和统一接口",
+      "question": "客户端适配器怎样准入，怎样遵守同一份契约，又怎样确保只做受保护的写入？",
       "members": [
         "program-entry",
         "client-admission",
@@ -991,7 +991,7 @@
     {
       "id": "program",
       "title": "程序本身",
-      "question": "程序如何启动、准入它的客户端，并替换自身？",
+      "question": "程序怎样启动，怎样准入客户端，又怎样替换自己？",
       "members": [
         "program-entry",
         "commands",
@@ -1005,8 +1005,8 @@
     },
     {
       "id": "projection",
-      "title": "一次投影：从规划到补偿",
-      "question": "一次投影在哪里读取、规划、写入和补偿？",
+      "title": "一次同步：从规划到补偿",
+      "question": "一次同步里，读取、规划、写入和补偿各在哪里完成？",
       "members": [
         "synchronization",
         "discovery",

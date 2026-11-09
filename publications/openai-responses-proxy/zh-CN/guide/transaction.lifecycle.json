@@ -31,14 +31,14 @@
     {
       "id": "tx-materialized",
       "type": "active",
-      "label": "已物化",
+      "label": "已落盘",
       "sublabel": "新的一代",
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/transaction/execution.py",
           "line": 133,
           "end_line": 199,
-          "label": "物化"
+          "label": "落盘"
         }
       ]
     },
@@ -173,7 +173,7 @@
       "dot": "emerald",
       "title": "事务日志记录什么",
       "items": [
-        "事务本身、其发布版本与回执摘要，以及其状态。",
+        "事务本身、它的发布版本和回执摘要，以及事务状态。",
         "它可能删除的每个文件的确切路径和摘要。"
       ]
     },

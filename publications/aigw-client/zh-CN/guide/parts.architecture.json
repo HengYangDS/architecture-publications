@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "一份经审阅的配置，投影到每个客户端",
+    "title": "一份审阅过的配置，写入每个客户端",
     "output": "parts.html",
     "quality_profile": "showcase",
     "locale": "zh-CN",
@@ -17,7 +17,7 @@
       "id": "parts-store",
       "type": "database",
       "label": "配置存储",
-      "sublabel": "同一把锁下的 config.toml",
+      "sublabel": "一把锁保护的 config.toml",
       "pos": [70, 30],
       "size": [180, 68],
       "sources": [
@@ -33,7 +33,7 @@
       "id": "parts-sync",
       "type": "backend",
       "label": "同步",
-      "sublabel": "一次带守卫的事务",
+      "sublabel": "一次受保护的事务",
       "pos": [365, 30],
       "size": [180, 68],
       "sources": [
@@ -48,7 +48,7 @@
     {
       "id": "parts-seam",
       "type": "backend",
-      "label": "适配器接缝",
+      "label": "适配器接口",
       "sublabel": "每个客户端一份契约",
       "pos": [365, 170],
       "size": [180, 68],

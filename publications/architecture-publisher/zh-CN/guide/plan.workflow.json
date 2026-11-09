@@ -77,7 +77,7 @@
       "lane": "plan-lane-declared",
       "col": 4,
       "type": "external",
-      "label": "待绘视图",
+      "label": "要画的视图",
       "sources": [
         {
           "path": "src/plan/views.mjs",
