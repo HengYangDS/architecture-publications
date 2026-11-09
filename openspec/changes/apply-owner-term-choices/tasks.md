@@ -1,4 +1,4 @@
 ## 1. Translations
 
-- [ ] 1.1 Polish the six translations against their originals and apply the seven renderings in the model, overview, guide, diagrams and term table of each; verify `mise run check` passes.
-- [ ] 1.2 Check and build the six translations with Architecture Publisher 0.10.1; verify each passes with every file owned, its guide strict and verified, and its overview and plates read.
+- [x] 1.1 Polish the six translations against their originals and apply the seven renderings in the model, overview, guide, diagrams and term table of each; verify `mise run check` passes. At `235e325` the six translations are polished, 52 files, each kept to its pre-polish facts, identifiers and citations by a token comparison, with the seven renderings applied; `mise run check` passes formatting and 9 of 9 tests, and Vale reports nothing in 31 Markdown files.
+- [x] 1.2 Check and build the six translations with Architecture Publisher 0.10.1; verify each passes with every file owned, its guide strict and verified, and its overview and plates read. Architecture Publisher 0.10.1 builds all twelve editions and pages from `235e325`: 11 plates for ETHOS and 6 for each other work, every guide strict and verified; the AIGW cover reads AIGW / 统一客户端配置, and the overview and plates were read.

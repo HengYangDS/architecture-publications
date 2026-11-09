@@ -16,6 +16,8 @@ and machine-like, unpleasant to read, and chose seven renderings from their revi
   not 钉定修订 and 重新钉定; the usage error of exit status 2 is 用法错误, not 误用.
 - filmkit: supply is 供应, not 供给.
 - Each change is made in the work's model, overview, guide and term table alike, so the edition and the page agree.
+- The filmkit summary, in English and Chinese, names the four delivered films, which v0.14.0 introduced and the
+  summary still described as two.
 
 ## Capabilities
 
@@ -29,4 +31,4 @@ None.
 
 ## Impact
 
-`publications/*/zh-CN/` of all six works. The English works do not change.
+`publications/*/zh-CN/` of all six works and `publications/filmkit/model.json`.
