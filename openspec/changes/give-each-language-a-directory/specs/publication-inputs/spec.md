@@ -2,13 +2,12 @@
 
 ### Requirement: Each work is one pinned Architecture Model
 
-Each work SHALL hold one Architecture Model in each of its languages that the
+Each work SHALL hold, in each of its languages, one Architecture Model that the
 current Architecture Publisher reads, every one pinned to the same full commit
-of the described repository, whose components claim at least one file, under
-one id no other work uses. The input check SHALL verify that identity without
-running the publisher or the described product; resolving the model's claims
-and cited files at the revision and recording their digests remain the
-publisher's check against a checkout of the described repository.
+of the described repository, claiming at least one file, under one id no other
+work uses. The input check SHALL verify that identity without running the
+publisher or the described product; resolving claims and cited files at the
+revision remains the publisher's check against a checkout.
 
 #### Scenario: A work declares a usable model
 
