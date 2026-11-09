@@ -7,7 +7,7 @@
 - [有重叠的布局绝不绘出](block:p-layout)；任何布局都画不出的视图会被拒绝，不会缩小。[](source:contract-layout-floor)
 - [只出版已验收的交付物](block:p-accept)，也绝不覆盖另一份不同的交付物。[](source:contract-acceptance)
 
-@answer scope="Architecture Publisher v0.10.1 · 提交 1861b7c · 源码与项目自身的文档 · 重新固定的计数测于 2026-11-08"
+@answer scope="Architecture Publisher v0.10.2 · 提交 4fcd4d0 · 源码与项目自身的文档 · 重新固定的计数测于 2026-11-08"
 @meta locale=zh-CN style=editorial
 @source contract-product title="产品" path="docs/product-contract.md" lines=13:21
 @source contract-meaning title="含义与形式归谁" path="docs/product-contract.md" lines=23:28
@@ -82,6 +82,7 @@
 @source ops-plate title="图版" path="docs/reference/operations.md" lines=157:166
 @source ops-reading title="图版的宽度与说明栏" path="docs/reference/operations.md" lines=180:194
 @source ops-edition title="图册" path="docs/reference/operations.md" lines=196:207
+@source house-reading title="说明栏过高时的排法" path="src/overview/house.typ" lines=251:291
 @source ops-edition-text title="文字、日期与各页图像" path="docs/reference/operations.md" lines=208:224
 @source ops-refusal-paths title="拒绝指向何处" path="docs/reference/operations.md" lines=396:401
 @source plates-compositions title="图版尝试的每种编排" path="src/poster/compose/plates.mjs" lines=99:110
@@ -192,7 +193,7 @@
 | step-ed-width | 选定宽度 | 图宽在正文区的 100%、80%、65% 中取连线不变差的最窄一档。有概述的视图要为说明栏让出五分之一。[](source:plates-width)[](source:ops-reading) | edition-flow | ed-width |
 | step-ed-gates | 度量四道门槛 | 度量图版的最大空白矩形、空白带、空洞和重心。未通过的门槛只记录，供审阅人查看，不拒绝。[](source:plates-gates)[](source:ops-gates) | edition-flow | ed-gates |
 | step-ed-typeset | 一遍排版 | 版式类把扉页、目录、总览和每幅图版排入一个 PDF，符合 PDF/A-3a 与 PDF/UA-1。[](source:edition-typeset)[](source:ops-edition) | edition-flow | ed-typeset |
-| step-ed-text | 文字与度量一致？ | 以下情况都会被拒绝：Typst 排出的文字串比引擎度量的宽；标题超出所在行；说明栏高过正文区。[](source:ops-edition-text)[](source:ops-reading) | edition-flow | ed-text |
+| step-ed-text | 文字与度量一致？ | Typst 排出的文字串比引擎度量的宽，或标题超出所在行，都会被拒绝。[](source:ops-edition-text)说明栏高过正文区时只放概述，连概述也放不下才拒绝。[](source:house-reading) | edition-flow | ed-text |
 | step-ed-images | PDF 与各页图像 | Typst 把总览页和每幅图版页按各宽度渲染为 PNG；构建未指定其他宽度时为 2400 px。[](source:edition-images)[](source:ops-edition-text) | edition-flow | ed-images |
 | step-ed-refused | 图册被拒绝 | 图版被拒绝时指明对应的视图；Typst 拒绝时指明 Typst 报告的那一行。[](source:ops-refusal-paths)[](source:typeset-problems) | edition-flow | ed-refused |
 

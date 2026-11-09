@@ -7,6 +7,16 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 ## [Unreleased]
 
+### Added
+
+- A summary on every view of every work, in English and in Chinese, set beside
+  its figure in the print edition. The input check refuses a view without one.
+
+### Changed
+
+- OpenAI Responses Proxy is pinned at v5.1.10 and Architecture Publisher at
+  v0.10.2. Building the works needs Architecture Publisher 0.10.2 or later.
+
 ## [0.1.0] - 2026-11-09
 
 ### Added

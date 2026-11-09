@@ -90,7 +90,14 @@ test("every view is named by a title of its own", async () => {
   await withDirectory(async (directory) => {
     const titled = {
       ...model("shop"),
-      views: [{ id: "overview", title: "Overview", question: "What is in the shop?" }],
+      views: [
+        {
+          id: "overview",
+          title: "Overview",
+          question: "What is in the shop?",
+          summary: "Orders reach the warehouse.",
+        },
+      ],
     };
     await writeWork(directory, titled);
     assert.equal(await verifyModel(directory), "shop");
@@ -99,6 +106,30 @@ test("every view is named by a title of its own", async () => {
       copy.views[0].title = title;
       await writeWork(directory, copy);
       await assert.rejects(verifyModel(directory), /view overview has no title of its own/);
+    }
+  });
+});
+
+test("every view carries a summary", async () => {
+  await withDirectory(async (directory) => {
+    const summarised = {
+      ...model("shop"),
+      views: [
+        {
+          id: "overview",
+          title: "Overview",
+          question: "What is in the shop?",
+          summary: "Orders reach the warehouse.",
+        },
+      ],
+    };
+    await writeWork(directory, summarised);
+    assert.equal(await verifyModel(directory), "shop");
+    for (const summary of [undefined, " ", 7]) {
+      const copy = structuredClone(summarised);
+      copy.views[0].summary = summary;
+      await writeWork(directory, copy);
+      await assert.rejects(verifyModel(directory), /view overview has no summary/);
     }
   });
 });

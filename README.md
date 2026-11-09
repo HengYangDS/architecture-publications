@@ -43,8 +43,9 @@ described project.
 Run the publisher with a checkout of the described repository. `check` resolves
 every claim and cited file at the pinned revision without changing the
 checkout; `build` writes a new delivery under the ignored `build/` directory.
-The works are model version 3, which Architecture Publisher 0.10.0 and later
-reads, and the print edition needs Typst 0.15.1 on the path. A work whose model
+The works are model version 3 and every view carries a summary, which needs
+Architecture Publisher 0.10.2 or later, and the print edition needs Typst
+0.15.1 on the path. A work whose model
 names an overview composition gets it in its edition, after the contents. A work whose model names a guide gets
 that guide as its page, with every line range it cites checked at the pinned
 revision.

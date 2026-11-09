@@ -2,8 +2,8 @@
 
 [`model.json`](model.json) is an Architecture Model of how OpenAI Responses Proxy makes a Codex
 Responses turn portable across third-party providers, and how it installs and keeps its own
-listener running. It pins `openai-responses-proxy` at v5.1.9
-(`a5cfd8c9bbe4b6f29754808d60203218da38a4e2`), and its components own all 80 files of its coverage
+listener running. It pins `openai-responses-proxy` at v5.1.10
+(`a36a33cf43ac518682d94da41b799a2a6649f988`), and its components own all 85 files of its coverage
 scope: the `src/openai_responses_proxy` package with its provider manifest, `pyproject.toml` and
 `VERSION`. Twenty-six components, forty-four relations and six views show one turn from the client
 to a provider, what leaves the listener, how each failure stays bounded to its provider, one
@@ -18,7 +18,7 @@ Architecture Publisher delivers as its page. It opens with who sends traffic thr
 what one turn crosses, then shows what a request keeps on its way out and when it may be sent
 again. It ends with how a signed release becomes the serving generation, how an upgrade hands the
 listening socket to a new process, what an installation writes and what keeps the listener
-running. Each claim cites a line range at v5.1.9, and the diagrams the draft names sit beside it.
+running. Each claim cites a line range at v5.1.10, and the diagrams the draft names sit beside it.
 
 Each component claims the directories and files its path rules name, and each file in scope goes
 to its most specific claim. The scope is the whole repository less its declared exclusions, each
@@ -34,6 +34,6 @@ archpub check publications/openai-responses-proxy/model.json --repo <openai-resp
 archpub build publications/openai-responses-proxy/model.json --repo <openai-responses-proxy checkout> --out build/openai-responses-proxy
 ```
 
-Checking the work needs an Architecture Publisher that reads model version 2 and a glob in a
+Checking the work needs an Architecture Publisher that reads model version 3 and a glob in a
 coverage path and delivers a guide as the page; building the overview needs Typst 0.15.1 on the
 path.

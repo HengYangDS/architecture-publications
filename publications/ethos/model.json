@@ -1428,6 +1428,7 @@
       "id": "overview",
       "title": "One change, from intent to the accepted branch",
       "question": "How does one change move from an official OpenSpec Change to a proven commit on the accepted branch?",
+      "summary": "A Work Lane starts an owned branch and worktree; prewrite admission admits its exact write paths. Landing requires proof of the exact HEAD and a mutation decision, and promotes the lane to candidate, dev and main by CAS.",
       "members": [
         "openspec-intent",
         "work-lane",
@@ -1443,6 +1444,7 @@
       "id": "status",
       "title": "Where a checkout stands",
       "question": "How does ethos status read a checkout's role, gaps and next action?",
+      "summary": "The CLI runs status, which resolves its scope through current resolution: Lease authority, official intent and fresh path facts, once. Status answers with role, gaps, foreign lanes and the next action.",
       "members": [
         "cli",
         "status",
@@ -1458,6 +1460,7 @@
       "id": "intent",
       "title": "Intent compiled into a plan",
       "question": "How does ETHOS compile the official Change and fresh facts into one TransitionPlan?",
+      "summary": "OpenSpec intent compiles the official Change into a Commitment, and current resolution resolves fresh path facts. Planning selects gates and compiles the TransitionPlan; only a pass admits an effect.",
       "members": [
         "cli",
         "planning",
@@ -1474,6 +1477,7 @@
       "id": "proof",
       "title": "Proof of one exact HEAD",
       "question": "How is the proof of one exact HEAD produced, judged and kept?",
+      "summary": "The gate runner runs the admitted gate DAG; native evidence captures each native tool's output once. Quality obligations judge coverage and tests from native reports; proof records its Attestation in the Attestation set.",
       "members": [
         "cli",
         "proof",
@@ -1490,6 +1494,7 @@
       "id": "admission",
       "title": "What may mutate the repository",
       "question": "Which checks admit a write, a commit or a ref move, and who holds the authority?",
+      "summary": "Prewrite admission admits exact write paths and patches, attributes them to the Change and checks authority and the Lease holder. Hooks guard commits and ref moves; ref admission admits ref intents against the Lease.",
       "members": [
         "cli",
         "prewrite-admission",
@@ -1506,6 +1511,7 @@
       "id": "lanes",
       "title": "A Work Lane from start to retirement",
       "question": "How is a Work Lane started, moved between hosts, landed and retired?",
+      "summary": "A Work Lane acquires the Lease and creates a branch and worktree; handoff moves it between hosts as one content-addressed package. The mutation decision admits landing, which moves refs by CAS; retirement ends the Lease.",
       "members": [
         "cli",
         "work-lane",
@@ -1521,6 +1527,7 @@
       "id": "commits",
       "title": "Commits a lane may make",
       "question": "How does a lane admit its commits and bind the hooks that guard them?",
+      "summary": "A Work Lane admits its commits through commits and signatures, which enforce the commit grammar and SSH signatures against the trust anchor. The lane activates the hooks that Git runs to guard commits.",
       "members": [
         "work-lane",
         "commits",
@@ -1536,6 +1543,7 @@
       "id": "peers",
       "title": "Publication to every peer",
       "question": "How does an accepted head reach each Forge, and what binds its release?",
+      "summary": "Peer publication requires proof, admits updates through ref admission and pushes exact refs to each Forge with a receipt. Landing selects the release refs; release identity compiles each distribution's build identity.",
       "members": [
         "cli",
         "publication",
@@ -1552,6 +1560,7 @@
       "id": "structure",
       "title": "The structure every governed repository shares",
       "question": "What does ETHOS declare and check about a repository's structure, in ETHOS itself and every adopter?",
+      "summary": "Repository paradigm declares names, documents, OpenSpec, toolchain, pipelines and size for every repository, ETHOS included, and repairs gaps deterministically. Repository audit checks conformance and docs.",
       "members": [
         "repository-audit",
         "paradigm",
@@ -1569,6 +1578,7 @@
       "id": "runtime",
       "title": "The runtime every hook runs",
       "question": "How does a repository bind one immutable runtime, so that plain Git commands are admitted?",
+      "summary": "Runtime generations select one immutable runtime through runtime/CURRENT, with tools from the exact mise lock, and proof binds it. The hook protocol selects that runtime; ref admission admits the hooks' effects.",
       "members": [
         "cli",
         "hooks",
@@ -1585,6 +1595,7 @@
       "id": "surfaces",
       "title": "One meaning, every surface",
       "question": "How do people, agents and Git reach the same operations?",
+      "summary": "The CLI runs status, plan, land, publish and adopt, and the MCP server projects the same five operations over a root-bound transport. The CLI's launcher is a thin npm package.",
       "members": [
         "cli",
         "mcp-server",

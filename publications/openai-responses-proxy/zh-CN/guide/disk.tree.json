@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
       "provider": "github",
-      "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+      "revision": "a36a33cf43ac518682d94da41b799a2a6649f988"
     }
   },
   "layout": {
@@ -28,8 +28,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/runtime/config.py",
-          "line": 155,
-          "end_line": 165,
+          "line": 160,
+          "end_line": 170,
           "label": "数据根目录"
         }
       ]
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/serving/identity.py",
-          "line": 20,
-          "end_line": 23,
+          "line": 25,
+          "end_line": 28,
           "label": "选择器"
         }
       ]
@@ -56,8 +56,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/transaction/completion.py",
-          "line": 48,
-          "end_line": 60,
+          "line": 52,
+          "end_line": 64,
           "label": "安装状态"
         }
       ]
@@ -76,8 +76,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/serving/inventory.py",
-          "line": 11,
-          "end_line": 17,
+          "line": 15,
+          "end_line": 22,
           "label": "成员"
         }
       ]
@@ -90,8 +90,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/generation.py",
-          "line": 131,
-          "end_line": 154,
+          "line": 132,
+          "end_line": 155,
           "label": "选定"
         }
       ]
@@ -104,8 +104,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/records.py",
-          "line": 25,
-          "end_line": 37,
+          "line": 26,
+          "end_line": 38,
           "label": "事务日志"
         }
       ]
@@ -118,8 +118,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/runtime/config.py",
-          "line": 168,
-          "end_line": 184,
+          "line": 173,
+          "end_line": 189,
           "label": "状态根目录"
         }
       ]
@@ -132,8 +132,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/runtime/bounded_log.py",
-          "line": 81,
-          "end_line": 108,
+          "line": 83,
+          "end_line": 110,
           "label": "追加"
         }
       ]
@@ -160,8 +160,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/command.py",
-          "line": 34,
-          "end_line": 48,
+          "line": 37,
+          "end_line": 51,
           "label": "命令路径"
         }
       ]
@@ -174,8 +174,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/supervision/macos.py",
-          "line": 49,
-          "end_line": 51,
+          "line": 50,
+          "end_line": 52,
           "label": "plist 路径"
         }
       ]

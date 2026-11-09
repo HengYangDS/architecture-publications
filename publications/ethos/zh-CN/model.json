@@ -1429,6 +1429,7 @@
       "id": "overview",
       "title": "一次改动：从意图到已验收分支",
       "question": "一次改动怎样从 OpenSpec 正式变更，变成已验收分支上一次经过证明的提交？",
+      "summary": "工作通道开出自己的分支和工作区，每条写入路径都要先过写前准入。落地要有针对这一个 HEAD 的证明和改动决策的放行，再用 CAS 把通道依次提升到候选分支、dev 和 main。",
       "members": [
         "openspec-intent",
         "work-lane",
@@ -1444,6 +1445,7 @@
       "id": "status",
       "title": "一份检出的现状",
       "question": "ethos status 怎样读出一份检出的角色、缺口和下一步？",
+      "summary": "CLI 运行 status。状态通过当前状态解析一次读齐它的范围：租约赋予的决定权、正式意图和当下的路径事实；回答的是角色、缺口、他人的通道和下一步。",
       "members": [
         "cli",
         "status",
@@ -1459,6 +1461,7 @@
       "id": "intent",
       "title": "意图编译成计划",
       "question": "ETHOS 怎样把正式变更和当下的事实编译成一份 TransitionPlan？",
+      "summary": "OpenSpec 意图把正式变更编译成 Commitment，当前状态解析读出当下的路径事实。规划选定门禁，编译出 TransitionPlan；只有判定为 pass，改动才会放行。",
       "members": [
         "cli",
         "planning",
@@ -1475,6 +1478,7 @@
       "id": "proof",
       "title": "精确到一个 HEAD 的证明",
       "question": "精确到一个 HEAD 的证明，怎样产生、判断和保存？",
+      "summary": "门禁运行器执行已放行的门禁 DAG，每个原生工具的输出由原生证据只采集一次。质量责任依据原生报告判断覆盖率和测试，证明再把核验记录写入核验记录集。",
       "members": [
         "cli",
         "proof",
@@ -1491,6 +1495,7 @@
       "id": "admission",
       "title": "什么可以改动仓库",
       "question": "写入、提交或移动引用，要过哪些检查？决定权又在谁手里？",
+      "summary": "写前准入放行的写入精确到路径和补丁：它把写入归到所属的正式变更，并核对决定权和租约持有者。提交和引用移动由钩子把关，引用准入则对照租约放行引用意图。",
       "members": [
         "cli",
         "prewrite-admission",
@@ -1507,6 +1512,7 @@
       "id": "lanes",
       "title": "工作通道：从开始到退役",
       "question": "工作通道怎样开始、在主机之间转移、落地和退役？",
+      "summary": "工作通道取得租约，开出分支和工作区；通道交接把它打成一个内容寻址的包，在主机之间转移。改动决策放行落地，落地用 CAS 移动引用；通道退役时租约结束。",
       "members": [
         "cli",
         "work-lane",
@@ -1522,6 +1528,7 @@
       "id": "commits",
       "title": "通道可以做的提交",
       "question": "通道怎样放行自己的提交，又怎样绑定把关这些提交的钩子？",
+      "summary": "工作通道的提交要过提交与签名这一关：提交信息须合乎语法，SSH 签名须与信任锚相符。通道还启用钩子，由 Git 在提交时运行，把关每一次提交。",
       "members": [
         "work-lane",
         "commits",
@@ -1537,6 +1544,7 @@
       "id": "peers",
       "title": "发布到每个平台",
       "question": "已验收的头提交怎样到达每个代码托管平台？它的发布又靠什么绑定？",
+      "summary": "平台发布先要有证明，引用的更新经引用准入放行，再把指定的引用推送到每个代码托管平台并留下回执。发布用哪些引用由落地选定；发布身份为每个分发包编译构建身份。",
       "members": [
         "cli",
         "publication",
@@ -1553,6 +1561,7 @@
       "id": "structure",
       "title": "受治理仓库共有的结构",
       "question": "无论 ETHOS 自身还是接入它的仓库，ETHOS 对仓库结构声明并检查些什么？",
+      "summary": "仓库范式为每个仓库（ETHOS 自己也不例外）声明命名、文档、OpenSpec、工具链、流水线和文件尺寸，缺口按确定的规则补齐。仓库审计检查仓库是否符合范式，并检查文档。",
       "members": [
         "repository-audit",
         "paradigm",
@@ -1570,6 +1579,7 @@
       "id": "runtime",
       "title": "所有钩子共用的运行时",
       "question": "仓库怎样绑定一个不可变的运行时，让普通 Git 命令也要经过准入？",
+      "summary": "分代运行时通过 runtime/CURRENT 选定一个不可变的运行时，工具严格取自 mise 锁文件，证明也绑定这个运行时。钩子协议用的就是它；钩子带来的改动经引用准入放行。",
       "members": [
         "cli",
         "hooks",
@@ -1586,6 +1596,7 @@
       "id": "surfaces",
       "title": "入口不同，含义相同",
       "question": "人、Agent 和 Git 怎样用上同一套操作？",
+      "summary": "CLI 运行 status、plan、land、publish 和 adopt 五项操作，MCP 服务器提供同样这五项，每个服务实例绑定一个仓库根目录。CLI 的启动器是一个轻量 npm 包。",
       "members": [
         "cli",
         "mcp-server",

@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
       "provider": "github",
-      "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+      "revision": "a36a33cf43ac518682d94da41b799a2a6649f988"
     }
   },
   "mainPath": ["tx-prepared", "tx-materialized", "tx-activated", "tx-finalized"],
@@ -22,8 +22,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/transaction/execution.py",
-          "line": 377,
-          "end_line": 454,
+          "line": 391,
+          "end_line": 468,
           "label": "Begin"
         }
       ]
@@ -36,7 +36,7 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/transaction/execution.py",
-          "line": 133,
+          "line": 139,
           "end_line": 199,
           "label": "Materialize"
         }
@@ -64,8 +64,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/transaction/completion.py",
-          "line": 40,
-          "end_line": 61,
+          "line": 44,
+          "end_line": 65,
           "label": "Finalize"
         }
       ]
@@ -106,8 +106,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/transaction/recovery.py",
-          "line": 109,
-          "end_line": 116,
+          "line": 112,
+          "end_line": 119,
           "label": "Close"
         }
       ]

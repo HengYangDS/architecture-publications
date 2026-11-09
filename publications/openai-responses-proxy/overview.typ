@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([OpenAI Responses Proxy], [Portable requests, transactional releases], [A loopback data plane for Codex and other Responses clients: each request is rebuilt store-free and sent to the provider its path names, and the proxy installs, hands off and supervises its own listener.], read-from: [Read from 80 files, each cited by its SHA-256.], claim-x: 300pt)
+#masthead([OpenAI Responses Proxy], [Portable requests, transactional releases], [A loopback data plane for Codex and other Responses clients: each request is rebuilt store-free and sent to the provider its path names, and the proxy installs, hands off and supervises its own listener.], read-from: [Read from 85 files, each cited by its SHA-256.], claim-x: 300pt)
 
 // ── Band 1: the route of one turn, from the client to its provider and back ──
 #head(48pt, 132pt, [The route of one turn])

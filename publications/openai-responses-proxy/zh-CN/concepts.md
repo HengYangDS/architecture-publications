@@ -1,6 +1,6 @@
 # OpenAI Responses Proxy 术语表
 
-本表固定本作品中文版的领域术语译法。Source 列中的路径均指 `openai-responses-proxy` 在 v5.1.9（`a5cfd8c`）的文件。命令、字段、状态值、HTTP 状态码和文件名一律保留原文。
+本表固定本作品中文版的领域术语译法。Source 列中的路径均指 `openai-responses-proxy` 在 v5.1.10（`a36a33c`）的文件。命令、字段、状态值、HTTP 状态码和文件名一律保留原文。
 
 | English                                                                     | 中文                                                                             | Source                                                                |
 | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
@@ -94,6 +94,7 @@
 | release asset                                                               | 发布资产                                                                         | `README.md`                                                           |
 | signature, signed                                                           | 签名，已签名                                                                     | `src/openai_responses_proxy/lifecycle/artifact.py`                    |
 | trust anchor                                                                | 信任锚                                                                           | `src/openai_responses_proxy/lifecycle/artifact.py`                    |
+| fixed system directory, service-manager tool                                | 固定的系统目录，系统服务管理器的工具                                             | `src/openai_responses_proxy/lifecycle/system_tools.py`                |
 | operator                                                                    | 运维人员                                                                         | `src/openai_responses_proxy/lifecycle/transaction/execution.py`       |
 | platform archive, member                                                    | 平台归档包，成员                                                                 | `src/openai_responses_proxy/lifecycle/artifact.py`                    |
 | verify                                                                      | 验证                                                                             | `src/openai_responses_proxy/lifecycle/artifact.py`                    |
@@ -134,6 +135,7 @@
 | compaction                                                                  | 压缩                                                                             | `docs/decisions/dr-0002-provider-portable-stateless-replay.md`        |
 | plaintext, ciphertext                                                       | 明文，密文                                                                       | `src/openai_responses_proxy/protocol/replay/content.py`               |
 | union (input union)                                                         | 联合类型                                                                         | `README.md`                                                           |
+| input-length refusal, media-budget refusal                                  | 输入超长，媒体超预算                                                             | `src/openai_responses_proxy/protocol/recovery/execution.py`           |
 | schema drift                                                                | 模式漂移                                                                         | `src/openai_responses_proxy/protocol/replay/items.py`                 |
 | orphan output                                                               | 孤立的输出                                                                       | `src/openai_responses_proxy/protocol/replay/input.py`                 |
 | outcome unknown                                                             | 结果未知                                                                         | `src/openai_responses_proxy/relay/downstream.py`                      |

@@ -886,6 +886,7 @@
       "id": "overview",
       "title": "From a film's sources to its delivered films",
       "question": "Which commands carry one edition from its script to its four delivered films?",
+      "summary": "The narration command runs synthesis for the thought takes. The production command assembles the soundtrack, refreshes captions, checks the picture, renders it only after a passing gate record and packages four films.",
       "members": [
         "narration-command",
         "thought-takes",
@@ -901,6 +902,7 @@
       "id": "film",
       "title": "What the engine reads from a film",
       "question": "What does the engine read from the film it builds, and what must hold before narration?",
+      "summary": "Film and editions reads the film repository's declaration and checks it before any work. The narration command first runs the word checks on concepts, readings and terms, and refuses before any speech model loads.",
       "members": [
         "film-repository",
         "film-and-editions",
@@ -916,6 +918,7 @@
       "id": "narration",
       "title": "Narration and its supply",
       "question": "How is each thought narrated, auditioned and aligned, and what does the supply install first?",
+      "summary": "Thought takes narrate each thought from the cast's seed or retake, and auditions try other seeds; alignment and selection aligns each recording to its text. Supply installs the browser build and three speech models.",
       "members": [
         "narration-command",
         "thought-takes",
@@ -930,6 +933,7 @@
       "id": "sound",
       "title": "One assembly for sound and captions",
       "question": "How do the selected takes become one soundtrack, a timeline and its captions?",
+      "summary": "Soundtrack assembly sets the selected takes with designed pauses at one program level, writes the soundtrack and timeline, and refuses abrupt takes. Captions time cues on the aligned words, never across a thought.",
       "members": [
         "production-command",
         "alignment",
@@ -945,6 +949,7 @@
       "id": "picture",
       "title": "The picture's gate and render",
       "question": "What audits the picture before it renders, and what renders it?",
+      "summary": "The picture gate has the Node tool runner run the frame and motion audits and binds the composition, fonts and engine version in its gate record. Picture rendering renders with HyperFrames only after a passing record.",
       "members": [
         "picture-gate",
         "tool-runner",
@@ -960,6 +965,7 @@
       "id": "acceptance",
       "title": "Packaging, verification, delivery and review",
       "question": "How are the films packaged, verified, delivered, reviewed and reproduced?",
+      "summary": "Packaging encodes four films; verification only reads and decodes; delivery sends 25 members and reads them back. Review prompts the independent reviewer; reproduction compares a rebuild with the published release.",
       "members": [
         "packaging",
         "verification",

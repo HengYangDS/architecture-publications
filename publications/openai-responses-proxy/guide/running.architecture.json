@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
       "provider": "github",
-      "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+      "revision": "a36a33cf43ac518682d94da41b799a2a6649f988"
     }
   },
   "components": [
@@ -23,8 +23,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/control.py",
-          "line": 32,
-          "end_line": 48,
+          "line": 37,
+          "end_line": 53,
           "label": "Health read"
         }
       ]
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/supervision/macos.py",
-          "line": 123,
-          "end_line": 136,
+          "line": 126,
+          "end_line": 139,
           "label": "Launch agent"
         }
       ]
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/supervision/watchdog.py",
-          "line": 102,
-          "end_line": 137,
+          "line": 103,
+          "end_line": 138,
           "label": "Loop"
         }
       ]
@@ -71,8 +71,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/records.py",
-          "line": 40,
-          "end_line": 60,
+          "line": 41,
+          "end_line": 61,
           "label": "Status"
         }
       ]
@@ -87,8 +87,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/serving/entrypoint.py",
-          "line": 160,
-          "end_line": 193,
+          "line": 172,
+          "end_line": 204,
           "label": "Run"
         }
       ]

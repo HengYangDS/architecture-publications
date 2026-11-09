@@ -920,6 +920,7 @@
       "id": "overview",
       "title": "One reviewed configuration, projected into every client",
       "question": "How does one reviewed configuration become a guarded projection in each admitted client?",
+      "summary": "Synchronization persists to the configuration store and plans and applies through the adapter seam that each client adapter implements. It commits one configuration transition with guarded compensation.",
       "members": [
         "commands",
         "use-cases",
@@ -936,6 +937,7 @@
       "id": "authority",
       "title": "Who owns which state",
       "question": "Which owners hold the configuration, the Tokens and the host's paths, and who reads them?",
+      "summary": "The configuration store owns config.toml under one lock and the credential store owns Account Tokens; the platform owns AIGW-owned paths. The credential helper reads one Token and the binding; renaming moves Tokens.",
       "members": [
         "commands",
         "credential-helper",
@@ -951,6 +953,7 @@
       "id": "adapters",
       "title": "Admitted clients and their seam",
       "question": "How are client adapters admitted, held to one contract and kept to guarded writes?",
+      "summary": "The program admits clients: client admission lists the built-in adapters in admission order. Each adapter implements the adapter seam, held to one contract, and makes guarded writes through the platform.",
       "members": [
         "program-entry",
         "client-admission",
@@ -967,6 +970,7 @@
       "id": "readiness",
       "title": "What a command can report",
       "question": "How does a command decide what to report and what to do next?",
+      "summary": "Activation classifies the enabled-client scope, and readiness reads health from diagnostics to give a state such as inference checked or degraded. Use cases return values the terminal renders as human or JSON output.",
       "members": [
         "commands",
         "use-cases",
@@ -983,6 +987,7 @@
       "id": "program",
       "title": "The program itself",
       "question": "How does the program start, admit its clients and replace itself?",
+      "summary": "The program starts the commands and admits clients through client admission. Program updates resolves signed releases from both Forges and installs a portable program through the platform, keeping one predecessor.",
       "members": [
         "program-entry",
         "commands",
@@ -998,6 +1003,7 @@
       "id": "projection",
       "title": "One projection, from plan to compensation",
       "question": "Where does one projection read, plan, write and compensate?",
+      "summary": "Synchronization observes through discovery, validates against the domain, plans and applies through the adapter seam and persists to the configuration store. The platform owns guarded file writes and their rollback.",
       "members": [
         "synchronization",
         "discovery",

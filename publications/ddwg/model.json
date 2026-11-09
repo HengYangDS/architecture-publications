@@ -880,6 +880,7 @@
       "id": "overview",
       "title": "Seven topics under one charter",
       "question": "How does the task map route a work question to the one topic that owns its rule?",
+      "summary": "The task map routes each work question to the section that owns it, with the route for an urgent failure or breach first. Questions of authority and risk go to the charter, and four topics cite its risk levels.",
       "members": [
         "agent-entry",
         "task-map",
@@ -896,6 +897,7 @@
       "id": "readers",
       "title": "Where readers start",
       "question": "Where do members, Agents and maintainers start, and where does each entry lead?",
+      "summary": "Members read the repository entry first; it leads to the task map and points maintainers to Contributing. Agents start at the agent entry, then the task map, and read Repository change and release before a change.",
       "members": [
         "members",
         "repository-entry",
@@ -911,6 +913,7 @@
       "id": "practice",
       "title": "What work practice asks of each topic",
       "question": "Which duties does the work-practice capability place on each topic, and which rules do the topics share?",
+      "summary": "Work practice places duties on the six topics under the charter, such as framing and records on Analysis and decisions. Four of them share the charter's risk levels, and Practice and evolution cites its hard boundaries.",
       "members": [
         "spec-work-practice",
         "decision-records",
@@ -927,6 +930,7 @@
       "id": "change",
       "title": "One change, proposed and admitted",
       "question": "How is a change to the guidelines proposed, recorded and admitted?",
+      "summary": "The OpenSpec workspace carries each material change as one official Change that ETHOS validates and plans. The ETHOS profile puts every path in a Change and binds the repository to installed ETHOS, which owns admission.",
       "members": [
         "governance",
         "contributing",
@@ -943,6 +947,7 @@
       "id": "checks",
       "title": "What the checks read",
       "question": "Which native inputs do the installed checks read, locally and in CI?",
+      "summary": "The configuration map locates each check's native input: check inputs configure installed ETHOS and tool supply installs it. In CI, CI parameters generate pipelines that install the locked ETHOS and run its full graph.",
       "members": [
         "configuration-map",
         "check-inputs",
@@ -959,6 +964,7 @@
       "id": "release",
       "title": "An edition on two Forges",
       "question": "How is an edition cut and published on GitLab and GitHub?",
+      "summary": "Contributing prepares and cuts the edition and creates a Release on each Forge. The release declaration binds the GitLab and GitHub peers and protected v* tags; each Forge receives the signed edition on its own.",
       "members": [
         "governance",
         "contributing",

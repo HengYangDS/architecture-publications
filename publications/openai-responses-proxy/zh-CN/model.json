@@ -6,7 +6,7 @@
   "title": "OpenAI Responses Proxy",
   "question": "OpenAI Responses Proxy 如何让一轮 Codex Responses 对话能在第三方提供商之间迁移？又如何安装自己的监听器，并让它持续运行？",
   "summary": "回环监听器按一套封闭语法重建每个 Responses 请求，并设 store=false；请求发往路径所指的提供商，全程受同一个总时限约束，只有失败类别允许时才重试。已签名的发布版本由一个记入日志的事务完成安装，成为不可变的一代；升级时，监听套接字交给新进程；监听器一旦停止，系统服务管理器托管的看门狗就会重启它。",
-  "scope": "v5.1.9 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
+  "scope": "v5.1.10 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
   "limits": [
     "每个组件负责其声明中列出的文件；关系所引用的，是导入或调用另一组件的文件。",
     "关系代表承载行为的导入或进程调用；仅为异常类、类型、共用辅助函数或产品名称而做的导入，图中不画。",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "openai-responses-proxy",
     "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
-    "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2",
+    "revision": "a36a33cf43ac518682d94da41b799a2a6649f988",
     "browse": "https://github.com/HengYangDS/openai-responses-proxy/blob/{revision}/{path}"
   },
   "coverage": {
@@ -261,7 +261,8 @@
       "kind": "grammar",
       "details": {
         "派生": "由投影后的请求得出严格更小、不拆配对的请求",
-        "保留": "最新一轮用户输入和本轮控制项"
+        "保留": "最新一轮用户输入和本轮控制项",
+        "识别": "输入超长或媒体超预算的精确拒绝；这类请求只缩小后重试一次"
       },
       "files": [
         "src/openai_responses_proxy/protocol/recovery/execution.py",
@@ -278,7 +279,8 @@
       },
       "files": [
         "src/openai_responses_proxy/relay/exchange.py",
-        "src/openai_responses_proxy/relay/cooldown.py"
+        "src/openai_responses_proxy/relay/cooldown.py",
+        "src/openai_responses_proxy/relay/wire_recovery.py"
       ]
     },
     {
@@ -416,7 +418,8 @@
       "kind": "coordinator",
       "details": {
         "读取": "载荷、服务、监听器及现有事务的状态",
-        "变更": "install、reload、rollback、recover 和 uninstall，持锁逐一执行"
+        "变更": "install、reload、rollback、recover 和 uninstall，持锁逐一执行",
+        "工具来源": "ssh-keygen 和系统服务管理器的工具只取自固定的系统目录，不查 PATH"
       },
       "files": [
         "src/openai_responses_proxy/lifecycle/control.py",
@@ -897,6 +900,7 @@
       "id": "request-path",
       "title": "一轮 Responses 对话：从客户端到提供商",
       "question": "一轮 Responses 对话，从客户端到提供商要经过哪些部分？",
+      "summary": "回环监听器把每一轮对话交给 Responses 转发，由它重建请求体并放行这一轮。上游交互经上游传输把请求发给提供商，响应投递再返回 JSON 或 SSE。",
       "members": [
         "client",
         "listener",
@@ -913,6 +917,7 @@
       "id": "portability",
       "title": "发往提供商的请求",
       "question": "请求怎样才能在提供商之间迁移？被拒的请求又怎样缩小？",
+      "summary": "重放投影发送时设 store=false，不带 response、conversation 或缓存绑定，工具调用与输出始终配对。被拒的请求由限次恢复派生出严格更小、不拆配对的请求，再重新投影。",
       "members": [
         "responses-relay",
         "replay-projection",
@@ -927,6 +932,7 @@
       "id": "failures",
       "title": "失败按提供商隔离",
       "question": "上游失败如何重试、冷却和报告，而不耽误其他提供商？",
+      "summary": "上游交互只在失败类别允许时重试；遇到 429 或重试耗尽的 503，只冷却出问题的那个提供商。遥测统计失败类别；上游传输绝不把完整发出的请求再发一次。",
       "members": [
         "upstream-exchange",
         "upstream-transport",
@@ -941,6 +947,7 @@
       "id": "install",
       "title": "一次安装，一个事务",
       "question": "已签名的发布资产如何成为选定的一代？哪些可以回滚？",
+      "summary": "发布版本准入先验证 SHA256SUMS.sig；记入日志的载荷事务把通过准入的字节落盘，成为新的一代。事务要么完结，要么回滚；代选择器至多保留一个前代。",
       "members": [
         "command-line",
         "lifecycle-commands",
@@ -956,6 +963,7 @@
       "id": "handoff",
       "title": "换新监听器，一轮也不丢",
       "question": "升级和重载如何把监听套接字移到新进程？",
+      "summary": "监听器交接把监听套接字交给后继进程，期间准入一直开放；较旧的运行时则由部署排空后替换。事务完结之前，部署先证明后继进程的身份。",
       "members": [
         "deployment",
         "listener",
@@ -970,6 +978,7 @@
       "id": "supervision",
       "title": "由操作系统保持运行",
       "question": "谁启动监听器并让它持续运行？",
+      "summary": "系统服务监管注册看门狗，由系统服务管理器启动它，并在它停止时重启。看门狗发现端口关闭就启动监听器，但有事务未结且尚未激活时会等待。",
       "members": [
         "native-supervision",
         "service-manager",

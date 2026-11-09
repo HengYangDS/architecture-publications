@@ -7,7 +7,7 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 - [An upgrade keeps admitting turns](block:p-handoff): the new process inherits the listening socket, and the old one finishes what it accepted.[](source:readme-handoff)
 - [Every installation step is journaled](block:p-install), so `recover` finishes or undoes an interrupted one.[](source:arch-completion)
 
-@answer scope="OpenAI Responses Proxy v5.1.9 · commit a5cfd8c · its source and its own documents"
+@answer scope="OpenAI Responses Proxy v5.1.10 · commit a36a33c · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What the proxy is" path="README.md" lines=3:7
 @source readme-portable title="No conversation storage is edited" path="README.md" lines=12:13
@@ -29,14 +29,14 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 @source readme-body title="Body admission" path="README.md" lines=362:369
 @source readme-evidence title="Runtime evidence" path="README.md" lines=393:402
 @source arch-authority title="Who owns which state" path="docs/architecture/authority-and-runtime-boundary.md" lines=40:50
-@source arch-projection title="What the projection removes" path="docs/architecture/authority-and-runtime-boundary.md" lines=227:240
-@source arch-agent title="Encrypted agent messages" path="docs/architecture/authority-and-runtime-boundary.md" lines=249:258
-@source arch-live title="The live-response boundary" path="docs/architecture/authority-and-runtime-boundary.md" lines=260:264
-@source arch-recovery title="Recovery ownership" path="docs/architecture/authority-and-runtime-boundary.md" lines=288:305
-@source arch-commit title="Commit, prewarm, handoff, rebind" path="docs/architecture/authority-and-runtime-boundary.md" lines=329:343
-@source arch-selector title="One selector" path="docs/architecture/authority-and-runtime-boundary.md" lines=345:358
-@source arch-completion title="Completion and recovery" path="docs/architecture/authority-and-runtime-boundary.md" lines=360:367
-@source arch-deletion title="Exact-file deletion" path="docs/architecture/authority-and-runtime-boundary.md" lines=369:379
+@source arch-projection title="What the projection removes" path="docs/architecture/authority-and-runtime-boundary.md" lines=226:239
+@source arch-agent title="Encrypted agent messages" path="docs/architecture/authority-and-runtime-boundary.md" lines=248:257
+@source arch-live title="The live-response boundary" path="docs/architecture/authority-and-runtime-boundary.md" lines=259:263
+@source arch-recovery title="Recovery ownership" path="docs/architecture/authority-and-runtime-boundary.md" lines=287:304
+@source arch-commit title="Commit, prewarm, handoff, rebind" path="docs/architecture/authority-and-runtime-boundary.md" lines=328:342
+@source arch-selector title="One selector" path="docs/architecture/authority-and-runtime-boundary.md" lines=344:357
+@source arch-completion title="Completion and recovery" path="docs/architecture/authority-and-runtime-boundary.md" lines=359:366
+@source arch-deletion title="Exact-file deletion" path="docs/architecture/authority-and-runtime-boundary.md" lines=368:378
 @source threat-assets title="Assets and the client's credential" path="docs/architecture/threat-model.md" lines=18:30
 @source threat-boundaries title="Trust boundaries" path="docs/architecture/threat-model.md" lines=32:44
 @source threat-residual title="Residual risks" path="docs/architecture/threat-model.md" lines=72:85
@@ -45,54 +45,55 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 @source dr2-consequence title="DR-0002: continuity from replayed dialogue" path="docs/decisions/dr-0002-provider-portable-stateless-replay.md" lines=68:77
 @source dr3-decision title="DR-0003: recovery scoped by provider" path="docs/decisions/dr-0003-provider-scoped-recovery-and-backpressure.md" lines=22:35
 @source dr6-resend title="DR-0006: a sent request is not sent again" path="docs/decisions/dr-0006-semantic-fit-before-framework-adoption.md" lines=200:228
-@source code-route title="Route dispatch" path="src/openai_responses_proxy/serving/server.py" lines=132:146
-@source code-body title="Reading one framed body" path="src/openai_responses_proxy/relay/responses.py" lines=144:162
-@source code-project title="Projection and delegation" path="src/openai_responses_proxy/relay/responses.py" lines=257:296
-@source code-gate title="Cooldown, then admission" path="src/openai_responses_proxy/relay/responses.py" lines=321:338
-@source code-cooldown title="Provider cooldowns" path="src/openai_responses_proxy/relay/responses.py" lines=56:104
-@source code-deadline title="One exchange, one deadline" path="src/openai_responses_proxy/relay/exchange.py" lines=116:146
-@source code-http-error title="Classified upstream errors" path="src/openai_responses_proxy/relay/exchange.py" lines=424:479
-@source code-transport-error title="Transport failures" path="src/openai_responses_proxy/relay/exchange.py" lines=482:523
-@source code-outcome title="A failure after a complete send" path="src/openai_responses_proxy/relay/upstream.py" lines=388:401
-@source code-reused title="A failed send on a reused connection" path="src/openai_responses_proxy/relay/upstream.py" lines=341:366
-@source code-reopen title="Only a pre-content failure is reopened" path="src/openai_responses_proxy/relay/sse.py" lines=261:268
-@source code-hold title="Events held before content" path="src/openai_responses_proxy/relay/sse.py" lines=122:162
-@source code-disposition title="Which statuses are retried" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=50:77
-@source code-compact title="Pair-safe compaction" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=90:141
-@source code-input-variant title="The input-variant contract" path="src/openai_responses_proxy/protocol/recovery/input.py" lines=86:96
-@source code-dmx title="DMXAPI empty_response" path="src/openai_responses_proxy/providers/policies/dmxapi.py" lines=15:33
+@source code-route title="Route dispatch" path="src/openai_responses_proxy/serving/server.py" lines=134:148
+@source code-body title="Reading one framed body" path="src/openai_responses_proxy/relay/responses.py" lines=151:169
+@source code-project title="Projection and delegation" path="src/openai_responses_proxy/relay/responses.py" lines=275:314
+@source code-gate title="Cooldown, then admission" path="src/openai_responses_proxy/relay/responses.py" lines=339:356
+@source code-cooldown title="Provider cooldowns" path="src/openai_responses_proxy/relay/responses.py" lines=63:111
+@source code-deadline title="One exchange, one deadline" path="src/openai_responses_proxy/relay/exchange.py" lines=122:152
+@source code-http-error title="Classified upstream errors" path="src/openai_responses_proxy/relay/exchange.py" lines=369:438
+@source code-transport-error title="Transport failures" path="src/openai_responses_proxy/relay/exchange.py" lines=441:489
+@source code-outcome title="A failure after a complete send" path="src/openai_responses_proxy/relay/upstream.py" lines=409:422
+@source code-reused title="A failed send on a reused connection" path="src/openai_responses_proxy/relay/upstream.py" lines=346:387
+@source code-reopen title="Only a pre-content failure is reopened" path="src/openai_responses_proxy/relay/sse.py" lines=272:279
+@source code-hold title="Events held before content" path="src/openai_responses_proxy/relay/sse.py" lines=127:167
+@source code-disposition title="Which statuses are retried" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=56:92
+@source code-compact title="Pair-safe compaction" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=105:156
+@source code-input-variant title="The input-variant contract" path="src/openai_responses_proxy/protocol/recovery/input.py" lines=90:100
+@source code-capacity title="Input-length and media-budget refusals" path="src/openai_responses_proxy/relay/exchange.py" lines=390:401
+@source code-dmx title="DMXAPI empty_response" path="src/openai_responses_proxy/providers/policies/dmxapi.py" lines=16:34
 @source code-manifest title="The provider manifest" path="src/openai_responses_proxy/providers/manifest.toml" lines=1:12
 @source code-plaintext title="Selecting plaintext delegation" path="src/openai_responses_proxy/protocol/agent_delivery.py" lines=111:129
-@source code-signature title="Verifying the signature" path="src/openai_responses_proxy/lifecycle/artifact.py" lines=304:344
-@source code-artifact title="Admitting the archive" path="src/openai_responses_proxy/lifecycle/artifact.py" lines=232:301
-@source code-begin title="Beginning a transaction" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=377:454
-@source code-downgrade title="Downgrade and replay refused" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=400:405
-@source code-materialize title="Materializing the candidate" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=133:199
+@source code-signature title="Verifying the signature" path="src/openai_responses_proxy/lifecycle/artifact.py" lines=295:333
+@source code-artifact title="Admitting the archive" path="src/openai_responses_proxy/lifecycle/artifact.py" lines=223:292
+@source code-begin title="Beginning a transaction" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=391:468
+@source code-downgrade title="Downgrade and replay refused" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=414:419
+@source code-materialize title="Materializing the candidate" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=139:199
 @source code-activate title="Activating the candidate" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=201:236
-@source code-finalize title="Finalizing the installation" path="src/openai_responses_proxy/lifecycle/transaction/completion.py" lines=40:61
+@source code-finalize title="Finalizing the installation" path="src/openai_responses_proxy/lifecycle/transaction/completion.py" lines=44:65
 @source code-rollback title="Rolling back" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=255:271
-@source code-recover title="Recovering from the journal" path="src/openai_responses_proxy/lifecycle/transaction/recovery.py" lines=22:106
-@source code-close title="Closing an unwritten transaction" path="src/openai_responses_proxy/lifecycle/transaction/recovery.py" lines=109:116
-@source code-strategy title="Handoff or replacement" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=122:128
-@source code-lease title="The predecessor's lease" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=156:162
-@source code-request title="Requesting the handoff" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=373:433
-@source code-finalized title="Proof of a finalized successor" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=505:518
-@source code-disk-match title="Only the selected payload" path="src/openai_responses_proxy/serving/control.py" lines=110:123
-@source code-spawn title="Passing the socket" path="src/openai_responses_proxy/serving/handoff/protocol.py" lines=245:300
-@source code-prepare title="Preparing a successor" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=249:303
-@source code-commit title="Crossing COMMIT" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=314:349
-@source code-old-finishes title="The old listener finishes" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=378:409
-@source code-child title="The successor's side" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=433:502
-@source code-local title="Control from a local controller only" path="src/openai_responses_proxy/relay/admission.py" lines=163:173
-@source code-selector title="Reading the selector" path="src/openai_responses_proxy/serving/identity.py" lines=105:128
-@source code-journal-paths title="The journal beside the data root" path="src/openai_responses_proxy/lifecycle/records.py" lines=25:37
-@source code-command-path title="The command path" path="src/openai_responses_proxy/lifecycle/command.py" lines=34:48
-@source code-plist title="The launch agent" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=123:136
-@source code-domains title="GUI or Background domain" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=66:86
-@source code-unit title="The systemd user unit" path="src/openai_responses_proxy/lifecycle/supervision/linux.py" lines=16:30
-@source code-task title="The scheduled task" path="src/openai_responses_proxy/lifecycle/supervision/windows.py" lines=41:81
-@source code-roots title="Data and state roots" path="src/openai_responses_proxy/runtime/config.py" lines=155:184
-@source code-watchdog title="The watchdog loop" path="src/openai_responses_proxy/lifecycle/supervision/watchdog.py" lines=102:137
+@source code-recover title="Recovering from the journal" path="src/openai_responses_proxy/lifecycle/transaction/recovery.py" lines=25:109
+@source code-close title="Closing an unwritten transaction" path="src/openai_responses_proxy/lifecycle/transaction/recovery.py" lines=112:119
+@source code-strategy title="Handoff or replacement" path="src/openai_responses_proxy/lifecycle/deployment/strategy.py" lines=80:86
+@source code-lease title="The predecessor's lease" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=73:79
+@source code-request title="Requesting the handoff" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=284:344
+@source code-finalized title="Proof of a finalized successor" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=394:407
+@source code-disk-match title="Only the selected payload" path="src/openai_responses_proxy/serving/control.py" lines=114:127
+@source code-spawn title="Passing the socket" path="src/openai_responses_proxy/serving/handoff/protocol.py" lines=235:284
+@source code-prepare title="Preparing a successor" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=252:306
+@source code-commit title="Crossing COMMIT" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=317:353
+@source code-old-finishes title="The old listener finishes" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=382:413
+@source code-child title="The successor's side" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=465:523
+@source code-local title="Control from a local controller only" path="src/openai_responses_proxy/relay/admission.py" lines=162:172
+@source code-selector title="Reading the selector" path="src/openai_responses_proxy/serving/identity.py" lines=111:134
+@source code-journal-paths title="The journal beside the data root" path="src/openai_responses_proxy/lifecycle/records.py" lines=26:38
+@source code-command-path title="The command path" path="src/openai_responses_proxy/lifecycle/command.py" lines=37:51
+@source code-plist title="The launch agent" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=126:139
+@source code-domains title="GUI or Background domain" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=67:88
+@source code-unit title="The systemd user unit" path="src/openai_responses_proxy/lifecycle/supervision/linux.py" lines=19:33
+@source code-task title="The scheduled task" path="src/openai_responses_proxy/lifecycle/supervision/windows.py" lines=47:87
+@source code-roots title="Data and state roots" path="src/openai_responses_proxy/runtime/config.py" lines=160:189
+@source code-watchdog title="The watchdog loop" path="src/openai_responses_proxy/lifecycle/supervision/watchdog.py" lines=103:138
 @source code-activate-carrier title="Each role loads its carrier" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=152:159
 @source code-status-next title="One next command per state" path="src/openai_responses_proxy/cli/outcome.py" lines=37:43
 @source code-lock title="One lifecycle writer" path="src/openai_responses_proxy/cli/application.py" lines=96:115
@@ -185,14 +186,15 @@ A provider that received a complete request may already be working on it. Sendin
 
 Each upstream error has one bounded answer, and a cooldown holds back only the provider that caused it.[](source:dr3-decision)[](source:arch-recovery)
 
-| Upstream answer             | What the proxy does                                                                                              |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `429`                       | Relays it once, then cools that provider for its Retry-After, at most 300 s[](source:code-http-error)            |
-| `503` after bounded retries | Relays the original error, then briefly cools that provider[](source:code-disposition)[](source:code-http-error) |
-| DMXAPI `477 empty_response` | Sends the same projected bytes once more[](source:code-dmx)                                                      |
-| `response_failed`           | Strictly shrinking, pair-safe retries, then at most one dialogue-only attempt[](source:code-compact)             |
-| Invalid `input` union       | One smaller current-dialogue attempt, then stops[](source:code-input-variant)                                    |
-| `invalid_encrypted_content` | Relays the refusal without replacing the task[](source:arch-agent)                                               |
+| Upstream answer                     | What the proxy does                                                                                                       |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `429`                               | Relays it once, then cools that provider for its Retry-After, at most 300 s[](source:code-http-error)                     |
+| `503` after bounded retries         | Relays the original error, then briefly cools that provider[](source:code-disposition)[](source:code-http-error)          |
+| DMXAPI `477 empty_response`         | Sends the same projected bytes once more[](source:code-dmx)                                                               |
+| `response_failed`                   | Strictly shrinking, pair-safe retries, then at most one dialogue-only attempt[](source:code-compact)                      |
+| Invalid `input` union               | One smaller current-dialogue attempt, then stops[](source:code-input-variant)                                             |
+| Input too long or media over budget | One attempt without older history, if the current input allows, then stops[](source:code-capacity)[](source:code-compact) |
+| `invalid_encrypted_content`         | Relays the refusal without replacing the task[](source:arch-agent)                                                        |
 
 ## How does a signed release become the serving generation? {#p-install}
 

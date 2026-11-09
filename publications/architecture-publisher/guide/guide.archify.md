@@ -7,7 +7,7 @@
 - [A layout with an overlap is never drawn](block:p-layout), and a view that no layout draws is refused, not shrunk.[](source:contract-layout-floor)
 - [Only an accepted delivery is published](block:p-accept), and never over a different one.[](source:contract-acceptance)
 
-@answer scope="Architecture Publisher v0.10.1 · commit 1861b7c · its source and its own documents · re-pin counts measured on 2026-11-08"
+@answer scope="Architecture Publisher v0.10.2 · commit 4fcd4d0 · its source and its own documents · re-pin counts measured on 2026-11-08"
 @meta locale=en style=editorial
 @source contract-product title="The product" path="docs/product-contract.md" lines=13:21
 @source contract-meaning title="Who owns meaning and form" path="docs/product-contract.md" lines=23:28
@@ -82,6 +82,7 @@
 @source ops-plate title="A plate" path="docs/reference/operations.md" lines=157:166
 @source ops-reading title="A plate's width and reading" path="docs/reference/operations.md" lines=180:194
 @source ops-edition title="The print edition" path="docs/reference/operations.md" lines=196:207
+@source house-reading title="What a plate's reading does when it is too tall" path="src/overview/house.typ" lines=251:291
 @source ops-edition-text title="Text, dates and page images" path="docs/reference/operations.md" lines=208:224
 @source ops-refusal-paths title="Where a refusal points" path="docs/reference/operations.md" lines=396:401
 @source plates-compositions title="Every composition a plate tries" path="src/poster/compose/plates.mjs" lines=99:110
@@ -192,7 +193,7 @@ Each view is one plate: a figure laid out for the edition's body, with no text b
 | step-ed-width | Choose its width | The figure takes the narrowest of 100, 80 and 65 percent of the body that wires no worse. A view with a summary gives up a fifth for its reading.[](source:plates-width)[](source:ops-reading) | edition-flow | ed-width |
 | step-ed-gates | Measure four gates | Its largest blank rectangle, blank bands, holes and centre of mass are measured. A missed gate is recorded for the reviewer, not refused.[](source:plates-gates)[](source:ops-gates) | edition-flow | ed-gates |
 | step-ed-typeset | Typeset in one pass | The house class sets the title page, contents, overview and every plate into one PDF that conforms to PDF/A-3a and PDF/UA-1.[](source:edition-typeset)[](source:ops-edition) | edition-flow | ed-typeset |
-| step-ed-text | Text as measured? | A run Typst sets wider than the engine measured it, a title longer than its line or a reading taller than the body is refused.[](source:ops-edition-text)[](source:ops-reading) | edition-flow | ed-text |
+| step-ed-text | Text as measured? | A run Typst sets wider than the engine measured it or a title longer than its line is refused.[](source:ops-edition-text) A reading taller than the body sets its summary alone, and is refused only when that does not fit either.[](source:house-reading) | edition-flow | ed-text |
 | step-ed-images | PDF and page images | Typst renders the overview's and each plate's page as PNG at each width, 2400 px unless the build names others.[](source:edition-images)[](source:ops-edition-text) | edition-flow | ed-images |
 | step-ed-refused | Edition refused | A plate's refusal names its view, and a Typst refusal the line Typst reported.[](source:ops-refusal-paths)[](source:typeset-problems) | edition-flow | ed-refused |
 

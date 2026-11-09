@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
       "provider": "github",
-      "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2"
+      "revision": "a36a33cf43ac518682d94da41b799a2a6649f988"
     }
   },
   "layout": {
@@ -47,8 +47,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/protocol/replay/items.py",
-          "line": 97,
-          "end_line": 108,
+          "line": 100,
+          "end_line": 111,
           "label": "Paired outputs"
         }
       ]
@@ -61,8 +61,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/protocol/replay/items.py",
-          "line": 134,
-          "end_line": 142,
+          "line": 137,
+          "end_line": 145,
           "label": "Controls"
         }
       ]
@@ -155,8 +155,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/protocol/replay/items.py",
-          "line": 82,
-          "end_line": 82,
+          "line": 85,
+          "end_line": 85,
           "label": "Reasoning"
         },
         {
@@ -175,8 +175,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/protocol/replay/items.py",
-          "line": 83,
-          "end_line": 91,
+          "line": 86,
+          "end_line": 94,
           "label": "Dropped kinds"
         }
       ]
@@ -222,8 +222,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/protocol/replay/items.py",
-          "line": 56,
-          "end_line": 75,
+          "line": 59,
+          "end_line": 78,
           "label": "Schema drift"
         }
       ]
@@ -236,8 +236,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/protocol/replay/items.py",
-          "line": 306,
-          "end_line": 311,
+          "line": 309,
+          "end_line": 314,
           "label": "Orphan output"
         }
       ]

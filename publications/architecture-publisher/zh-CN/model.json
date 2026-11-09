@@ -6,7 +6,7 @@
   "title": "Architecture Publisher",
   "question": "Architecture Publisher 如何把架构模型变成图册和页面？",
   "summary": "作者用 archpub 处理模型。构建时先校验模型，按固定的修订把范围内的每个文件交给认领它的组件，再规划视图，把每个视图都布局在同一套网格上。随后排出一部图册，收入作者编排的总览，每个视图各占一幅图版；写出一个 Archify 页面，模型指定了导读时，页面就是作者写的导读；并写出一份清单，记录这些产物的摘要。交付物须经一位具名审阅人验收，才能出版。",
-  "scope": "v0.10.1 发布版的 Architecture Publisher：src/ 下的源码、包清单，以及各项随附物料的清单。",
+  "scope": "v0.10.2 发布版的 Architecture Publisher：src/ 下的源码、包清单，以及各项随附物料的清单。",
   "limits": [
     "每个组件按路径规则认领目录和文件，范围内的每个文件都归最具体的那项认领；关系引用的是导入或调用另一组件的模块。",
     "关系指源码中的导入和进程调用，并非运行时的先后顺序；共用的拒绝类型和子进程环境不画成关系。",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "1861b7ccbb6d57378d3e5f69ffc328579eec991b",
+    "revision": "4fcd4d061fb21b7a4c547c6a7b47c3f8507fbc7d",
     "browse": "https://github.com/HengYangDS/architecture-publisher/blob/{revision}/{path}"
   },
   "coverage": {
@@ -734,6 +734,7 @@
       "id": "overview",
       "title": "一次构建的全程",
       "question": "从作者的模型到出版的交付物，一次构建要经过哪些部分？",
+      "summary": "作者运行 archpub build，由交付物构建器生成图版、图册和页面。审阅人运行 accept 和 publish；验收与出版只把已验收的交付物复制到出版根目录。",
       "tiers": [
         {
           "id": "people",
@@ -766,19 +767,21 @@
       "id": "files",
       "title": "文件：取自固定的修订",
       "question": "构建怎样按固定的修订把每个文件交给所属组件？archpub check 又报告些什么？",
+      "summary": "文件绑定在固定的修订上，把范围内的每个文件交给最具体的那项认领。覆盖报告统计已归属、未覆盖和已排除的文件；重新固定工作清单列出改换固定的修订会带来哪些变化。",
       "members": ["builder", "model", "binding", "scope", "coverage", "worklist", "repository"]
     },
     {
       "id": "models",
       "title": "模型从何而来",
       "question": "出版工具拿到的模型从哪里来：作者编写、从 LikeC4 导入，还是从早期版本迁移？",
+      "summary": "模型可以由作者手写，也可以经 archpub 得到：LikeC4 导入器解析 LikeC4 工作空间，模型迁移把第 1、2 版模型转成第 3 版。模型加载器一律按第 3 版校验。",
       "members": ["author", "cli", "importer", "migration", "model", "words", "supplies"]
     },
     {
       "id": "layout",
       "title": "网格布局",
       "question": "同一套网格如何既布局图版，又布局页面中的图？",
-      "summary": "行由层级或关系决定。摆放精确求出卡片的位置，连线把关系归并成总线和走廊，通道求解器为每条通道布线；整洁度量拒绝任何重叠。",
+      "summary": "行由层级或关系决定。摆放精确求出卡片位置，连线把关系归并成总线和走廊，通道求解器为每条通道布线；整洁度量不容许任何重叠。",
       "tiers": [
         {
           "id": "media",
@@ -801,6 +804,7 @@
       "id": "edition",
       "title": "图册",
       "question": "规划好的视图由谁排成图册？这一步用到哪些物料？",
+      "summary": "图版编排器把每个规划好的视图排成一幅图版，图册用 Typst 一遍排出全部图版和总览。字体、图标和版式字体都由物料提供。",
       "members": [
         "builder",
         "plan",
@@ -818,6 +822,7 @@
       "id": "page",
       "title": "页面",
       "question": "交互页面怎样生成？生成时检查什么？",
+      "summary": "讲解页调用 Archify，为每个视图生成一个面板；模型指定了导读时，交付的是作者写的 Archify 草稿。导读按固定的修订克隆仓库，逐一检查引用的每个行区间。",
       "members": ["builder", "map", "guide", "presentation", "words", "supplies", "repository"]
     }
   ],

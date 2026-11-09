@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([OpenAI Responses Proxy], [可移植的请求，事务化的发布], [面向 Codex 及其他 Responses 客户端的回环数据面：每个请求都按 store=false 重建，再发往路径所指的提供商；代理还负责安装、交接和监管自己的监听器。], read-from: [读取自 80 个文件，各附 SHA-256。], claim-x: 300pt)
+#masthead([OpenAI Responses Proxy], [可移植的请求，事务化的发布], [面向 Codex 及其他 Responses 客户端的回环数据面：每个请求都按 store=false 重建，再发往路径所指的提供商；代理还负责安装、交接和监管自己的监听器。], read-from: [读取自 85 个文件，各附 SHA-256。], claim-x: 300pt)
 
 // ── Band 1: the route of one turn, from the client to its provider and back ──
 #head(48pt, 132pt, [一轮对话的路线])

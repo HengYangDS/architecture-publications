@@ -5,7 +5,7 @@
   "title": "Architecture Publisher",
   "question": "How does Architecture Publisher turn an architecture model into a print edition and a page?",
   "summary": "An author runs archpub on a model. A build validates it, gives each file in its scope to the component that claims it at the pinned revision, plans the views and lays each out on one grid. It typesets a print edition of the overview the author composes and one plate per view, writes one Archify page, which is the author's guide when the model names one, and a manifest of their digests; a named reviewer accepts the delivery before it is published.",
-  "scope": "Architecture Publisher as released at v0.10.1: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
+  "scope": "Architecture Publisher as released at v0.10.2: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
   "limits": [
     "Each component claims the directories and files its path rules name, and each file in the scope goes to its most specific claim; a relation cites the modules that import or call the other component.",
     "Relations are imports and process calls in the source, not runtime order; the shared refusal type and the child environment are not drawn as relations.",
@@ -14,7 +14,7 @@
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "1861b7ccbb6d57378d3e5f69ffc328579eec991b",
+    "revision": "4fcd4d061fb21b7a4c547c6a7b47c3f8507fbc7d",
     "browse": "https://github.com/HengYangDS/architecture-publisher/blob/{revision}/{path}"
   },
   "coverage": {
@@ -733,6 +733,7 @@
       "id": "overview",
       "title": "One build, end to end",
       "question": "Which parts does one build pass through, from the author's model to a published delivery?",
+      "summary": "The author runs archpub build, and the delivery builder makes plates, the print edition and the page. The reviewer runs accept and publish; the acceptance stage copies only an accepted delivery to the publication root.",
       "tiers": [
         {
           "id": "people",
@@ -765,12 +766,14 @@
       "id": "files",
       "title": "Files at the pinned revision",
       "question": "How does a build give each file to its owner at the pinned revision, and what does archpub check report?",
+      "summary": "At the pinned revision, file binding gives each file in the scope to its most specific claim. The coverage report counts owned, uncovered and excluded files; the re-pin worklist lists what moving the pin changes.",
       "members": ["builder", "model", "binding", "scope", "coverage", "worklist", "repository"]
     },
     {
       "id": "models",
       "title": "Where a model comes from",
       "question": "How does a model reach the publisher: written by its author, imported from LikeC4 or migrated from an earlier version?",
+      "summary": "The author writes the model; through archpub, the LikeC4 importer parses a LikeC4 workspace and model migration converts a version 1 or 2 model to version 3. The model loader validates both as version 3.",
       "members": ["author", "cli", "importer", "migration", "model", "words", "supplies"]
     },
     {
@@ -800,6 +803,7 @@
       "id": "edition",
       "title": "The print edition",
       "question": "What turns the planned views into the print edition, and which supplies does it use?",
+      "summary": "The plate composer turns each planned view into one plate, and the print edition typesets every plate and the overview in one Typst pass. The supplies provide the fonts, the icons and the house faces.",
       "members": [
         "builder",
         "plan",
@@ -817,6 +821,7 @@
       "id": "page",
       "title": "The page",
       "question": "How is the interactive page made, and what does it check?",
+      "summary": "The explainer page runs Archify and delivers one panel per view, or the author's Archify draft when the model names a guide. The guide clones the repository at the pinned revision and checks every cited range there.",
       "members": ["builder", "map", "guide", "presentation", "words", "supplies", "repository"]
     }
   ],

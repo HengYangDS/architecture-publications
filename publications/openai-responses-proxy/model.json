@@ -5,7 +5,7 @@
   "title": "OpenAI Responses Proxy",
   "question": "How does OpenAI Responses Proxy make a Codex Responses turn portable across third-party providers, and how does it install and keep its own listener running?",
   "summary": "A loopback listener rebuilds each Responses request in one closed grammar with store=false, sends it to the provider its path names within one total deadline, and retries only what the failure class allows. A signed release installs through one journaled transaction as an immutable generation; an upgrade hands the listening socket to the new process, and a watchdog under the native service manager restarts a stopped listener.",
-  "scope": "The OpenAI Responses Proxy product as released at v5.1.9: the openai_responses_proxy package with its provider manifest, pyproject.toml and VERSION.",
+  "scope": "The OpenAI Responses Proxy product as released at v5.1.10: the openai_responses_proxy package with its provider manifest, pyproject.toml and VERSION.",
   "limits": [
     "Each component owns the files its claims name; a relation cites the files that import or call the other component.",
     "A relation stands for an import or a process call that carries behaviour; imports used only for an exception class, a type, a shared helper or the product's names are not drawn.",
@@ -14,7 +14,7 @@
   "repository": {
     "name": "openai-responses-proxy",
     "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
-    "revision": "a5cfd8c9bbe4b6f29754808d60203218da38a4e2",
+    "revision": "a36a33cf43ac518682d94da41b799a2a6649f988",
     "browse": "https://github.com/HengYangDS/openai-responses-proxy/blob/{revision}/{path}"
   },
   "coverage": {
@@ -260,7 +260,8 @@
       "kind": "grammar",
       "details": {
         "derives": "strictly smaller, pair-safe requests from the projected one",
-        "keeps": "the latest user turn and the current-turn controls"
+        "keeps": "the latest user turn and the current-turn controls",
+        "recognizes": "exact input-length and media-budget refusals, which get one smaller retry"
       },
       "files": [
         "src/openai_responses_proxy/protocol/recovery/execution.py",
@@ -277,7 +278,8 @@
       },
       "files": [
         "src/openai_responses_proxy/relay/exchange.py",
-        "src/openai_responses_proxy/relay/cooldown.py"
+        "src/openai_responses_proxy/relay/cooldown.py",
+        "src/openai_responses_proxy/relay/wire_recovery.py"
       ]
     },
     {
@@ -415,7 +417,8 @@
       "kind": "coordinator",
       "details": {
         "reads": "status from the payload, the service, the listener and any transaction",
-        "changes": "install, reload, rollback, recover and uninstall, one at a time under a lock"
+        "changes": "install, reload, rollback, recover and uninstall, one at a time under a lock",
+        "resolves": "ssh-keygen and the service-manager tools from fixed system directories, never PATH"
       },
       "files": [
         "src/openai_responses_proxy/lifecycle/control.py",
@@ -896,6 +899,7 @@
       "id": "request-path",
       "title": "One Responses turn, from the client to a provider",
       "question": "Which parts does one Responses turn cross between the client and its provider?",
+      "summary": "The loopback listener passes each turn to the Responses relay, which projects the body and admits it. The upstream exchange sends it over the upstream transport to the provider; response delivery returns JSON or SSE.",
       "members": [
         "client",
         "listener",
@@ -912,6 +916,7 @@
       "id": "portability",
       "title": "What leaves the listener",
       "question": "How does a request become portable across providers, and how is a refused one made smaller?",
+      "summary": "Replay projection sends store=false and no response, conversation or cache bindings, keeping calls paired with outputs. Bounded recovery re-projects strictly smaller, pair-safe requests derived from a refused one.",
       "members": [
         "responses-relay",
         "replay-projection",
@@ -926,6 +931,7 @@
       "id": "failures",
       "title": "Failures bounded per provider",
       "question": "How are upstream failures retried, cooled and reported without holding up another provider?",
+      "summary": "The upstream exchange retries only what the failure class allows and cools only its provider after a 429 or an exhausted 503. Telemetry counts failure classes; the transport never sends a complete request twice.",
       "members": [
         "upstream-exchange",
         "upstream-transport",
@@ -940,6 +946,7 @@
       "id": "install",
       "title": "One install, one transaction",
       "question": "How does a signed release asset become the selected generation, and what can be rolled back?",
+      "summary": "Release admission verifies SHA256SUMS.sig, and a journaled payload transaction materializes the admitted bytes as a new generation. It ends finalized or rolled back; the selector keeps at most one predecessor.",
       "members": [
         "command-line",
         "lifecycle-commands",
@@ -955,6 +962,7 @@
       "id": "handoff",
       "title": "A new listener without a dropped turn",
       "question": "How do an upgrade and a reload move the listening socket to a new process?",
+      "summary": "Listener handoff passes the listening socket to a successor process while admission stays open; deployment drains and replaces an older runtime. It proves the successor's identity before the transaction finalizes.",
       "members": [
         "deployment",
         "listener",
@@ -969,6 +977,7 @@
       "id": "supervision",
       "title": "Kept running by the operating system",
       "question": "Who starts the listener and keeps it running?",
+      "summary": "Native supervision registers the watchdog; the native service manager starts and restarts it. The watchdog starts the listener on a closed port, but waits while a transaction is open and not yet activated.",
       "members": [
         "native-supervision",
         "service-manager",

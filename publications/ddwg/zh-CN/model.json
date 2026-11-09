@@ -881,6 +881,7 @@
       "id": "overview",
       "title": "一部章程，七个主题",
       "question": "任务地图怎样把工作问题引到对应规则所在的那个主题？",
+      "summary": "任务地图把每个工作问题引到负责它的章节，紧急故障或越界的路线排在最前。依据和风险方面的问题引到章程，有四个主题引用章程的风险分级。",
       "members": [
         "agent-entry",
         "task-map",
@@ -897,6 +898,7 @@
       "id": "readers",
       "title": "读者从哪里读起",
       "question": "成员、智能体和维护者各从哪里读起？每个入口又通向哪里？",
+      "summary": "成员先读仓库入口，由它进入任务地图，维护者则被引到贡献指南。智能体从智能体入口读起，再到任务地图；要改动仓库，先读仓库变更与发布。",
       "members": [
         "members",
         "repository-entry",
@@ -912,6 +914,7 @@
       "id": "practice",
       "title": "工作实践对各主题的要求",
       "question": "工作实践这项能力给每个主题规定了哪些职责？各主题共用哪些规则？",
+      "summary": "工作实践给章程之下的六个主题规定职责，比如要求分析与决策界定问题、留下记录。其中四个主题共用章程的风险分级，实践与演进还引用了章程的底线。",
       "members": [
         "spec-work-practice",
         "decision-records",
@@ -928,6 +931,7 @@
       "id": "change",
       "title": "一项改动的提出与准入",
       "question": "指南的改动怎样提出、记录和准入？",
+      "summary": "每项实质改动都在 OpenSpec 工作空间里作为一项正式变更存放，由 ETHOS 校验和规划。ETHOS 配置档要求所有路径的改动都走正式变更，并把仓库绑定到已安装的 ETHOS，准入由它负责。",
       "members": [
         "governance",
         "contributing",
@@ -944,6 +948,7 @@
       "id": "checks",
       "title": "检查读什么",
       "question": "已安装的检查在本地和 CI 里读哪些原生输入？",
+      "summary": "配置地图指出每项检查读取的原生输入：检查输入配置已安装的 ETHOS，工具供应负责安装它。在 CI 里，由 CI 参数生成流水线，流水线安装锁定版本的 ETHOS，再运行完整的检查图。",
       "members": [
         "configuration-map",
         "check-inputs",
@@ -960,6 +965,7 @@
       "id": "release",
       "title": "一个版本，两个平台",
       "question": "一个版本怎样定版，又怎样发布到 GitLab 和 GitHub？",
+      "summary": "按贡献指南准备版本、定版，再在每个平台创建发布版本。发布声明绑定 GitLab 和 GitHub 两个平台以及受保护的 v* 标签；签名的版本分别发到每个平台。",
       "members": [
         "governance",
         "contributing",
