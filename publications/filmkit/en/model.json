@@ -2,6 +2,7 @@
   "format": "architecture-publisher.model",
   "version": 3,
   "id": "filmkit",
+  "locale": "en",
   "title": "filmkit",
   "question": "How does filmkit rebuild a film's two editions from its tracked sources, and what holds each step to its inputs?",
   "summary": "filmkit narrates each edition thought by thought with a pinned local voice model, assembles one soundtrack at one program level, times the captions, gates and renders the picture, and packages four films, a UHD master and a 1080p film each with captions and without. Each step records the SHA-256 of what it read, and a later step refuses a record bound to other bytes.",

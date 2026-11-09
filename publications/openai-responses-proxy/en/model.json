@@ -2,6 +2,7 @@
   "format": "architecture-publisher.model",
   "version": 3,
   "id": "openai-responses-proxy",
+  "locale": "en",
   "title": "OpenAI Responses Proxy",
   "question": "How does OpenAI Responses Proxy make a Codex Responses turn portable across third-party providers, and how does it install and keep its own listener running?",
   "summary": "A loopback listener rebuilds each Responses request in one closed grammar with store=false, sends it to the provider its path names within one total deadline, and retries only what the failure class allows. A signed release installs through one journaled transaction as an immutable generation; an upgrade hands the listening socket to the new process, and a watchdog under the native service manager restarts a stopped listener.",

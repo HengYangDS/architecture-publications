@@ -1,6 +1,6 @@
 # Architecture Publisher
 
-[`model.json`](model.json) is an Architecture Model of how Architecture
+[`en/model.json`](en/model.json) is an Architecture Model of how Architecture
 Publisher turns an architecture model into a print edition and a page. It pins
 `architecture-publisher` at v0.10.2
 (`4fcd4d061fb21b7a4c547c6a7b47c3f8507fbc7d`), and its components own all 64
@@ -10,11 +10,11 @@ components, fifty-two relations and six views show one build from the author
 to a published delivery, the files bound at the pinned revision, where a model
 comes from, the grid layout, the print edition and the page.
 
-[`overview.typ`](overview.typ) is the work's overview page, composed with the
+[`en/overview.typ`](en/overview.typ) is the work's overview page, composed with the
 publisher's house class: the four owners of a build, the path one build takes
 between them to two media, and what each step refuses.
 
-[`guide/guide.archify.md`](guide/guide.archify.md) is the work's guide, an
+[`en/guide/guide.archify.md`](en/guide/guide.archify.md) is the work's guide, an
 Archify explainer that Architecture Publisher delivers as its page. It follows
 one build: what a model holds, how each file finds its owner at the pinned
 revision, which views are drawn and how one is laid out, how a view becomes a
@@ -37,9 +37,13 @@ CI. Until `009e84c` the model lived in Architecture Publisher's own repository,
 under `editions/self/`. Architecture Publisher does not maintain this model, and
 a built delivery is not an endorsement by its project.
 
+[`zh/`](zh/) holds the same files in Chinese, and [`concepts.md`](concepts.md)
+fixes each term's Chinese rendering beside the file that defines it. Each
+language is checked and built from its own directory.
+
 ```sh
-archpub check publications/architecture-publisher/model.json --repo <architecture-publisher checkout>
-archpub build publications/architecture-publisher/model.json --repo <architecture-publisher checkout> --out build/architecture-publisher
+archpub check publications/architecture-publisher/en/model.json --repo <architecture-publisher checkout>
+archpub build publications/architecture-publisher/en/model.json --repo <architecture-publisher checkout> --out build/architecture-publisher/en
 ```
 
 Checking and building the work needs Architecture Publisher 0.10.2 or later,

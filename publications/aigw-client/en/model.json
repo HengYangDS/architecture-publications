@@ -2,6 +2,7 @@
   "format": "architecture-publisher.model",
   "version": 3,
   "id": "aigw-client",
+  "locale": "en",
   "title": "AIGW Client Projection",
   "question": "How does AIGW turn one reviewed configuration into guarded native projections in every admitted client?",
   "summary": "AIGW keeps Accounts, Routes and Client Bindings in one locked configuration and its Tokens in one selected store, and projects each client's bounded region through one adapter seam as a guarded, compensated transaction. It never carries a request.",

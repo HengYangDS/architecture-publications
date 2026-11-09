@@ -2,6 +2,7 @@
   "format": "architecture-publisher.model",
   "version": 3,
   "id": "ddwg",
+  "locale": "en",
   "title": "Data Department Work Guidelines",
   "question": "How do the Data Department work guidelines lead a reader to the rule that owns a task, and how is a change to them proposed, checked and released?",
   "summary": "One task map routes each work question to one of seven topics under the charter. Six OpenSpec capability specs state what the guidance and its upkeep must do, installed ETHOS admits and proves every change, and each Forge receives the signed edition on its own.",

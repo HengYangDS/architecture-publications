@@ -1,6 +1,6 @@
 # Data Department Work Guidelines
 
-[`model.json`](model.json) is an Architecture Model of how the Data Department
+[`en/model.json`](en/model.json) is an Architecture Model of how the Data Department
 work guidelines lead a reader to the rule that owns a task, and how a change to
 them is proposed, checked and released. It pins
 `data-department-work-guidelines` at v8.0.0
@@ -13,12 +13,12 @@ seven topics under one charter, where readers start, what work practice asks
 of each topic, one change from proposal to admission, what the checks read, and
 an edition on two Forges.
 
-[`overview.typ`](overview.typ) is the work's overview page, composed with
+[`en/overview.typ`](en/overview.typ) is the work's overview page, composed with
 Architecture Publisher's house class: the route from two entries through the
 task map to the seven topics, what the charter holds every topic to, the life
 of one change and who owns what, and the edition on its two Forges.
 
-[`guide/guide.archify.md`](guide/guide.archify.md) is the work's guide, an
+[`en/guide/guide.archify.md`](en/guide/guide.archify.md) is the work's guide, an
 Archify explainer that Architecture Publisher delivers as its page. It opens
 with who reads the guidelines and where they start, which topic owns which
 work question, what the charter holds every topic to and how the topics hand
@@ -39,11 +39,15 @@ document already holds are not drawn.
 The scope leaves out the archived Change history. The repository's owners do
 not maintain this model, and a built delivery is not their endorsement.
 
+[`zh/`](zh/) holds the same files in Chinese, and [`concepts.md`](concepts.md)
+fixes each term's Chinese rendering beside the file that defines it. Each
+language is checked and built from its own directory.
+
 ```sh
-archpub check publications/ddwg/model.json --repo <data-department-work-guidelines checkout>
-archpub build publications/ddwg/model.json --repo <data-department-work-guidelines checkout> --out build/ddwg
+archpub check publications/ddwg/en/model.json --repo <data-department-work-guidelines checkout>
+archpub build publications/ddwg/en/model.json --repo <data-department-work-guidelines checkout> --out build/ddwg/en
 ```
 
-Checking the work needs an Architecture Publisher that reads model version 2
-and delivers a guide as the page; building the overview needs Typst 0.15.1 on
-the path.
+Checking and building the work needs Architecture Publisher 0.10.2 or later,
+which reads model version 3, and building the edition needs Typst 0.15.1 on the
+path.

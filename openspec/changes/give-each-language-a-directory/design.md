@@ -34,4 +34,5 @@ whose members are all read from the preservation commit at the paths they had th
 
 - [Tooling outside this repository builds from the old paths] → Only local delivery scripts do, and they are updated
   with the lane; `git mv` keeps each file's history reachable with `git log --follow`.
-- [The `[0.1.0]` entry is reworded after its date] → 0.1.0 has no tag, so no release describes the old layout.
+- [`[0.1.0]` still describes a `zh-CN` translation] → It records the tree that version was cut with; the move is
+  recorded under `[Unreleased]`, so no entry rewrites what an earlier version held.

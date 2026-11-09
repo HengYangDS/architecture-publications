@@ -1,6 +1,6 @@
 # ETHOS concepts
 
-Each rendering below is fixed before translation and used throughout `model.json` and `overview.typ`. Source names
+Each rendering below is fixed before translation and used throughout `zh/model.json` and `zh/overview.typ`. Source names
 the file at ETHOS v0.2.0-beta.6 (`727ee05`) that defines or uses the term; "film" is the owner-approved Chinese
 narration, `content/narration.md` of `ethos-film`. Product names, command names and their options, verdict values
 (`pass`, `block`, `unknown`), file and ref names, and the kernel names Commitment, Facts and TransitionPlan stay in

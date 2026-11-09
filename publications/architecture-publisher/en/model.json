@@ -2,6 +2,7 @@
   "format": "architecture-publisher.model",
   "version": 3,
   "id": "architecture-publisher",
+  "locale": "en",
   "title": "Architecture Publisher",
   "question": "How does Architecture Publisher turn an architecture model into a print edition and a page?",
   "summary": "An author runs archpub on a model. A build validates it, gives each file in its scope to the component that claims it at the pinned revision, plans the views and lays each out on one grid. It typesets a print edition of the overview the author composes and one plate per view, writes one Archify page, which is the author's guide when the model names one, and a manifest of their digests; a named reviewer accepts the delivery before it is published.",

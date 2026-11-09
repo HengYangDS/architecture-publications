@@ -16,6 +16,11 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 - OpenAI Responses Proxy is pinned at v5.1.10 and Architecture Publisher at
   v0.10.2. Building the works needs Architecture Publisher 0.10.2 or later.
+- Each work holds each of its languages in a directory of its own, `en/` and
+  `zh/`, with the same files, and its term table `concepts.md` beside them; each
+  English model names its locale. The input check refuses any other layout, and
+  each language is built from its own directory:
+  `archpub build publications/<work>/<language>/model.json`.
 
 ## [0.1.0] - 2026-11-09
 

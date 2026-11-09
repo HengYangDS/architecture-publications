@@ -1,6 +1,6 @@
 # filmkit concept renderings (zh-CN)
 
-The renderings this edition fixes before translating, used everywhere in `model.json` and `overview.typ`. Source
+The renderings this edition fixes before translating, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
 names the file of `filmkit` at v0.16.0 (`d6de895`) that defines or uses the term. filmkit's own Chinese words come
 from its player (`src/filmkit/delivery/player.py`) and its sample film (`examples/sample-film/`); the owner-approved
 film editions are cited as `ethos-film` or `ddwg-film` with their file. An edition is one language version of a film

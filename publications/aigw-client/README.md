@@ -1,6 +1,6 @@
 # AIGW Client Projection
 
-[`model.json`](model.json) is an Architecture Model of how AIGW turns one
+[`en/model.json`](en/model.json) is an Architecture Model of how AIGW turns one
 reviewed configuration into guarded native projections in every admitted
 client. It pins `aigw-cli` at v0.6.1
 (`abf05858f4092a3baf9acea0d5d7488b26898aa5`), and its components own all 208
@@ -10,11 +10,11 @@ the configuration and its owners, the admitted clients and their seam, what a
 command reports, the program itself and one projection from plan to
 compensation.
 
-[`overview.typ`](overview.typ) is the work's overview page, composed with
+[`en/overview.typ`](en/overview.typ) is the work's overview page, composed with
 Architecture Publisher's house class: the control plane projected into each
 client, the transaction every projection is, and who owns what.
 
-[`guide/guide.archify.md`](guide/guide.archify.md) is the work's guide, an
+[`en/guide/guide.archify.md`](en/guide/guide.archify.md) is the work's guide, an
 Archify explainer that Architecture Publisher delivers as its page. It opens
 with who uses AIGW, how a team gets started and what its configuration holds,
 then shows one sync as a guarded transaction, a newer edit that survives a
@@ -31,14 +31,18 @@ out the tests beside the code with `**/*_test.go` and their inputs, and the
 repository's tools, CI and documentation. AIGW does not maintain this model,
 and a built delivery is not an AIGW endorsement.
 
+[`zh/`](zh/) holds the same files in Chinese, and [`concepts.md`](concepts.md)
+fixes each term's Chinese rendering beside the file that defines it. Each
+language is checked and built from its own directory.
+
 ```sh
-archpub check publications/aigw-client/model.json --repo <aigw-cli checkout>
-archpub build publications/aigw-client/model.json --repo <aigw-cli checkout> --out build/aigw-client
+archpub check publications/aigw-client/en/model.json --repo <aigw-cli checkout>
+archpub build publications/aigw-client/en/model.json --repo <aigw-cli checkout> --out build/aigw-client/en
 ```
 
-Checking the work needs an Architecture Publisher that reads model version 2
-and a glob in a coverage path and delivers a guide as the page; building the
-overview needs Typst 0.15.1 on the path.
+Checking and building the work needs Architecture Publisher 0.10.2 or later,
+which reads model version 3, and building the edition needs Typst 0.15.1 on the
+path.
 
 [`source.json`](source.json) records the original claim model and edition
 project with their digests. Both are retained at the preservation commit it

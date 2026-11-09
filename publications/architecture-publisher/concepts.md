@@ -1,6 +1,6 @@
 # Architecture Publisher: concept renderings (zh-CN)
 
-The renderings this work fixes before translation, used everywhere in `model.json` and `overview.typ`. Source names
+The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source names
 the file at `548637cc` that defines or uses the term; the edition's own Chinese words come from
 `src/edition/words.mjs` and `src/locale.mjs`. Renderings marked "approved" are the owner-approved shared renderings.
 

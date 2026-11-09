@@ -1,6 +1,6 @@
 # ETHOS
 
-[`model.json`](model.json) is an Architecture Model of how ETHOS turns
+[`en/model.json`](en/model.json) is an Architecture Model of how ETHOS turns
 official intent and fresh facts into proven repository change, and what it
 holds every repository to. It pins ETHOS at v0.2.0-beta.6
 (`727ee0579ba1fb9e391b5c44ce9fb2c208390199`), and its components own all 467
@@ -13,12 +13,12 @@ it may make, publication to every peer, the structure every governed
 repository shares, the runtime every hook runs and the surfaces that reach
 them.
 
-[`overview.typ`](overview.typ) is the work's overview page, composed with
+[`en/overview.typ`](en/overview.typ) is the work's overview page, composed with
 Architecture Publisher's house class: the repository's roles above one change,
 the TransitionPlan every step is, and the structure every governed repository
 shares.
 
-[`guide/guide.archify.md`](guide/guide.archify.md) is the work's guide, an
+[`en/guide/guide.archify.md`](en/guide/guide.archify.md) is the work's guide, an
 Archify explainer that Architecture Publisher delivers as its page. It opens
 with what ETHOS is for, who reaches it and what adoption writes, then follows
 one change from a lane to every peer and a lane's life with its recoveries. It
@@ -39,14 +39,18 @@ importing modules; relations are imports and calls, not runtime order. The
 model leaves out the repository's tests, tools, CI and documentation. ETHOS
 does not maintain this model, and a built delivery is not an ETHOS endorsement.
 
+[`zh/`](zh/) holds the same files in Chinese, and [`concepts.md`](concepts.md)
+fixes each term's Chinese rendering beside the file that defines it. Each
+language is checked and built from its own directory.
+
 ```sh
-archpub check publications/ethos/model.json --repo <ethos checkout>
-archpub build publications/ethos/model.json --repo <ethos checkout> --out build/ethos
+archpub check publications/ethos/en/model.json --repo <ethos checkout>
+archpub build publications/ethos/en/model.json --repo <ethos checkout> --out build/ethos/en
 ```
 
-Checking the work needs an Architecture Publisher that reads model version 3
-and delivers a guide as the page; building the overview needs Typst 0.15.1 on
-the path.
+Checking and building the work needs Architecture Publisher 0.10.2 or later,
+which reads model version 3, and building the edition needs Typst 0.15.1 on the
+path.
 
 [`source.json`](source.json) records the design and artwork preserved from
 ETHOS `e60fec5` with their digests. They describe a retired publication

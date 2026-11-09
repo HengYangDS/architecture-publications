@@ -13,7 +13,9 @@ language's directory has the same structure, named by its lowercase language cod
 - The input check requires each language in a directory named by its model's language, the same files in every
   language, one id and revision across them, and `concepts.md` in a work of more than one language. It refuses a
   model at the work's root.
-- The README, the contributor guide and the `[0.1.0]` changelog entry, which has no tag yet, describe the layout.
+- The README, the contributor guide and each work's README describe the layout, and each work's README names the
+  publisher it needs, 0.10.2 or later, as the repository's README does. The changelog records the move under
+  `[Unreleased]`; `[0.1.0]` keeps the layout it was cut with.
 
 ## Capabilities
 
@@ -27,8 +29,8 @@ None.
 
 ## Impact
 
-`publications/**`, moved with `git mv` apart from one `locale` line per English model and the paths named in four
-term tables; `tools/verification/publication-inputs.mjs` and its test; `README.md`, `CONTRIBUTING.md` and
-`CHANGELOG.md`. Each language's edition and page is built from its own directory:
+`publications/**`, moved with `git mv` apart from one `locale` line per English model, the paths named in four
+term tables and each work's README; `tools/verification/publication-inputs.mjs` and its test; `README.md`,
+`CONTRIBUTING.md` and `CHANGELOG.md`. Each language's edition and page is built from its own directory:
 `archpub build publications/<work>/<language>/model.json`. The editions' figures do not change; the English
 editions attach a model that now names its locale.

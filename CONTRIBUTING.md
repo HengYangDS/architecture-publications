@@ -8,11 +8,15 @@ repositories gain nothing: no file, dependency or check of theirs changes.
 
 Each work is a folder under `publications/` with exactly:
 
-- `model.json`, an Architecture Model in Architecture Publisher's format. It pins the described
-  repository to a full commit, cites the files that support each component and relation by SHA-256,
-  titles every view, and names this repository as its editor in `attribution`.
 - `README.md`, which states what the model shows, the commit it pins, what it leaves out, and how to
   check and build it.
+- One directory for each language the work is written in, named by the language alone: `en/`,
+  `zh/`. Each holds the same files at the same paths: `model.json`, an Architecture Model in
+  Architecture Publisher's format that names its `locale`, pins the described repository to a full
+  commit, claims the files that support each component and relation, and titles and summarises every
+  view; and the overview composition and guide that model names.
+- `concepts.md`, when the work is written in more than one language: the table that fixes each
+  term's rendering across them, beside the file that defines it.
 - An optional `source.json`, which records originals preserved from the described repository by
   their digests.
 
@@ -21,12 +25,12 @@ repository moves, a new pin is a change to the work, made and checked like any o
 
 ## Check a model against its source
 
-`npm test` checks the inputs alone: each work's members, the model format, the full revision, the
-cited sources and their digests, the view titles and unique model ids. Before proposing a model
+`npm test` checks the inputs alone: each work's files and languages, the model format, the full
+revision, the view titles and summaries, the digests of preserved originals and unique model ids. Before proposing a model
 change, also check it with a checkout of the described repository:
 
 ```sh
-archpub check publications/<work>/model.json --repo <checkout>
+archpub check publications/<work>/<language>/model.json --repo <checkout>
 ```
 
 `check` verifies every cited source at the pinned revision without changing the checkout.

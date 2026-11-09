@@ -1,6 +1,6 @@
 # OpenAI Responses Proxy
 
-[`model.json`](model.json) is an Architecture Model of how OpenAI Responses Proxy makes a Codex
+[`en/model.json`](en/model.json) is an Architecture Model of how OpenAI Responses Proxy makes a Codex
 Responses turn portable across third-party providers, and how it installs and keeps its own
 listener running. It pins `openai-responses-proxy` at v5.1.10
 (`a36a33cf43ac518682d94da41b799a2a6649f988`), and its components own all 85 files of its coverage
@@ -9,11 +9,11 @@ scope: the `src/openai_responses_proxy` package with its provider manifest, `pyp
 to a provider, what leaves the listener, how each failure stays bounded to its provider, one
 install as one transaction, a new listener without a dropped turn, and what keeps it running.
 
-[`overview.typ`](overview.typ) is the work's overview page, composed with Architecture Publisher's
+[`en/overview.typ`](en/overview.typ) is the work's overview page, composed with Architecture Publisher's
 house class: the route of one turn and the answer to each upstream failure, the transaction every
 release is and the handoff every new listener is, and what keeps the listener running.
 
-[`guide/guide.archify.md`](guide/guide.archify.md) is the work's guide, an Archify explainer that
+[`en/guide/guide.archify.md`](en/guide/guide.archify.md) is the work's guide, an Archify explainer that
 Architecture Publisher delivers as its page. It opens with who sends traffic through the proxy and
 what one turn crosses, then shows what a request keeps on its way out and when it may be sent
 again. It ends with how a signed release becomes the serving generation, how an upgrade hands the
@@ -29,11 +29,14 @@ class, a type, a shared helper or the product's names are not drawn. The outside
 no files. OpenAI Responses Proxy does not maintain this model, and a built delivery is not an
 endorsement by its project.
 
+[`zh/`](zh/) holds the same files in Chinese, and [`concepts.md`](concepts.md) fixes each term's
+Chinese rendering beside the file that defines it. Each language is checked and built from its own
+directory.
+
 ```sh
-archpub check publications/openai-responses-proxy/model.json --repo <openai-responses-proxy checkout>
-archpub build publications/openai-responses-proxy/model.json --repo <openai-responses-proxy checkout> --out build/openai-responses-proxy
+archpub check publications/openai-responses-proxy/en/model.json --repo <openai-responses-proxy checkout>
+archpub build publications/openai-responses-proxy/en/model.json --repo <openai-responses-proxy checkout> --out build/openai-responses-proxy/en
 ```
 
-Checking the work needs an Architecture Publisher that reads model version 3 and a glob in a
-coverage path and delivers a guide as the page; building the overview needs Typst 0.15.1 on the
-path.
+Checking and building the work needs Architecture Publisher 0.10.2 or later, which reads model
+version 3, and building the edition needs Typst 0.15.1 on the path.

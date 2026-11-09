@@ -25,11 +25,12 @@ diagram checks.
   the proxy makes a Codex Responses turn portable across third-party providers,
   and how it installs and keeps its own listener running.
 
-Each work also holds its Chinese translation in `zh-CN/`: a `zh-CN` model of
-the same architecture, with the work's id and revision, its overview and guide
-in Chinese, and `concepts.md`, the table that fixes each term's rendering beside
-the file that defines the term. Built with `archpub build`, it gives the work's
-Chinese edition and page.
+Each work holds each of its languages in a directory of its own, `en/` and
+`zh/`, with the same files: the model in that language, with the work's id and
+revision, and the overview and guide it names. Beside them, `concepts.md` fixes
+each term's rendering across the languages, beside the file that defines the
+term. Built with `archpub build`, each language's model gives the work's
+edition and page in that language.
 
 A model pins the described repository to a full commit. Each component claims
 the directories and files it owns, and each relation names the files that
@@ -51,8 +52,8 @@ that guide as its page, with every line range it cites checked at the pinned
 revision.
 
 ```sh
-archpub check publications/ethos/model.json --repo ../ethos
-archpub build publications/ethos/model.json --repo ../ethos --out build/ethos
+archpub check publications/ethos/en/model.json --repo ../ethos
+archpub build publications/ethos/en/model.json --repo ../ethos --out build/ethos/en
 archpub accept build/ethos --reviewer "<name>"
 archpub publish build/ethos --to <root>
 ```
@@ -62,13 +63,14 @@ delivery is published. Deliveries are not committed here.
 
 ## Input checks
 
-`npm test` checks that each work holds only its model, its README, an optional
-`source.json`, the overview composition its model names, the directory of
-the guide it names and its translations. A translation holds its model, its
-term table and the overview and guide it names, and its model must be in the
-directory's locale and name the work's id and revision. It checks that each model is in the publisher's format with
-a full revision, claims at least one file and titles every view, and that no
-two works share a model id. It does not run the publisher or a described
+`npm test` checks that each work holds only its README, an optional
+`source.json`, its term table when it is written in more than one language,
+and one directory for each language, named by the language of its model's
+locale. Every language directory holds its model and the overview composition
+and guide the model names, the same files as every other, and a model of the
+work's id and revision. It checks that each model is in the publisher's format
+with a full revision, claims at least one file and titles and summarises every
+view, and that no two works share a model id. It does not run the publisher or a described
 product; `archpub check --repo` is the full validation.
 
 A `source.json` records originals preserved from a described repository: its
