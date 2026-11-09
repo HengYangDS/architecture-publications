@@ -9,7 +9,7 @@
   "scope": "v5.1.10 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
   "limits": [
     "每个组件负责其声明中列出的文件；关系所引用的，是导入或调用另一组件的文件。",
-    "关系代表承载行为的导入或进程调用；仅为异常类、类型、共用辅助函数或产品名称而做的导入，图中不画。",
+    "关系代表承载行为的导入、对调用方交来的另一组件对象的调用，或进程调用；仅为异常类、类型、共用辅助函数或产品名称而做的导入，图中不画。",
     "测试、仓库工具、OpenSpec 规范及其正式变更历史、文档和 CI 都不在范围内，各自注明了排除理由。"
   ],
   "repository": {
@@ -759,6 +759,17 @@
       ]
     },
     {
+      "id": "lifecycle-commands-native-supervision",
+      "from": "lifecycle-commands",
+      "to": "native-supervision",
+      "label": "注册、移除",
+      "files": [
+        "src/openai_responses_proxy/lifecycle/control.py",
+        "src/openai_responses_proxy/lifecycle/install.py",
+        "src/openai_responses_proxy/lifecycle/uninstall.py"
+      ]
+    },
+    {
       "id": "payload-transaction-release-admission",
       "from": "payload-transaction",
       "to": "release-admission",
@@ -978,8 +989,9 @@
       "id": "supervision",
       "title": "由操作系统保持运行",
       "question": "谁启动监听器并让它持续运行？",
-      "summary": "系统服务监管注册看门狗，由系统服务管理器启动它，并在它停止时重启。看门狗发现端口关闭就启动监听器，但有事务未结且尚未激活时会等待。",
+      "summary": "生命周期命令注册系统服务监管，卸载时移除它；系统服务监管注册看门狗，由系统服务管理器启动它，并在它停止时重启。看门狗发现端口关闭就启动监听器，但有事务未结且尚未激活时会等待。",
       "members": [
+        "lifecycle-commands",
         "native-supervision",
         "service-manager",
         "watchdog",

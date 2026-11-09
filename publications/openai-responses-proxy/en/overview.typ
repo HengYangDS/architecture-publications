@@ -58,6 +58,7 @@
   ([503 after retries], [relayed; that provider cools briefly before the next probe]),
   ([DMXAPI 477], [the exact empty\_response: the same bytes once more]),
   ([response\_failed], [shrinking, pair-safe retries, then one dialogue-only attempt]),
+  ([input too long], [one smaller historical projection; current input and images kept]),
   ([lost after sending], [502 upstream\_outcome\_unknown; the client decides]),
   ([deadline], [504 before commitment; after it the stream closes, never replayed]),
 ))

@@ -5,7 +5,7 @@ Responses turn portable across third-party providers, and how it installs and ke
 listener running. It pins `openai-responses-proxy` at v5.1.10
 (`a36a33cf43ac518682d94da41b799a2a6649f988`), and its components own all 85 files of its coverage
 scope: the `src/openai_responses_proxy` package with its provider manifest, `pyproject.toml` and
-`VERSION`. Twenty-six components, forty-four relations and six views show one turn from the client
+`VERSION`. Twenty-six components, forty-five relations and six views show one turn from the client
 to a provider, what leaves the listener, how each failure stays bounded to its provider, one
 install as one transaction, a new listener without a dropped turn, and what keeps it running.
 
@@ -20,14 +20,14 @@ again. It ends with how a signed release becomes the serving generation, how an 
 listening socket to a new process, what an installation writes and what keeps the listener
 running. Each claim cites a line range at v5.1.10, and the diagrams the draft names sit beside it.
 
-Each component claims the directories and files its path rules name, and each file in scope goes
-to its most specific claim. The scope is the whole repository less its declared exclusions, each
-with its reason: the tests, the repository tools, the OpenSpec specifications and change history,
-the documents, CI and development configuration. A relation is kept only when an import or a
-process call backs it, and cites the files that make it; imports used only for an exception
-class, a type, a shared helper or the product's names are not drawn. The outside systems claim
-no files. OpenAI Responses Proxy does not maintain this model, and a built delivery is not an
-endorsement by its project.
+Each component claims the directories and files its path rules name, and each file in scope goes to
+its most specific claim. The scope is the whole repository less its declared exclusions, each with
+its reason: the tests, the repository tools, the OpenSpec specifications and change history, the
+documents, CI and development configuration. A relation is kept only when an import, a call on an
+object of the other component that the caller hands over, or a process call backs it, and cites the
+files that make it; imports used only for an exception class, a type, a shared helper or the
+product's names are not drawn. The outside systems claim no files. OpenAI Responses Proxy does not
+maintain this model, and a built delivery is not an endorsement by its project.
 
 [`zh/`](zh/) holds the same files in Chinese, and [`concepts.md`](concepts.md) fixes each term's
 Chinese rendering beside the file that defines it. Each language is checked and built from its own

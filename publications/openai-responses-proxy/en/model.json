@@ -9,7 +9,7 @@
   "scope": "The OpenAI Responses Proxy product as released at v5.1.10: the openai_responses_proxy package with its provider manifest, pyproject.toml and VERSION.",
   "limits": [
     "Each component owns the files its claims name; a relation cites the files that import or call the other component.",
-    "A relation stands for an import or a process call that carries behaviour; imports used only for an exception class, a type, a shared helper or the product's names are not drawn.",
+    "A relation stands for an import, a call on an object of the other component that the caller hands over, or a process call that carries behaviour; imports used only for an exception class, a type, a shared helper or the product's names are not drawn.",
     "Tests, the repository tools, the OpenSpec specifications and change history, the documents and CI are outside the scope, each excluded with its reason."
   ],
   "repository": {
@@ -759,6 +759,17 @@
       ]
     },
     {
+      "id": "lifecycle-commands-native-supervision",
+      "from": "lifecycle-commands",
+      "to": "native-supervision",
+      "label": "registers, removes",
+      "files": [
+        "src/openai_responses_proxy/lifecycle/control.py",
+        "src/openai_responses_proxy/lifecycle/install.py",
+        "src/openai_responses_proxy/lifecycle/uninstall.py"
+      ]
+    },
+    {
       "id": "payload-transaction-release-admission",
       "from": "payload-transaction",
       "to": "release-admission",
@@ -978,8 +989,9 @@
       "id": "supervision",
       "title": "Kept running by the operating system",
       "question": "Who starts the listener and keeps it running?",
-      "summary": "Native supervision registers the watchdog; the native service manager starts and restarts it. The watchdog starts the listener on a closed port, but waits while a transaction is open and not yet activated.",
+      "summary": "The lifecycle commands register native supervision and remove it on uninstall; it registers the watchdog, which the native service manager starts and restarts. The watchdog starts the listener on a closed port, but waits while a transaction is open and not yet activated.",
       "members": [
+        "lifecycle-commands",
         "native-supervision",
         "service-manager",
         "watchdog",
