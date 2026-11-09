@@ -1,3 +1,6 @@
+[protected_refs]
+tags = ["v*"]
+
 [[publication.peers]]
 id = "gitlab"
 provider = "gitlab"

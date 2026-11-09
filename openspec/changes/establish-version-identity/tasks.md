@@ -1,0 +1,5 @@
+## 1. Version identity
+
+- [x] 1.1 Add `VERSION` with `0.1.0`; done when the paradigm report shows no version-source gap. `VERSION` holds `0.1.0`; `package.json` declares no version, so no second source exists.
+- [x] 1.2 Add `CHANGELOG.md` in Keep a Changelog 1.1.0 form with `[Unreleased]` and `[0.1.0] - 2026-11-09`; done when the paradigm report shows no changelog-heading gap and the repository's format check passes. `CHANGELOG.md` follows Keep a Changelog 1.1.0 with `[Unreleased]` and `[0.1.0] - 2026-11-09`, under Architecture Publisher's pre-release header; the repository's format check and the `markdown-lint` and `prose` gates pass.
+- [x] 1.3 Declare `[protected_refs] tags = ["v*"]` in `.ethos/release.toml`; done when the paradigm report shows no release-tags or license gap and the repository's checks pass. `.ethos/release.toml` declares `[protected_refs] tags = ["v*"]`; the projection check reports conforming, the existing MIT `LICENSE` is linked from the README, and `npm run check` passes with 9 of 9 tests.
