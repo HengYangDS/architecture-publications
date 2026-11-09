@@ -55,18 +55,18 @@ formatting without executing either source product.
 
 ### Requirement: Each work is one pinned Architecture Model
 
-Each work SHALL hold exactly one Architecture Model that the current
-Architecture Publisher reads, pinned to a full commit of the described
-repository, whose components claim at least one file, and an id no other work
-uses. The input check SHALL verify that identity without running the
-publisher or the described product; resolving the model's claims and cited
-files at the revision and recording their digests remain the publisher's check
-against a checkout of the described repository.
+Each work SHALL hold, in each of its languages, one Architecture Model that the
+current Architecture Publisher reads, every one pinned to the same full commit
+of the described repository, claiming at least one file, under one id no other
+work uses. The input check SHALL verify that identity without running the
+publisher or the described product; resolving claims and cited files at the
+revision remains the publisher's check against a checkout.
 
 #### Scenario: A work declares a usable model
 
-- **WHEN** the input check reads a work whose model has the publisher's format
-  and version, a full commit revision and at least one claimed file
+- **WHEN** the input check reads a work whose model in each language has the
+  publisher's format and version, a full commit revision and at least one
+  claimed file
 - **THEN** the work passes
 - **AND** no publisher, source product or network is invoked
 
@@ -108,25 +108,27 @@ panel, the page's list of panels and its full viewer name that view.
 
 ### Requirement: A work may hold its overview composition
 
-A work MAY hold one Typst composition beside its model when the model names it
-in `overview`. The input check SHALL admit that file and SHALL fail a work
-whose model names a composition the work lacks or a path outside the work's
-directory. Beside its guide's directory, a work SHALL hold no file other than
-the model, its README, a custody record and that composition.
+A work MAY hold one Typst composition beside each of its models when the model
+names it in `overview`. The input check SHALL admit that file and SHALL fail a
+work whose model names a composition its language directory lacks or a path
+outside that directory. Beside its guide's directory, a language directory
+SHALL hold no file other than its model and that composition.
 
 #### Scenario: A named composition
 
-- **WHEN** a work's model names `overview.typ` and the work holds that file
+- **WHEN** a work's model names `overview.typ` and its language directory holds
+  that file
 - **THEN** the work passes
 
 #### Scenario: A named composition that is missing
 
-- **WHEN** a work's model names `overview.typ` and the work does not hold it
+- **WHEN** a work's model names `overview.typ` and its language directory does
+  not hold it
 - **THEN** the input check fails for that work
 
 #### Scenario: An unnamed Typst file
 
-- **WHEN** a work holds a `.typ` file its model does not name
+- **WHEN** a language directory holds a `.typ` file its model does not name
 - **THEN** the input check fails for that work
 
 ### Requirement: A work may hold its guide
@@ -166,38 +168,56 @@ whether its citations hold remain the publisher's check.
 - **WHEN** a work's guide directory holds a symbolic link or a directory
 - **THEN** the input check fails for that work
 
-### Requirement: A work may hold its translations
-
-A work MAY hold a translation in a directory named by a locale the publisher
-reads: a model in that locale with the work's id and revision, the overview and
-guide it names, and `concepts.md`, the table that fixes each term's rendering.
-The input check SHALL fail a translation whose model names another locale, id or
-revision, or that lacks its term table.
-
-#### Scenario: A Chinese translation
-
-- **WHEN** a work holds `zh-CN/` with a `zh-CN` model of the work's id and
-  revision and its `concepts.md`
-- **THEN** the work passes
-
-#### Scenario: A translation that lags its original
-
-- **WHEN** a translation's model names another revision than the work's model
-- **THEN** the input check fails for that work
-
-#### Scenario: A translation without a term table
-
-- **WHEN** a work holds `zh-CN/` without `concepts.md`
-- **THEN** the input check fails for that work
-
 ### Requirement: Every view has a summary
 
-Each view of a work and of its translations SHALL declare a summary that
+Each view of a work, in each of its languages, SHALL declare a summary that
 answers the view's question from what its model says about the parts it shows,
 so that a plate whose figure leaves part of the body explains that figure.
 
 #### Scenario: A view without a summary
 
-- **WHEN** a work's model or a translation declares a view with no summary, or
-  one that is blank
+- **WHEN** a work's model in any of its languages declares a view with no
+  summary, or one that is blank
 - **THEN** the input check fails and names that view
+
+### Requirement: A work holds each of its languages in a directory of its own
+
+A work SHALL hold each of its languages, the source language included, in a
+directory named by its model's language: the locale's language subtag,
+lowercase, such as `en/` and `zh/`. Every language directory SHALL hold the
+same files at the same paths, and every model SHALL name its locale and the
+work's id and revision. Beside them a work SHALL hold only its README, an
+optional custody record and, in more than one language, `concepts.md`, the
+table of term renderings across them.
+
+#### Scenario: A work in English and Chinese
+
+- **WHEN** a work holds `en/` with an `en` model and `zh/` with a `zh-CN` model,
+  both of the work's id and revision and with the same files, and holds
+  `concepts.md` beside them
+- **THEN** the work passes
+
+#### Scenario: A directory not named by its model's language
+
+- **WHEN** a work holds `zh-CN/`, or a `zh/` that holds an `en` model
+- **THEN** the input check fails for that work
+
+#### Scenario: Languages that hold different files
+
+- **WHEN** `zh/` lacks a diagram that `en/` holds in its guide
+- **THEN** the input check fails for that work
+
+#### Scenario: A language that lags another
+
+- **WHEN** the model in `zh/` names another revision than the model in `en/`
+- **THEN** the input check fails for that work
+
+#### Scenario: Two languages without a term table
+
+- **WHEN** a work holds `en/` and `zh/` but no `concepts.md`
+- **THEN** the input check fails for that work
+
+#### Scenario: A model at the work's root
+
+- **WHEN** a work holds `model.json` beside its language directories
+- **THEN** the input check fails for that work
