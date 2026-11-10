@@ -7,9 +7,14 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 - [A take reaches the soundtrack only if it ends whole](block:p-takes), or if the film declares a release for its join.[](source:abrupt)
 - [The picture renders only after its gate passes](block:p-picture) for the current composition, timeline, stylesheet, fonts and engine version.[](source:render-gate)
 
-@answer scope="Film Kit v0.18.0 · commit acc1eda · its source and its own documents"
+@answer scope="Film Kit v0.19.0 · commit e62e799 · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What Film Kit does" path="README.md" lines=3:3
+@source spec-rate title="Frame rate" path="src/filmkit/specification.py" lines=25:30
+@source spec-sound title="Sample rate and program level" path="src/filmkit/specification.py" lines=33:47
+@source sample-declaration title="The sample film's declaration" path="examples/sample-film/content/film.toml" lines=6:22
+@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=296:300
+@source changelog-019 title="The 0.19.0 changes" path="CHANGELOG.md" lines=7:23
 @source readme-engine title="The engine carries no film's content" path="README.md" lines=5:5
 @source readme-requirements title="Requirements" path="README.md" lines=9:12
 @source readme-layout title="A film's layout" path="README.md" lines=18:26
@@ -18,12 +23,12 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 @source readme-gate title="The picture gate" path="README.md" lines=80:80
 @source readme-metrics title="Text measured with the film's fonts" path="README.md" lines=82:82
 @source readme-balance title="Balance in every frame" path="README.md" lines=84:84
-@source readme-install title="Installing the engine in a film" path="README.md" lines=164:174
-@source readme-commands title="Commands" path="README.md" lines=180:196
-@source readme-endings title="Whole endings" path="README.md" lines=200:202
-@source readme-dev title="Development" path="README.md" lines=224:224
+@source readme-install title="Installing the engine in a film" path="README.md" lines=165:175
+@source readme-commands title="Commands" path="README.md" lines=181:197
+@source readme-endings title="Whole endings" path="README.md" lines=201:203
+@source readme-dev title="Development" path="README.md" lines=225:225
 @source agents-contract title="The engine contract" path="AGENTS.md" lines=10:16
-@source changelog-pin title="A film keeps its pin" path="CHANGELOG.md" lines=179:179
+@source changelog-pin title="A film keeps its pin" path="CHANGELOG.md" lines=196:196
 @source film-root title="Finding the film" path="src/filmkit/repository.py" lines=28:50
 @source film-load title="Checking the declaration" path="src/filmkit/film.py" lines=379:394
 @source edition-places title="Where an edition writes" path="src/filmkit/production.py" lines=138:154
@@ -62,17 +67,17 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 @source render-gate title="A render needs a passing gate" path="src/filmkit/picture/rendering.py" lines=471:498
 @source render title="Rendering the picture" path="src/filmkit/picture/rendering.py" lines=501:555
 @source validate title="Validating the picture" path="src/filmkit/picture/rendering.py" lines=586:596
-@source equivalence-doc title="Only the captions differ" path="src/filmkit/picture/equivalence.py" lines=1:28
+@source equivalence-doc title="Only the captions differ" path="src/filmkit/picture/equivalence.py" lines=1:32
 @source tools-doc title="The Node tool runner" path="src/filmkit/tools.py" lines=1:17
 @source headless-doc title="The composition, run headlessly" path="src/filmkit/picture/headless-composition.mjs" lines=1:13
-@source package-doc title="Packaging" path="src/filmkit/delivery/packaging.py" lines=1:24
-@source delivered-check title="Checking a finished film" path="src/filmkit/delivery/packaging.py" lines=493:536
-@source package-film title="Packaging every film" path="src/filmkit/delivery/packaging.py" lines=571:606
-@source package-inputs title="What the film package binds" path="src/filmkit/delivery/packaging.py" lines=229:240
+@source package-doc title="Packaging" path="src/filmkit/delivery/packaging.py" lines=1:31
+@source delivered-check title="Checking a finished film" path="src/filmkit/delivery/packaging.py" lines=539:582
+@source package-film title="Packaging every film" path="src/filmkit/delivery/packaging.py" lines=617:652
+@source package-inputs title="What the film package binds" path="src/filmkit/delivery/packaging.py" lines=272:284
 @source player-doc title="The player page" path="src/filmkit/delivery/player.py" lines=1:5
-@source verification-doc title="Verification" path="src/filmkit/delivery/verification.py" lines=1:12
-@source verify-review title="The review it accepts" path="src/filmkit/delivery/verification.py" lines=306:369
-@source verification-qualify title="One edition's checks" path="src/filmkit/delivery/verification.py" lines=372:401
+@source verification-doc title="Verification" path="src/filmkit/delivery/verification.py" lines=1:13
+@source verify-review title="The review it accepts" path="src/filmkit/delivery/verification.py" lines=308:371
+@source verification-qualify title="One edition's checks" path="src/filmkit/delivery/verification.py" lines=374:403
 @source reproduction-doc title="Reproduction" path="src/filmkit/delivery/reproduction.py" lines=1:24
 @source documents-doc title="Delivery to the Documents folder" path="src/filmkit/delivery/documents_folder.py" lines=1:27
 @source round-doc title="A review round" path="src/filmkit/review/round.py" lines=1:11
@@ -82,6 +87,16 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 ## What does Film Kit read, and what does it leave to the film? {#p-context}
 
 A film is the folder that holds `content/film.toml`; the engine finds it through `FILMKIT_ROOT` or the working directory.[](source:film-root) A film pins a release tag of the engine in its own Python project.[](source:readme-install)
+
+@facts
+| Frame rate | 60 fps; the engine refuses a script that declares another |
+| Sample rate | 48 kHz |
+| Program level | -16.5 LUFS, true peak at most -1 dBTP |
+| Films per edition | 4: a UHD master and a 1080p film, each with captions and without |
+
+The engine fixes these specifications, and a film uses them as they are.[](source:spec-rate)[](source:spec-sound)[](source:renditions) A film declares everything else in `content/film.toml`; this is the declaration of the sample film in the repository.[](source:sample-declaration)
+
+@code id=declaration source=sample-declaration language=toml
 
 @diagram architecture id=context-map source=context.architecture.json title="What Film Kit reads, runs and writes"
 
@@ -131,7 +146,7 @@ Each command runs at the film's root, and each production action names its editi
 | step-route-assemble | Assemble the sound | The assembly designs the pauses, levels each thought and chapter, and reaches the program level with one gain. It refuses the laid-out soundtrack for an unmarked pause above the film's limit or a declared term said unlike its reference.[](source:assembly-doc)[](source:program-gain) | route-flow | route-assemble |
 | step-route-gate | Check the picture | `check-picture` audits every frame, each label's sync and the motion, then writes the gate record.[](source:gate-doc) | route-flow | route-gate |
 | step-route-render | Stage, render | The captioned and the uncaptioned picture are each staged as one document and rendered by HyperFrames, only after a passing gate record.[](source:stage)[](source:render-gate)[](source:render) | route-flow | route-render |
-| step-route-compare | Compare the pictures | The two pictures may differ only by their captions, in the composition at every caption and every half second, and in the decoded frames outside the captions' band.[](source:equivalence-doc) | route-flow | route-compare |
+| step-route-compare | Compare the pictures | The two pictures may differ only by their captions, in the composition at every caption and every half second, and in the decoded frames outside the captions' band. Every frame of both is then scanned for a fault that lasts one frame.[](source:equivalence-doc) | route-flow | route-compare |
 | step-route-package | Package the films | FFmpeg muxes each film's picture, with captions or without, with the soundtrack and chapters; each film is checked before it is linked into place.[](source:package-doc)[](source:package-film) | route-flow | route-package |
 | step-route-verify | Verify every input | The verifier reads and decodes. It checks the sources, narration, both pictures and their equivalence, packages, all four decoded films and the review.[](source:verification-doc) | route-flow | route-verify |
 
@@ -178,7 +193,7 @@ A record names the SHA-256 of the files its step read, and the step that reads t
 | step-rec-assembly | audio-assembly.json | Binds the script and the soundtrack it wrote, with the designed pauses and the program level.[](source:assembly-doc) | records-erd | rec-assembly |
 | step-rec-stage | stage.json | Binds the script, timeline, assembly, soundtrack and source manifest, and each staged member.[](source:candidate-inputs)[](source:stage) | records-erd | rec-stage |
 | step-rec-gates | picture-gates.json | Binds the composition, timeline, stylesheet, fonts and engine version that the audits ran on.[](source:gate-check) | records-erd | rec-gates |
-| step-rec-package | film-package.json | Binds both pictures and their equivalence record, the soundtrack, cover, script and chapters, and each film's own SHA-256.[](source:package-inputs)[](source:package-film) | records-erd | rec-package |
+| step-rec-package | film-package.json | Binds both pictures and their equivalence record, the soundtrack, cover, script, chapters and the film's `VERSION`, and each film's own SHA-256.[](source:package-inputs)[](source:package-film) | records-erd | rec-package |
 
 ## What must pass before the picture renders? {#p-picture}
 
@@ -230,7 +245,7 @@ Each arrow points from a part to a part it calls.
 | step-part-sound | Soundtrack assembly | Writes the soundtrack, the timeline with its captions, and the assembly receipt.[](source:assembly-doc) | parts-map | part-sound |
 | step-part-gate | Picture gate | Writes the gate record and refuses while one gated finding remains.[](source:gate-doc) | parts-map | part-gate |
 | step-part-render | Picture rendering | Stages, renders and validates each UHD picture, with captions and without, and proves they differ only by their captions.[](source:render)[](source:equivalence-doc) | parts-map | part-render |
-| step-part-package | Packaging | Derives the viewing package and writes all four films, each checked before it is linked into place.[](source:package-doc) | parts-map | part-package |
+| step-part-package | Packaging | Derives the viewing package and writes all four films, each checked before it is linked into place. Each film and page names the film's version.[](source:package-doc) | parts-map | part-package |
 | step-part-verify | Verification | Reads every record again and decodes all four films; it writes nothing.[](source:verification-doc) | parts-map | part-verify |
 
 ## What does a delivered edition hold, and how is it accepted? {#p-delivery}
@@ -261,6 +276,12 @@ Delivery fills the film's Documents folder with exactly 25 members, then reads t
 | Review round | Prompts with each film's SHA-256, and the round's measurements[](source:round-doc)[](source:measurement-doc)              | Independent reviews score each edition on every declared dimension {good:Scored}                                               |
 | Verification | Sources, narration, render, packages, decoded films and the review[](source:verification-qualify)[](source:verify-review) | The edition binds its current inputs, and its review meets the film's floors {good:Bound}                                      |
 | Reproduction | The release manifest and the published assets[](source:reproduction-doc)                                                  | A rebuild keeps the release's decoded audio, streams, chapters and tags, and each frame meets its PSNR floor {good:Reproduced} |
+
+## How did Film Kit get here? {#p-history}
+
+Film Kit released v0.1.0 on 30 October 2026 and v0.19.0 on 10 November.[](source:changelog-010)[](source:changelog-019) These are the twelve releases that changed how a film is made. The repository keeps no dated roadmap; what is still open is listed last on this page.
+
+@diagram timeline id=history source=history.timeline.json title="How Film Kit got here"
 
 ## What is delivered, and what is still open? {#p-maturity}
 

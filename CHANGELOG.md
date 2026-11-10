@@ -11,11 +11,17 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 - A summary on every view of every work, in English and in Chinese, set beside
   its figure in the print edition. The input check refuses a view without one.
+- Each work's page shows how its system got here: a timeline of the releases
+  that changed what it does for its users, up to the pin, each at its tag's time
+  and citing its changelog section. The AIGW, ETHOS, Film Kit and Architecture
+  Publisher pages quote the file their reader writes from the pinned revision,
+  and the AIGW, ETHOS, Film Kit and OpenAI Responses Proxy pages list the values
+  their sources fix.
 
 ### Changed
 
-- OpenAI Responses Proxy is pinned at v5.1.10, Architecture Publisher at v0.10.2
-  and Film Kit at v0.18.0. Building the works needs Architecture Publisher 0.10.2
+- OpenAI Responses Proxy is pinned at v5.1.10, Architecture Publisher at v0.11.0
+  and Film Kit at v0.19.0. Building the works needs Architecture Publisher 0.10.2
   or later.
 - The Film Kit work names its subject Film Kit, as its project does, and keeps
   `filmkit` for the package, its commands and paths. Its motion audit lists dash

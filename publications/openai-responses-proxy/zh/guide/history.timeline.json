@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "diagram_type": "timeline",
+  "meta": {
+    "title": "这个代理怎样走到今天",
+    "output": "history.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
+      "provider": "github",
+      "revision": "a36a33cf43ac518682d94da41b799a2a6649f988"
+    },
+    "evidence": "observed",
+    "timezone": "Asia/Shanghai"
+  },
+  "lanes": [
+    {
+      "id": "product",
+      "label": "产品与路由"
+    },
+    {
+      "id": "requests",
+      "label": "请求与重放"
+    },
+    {
+      "id": "recovery",
+      "label": "上游失败"
+    },
+    {
+      "id": "lifecycle",
+      "label": "安装与运行"
+    }
+  ],
+  "events": [
+    {
+      "id": "v100",
+      "at": "2026-07-08T18:21:32+08:00",
+      "lane": "product",
+      "title": "v1.0.0 回环 Responses 适配器",
+      "detail": "首个发布版本：可移植的回环 Responses 兼容适配器，带看门狗、各平台服务适配器、限次上游重试和 SSE 重连处理。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1911,
+          "end_line": 1917,
+          "label": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v1012",
+      "at": "2026-07-17T22:55:58+08:00",
+      "lane": "recovery",
+      "title": "v1.0.12 限次恢复用尽后返回可重试的 503",
+      "detail": "不拆配对的回退请求都被拒绝后，再发最后一个请求，只带最新指令和最新用户请求。恢复用尽，或 DMXAPI 477 重试用尽，都返回带 Retry-After 的可重试 503。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1783,
+          "end_line": 1828,
+          "label": "1.0.12"
+        }
+      ]
+    },
+    {
+      "id": "v1043",
+      "at": "2026-07-31T03:49:14+08:00",
+      "lane": "requests",
+      "title": "v1.0.43 同一套可移植语法",
+      "detail": "每个 Responses 重放请求都重建为能在提供商之间迁移的语法，不改动 Codex 会话存储。DMXAPI、UCloud/Azure 和 AIHubMix 各得到一条固定且隔离的回环路由。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1400,
+          "end_line": 1411,
+          "label": "1.0.43"
+        }
+      ]
+    },
+    {
+      "id": "v202",
+      "at": "2026-08-02T17:14:29+08:00",
+      "lane": "product",
+      "kind": "change",
+      "title": "v2.0.2 改名 Codex Responses Proxy，按提供商清单路由",
+      "detail": "产品由专为 DMX 而做的 Codex DMX Proxy 改名而来，通过提供商清单服务普通 Responses 端点。每个请求都须指明 /<provider>/v1 命名空间；安装和移除不再读取或改写 Codex、AIGW 配置。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1306,
+          "end_line": 1372,
+          "label": "2.0.2"
+        }
+      ]
+    },
+    {
+      "id": "v3116",
+      "at": "2026-09-05T14:11:53+08:00",
+      "lane": "lifecycle",
+      "title": "v3.1.16 升级期间继续放行请求",
+      "detail": "具备相应能力的升级和回滚交接，不再以 proxy_draining 拒绝新请求和进行中的 Responses 请求。只有替换旧式原生代时，才限时排空。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 540,
+          "end_line": 547,
+          "label": "3.1.16"
+        }
+      ]
+    },
+    {
+      "id": "v400",
+      "at": "2026-09-15T23:53:28+08:00",
+      "lane": "lifecycle",
+      "kind": "change",
+      "title": "v4.0.0 原地升级须按代安装",
+      "detail": "原地升级要求持久的按代安装；旧式平铺安装须先卸载，再全新安装。Linux 需要可达的用户服务管理器，主机的 lingering 策略保持不变。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 507,
+          "end_line": 530,
+          "label": "4.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v500",
+      "at": "2026-10-10T10:49:44+08:00",
+      "lane": "product",
+      "kind": "change",
+      "title": "v5.0.0 OpenAI Responses Proxy",
+      "detail": "产品、命令、原生服务和发布资产都改用新名称，现有安装须先卸载再全新安装。安装时可用 --upstream-base-url 选定一个普通 Responses 上游。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 406,
+          "end_line": 423,
+          "label": "5.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v503",
+      "at": "2026-10-12T19:44:37+08:00",
+      "lane": "lifecycle",
+      "kind": "alert",
+      "title": "v5.0.3 macOS 重启后恢复看门狗",
+      "detail": "有 GUI 登录时，安装把看门狗注册到该登录的域，launchd 每次 GUI 登录都会重新加载它。5.0.1 和 5.0.2 留下的仅限 Background 域的注册会被迁移。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 343,
+          "end_line": 379,
+          "label": "5.0.3"
+        }
+      ]
+    },
+    {
+      "id": "v510",
+      "at": "2026-10-22T12:30:30+08:00",
+      "lane": "requests",
+      "kind": "change",
+      "title": "v5.1.0 请求体准入与单一交互时限",
+      "detail": "Responses 请求体须带一个 ASCII Content-Length，至多 64 MiB，30 秒内收完；传输编码、长度缺失或重复，都得到 400。上游超时改为每次交互一个总时限。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 180,
+          "end_line": 286,
+          "label": "5.1.0"
+        }
+      ]
+    },
+    {
+      "id": "v513",
+      "at": "2026-10-23T19:49:51+08:00",
+      "lane": "requests",
+      "kind": "alert",
+      "title": "v5.1.3 不再跟随上游重定向",
+      "detail": "重定向曾可能把客户端的 Authorization 请求头带到别的主机；现在客户端直接收到重定向响应。排空和交接这两个控制端点，只接受不带 Origin 的回环调用方。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 134,
+          "end_line": 156,
+          "label": "5.1.3"
+        }
+      ]
+    },
+    {
+      "id": "v517",
+      "at": "2026-10-25T19:46:26+08:00",
+      "lane": "recovery",
+      "kind": "alert",
+      "title": "v5.1.7 已完整发出的请求绝不再发",
+      "detail": "5.1.6 对每种传输失败都重试，可能让提供商的工作和计费重复。现在客户端收到 502 upstream_outcome_unknown；请求发完之前的失败仍会重试。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 79,
+          "end_line": 102,
+          "label": "5.1.7"
+        }
+      ]
+    },
+    {
+      "id": "v5110",
+      "at": "2026-11-09T06:38:03+08:00",
+      "lane": "recovery",
+      "title": "v5.1.10 输入超长与媒体超预算",
+      "detail": "上游以输入超长或媒体超预算拒绝时，若当前输入允许，就带更少的历史再试一次。当前的用户图片、工具图片、指令和工具依赖都保留。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 11,
+          "end_line": 32,
+          "label": "5.1.10"
+        }
+      ]
+    }
+  ]
+}

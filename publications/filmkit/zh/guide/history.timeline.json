@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "diagram_type": "timeline",
+  "meta": {
+    "title": "Film Kit 怎样走到今天",
+    "output": "history.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/filmkit.git",
+      "provider": "github",
+      "revision": "e62e7996587d0cfc5e599be78a66747072c83893"
+    },
+    "evidence": "observed",
+    "timezone": "Asia/Shanghai"
+  },
+  "lanes": [
+    {
+      "id": "engine",
+      "label": "引擎"
+    },
+    {
+      "id": "narration",
+      "label": "旁白与声音"
+    },
+    {
+      "id": "picture",
+      "label": "画面门禁"
+    },
+    {
+      "id": "delivery",
+      "label": "交付与评审"
+    }
+  ],
+  "events": [
+    {
+      "id": "v010",
+      "at": "2026-10-30T21:50:23+08:00",
+      "lane": "engine",
+      "title": "v0.1.0 引擎独立出来",
+      "detail": "从重建 DDWG 介绍影片的代码中独立出来：本地语音模型朗读、音轨拼接、字幕、画面预置与渲染，附一部一分钟的双语示例影片。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 296,
+          "end_line": 305,
+          "label": "0.1.0"
+        }
+      ]
+    },
+    {
+      "id": "v030",
+      "at": "2026-11-02T01:18:03+08:00",
+      "lane": "narration",
+      "title": "v0.3.0 概念契约与读音检查",
+      "detail": "影片声明每个概念在来源中的含义和各语言版的用词；任何语音模型加载之前，先做概念检查和读音检查。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 257,
+          "end_line": 267,
+          "label": "0.3.0"
+        }
+      ]
+    },
+    {
+      "id": "v060",
+      "at": "2026-11-03T17:01:00+08:00",
+      "lane": "picture",
+      "kind": "change",
+      "title": "v0.6.0 画面门禁",
+      "detail": "check-picture 对当前的画面合成和时间线做逐帧、同步和动效审查，写出门禁记录；没有通过的记录，就不渲染。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 216,
+          "end_line": 225,
+          "label": "0.6.0"
+        }
+      ]
+    },
+    {
+      "id": "v080",
+      "at": "2026-11-04T09:04:52+08:00",
+      "lane": "picture",
+      "title": "v0.8.0 用影片自己的字体测量",
+      "detail": "无头审查按影片声明的字体测量文字宽度；门禁记录绑定样式表和每个字体的 SHA-256。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 183,
+          "end_line": 194,
+          "label": "0.8.0"
+        }
+      ]
+    },
+    {
+      "id": "v090",
+      "at": "2026-11-04T18:25:16+08:00",
+      "lane": "picture",
+      "title": "v0.9.0 讲到哪里，就要认得出哪里",
+      "detail": "门禁拒绝讲述中停留超过 0.6 s 仍认不出名称的标记，以及超过 1 s 没有可认名称的讲述。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 157,
+          "end_line": 161,
+          "label": "0.9.0"
+        }
+      ]
+    },
+    {
+      "id": "v100",
+      "at": "2026-11-06T07:20:38+08:00",
+      "lane": "delivery",
+      "title": "v0.10.0 第一轮制作评审",
+      "detail": "评审命令可以写出影片的第一轮制作评审；渲染之前，preflight 一次报告所有过期或缺失的输入。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 137,
+          "end_line": 145,
+          "label": "0.10.0"
+        }
+      ]
+    },
+    {
+      "id": "v120",
+      "at": "2026-11-07T07:20:11+08:00",
+      "lane": "picture",
+      "kind": "alert",
+      "title": "v0.12.0 追踪每个标记的动效",
+      "detail": "动效审查按观众看到的方式追踪每个标记，拒绝骤停、骤起、过快和突现；从这一版起，对每部影片都生效。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 90,
+          "end_line": 105,
+          "label": "0.12.0"
+        }
+      ]
+    },
+    {
+      "id": "v130",
+      "at": "2026-11-07T20:51:01+08:00",
+      "lane": "delivery",
+      "kind": "change",
+      "title": "v0.13.0 无字幕画面，四部成片",
+      "detail": "每个语言版另渲染一份无字幕画面，并证明它与带字幕的画面只在字幕上不同；交付项增至 25 个。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 74,
+          "end_line": 86,
+          "label": "0.13.0"
+        }
+      ]
+    },
+    {
+      "id": "v140",
+      "at": "2026-11-08T05:59:35+08:00",
+      "lane": "delivery",
+      "title": "v0.14.0 切换时画面不闪",
+      "detail": "播放器切换版本或字幕时，画面不再闪回封面或单色帧；门禁还检查画满整圈的弧线。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 56,
+          "end_line": 65,
+          "label": "0.14.0"
+        }
+      ]
+    },
+    {
+      "id": "v170",
+      "at": "2026-11-09T23:56:41+08:00",
+      "lane": "picture",
+      "title": "v0.17.0 跳变与虚线突变",
+      "detail": "门禁拒绝舞台切换时整体跳动的标记，以及一帧之内虚线突变的线条。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 34,
+          "end_line": 42,
+          "label": "0.17.0"
+        }
+      ]
+    },
+    {
+      "id": "v180",
+      "at": "2026-11-10T01:44:23+08:00",
+      "lane": "delivery",
+      "kind": "alert",
+      "title": "v0.18.0 作者只写一次，1080p 不再振铃",
+      "detail": "1080p 观看版在解码与编码之间按每 2×2 像素块取平均，每 2 s 一个关键帧；核验器拒绝更早打包的成片。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 24,
+          "end_line": 32,
+          "label": "0.18.0"
+        }
+      ]
+    },
+    {
+      "id": "v190",
+      "at": "2026-11-11T00:10:14+08:00",
+      "lane": "delivery",
+      "kind": "change",
+      "title": "v0.19.0 逐帧比对",
+      "detail": "compare-pictures 比对一个语言版两份画面的每一帧，指出每个单帧故障，并给出重新渲染该画面的命令。每部成片都写明版本号，早先版本打包的成片会被拒绝。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 7,
+          "end_line": 23,
+          "label": "0.19.0"
+        }
+      ]
+    }
+  ]
+}

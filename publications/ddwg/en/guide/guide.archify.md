@@ -78,6 +78,9 @@ The guidelines are a documentation repository that members and Agents read witho
 @source ci-projection title="Generated pipelines" path=".config/checks/ci-projection/policy.toml" lines=1:16
 @source github-job title="The GitHub job" path=".github/workflows/ci.yml" lines=36:46
 @source version-file title="VERSION" path="VERSION" lines=1:1
+@source changelog-intro title="Earlier editions had no release tags" path="CHANGELOG.md" lines=10:11
+@source changelog-400 title="The 4.0.0 release" path="CHANGELOG.md" lines=769:808
+@source changelog-800 title="The 8.0.0 release" path="CHANGELOG.md" lines=17:183
 
 ## Who reads the guidelines, and where do they start? {#p-readers}
 
@@ -241,6 +244,12 @@ A decision record keeps a lasting choice and its rejected alternatives, never ta
 | DR-0005: closure scope      | Close a Change on its delivered tasks; withdraw the rest with a reason {good:Chosen} | Waiting for every environment, or checking unfinished tasks {bad:Rejected}          |
 
 A withdrawn task keeps its line and identity without a checkbox, so the archived Change still shows its whole plan.[](source:dr5-decision)[](source:dr5-alternatives)
+
+## How did the guidelines get here? {#p-history}
+
+Versioned editions begin with v4.0.0 on 2026-09-26; earlier branch editions had no release tags.[](source:changelog-intro)[](source:changelog-400) The timeline picks eleven releases, up to v8.0.0 on 2026-11-01, that changed what members, Agents or maintainers read.[](source:changelog-800)
+
+@diagram timeline id=history source=history.timeline.json title="How the guidelines got here"
 
 ## What is settled, and what is still open? {#p-open}
 

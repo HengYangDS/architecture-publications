@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "diagram_type": "timeline",
+  "meta": {
+    "title": "How Film Kit got here",
+    "output": "history.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/filmkit.git",
+      "provider": "github",
+      "revision": "e62e7996587d0cfc5e599be78a66747072c83893"
+    },
+    "evidence": "observed",
+    "timezone": "Asia/Shanghai"
+  },
+  "lanes": [
+    {
+      "id": "engine",
+      "label": "Engine"
+    },
+    {
+      "id": "narration",
+      "label": "Narration and sound"
+    },
+    {
+      "id": "picture",
+      "label": "Picture gates"
+    },
+    {
+      "id": "delivery",
+      "label": "Delivery and review"
+    }
+  ],
+  "events": [
+    {
+      "id": "v010",
+      "at": "2026-10-30T21:50:23+08:00",
+      "lane": "engine",
+      "title": "v0.1.0 The engine stands alone",
+      "detail": "Split out of the code that rebuilt the DDWG introduction films: narration with a local speech model, soundtrack assembly, captions, picture staging and rendering, with a one-minute bilingual sample film.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 296,
+          "end_line": 305,
+          "label": "0.1.0"
+        }
+      ]
+    },
+    {
+      "id": "v030",
+      "at": "2026-11-02T01:18:03+08:00",
+      "lane": "narration",
+      "title": "v0.3.0 Concept contract and readings check",
+      "detail": "A film declares what each concept means in its source and each edition's words for it; narration checks concepts and readings before any speech model loads.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 257,
+          "end_line": 267,
+          "label": "0.3.0"
+        }
+      ]
+    },
+    {
+      "id": "v060",
+      "at": "2026-11-03T17:01:00+08:00",
+      "lane": "picture",
+      "kind": "change",
+      "title": "v0.6.0 The picture gate",
+      "detail": "check-picture runs the frame, sync and motion audits of the current composition and timeline and writes a gate record; without a passing record, nothing renders.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 216,
+          "end_line": 225,
+          "label": "0.6.0"
+        }
+      ]
+    },
+    {
+      "id": "v080",
+      "at": "2026-11-04T09:04:52+08:00",
+      "lane": "picture",
+      "title": "v0.8.0 Measured with the film's own fonts",
+      "detail": "The headless audits measure text with the film's declared fonts; the gate record binds the stylesheet and each font by SHA-256.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 183,
+          "end_line": 194,
+          "label": "0.8.0"
+        }
+      ]
+    },
+    {
+      "id": "v090",
+      "at": "2026-11-04T18:25:16+08:00",
+      "lane": "picture",
+      "title": "v0.9.0 Named where it is spoken",
+      "detail": "The gate refuses a mark that stands in speech for over 0.6 s before a name is legible, and speech of over 1 s with no legible name.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 157,
+          "end_line": 161,
+          "label": "0.9.0"
+        }
+      ]
+    },
+    {
+      "id": "v100",
+      "at": "2026-11-06T07:20:38+08:00",
+      "lane": "delivery",
+      "title": "v0.10.0 The first production review",
+      "detail": "The review command writes a film's first production review; before a render, preflight reports every stale or missing input at once.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 137,
+          "end_line": 145,
+          "label": "0.10.0"
+        }
+      ]
+    },
+    {
+      "id": "v120",
+      "at": "2026-11-07T07:20:11+08:00",
+      "lane": "picture",
+      "kind": "alert",
+      "title": "v0.12.0 Every mark followed",
+      "detail": "The motion audit follows each mark as a viewer sees it move and refuses halts, starts, races and pops; from this release it applies to every film.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 90,
+          "end_line": 105,
+          "label": "0.12.0"
+        }
+      ]
+    },
+    {
+      "id": "v130",
+      "at": "2026-11-07T20:51:01+08:00",
+      "lane": "delivery",
+      "kind": "change",
+      "title": "v0.13.0 Uncaptioned pictures, four films",
+      "detail": "Each edition renders a second picture without captions and proves it differs only by them; a delivery holds 25 members.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 74,
+          "end_line": 86,
+          "label": "0.13.0"
+        }
+      ]
+    },
+    {
+      "id": "v140",
+      "at": "2026-11-08T05:59:35+08:00",
+      "lane": "delivery",
+      "title": "v0.14.0 Switches without a flash",
+      "detail": "A version or captions switch in the player no longer shows the cover or a flat frame; the gate checks arcs that sweep a whole turn.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 56,
+          "end_line": 65,
+          "label": "0.14.0"
+        }
+      ]
+    },
+    {
+      "id": "v170",
+      "at": "2026-11-09T23:56:41+08:00",
+      "lane": "picture",
+      "title": "v0.17.0 Jumps and dash snaps",
+      "detail": "The gate refuses marks that a stage cut moves whole, and strokes whose dashes snap within one frame.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 34,
+          "end_line": 42,
+          "label": "0.17.0"
+        }
+      ]
+    },
+    {
+      "id": "v180",
+      "at": "2026-11-10T01:44:23+08:00",
+      "lane": "delivery",
+      "kind": "alert",
+      "title": "v0.18.0 One author, no ringing",
+      "detail": "The 1080p films average each 2×2 block between decode and encode, with a keyframe every 2 s; the verifier refuses films packaged earlier.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 24,
+          "end_line": 32,
+          "label": "0.18.0"
+        }
+      ]
+    },
+    {
+      "id": "v190",
+      "at": "2026-11-11T00:10:14+08:00",
+      "lane": "delivery",
+      "kind": "change",
+      "title": "v0.19.0 Every frame compared",
+      "detail": "compare-pictures compares every frame of an edition's two pictures and names each one-frame fault with the command that renders its picture again. Each film names its version, so a film packaged by an earlier release is refused.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 7,
+          "end_line": 23,
+          "label": "0.19.0"
+        }
+      ]
+    }
+  ]
+}

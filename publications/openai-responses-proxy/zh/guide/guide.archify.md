@@ -97,10 +97,28 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 @source code-activate-carrier title="每个角色加载自己的运行配置" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=152:159
 @source code-status-next title="每种状态一条下一步命令" path="src/openai_responses_proxy/cli/outcome.py" lines=37:43
 @source code-lock title="唯一的生命周期写入者" path="src/openai_responses_proxy/cli/application.py" lines=96:115
+@source readme-port title="默认端口" path="README.md" lines=89:97
+@source readme-budgets title="全新安装可另选的上限" path="README.md" lines=371:389
+@source code-defaults title="运行时默认值" path="src/openai_responses_proxy/runtime/config.py" lines=70:86
+@source code-platforms title="发布平台" path="src/openai_responses_proxy/product_identity.py" lines=13:18
+@source changelog-100 title="1.0.0 的发布" path="CHANGELOG.md" lines=1911:1917
+@source changelog-202 title="2.0.2 改名" path="CHANGELOG.md" lines=1306:1316
+@source changelog-500 title="5.0.0 改名" path="CHANGELOG.md" lines=406:413
+@source changelog-5110 title="5.1.10 的发布" path="CHANGELOG.md" lines=11:18
 
 ## 谁通过代理发送流量，代理又把哪些事留给别人？ {#p-context}
 
 代理负责 Responses 规范化、重放的可移植性、限次恢复和自身的服务生命周期。它不配置任何客户端，也不读取客户端配置。[](source:readme-boundary)[](source:dr1-decision)
+
+@facts
+| 监听器 | 127.0.0.1，端口 8792 |
+| 请求体 | 一个 Content-Length，至多 64 MiB，30 秒内收完 |
+| 交互时限 | 900 秒，覆盖整个交互，包括对客户端的每一次写入 |
+| SSE 事件 | 每个至多 64 MiB，内容之前暂存的事件也一样 |
+| 模型目录 | 每个请求 30 秒，至多 8 MiB |
+| 发布平台 | macOS arm64、Linux x86_64、Windows x86_64 |
+
+监听器只绑定 127.0.0.1，不对请求做身份验证。[](source:threat-boundaries)只有 8792 与本机其他服务冲突时，才用 `--port` 另选端口。[](source:readme-port)其余数值都是运行时默认值，每个平台各有自己的原生发布资产。[](source:code-defaults)[](source:readme-deadline)[](source:code-platforms)全新安装可以另选请求体、事件和模型目录的上限，升级则沿用已持久保存的值。[](source:readme-budgets)
 
 @diagram architecture id=context-map source=context.architecture.json
 
@@ -261,6 +279,12 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 | step-dk-agent | launchd Agent | 以看门狗角色运行可执行文件，并设置 RunAtLoad 和 KeepAlive。[](source:code-plist) | disk-tree | dk-agent |
 
 `uninstall --purge` 先记下每个载荷文件的路径和摘要，再只删除这些确切的文件。未知内容保留，并会报告。[](source:readme-purge)
+
+## 这个代理怎样走到今天？ {#p-history}
+
+代理在 2026 年 7 月发布 1.0.0，11 月发布 5.1.10，其间两次改名。[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-5110)下面列出其中十二个版本，它们改变了客户端或运维人员遇到的行为。
+
+@diagram timeline id=history source=history.timeline.json title="这个代理怎样走到今天"
 
 ## 谁让监听器持续运行，status 又报告什么？ {#p-running}
 

@@ -97,10 +97,28 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 @source code-activate-carrier title="Each role loads its carrier" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=152:159
 @source code-status-next title="One next command per state" path="src/openai_responses_proxy/cli/outcome.py" lines=37:43
 @source code-lock title="One lifecycle writer" path="src/openai_responses_proxy/cli/application.py" lines=96:115
+@source readme-port title="The default port" path="README.md" lines=89:97
+@source readme-budgets title="Limits a fresh installation may choose" path="README.md" lines=371:389
+@source code-defaults title="Runtime defaults" path="src/openai_responses_proxy/runtime/config.py" lines=70:86
+@source code-platforms title="Release platforms" path="src/openai_responses_proxy/product_identity.py" lines=13:18
+@source changelog-100 title="The 1.0.0 release" path="CHANGELOG.md" lines=1911:1917
+@source changelog-202 title="Renamed in 2.0.2" path="CHANGELOG.md" lines=1306:1316
+@source changelog-500 title="Renamed in 5.0.0" path="CHANGELOG.md" lines=406:413
+@source changelog-5110 title="The 5.1.10 release" path="CHANGELOG.md" lines=11:18
 
 ## Who sends traffic through the proxy, and what does it leave to others? {#p-context}
 
 The proxy owns Responses normalization, replay portability, bounded recovery and its own service lifecycle. It configures no client and reads no client configuration.[](source:readme-boundary)[](source:dr1-decision)
+
+@facts
+| Listener | 127.0.0.1, port 8792 |
+| Request body | One Content-Length, at most 64 MiB, received within 30 s |
+| Exchange deadline | 900 s for the whole exchange, including every write to the client |
+| SSE event | At most 64 MiB, also for the events held before content |
+| Model catalog | 30 s and at most 8 MiB per request |
+| Release platforms | macOS arm64, Linux x86_64, Windows x86_64 |
+
+The listener binds 127.0.0.1 only and does not authenticate requests.[](source:threat-boundaries) Use `--port` only when 8792 conflicts with another local service.[](source:readme-port) The other values are the runtime's defaults, and each platform has its own native release asset.[](source:code-defaults)[](source:readme-deadline)[](source:code-platforms) A fresh installation can choose other body, event and catalog limits, and an upgrade keeps the persisted values.[](source:readme-budgets)
 
 @diagram architecture id=context-map source=context.architecture.json
 
@@ -261,6 +279,12 @@ These are the macOS defaults; Linux follows XDG directories and Windows uses LOC
 | step-dk-agent | Launch agent | Runs the executable in its watchdog role, with RunAtLoad and KeepAlive.[](source:code-plist) | disk-tree | dk-agent |
 
 `uninstall --purge` records each payload file's path and digest first, then deletes only those exact files. Unknown content stays and is reported.[](source:readme-purge)
+
+## How did the proxy get here? {#p-history}
+
+The proxy went from 1.0.0 in July 2026 to 5.1.10 in November, and changed its name twice on the way.[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-5110) Below are twelve of its releases that changed what a client or an operator meets.
+
+@diagram timeline id=history source=history.timeline.json title="How the proxy got here"
 
 ## Who keeps the listener running, and what does status report? {#p-running}
 

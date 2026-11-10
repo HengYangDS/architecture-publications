@@ -4,7 +4,7 @@ Each work's page explains how its system is built, but not how the system got he
 or which values it fixes. Readers ask all three, and each answer is in the described repository: its CHANGELOG and
 tags, its declared configuration, and the constants and limits its sources state.
 
-Architecture Publisher has also released 0.11.0, and its work still pins v0.10.2.
+Architecture Publisher has also released 0.11.0 and Film Kit 0.19.0, and their works still pin v0.10.2 and v0.18.0.
 
 ## What Changes
 
@@ -14,8 +14,8 @@ Architecture Publisher has also released 0.11.0, and its work still pins v0.10.2
   revision with Archify's code excerpt, in the panel that explains it.
 - Where the sources fix values a reader needs, such as defaults, limits and supported platforms, the page lists them in
   a facts table that cites them.
-- Architecture Publisher's work pins v0.11.0, with every citation moved or reread by the re-pin worklist, and its
-  history includes 0.11.0.
+- Architecture Publisher's work pins v0.11.0 and Film Kit's v0.19.0, with every citation moved or reread by the re-pin
+  worklist, and each history includes its pinned release.
 
 ## Capabilities
 
@@ -31,5 +31,5 @@ every new citation at the pin.
 ## Impact
 
 `publications/<work>/{en,zh}/guide/` for the six works: the guide and a new `history.timeline.json` each; Architecture
-Publisher's models, overview, README and term table for its re-pin; `CHANGELOG.md`. The described repositories are
-unchanged.
+Publisher's and Film Kit's models, overviews, READMEs and term tables for their re-pins; `CHANGELOG.md`. The described
+repositories are unchanged.

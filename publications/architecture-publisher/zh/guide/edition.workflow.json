@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "4fcd4d061fb21b7a4c547c6a7b47c3f8507fbc7d"
+      "revision": "a7de98b5fb27daa13a59dd311a3123980b893323"
     },
     "legend": {
       "entries": {
@@ -73,8 +73,8 @@
       "sources": [
         {
           "path": "src/poster/compose/plates.mjs",
-          "line": 99,
-          "end_line": 110,
+          "line": 109,
+          "end_line": 121,
           "label": "Compositions"
         }
       ]
@@ -88,8 +88,8 @@
       "sources": [
         {
           "path": "src/poster/compose/plates.mjs",
-          "line": 149,
-          "end_line": 160,
+          "line": 160,
+          "end_line": 171,
           "label": "Admitted"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "src/poster/compose/plates.mjs",
-          "line": 203,
-          "end_line": 234,
+          "line": 222,
+          "end_line": 282,
           "label": "Width"
         }
       ]
@@ -148,8 +148,8 @@
       "sources": [
         {
           "path": "docs/reference/operations.md",
-          "line": 212,
-          "end_line": 215,
+          "line": 227,
+          "end_line": 231,
           "label": "Text"
         }
       ]
@@ -178,8 +178,8 @@
       "sources": [
         {
           "path": "docs/reference/operations.md",
-          "line": 396,
-          "end_line": 401,
+          "line": 412,
+          "end_line": 417,
           "label": "Refusals"
         }
       ]

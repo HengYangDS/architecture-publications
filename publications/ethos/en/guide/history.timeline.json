@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "diagram_type": "timeline",
+  "meta": {
+    "title": "How ETHOS got here",
+    "output": "history.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/ethos.git",
+      "provider": "github",
+      "revision": "727ee0579ba1fb9e391b5c44ce9fb2c208390199"
+    },
+    "evidence": "observed",
+    "timezone": "Asia/Shanghai"
+  },
+  "lanes": [
+    {
+      "id": "paradigm",
+      "label": "Repository paradigm"
+    },
+    {
+      "id": "proof",
+      "label": "Proof and gates"
+    },
+    {
+      "id": "lanes",
+      "label": "Lanes and results"
+    },
+    {
+      "id": "host",
+      "label": "Host and release"
+    }
+  ],
+  "events": [
+    {
+      "id": "alpha-5",
+      "at": "2026-10-21T20:14:27+08:00",
+      "lane": "proof",
+      "kind": "change",
+      "title": "alpha.5 Proofs wait for the host",
+      "detail": "A full proof waits for its repository's proof slot and the host's load before any gate runs. Declared native outputs take tool-neutral formats, so a repository's own tests can evidence languages ETHOS does not check itself.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1499,
+          "end_line": 1507,
+          "label": "0.2.0-alpha.5"
+        }
+      ]
+    },
+    {
+      "id": "alpha-6",
+      "at": "2026-10-22T06:04:20+08:00",
+      "lane": "paradigm",
+      "title": "alpha.6 Line endings, license grants",
+      "detail": "The paradigm judges each tracked file's line endings by its effective Git attributes. A tracked license grant is checked against pinned SPDX templates, linked from README.md and matched against package metadata.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1411,
+          "end_line": 1424,
+          "label": "0.2.0-alpha.6"
+        }
+      ]
+    },
+    {
+      "id": "alpha-8",
+      "at": "2026-10-24T01:01:54+08:00",
+      "lane": "host",
+      "title": "alpha.8 The host store stops growing",
+      "detail": "Each repository records itself in the installations it selects, and hook install retires those that no consumer or process uses. ethos hook retire-supply previews installations pinned before that. v0.2.0-alpha.10 first published these changes.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1259,
+          "end_line": 1263,
+          "label": "0.2.0-alpha.8"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 1313,
+          "end_line": 1318,
+          "label": "0.2.0-alpha.8"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 1217,
+          "end_line": 1219,
+          "label": "0.2.0-alpha.10"
+        }
+      ]
+    },
+    {
+      "id": "alpha-18",
+      "at": "2026-10-29T04:32:53+08:00",
+      "lane": "lanes",
+      "kind": "change",
+      "title": "alpha.18 One proof per Change",
+      "detail": "The archived head is proved once, and landing requires that proof. If it fails, archive-change --compensate returns the archive to its exact pre-archive head. ethos prove drops --execution-root.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1000,
+          "end_line": 1011,
+          "label": "0.2.0-alpha.18"
+        }
+      ]
+    },
+    {
+      "id": "alpha-19",
+      "at": "2026-10-29T16:17:26+08:00",
+      "lane": "proof",
+      "title": "alpha.19 One set of obligations",
+      "detail": "The packaged system/gates.toml holds only the obligations every repository runs. ETHOS judges its own tree by them and declares its own gates apart, so obligations no longer depend on a registry path or history.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 951,
+          "end_line": 954,
+          "label": "0.2.0-alpha.19"
+        }
+      ]
+    },
+    {
+      "id": "alpha-22",
+      "at": "2026-10-31T12:44:39+08:00",
+      "lane": "paradigm",
+      "title": "alpha.22 A per-file ceiling of 500",
+      "detail": "Each tracked Python file may hold 500 effective lines, and each authored Markdown document 500 nonblank lines. A repository may lower its ceiling, or raise it to 1000 with a stated reason.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 811,
+          "end_line": 817,
+          "label": "0.2.0-alpha.22"
+        }
+      ]
+    },
+    {
+      "id": "alpha-26",
+      "at": "2026-11-02T07:04:14+08:00",
+      "lane": "paradigm",
+      "kind": "change",
+      "title": "alpha.26 Shared formatter settings",
+      "detail": "A repository needs no Prettier, Taplo or Ruff carrier of its own, because the formatters run on the settings ETHOS ships. Every governed repository keeps CONTRIBUTING.md beside AGENTS.md and README.md.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 689,
+          "end_line": 698,
+          "label": "0.2.0-alpha.26"
+        }
+      ]
+    },
+    {
+      "id": "alpha-27",
+      "at": "2026-11-02T17:07:39+08:00",
+      "lane": "proof",
+      "title": "alpha.27 Every wait is declared",
+      "detail": "The paradigm declares each wait's default, unit and bound, and a repository may set its own in .ethos/rules.toml. Every gate now runs within a deadline, its own or the repository's.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 631,
+          "end_line": 640,
+          "label": "0.2.0-alpha.27"
+        }
+      ]
+    },
+    {
+      "id": "alpha-29",
+      "at": "2026-11-04T12:37:33+08:00",
+      "lane": "host",
+      "title": "alpha.29 Releases rehearse adoption",
+      "detail": "Each release run attests its archives and wheels with GitHub artifact attestations. It qualifies the prerelease on macOS and Linux, from a cold install through a full proof, upgrade, rollback and uninstall.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 464,
+          "end_line": 471,
+          "label": "0.2.0-alpha.29"
+        }
+      ]
+    },
+    {
+      "id": "beta-2",
+      "at": "2026-11-05T13:45:12+08:00",
+      "lane": "host",
+      "title": "beta.2 First beta, one host queue",
+      "detail": "ethos host run admits heavy local commands through one queue per host, and a full proof takes the same host slot. Load admission now waits for two consecutive 1-minute samples within the limit.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 332,
+          "end_line": 354,
+          "label": "0.2.0-beta.2"
+        }
+      ]
+    },
+    {
+      "id": "beta-3",
+      "at": "2026-11-06T03:53:34+08:00",
+      "lane": "lanes",
+      "kind": "change",
+      "title": "beta.3 Timeouts report unknown",
+      "detail": "A timed-out gate, an absent command and a prerequisite of unknown state now report unknown instead of block. A lane's holder reads and renews its Lease through native commands.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 232,
+          "end_line": 247,
+          "label": "0.2.0-beta.3"
+        }
+      ]
+    },
+    {
+      "id": "beta-6",
+      "at": "2026-11-07T10:56:55+08:00",
+      "lane": "lanes",
+      "kind": "change",
+      "title": "beta.6 Result schema 3",
+      "detail": "A schema-2 payload is refused. Every JSON result fits 16 KiB, or 32 KiB for plan, and carries its next step as data. The publication declaration no longer takes forge_repository in a peer.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 19,
+          "end_line": 28,
+          "label": "0.2.0-beta.6"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 46,
+          "end_line": 51,
+          "label": "0.2.0-beta.6"
+        }
+      ]
+    }
+  ]
+}

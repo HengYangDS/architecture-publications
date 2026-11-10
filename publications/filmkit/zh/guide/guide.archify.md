@@ -7,9 +7,14 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 - [录音只有完整收尾才能进入音轨](block:p-takes)，除非影片为它的衔接声明了尾音淡出。[](source:abrupt)
 - [画面只有通过门禁才会渲染](block:p-picture)，而且门禁针对的必须是当前的画面合成、时间线、样式表、字体和引擎版本。[](source:render-gate)
 
-@answer scope="Film Kit v0.18.0 · 提交 acc1eda · 源码及项目自带文档"
+@answer scope="Film Kit v0.19.0 · 提交 e62e799 · 源码及项目自带文档"
 @meta locale=zh-CN style=editorial
 @source readme-what title="Film Kit 做什么" path="README.md" lines=3:3
+@source spec-rate title="帧率" path="src/filmkit/specification.py" lines=25:30
+@source spec-sound title="采样率与节目响度" path="src/filmkit/specification.py" lines=33:47
+@source sample-declaration title="示例影片的声明" path="examples/sample-film/content/film.toml" lines=6:22
+@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=296:300
+@source changelog-019 title="0.19.0 的改动" path="CHANGELOG.md" lines=7:23
 @source readme-engine title="引擎不带任何影片的内容" path="README.md" lines=5:5
 @source readme-requirements title="运行要求" path="README.md" lines=9:12
 @source readme-layout title="影片的目录结构" path="README.md" lines=18:26
@@ -18,12 +23,12 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @source readme-gate title="画面门禁" path="README.md" lines=80:80
 @source readme-metrics title="用影片的字体测量文字" path="README.md" lines=82:82
 @source readme-balance title="每一帧的平衡" path="README.md" lines=84:84
-@source readme-install title="在影片中安装引擎" path="README.md" lines=164:174
-@source readme-commands title="命令" path="README.md" lines=180:196
-@source readme-endings title="完整收尾" path="README.md" lines=200:202
-@source readme-dev title="开发" path="README.md" lines=224:224
+@source readme-install title="在影片中安装引擎" path="README.md" lines=165:175
+@source readme-commands title="命令" path="README.md" lines=181:197
+@source readme-endings title="完整收尾" path="README.md" lines=201:203
+@source readme-dev title="开发" path="README.md" lines=225:225
 @source agents-contract title="引擎契约" path="AGENTS.md" lines=10:16
-@source changelog-pin title="影片保留原有的锁定版本" path="CHANGELOG.md" lines=179:179
+@source changelog-pin title="影片保留原有的锁定版本" path="CHANGELOG.md" lines=196:196
 @source film-root title="查找影片" path="src/filmkit/repository.py" lines=28:50
 @source film-load title="检查声明" path="src/filmkit/film.py" lines=379:394
 @source edition-places title="语言版写到哪里" path="src/filmkit/production.py" lines=138:154
@@ -62,17 +67,17 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @source render-gate title="渲染须有通过的门禁" path="src/filmkit/picture/rendering.py" lines=471:498
 @source render title="渲染画面" path="src/filmkit/picture/rendering.py" lines=501:555
 @source validate title="校验画面" path="src/filmkit/picture/rendering.py" lines=586:596
-@source equivalence-doc title="只在字幕上不同" path="src/filmkit/picture/equivalence.py" lines=1:28
+@source equivalence-doc title="只在字幕上不同" path="src/filmkit/picture/equivalence.py" lines=1:32
 @source tools-doc title="Node 工具运行器" path="src/filmkit/tools.py" lines=1:17
 @source headless-doc title="无头运行的画面合成" path="src/filmkit/picture/headless-composition.mjs" lines=1:13
-@source package-doc title="打包" path="src/filmkit/delivery/packaging.py" lines=1:24
-@source delivered-check title="检查成片" path="src/filmkit/delivery/packaging.py" lines=493:536
-@source package-film title="打包每部成片" path="src/filmkit/delivery/packaging.py" lines=571:606
-@source package-inputs title="成片包绑定什么" path="src/filmkit/delivery/packaging.py" lines=229:240
+@source package-doc title="打包" path="src/filmkit/delivery/packaging.py" lines=1:31
+@source delivered-check title="检查成片" path="src/filmkit/delivery/packaging.py" lines=539:582
+@source package-film title="打包每部成片" path="src/filmkit/delivery/packaging.py" lines=617:652
+@source package-inputs title="成片包绑定什么" path="src/filmkit/delivery/packaging.py" lines=272:284
 @source player-doc title="播放器页面" path="src/filmkit/delivery/player.py" lines=1:5
-@source verification-doc title="核验" path="src/filmkit/delivery/verification.py" lines=1:12
-@source verify-review title="能通过核验的评审" path="src/filmkit/delivery/verification.py" lines=306:369
-@source verification-qualify title="一个语言版的检查" path="src/filmkit/delivery/verification.py" lines=372:401
+@source verification-doc title="核验" path="src/filmkit/delivery/verification.py" lines=1:13
+@source verify-review title="能通过核验的评审" path="src/filmkit/delivery/verification.py" lines=308:371
+@source verification-qualify title="一个语言版的检查" path="src/filmkit/delivery/verification.py" lines=374:403
 @source reproduction-doc title="复现" path="src/filmkit/delivery/reproduction.py" lines=1:24
 @source documents-doc title="交付到 Documents 文件夹" path="src/filmkit/delivery/documents_folder.py" lines=1:27
 @source round-doc title="一轮评审" path="src/filmkit/review/round.py" lines=1:11
@@ -82,6 +87,16 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 ## Film Kit 读取什么，又把什么留给影片？ {#p-context}
 
 影片就是存放 `content/film.toml` 的文件夹；引擎按 `FILMKIT_ROOT` 或工作目录找到它。[](source:film-root)影片在自己的 Python 项目里锁定引擎的一个发布标签。[](source:readme-install)
+
+@facts
+| 帧率 | 60 fps；脚本声明其他帧率，引擎就拒绝 |
+| 采样率 | 48 kHz |
+| 节目响度 | -16.5 LUFS，真峰值不超过 -1 dBTP |
+| 每个语言版的成片 | 4 部：超高清母版和 1080p 观看版，各有带字幕和无字幕两种 |
+
+这些规格由引擎固定，影片只能照用。[](source:spec-rate)[](source:spec-sound)[](source:renditions)其余的都由影片在 `content/film.toml` 里声明，下面是仓库自带样片的声明。[](source:sample-declaration)
+
+@code id=declaration source=sample-declaration language=toml
 
 @diagram architecture id=context-map source=context.architecture.json title="Film Kit 读取、运行和写出什么"
 
@@ -131,7 +146,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 | step-route-assemble | 拼接音轨 | 拼接步骤设计停顿，调平每个意群和章节，再用一次增益达到节目响度。若排好的音轨里有超出影片上限的无标点停顿，或声明术语读得与参照处不同，拼接步骤就拒绝这条音轨。[](source:assembly-doc)[](source:program-gain) | route-flow | route-assemble |
 | step-route-gate | 检查画面 | `check-picture` 审查每一帧、每个标签的同步和动效，然后写出门禁记录。[](source:gate-doc) | route-flow | route-gate |
 | step-route-render | 预置、渲染 | 带字幕和无字幕的画面各预置成一份文档；有了通过的门禁记录，才由 HyperFrames 渲染。[](source:stage)[](source:render-gate)[](source:render) | route-flow | route-render |
-| step-route-compare | 比对两份画面 | 两份画面只能在字幕上不同：画面合成在每条字幕处和每半秒比对，解码后的帧则比对字幕带以外的区域。[](source:equivalence-doc) | route-flow | route-compare |
+| step-route-compare | 比对两份画面 | 两份画面只能在字幕上不同：画面合成在每条字幕处和每半秒比对，解码后的帧则比对字幕带以外的区域。随后逐帧扫描两份画面，找出只持续一帧的故障。[](source:equivalence-doc) | route-flow | route-compare |
 | step-route-package | 打包成片 | FFmpeg 把每部成片的画面（带字幕或无字幕）与音轨和章节封装在一起；每部成片都先检查，再链接到位。[](source:package-doc)[](source:package-film) | route-flow | route-package |
 | step-route-verify | 核验每个输入 | 核验器只读取和解码，检查范围包括来源、旁白、两份画面及二者的等效性、两个包、解码后的全部四部成片和评审。[](source:verification-doc) | route-flow | route-verify |
 
@@ -178,7 +193,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 | step-rec-assembly | audio-assembly.json | 绑定脚本和它写出的音轨，以及设计停顿和节目响度。[](source:assembly-doc) | records-erd | rec-assembly |
 | step-rec-stage | stage.json | 绑定脚本、时间线、拼接回执、音轨和来源清单，以及每个预置文件。[](source:candidate-inputs)[](source:stage) | records-erd | rec-stage |
 | step-rec-gates | picture-gates.json | 绑定审查所依据的画面合成、时间线、样式表、字体和引擎版本。[](source:gate-check) | records-erd | rec-gates |
-| step-rec-package | film-package.json | 绑定两份画面及其等效性记录、音轨、封面、脚本和章节，以及每部成片自身的 SHA-256。[](source:package-inputs)[](source:package-film) | records-erd | rec-package |
+| step-rec-package | film-package.json | 绑定两份画面及其等效性记录、音轨、封面、脚本、章节和影片的 `VERSION`，以及每部成片自身的 SHA-256。[](source:package-inputs)[](source:package-film) | records-erd | rec-package |
 
 ## 画面渲染之前，必须通过什么？ {#p-picture}
 
@@ -230,7 +245,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 | step-part-sound | 音轨拼接 | 写出音轨、带字幕的时间线和拼接回执。[](source:assembly-doc) | parts-map | part-sound |
 | step-part-gate | 画面门禁 | 写出门禁记录；只要还剩一个门禁问题，就拒绝。[](source:gate-doc) | parts-map | part-gate |
 | step-part-render | 画面渲染 | 预置、渲染并校验每份超高清画面（带字幕和无字幕各一份），并证明二者只在字幕上不同。[](source:render)[](source:equivalence-doc) | parts-map | part-render |
-| step-part-package | 打包 | 派生观看包，写出全部四部成片，每部都先检查再链接到位。[](source:package-doc) | parts-map | part-package |
+| step-part-package | 打包 | 派生观看包，写出全部四部成片，每部都先检查再链接到位。每部成片和每个页面都写明影片的版本号。[](source:package-doc) | parts-map | part-package |
 | step-part-verify | 核验 | 重新读取每份记录，解码全部四部成片；不写任何文件。[](source:verification-doc) | parts-map | part-verify |
 
 ## 交付的语言版包含什么，又怎样验收？ {#p-delivery}
@@ -261,6 +276,12 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 | 评审轮次 | 附有每部成片 SHA-256 的提示词，以及本轮的测量结果[](source:round-doc)[](source:measurement-doc) | 独立评审按每个声明的维度，为每个语言版打分 {good:已打分}                                   |
 | 核验     | 来源、旁白、渲染、包、解码后的成片和评审[](source:verification-qualify)[](source:verify-review) | 语言版绑定当前输入，评审达到影片的评审下限 {good:已绑定}                                   |
 | 复现     | 发布清单和已发布资产[](source:reproduction-doc)                                                 | 重建结果的解码音频、流、章节和标签都与已发布版本一致，每一帧都达到 PSNR 下限 {good:已复现} |
+
+## Film Kit 怎样走到今天？ {#p-history}
+
+Film Kit 在 2026 年 10 月 30 日发布 v0.1.0，11 月 10 日发布 v0.19.0。[](source:changelog-010)[](source:changelog-019)下面列出其中改变影片做法的十二个版本。仓库里没有带日期的路线图，还没做的事列在本页最后。
+
+@diagram timeline id=history source=history.timeline.json title="Film Kit 怎样走到今天"
 
 ## 已交付什么，还有什么未解决？ {#p-maturity}
 

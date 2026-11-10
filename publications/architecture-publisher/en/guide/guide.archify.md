@@ -7,7 +7,7 @@
 - [A layout with an overlap is never drawn](block:p-layout), and a view that no layout draws is refused, not shrunk.[](source:contract-layout-floor)
 - [Only an accepted delivery is published](block:p-accept), and never over a different one.[](source:contract-acceptance)
 
-@answer scope="Architecture Publisher v0.10.2 · commit 4fcd4d0 · its source and its own documents · re-pin counts measured on 2026-11-08"
+@answer scope="Architecture Publisher v0.11.0 · commit a7de98b · its source and its own documents · re-pin counts measured on 2026-11-08"
 @meta locale=en style=editorial
 @source contract-product title="The product" path="docs/product-contract.md" lines=13:21
 @source contract-meaning title="Who owns meaning and form" path="docs/product-contract.md" lines=23:28
@@ -38,16 +38,16 @@
 @source ops-rows title="Rows, placement and channels" path="docs/reference/operations.md" lines=115:128
 @source ops-overlap title="A layout never overlaps" path="docs/reference/operations.md" lines=130:135
 @source ops-gates title="The four balance gates" path="docs/reference/operations.md" lines=167:173
-@source ops-page title="The generated page" path="docs/reference/operations.md" lines=226:235
-@source ops-page-grid title="The page's diagrams on the same grid" path="docs/reference/operations.md" lines=237:242
-@source ops-overview title="The overview" path="docs/reference/operations.md" lines=303:317
-@source ops-guide title="The guide" path="docs/reference/operations.md" lines=321:328
-@source ops-guide-clone title="Sources verified at the revision" path="docs/reference/operations.md" lines=330:338
-@source ops-scaffold title="A starting guide" path="docs/reference/operations.md" lines=340:342
-@source ops-delivery title="The delivery's files" path="docs/reference/operations.md" lines=349:359
-@source ops-manifest title="The manifest" path="docs/reference/operations.md" lines=361:380
-@source ops-accept title="archpub accept" path="docs/reference/operations.md" lines=384:386
-@source ops-publish title="archpub publish" path="docs/reference/operations.md" lines=388:392
+@source ops-page title="The generated page" path="docs/reference/operations.md" lines=242:251
+@source ops-page-grid title="The page's diagrams on the same grid" path="docs/reference/operations.md" lines=253:258
+@source ops-overview title="The overview" path="docs/reference/operations.md" lines=319:333
+@source ops-guide title="The guide" path="docs/reference/operations.md" lines=337:344
+@source ops-guide-clone title="Sources verified at the revision" path="docs/reference/operations.md" lines=346:354
+@source ops-scaffold title="A starting guide" path="docs/reference/operations.md" lines=356:358
+@source ops-delivery title="The delivery's files" path="docs/reference/operations.md" lines=365:375
+@source ops-manifest title="The manifest" path="docs/reference/operations.md" lines=377:396
+@source ops-accept title="archpub accept" path="docs/reference/operations.md" lines=400:402
+@source ops-publish title="archpub publish" path="docs/reference/operations.md" lines=404:408
 @source readme-layout title="Layout is a grid" path="README.md" lines=93:98
 @source build-prepare title="One build's route" path="src/build.mjs" lines=127:178
 @source build-composition title="A missing composition" path="src/build.mjs" lines=106:125
@@ -80,14 +80,14 @@
 @source typeset-problems title="Refusals at the composition's line" path="src/overview/typeset.mjs" lines=130:161
 @source contract-plate-floor title="The plate quality floor" path="docs/product-contract.md" lines=105:110
 @source ops-plate title="A plate" path="docs/reference/operations.md" lines=157:166
-@source ops-reading title="A plate's width and reading" path="docs/reference/operations.md" lines=180:194
-@source ops-edition title="The print edition" path="docs/reference/operations.md" lines=196:207
+@source ops-reading title="A plate's width and reading" path="docs/reference/operations.md" lines=180:209
+@source ops-edition title="The print edition" path="docs/reference/operations.md" lines=211:221
 @source house-reading title="What a plate's reading does when it is too tall" path="src/overview/house.typ" lines=251:291
-@source ops-edition-text title="Text, dates and page images" path="docs/reference/operations.md" lines=208:224
-@source ops-refusal-paths title="Where a refusal points" path="docs/reference/operations.md" lines=396:401
-@source plates-compositions title="Every composition a plate tries" path="src/poster/compose/plates.mjs" lines=99:110
-@source plates-admit title="A view the body admits" path="src/poster/compose/plates.mjs" lines=149:160
-@source plates-width title="The plate width rule" path="src/poster/compose/plates.mjs" lines=203:234
+@source ops-edition-text title="Text, dates and page images" path="docs/reference/operations.md" lines=223:240
+@source ops-refusal-paths title="Where a refusal points" path="docs/reference/operations.md" lines=412:417
+@source plates-compositions title="Every composition a plate tries" path="src/poster/compose/plates.mjs" lines=109:121
+@source plates-admit title="A view the body admits" path="src/poster/compose/plates.mjs" lines=160:171
+@source plates-width title="The plate width rule" path="src/poster/compose/plates.mjs" lines=222:282
 @source plates-gates title="Gates recorded, not refused" path="src/poster/compose/gates.mjs" lines=1:24
 @source edition-typeset title="One pass, one PDF" path="src/edition/typeset.mjs" lines=11:14
 @source edition-images title="The page images" path="src/edition/typeset.mjs" lines=120:141
@@ -100,10 +100,18 @@
 @source worklist-fates title="What became of each file" path="src/sources/worklist.mjs" lines=5:12
 @source worklist-citation title="How a cited range fares" path="src/sources/worklist.mjs" lines=63:67
 @source worklist-repin title="The worklist" path="src/sources/worklist.mjs" lines=97:110
+@source model-smallest title="A minimal model" path="docs/reference/model.md" lines=26:28
+@source model-minimal title="The smallest model" path="docs/reference/model.md" lines=33:53
+@source changelog-first title="The first release" path="CHANGELOG.md" lines=847:853
+@source changelog-040 title="The 0.4.0 release" path="CHANGELOG.md" lines=266:271
 
 ## What does a model hold, and when is it refused? {#p-model}
 
 An author writes the model; `archpub import likec4` writes one from a LikeC4 workspace, and `archpub migrate` from a version 1 model.[](source:model-meaning)[](source:ops-migrate) The loader reports every problem with its JSON path in one pass, and nothing is built from an invalid model.[](source:load-problems)
+
+The smallest model the schema accepts has three components, two relations and their kinds.[](source:model-smallest)[](source:model-minimal) It builds, but its plate leaves most of the edition's body blank.[](source:model-smallest)
+
+@code id=minimal-model source=model-minimal language=json
 
 @diagram class id=model-map source=model.class.json
 
@@ -190,10 +198,10 @@ Each view is one plate: a figure laid out for the edition's body, with no text b
 @steps id=edition-steps
 | step-ed-compose | Compose each view | A plate tries every type step, row wrapping, centring and tier-label column. It takes the fewest crossings, then the fewest route defects.[](source:plates-compositions)[](source:ops-plate) | edition-flow | ed-compose |
 | step-ed-fits | Laid out in the body? | A view no composition lays out in the body is refused with `plate_unfittable`; its text is never shrunk.[](source:plates-admit)[](source:contract-plate-floor) | edition-flow | ed-fits |
-| step-ed-width | Choose its width | The figure takes the narrowest of 100, 80 and 65 percent of the body that wires no worse. A view with a summary gives up a fifth for its reading.[](source:plates-width)[](source:ops-reading) | edition-flow | ed-width |
+| step-ed-width | Choose its width | The figure takes the narrowest of 100, 80 and 65 percent of the body that wires no worse. A view with a summary gives up a fifth for its reading. When that wires worse, the figure keeps the full width and its summary is set above it.[](source:plates-width)[](source:ops-reading) | edition-flow | ed-width |
 | step-ed-gates | Measure four gates | Its largest blank rectangle, blank bands, holes and centre of mass are measured. A missed gate is recorded for the reviewer, not refused.[](source:plates-gates)[](source:ops-gates) | edition-flow | ed-gates |
 | step-ed-typeset | Typeset in one pass | The house class sets the title page, contents, overview and every plate into one PDF that conforms to PDF/A-3a and PDF/UA-1.[](source:edition-typeset)[](source:ops-edition) | edition-flow | ed-typeset |
-| step-ed-text | Text as measured? | A run Typst sets wider than the engine measured it or a title longer than its line is refused.[](source:ops-edition-text) A reading taller than the body sets its summary alone, and is refused only when that does not fit either.[](source:house-reading) | edition-flow | ed-text |
+| step-ed-text | Text as measured? | A run Typst sets wider than the engine measured it or a title longer than its line is refused. So is a line of a summary above its figure that Typst sets wider than 32 ems.[](source:ops-edition-text) A reading taller than the body sets its summary alone, and is refused only when that does not fit either.[](source:house-reading) | edition-flow | ed-text |
 | step-ed-images | PDF and page images | Typst renders the overview's and each plate's page as PNG at each width, 2400 px unless the build names others.[](source:edition-images)[](source:ops-edition-text) | edition-flow | ed-images |
 | step-ed-refused | Edition refused | A plate's refusal names its view, and a Typst refusal the line Typst reported.[](source:ops-refusal-paths)[](source:typeset-problems) | edition-flow | ed-refused |
 
@@ -268,6 +276,12 @@ A build shows only that the delivery came from its inputs. A named reviewer acce
 | step-life-changed | delivery_changed | An artifact that differs from the manifest is refused, at acceptance and again at publication.[](source:delivery-verify) | delivery-life | life-changed |
 | step-life-published | Published copy | `archpub publish` copies only an accepted delivery under its model id and version, and verifies the copy first.[](source:delivery-publish)[](source:ops-publish) | delivery-life | life-published |
 | step-life-conflict | publish_conflict | A different delivery under the same version is refused; an identical one changes nothing.[](source:ops-publish) | delivery-life | life-conflict |
+
+## How did Architecture Publisher get here? {#p-history}
+
+Architecture Publisher's changelog opens with 0.1.0-alpha.0 on 2026-09-18.[](source:changelog-first) Its 0.4.0, on 2026-10-30, made it a general model-to-media publisher.[](source:changelog-040) The timeline starts there and shows eight releases, up to 0.11.0, that changed what an author or a reviewer meets.
+
+@diagram timeline id=history source=history.timeline.json title="How Architecture Publisher got here"
 
 ## What does moving the pin change? {#p-repin}
 

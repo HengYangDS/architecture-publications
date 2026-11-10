@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "diagram_type": "timeline",
+  "meta": {
+    "title": "这套指南怎样走到今天",
+    "output": "history.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
+      "provider": "github",
+      "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42"
+    },
+    "evidence": "observed",
+    "timezone": "Asia/Shanghai"
+  },
+  "lanes": [
+    {
+      "id": "routes",
+      "label": "读者路线"
+    },
+    {
+      "id": "duties",
+      "label": "工作职责"
+    },
+    {
+      "id": "repository",
+      "label": "仓库变更与发布"
+    }
+  ],
+  "events": [
+    {
+      "id": "v400",
+      "at": "2026-09-26T03:36:19+08:00",
+      "lane": "routes",
+      "kind": "change",
+      "title": "v4.0.0 章程和主题页面",
+      "detail": "章程和按语义划分的主题页面，取代了原来放在根目录的单一文档。阅读地图按任务组织；给人读的入口很简短，智能体入口限定了范围。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 769,
+          "end_line": 808,
+          "label": "4.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v410",
+      "at": "2026-09-26T13:54:42+08:00",
+      "lane": "repository",
+      "title": "v4.1.0 采用 MIT License",
+      "detail": "仓库源文件及相关文档采用 MIT License。英文主题页面补回了证据对比、诊断与解决标准、管理问责边界，以及智能体何时停下、是否越出范围的检查。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 746,
+          "end_line": 758,
+          "label": "4.1.0"
+        }
+      ]
+    },
+    {
+      "id": "v500",
+      "at": "2026-09-27T04:24:30+08:00",
+      "lane": "duties",
+      "kind": "change",
+      "title": "v5.0.0 恢复月度和季度评审",
+      "detail": "重新规定每月评审实际工作和微弱信号，每季度评审规则和工具是否抵得上成本；不强制开周会，也不新增汇报表单。文档核验改为要求 Node 26 和 npm 11。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 691,
+          "end_line": 713,
+          "label": "5.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v503",
+      "at": "2026-09-28T22:03:40+08:00",
+      "lane": "duties",
+      "title": "v5.0.3 一条决策路径范例",
+      "detail": "成员和智能体有了一条市场历史决策路径范例：从时点研究出发，经过生产，一直走到获准使用。任务负责人、决策负责人、评审人和验收人各自是什么角色，也讲清楚了。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 653,
+          "end_line": 670,
+          "label": "5.0.3"
+        }
+      ]
+    },
+    {
+      "id": "v510",
+      "at": "2026-09-29T17:49:11+08:00",
+      "lane": "repository",
+      "title": "v5.1.0 发布顺序与在线链接",
+      "detail": "签名发布在两个平台上的先后顺序有了文字说明；打标签之后，再用固定版本的 lychee 检查在线链接。在 GitLab 和 GitHub 上打开指南页面，最先看到标题。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 596,
+          "end_line": 619,
+          "label": "5.1.0"
+        }
+      ]
+    },
+    {
+      "id": "v700",
+      "at": "2026-10-01T14:23:51+08:00",
+      "lane": "repository",
+      "kind": "change",
+      "title": "v7.0.0 行文检查交给 Vale",
+      "detail": "拼写、重复词、简洁表达和术语检查，统一由原生 Vale 执行。textlint、CSpell 和 write-good 流水线全部移除。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 439,
+          "end_line": 465,
+          "label": "7.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v701",
+      "at": "2026-10-01T15:01:59+08:00",
+      "lane": "duties",
+      "title": "v7.0.1 补回压缩时丢掉的职责",
+      "detail": "压缩时丢掉的决策约束、执行成本和里程碑、专业数据判断和交付优先级，都补了回来。数据由谁负责，改用一张紧凑的职责表列出。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 421,
+          "end_line": 437,
+          "label": "7.0.1"
+        }
+      ]
+    },
+    {
+      "id": "v704",
+      "at": "2026-10-01T22:55:42+08:00",
+      "lane": "duties",
+      "title": "v7.0.4 样本选择偏差与缺失背景",
+      "detail": "历史分析要明确检查样本选择偏差，并说明缺失、延迟、冲突和异常怎样影响结论。缺失的背景不构成阻碍时，智能体写明假设，继续工作。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 359,
+          "end_line": 390,
+          "label": "7.0.4"
+        }
+      ]
+    },
+    {
+      "id": "v706",
+      "at": "2026-10-02T07:43:49+08:00",
+      "lane": "routes",
+      "title": "v7.0.6 两个平台都有版本历史",
+      "detail": "变更日志每一节都附上 GitLab 和 GitHub 两个历史链接，各自标注清楚。同一份源文件不用改动，两个平台和离线读者都能用。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 322,
+          "end_line": 331,
+          "label": "7.0.6"
+        }
+      ]
+    },
+    {
+      "id": "v7012",
+      "at": "2026-10-04T12:42:47+08:00",
+      "lane": "duties",
+      "title": "v7.0.12 先读完整结果，再写总结",
+      "detail": "智能体在总结之前，要读完整、最新且与说法对应的核验结果。分析结论要写明下一步的核验行动。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 185,
+          "end_line": 252,
+          "label": "7.0.12"
+        }
+      ]
+    },
+    {
+      "id": "v800",
+      "at": "2026-11-01T15:51:12+08:00",
+      "lane": "routes",
+      "kind": "change",
+      "title": "v8.0.0 新的路线与评审默认值",
+      "detail": "任务地图按方向、数据、交付和协作重新组织。每月、每季度最低评审频率改为默认值，负责人记下理由后可以调整。剩下的每项检查都由已安装的 ETHOS 运行。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 17,
+          "end_line": 183,
+          "label": "8.0.0"
+        }
+      ]
+    }
+  ]
+}

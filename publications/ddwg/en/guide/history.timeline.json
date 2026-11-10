@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "diagram_type": "timeline",
+  "meta": {
+    "title": "How the guidelines got here",
+    "output": "history.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
+      "provider": "github",
+      "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42"
+    },
+    "evidence": "observed",
+    "timezone": "Asia/Shanghai"
+  },
+  "layout": {
+    "width": 820
+  },
+  "lanes": [
+    {
+      "id": "routes",
+      "label": "Reader routes"
+    },
+    {
+      "id": "duties",
+      "label": "Work duties"
+    },
+    {
+      "id": "repository",
+      "label": "Repository change and release"
+    }
+  ],
+  "events": [
+    {
+      "id": "v400",
+      "at": "2026-09-26T03:36:19+08:00",
+      "lane": "routes",
+      "kind": "change",
+      "title": "v4.0.0 Charter and topic pages",
+      "detail": "The charter and semantic topic pages replace the former root monolith. A task-oriented reading map comes with a short human entry and a bounded Agent entry.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 769,
+          "end_line": 808,
+          "label": "4.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v410",
+      "at": "2026-09-26T13:54:42+08:00",
+      "lane": "repository",
+      "title": "v4.1.0 MIT license",
+      "detail": "Repository source and its documentation adopt the MIT license. The English topic pages regain evidence contrasts, diagnostic and solution criteria, Agent stop and scope checks and accountable management boundaries.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 746,
+          "end_line": 758,
+          "label": "4.1.0"
+        }
+      ]
+    },
+    {
+      "id": "v500",
+      "at": "2026-09-27T04:24:30+08:00",
+      "lane": "duties",
+      "kind": "change",
+      "title": "v5.0.0 Monthly and quarterly reviews return",
+      "detail": "Monthly review of real work and weak signals returns, with a quarterly review of whether rules and tools earn their cost. No mandatory weekly meeting or new reporting form comes with them. Verification now requires Node 26 and npm 11.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 691,
+          "end_line": 713,
+          "label": "5.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v503",
+      "at": "2026-09-28T22:03:40+08:00",
+      "lane": "duties",
+      "title": "v5.0.3 An example decision path",
+      "detail": "Members and Agents get one market-history decision path as an example, from point-in-time research through production and permitted use. Task lead, decision owner, reviewer and acceptor roles are clarified.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 653,
+          "end_line": 670,
+          "label": "5.0.3"
+        }
+      ]
+    },
+    {
+      "id": "v510",
+      "at": "2026-09-29T17:49:11+08:00",
+      "lane": "repository",
+      "title": "v5.1.0 Release order and live links",
+      "detail": "The signed dual-Forge release order is documented, and live link qualification with pinned lychee runs after the tag. Guidance pages on GitLab and GitHub show their title first.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 596,
+          "end_line": 619,
+          "label": "5.1.0"
+        }
+      ]
+    },
+    {
+      "id": "v700",
+      "at": "2026-10-01T14:23:51+08:00",
+      "lane": "repository",
+      "kind": "change",
+      "title": "v7.0.0 Vale checks the prose",
+      "detail": "Spelling, repeated-word, concise-expression and terminology checks move into native Vale. The textlint, CSpell and write-good pipelines are removed.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 439,
+          "end_line": 465,
+          "label": "7.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v701",
+      "at": "2026-10-01T15:01:59+08:00",
+      "lane": "duties",
+      "title": "v7.0.1 Duties lost in compression return",
+      "detail": "Decision constraints, execution costs and milestones, professional data judgments and delivery priorities lost during compression are restored. Data ownership appears in a compact responsibility table.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 421,
+          "end_line": 437,
+          "label": "7.0.1"
+        }
+      ]
+    },
+    {
+      "id": "v704",
+      "at": "2026-10-01T22:55:42+08:00",
+      "lane": "duties",
+      "title": "v7.0.4 Sample bias and missing context",
+      "detail": "Historical analysis checks sample-selection bias and explains how missingness, delay, conflict and anomalies affect conclusions. Agents continue on stated assumptions when missing context is not blocking.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 359,
+          "end_line": 390,
+          "label": "7.0.4"
+        }
+      ]
+    },
+    {
+      "id": "v706",
+      "at": "2026-10-02T07:43:49+08:00",
+      "lane": "routes",
+      "title": "v7.0.6 History on both Forges",
+      "detail": "Every Changelog section offers labeled GitLab and GitHub history. One unchanged source serves both platforms and offline readers.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 322,
+          "end_line": 331,
+          "label": "7.0.6"
+        }
+      ]
+    },
+    {
+      "id": "v7012",
+      "at": "2026-10-04T12:42:47+08:00",
+      "lane": "duties",
+      "title": "v7.0.12 Read complete results first",
+      "detail": "Agents read complete, current, claim-matched verification results before they summarize. Analytical conclusions name their next verification action.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 185,
+          "end_line": 252,
+          "label": "7.0.12"
+        }
+      ]
+    },
+    {
+      "id": "v800",
+      "at": "2026-11-01T15:51:12+08:00",
+      "lane": "routes",
+      "kind": "change",
+      "title": "v8.0.0 New routes and review defaults",
+      "detail": "The task map is organized around direction, data, delivery and collaboration. Minimum monthly and quarterly review frequencies become defaults the responsible owner may adjust for a recorded reason. Installed ETHOS runs every remaining check.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 17,
+          "end_line": 183,
+          "label": "8.0.0"
+        }
+      ]
+    }
+  ]
+}

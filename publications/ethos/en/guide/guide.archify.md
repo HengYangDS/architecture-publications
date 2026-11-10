@@ -87,6 +87,12 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 @source landing title="Landing on the candidate" path="src/ethos/adapters/mutation/landing.py" lines=45:58
 @source push title="An exact push to one peer" path="src/ethos/adapters/mutation/publication/execution.py" lines=45:56
 @source peers title="The declared peers" path=".ethos/release.toml" lines=12:25
+@source profile-declaration title="ETHOS's own profile" path=".ethos/profile.toml" lines=1:7
+@source python-range title="The supported Python versions" path="pyproject.toml" lines=1:6
+@source branch-roles title="The branch roles" path="src/ethos/contracts/paradigm/paradigm.toml" lines=43:50
+@source parameters title="Per-file ceilings and the gate deadline" path="src/ethos/contracts/paradigm/paradigm.toml" lines=87:121
+@source changelog-first title="0.1.0-alpha.1, the first entry" path="CHANGELOG.md" lines=1726:1732
+@source changelog-pinned title="0.2.0-beta.6, the pinned release" path="CHANGELOG.md" lines=15:20
 
 ## Who uses ETHOS, and what does it own? {#p-context}
 
@@ -106,6 +112,17 @@ People, AI agents and programs reach the same operations, each through its own s
 ## What does adopting ETHOS change in your repository? {#p-footprint}
 
 Adoption writes one small declaration and, only where it is absent, the native OpenSpec configuration.[](source:adopt-writes)[](source:adopt-keeps) Everything else lives in the Git common directory, shared by every worktree, or in the host store.[](source:state-home)[](source:host-store)
+
+@facts
+| Platforms | macOS and Linux are required; Windows is claimed only after native qualification.[](source:experience) |
+| Python | The `ethos` package supports Python 3.12 through 3.14.[](source:python-range) |
+| Branch roles | `main` for release, `dev` accepted, `candidate/dev` the candidate, `work/` for lanes and `proposal/` for proposals[](source:branch-roles) |
+| Per-file ceilings | 500 effective lines per code file and 500 nonblank lines per document, at most 1,000[](source:parameters) |
+| Gate deadline | 600 seconds unless a gate declares its own, at most 7,200[](source:parameters) |
+
+A repository may tighten any ceiling or deadline, or loosen one up to its bound with a stated reason.[](source:parameters) ETHOS's own declaration, `.ethos/profile.toml`, is seven lines.[](source:profile-declaration)
+
+@code id=profile-declaration source=profile-declaration language=toml
 
 @diagram tree id=footprint-tree source=footprint.tree.json
 
@@ -285,6 +302,12 @@ Four authored verses constrain its design.[](source:root-constraint) They ask to
 
 @callout level=note title="Three questions before anything new"
 | ETHOS adds a carrier, schema, record or state only when all three answers are yes. Is the obligation missing from OpenSpec, Git and the kernel? Would deleting it make an invariant unprovable? Does it have one owner and an end?[](source:new-entity) |
+
+## How did ETHOS get here? {#p-history}
+
+ETHOS's changelog opens with 0.1.0-alpha.1 on 2026-06-30 and reaches 0.2.0-beta.6 on 2026-11-07.[](source:changelog-first)[](source:changelog-pinned) Twelve 0.2.0 releases along the way changed what ETHOS does for the repositories it governs; each is labelled by its pre-release name.
+
+@diagram timeline id=history source=history.timeline.json title="How ETHOS got here"
 
 ## What is delivered, and what is still open? {#p-maturity}
 

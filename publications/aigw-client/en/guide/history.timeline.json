@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "diagram_type": "timeline",
+  "meta": {
+    "title": "How AIGW got here",
+    "output": "history.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/aigw-cli.git",
+      "provider": "github",
+      "revision": "abf05858f4092a3baf9acea0d5d7488b26898aa5"
+    },
+    "evidence": "observed",
+    "timezone": "Asia/Shanghai"
+  },
+  "lanes": [
+    {
+      "id": "trust",
+      "label": "Install and Tokens"
+    },
+    {
+      "id": "catalog",
+      "label": "Configuration"
+    },
+    {
+      "id": "clients",
+      "label": "Client projections"
+    },
+    {
+      "id": "commands",
+      "label": "Commands and checks"
+    }
+  ],
+  "events": [
+    {
+      "id": "v010",
+      "at": "2026-09-19T20:41:58+08:00",
+      "lane": "trust",
+      "title": "v0.1.0 Signed macOS, Homebrew cask",
+      "detail": "macOS distribution gains Developer ID signing and notarization. A Homebrew cask, generated from the release archive inventory, installs AIGW without configuring any client. Homebrew then owns program updates and removal.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 822,
+          "end_line": 844,
+          "label": "0.1.0"
+        }
+      ]
+    },
+    {
+      "id": "v020",
+      "at": "2026-09-24T07:45:38+08:00",
+      "lane": "catalog",
+      "kind": "change",
+      "title": "v0.2.0 Routes replace Profiles",
+      "detail": "Canonical Models, exact Account Routes and client-scoped bindings replace Profile selection; 0.1.0 configuration needs an explicit, previewed migration. Hermes and Claude Desktop get their own Client Bindings.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 728,
+          "end_line": 754,
+          "label": "0.2.0"
+        }
+      ]
+    },
+    {
+      "id": "v030",
+      "at": "2026-09-25T09:52:50+08:00",
+      "lane": "commands",
+      "kind": "change",
+      "title": "v0.3.0 check sends a real request",
+      "detail": "By default, aigw check sends one capped inference request with the selected Route's exact upstream model; --endpoint-only checks authentication without one. AIGW curates 27 canonical models and 59 inference-checked Account Routes across AIHubMix, DMXAPI and UCloud.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 698,
+          "end_line": 726,
+          "label": "0.3.0"
+        }
+      ]
+    },
+    {
+      "id": "v041",
+      "at": "2026-10-14T12:26:59+08:00",
+      "lane": "trust",
+      "title": "v0.4.1 Signed updates",
+      "detail": "An online update checks its checksum manifest against an embedded SSH release key before extracting or running a downloaded program. Clients read Tokens through a SHA-256-addressed private copy of aigw that keeps answering while a package manager replaces the CLI.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 467,
+          "end_line": 495,
+          "label": "0.4.1"
+        }
+      ]
+    },
+    {
+      "id": "v045",
+      "at": "2026-10-19T12:34:09+08:00",
+      "lane": "catalog",
+      "title": "v0.4.5 Claude Desktop tool search",
+      "detail": "The team manifest declares tool_search on the UCloud Claude Opus 5.5, Sonnet 5.5 and Haiku 5.5 Routes. A Desktop profile on these Routes loads MCP tool schemas on demand.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 395,
+          "end_line": 407,
+          "label": "0.4.5"
+        }
+      ]
+    },
+    {
+      "id": "v046",
+      "at": "2026-10-20T02:30:19+08:00",
+      "lane": "trust",
+      "kind": "alert",
+      "title": "v0.4.6 Old helpers read Tokens again",
+      "detail": "Once a Route declared tool_search, helpers from AIGW 0.4.3 and earlier returned no Token. The next sync moves such capabilities into config.capabilities.toml, which helpers never read. After a rollback, the earlier program turns Claude Desktop tool search off at its next sync.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 377,
+          "end_line": 393,
+          "label": "0.4.6"
+        }
+      ]
+    },
+    {
+      "id": "v047",
+      "at": "2026-10-20T08:37:07+08:00",
+      "lane": "clients",
+      "title": "v0.4.7 Adopt Codex's chosen model",
+      "detail": "When Codex's own model picker selects another Route's upstream model on the same Account, aigw sync records that Route and keeps Codex's choice. It does so only when nothing else that AIGW manages in Codex changed.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 364,
+          "end_line": 375,
+          "label": "0.4.7"
+        }
+      ]
+    },
+    {
+      "id": "v049",
+      "at": "2026-10-21T01:52:52+08:00",
+      "lane": "clients",
+      "title": "v0.4.9 Accept Claude Desktop saves",
+      "detail": "Desktop's configuration editor drops settings that equal its defaults, which made aigw sync refuse every client. AIGW now compares the profile by meaning and keeps Desktop's own settings.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 338,
+          "end_line": 350,
+          "label": "0.4.9"
+        }
+      ]
+    },
+    {
+      "id": "v0416",
+      "at": "2026-10-25T04:00:48+08:00",
+      "lane": "catalog",
+      "kind": "change",
+      "title": "v0.4.16 Exports keep bindings local",
+      "detail": "Breaking: aigw config export writes the declared recommendations as they are. Client Bindings chosen with aigw use stay local and no longer become the exported primary recommendation.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 205,
+          "end_line": 232,
+          "label": "0.4.16"
+        }
+      ]
+    },
+    {
+      "id": "v0417",
+      "at": "2026-10-27T05:39:10+08:00",
+      "lane": "clients",
+      "title": "v0.4.17 Codex retries per connection",
+      "detail": "aigw use --for codex declares Codex's native retry budgets with --request-max-retries and --stream-max-retries, where zero disables that retry. AIGW writes the declaration into Codex's configuration and does not retry requests itself.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 172,
+          "end_line": 203,
+          "label": "0.4.17"
+        }
+      ]
+    },
+    {
+      "id": "v050",
+      "at": "2026-11-01T08:26:37+08:00",
+      "lane": "commands",
+      "kind": "change",
+      "title": "v0.5.0 One command-line contract",
+      "detail": "Every JSON document starts with schema_version and ok; --json covers every command that reports a result, and --dry-run every command that writes. Documents such as status, check and sync move to schema_version 2, so a script changes once.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 51,
+          "end_line": 94,
+          "label": "0.5.0"
+        }
+      ]
+    },
+    {
+      "id": "v061",
+      "at": "2026-11-05T15:37:05+08:00",
+      "lane": "trust",
+      "title": "v0.6.1 Typed Tokens stay hidden",
+      "detail": "When NO_COLOR or AIGW_ACCESSIBLE selects accessible prompts, a Token typed at an interactive terminal is no longer echoed. A Token piped to standard input is read as before.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 17,
+          "end_line": 27,
+          "label": "0.6.1"
+        }
+      ]
+    }
+  ]
+}

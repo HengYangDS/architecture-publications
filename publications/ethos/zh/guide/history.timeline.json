@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "diagram_type": "timeline",
+  "meta": {
+    "title": "ETHOS 怎样走到今天",
+    "output": "history.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/ethos.git",
+      "provider": "github",
+      "revision": "727ee0579ba1fb9e391b5c44ce9fb2c208390199"
+    },
+    "evidence": "observed",
+    "timezone": "Asia/Shanghai"
+  },
+  "lanes": [
+    {
+      "id": "paradigm",
+      "label": "仓库范式"
+    },
+    {
+      "id": "proof",
+      "label": "证明与门禁"
+    },
+    {
+      "id": "lanes",
+      "label": "通道与结果"
+    },
+    {
+      "id": "host",
+      "label": "主机与发布"
+    }
+  ],
+  "events": [
+    {
+      "id": "alpha-5",
+      "at": "2026-10-21T20:14:27+08:00",
+      "lane": "proof",
+      "kind": "change",
+      "title": "alpha.5 证明先等主机",
+      "detail": "完整证明要等仓库的证明名额空出、主机负载回到上限以内，才开始运行门禁。声明原生输出改用通用格式，仓库自有的测试也能为 ETHOS 不检查的语言提供证据。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1499,
+          "end_line": 1507,
+          "label": "0.2.0-alpha.5"
+        }
+      ]
+    },
+    {
+      "id": "alpha-6",
+      "at": "2026-10-22T06:04:20+08:00",
+      "lane": "paradigm",
+      "title": "alpha.6 行尾与许可证",
+      "detail": "范式按每个文件实际生效的 Git 属性判断行尾。仓库若纳入了许可证，范式还要核对三点：文本符合锁定的 SPDX 模板，README.md 链接到它，包元数据写明同一个许可证标识。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1411,
+          "end_line": 1424,
+          "label": "0.2.0-alpha.6"
+        }
+      ]
+    },
+    {
+      "id": "alpha-8",
+      "at": "2026-10-24T01:01:54+08:00",
+      "lane": "host",
+      "title": "alpha.8 主机存储不再越积越多",
+      "detail": "每个仓库都在自己选定的安装上记下自己；没有使用方、也没有进程在用的安装，由 hook install 让它退役。ethos hook retire-supply 预览此前固定下来的安装。这些改动由 v0.2.0-alpha.10 首次发布。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1259,
+          "end_line": 1263,
+          "label": "0.2.0-alpha.8"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 1313,
+          "end_line": 1318,
+          "label": "0.2.0-alpha.8"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 1217,
+          "end_line": 1219,
+          "label": "0.2.0-alpha.10"
+        }
+      ]
+    },
+    {
+      "id": "alpha-18",
+      "at": "2026-10-29T04:32:53+08:00",
+      "lane": "lanes",
+      "kind": "change",
+      "title": "alpha.18 每项正式变更只证明一次",
+      "detail": "归档后的头提交只证明一次，落地要凭这份证明。证明失败时，archive-change --compensate 把归档精确退回到归档前的头提交。ethos prove 不再接受 --execution-root。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1000,
+          "end_line": 1011,
+          "label": "0.2.0-alpha.18"
+        }
+      ]
+    },
+    {
+      "id": "alpha-19",
+      "at": "2026-10-29T16:17:26+08:00",
+      "lane": "proof",
+      "title": "alpha.19 所有仓库同一套责任",
+      "detail": "内置的 system/gates.toml 只放每个仓库都要履行的责任。ETHOS 也按这些责任判断自己的源码树，自有门禁另行声明；仓库的责任不再取决于注册表路径或历史。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 951,
+          "end_line": 954,
+          "label": "0.2.0-alpha.19"
+        }
+      ]
+    },
+    {
+      "id": "alpha-22",
+      "at": "2026-10-31T12:44:39+08:00",
+      "lane": "paradigm",
+      "title": "alpha.22 单个文件上限 500 行",
+      "detail": "每个受版本管理的 Python 文件最多 500 个有效行，每份自撰的 Markdown 文档最多 500 个非空行。仓库可以调低上限；写明理由时，最多可调高到 1000。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 811,
+          "end_line": 817,
+          "label": "0.2.0-alpha.22"
+        }
+      ]
+    },
+    {
+      "id": "alpha-26",
+      "at": "2026-11-02T07:04:14+08:00",
+      "lane": "paradigm",
+      "kind": "change",
+      "title": "alpha.26 共用格式化设置",
+      "detail": "仓库不必自备 Prettier、Taplo 或 Ruff 的配置载体，格式化工具按 ETHOS 随附的设置运行。每个受治理的仓库都要在 AGENTS.md 和 README.md 旁边保留 CONTRIBUTING.md。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 689,
+          "end_line": 698,
+          "label": "0.2.0-alpha.26"
+        }
+      ]
+    },
+    {
+      "id": "alpha-27",
+      "at": "2026-11-02T17:07:39+08:00",
+      "lane": "proof",
+      "title": "alpha.27 每种等待都是声明过的参数",
+      "detail": "范式为每种等待声明默认值、单位和上界，仓库可以在 .ethos/rules.toml 里设定自己的值。每个门禁都在时限内运行，时限取门禁自己的设定，否则取仓库的设定。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 631,
+          "end_line": 640,
+          "label": "0.2.0-alpha.27"
+        }
+      ]
+    },
+    {
+      "id": "alpha-29",
+      "at": "2026-11-04T12:37:33+08:00",
+      "lane": "host",
+      "title": "alpha.29 发布要走一遍接入流程",
+      "detail": "每次发布运行都为要发布的归档包和 wheel 生成 GitHub 制品证明。它还在 macOS 和 Linux 上鉴定这个预发布版本：从零安装，经过完整证明、升级与回滚，直到卸载。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 464,
+          "end_line": 471,
+          "label": "0.2.0-alpha.29"
+        }
+      ]
+    },
+    {
+      "id": "beta-2",
+      "at": "2026-11-05T13:45:12+08:00",
+      "lane": "host",
+      "title": "beta.2 首个 beta，每台主机一个队列",
+      "detail": "ethos host run 让繁重的本地命令经同一个主机队列准入，完整证明也占用同一个主机名额。负载准入改为等到连续两个 1 分钟样本都不超过上限。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 332,
+          "end_line": 354,
+          "label": "0.2.0-beta.2"
+        }
+      ]
+    },
+    {
+      "id": "beta-3",
+      "at": "2026-11-06T03:53:34+08:00",
+      "lane": "lanes",
+      "kind": "change",
+      "title": "beta.3 超时与缺失改报 unknown",
+      "detail": "门禁超时、命令缺失、前置条件状态未知，现在都报 unknown，不再报 block。工作通道的持有者可以用原生命令查看和续订租约。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 232,
+          "end_line": 247,
+          "label": "0.2.0-beta.3"
+        }
+      ]
+    },
+    {
+      "id": "beta-6",
+      "at": "2026-11-07T10:56:55+08:00",
+      "lane": "lanes",
+      "kind": "change",
+      "title": "beta.6 结果 Schema 3",
+      "detail": "schema-2 的结果一律拒绝。每个 JSON 结果都控制在 16 KiB 以内，plan 为 32 KiB，下一步以数据形式给出。.ethos/release.toml 中的平台不再接受 forge_repository 字段。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 19,
+          "end_line": 28,
+          "label": "0.2.0-beta.6"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 46,
+          "end_line": 51,
+          "label": "0.2.0-beta.6"
+        }
+      ]
+    }
+  ]
+}

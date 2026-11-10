@@ -87,6 +87,12 @@ ETHOS 准入改动只看证据：OpenSpec 正式变更说明意图，当场观�
 @source landing title="落地到候选分支" path="src/ethos/adapters/mutation/landing.py" lines=45:58
 @source push title="向一个平台精确推送" path="src/ethos/adapters/mutation/publication/execution.py" lines=45:56
 @source peers title="声明的平台" path=".ethos/release.toml" lines=12:25
+@source profile-declaration title="ETHOS 自己的配置档声明" path=".ethos/profile.toml" lines=1:7
+@source python-range title="支持的 Python 版本" path="pyproject.toml" lines=1:6
+@source branch-roles title="分支角色" path="src/ethos/contracts/paradigm/paradigm.toml" lines=43:50
+@source parameters title="单个文件的上限与门禁时限" path="src/ethos/contracts/paradigm/paradigm.toml" lines=87:121
+@source changelog-first title="第一条记录：0.1.0-alpha.1" path="CHANGELOG.md" lines=1726:1732
+@source changelog-pinned title="本作品锁定的 0.2.0-beta.6" path="CHANGELOG.md" lines=15:20
 
 ## 谁在使用 ETHOS，它又负责什么？ {#p-context}
 
@@ -106,6 +112,17 @@ ETHOS 准入改动只看证据：OpenSpec 正式变更说明意图，当场观�
 ## 接入 ETHOS，会改动你仓库里的哪些东西？ {#p-footprint}
 
 接入只写入一份很小的声明；原生 OpenSpec 配置只在缺失时才写入。[](source:adopt-writes)[](source:adopt-keeps)其余的东西，要么放在所有工作区共用的 Git 公共目录里，要么放在主机存储中。[](source:state-home)[](source:host-store)
+
+@facts
+| 平台 | 必须支持 macOS 和 Linux；Windows 要在原生鉴定之后才声明支持。[](source:experience) |
+| Python | `ethos` 包支持 Python 3.12 至 3.14。[](source:python-range) |
+| 分支角色 | `main` 用于发布，`dev` 是已验收分支，`candidate/dev` 是候选分支；工作通道用 `work/` 前缀，提案用 `proposal/` 前缀[](source:branch-roles) |
+| 单个文件的上限 | 每个代码文件 500 个有效行，每份文档 500 个非空行，最多放宽到 1,000[](source:parameters) |
+| 门禁时限 | 门禁没有声明自己的时限时为 600 秒，最多 7,200 秒[](source:parameters) |
+
+仓库可以收紧任何一项上限或时限；要放宽，就得写明理由，而且不能超过上界。[](source:parameters)ETHOS 自己的配置档声明 `.ethos/profile.toml` 只有 7 行。[](source:profile-declaration)
+
+@code id=profile-declaration source=profile-declaration language=toml
 
 @diagram tree id=footprint-tree source=footprint.tree.json
 
@@ -285,6 +302,12 @@ xychart-beta horizontal
 
 @callout level=note title="新增东西之前，先问三个问题"
 | 三个问题的答案都是“是”，ETHOS 才新增载体、Schema、记录或状态。这项责任在 OpenSpec、Git 和内核里都不存在吗？删掉它，会让某个不变量无法证明吗？它有唯一的归属方和终点吗？[](source:new-entity) |
+
+## ETHOS 怎样走到今天？ {#p-history}
+
+变更日志第一条是 2026 年 6 月 30 日的 0.1.0-alpha.1；本作品锁定 0.2.0-beta.6，它发布于 11 月 7 日。[](source:changelog-first)[](source:changelog-pinned)下面列出其间十二个版本，图中按预发布名标注，它们改变了 ETHOS 为受治理的仓库所做的事。
+
+@diagram timeline id=history source=history.timeline.json title="ETHOS 怎样走到今天"
 
 ## 哪些已经交付，哪些还没完成？ {#p-maturity}
 

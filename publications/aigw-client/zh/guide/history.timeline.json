@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "diagram_type": "timeline",
+  "meta": {
+    "title": "AIGW 怎样走到今天",
+    "output": "history.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/aigw-cli.git",
+      "provider": "github",
+      "revision": "abf05858f4092a3baf9acea0d5d7488b26898aa5"
+    },
+    "evidence": "observed",
+    "timezone": "Asia/Shanghai"
+  },
+  "lanes": [
+    {
+      "id": "trust",
+      "label": "安装与令牌"
+    },
+    {
+      "id": "catalog",
+      "label": "配置"
+    },
+    {
+      "id": "clients",
+      "label": "客户端配置"
+    },
+    {
+      "id": "commands",
+      "label": "命令与检查"
+    }
+  ],
+  "events": [
+    {
+      "id": "v010",
+      "at": "2026-09-19T20:41:58+08:00",
+      "lane": "trust",
+      "title": "v0.1.0 签名的 macOS 发布与 Homebrew cask",
+      "detail": "macOS 发布版本采用 Developer ID 签名并经公证。Homebrew cask 依据发布归档包清单生成，安装时不配置任何客户端；此后程序的更新和移除都交给 Homebrew。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 822,
+          "end_line": 844,
+          "label": "0.1.0"
+        }
+      ]
+    },
+    {
+      "id": "v020",
+      "at": "2026-09-24T07:45:38+08:00",
+      "lane": "catalog",
+      "kind": "change",
+      "title": "v0.2.0 路由与客户端绑定取代 Profile",
+      "detail": "规范模型、确切的账户路由和按客户端设定的绑定取代了 Profile 选择；0.1.0 版配置要先预览，再显式迁移。Hermes 和 Claude Desktop 各有独立的客户端绑定。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 728,
+          "end_line": 754,
+          "label": "0.2.0"
+        }
+      ]
+    },
+    {
+      "id": "v030",
+      "at": "2026-09-25T09:52:50+08:00",
+      "lane": "commands",
+      "kind": "change",
+      "title": "v0.3.0 check 默认发出一次推理请求",
+      "detail": "aigw check 默认用所选路由的确切上游模型，发出一次有上限的推理请求；--endpoint-only 只做认证检查，不发推理请求。AIGW 在 AIHubMix、DMXAPI 和 UCloud 上编订了 27 个规范模型和 59 条经推理检查的账户路由。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 698,
+          "end_line": 726,
+          "label": "0.3.0"
+        }
+      ]
+    },
+    {
+      "id": "v041",
+      "at": "2026-10-14T12:26:59+08:00",
+      "lane": "trust",
+      "title": "v0.4.1 签名更新与私有凭据副本",
+      "detail": "在线更新先用内置的 SSH 发布密钥验证校验和清单，再解压或运行下载的程序。客户端通过按 SHA-256 寻址的 aigw 私有副本读取令牌；包管理器替换 CLI 时，这份副本照常应答。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 467,
+          "end_line": 495,
+          "label": "0.4.1"
+        }
+      ]
+    },
+    {
+      "id": "v045",
+      "at": "2026-10-19T12:34:09+08:00",
+      "lane": "catalog",
+      "title": "v0.4.5 UCloud 上的 Claude Desktop 工具搜索",
+      "detail": "团队清单为 UCloud 的 Claude Opus 5.5、Sonnet 5.5 和 Haiku 5.5 路由声明 tool_search。使用这些路由时，Desktop 配置会按需加载 MCP 工具模式。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 395,
+          "end_line": 407,
+          "label": "0.4.5"
+        }
+      ]
+    },
+    {
+      "id": "v046",
+      "at": "2026-10-20T02:30:19+08:00",
+      "lane": "trust",
+      "kind": "alert",
+      "title": "v0.4.6 旧版助手又能读到令牌",
+      "detail": "某条路由声明 tool_search 后，AIGW 0.4.3 及更早版本的凭据助手就读不到令牌。下次同步会把这类能力移进 config.capabilities.toml，凭据助手从不读取这个文件。回滚后，旧程序会在下次同步时关闭 Claude Desktop 的工具搜索。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 377,
+          "end_line": 393,
+          "label": "0.4.6"
+        }
+      ]
+    },
+    {
+      "id": "v047",
+      "at": "2026-10-20T08:37:07+08:00",
+      "lane": "clients",
+      "title": "v0.4.7 采纳在 Codex 中选定的模型",
+      "detail": "在 Codex 自带的模型选择器里选中同一账户下另一路由的上游模型时，aigw sync 会记下该路由，保留这一选择。前提是 AIGW 在 Codex 中管理的其他设置都没有变。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 364,
+          "end_line": 375,
+          "label": "0.4.7"
+        }
+      ]
+    },
+    {
+      "id": "v049",
+      "at": "2026-10-21T01:52:52+08:00",
+      "lane": "clients",
+      "title": "v0.4.9 接受 Claude Desktop 自行保存的配置",
+      "detail": "Claude Desktop 配置编辑器会删去与默认值相同的设置，于是 aigw sync 拒绝了所有客户端。现在 AIGW 按含义比较这份配置，并保留 Desktop 自有的设置。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 338,
+          "end_line": 350,
+          "label": "0.4.9"
+        }
+      ]
+    },
+    {
+      "id": "v0416",
+      "at": "2026-10-25T04:00:48+08:00",
+      "lane": "catalog",
+      "kind": "change",
+      "title": "v0.4.16 导出不含本地绑定",
+      "detail": "不兼容变更：aigw config export 按原样写出声明的推荐。用 aigw use 选定的客户端绑定留在本地，不再成为导出的首选推荐。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 205,
+          "end_line": 232,
+          "label": "0.4.16"
+        }
+      ]
+    },
+    {
+      "id": "v0417",
+      "at": "2026-10-27T05:39:10+08:00",
+      "lane": "clients",
+      "title": "v0.4.17 按连接声明 Codex 重试预算",
+      "detail": "aigw use --for codex 可用 --request-max-retries 和 --stream-max-retries 声明 Codex 原生的重试预算，设为 0 即关闭该项重试。AIGW 只把声明写进 Codex 配置，自己不重试请求。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 172,
+          "end_line": 203,
+          "label": "0.4.17"
+        }
+      ]
+    },
+    {
+      "id": "v050",
+      "at": "2026-11-01T08:26:37+08:00",
+      "lane": "commands",
+      "kind": "change",
+      "title": "v0.5.0 统一的命令行契约",
+      "detail": "每份 JSON 文档都以 schema_version 和 ok 开头；--json 覆盖所有报告结果的命令，--dry-run 覆盖所有会写入的命令。status、check、sync 等文档升到 schema_version 2，脚本只需改一次。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 51,
+          "end_line": 94,
+          "label": "0.5.0"
+        }
+      ]
+    },
+    {
+      "id": "v061",
+      "at": "2026-11-05T15:37:05+08:00",
+      "lane": "trust",
+      "title": "v0.6.1 键入的令牌不再回显",
+      "detail": "NO_COLOR 或 AIGW_ACCESSIBLE 选用无障碍提示时，在交互式终端键入的令牌不再回显。经标准输入传入的令牌照旧读取。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 17,
+          "end_line": 27,
+          "label": "0.6.1"
+        }
+      ]
+    }
+  ]
+}

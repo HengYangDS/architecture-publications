@@ -7,7 +7,7 @@
 - [有重叠的布局绝不绘出](block:p-layout)；任何布局都画不出的视图会被拒绝，不会缩小。[](source:contract-layout-floor)
 - [只出版已验收的交付物](block:p-accept)，也绝不覆盖另一份不同的交付物。[](source:contract-acceptance)
 
-@answer scope="Architecture Publisher v0.10.2 · 提交 4fcd4d0 · 源码与项目自身的文档 · 重新固定的计数测于 2026-11-08"
+@answer scope="Architecture Publisher v0.11.0 · 提交 a7de98b · 源码与项目自身的文档 · 重新固定的计数测于 2026-11-08"
 @meta locale=zh-CN style=editorial
 @source contract-product title="产品" path="docs/product-contract.md" lines=13:21
 @source contract-meaning title="含义与形式归谁" path="docs/product-contract.md" lines=23:28
@@ -38,16 +38,16 @@
 @source ops-rows title="行、摆放与通道" path="docs/reference/operations.md" lines=115:128
 @source ops-overlap title="布局绝不重叠" path="docs/reference/operations.md" lines=130:135
 @source ops-gates title="四道平衡门槛" path="docs/reference/operations.md" lines=167:173
-@source ops-page title="生成的页面" path="docs/reference/operations.md" lines=226:235
-@source ops-page-grid title="页面中的图用同一套网格" path="docs/reference/operations.md" lines=237:242
-@source ops-overview title="总览" path="docs/reference/operations.md" lines=303:317
-@source ops-guide title="导读" path="docs/reference/operations.md" lines=321:328
-@source ops-guide-clone title="按修订核验来源" path="docs/reference/operations.md" lines=330:338
-@source ops-scaffold title="导读初稿" path="docs/reference/operations.md" lines=340:342
-@source ops-delivery title="交付物中的文件" path="docs/reference/operations.md" lines=349:359
-@source ops-manifest title="清单" path="docs/reference/operations.md" lines=361:380
-@source ops-accept title="archpub accept" path="docs/reference/operations.md" lines=384:386
-@source ops-publish title="archpub publish" path="docs/reference/operations.md" lines=388:392
+@source ops-page title="生成的页面" path="docs/reference/operations.md" lines=242:251
+@source ops-page-grid title="页面中的图用同一套网格" path="docs/reference/operations.md" lines=253:258
+@source ops-overview title="总览" path="docs/reference/operations.md" lines=319:333
+@source ops-guide title="导读" path="docs/reference/operations.md" lines=337:344
+@source ops-guide-clone title="按修订核验来源" path="docs/reference/operations.md" lines=346:354
+@source ops-scaffold title="导读初稿" path="docs/reference/operations.md" lines=356:358
+@source ops-delivery title="交付物中的文件" path="docs/reference/operations.md" lines=365:375
+@source ops-manifest title="清单" path="docs/reference/operations.md" lines=377:396
+@source ops-accept title="archpub accept" path="docs/reference/operations.md" lines=400:402
+@source ops-publish title="archpub publish" path="docs/reference/operations.md" lines=404:408
 @source readme-layout title="布局即网格" path="README.md" lines=93:98
 @source build-prepare title="一次构建的路线" path="src/build.mjs" lines=127:178
 @source build-composition title="缺失的编排" path="src/build.mjs" lines=106:125
@@ -80,14 +80,14 @@
 @source typeset-problems title="拒绝指向编排中的行" path="src/overview/typeset.mjs" lines=130:161
 @source contract-plate-floor title="图版质量底线" path="docs/product-contract.md" lines=105:110
 @source ops-plate title="图版" path="docs/reference/operations.md" lines=157:166
-@source ops-reading title="图版的宽度与说明栏" path="docs/reference/operations.md" lines=180:194
-@source ops-edition title="图册" path="docs/reference/operations.md" lines=196:207
+@source ops-reading title="图版的宽度与说明栏" path="docs/reference/operations.md" lines=180:209
+@source ops-edition title="图册" path="docs/reference/operations.md" lines=211:221
 @source house-reading title="说明栏过高时的排法" path="src/overview/house.typ" lines=251:291
-@source ops-edition-text title="文字、日期与各页图像" path="docs/reference/operations.md" lines=208:224
-@source ops-refusal-paths title="拒绝指向何处" path="docs/reference/operations.md" lines=396:401
-@source plates-compositions title="图版尝试的每种编排" path="src/poster/compose/plates.mjs" lines=99:110
-@source plates-admit title="正文区容得下的视图" path="src/poster/compose/plates.mjs" lines=149:160
-@source plates-width title="图版宽度规则" path="src/poster/compose/plates.mjs" lines=203:234
+@source ops-edition-text title="文字、日期与各页图像" path="docs/reference/operations.md" lines=223:240
+@source ops-refusal-paths title="拒绝指向何处" path="docs/reference/operations.md" lines=412:417
+@source plates-compositions title="图版尝试的每种编排" path="src/poster/compose/plates.mjs" lines=109:121
+@source plates-admit title="正文区容得下的视图" path="src/poster/compose/plates.mjs" lines=160:171
+@source plates-width title="图版宽度规则" path="src/poster/compose/plates.mjs" lines=222:282
 @source plates-gates title="门槛只记录，不拒绝" path="src/poster/compose/gates.mjs" lines=1:24
 @source edition-typeset title="一遍排版，一个 PDF" path="src/edition/typeset.mjs" lines=11:14
 @source edition-images title="各页图像" path="src/edition/typeset.mjs" lines=120:141
@@ -100,10 +100,18 @@
 @source worklist-fates title="每个文件的去向" path="src/sources/worklist.mjs" lines=5:12
 @source worklist-citation title="引用区间的变化" path="src/sources/worklist.mjs" lines=63:67
 @source worklist-repin title="工作清单" path="src/sources/worklist.mjs" lines=97:110
+@source model-smallest title="最小模型" path="docs/reference/model.md" lines=26:28
+@source model-minimal title="最小的模型" path="docs/reference/model.md" lines=33:53
+@source changelog-first title="第一个版本" path="CHANGELOG.md" lines=847:853
+@source changelog-040 title="0.4.0 版本" path="CHANGELOG.md" lines=266:271
 
 ## 模型里有什么，什么时候会被拒绝？ {#p-model}
 
 模型由作者编写，也可以用 `archpub import likec4` 从 LikeC4 工作空间生成，或用 `archpub migrate` 从第 1 版模型转换。[](source:model-meaning)[](source:ops-migrate)加载器一遍就报出所有问题和各自的 JSON 路径；模型无效，就什么也不构建。[](source:load-problems)
+
+按模型格式，最小的模型只有三个组件、两个关系和它们的类型。[](source:model-smallest)[](source:model-minimal)它可以构建，但它的图版会让图册正文区大半空白。[](source:model-smallest)
+
+@code id=minimal-model source=model-minimal language=json
 
 @diagram class id=model-map source=model.class.json
 
@@ -190,10 +198,10 @@
 @steps id=edition-steps
 | step-ed-compose | 编排每个视图 | 图版逐一尝试每种字号档、折行、居中方式和层级标签列，从中先取交叉最少的，再取布线缺陷最少的。[](source:plates-compositions)[](source:ops-plate) | edition-flow | ed-compose |
 | step-ed-fits | 正文区内能布局？ | 所有编排都无法把视图布局在正文区内时，就以 `plate_unfittable` 拒绝；文字绝不缩小。[](source:plates-admit)[](source:contract-plate-floor) | edition-flow | ed-fits |
-| step-ed-width | 选定宽度 | 图宽在正文区的 100%、80%、65% 中取连线不变差的最窄一档。有概述的视图要为说明栏让出五分之一。[](source:plates-width)[](source:ops-reading) | edition-flow | ed-width |
+| step-ed-width | 选定宽度 | 图宽在正文区的 100%、80%、65% 中取连线不变差的最窄一档。有概述的视图要为说明栏让出五分之一；这样连线变差时，图保持全宽，概述排在图上方。[](source:plates-width)[](source:ops-reading) | edition-flow | ed-width |
 | step-ed-gates | 度量四道门槛 | 度量图版的最大空白矩形、空白带、空洞和重心。未通过的门槛只记录，供审阅人查看，不拒绝。[](source:plates-gates)[](source:ops-gates) | edition-flow | ed-gates |
 | step-ed-typeset | 一遍排版 | 版式类把扉页、目录、总览和每幅图版排入一个 PDF，符合 PDF/A-3a 与 PDF/UA-1。[](source:edition-typeset)[](source:ops-edition) | edition-flow | ed-typeset |
-| step-ed-text | 文字与度量一致？ | Typst 排出的文字串比引擎度量的宽，或标题超出所在行，都会被拒绝。[](source:ops-edition-text)说明栏高过正文区时只放概述，连概述也放不下才拒绝。[](source:house-reading) | edition-flow | ed-text |
+| step-ed-text | 文字与度量一致？ | Typst 排出的文字串比引擎度量的宽，或标题超出所在行，都会被拒绝。图上方的概述若有一行被 Typst 排得宽过 32 em，也会被拒绝。[](source:ops-edition-text)说明栏高过正文区时只放概述，连概述也放不下才拒绝。[](source:house-reading) | edition-flow | ed-text |
 | step-ed-images | PDF 与各页图像 | Typst 把总览页和每幅图版页按各宽度渲染为 PNG；构建未指定其他宽度时为 2400 px。[](source:edition-images)[](source:ops-edition-text) | edition-flow | ed-images |
 | step-ed-refused | 图册被拒绝 | 图版被拒绝时指明对应的视图；Typst 拒绝时指明 Typst 报告的那一行。[](source:ops-refusal-paths)[](source:typeset-problems) | edition-flow | ed-refused |
 
@@ -268,6 +276,12 @@
 | step-life-changed | delivery_changed | 与清单不符的产物会被拒绝：验收时查一次，出版时再查一次。[](source:delivery-verify) | delivery-life | life-changed |
 | step-life-published | 已出版的副本 | `archpub publish` 只复制已验收的交付物，放到对应的模型 id 和版本之下，并先核验这份副本。[](source:delivery-publish)[](source:ops-publish) | delivery-life | life-published |
 | step-life-conflict | publish_conflict | 同一版本下若是不同的交付物，就拒绝；若完全相同，则什么也不改变。[](source:ops-publish) | delivery-life | life-conflict |
+
+## Architecture Publisher 怎样走到今天？ {#p-history}
+
+Architecture Publisher 的变更日志始于 2026 年 9 月 18 日的 0.1.0-alpha.0。[](source:changelog-first)10 月 30 日发布的 0.4.0 让它成为通用的模型到媒介出版工具。[](source:changelog-040)下图从那里开始，列出到 0.11.0 为止八个版本，它们改变了作者或审阅人看到的东西。
+
+@diagram timeline id=history source=history.timeline.json title="Architecture Publisher 怎样走到今天"
 
 ## 更换固定的修订会带来哪些变化？ {#p-repin}
 

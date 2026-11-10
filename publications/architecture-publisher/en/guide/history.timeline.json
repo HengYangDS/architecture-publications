@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "diagram_type": "timeline",
+  "meta": {
+    "title": "How Architecture Publisher got here",
+    "output": "history.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/architecture-publisher",
+      "provider": "github",
+      "revision": "a7de98b5fb27daa13a59dd311a3123980b893323"
+    },
+    "evidence": "observed",
+    "timezone": "Asia/Shanghai"
+  },
+  "lanes": [
+    {
+      "id": "model",
+      "label": "Model and sources"
+    },
+    {
+      "id": "layout",
+      "label": "Layout and plates"
+    },
+    {
+      "id": "edition",
+      "label": "Edition and release"
+    }
+  ],
+  "events": [
+    {
+      "id": "v040",
+      "at": "2026-10-30T20:20:02+08:00",
+      "lane": "model",
+      "kind": "change",
+      "title": "0.4.0 One model, posters and a page",
+      "detail": "One Architecture Model, written by a person or an agent or imported from LikeC4, becomes posters, one interactive page and a manifest. A grid-first layout never draws an overlap.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 266,
+          "end_line": 276,
+          "label": "0.4.0"
+        }
+      ]
+    },
+    {
+      "id": "v060",
+      "at": "2026-10-31T09:57:11+08:00",
+      "lane": "layout",
+      "kind": "change",
+      "title": "0.6.0 Labels clear other wires",
+      "detail": "A relation label less than 48 px from another relation's turn reads as that wire's label, so the channels avoid it as a route defect.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 221,
+          "end_line": 226,
+          "label": "0.6.0"
+        }
+      ]
+    },
+    {
+      "id": "v080",
+      "at": "2026-11-05T04:18:40+08:00",
+      "lane": "model",
+      "kind": "change",
+      "title": "0.8.0 Components claim their files",
+      "detail": "Model version 2: each component claims the paths it owns, and a build resolves them at the pinned revision. A model may name a guide and an overview, and check --against reports a re-pin worklist.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 114,
+          "end_line": 159,
+          "label": "0.8.0"
+        }
+      ]
+    },
+    {
+      "id": "v090",
+      "at": "2026-11-06T05:16:32+08:00",
+      "lane": "edition",
+      "title": "0.9.0 One archive per platform",
+      "detail": "A release delivers archpub as one archive each for Linux, macOS and Windows on ARM64, with its own Node.js and Typst; it needs only Git. mise installs it as http:archpub.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 97,
+          "end_line": 105,
+          "label": "0.9.0"
+        }
+      ]
+    },
+    {
+      "id": "v0100",
+      "at": "2026-11-08T07:54:36+08:00",
+      "lane": "edition",
+      "kind": "change",
+      "title": "0.10.0 The print edition",
+      "detail": "One PDF typeset by Typst 0.15.1 replaces the posters: a title page, contents, the overview and one plate per view. It conforms to PDF/A-3a and PDF/UA-1.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 53,
+          "end_line": 64,
+          "label": "0.10.0"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 89,
+          "end_line": 92,
+          "label": "Removed"
+        }
+      ]
+    },
+    {
+      "id": "v0101",
+      "at": "2026-11-08T23:35:58+08:00",
+      "lane": "edition",
+      "title": "0.10.1 Han titles break in balance",
+      "detail": "A cover title in Han, Kana or Hangul breaks so that no line holds one character alone, and the overview's build line follows the model's language.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 40,
+          "end_line": 51,
+          "label": "0.10.1"
+        }
+      ]
+    },
+    {
+      "id": "v0102",
+      "at": "2026-11-09T15:07:46+08:00",
+      "lane": "layout",
+      "title": "0.10.2 Summary alone, not refused",
+      "detail": "A plate whose summary and paths are taller than the body sets its summary alone, where 0.10.1 refused the edition. Text is still never shrunk.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 31,
+          "end_line": 38,
+          "label": "0.10.2"
+        }
+      ]
+    },
+    {
+      "id": "v0110",
+      "at": "2026-11-11T00:01:13+08:00",
+      "lane": "layout",
+      "title": "0.11.0 Summary above a full figure",
+      "detail": "A figure that wires worse at 80 percent of the body keeps the full width, and its summary is set above it. On the six published works, 16 of the 21 plates that left their summary out set it this way.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 10,
+          "end_line": 23,
+          "label": "0.11.0"
+        }
+      ]
+    }
+  ]
+}

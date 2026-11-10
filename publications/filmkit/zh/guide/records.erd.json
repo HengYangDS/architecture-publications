@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "acc1eda13ad06ab1881fec9fd8a8372f7b2ba4d9"
+      "revision": "e62e7996587d0cfc5e599be78a66747072c83893"
     }
   },
   "layout": {
@@ -194,6 +194,10 @@
           "type": "digest"
         },
         {
+          "name": "version_sha256",
+          "type": "digest"
+        },
+        {
           "name": "editions",
           "type": "films"
         }
@@ -201,8 +205,8 @@
       "sources": [
         {
           "path": "src/filmkit/delivery/packaging.py",
-          "line": 229,
-          "end_line": 270,
+          "line": 272,
+          "end_line": 314,
           "label": "Package"
         }
       ],

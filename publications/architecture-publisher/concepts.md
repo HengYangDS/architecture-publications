@@ -1,7 +1,7 @@
 # Architecture Publisher: term renderings
 
 The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `architecture-publisher` at v0.10.2 (`4fcd4d0`) that defines or uses the term; the edition's own
+names the file of `architecture-publisher` at v0.11.0 (`a7de98b`) that defines or uses the term; the edition's own
 Chinese words come from `src/edition/words.mjs` and `src/locale.mjs`. Renderings marked "approved" are the
 owner-approved shared renderings.
 
@@ -129,6 +129,7 @@ owner-approved shared renderings.
 | work (a publication)                                        | 作品                                             | this work's `guide/guide.archify.md`                                             |
 | summary (a view's)                                          | 概述 (摘要 is digest)                            | `docs/reference/model.md` (Views)                                                |
 | reading (a plate's: summary and where each component lives) | 说明栏                                           | `docs/reference/operations.md`, `src/poster/compose/plates.mjs`                  |
+| summary above its figure, full width                        | 图上方的概述, 全宽                               | `docs/reference/operations.md`, `src/poster/compose/plates.mjs`                  |
 | type step                                                   | 字号档                                           | `docs/reference/operations.md`, `README.md`                                      |
 | type sizes (house class)                                    | 字号 (四档字号)                                  | `docs/reference/model.md` (Overview)                                             |
 | palette                                                     | 配色                                             | `docs/reference/model.md` (Overview)                                             |

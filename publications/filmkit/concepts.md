@@ -1,7 +1,7 @@
 # Film Kit: term renderings
 
 The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `filmkit` at v0.18.0 (`acc1eda`) that defines or uses the term. Film Kit's own Chinese words come
+names the file of `filmkit` at v0.19.0 (`e62e799`) that defines or uses the term. Film Kit's own Chinese words come
 from its player (`src/filmkit/delivery/player.py`) and its sample film (`examples/sample-film/`); the owner-approved
 film editions are cited as `ethos-film` at v1.0.1 (`c33e60f`) or `ddwg-film`, the repository
 `data-department-work-guidelines-film` at v1.2.0 (`f286c43`), with their file. An edition is one language version of
@@ -94,6 +94,8 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | validate                                       | 校验                                 | `src/filmkit/picture/rendering.py`                                                                             |
 | still picture; still scan                      | 静止画面；扫描                       | `src/filmkit/picture/still_scan.py`                                                                            |
 | equivalence (captions only differ)             | 等效性                               | `src/filmkit/picture/equivalence.py`                                                                           |
+| one-frame fault; every frame                   | 单帧故障；逐帧                       | `src/filmkit/picture/faults.py`                                                                                |
+| version (a film's, from its `VERSION`)         | 版本号                               | `src/filmkit/delivery/packaging.py`                                                                            |
 | headless; canvas stand-in                      | 无头；canvas 替身                    | `src/filmkit/picture/headless-composition.mjs`; `src/filmkit/picture/metrics.py`                               |
 | advance widths; faces, fonts                   | 步进宽度；字体                       | `src/filmkit/picture/metrics.py`                                                                               |
 | whole turn; ink                                | 整圈弧线；墨迹                       | `src/filmkit/picture/whole-turns.mjs`; `src/filmkit/picture/gates.py`                                          |

@@ -67,10 +67,24 @@ AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-wha
 @source rejected title="DR-0006：被否决的方案" path="docs/decisions/dr-0006-transactional-client-projection.md" lines=32:37
 @source revisit title="DR-0006：何时重新审视" path="docs/decisions/dr-0006-transactional-client-projection.md" lines=45:48
 @source readiness title="就绪状态" path="internal/app/readiness/state.go" lines=1:27
+@source readme-for title="--for 接受的客户端" path="README.md" lines=132:132
+@source readme-environment title="环境变量中的令牌" path="README.md" lines=165:167
+@source manifest-accounts title="团队清单里的两个账户" path="manifests/team.toml" lines=44:63
+@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=822:844
+@source changelog-061 title="0.6.1 的发布" path="CHANGELOG.md" lines=17:27
 
 ## 谁使用 AIGW，它又牵涉到什么？ {#p-context}
 
 AIGW 的价值假设是：团队成员只要持有任一受支持提供商凭据，就能得到可用的客户端配置，看得懂，也能安全地撤回。[](source:research-value)
+
+@facts
+| 客户端 | `--for` 接受 `claude`、`claude-desktop`、`codex` 和 `hermes` |
+| 令牌存储 | 平台凭据服务可用时就用它，否则用唯一的本地后备存储；用 `AIGW_SECRET_BACKEND` 显式选定 `keyring`、`file` 或 `env` 时，出错即拒绝 |
+| 环境变量中的令牌 | 只读，取自 `AIGW_TOKEN_<ACCOUNT>`；客户端进程必须继承同一环境 |
+
+这些取值由 AIGW 固定。[](source:readme-for)[](source:readme-credentials)[](source:readme-environment)团队编订一份清单，只收录审阅过的账户端点和已准入的路由，不含令牌。[](source:rollout-maintainer)下面是仓库自带 `manifests/team.toml` 里的两个账户。[](source:manifest-accounts)
+
+@code id=accounts source=manifest-accounts language=toml
 
 @diagram architecture id=context-map source=context.architecture.json
 
@@ -280,6 +294,12 @@ AIGW 的输出回答三个问题：选中了什么，是否就绪，下一步做
 | 代码托管平台 | GitLab 和 GitHub 彼此独立；一个发布版本绝不由两者拼合而成。[](source:readme-update-trust) |
 | 回滚 | 前一版本必须先读取一份隔离的配置副本，否则程序和配置都保持不变。[](source:readme-rollback) |
 | 卸载 | 撤回 AIGW 写入客户端的配置；账户、路由、绑定、令牌和你自己的客户端状态都会保留。[](source:readme-uninstall) |
+
+## AIGW 怎样走到今天？ {#p-history}
+
+AIGW 于 2026 年 9 月 19 日发布 v0.1.0，11 月 5 日发布本页所述的 v0.6.1。[](source:changelog-010)[](source:changelog-061)下图选出十二个版本，每个都改变了 AIGW 为用户做的事；仍待解决的事项列在本页最后。
+
+@diagram timeline id=history source=history.timeline.json title="AIGW 怎样走到今天"
 
 ## 哪些已经交付，哪些仍待解决？ {#p-maturity}
 

@@ -78,6 +78,9 @@
 @source ci-projection title="生成的流水线" path=".config/checks/ci-projection/policy.toml" lines=1:16
 @source github-job title="GitHub 作业" path=".github/workflows/ci.yml" lines=36:46
 @source version-file title="VERSION" path="VERSION" lines=1:1
+@source changelog-intro title="更早的版本没有发布标签" path="CHANGELOG.md" lines=10:11
+@source changelog-400 title="4.0.0 的发布" path="CHANGELOG.md" lines=769:808
+@source changelog-800 title="8.0.0 的发布" path="CHANGELOG.md" lines=17:183
 
 ## 谁读这份指南，从哪里开始？ {#p-readers}
 
@@ -241,6 +244,12 @@ OpenSpec 工作空间里的六份能力规格，保存已验收的需求。需�
 | DR-0005：关闭范围           | 按已交付的任务关闭正式变更；其余任务注明理由后撤出 {good:选定}             | 等所有环境就绪，或者勾选未完成的任务 {bad:否决}                 |
 
 撤出的任务去掉复选框，但保留所在行和标识，所以归档后的正式变更仍能看出整个计划。[](source:dr5-decision)[](source:dr5-alternatives)
+
+## 这套指南怎样走到今天？ {#p-history}
+
+正式的版本号从 v4.0.0 开始，这一版于 2026 年 9 月 26 日发布；此前各分支版本都没有打发布标签。[](source:changelog-intro)[](source:changelog-400)时间线从中挑出十一个版本，最后一个是 2026 年 11 月 1 日发布的 v8.0.0；这些版本都改变了成员、智能体或维护者读到的内容。[](source:changelog-800)
+
+@diagram timeline id=history source=history.timeline.json title="这套指南怎样走到今天"
 
 ## 哪些已有定论，哪些仍待解决？ {#p-open}
 

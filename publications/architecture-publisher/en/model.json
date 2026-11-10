@@ -6,7 +6,7 @@
   "title": "Architecture Publisher",
   "question": "How does Architecture Publisher turn an architecture model into a print edition and a page?",
   "summary": "An author runs archpub on a model. A build validates it, gives each file in its scope to the component that claims it at the pinned revision, plans the views and lays each out on one grid. It typesets a print edition of the overview the author composes and one plate per view, writes one Archify page, which is the author's guide when the model names one, and a manifest of their digests; a named reviewer accepts the delivery before it is published.",
-  "scope": "Architecture Publisher as released at v0.10.2: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
+  "scope": "Architecture Publisher as released at v0.11.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
   "limits": [
     "Each component claims the directories and files its path rules name, and each file in the scope goes to its most specific claim; a relation cites the modules that import or call the other component.",
     "Relations are imports and process calls in the source, not runtime order; the shared refusal type and the child environment are not drawn as relations.",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "4fcd4d061fb21b7a4c547c6a7b47c3f8507fbc7d",
+    "revision": "a7de98b5fb27daa13a59dd311a3123980b893323",
     "browse": "https://github.com/HengYangDS/architecture-publisher/blob/{revision}/{path}"
   },
   "coverage": {
@@ -248,7 +248,7 @@
       "label": "Plate composer",
       "kind": "medium",
       "details": {
-        "composes": "each view as one plate for the edition's body, at the narrowest of three widths that wires no worse",
+        "composes": "each view as one plate for the edition's body, at the narrowest of three widths that wires no worse, or at the full width with its summary above it",
         "records": "the balance gates each plate misses, for the reviewer"
       },
       "files": ["src/poster/"]
@@ -258,7 +258,7 @@
       "label": "Typefaces",
       "kind": "medium",
       "details": {
-        "measures": "figure text in Source Sans 3 and Noto Sans CJK SC, as the edition sets it"
+        "measures": "figure text in Source Sans 3 and Noto Sans CJK SC, and a summary above its figure in Source Serif 4, as the edition sets them"
       },
       "files": ["src/poster/text.mjs", "src/breaks.mjs"]
     },

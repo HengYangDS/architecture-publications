@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "diagram_type": "timeline",
+  "meta": {
+    "title": "How the proxy got here",
+    "output": "history.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
+      "provider": "github",
+      "revision": "a36a33cf43ac518682d94da41b799a2a6649f988"
+    },
+    "evidence": "observed",
+    "timezone": "Asia/Shanghai"
+  },
+  "lanes": [
+    {
+      "id": "product",
+      "label": "Product and routes"
+    },
+    {
+      "id": "requests",
+      "label": "Requests and replay"
+    },
+    {
+      "id": "recovery",
+      "label": "Upstream failures"
+    },
+    {
+      "id": "lifecycle",
+      "label": "Install and run"
+    }
+  ],
+  "events": [
+    {
+      "id": "v100",
+      "at": "2026-07-08T18:21:32+08:00",
+      "lane": "product",
+      "title": "v1.0.0 A loopback Responses adapter",
+      "detail": "The first release: a portable loopback Responses compatibility adapter with a watchdog, platform service adapters, bounded upstream retries and SSE reconnect handling.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1911,
+          "end_line": 1917,
+          "label": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v1012",
+      "at": "2026-07-17T22:55:58+08:00",
+      "lane": "recovery",
+      "title": "v1.0.12 A retryable 503 after bounded recovery",
+      "detail": "Once the pair-safe fallbacks are rejected, one final request carries only the latest instruction and the latest user request. Exhausted recovery and an exhausted DMXAPI 477 retry return a retryable 503 with Retry-After.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1783,
+          "end_line": 1828,
+          "label": "1.0.12"
+        }
+      ]
+    },
+    {
+      "id": "v1043",
+      "at": "2026-07-31T03:49:14+08:00",
+      "lane": "requests",
+      "title": "v1.0.43 One provider-portable grammar",
+      "detail": "Every Responses replay request is projected onto a provider-portable grammar without changing Codex conversation storage. DMXAPI, UCloud/Azure and AIHubMix get fixed, isolated loopback routes.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1400,
+          "end_line": 1411,
+          "label": "1.0.43"
+        }
+      ]
+    },
+    {
+      "id": "v202",
+      "at": "2026-08-02T17:14:29+08:00",
+      "lane": "product",
+      "kind": "change",
+      "title": "v2.0.2 Codex Responses Proxy and a provider manifest",
+      "detail": "Renamed from the DMX-specific Codex DMX Proxy, it serves ordinary Responses endpoints through a provider manifest. Every request names an explicit /<provider>/v1 namespace, and installation no longer reads or rewrites Codex or AIGW configuration.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1306,
+          "end_line": 1372,
+          "label": "2.0.2"
+        }
+      ]
+    },
+    {
+      "id": "v3116",
+      "at": "2026-09-05T14:11:53+08:00",
+      "lane": "lifecycle",
+      "title": "v3.1.16 Upgrades keep admitting requests",
+      "detail": "A capability-qualified upgrade or rollback handoff no longer rejects new and in-flight Responses requests with proxy_draining. Bounded draining remains only for replacing a legacy native generation.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 540,
+          "end_line": 547,
+          "label": "3.1.16"
+        }
+      ]
+    },
+    {
+      "id": "v400",
+      "at": "2026-09-15T23:53:28+08:00",
+      "lane": "lifecycle",
+      "kind": "change",
+      "title": "v4.0.0 Upgrades need generations",
+      "detail": "In-place upgrades require a durable generation-based installation; an older flat one must be uninstalled before a fresh install. Linux requires a reachable user service manager and keeps the host's lingering policy.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 507,
+          "end_line": 530,
+          "label": "4.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v500",
+      "at": "2026-10-10T10:49:44+08:00",
+      "lane": "product",
+      "kind": "change",
+      "title": "v5.0.0 OpenAI Responses Proxy",
+      "detail": "The product, command, native service and release assets take the new name; existing installations migrate by uninstall and fresh installation. --upstream-base-url selects one ordinary Responses upstream at installation.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 406,
+          "end_line": 423,
+          "label": "5.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v503",
+      "at": "2026-10-12T19:44:37+08:00",
+      "lane": "lifecycle",
+      "kind": "alert",
+      "title": "v5.0.3 The macOS watchdog returns after a restart",
+      "detail": "With a GUI login, installation registers the watchdog in that login's domain, which launchd reloads at every GUI login. Background-only registrations from 5.0.1 and 5.0.2 are migrated.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 343,
+          "end_line": 379,
+          "label": "5.0.3"
+        }
+      ]
+    },
+    {
+      "id": "v510",
+      "at": "2026-10-22T12:30:30+08:00",
+      "lane": "requests",
+      "kind": "change",
+      "title": "v5.1.0 Body admission and one exchange deadline",
+      "detail": "A Responses body needs one ASCII Content-Length, at most 64 MiB, received within 30 s; transfer encodings and missing or repeated lengths get 400. The upstream timeout becomes one deadline per exchange.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 180,
+          "end_line": 286,
+          "label": "5.1.0"
+        }
+      ]
+    },
+    {
+      "id": "v513",
+      "at": "2026-10-23T19:49:51+08:00",
+      "lane": "requests",
+      "kind": "alert",
+      "title": "v5.1.3 Upstream redirects are not followed",
+      "detail": "A redirect could carry the client's Authorization header to another host; the client now receives the redirect itself. Drain and handoff controls accept only a loopback caller that sends no Origin.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 134,
+          "end_line": 156,
+          "label": "5.1.3"
+        }
+      ]
+    },
+    {
+      "id": "v517",
+      "at": "2026-10-25T19:46:26+08:00",
+      "lane": "recovery",
+      "kind": "alert",
+      "title": "v5.1.7 A completely sent request is never resent",
+      "detail": "5.1.6 retried every transport failure, which can duplicate provider work and billing. The client now receives 502 upstream_outcome_unknown; failures before the request is complete are still retried.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 79,
+          "end_line": 102,
+          "label": "5.1.7"
+        }
+      ]
+    },
+    {
+      "id": "v5110",
+      "at": "2026-11-09T06:38:03+08:00",
+      "lane": "recovery",
+      "title": "v5.1.10 Input too long, media over budget",
+      "detail": "An upstream input-length or media-budget rejection gets one attempt with less history when the current input permits. Current user and tool images, instructions and tool dependencies are kept.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 11,
+          "end_line": 32,
+          "label": "5.1.10"
+        }
+      ]
+    }
+  ]
+}

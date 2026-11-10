@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "diagram_type": "timeline",
+  "meta": {
+    "title": "Architecture Publisher 怎样走到今天",
+    "output": "history.html",
+    "quality_profile": "showcase",
+    "locale": "zh",
+    "repository": {
+      "url": "https://github.com/HengYangDS/architecture-publisher",
+      "provider": "github",
+      "revision": "a7de98b5fb27daa13a59dd311a3123980b893323"
+    },
+    "evidence": "observed",
+    "timezone": "Asia/Shanghai"
+  },
+  "lanes": [
+    {
+      "id": "model",
+      "label": "模型与来源"
+    },
+    {
+      "id": "layout",
+      "label": "布局与图版"
+    },
+    {
+      "id": "edition",
+      "label": "图册与发布"
+    }
+  ],
+  "events": [
+    {
+      "id": "v040",
+      "at": "2026-10-30T20:20:02+08:00",
+      "lane": "model",
+      "kind": "change",
+      "title": "0.4.0 一个模型，海报与页面",
+      "detail": "由人或 Agent 编写、或从 LikeC4 导入的一个架构模型，产出海报、一个交互页面和一份清单。网格优先的布局从不画出重叠。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 266,
+          "end_line": 276,
+          "label": "0.4.0"
+        }
+      ]
+    },
+    {
+      "id": "v060",
+      "at": "2026-10-31T09:57:11+08:00",
+      "lane": "layout",
+      "kind": "change",
+      "title": "0.6.0 标签避开别的连线",
+      "detail": "关系标签离另一条关系的转折不足 48 px 时，会被读成那条连线的标签，所以通道把它当作布线缺陷避开。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 221,
+          "end_line": 226,
+          "label": "0.6.0"
+        }
+      ]
+    },
+    {
+      "id": "v080",
+      "at": "2026-11-05T04:18:40+08:00",
+      "lane": "model",
+      "kind": "change",
+      "title": "0.8.0 组件认领自己的文件",
+      "detail": "第 2 版模型：每个组件认领它拥有的路径，构建在固定的修订上解析它们。模型可以指定导读和总览，check --against 给出重新固定的工作清单。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 114,
+          "end_line": 159,
+          "label": "0.8.0"
+        }
+      ]
+    },
+    {
+      "id": "v090",
+      "at": "2026-11-06T05:16:32+08:00",
+      "lane": "edition",
+      "title": "0.9.0 每个平台一个归档",
+      "detail": "每次发布为 ARM64 上的 Linux、macOS 和 Windows 各提供一个 archpub 归档，自带 Node.js 和 Typst，只需要 Git。mise 以 http:archpub 安装它。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 97,
+          "end_line": 105,
+          "label": "0.9.0"
+        }
+      ]
+    },
+    {
+      "id": "v0100",
+      "at": "2026-11-08T07:54:36+08:00",
+      "lane": "edition",
+      "kind": "change",
+      "title": "0.10.0 PDF 图册",
+      "detail": "由 Typst 0.15.1 排版的一份 PDF 取代海报：扉页、目录、总览，以及每个视图一幅图版。它符合 PDF/A-3a 和 PDF/UA-1。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 53,
+          "end_line": 64,
+          "label": "0.10.0"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 89,
+          "end_line": 92,
+          "label": "Removed"
+        }
+      ]
+    },
+    {
+      "id": "v0101",
+      "at": "2026-11-08T23:35:58+08:00",
+      "lane": "edition",
+      "title": "0.10.1 汉字标题均衡断行",
+      "detail": "含汉字、假名或谚文的封面标题断行时，不会让一行只剩一个字；总览的构建行也改用模型的语言。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 40,
+          "end_line": 51,
+          "label": "0.10.1"
+        }
+      ]
+    },
+    {
+      "id": "v0102",
+      "at": "2026-11-09T15:07:46+08:00",
+      "lane": "layout",
+      "title": "0.10.2 只排概述，不再拒绝",
+      "detail": "概述和路径合起来高过正文区时，图版只排概述；0.10.1 在这种情况下会拒绝整本图册。文字仍然从不缩小。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 31,
+          "end_line": 38,
+          "label": "0.10.2"
+        }
+      ]
+    },
+    {
+      "id": "v0110",
+      "at": "2026-11-11T00:01:13+08:00",
+      "lane": "layout",
+      "title": "0.11.0 概述置于全宽图上方",
+      "detail": "在正文区 80% 宽度下连线变差的图保持全宽，概述排在它上方。六部已出版作品中，原先省略概述的 21 幅图版有 16 幅改为这样排出概述。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 10,
+          "end_line": 23,
+          "label": "0.11.0"
+        }
+      ]
+    }
+  ]
+}

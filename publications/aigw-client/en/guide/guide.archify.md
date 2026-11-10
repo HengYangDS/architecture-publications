@@ -67,10 +67,24 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 @source rejected title="DR-0006: rejected alternatives" path="docs/decisions/dr-0006-transactional-client-projection.md" lines=32:37
 @source revisit title="DR-0006: when to revisit" path="docs/decisions/dr-0006-transactional-client-projection.md" lines=45:48
 @source readiness title="The readiness states" path="internal/app/readiness/state.go" lines=1:27
+@source readme-for title="The clients --for accepts" path="README.md" lines=132:132
+@source readme-environment title="Environment Tokens" path="README.md" lines=165:167
+@source manifest-accounts title="Two Accounts in the team manifest" path="manifests/team.toml" lines=44:63
+@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=822:844
+@source changelog-061 title="The 0.6.1 release" path="CHANGELOG.md" lines=17:27
 
 ## Who uses AIGW, and what does it touch? {#p-context}
 
 AIGW's value hypothesis: a team member with any one supported provider credential reaches a usable client configuration, understands it and safely withdraws it.[](source:research-value)
+
+@facts
+| Clients | `claude`, `claude-desktop`, `codex` and `hermes`, the values `--for` accepts |
+| Token store | The platform credential service when available, else one local fallback; an explicit `AIGW_SECRET_BACKEND` of `keyring`, `file` or `env` fails closed |
+| Environment Tokens | Read-only, from `AIGW_TOKEN_<ACCOUNT>`; the client process must inherit the same environment |
+
+AIGW fixes these values.[](source:readme-for)[](source:readme-credentials)[](source:readme-environment) A team curates a manifest of only reviewed Account endpoints and admitted Routes, without Tokens.[](source:rollout-maintainer) Below are two Accounts from the shipped `manifests/team.toml`.[](source:manifest-accounts)
+
+@code id=accounts source=manifest-accounts language=toml
 
 @diagram architecture id=context-map source=context.architecture.json
 
@@ -280,6 +294,12 @@ AIGW answers one question of four, and leaves the others to the products built f
 | Peers | GitLab and GitHub are independent; a release is never assembled from both.[](source:readme-update-trust) |
 | Roll back | The predecessor must read an isolated copy of the configuration first, or the program and configuration stay unchanged.[](source:readme-rollback) |
 | Uninstall | Withdraws AIGW's client projections; Accounts, Routes, Bindings, Tokens and your own client state remain.[](source:readme-uninstall) |
+
+## How did AIGW get here? {#p-history}
+
+AIGW released v0.1.0 on 19 September 2026 and v0.6.1, the version this page describes, on 5 November 2026.[](source:changelog-010)[](source:changelog-061) The timeline shows twelve releases that changed what AIGW does for its users, and the last panel lists what is still open.
+
+@diagram timeline id=history source=history.timeline.json title="How AIGW got here"
 
 ## What is delivered, and what is still open? {#p-maturity}
 

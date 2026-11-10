@@ -28,7 +28,8 @@ route did not fit the page width at four stages, and structural change marks ren
   tag's creator time and citing the lines of its own CHANGELOG section at the pin.
 - **The history sits before the maturity panel**, or before the last panel where a guide has none, so a page ends on
   what is open.
-- **Architecture Publisher re-pins in this Change**, so its history and page describe 0.11.0 together.
+- **Architecture Publisher and Film Kit re-pin in this Change**, so each history and page describe the latest release
+  together.
 
 ## Risks / Trade-offs
 

@@ -2,8 +2,8 @@
 
 [`en/model.json`](en/model.json) is an Architecture Model of how Architecture
 Publisher turns an architecture model into a print edition and a page. It pins
-`architecture-publisher` at v0.10.2
-(`4fcd4d061fb21b7a4c547c6a7b47c3f8507fbc7d`), and its components own all 64
+`architecture-publisher` at v0.11.0
+(`a7de98b5fb27daa13a59dd311a3123980b893323`), and its components own all 64
 files of its coverage scope: the publisher's source under `src/`, its
 `package.json` and the manifests of its six vendored supplies. Thirty-one
 components, fifty-two relations and six views show one build from the author
@@ -19,12 +19,13 @@ Archify explainer that Architecture Publisher delivers as its page. It follows
 one build: what a model holds, how each file finds its owner at the pinned
 revision, which views are drawn and how one is laid out, how a view becomes a
 page of the print edition, how the page and the overview are made and checked,
-what the manifest binds and how a delivery is accepted and published. It ends
-with what moving the pin changes. Each claim about the product cites a line
-range at v0.10.2, and the diagrams the draft names sit beside it. The re-pin
-counts were measured on 2026-11-08, when this work moved from v0.9.0 to v0.10.0;
-the move to v0.10.1 changed no claim, and the move to v0.10.2 changed only what
-a reading too tall for the body does.
+what the manifest binds and how a delivery is accepted and published. It shows
+the releases that brought the publisher here and ends with what moving the pin
+changes. Each claim about the product cites a line range at v0.11.0, and the
+diagrams the draft names sit beside it. The re-pin counts were measured on
+2026-11-08, when this work moved from v0.9.0 to v0.10.0; the move to v0.10.1
+changed no claim, the move to v0.10.2 changed only what a reading too tall for
+the body does, and the move to v0.11.0 only where a plate sets its summary.
 
 Each component claims the directories and files its path rules name, and each
 file goes to its most specific claim, so every file in the scope has one owner;
