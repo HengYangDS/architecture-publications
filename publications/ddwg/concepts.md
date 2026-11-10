@@ -1,12 +1,11 @@
-# DDWG concept renderings (zh-CN)
+# Data Department Work Guidelines: term renderings
 
-The renderings this edition fixes before translating. Source names the file of
-`data-department-work-guidelines` at v8.0.0 (`b9da15d`) that defines or uses the
-term, or `concepts.toml` for the owner-approved ddwg-film concept contract
-(`/Users/yheng/projects/ddwg-film`, `content/concepts.toml`). The film contract
-renders Agent as 智能体 for this work, which takes precedence over the brief's
-shared rendering Agent → Agent. None of the contract's `zh.avoid` words is used
-in this edition.
+The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
+names the file of `data-department-work-guidelines` at v8.0.0 (`b9da15d`) that defines or uses the term, or
+`concepts.toml` for the owner-approved concept contract of the DDWG film, `content/concepts.toml` of
+`data-department-work-guidelines-film` at v1.2.0 (`f286c43`). That contract renders Agent as 智能体 for this work,
+which takes precedence over the brief's shared rendering Agent → Agent. None of the contract's `zh.avoid` words is
+used in this work.
 
 | English                                                                       | 中文                                         | Source                                                                            |
 | ----------------------------------------------------------------------------- | -------------------------------------------- | --------------------------------------------------------------------------------- |

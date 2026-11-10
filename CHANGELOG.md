@@ -14,8 +14,16 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 ### Changed
 
-- OpenAI Responses Proxy is pinned at v5.1.10 and Architecture Publisher at
-  v0.10.2. Building the works needs Architecture Publisher 0.10.2 or later.
+- OpenAI Responses Proxy is pinned at v5.1.10, Architecture Publisher at v0.10.2
+  and Film Kit at v0.18.0. Building the works needs Architecture Publisher 0.10.2
+  or later.
+- The Film Kit work names its subject Film Kit, as its project does, and keeps
+  `filmkit` for the package, its commands and paths. Its motion audit lists dash
+  snaps, and its 1080p films are averaged over each 2×2 block and keyed every 2 s.
+- Each work's term table opens as `<title>: term renderings`, is introduced in
+  English and names the revision it cites; the film repositories are cited by
+  their public names at their releases. The input check refuses a README or term
+  table that does not name its work's title and pinned revision.
 - Each work holds each of its languages in a directory of its own, `en/` and
   `zh/`, with the same files, and its term table `concepts.md` beside them; each
   English model names its locale. The input check refuses any other layout, and

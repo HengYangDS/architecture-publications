@@ -2,14 +2,14 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "filmkit 读取、运行和写出什么",
+    "title": "Film Kit 读取、运行和写出什么",
     "output": "context.html",
     "quality_profile": "showcase",
     "locale": "zh-CN",
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "d6de89569ddb336363186ca99c39e5a45d018cb1"
+      "revision": "acc1eda13ad06ab1881fec9fd8a8372f7b2ba4d9"
     }
   },
   "components": [
@@ -81,7 +81,7 @@
     {
       "id": "ctx-engine",
       "type": "security",
-      "label": "filmkit 引擎",
+      "label": "Film Kit 引擎",
       "sublabel": "每个动作一个语言版",
       "pos": [280, 190],
       "size": [180, 64],
@@ -120,8 +120,8 @@
       "sources": [
         {
           "path": "src/filmkit/production.py",
-          "line": 125,
-          "end_line": 141,
+          "line": 138,
+          "end_line": 154,
           "label": "Places"
         }
       ]

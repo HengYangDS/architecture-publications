@@ -1,9 +1,9 @@
-// filmkit: the work's overview, composed with the house class.
+// Film Kit: the work's overview, composed with the house class.
 #import "/archpub/house.typ": *
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([filmkit], [每个语言版都从影片自己的源文件重建], [filmkit 是本地运行的引擎：带旁白的讲解影片，每个语言版的朗读、拼接、字幕、门禁、渲染和打包都由它完成，每一步都记下所读内容的 SHA-256。], read-from: [依据 110 个文件写成，每个文件都按 SHA-256 引用。], claim-x: 124pt)
+#masthead([Film Kit], [每个语言版都从影片自己的源文件重建], [Film Kit 是本地运行的引擎：带旁白的讲解影片，每个语言版的朗读、拼接、字幕、门禁、渲染和打包都由它完成，每一步都记下所读内容的 SHA-256。], read-from: [依据 112 个文件写成，每个文件都按 SHA-256 引用。], claim-x: 124pt)
 
 // ── Band 1: one edition's route, from the declaration to a compared rebuild ──
 #let ys = 250pt
@@ -61,7 +61,7 @@
   ([逐帧审查], [每隔 1/30 s 查一帧：版面、易读性、平衡，以及文字是否对齐]),
   ([同步审查], [每个标签都对照读到它的词句；再查等待名称出现的标记]),
   ([文字测量], [第一个词之前，声明的标题要显示 1 s；静止文字的对比度不低于 4.5:1]),
-  ([动效审查], [以每秒 30 帧查残影、停滞、突现和跳变]),
+  ([动效审查], [以每秒 30 帧查残影、停滞、突现、跳变和虚线突变]),
   ([门禁记录], [绑定画面合成、时间线、样式表、字体和引擎版本]),
 ))
 

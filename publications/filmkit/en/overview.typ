@@ -1,9 +1,9 @@
-// filmkit: the work's overview, composed with the house class.
+// Film Kit: the work's overview, composed with the house class.
 #import "/archpub/house.typ": *
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([filmkit], [Each edition rebuilt from the film's own sources], [A local engine: filmkit narrates, assembles, captions, gates, renders and packages each edition of a narrated explainer film, and every step records the SHA-256 of what it read.], read-from: [Read from 110 files, each cited by its SHA-256.], claim-x: 124pt)
+#masthead([Film Kit], [Each edition rebuilt from the film's own sources], [A local engine: Film Kit narrates, assembles, captions, gates, renders and packages each edition of a narrated explainer film, and every step records the SHA-256 of what it read.], read-from: [Read from 112 files, each cited by its SHA-256.], claim-x: 124pt)
 
 // ── Band 1: one edition's route, from the declaration to a compared rebuild ──
 #let ys = 250pt
@@ -61,7 +61,7 @@
   ([Frame audit], [every frame at 1/30 s: layout, legibility, balance and how text lines up]),
   ([Sync audit], [each label against its spoken words; marks that wait for a name]),
   ([Text measures], [the declared title for 1 s before the first word; each text at rest at 4.5:1 or more]),
-  ([Motion audit], [ghosts, stalls, pops and jumps at 30 frames per second]),
+  ([Motion audit], [ghosts, stalls, pops, jumps and dash snaps at 30 frames per second]),
   ([Gate record], [binds the composition, timeline, stylesheet, fonts and engine version]),
 ))
 

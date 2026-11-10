@@ -1,8 +1,9 @@
-# Architecture Publisher: concept renderings (zh-CN)
+# Architecture Publisher: term renderings
 
-The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source names
-the file at `548637cc` that defines or uses the term; the edition's own Chinese words come from
-`src/edition/words.mjs` and `src/locale.mjs`. Renderings marked "approved" are the owner-approved shared renderings.
+The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
+names the file of `architecture-publisher` at v0.10.2 (`4fcd4d0`) that defines or uses the term; the edition's own
+Chinese words come from `src/edition/words.mjs` and `src/locale.mjs`. Renderings marked "approved" are the
+owner-approved shared renderings.
 
 | English                                                     | 中文                                             | Source                                                                           |
 | ----------------------------------------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------- |

@@ -159,6 +159,31 @@ async function verifyLanguage(directory, language) {
 }
 
 /**
+ * A work's README and term table name its subject and pin: the README opens with the model's title and names the full
+ * revision, and the term table opens with that title and "term renderings" and names the revision's first seven
+ * characters, so a new pin that leaves either behind is refused.
+ */
+async function verifyNaming(directory, model, concepts) {
+  const { title } = model;
+  const revision = model.repository.revision;
+  const opening = async (name) => (await readFile(path.join(directory, name), "utf8")).split("\n");
+  const [readmeHeading, ...readme] = await opening("README.md");
+  assert.equal(readmeHeading, `# ${title}`, `README.md is not headed "# ${title}"`);
+  assert.ok(
+    readme.join("\n").includes(revision),
+    `README.md does not name the pinned revision ${revision}`,
+  );
+  if (!concepts) return;
+  const [tableHeading, ...table] = await opening("concepts.md");
+  const heading = `# ${title}: term renderings`;
+  assert.equal(tableHeading, heading, `concepts.md is not headed "${heading}"`);
+  assert.ok(
+    table.join("\n").includes(revision.slice(0, 7)),
+    `concepts.md does not name the pinned revision ${revision.slice(0, 7)}`,
+  );
+}
+
+/**
  * A work: each of its languages in a directory named by that language, every one with the same files and a model of
  * one id and revision, beside its README, an optional custody record and, in more than one language, its term table.
  */
@@ -198,6 +223,9 @@ export async function verifyWork(directory, repositoryRoot) {
     const extra = files.find((file) => !reference.files.includes(file));
     assert.ok(!extra, `${language} holds ${extra}, which ${first} lacks`);
   }
+  // The README and the term table are written in English, which sorts first among the languages, so they name the
+  // first language's title: the English one whenever the work has it.
+  await verifyNaming(directory, reference.model, concepts);
   return reference.model.id;
 }
 

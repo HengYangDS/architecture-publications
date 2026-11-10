@@ -1,10 +1,11 @@
-# filmkit concept renderings (zh-CN)
+# Film Kit: term renderings
 
-The renderings this edition fixes before translating, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `filmkit` at v0.16.0 (`d6de895`) that defines or uses the term. filmkit's own Chinese words come
+The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
+names the file of `filmkit` at v0.18.0 (`acc1eda`) that defines or uses the term. Film Kit's own Chinese words come
 from its player (`src/filmkit/delivery/player.py`) and its sample film (`examples/sample-film/`); the owner-approved
-film editions are cited as `ethos-film` or `ddwg-film` with their file. An edition is one language version of a film
-(中文版, 英文版); 版本 stays reserved for a software version. Commands, actions, flags, file names, record files
+film editions are cited as `ethos-film` at v1.0.1 (`c33e60f`) or `ddwg-film`, the repository
+`data-department-work-guidelines-film` at v1.2.0 (`f286c43`), with their file. An edition is one language version of
+a film (中文版, 英文版); 版本 stays reserved for a software version. Commands, actions, flags, file names, record files
 (`narration-selected`, `picture-gates`, `film-package` and the like) and product names stay in Latin type.
 
 | English                                        | 中文                                 | Source                                                                                                         |
@@ -86,7 +87,7 @@ film editions are cited as `ethos-film` or `ddwg-film` with their file. An editi
 | composition (picture composition)              | 画面合成                             | `examples/sample-film/picture/film.js` (画面合成); `README.md`                                                 |
 | gate; gate record                              | 门禁；门禁记录                       | `src/filmkit/picture/gates.py`                                                                                 |
 | audit; frame, sync, motion audit               | 审查；逐帧、同步、动效审查           | `src/filmkit/picture/gates.py`; `src/filmkit/picture/sync_audit.py`                                            |
-| ghosts, stalls, pops, jumps                    | 残影、停滞、突现、跳变               | `src/filmkit/picture/motion-audit.mjs`                                                                         |
+| ghosts, stalls, pops, jumps, dash snaps        | 残影、停滞、突现、跳变、虚线突变     | `src/filmkit/picture/motion-audit.mjs`                                                                         |
 | label; mark; at rest; contrast                 | 标签；标记；静止；对比度             | `src/filmkit/picture/sync_audit.py`; `src/filmkit/picture/text_trace.py`                                       |
 | stage (verb, noun); staged picture             | 预置；预置画面                       | `src/filmkit/picture/rendering.py`                                                                             |
 | render; renderer                               | 渲染；渲染器                         | `src/filmkit/picture/rendering.py`; `examples/sample-film/content/narration.md`                                |

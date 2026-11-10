@@ -19,7 +19,7 @@ diagram checks.
 - [Data Department Work Guidelines](publications/ddwg/README.md): how the
   guidelines lead a reader to the rule that owns a task, and how a change to them
   is proposed, checked and released.
-- [filmkit](publications/filmkit/README.md): how filmkit rebuilds a film's two
+- [Film Kit](publications/filmkit/README.md): how Film Kit rebuilds a film's two
   editions from its tracked sources, and what holds each step to its inputs.
 - [OpenAI Responses Proxy](publications/openai-responses-proxy/README.md): how
   the proxy makes a Codex Responses turn portable across third-party providers,

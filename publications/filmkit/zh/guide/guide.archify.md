@@ -1,33 +1,33 @@
-# filmkit 怎样从受版本管理的源文件重建带旁白的影片？ {#guide}
+# Film Kit 怎样从受版本管理的源文件重建带旁白的影片？ {#guide}
 
-filmkit 从影片自己的仓库重建中文版和英文版。[](source:readme-what)先用锁定版本的本地语音合成模型朗读每份脚本，再为每个语言版拼接音轨、加字幕、渲染画面并打包。[](source:readme-what)每一步都记下所读内容的 SHA-256。记录绑定的字节一旦对不上，后面的步骤就拒绝它。[](source:candidate-inputs)[](source:render-gate)
+Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-what)先用锁定版本的本地语音合成模型朗读每份脚本，再为每个语言版拼接音轨、加字幕、渲染画面并打包。[](source:readme-what)每一步都记下所读内容的 SHA-256。记录绑定的字节一旦对不上，后面的步骤就拒绝它。[](source:candidate-inputs)[](source:render-gate)
 
 - [引擎不存放任何影片的内容](block:p-context)：脚本、配音设定、页面和画面合成都留在影片仓库里。[](source:readme-engine)
 - [任何语音模型加载之前，先检查字词](block:p-words)；拒绝时列出每一项失败。[](source:narrate-gate)
 - [录音只有完整收尾才能进入音轨](block:p-takes)，除非影片为它的衔接声明了尾音淡出。[](source:abrupt)
 - [画面只有通过门禁才会渲染](block:p-picture)，而且门禁针对的必须是当前的画面合成、时间线、样式表、字体和引擎版本。[](source:render-gate)
 
-@answer scope="filmkit v0.16.0 · 提交 d6de895 · 源码及项目自带文档"
+@answer scope="Film Kit v0.18.0 · 提交 acc1eda · 源码及项目自带文档"
 @meta locale=zh-CN style=editorial
-@source readme-what title="filmkit 做什么" path="README.md" lines=3:3
+@source readme-what title="Film Kit 做什么" path="README.md" lines=3:3
 @source readme-engine title="引擎不带任何影片的内容" path="README.md" lines=5:5
 @source readme-requirements title="运行要求" path="README.md" lines=9:12
 @source readme-layout title="影片的目录结构" path="README.md" lines=18:26
-@source readme-words title="概念与读音" path="README.md" lines=59:62
-@source readme-neither title="两项检查都不声明的影片" path="README.md" lines=66:66
-@source readme-gate title="画面门禁" path="README.md" lines=78:78
-@source readme-metrics title="用影片的字体测量文字" path="README.md" lines=80:80
-@source readme-balance title="每一帧的平衡" path="README.md" lines=82:82
-@source readme-install title="在影片中安装引擎" path="README.md" lines=160:170
-@source readme-commands title="命令" path="README.md" lines=176:192
-@source readme-endings title="完整收尾" path="README.md" lines=196:198
-@source readme-dev title="开发" path="README.md" lines=220:220
+@source readme-words title="概念与读音" path="README.md" lines=61:64
+@source readme-neither title="两项检查都不声明的影片" path="README.md" lines=68:68
+@source readme-gate title="画面门禁" path="README.md" lines=80:80
+@source readme-metrics title="用影片的字体测量文字" path="README.md" lines=82:82
+@source readme-balance title="每一帧的平衡" path="README.md" lines=84:84
+@source readme-install title="在影片中安装引擎" path="README.md" lines=164:174
+@source readme-commands title="命令" path="README.md" lines=180:196
+@source readme-endings title="完整收尾" path="README.md" lines=200:202
+@source readme-dev title="开发" path="README.md" lines=224:224
 @source agents-contract title="引擎契约" path="AGENTS.md" lines=10:16
-@source changelog-pin title="影片保留原有的锁定版本" path="CHANGELOG.md" lines=160:160
+@source changelog-pin title="影片保留原有的锁定版本" path="CHANGELOG.md" lines=179:179
 @source film-root title="查找影片" path="src/filmkit/repository.py" lines=28:50
 @source film-load title="检查声明" path="src/filmkit/film.py" lines=379:394
-@source edition-places title="语言版写到哪里" path="src/filmkit/production.py" lines=125:141
-@source renditions title="四部交付成片" path="src/filmkit/production.py" lines=52:61
+@source edition-places title="语言版写到哪里" path="src/filmkit/production.py" lines=138:154
+@source renditions title="四部交付成片" path="src/filmkit/production.py" lines=63:74
 @source program-level title="统一的节目响度" path="src/filmkit/specification.py" lines=45:47
 @source produce-actions title="制作动作" path="src/filmkit/produce.py" lines=63:89
 @source narrate-gate title="语音合成之前的检查" path="src/filmkit/narration/narrate.py" lines=111:121
@@ -53,9 +53,9 @@ filmkit 从影片自己的仓库重建中文版和英文版。[](source:readme-w
 @source program-gain title="用一次增益达到节目响度" path="src/filmkit/soundtrack/assembly.py" lines=413:434
 @source releases title="声明的尾音淡出" path="src/filmkit/soundtrack/policy.py" lines=159:170
 @source captions-doc title="字幕定时" path="src/filmkit/captions/timing.py" lines=1:6
-@source gate-doc title="画面门禁" path="src/filmkit/picture/gates.py" lines=1:36
-@source frame-gates title="来自评审的规则" path="src/filmkit/picture/gates.py" lines=55:56
-@source gate-check title="check-picture" path="src/filmkit/picture/gates.py" lines=368:440
+@source gate-doc title="画面门禁" path="src/filmkit/picture/gates.py" lines=1:37
+@source frame-gates title="来自评审的规则" path="src/filmkit/picture/gates.py" lines=56:57
+@source gate-check title="check-picture" path="src/filmkit/picture/gates.py" lines=377:449
 @source candidate-inputs title="预置绑定的输入" path="src/filmkit/picture/rendering.py" lines=105:135
 @source require-renderer title="唯一的渲染器版本" path="src/filmkit/picture/rendering.py" lines=191:201
 @source stage title="画面的预置" path="src/filmkit/picture/rendering.py" lines=235:285
@@ -66,28 +66,28 @@ filmkit 从影片自己的仓库重建中文版和英文版。[](source:readme-w
 @source tools-doc title="Node 工具运行器" path="src/filmkit/tools.py" lines=1:17
 @source headless-doc title="无头运行的画面合成" path="src/filmkit/picture/headless-composition.mjs" lines=1:13
 @source package-doc title="打包" path="src/filmkit/delivery/packaging.py" lines=1:24
-@source delivered-check title="检查成片" path="src/filmkit/delivery/packaging.py" lines=464:495
-@source package-film title="打包每部成片" path="src/filmkit/delivery/packaging.py" lines=530:565
-@source package-inputs title="成片包绑定什么" path="src/filmkit/delivery/packaging.py" lines=225:236
+@source delivered-check title="检查成片" path="src/filmkit/delivery/packaging.py" lines=493:536
+@source package-film title="打包每部成片" path="src/filmkit/delivery/packaging.py" lines=571:606
+@source package-inputs title="成片包绑定什么" path="src/filmkit/delivery/packaging.py" lines=229:240
 @source player-doc title="播放器页面" path="src/filmkit/delivery/player.py" lines=1:5
 @source verification-doc title="核验" path="src/filmkit/delivery/verification.py" lines=1:12
-@source verify-review title="能通过核验的评审" path="src/filmkit/delivery/verification.py" lines=302:365
-@source verification-qualify title="一个语言版的检查" path="src/filmkit/delivery/verification.py" lines=368:397
+@source verify-review title="能通过核验的评审" path="src/filmkit/delivery/verification.py" lines=306:369
+@source verification-qualify title="一个语言版的检查" path="src/filmkit/delivery/verification.py" lines=372:401
 @source reproduction-doc title="复现" path="src/filmkit/delivery/reproduction.py" lines=1:24
 @source documents-doc title="交付到 Documents 文件夹" path="src/filmkit/delivery/documents_folder.py" lines=1:27
 @source round-doc title="一轮评审" path="src/filmkit/review/round.py" lines=1:11
 @source human-listening title="人工试听单独进行" path="src/filmkit/review/round.py" lines=49:53
 @source measurement-doc title="评审测量" path="src/filmkit/review/measurement.py" lines=1:22
 
-## filmkit 读取什么，又把什么留给影片？ {#p-context}
+## Film Kit 读取什么，又把什么留给影片？ {#p-context}
 
 影片就是存放 `content/film.toml` 的文件夹；引擎按 `FILMKIT_ROOT` 或工作目录找到它。[](source:film-root)影片在自己的 Python 项目里锁定引擎的一个发布标签。[](source:readme-install)
 
-@diagram architecture id=context-map source=context.architecture.json title="filmkit 读取、运行和写出什么"
+@diagram architecture id=context-map source=context.architecture.json title="Film Kit 读取、运行和写出什么"
 
 @steps id=context-steps
 | step-ctx-film | 影片仓库 | 声明（含播放器配色），每个语言版的脚本、配音设定和旁白，以及画面的模板、脚本和样式。[](source:readme-layout) | context-map | ctx-film |
-| step-ctx-engine | filmkit 引擎 | 每个动作只做一个语言版，语言版由参数指定。开工之前先检查声明。渲染之前，`preflight` 报告所有过期或缺失的输入。[](source:produce-actions)[](source:film-load) | context-map | ctx-engine |
+| step-ctx-engine | Film Kit 引擎 | 每个动作只做一个语言版，语言版由参数指定。开工之前先检查声明。渲染之前，`preflight` 报告所有过期或缺失的输入。[](source:produce-actions)[](source:film-load) | context-map | ctx-engine |
 | step-ctx-supply | 供应步骤 | 只有这一步会联网。浏览器构建和每个模型快照，都按锁定的摘要检查。[](source:supply-doc) | context-map | ctx-supply |
 | step-ctx-models | 语音模型 | 语音合成模型负责朗读，强制对齐器为词定时，识别器负责转写，全部运行于 MLX。[](source:snapshots) | context-map | ctx-models |
 | step-ctx-browser | HyperFrames、Chrome | 渲染器由影片的 npm 包安装，版本只能是 HyperFrames 0.9.9，其他版本引擎一律拒绝。[](source:require-renderer) | context-map | ctx-browser |
@@ -252,7 +252,7 @@ filmkit 从影片自己的仓库重建中文版和英文版。[](source:readme-w
 @steps id=delivery-steps
 | step-dl-root | Documents 文件夹 | rsync 改动任何内容之前，真实浏览器先读回入口页和两个播放器，并播放每个播放器的全部四部成片。随后 rsync 复制字节不同的每个交付项，并把替换掉的每一项留作回滚副本。[](source:documents-doc) | delivery-tree | dl-root |
 | step-dl-uhd | 超高清母版 | 一部的字幕绘在画面上，一部不带字幕，各自复制自己那份渲染画面的视频流。全部四部成片的音轨、章节、封面和发布元数据标签都相同。[](source:renditions)[](source:package-doc) | delivery-tree | dl-uhd |
-| step-dl-hd | 1080p 观看版 | 每部都用 VideoToolbox 重新编码自己的画面，因此同一尺寸的两部成片，都以相同方式从各自画面制成。[](source:renditions) | delivery-tree | dl-hd |
+| step-dl-hd | 1080p 观看版 | 每部都用 VideoToolbox 重新编码自己的画面：解码与编码之间按每 2×2 像素块取平均，每 2 s 一个关键帧。同一尺寸的两部成片，都以相同方式从各自画面制成。[](source:renditions) | delivery-tree | dl-hd |
 | step-dl-player | 播放器页面 | 播放器由引擎渲染；影片只声明每个语言版的摘要和播放器的五种颜色。[](source:player-doc) | delivery-tree | dl-player |
 | step-dl-chapters | 章节，JSON 和 FFmetadata | 每部成片的每条轨道都标明所属语言版的语言。打包步骤原地写入章节轨的语言。[](source:delivered-check)[](source:package-doc) | delivery-tree | dl-chapters |
 
@@ -274,4 +274,4 @@ filmkit 从影片自己的仓库重建中文版和英文版。[](source:readme-w
 | 录音收尾       | 有防护 {good:拒绝}                | 在 mlx-audio 发布带上游修复的版本之前，由试音保持录音完整收尾，拼接步骤拒绝收尾突兀的录音。[](source:readme-endings)[](source:abrupt)             |
 | 文字宽度       | 实测 {good:影片自己的字体}        | 审查用影片自己的字体测量宽度；文字高度仍用估算值。[](source:readme-metrics)                                                                       |
 | 静止时偏离中心 | 取代即拒绝 {caution:阶段内只记录} | 若阶段切换或下一个场景随后取代了这个状态，门禁就拒绝它。在本阶段之内，构图是已完成还是仍在搭建，只有该阶段的意图能说明。[](source:readme-balance) |
-| 新的渲染器     | 锁定版本 {caution:由影片决定}     | 影片继续锁定现有的 filmkit 版本，直到用新的发布版本制作、评审并验收一个语言版。[](source:changelog-pin)                                           |
+| 新的渲染器     | 锁定版本 {caution:由影片决定}     | 影片继续锁定现有的 `filmkit` 版本，直到用新的发布版本制作、评审并验收一个语言版。[](source:changelog-pin)                                         |

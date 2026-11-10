@@ -1,6 +1,8 @@
-# OpenAI Responses Proxy 术语表
+# OpenAI Responses Proxy: term renderings
 
-本表固定本作品中文版的领域术语译法。Source 列中的路径均指 `openai-responses-proxy` 在 v5.1.10（`a36a33c`）的文件。命令、字段、状态值、HTTP 状态码和文件名一律保留原文。
+The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
+names the file of `openai-responses-proxy` at v5.1.10 (`a36a33c`) that defines or uses the term. Commands, fields,
+status values, HTTP status codes and file names stay in Latin type.
 
 | English                                                                     | 中文                                                                             | Source                                                                |
 | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------- |

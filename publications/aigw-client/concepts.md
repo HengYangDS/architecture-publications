@@ -1,9 +1,9 @@
-# AIGW Client Projection: concepts
+# AIGW Client Projection: term renderings
 
-The described repository is `aigw-cli` at v0.6.1 (`abf05858f4092a3baf9acea0d5d7488b26898aa5`). It defines no
-Chinese renderings of its own; its glossary is `docs/concepts/product-concepts.md`. Each rendering below is fixed
-for this work and used everywhere in `zh/model.json` and `zh/overview.typ`. Command names, flags, paths, package names
-and readiness JSON values stay in Latin type.
+The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
+names the file of `aigw-cli` at v0.6.1 (`abf0585`) that defines or uses the term; the repository defines no Chinese
+renderings of its own, and its glossary is `docs/concepts/product-concepts.md`. Command names, flags, paths, package
+names and readiness JSON values stay in Latin type.
 
 | English                                                                             | 中文                                                     | Source                                                                                      |
 | ----------------------------------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------- |

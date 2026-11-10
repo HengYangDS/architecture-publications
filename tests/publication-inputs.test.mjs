@@ -56,10 +56,17 @@ async function writeModel(directory, body) {
   await writeFile(path.join(directory, "model.json"), JSON.stringify(body));
 }
 
+/** A work's README, headed by its title and naming the revision it pins. */
+const readme = (title = "Shop", revision = "a".repeat(40)) =>
+  `# ${title}\n\nThe model pins \`shop\` at \`${revision}\`.\n`;
+/** A work's term table, headed by its title and naming its revision's first seven characters. */
+const termTable = (title = "Shop", revision = "a".repeat(40)) =>
+  `# ${title}: term renderings\n\nSources are the files at \`${revision.slice(0, 7)}\`.\n\n| English | 中文 | Source |\n`;
+
 /** Write a work: its README and, for each language, the model in that language's directory. */
 async function writeWork(directory, languages = { en: model("shop") }) {
   await mkdir(directory, { recursive: true });
-  await writeFile(path.join(directory, "README.md"), "# Shop\n");
+  await writeFile(path.join(directory, "README.md"), readme());
   for (const [language, body] of Object.entries(languages))
     await writeModel(path.join(directory, language), body);
 }
@@ -156,7 +163,7 @@ test("a work holds only its languages, description, custody record and term tabl
       );
       await rm(path.join(directory, name));
     }
-    await writeFile(path.join(directory, "concepts.md"), "| English | 中文 | Source |\n");
+    await writeFile(path.join(directory, "concepts.md"), termTable());
     await assert.rejects(
       verifyWork(directory, directory),
       /a work in one language holds concepts\.md/,
@@ -164,9 +171,46 @@ test("a work holds only its languages, description, custody record and term tabl
     await rm(path.join(directory, "concepts.md"));
     await rm(path.join(directory, "README.md"));
     await assert.rejects(verifyWork(directory, directory), /the work holds no README\.md/);
-    await writeFile(path.join(directory, "README.md"), "# Shop\n");
+    await writeFile(path.join(directory, "README.md"), readme());
     await rm(path.join(directory, "en"), { recursive: true });
     await assert.rejects(verifyWork(directory, directory), /the work holds no language/);
+  });
+});
+
+test("a work's README is headed by its title and names its pin", async () => {
+  await withDirectory(async (directory) => {
+    await writeWork(directory);
+    assert.equal(await verifyWork(directory, directory), "shop");
+    for (const [body, refusal] of [
+      [readme("shop"), /README\.md is not headed "# Shop"/u],
+      [readme("Shop", "b".repeat(40)), /README\.md does not name the pinned revision a{40}/u],
+      [readme("Shop", "a".repeat(7)), /README\.md does not name the pinned revision a{40}/u],
+    ]) {
+      await writeFile(path.join(directory, "README.md"), body);
+      await assert.rejects(verifyWork(directory, directory), refusal);
+    }
+  });
+});
+
+test("a work's term table is headed by its title and names its pin", async () => {
+  await withDirectory(async (directory) => {
+    await writeWork(directory, { en: model("shop"), zh: chinese });
+    await writeFile(path.join(directory, "concepts.md"), termTable());
+    assert.equal(await verifyWork(directory, directory), "shop");
+    for (const [body, refusal] of [
+      [
+        termTable("Shop").replace(": term renderings", " concepts"),
+        /concepts\.md is not headed "# Shop: term renderings"/u,
+      ],
+      [termTable("商店"), /concepts\.md is not headed "# Shop: term renderings"/u],
+      [
+        termTable("Shop", "b".repeat(40)),
+        /concepts\.md does not name the pinned revision aaaaaaa/u,
+      ],
+    ]) {
+      await writeFile(path.join(directory, "concepts.md"), body);
+      await assert.rejects(verifyWork(directory, directory), refusal);
+    }
   });
 });
 
@@ -251,7 +295,7 @@ test("a work holds each language in a directory named by its model's language, w
       verifyWork(directory, directory),
       /a work in more than one language holds no concepts\.md/,
     );
-    await writeFile(path.join(directory, "concepts.md"), "| English | 中文 | Source |\n");
+    await writeFile(path.join(directory, "concepts.md"), termTable());
     assert.equal(await verifyWork(directory, directory), "shop");
     await rm(path.join(zh, "guide", "parts.architecture.json"));
     await assert.rejects(
