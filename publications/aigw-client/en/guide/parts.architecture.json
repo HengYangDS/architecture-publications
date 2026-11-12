@@ -2,14 +2,14 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "One reviewed configuration, projected into every client",
+    "title": "One reviewed configuration, written into every client",
     "output": "parts.html",
     "quality_profile": "showcase",
     "locale": "en",
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "abf05858f4092a3baf9acea0d5d7488b26898aa5"
+      "revision": "9bf7612c9678d6fc02eade0eda637be1b450af87"
     }
   },
   "components": [
@@ -17,14 +17,14 @@
       "id": "parts-store",
       "type": "database",
       "label": "Configuration store",
-      "sublabel": "config.toml under one lock",
+      "sublabel": "aigw.toml under one lock",
       "pos": [70, 30],
       "size": [180, 68],
       "sources": [
         {
           "path": "internal/store/store.go",
-          "line": 131,
-          "end_line": 134,
+          "line": 79,
+          "end_line": 82,
           "label": "Commit"
         }
       ]
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "internal/app/synchronization/transaction.go",
-          "line": 40,
-          "end_line": 118,
+          "line": 41,
+          "end_line": 119,
           "label": "commit"
         }
       ]
@@ -71,8 +71,8 @@
       "sources": [
         {
           "path": "internal/adapter/codex/reconcile.go",
-          "line": 88,
-          "end_line": 92,
+          "line": 110,
+          "end_line": 114,
           "label": "Rollback"
         }
       ]
@@ -87,8 +87,8 @@
       "sources": [
         {
           "path": "internal/adapter/claude/settings.go",
-          "line": 95,
-          "end_line": 100,
+          "line": 91,
+          "end_line": 95,
           "label": "Rollback"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "internal/adapter/claudedesktop/configuration.go",
-          "line": 288,
-          "end_line": 295,
+          "line": 276,
+          "end_line": 279,
           "label": "Rollback"
         }
       ]
@@ -119,8 +119,8 @@
       "sources": [
         {
           "path": "internal/adapter/hermes/projection.go",
-          "line": 356,
-          "end_line": 366,
+          "line": 349,
+          "end_line": 352,
           "label": "Rollback"
         }
       ]

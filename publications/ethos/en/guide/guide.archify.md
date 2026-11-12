@@ -7,7 +7,7 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 - [Every effect is compiled, judged, freshly admitted and applied by exact compare-and-swap](block:p-plan).[](source:invariants)
 - [Each kind of evidence proves only its own plane](block:p-evidence), so local proof is not anti-forgery assurance.[](source:planes)[](source:proof-boundary)
 
-@answer scope="ETHOS v0.2.0-beta.6 · commit 727ee05 · its source and its own documents · proof timings measured on 2026-11-08"
+@answer scope="ETHOS v0.2.0-beta.8 · commit 9bf5bdd · its source and its own documents · proof timings measured on 2026-11-08 under v0.2.0-beta.6"
 @meta locale=en style=editorial
 @source kernel title="The kernel" path="README.md" lines=100:107
 @source native title="What stays native" path="README.md" lines=26:29
@@ -30,22 +30,22 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 @source non-authorizing title="Inputs, not authority" path="docs/governance/product-design-contract.md" lines=532:537
 @source invariants title="Invariants" path="docs/governance/product-design-contract.md" lines=586:602
 @source axioms title="Engineering axioms" path="system/axioms.md" lines=15:31
-@source service title="One application service" path="docs/plans/terminal-governance-product-design.md" lines=394:397
-@source recovery title="Recovery from repository evidence" path="docs/plans/terminal-governance-product-design.md" lines=412:414
-@source resume title="Another agent resumes" path="docs/plans/terminal-governance-product-design.md" lines=162:166
-@source route title="The remaining route" path="docs/plans/terminal-governance-product-design.md" lines=147:151
-@source acceptance title="Task-based acceptance" path="docs/plans/terminal-governance-product-design.md" lines=416:420
+@source service title="One application service" path="docs/plans/terminal-governance-product-design.md" lines=402:405
+@source recovery title="Recovery from repository evidence" path="docs/plans/terminal-governance-product-design.md" lines=420:422
+@source resume title="Another agent resumes" path="docs/plans/terminal-governance-product-design.md" lines=170:174
+@source route title="The remaining route" path="docs/plans/terminal-governance-product-design.md" lines=155:159
+@source acceptance title="Task-based acceptance" path="docs/plans/terminal-governance-product-design.md" lines=424:428
 @source mcp-authority title="Labels and earlier checks grant nothing" path="docs/architecture/mcp-server.md" lines=28:31
 @source mcp-open title="MCP conformance still open" path="docs/architecture/mcp-server.md" lines=33:40
 @source standards title="Standards enter by adapter" path="docs/architecture/protocol-contracts.md" lines=18:22
 @source state-home title="Where state lives" path="docs/architecture/local-state.md" lines=19:27
 @source runtime-home title="Runtime and hooks in the common directory" path="docs/architecture/local-state.md" lines=29:34
 @source host-store title="The host store" path="docs/architecture/local-state.md" lines=53:57
-@source lease-fields title="A Lease's four fields" path="docs/architecture/local-state.md" lines=86:91
+@source lease-fields title="A Lease's four fields" path="docs/architecture/local-state.md" lines=102:107
 @source adopt-writes title="What adoption writes" path="docs/architecture/adoption-profiles.md" lines=18:33
 @source adopt-keeps title="Native configuration kept" path="docs/architecture/adoption-profiles.md" lines=35:42
 @source adopt-preview title="Preview, then apply" path="docs/architecture/adoption-profiles.md" lines=44:53
-@source first-change title="Before a tracked write" path="docs/guides/quickstart.md" lines=115:122
+@source first-change title="Before a tracked write" path="docs/guides/quickstart.md" lines=117:124
 @source plan-contract title="The TransitionPlan contract" path="docs/architecture/transition-plan.md" lines=39:50
 @source plan-steps title="The planning algebra" path="docs/architecture/transition-plan.md" lines=24:32
 @source authorization title="Authorization and the expected HEAD" path="docs/architecture/runner-and-mutation.md" lines=22:25
@@ -62,37 +62,37 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 @source publish-preview title="The publication preview" path="docs/architecture/runner-and-mutation.md" lines=197:200
 @source publish title="Publication to each peer" path="docs/architecture/runner-and-mutation.md" lines=206:212
 @source verdict title="The closed verdict" path="docs/architecture/runner-and-mutation.md" lines=233:233
-@source proof-gates title="Packaged gates and a repository's own" path="docs/reference/command-plane.md" lines=426:430
-@source load-limit title="Readiness, then the host load" path="docs/reference/command-plane.md" lines=437:437
-@source standard-proof title="Standard exact-source proof" path="docs/reference/command-plane.md" lines=502:511
+@source proof-gates title="Packaged gates and a repository's own" path="docs/reference/command-plane.md" lines=438:442
+@source load-limit title="Readiness, then the host load" path="docs/reference/command-plane.md" lines=449:449
+@source standard-proof title="Full proof of a frozen head" path="docs/reference/command-plane.md" lines=444:447
 @source gates-floor title="The packaged proof sets" path="system/gates.toml" lines=5:7
-@source preflight title="The readiness tier before the tests" path="src/ethos/adapters/gates/runner.py" lines=367:399
-@source ready-set title="A bounded compatible ready set" path="src/ethos/adapters/gates/runner.py" lines=402:427
+@source preflight title="The readiness tier before the tests" path="src/ethos/adapters/gates/runner.py" lines=295:327
+@source ready-set title="A bounded compatible ready set" path="src/ethos/adapters/gates/runner.py" lines=330:355
 @source proof-boundary title="DR-0006: the decision" path="docs/decisions/dr-0006-proof-trust-boundary.md" lines=37:47
 @source proof-alternatives title="DR-0006: rejected alternatives" path="docs/decisions/dr-0006-proof-trust-boundary.md" lines=49:56
 @source paradigm-context title="DR-0012: the drift that was found" path="docs/decisions/dr-0012-repository-paradigm.md" lines=21:34
 @source paradigm title="DR-0012: what the paradigm fixes" path="docs/decisions/dr-0012-repository-paradigm.md" lines=45:58
 @source paradigm-gap title="DR-0012: what a gap blocks" path="docs/decisions/dr-0012-repository-paradigm.md" lines=69:69
-@source commitment title="Compiling the Commitment" path="src/ethos/adapters/openspec/commitment.py" lines=45:57
-@source commitment-class title="Commitment" path="src/ethos/contracts/semantic.py" lines=186:191
-@source facts-class title="Facts" path="src/ethos/contracts/semantic.py" lines=387:396
-@source attestation-class title="Attestation" path="src/ethos/contracts/semantic.py" lines=244:257
+@source commitment title="Compiling the Commitment" path="src/ethos/adapters/openspec/commitment.py" lines=46:58
+@source commitment-class title="Commitment" path="src/ethos/contracts/semantic.py" lines=199:204
+@source facts-class title="Facts" path="src/ethos/contracts/semantic.py" lines=400:409
+@source attestation-class title="Attestation" path="src/ethos/contracts/semantic.py" lines=257:270
 @source plan-class title="TransitionPlan" path="src/ethos/contracts/plan.py" lines=181:193
 @source node-class title="PlanNode" path="src/ethos/contracts/plan.py" lines=46:54
 @source plan-inputs title="PlanInputs" path="src/ethos/contracts/plan.py" lines=91:98
-@source prewrite title="The prewrite guard" path="src/ethos/adapters/admission/prewrite.py" lines=60:72
-@source lane title="Starting a Work Lane" path="src/ethos/adapters/mutation/lane_lifecycle/start.py" lines=343:353
+@source prewrite title="The prewrite guard" path="src/ethos/adapters/admission/prewrite.py" lines=117:149
+@source lane title="Starting a Work Lane" path="src/ethos/adapters/mutation/lane_lifecycle/start.py" lines=345:355
 @source hook title="One hook entry point" path="src/ethos/adapters/repo/hook/protocol.py" lines=21:34
 @source proof title="The proof of one HEAD" path="src/ethos/adapters/mutation/proof.py" lines=417:422
-@source landing title="Landing on the candidate" path="src/ethos/adapters/mutation/landing.py" lines=45:58
+@source landing title="Landing on the candidate" path="src/ethos/adapters/mutation/landing.py" lines=57:70
 @source push title="An exact push to one peer" path="src/ethos/adapters/mutation/publication/execution.py" lines=45:56
 @source peers title="The declared peers" path=".ethos/release.toml" lines=12:25
 @source profile-declaration title="ETHOS's own profile" path=".ethos/profile.toml" lines=1:7
 @source python-range title="The supported Python versions" path="pyproject.toml" lines=1:6
-@source branch-roles title="The branch roles" path="src/ethos/contracts/paradigm/paradigm.toml" lines=43:50
-@source parameters title="Per-file ceilings and the gate deadline" path="src/ethos/contracts/paradigm/paradigm.toml" lines=87:121
-@source changelog-first title="0.1.0-alpha.1, the first entry" path="CHANGELOG.md" lines=1726:1732
-@source changelog-pinned title="0.2.0-beta.6, the pinned release" path="CHANGELOG.md" lines=15:20
+@source branch-roles title="The branch roles" path="src/ethos/contracts/paradigm/paradigm.toml" lines=50:57
+@source parameters title="Per-file ceilings and the gate deadline" path="src/ethos/contracts/paradigm/paradigm.toml" lines=94:129
+@source changelog-first title="0.1.0-alpha.1, the first entry" path="CHANGELOG.md" lines=2129:2135
+@source changelog-pinned title="0.2.0-beta.8, the pinned release" path="CHANGELOG.md" lines=15:21
 
 ## Who uses ETHOS, and what does it own? {#p-context}
 
@@ -165,7 +165,7 @@ Each command returns `pass`, `block` or `unknown`, and only `pass` lets it chang
 @steps id=change-steps
 | step-start | Work Lane | `ethos lane start` creates an owned branch and worktree from the candidate and records a Lease. Before each tracked write, `ethos lane prewrite` admits the exact paths.[](source:write-boundary)[](source:candidate-train) | change-flow | seq-lane | | seq-author-to-seq-lane-1,seq-author-to-seq-lane-2 |
 | step-commit | Commits | Each Git hook runs one admission under the selected runtime, never the ambient `PATH`.[](source:hook)[](source:runtime) | change-flow | seq-lane | | seq-author-to-seq-lane-3 |
-| step-prove | Proof store | `ethos lane archive-change` archives the Change, and `ethos prove --full --execute` runs every gate on that frozen head. The proof stays in the Git common directory, where every worktree reads it.[](source:standard-proof)[](source:shared-proof) | change-flow | seq-proof | | seq-author-to-seq-lane-4,seq-author-to-seq-proof-1 |
+| step-prove | Proof store | `ethos lane archive-change` archives the Change, and `ethos prove --full --execute` runs every gate on that frozen head. The proof stays in the Git common directory, where every worktree reads it.[](source:archive)[](source:standard-proof)[](source:shared-proof) | change-flow | seq-proof | | seq-author-to-seq-lane-4,seq-author-to-seq-proof-1 |
 | step-land | Candidate branch | `ethos land --apply` needs authorization, the expected HEAD and proof of that head.[](source:authorization)[](source:archive) | change-flow | seq-candidate | | seq-author-to-seq-candidate-1 |
 | step-closeout | Accepted branch | `ethos land --closeout` audits the candidate first, then fast-forwards only with executed proof of its head.[](source:closeout) | change-flow | seq-accepted | | seq-author-to-seq-accepted-1 |
 | step-publish | GitLab and GitHub | `ethos publish` pushes each peer with exact leases. If a later peer fails, the attested outcome names which peers applied, failed or are pending.[](source:publish) | change-flow | seq-peers | | seq-author-to-seq-peers-1,seq-peers-to-seq-author-1 |
@@ -305,7 +305,7 @@ Four authored verses constrain its design.[](source:root-constraint) They ask to
 
 ## How did ETHOS get here? {#p-history}
 
-ETHOS's changelog opens with 0.1.0-alpha.1 on 2026-06-30 and reaches 0.2.0-beta.6 on 2026-11-07.[](source:changelog-first)[](source:changelog-pinned) Twelve 0.2.0 releases along the way changed what ETHOS does for the repositories it governs; each is labelled by its pre-release name.
+ETHOS's changelog opens with 0.1.0-alpha.1 on 2026-06-30 and reaches 0.2.0-beta.8 on 2026-11-12.[](source:changelog-first)[](source:changelog-pinned) Fourteen 0.2.0 releases along the way changed what ETHOS does for the repositories it governs; each is labelled by its pre-release name.
 
 @diagram timeline id=history source=history.timeline.json title="How ETHOS got here"
 

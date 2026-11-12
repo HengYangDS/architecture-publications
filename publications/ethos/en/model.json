@@ -6,7 +6,7 @@
   "title": "ETHOS",
   "question": "How does ETHOS turn official intent and fresh facts into proven repository change, and what does it hold every repository to?",
   "summary": "ETHOS compiles an OpenSpec Change, fresh facts and prior Attestations into a TransitionPlan, admits each effect only on a pass, and holds every governed repository, itself included, to one declared structure.",
-  "scope": "The ETHOS product as released at v0.2.0-beta.6: the src/ethos package, its system declarations, the npm launcher and the repository's own .ethos binding.",
+  "scope": "The ETHOS product as released at v0.2.0-beta.8: the src/ethos package, its system declarations and the repository's own .ethos binding.",
   "limits": [
     "Each component cites every file the rules attribute to it; a relation cites the modules that import the other component.",
     "Relations are imports and process calls in the source, not runtime order or design intent."
@@ -14,11 +14,11 @@
   "repository": {
     "name": "ethos",
     "url": "https://github.com/HengYangDS/ethos.git",
-    "revision": "727ee0579ba1fb9e391b5c44ce9fb2c208390199",
+    "revision": "9bf5bdda7292951e1d8a14ee474a0db767daece4",
     "browse": "https://github.com/HengYangDS/ethos/blob/{revision}/{path}"
   },
   "coverage": {
-    "include": ["src/ethos/", "system/", "distributions/npm/", ".ethos/"]
+    "include": ["src/ethos/", "system/", ".ethos/"]
   },
   "overview": "overview.typ",
   "guide": "guide/guide.archify.md",
@@ -71,9 +71,9 @@
       "kind": "surface",
       "details": {
         "commands": "status, plan, prove, land, publish, adopt, lane, hook, attestation, mcp",
-        "launcher": "a thin npm package over the Python command plane"
+        "launcher": "the installed ethos console, which runs each command in the repository's selected runtime"
       },
-      "files": ["src/ethos/cli.py", "src/ethos/surface/cli/", "distributions/npm/"]
+      "files": ["src/ethos/cli.py", "src/ethos/surface/cli/", "src/ethos/application/console.py"]
     },
     {
       "id": "mcp-server",
@@ -106,7 +106,7 @@
         "answers": "role, gaps, foreign lanes and the next action"
       },
       "files": [
-        "src/ethos/domain/inspection.py",
+        "src/ethos/application/inspection.py",
         "src/ethos/domain/status.py",
         "src/ethos/adapters/repo/status/"
       ]
@@ -120,7 +120,7 @@
         "compiles": "intent, rules and gates into planning results"
       },
       "files": [
-        "src/ethos/domain/plan.py",
+        "src/ethos/application/plan.py",
         "src/ethos/repository/policy/rules/",
         ".ethos/rules.toml"
       ]
@@ -155,7 +155,7 @@
         "src/ethos/contracts/system/",
         "src/ethos/normalization/",
         "src/ethos/result.py",
-        "src/ethos/domain/execution.py",
+        "src/ethos/application/invocation.py",
         "system/schemas/",
         "system/README.md",
         "system/axioms.md",
@@ -167,8 +167,20 @@
         "src/ethos/surface/__init__.py",
         "src/ethos/adapters/mutation/__init__.py",
         "src/ethos/contracts/next_step.py",
-        "src/ethos/surface/runtime_identity.py"
+        "src/ethos/application/result_projection.py",
+        "src/ethos/application/__init__.py",
+        "src/ethos/contracts/digest.py"
       ]
+    },
+    {
+      "id": "operation-catalog",
+      "label": "Operation catalog",
+      "kind": "contract",
+      "details": {
+        "declares": "each command's request, operations, effects and authority, once",
+        "runs": "the one implementation a request selects"
+      },
+      "files": ["src/ethos/application/catalog.py", "src/ethos/contracts/operations/"]
     },
     {
       "id": "openspec-intent",
@@ -236,7 +248,8 @@
       "files": [
         "src/ethos/adapters/gates/runner.py",
         "src/ethos/adapters/gates/proof_slot.py",
-        "src/ethos/adapters/gates/verification.py"
+        "src/ethos/adapters/gates/verification.py",
+        "src/ethos/application/host.py"
       ]
     },
     {
@@ -267,7 +280,8 @@
         "src/ethos/adapters/mutation/proof_artifacts.py",
         "src/ethos/adapters/mutation/proof_validation.py",
         "src/ethos/domain/prove.py",
-        "src/ethos/adapters/mutation/proof_record.py"
+        "src/ethos/adapters/mutation/proof_record.py",
+        "src/ethos/application/proof/"
       ]
     },
     {
@@ -282,7 +296,8 @@
         "src/ethos/adapters/admission/prewrite.py",
         "src/ethos/adapters/admission/patch_admission.py",
         "src/ethos/adapters/admission/paths.py",
-        "src/ethos/adapters/admission/shell.py"
+        "src/ethos/adapters/admission/shell.py",
+        "src/ethos/application/lane/admission.py"
       ]
     },
     {
@@ -295,7 +310,8 @@
       "files": [
         "src/ethos/adapters/admission/",
         "src/ethos/contracts/admission.py",
-        "src/ethos/contracts/evidence/"
+        "src/ethos/contracts/evidence/",
+        "src/ethos/application/peer_identity.py"
       ]
     },
     {
@@ -319,7 +335,7 @@
         "command": "ethos hook install",
         "guards": "commits, pushes and ref moves through native Git hooks"
       },
-      "files": ["src/ethos/adapters/repo/hook/"]
+      "files": ["src/ethos/adapters/repo/hook/", "src/ethos/application/hook/"]
     },
     {
       "id": "runtime",
@@ -351,7 +367,8 @@
         "src/ethos/adapters/mutation/lane_lifecycle/lease/",
         "src/ethos/adapters/store/state/",
         "src/ethos/contracts/coordination.py",
-        "src/ethos/adapters/repo/coordination.py"
+        "src/ethos/adapters/repo/coordination.py",
+        "src/ethos/application/lane/lease.py"
       ]
     },
     {
@@ -362,7 +379,7 @@
         "commands": "lane start, refresh-base, archive-change",
         "starts": "an owned branch and worktree from the candidate"
       },
-      "files": ["src/ethos/adapters/mutation/lane_lifecycle/"]
+      "files": ["src/ethos/adapters/mutation/lane_lifecycle/", "src/ethos/application/lane/"]
     },
     {
       "id": "retirement",
@@ -374,7 +391,8 @@
       "files": [
         "src/ethos/adapters/mutation/lane_retirement/",
         "src/ethos/contracts/retirement.py",
-        "src/ethos/adapters/mutation/worktree/"
+        "src/ethos/adapters/mutation/worktree/",
+        "src/ethos/application/lane/retirement.py"
       ]
     },
     {
@@ -389,7 +407,7 @@
         "src/ethos/adapters/mutation/landing.py",
         "src/ethos/adapters/mutation/accepted/",
         "src/ethos/adapters/mutation/branch_roles.py",
-        "src/ethos/domain/land/",
+        "src/ethos/application/land/",
         "src/ethos/contracts/branch/"
       ]
     },
@@ -403,7 +421,7 @@
       },
       "files": [
         "src/ethos/adapters/mutation/publication/",
-        "src/ethos/domain/publication/",
+        "src/ethos/application/publication/",
         "src/ethos/contracts/publication.py",
         "src/ethos/repository/release/publication.py"
       ]
@@ -453,7 +471,9 @@
         "src/ethos/adapters/mutation/source_format.py",
         "src/ethos/adapters/mutation/paradigm_repair.py",
         "src/ethos/adapters/projections/",
-        "src/ethos/repository/policy/projections.py"
+        "src/ethos/repository/policy/projections.py",
+        "src/ethos/application/lane/repair.py",
+        "src/ethos/application/redaction.py"
       ]
     },
     {
@@ -464,7 +484,11 @@
         "declares": "names, documents, OpenSpec, toolchain, pipelines and size for every repository",
         "repairs": "gaps deterministically"
       },
-      "files": ["src/ethos/repository/paradigm/", "src/ethos/contracts/paradigm/"]
+      "files": [
+        "src/ethos/repository/paradigm/",
+        "src/ethos/contracts/paradigm/",
+        "src/ethos/repository/toml_layout.py"
+      ]
     },
     {
       "id": "docs-registry",
@@ -473,7 +497,11 @@
       "details": {
         "checks": "documentation health, links and design ownership"
       },
-      "files": ["src/ethos/repository/registry/", "src/ethos/repository/design/"]
+      "files": [
+        "src/ethos/repository/registry/",
+        "src/ethos/repository/design/",
+        "src/ethos/application/docs_registry.py"
+      ]
     },
     {
       "id": "repository-audit",
@@ -512,7 +540,7 @@
         "forms": "a new repository from a starter, or binds an existing one"
       },
       "files": [
-        "src/ethos/domain/adoption.py",
+        "src/ethos/application/adoption.py",
         "src/ethos/adapters/repo/adoption.py",
         "src/ethos/adapters/repo/starter/",
         "src/ethos/repository/adoption/"
@@ -541,7 +569,8 @@
       "files": [
         "src/ethos/adapters/repo/attestation_set.py",
         "src/ethos/adapters/repo/attestation_lifetime.py",
-        "src/ethos/adapters/repo/attestation_lifetime_facts.py"
+        "src/ethos/adapters/repo/attestation_lifetime_facts.py",
+        "src/ethos/application/attestation.py"
       ]
     },
     {
@@ -551,7 +580,7 @@
       "details": {
         "holds": "content-addressed evidence bytes bound by Attestation members"
       },
-      "files": ["src/ethos/adapters/store/"]
+      "files": ["src/ethos/adapters/store/", "src/ethos/application/retention.py"]
     },
     {
       "id": "git-read",
@@ -563,7 +592,8 @@
       "files": [
         "src/ethos/adapters/repo/",
         "src/ethos/adapters/process.py",
-        "src/ethos/adapters/open_files.py"
+        "src/ethos/adapters/open_files.py",
+        "src/ethos/adapters/actor.py"
       ]
     },
     {
@@ -601,93 +631,120 @@
   ],
   "relations": [
     {
-      "id": "cli-status",
+      "id": "cli-operation-catalog",
       "from": "cli",
+      "to": "operation-catalog",
+      "label": "selects one operation",
+      "files": [
+        "src/ethos/application/console.py",
+        "src/ethos/surface/cli/application.py",
+        "src/ethos/surface/cli/catalog.py"
+      ]
+    },
+    {
+      "id": "operation-catalog-status",
+      "from": "operation-catalog",
       "to": "status",
       "label": "runs status",
-      "files": [
-        "src/ethos/surface/cli/lane/lease.py",
-        "src/ethos/surface/cli/lane/lifecycle.py",
-        "src/ethos/surface/cli/root/inspection.py",
-        "src/ethos/surface/cli/root/proof.py"
-      ]
+      "files": ["src/ethos/application/catalog.py"]
     },
     {
-      "id": "cli-planning",
-      "from": "cli",
+      "id": "operation-catalog-planning",
+      "from": "operation-catalog",
       "to": "planning",
       "label": "runs plan",
-      "files": ["src/ethos/surface/cli/root/planning.py"]
+      "files": ["src/ethos/application/catalog.py"]
     },
     {
-      "id": "cli-proof",
-      "from": "cli",
+      "id": "operation-catalog-proof",
+      "from": "operation-catalog",
       "to": "proof",
       "label": "runs prove",
-      "files": ["src/ethos/surface/cli/lane/lifecycle.py", "src/ethos/surface/cli/root/proof.py"]
+      "files": ["src/ethos/application/catalog.py"]
     },
     {
-      "id": "cli-landing",
-      "from": "cli",
+      "id": "operation-catalog-landing",
+      "from": "operation-catalog",
       "to": "landing",
       "label": "runs land",
-      "files": [
-        "src/ethos/surface/cli/lane/commit_signer.py",
-        "src/ethos/surface/cli/lane/lifecycle.py",
-        "src/ethos/surface/cli/root/land.py"
-      ]
+      "files": ["src/ethos/application/catalog.py"]
     },
     {
-      "id": "cli-publication",
-      "from": "cli",
+      "id": "operation-catalog-publication",
+      "from": "operation-catalog",
       "to": "publication",
       "label": "runs publish",
-      "files": ["src/ethos/surface/cli/root/publish.py"]
+      "files": ["src/ethos/application/catalog.py"]
     },
     {
-      "id": "cli-work-lane",
-      "from": "cli",
+      "id": "operation-catalog-adoption",
+      "from": "operation-catalog",
+      "to": "adoption",
+      "label": "runs adopt",
+      "files": ["src/ethos/application/catalog.py"]
+    },
+    {
+      "id": "operation-catalog-attestation-set",
+      "from": "operation-catalog",
+      "to": "attestation-set",
+      "label": "runs attestation",
+      "files": ["src/ethos/application/catalog.py"]
+    },
+    {
+      "id": "operation-catalog-gate-runner",
+      "from": "operation-catalog",
+      "to": "gate-runner",
+      "label": "runs host run",
+      "files": ["src/ethos/application/catalog.py"]
+    },
+    {
+      "id": "operation-catalog-hooks",
+      "from": "operation-catalog",
+      "to": "hooks",
+      "label": "runs hook",
+      "files": ["src/ethos/application/catalog.py"]
+    },
+    {
+      "id": "operation-catalog-evidence-store",
+      "from": "operation-catalog",
+      "to": "evidence-store",
+      "label": "runs hook retire-records",
+      "files": ["src/ethos/application/catalog.py"]
+    },
+    {
+      "id": "operation-catalog-work-lane",
+      "from": "operation-catalog",
       "to": "work-lane",
       "label": "runs lane",
-      "files": ["src/ethos/surface/cli/lane/lifecycle.py"]
+      "files": ["src/ethos/application/catalog.py"]
     },
     {
-      "id": "cli-prewrite-admission",
-      "from": "cli",
+      "id": "operation-catalog-prewrite-admission",
+      "from": "operation-catalog",
       "to": "prewrite-admission",
-      "label": "runs prewrite",
-      "files": ["src/ethos/surface/cli/hook/commands.py", "src/ethos/surface/cli/lane/lifecycle.py"]
+      "label": "runs lane prewrite",
+      "files": ["src/ethos/application/catalog.py"]
     },
     {
-      "id": "cli-retirement",
-      "from": "cli",
+      "id": "operation-catalog-projections",
+      "from": "operation-catalog",
+      "to": "projections",
+      "label": "runs lane project, format",
+      "files": ["src/ethos/application/catalog.py"]
+    },
+    {
+      "id": "operation-catalog-retirement",
+      "from": "operation-catalog",
       "to": "retirement",
       "label": "runs lane retire",
-      "files": [
-        "src/ethos/surface/cli/lane/lifecycle.py",
-        "src/ethos/surface/cli/lane/retirement.py"
-      ]
+      "files": ["src/ethos/application/catalog.py"]
     },
     {
-      "id": "cli-handoff",
-      "from": "cli",
-      "to": "handoff",
-      "label": "runs handoff",
-      "files": ["src/ethos/surface/cli/lane/handoff.py"]
-    },
-    {
-      "id": "cli-hooks",
-      "from": "cli",
-      "to": "hooks",
-      "label": "runs hook install",
-      "files": ["src/ethos/surface/cli/hook/commands.py"]
-    },
-    {
-      "id": "cli-attestation-set",
-      "from": "cli",
-      "to": "attestation-set",
-      "label": "queries",
-      "files": ["src/ethos/surface/cli/root/attestation.py"]
+      "id": "operation-catalog-lease",
+      "from": "operation-catalog",
+      "to": "lease",
+      "label": "runs lane lease, handoff",
+      "files": ["src/ethos/application/catalog.py"]
     },
     {
       "id": "mcp-server-status",
@@ -725,53 +782,49 @@
       "files": ["src/ethos/surface/mcp/server.py"]
     },
     {
-      "id": "cli-adoption",
-      "from": "cli",
-      "to": "adoption",
-      "label": "runs adopt",
-      "files": ["src/ethos/surface/cli/root/adoption.py"]
-    },
-    {
       "id": "status-current-resolution",
       "from": "status",
       "to": "current-resolution",
       "label": "resolves scope",
-      "files": ["src/ethos/adapters/repo/status/workspace.py", "src/ethos/domain/inspection.py"]
+      "files": [
+        "src/ethos/adapters/repo/status/workspace.py",
+        "src/ethos/application/inspection.py"
+      ]
     },
     {
       "id": "status-openspec-intent",
       "from": "status",
       "to": "openspec-intent",
       "label": "reads the Change",
-      "files": ["src/ethos/domain/inspection.py", "src/ethos/domain/status.py"]
+      "files": ["src/ethos/application/inspection.py", "src/ethos/domain/status.py"]
     },
     {
       "id": "planning-current-resolution",
       "from": "planning",
       "to": "current-resolution",
       "label": "resolves intent",
-      "files": ["src/ethos/domain/plan.py"]
+      "files": ["src/ethos/application/plan.py"]
     },
     {
       "id": "planning-gate-policy",
       "from": "planning",
       "to": "gate-policy",
       "label": "selects gates",
-      "files": ["src/ethos/domain/plan.py", "src/ethos/repository/policy/rules/compile.py"]
+      "files": ["src/ethos/application/plan.py", "src/ethos/repository/policy/rules/compile.py"]
     },
     {
       "id": "planning-kernel",
       "from": "planning",
       "to": "kernel",
       "label": "compiles",
-      "files": ["src/ethos/domain/plan.py", "src/ethos/repository/policy/rules/compile.py"]
+      "files": ["src/ethos/application/plan.py", "src/ethos/repository/policy/rules/compile.py"]
     },
     {
       "id": "planning-skills",
       "from": "planning",
       "to": "skills",
       "label": "activates skills",
-      "files": ["src/ethos/domain/plan.py"]
+      "files": ["src/ethos/application/plan.py"]
     },
     {
       "id": "planning-paradigm",
@@ -779,7 +832,7 @@
       "to": "paradigm",
       "label": "reads declaration",
       "files": [
-        "src/ethos/domain/plan.py",
+        "src/ethos/application/plan.py",
         "src/ethos/repository/policy/rules/compile.py",
         "src/ethos/repository/policy/rules/config.py"
       ]
@@ -864,7 +917,9 @@
       "label": "resolves gates",
       "files": [
         "src/ethos/adapters/mutation/proof.py",
-        "src/ethos/adapters/mutation/proof_admission.py"
+        "src/ethos/adapters/mutation/proof_admission.py",
+        "src/ethos/application/proof/host.py",
+        "src/ethos/application/proof/operation.py"
       ]
     },
     {
@@ -872,7 +927,7 @@
       "from": "proof",
       "to": "current-resolution",
       "label": "resolves authority",
-      "files": ["src/ethos/adapters/mutation/proof.py"]
+      "files": ["src/ethos/adapters/mutation/proof.py", "src/ethos/application/proof/operation.py"]
     },
     {
       "id": "proof-kernel",
@@ -884,7 +939,10 @@
         "src/ethos/adapters/mutation/proof_admission.py",
         "src/ethos/adapters/mutation/proof_artifacts.py",
         "src/ethos/adapters/mutation/proof_record.py",
-        "src/ethos/adapters/mutation/proof_validation.py"
+        "src/ethos/adapters/mutation/proof_validation.py",
+        "src/ethos/application/proof/host.py",
+        "src/ethos/application/proof/operation.py",
+        "src/ethos/application/proof/report.py"
       ]
     },
     {
@@ -915,6 +973,13 @@
       ]
     },
     {
+      "id": "proof-gate-runner",
+      "from": "proof",
+      "to": "gate-runner",
+      "label": "executes gates",
+      "files": ["src/ethos/application/proof/host.py", "src/ethos/application/proof/operation.py"]
+    },
+    {
       "id": "gate-runner-native-evidence",
       "from": "gate-runner",
       "to": "native-evidence",
@@ -922,7 +987,8 @@
       "files": [
         "src/ethos/adapters/gates/proof_slot.py",
         "src/ethos/adapters/gates/runner.py",
-        "src/ethos/adapters/gates/verification.py"
+        "src/ethos/adapters/gates/verification.py",
+        "src/ethos/application/host.py"
       ]
     },
     {
@@ -931,13 +997,6 @@
       "to": "gate-policy",
       "label": "binds identities",
       "files": ["src/ethos/adapters/gates/runner.py", "src/ethos/adapters/gates/verification.py"]
-    },
-    {
-      "id": "cli-gate-runner",
-      "from": "cli",
-      "to": "gate-runner",
-      "label": "executes gates",
-      "files": ["src/ethos/surface/cli/proof/host.py", "src/ethos/surface/cli/root/proof.py"]
     },
     {
       "id": "native-evidence-native-tools",
@@ -981,7 +1040,8 @@
       "label": "attributes paths",
       "files": [
         "src/ethos/adapters/admission/patch_admission.py",
-        "src/ethos/adapters/admission/prewrite.py"
+        "src/ethos/adapters/admission/prewrite.py",
+        "src/ethos/application/lane/admission.py"
       ]
     },
     {
@@ -1016,18 +1076,30 @@
         "src/ethos/adapters/repo/hook/exit.py",
         "src/ethos/adapters/repo/hook/exit_plan.py",
         "src/ethos/adapters/repo/hook/observation.py",
-        "src/ethos/adapters/repo/hook/rollback.py"
+        "src/ethos/adapters/repo/hook/rollback.py",
+        "src/ethos/application/hook/installation.py"
+      ]
+    },
+    {
+      "id": "hooks-ref-admission",
+      "from": "hooks",
+      "to": "ref-admission",
+      "label": "admits ref updates",
+      "files": [
+        "src/ethos/adapters/repo/hook/admission.py",
+        "src/ethos/application/hook/admission.py"
       ]
     },
     {
       "id": "cli-ref-admission",
       "from": "cli",
       "to": "ref-admission",
-      "label": "admits hook effects",
+      "label": "reads the command line",
       "files": [
+        "src/ethos/application/console.py",
         "src/ethos/cli.py",
         "src/ethos/surface/cli/application.py",
-        "src/ethos/surface/cli/hook/commands.py"
+        "src/ethos/surface/cli/version.py"
       ]
     },
     {
@@ -1115,6 +1187,13 @@
       ]
     },
     {
+      "id": "lease-handoff",
+      "from": "lease",
+      "to": "handoff",
+      "label": "hands off the lane",
+      "files": ["src/ethos/application/lane/lease.py"]
+    },
+    {
       "id": "handoff-git-effects",
       "from": "handoff",
       "to": "git-effects",
@@ -1133,6 +1212,7 @@
       "label": "ends the Lease",
       "files": [
         "src/ethos/adapters/mutation/lane_retirement/absorbed.py",
+        "src/ethos/adapters/mutation/lane_retirement/manifest.py",
         "src/ethos/adapters/mutation/lane_retirement/operation.py"
       ]
     },
@@ -1158,8 +1238,8 @@
       "files": [
         "src/ethos/adapters/mutation/accepted/admission.py",
         "src/ethos/adapters/mutation/landing.py",
-        "src/ethos/domain/land/closeout.py",
-        "src/ethos/domain/land/operation.py"
+        "src/ethos/application/land/closeout.py",
+        "src/ethos/application/land/operation.py"
       ]
     },
     {
@@ -1171,7 +1251,7 @@
         "src/ethos/adapters/mutation/accepted/promotion.py",
         "src/ethos/adapters/mutation/accepted/release.py",
         "src/ethos/adapters/mutation/landing.py",
-        "src/ethos/domain/land/closeout.py"
+        "src/ethos/application/land/closeout.py"
       ]
     },
     {
@@ -1210,9 +1290,9 @@
       "files": [
         "src/ethos/adapters/mutation/publication/execution.py",
         "src/ethos/adapters/mutation/publication/retirement.py",
-        "src/ethos/domain/publication/inspection.py",
-        "src/ethos/domain/publication/operation.py",
-        "src/ethos/domain/publication/request_gaps.py"
+        "src/ethos/application/publication/inspection.py",
+        "src/ethos/application/publication/operation.py",
+        "src/ethos/application/publication/request_gaps.py"
       ]
     },
     {
@@ -1220,7 +1300,7 @@
       "from": "publication",
       "to": "proof",
       "label": "requires proof",
-      "files": ["src/ethos/domain/publication/inspection.py"]
+      "files": ["src/ethos/application/publication/inspection.py"]
     },
     {
       "id": "publication-forges",
@@ -1288,7 +1368,10 @@
       "from": "attestation-set",
       "to": "evidence-store",
       "label": "binds custody",
-      "files": ["src/ethos/adapters/repo/attestation_set.py"]
+      "files": [
+        "src/ethos/adapters/repo/attestation_set.py",
+        "src/ethos/application/attestation.py"
+      ]
     },
     {
       "id": "attestation-set-git",
@@ -1308,18 +1391,8 @@
       "label": "admits the patch",
       "files": [
         "src/ethos/adapters/mutation/carrier_edit.py",
-        "src/ethos/adapters/mutation/source_format.py"
-      ]
-    },
-    {
-      "id": "cli-projections",
-      "from": "cli",
-      "to": "projections",
-      "label": "runs lane project, format",
-      "files": [
-        "src/ethos/surface/cli/lane/formatting.py",
-        "src/ethos/surface/cli/lane/paradigm_repair.py",
-        "src/ethos/surface/cli/lane/projections.py"
+        "src/ethos/adapters/mutation/source_format.py",
+        "src/ethos/application/redaction.py"
       ]
     },
     {
@@ -1445,9 +1518,10 @@
       "id": "status",
       "title": "Where a checkout stands",
       "question": "How does ethos status read a checkout's role, gaps and next action?",
-      "summary": "The CLI runs status, which resolves its scope through current resolution: Lease authority, official intent and fresh path facts, once. Status answers with role, gaps, foreign lanes and the next action.",
+      "summary": "The CLI hands status to the operation catalog, which runs it. Status resolves Lease authority, official intent and fresh path facts once, through current resolution, and answers with role, gaps, foreign lanes and the next action.",
       "members": [
         "cli",
+        "operation-catalog",
         "status",
         "current-resolution",
         "openspec-intent",
@@ -1464,6 +1538,7 @@
       "summary": "OpenSpec intent compiles the official Change into a Commitment, and current resolution resolves fresh path facts. Planning selects gates and compiles the TransitionPlan; only a pass admits an effect.",
       "members": [
         "cli",
+        "operation-catalog",
         "planning",
         "current-resolution",
         "openspec-intent",
@@ -1481,6 +1556,7 @@
       "summary": "The gate runner runs the admitted gate DAG; native evidence captures each native tool's output once. Quality obligations judge coverage and tests from native reports; proof records its Attestation in the Attestation set.",
       "members": [
         "cli",
+        "operation-catalog",
         "proof",
         "gate-runner",
         "gate-policy",
@@ -1498,6 +1574,7 @@
       "summary": "Prewrite admission admits exact write paths and patches, attributes them to the Change and checks authority and the Lease holder. Hooks guard commits and ref moves; ref admission admits ref intents against the Lease.",
       "members": [
         "cli",
+        "operation-catalog",
         "prewrite-admission",
         "ref-admission",
         "current-resolution",
@@ -1515,6 +1592,7 @@
       "summary": "A Work Lane acquires the Lease and creates a branch and worktree; handoff moves it between hosts as one content-addressed package. The mutation decision admits landing, which moves refs by CAS; retirement ends the Lease.",
       "members": [
         "cli",
+        "operation-catalog",
         "work-lane",
         "handoff",
         "retirement",
@@ -1547,6 +1625,7 @@
       "summary": "Peer publication requires proof, admits updates through ref admission and pushes exact refs to each Forge with a receipt. Landing selects the release refs; release identity compiles each distribution's build identity.",
       "members": [
         "cli",
+        "operation-catalog",
         "publication",
         "ref-admission",
         "proof",
@@ -1582,6 +1661,7 @@
       "summary": "Runtime generations select one immutable runtime through runtime/CURRENT, with tools from the exact mise lock, and proof binds it. The hook protocol selects that runtime; ref admission admits the hooks' effects.",
       "members": [
         "cli",
+        "operation-catalog",
         "hooks",
         "runtime",
         "ref-admission",
@@ -1596,9 +1676,10 @@
       "id": "surfaces",
       "title": "One meaning, every surface",
       "question": "How do people, agents and Git reach the same operations?",
-      "summary": "The CLI runs status, plan, land, publish and adopt, and the MCP server projects the same five operations over a root-bound transport. The CLI's launcher is a thin npm package.",
+      "summary": "The CLI hands each request to the operation catalog, which runs the one implementation the request selects. The MCP server projects status, plan, land, publish and adopt over a root-bound transport; the CLI is the installed ethos console.",
       "members": [
         "cli",
+        "operation-catalog",
         "mcp-server",
         "status",
         "planning",

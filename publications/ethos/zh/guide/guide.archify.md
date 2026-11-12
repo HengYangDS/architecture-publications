@@ -7,7 +7,7 @@ ETHOS 准入改动只看证据：OpenSpec 正式变更说明意图，当场观�
 - [每次改动都要经过编译和判定，当场放行，再用精确的 compare-and-swap 执行](block:p-plan)。[](source:invariants)
 - [每种证据只证明自己那个层面](block:p-evidence)，所以本地证明不是防伪保证。[](source:planes)[](source:proof-boundary)
 
-@answer scope="ETHOS v0.2.0-beta.6 · 提交 727ee05 · 它的源码和文档 · 证明耗时实测于 2026-11-08"
+@answer scope="ETHOS v0.2.0-beta.8 · 提交 9bf5bdd · 它的源码和文档 · 证明耗时实测于 2026-11-08，所用版本为 v0.2.0-beta.6"
 @meta locale=zh-CN style=editorial
 @source kernel title="内核" path="README.md" lines=100:107
 @source native title="哪些保持原生" path="README.md" lines=26:29
@@ -30,22 +30,22 @@ ETHOS 准入改动只看证据：OpenSpec 正式变更说明意图，当场观�
 @source non-authorizing title="只是输入，不是决定权" path="docs/governance/product-design-contract.md" lines=532:537
 @source invariants title="不变量" path="docs/governance/product-design-contract.md" lines=586:602
 @source axioms title="工程公理" path="system/axioms.md" lines=15:31
-@source service title="唯一的应用服务" path="docs/plans/terminal-governance-product-design.md" lines=394:397
-@source recovery title="从仓库证据恢复" path="docs/plans/terminal-governance-product-design.md" lines=412:414
-@source resume title="另一个 Agent 接手" path="docs/plans/terminal-governance-product-design.md" lines=162:166
-@source route title="余下的路线" path="docs/plans/terminal-governance-product-design.md" lines=147:151
-@source acceptance title="按任务验收" path="docs/plans/terminal-governance-product-design.md" lines=416:420
+@source service title="唯一的应用服务" path="docs/plans/terminal-governance-product-design.md" lines=402:405
+@source recovery title="从仓库证据恢复" path="docs/plans/terminal-governance-product-design.md" lines=420:422
+@source resume title="另一个 Agent 接手" path="docs/plans/terminal-governance-product-design.md" lines=170:174
+@source route title="余下的路线" path="docs/plans/terminal-governance-product-design.md" lines=155:159
+@source acceptance title="按任务验收" path="docs/plans/terminal-governance-product-design.md" lines=424:428
 @source mcp-authority title="标签和先前的检查都不授权" path="docs/architecture/mcp-server.md" lines=28:31
 @source mcp-open title="MCP 符合性仍待鉴定" path="docs/architecture/mcp-server.md" lines=33:40
 @source standards title="外部标准经适配器接入" path="docs/architecture/protocol-contracts.md" lines=18:22
 @source state-home title="状态存放在哪里" path="docs/architecture/local-state.md" lines=19:27
 @source runtime-home title="公共目录中的运行时和钩子" path="docs/architecture/local-state.md" lines=29:34
 @source host-store title="主机存储" path="docs/architecture/local-state.md" lines=53:57
-@source lease-fields title="租约的四个字段" path="docs/architecture/local-state.md" lines=86:91
+@source lease-fields title="租约的四个字段" path="docs/architecture/local-state.md" lines=102:107
 @source adopt-writes title="接入写入什么" path="docs/architecture/adoption-profiles.md" lines=18:33
 @source adopt-keeps title="保留原生配置" path="docs/architecture/adoption-profiles.md" lines=35:42
 @source adopt-preview title="先预览，再应用" path="docs/architecture/adoption-profiles.md" lines=44:53
-@source first-change title="受版本管理的写入之前" path="docs/guides/quickstart.md" lines=115:122
+@source first-change title="受版本管理的写入之前" path="docs/guides/quickstart.md" lines=117:124
 @source plan-contract title="TransitionPlan 契约" path="docs/architecture/transition-plan.md" lines=39:50
 @source plan-steps title="规划代数" path="docs/architecture/transition-plan.md" lines=24:32
 @source authorization title="授权与预期的 HEAD" path="docs/architecture/runner-and-mutation.md" lines=22:25
@@ -62,37 +62,37 @@ ETHOS 准入改动只看证据：OpenSpec 正式变更说明意图，当场观�
 @source publish-preview title="平台发布预览" path="docs/architecture/runner-and-mutation.md" lines=197:200
 @source publish title="发布到每个平台" path="docs/architecture/runner-and-mutation.md" lines=206:212
 @source verdict title="判定只有三种取值" path="docs/architecture/runner-and-mutation.md" lines=233:233
-@source proof-gates title="内置门禁与仓库自有门禁" path="docs/reference/command-plane.md" lines=426:430
-@source load-limit title="先就绪，再看主机负载" path="docs/reference/command-plane.md" lines=437:437
-@source standard-proof title="标准的精确源码证明" path="docs/reference/command-plane.md" lines=502:511
+@source proof-gates title="内置门禁与仓库自有门禁" path="docs/reference/command-plane.md" lines=438:442
+@source load-limit title="先就绪，再看主机负载" path="docs/reference/command-plane.md" lines=449:449
+@source standard-proof title="冻结源码上的完整证明" path="docs/reference/command-plane.md" lines=444:447
 @source gates-floor title="内置的证明集" path="system/gates.toml" lines=5:7
-@source preflight title="测试之前的就绪层" path="src/ethos/adapters/gates/runner.py" lines=367:399
-@source ready-set title="数量有限且互相兼容的就绪集" path="src/ethos/adapters/gates/runner.py" lines=402:427
+@source preflight title="测试之前的就绪层" path="src/ethos/adapters/gates/runner.py" lines=295:327
+@source ready-set title="数量有限且互相兼容的就绪集" path="src/ethos/adapters/gates/runner.py" lines=330:355
 @source proof-boundary title="DR-0006：决定" path="docs/decisions/dr-0006-proof-trust-boundary.md" lines=37:47
 @source proof-alternatives title="DR-0006：被否决的方案" path="docs/decisions/dr-0006-proof-trust-boundary.md" lines=49:56
 @source paradigm-context title="DR-0012：发现的漂移" path="docs/decisions/dr-0012-repository-paradigm.md" lines=21:34
 @source paradigm title="DR-0012：范式规定什么" path="docs/decisions/dr-0012-repository-paradigm.md" lines=45:58
 @source paradigm-gap title="DR-0012：缺口阻止什么" path="docs/decisions/dr-0012-repository-paradigm.md" lines=69:69
-@source commitment title="编译 Commitment" path="src/ethos/adapters/openspec/commitment.py" lines=45:57
-@source commitment-class title="Commitment" path="src/ethos/contracts/semantic.py" lines=186:191
-@source facts-class title="Facts" path="src/ethos/contracts/semantic.py" lines=387:396
-@source attestation-class title="Attestation" path="src/ethos/contracts/semantic.py" lines=244:257
+@source commitment title="编译 Commitment" path="src/ethos/adapters/openspec/commitment.py" lines=46:58
+@source commitment-class title="Commitment" path="src/ethos/contracts/semantic.py" lines=199:204
+@source facts-class title="Facts" path="src/ethos/contracts/semantic.py" lines=400:409
+@source attestation-class title="Attestation" path="src/ethos/contracts/semantic.py" lines=257:270
 @source plan-class title="TransitionPlan" path="src/ethos/contracts/plan.py" lines=181:193
 @source node-class title="PlanNode" path="src/ethos/contracts/plan.py" lines=46:54
 @source plan-inputs title="PlanInputs" path="src/ethos/contracts/plan.py" lines=91:98
-@source prewrite title="写前准入守卫" path="src/ethos/adapters/admission/prewrite.py" lines=60:72
-@source lane title="开始一条工作通道" path="src/ethos/adapters/mutation/lane_lifecycle/start.py" lines=343:353
+@source prewrite title="写前准入守卫" path="src/ethos/adapters/admission/prewrite.py" lines=117:149
+@source lane title="开始一条工作通道" path="src/ethos/adapters/mutation/lane_lifecycle/start.py" lines=345:355
 @source hook title="唯一的钩子入口" path="src/ethos/adapters/repo/hook/protocol.py" lines=21:34
 @source proof title="一个 HEAD 的证明" path="src/ethos/adapters/mutation/proof.py" lines=417:422
-@source landing title="落地到候选分支" path="src/ethos/adapters/mutation/landing.py" lines=45:58
+@source landing title="落地到候选分支" path="src/ethos/adapters/mutation/landing.py" lines=57:70
 @source push title="向一个平台精确推送" path="src/ethos/adapters/mutation/publication/execution.py" lines=45:56
 @source peers title="声明的平台" path=".ethos/release.toml" lines=12:25
 @source profile-declaration title="ETHOS 自己的配置档声明" path=".ethos/profile.toml" lines=1:7
 @source python-range title="支持的 Python 版本" path="pyproject.toml" lines=1:6
-@source branch-roles title="分支角色" path="src/ethos/contracts/paradigm/paradigm.toml" lines=43:50
-@source parameters title="单个文件的上限与门禁时限" path="src/ethos/contracts/paradigm/paradigm.toml" lines=87:121
-@source changelog-first title="第一条记录：0.1.0-alpha.1" path="CHANGELOG.md" lines=1726:1732
-@source changelog-pinned title="本作品锁定的 0.2.0-beta.6" path="CHANGELOG.md" lines=15:20
+@source branch-roles title="分支角色" path="src/ethos/contracts/paradigm/paradigm.toml" lines=50:57
+@source parameters title="单个文件的上限与门禁时限" path="src/ethos/contracts/paradigm/paradigm.toml" lines=94:129
+@source changelog-first title="第一条记录：0.1.0-alpha.1" path="CHANGELOG.md" lines=2129:2135
+@source changelog-pinned title="本作品锁定的 0.2.0-beta.8" path="CHANGELOG.md" lines=15:21
 
 ## 谁在使用 ETHOS，它又负责什么？ {#p-context}
 
@@ -165,7 +165,7 @@ ETHOS 准入改动只看证据：OpenSpec 正式变更说明意图，当场观�
 @steps id=change-steps
 | step-start | 工作通道 | `ethos lane start` 从候选分支拉出自己的分支和工作区，并记下一份租约。每次写受版本管理的文件之前，`ethos lane prewrite` 都要精确放行这次要写的路径。[](source:write-boundary)[](source:candidate-train) | change-flow | seq-lane | | seq-author-to-seq-lane-1,seq-author-to-seq-lane-2 |
 | step-commit | 提交 | 每个 Git 钩子都在选定的运行时下做一次准入，不用环境里的 `PATH`。[](source:hook)[](source:runtime) | change-flow | seq-lane | | seq-author-to-seq-lane-3 |
-| step-prove | 证明存储 | `ethos lane archive-change` 归档正式变更，`ethos prove --full --execute` 在这个冻结的头提交上跑完所有门禁。证明留在 Git 公共目录里，每个工作区都从那里读取。[](source:standard-proof)[](source:shared-proof) | change-flow | seq-proof | | seq-author-to-seq-lane-4,seq-author-to-seq-proof-1 |
+| step-prove | 证明存储 | `ethos lane archive-change` 归档正式变更，`ethos prove --full --execute` 在这个冻结的头提交上跑完所有门禁。证明留在 Git 公共目录里，每个工作区都从那里读取。[](source:archive)[](source:standard-proof)[](source:shared-proof) | change-flow | seq-proof | | seq-author-to-seq-lane-4,seq-author-to-seq-proof-1 |
 | step-land | 候选分支 | `ethos land --apply` 需要授权、预期的 HEAD，还要有这个头提交的证明。[](source:authorization)[](source:archive) | change-flow | seq-candidate | | seq-author-to-seq-candidate-1 |
 | step-closeout | 已验收分支 | `ethos land --closeout` 先审计候选分支；只有候选分支的头提交确实跑过证明，才快进已验收分支。[](source:closeout) | change-flow | seq-accepted | | seq-author-to-seq-accepted-1 |
 | step-publish | GitLab 与 GitHub | `ethos publish` 用精确的 `--force-with-lease` 逐个推送到每个平台。如果靠后的平台失败，核验记录里的结果会写明哪些平台已应用、失败或待定。[](source:publish) | change-flow | seq-peers | | seq-author-to-seq-peers-1,seq-peers-to-seq-author-1 |
@@ -305,7 +305,7 @@ xychart-beta horizontal
 
 ## ETHOS 怎样走到今天？ {#p-history}
 
-变更日志第一条是 2026 年 6 月 30 日的 0.1.0-alpha.1；本作品锁定 0.2.0-beta.6，它发布于 11 月 7 日。[](source:changelog-first)[](source:changelog-pinned)下面列出其间十二个版本，图中按预发布名标注，它们改变了 ETHOS 为受治理的仓库所做的事。
+变更日志第一条是 2026 年 6 月 30 日的 0.1.0-alpha.1；本作品锁定 0.2.0-beta.8，它发布于 11 月 12 日。[](source:changelog-first)[](source:changelog-pinned)下面列出其间十四个版本，图中按预发布名标注，它们改变了 ETHOS 为受治理的仓库所做的事。
 
 @diagram timeline id=history source=history.timeline.json title="ETHOS 怎样走到今天"
 

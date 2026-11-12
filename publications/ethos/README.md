@@ -2,11 +2,11 @@
 
 [`en/model.json`](en/model.json) is an Architecture Model of how ETHOS turns
 official intent and fresh facts into proven repository change, and what it
-holds every repository to. It pins ETHOS at v0.2.0-beta.6
-(`727ee0579ba1fb9e391b5c44ce9fb2c208390199`), and its components own all 467
-files of its coverage scope: the `src/ethos` package, `system/`, the npm
-launcher in `distributions/npm/` and the repository's own `.ethos/` binding.
-Forty-one components and eighty-five relations are drawn in eleven views: one
+holds every repository to. It pins ETHOS at v0.2.0-beta.8
+(`9bf5bdda7292951e1d8a14ee474a0db767daece4`), and its components own all 505
+files of its coverage scope: the `src/ethos` package, `system/` and the
+repository's own `.ethos/` binding.
+Forty-two components and ninety relations are drawn in eleven views: one
 change from intent to the accepted branch, where a checkout stands, the plan,
 the proof, what may mutate the repository, a Work Lane's life and the commits
 it may make, publication to every peer, the structure every governed
@@ -26,9 +26,9 @@ shows what decides whether an effect runs, what one transition binds, the parts
 that carry a change and where one full proof spends its time. It ends with the
 evidence planes, why local proof is enough and when it is not, what every
 repository shares, the principles behind the design and what is still open.
-Each claim cites a line range at v0.2.0-beta.6, and the diagrams the draft
+Each claim cites a line range at v0.2.0-beta.8, and the diagrams the draft
 names sit beside it. The proof's timings were measured on 2026-11-08, on
-Architecture Publisher's own proof under this ETHOS release.
+Architecture Publisher's own proof under ETHOS v0.2.0-beta.6.
 
 Each component claims the directories and files its path rules name, and each
 file goes to its most specific claim, so every file in the scope has one owner.

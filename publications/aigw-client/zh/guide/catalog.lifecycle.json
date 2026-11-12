@@ -1,0 +1,102 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "提供商的模型会经历哪些状态",
+    "output": "catalog.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "repository": {
+      "url": "https://github.com/HengYangDS/aigw-cli.git",
+      "provider": "github",
+      "revision": "9bf7612c9678d6fc02eade0eda637be1b450af87"
+    }
+  },
+  "mainPath": ["cat-available", "cat-added", "cat-deprecated"],
+  "states": [
+    {
+      "id": "cat-available",
+      "type": "start",
+      "label": "可添加",
+      "sublabel": "已列出，未添加",
+      "sources": [
+        {
+          "path": "docs/concepts/product-concepts.md",
+          "line": 159,
+          "end_line": 159,
+          "label": "available"
+        }
+      ]
+    },
+    {
+      "id": "cat-added",
+      "type": "success",
+      "label": "已添加",
+      "sublabel": "在配置里",
+      "sources": [
+        {
+          "path": "docs/concepts/product-concepts.md",
+          "line": 160,
+          "end_line": 160,
+          "label": "added"
+        }
+      ]
+    },
+    {
+      "id": "cat-deprecated",
+      "type": "waiting",
+      "label": "已弃用",
+      "sublabel": "保留，不再推荐",
+      "sources": [
+        {
+          "path": "docs/concepts/product-concepts.md",
+          "line": 162,
+          "end_line": 162,
+          "label": "deprecated"
+        }
+      ]
+    },
+    {
+      "id": "cat-missing",
+      "type": "failure",
+      "label": "缺失",
+      "sublabel": "已不再列出",
+      "sources": [
+        {
+          "path": "docs/concepts/product-concepts.md",
+          "line": 161,
+          "end_line": 161,
+          "label": "missing"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "id": "cat-t-add",
+      "from": "cat-available",
+      "to": "cat-added",
+      "label": "use 或 model add"
+    },
+    {
+      "id": "cat-t-deprecate",
+      "from": "cat-added",
+      "to": "cat-deprecated",
+      "label": "团队文件标记"
+    },
+    {
+      "id": "cat-t-unlisted",
+      "from": "cat-added",
+      "to": "cat-missing",
+      "label": "不再列出",
+      "variant": "dashed"
+    },
+    {
+      "id": "cat-t-remove",
+      "from": "cat-added",
+      "to": "cat-available",
+      "label": "model remove",
+      "variant": "dashed"
+    }
+  ]
+}

@@ -10,7 +10,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/ethos.git",
       "provider": "github",
-      "revision": "727ee0579ba1fb9e391b5c44ce9fb2c208390199"
+      "revision": "9bf5bdda7292951e1d8a14ee474a0db767daece4"
     }
   },
   "layout": {
@@ -37,8 +37,8 @@
       "sources": [
         {
           "path": "src/ethos/contracts/semantic.py",
-          "line": 186,
-          "end_line": 191,
+          "line": 199,
+          "end_line": 204,
           "label": "Commitment"
         }
       ]
@@ -67,8 +67,8 @@
       "sources": [
         {
           "path": "src/ethos/contracts/semantic.py",
-          "line": 387,
-          "end_line": 396,
+          "line": 400,
+          "end_line": 409,
           "label": "Facts"
         }
       ]
@@ -105,8 +105,8 @@
       "sources": [
         {
           "path": "src/ethos/contracts/semantic.py",
-          "line": 236,
-          "end_line": 257,
+          "line": 249,
+          "end_line": 270,
           "label": "Attestation"
         }
       ]

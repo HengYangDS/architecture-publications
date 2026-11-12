@@ -4,9 +4,9 @@
   "id": "aigw-client",
   "locale": "zh-CN",
   "title": "AIGW 统一客户端配置",
-  "question": "AIGW 怎样把一份审阅过的配置，受保护地写入每个已准入客户端的原生配置？",
-  "summary": "AIGW 把账户、路由和客户端绑定放在一份加锁的配置里，令牌放在选定的一个存储里。写入客户端时，它走统一的适配器接口，只改写每个客户端配置中归自己管的那一块；整个写入是一次受保护的事务，中途出错会补偿。请求绝不经过 AIGW。",
-  "scope": "v0.6.1 发布版本的 AIGW 程序：生产代码的 Go 包、命令入口、团队清单和 go.mod。",
+  "question": "AIGW 怎样把一份审阅过的配置，受保护地写入每个已准入客户端的文件？",
+  "summary": "AIGW 把提供商、模型和客户端选择放在一份加锁的配置 aigw.toml 里，令牌放在选定的一个存储里。写入客户端文件时，它走统一的适配器接口，只改写其中归自己管的设置；整个写入是一次受保护的事务，中途出错会补偿。请求绝不经过 AIGW。",
+  "scope": "v0.7.0 发布版本的 AIGW 程序：生产代码的 Go 包、命令入口、团队文件和 go.mod。",
   "limits": [
     "每个组件都列出规则划给它的全部生产代码文件；每条关系列出的，是导入另一方组件的那些包里的文件。",
     "测试及其输入，以及仓库的工具、CI 和文档，都不在范围之内。"
@@ -14,7 +14,7 @@
   "repository": {
     "name": "aigw-cli",
     "url": "https://github.com/HengYangDS/aigw-cli.git",
-    "revision": "abf05858f4092a3baf9acea0d5d7488b26898aa5",
+    "revision": "9bf7612c9678d6fc02eade0eda637be1b450af87",
     "browse": "https://github.com/HengYangDS/aigw-cli/blob/{revision}/{path}"
   },
   "coverage": {
@@ -89,7 +89,7 @@
       "label": "命令",
       "kind": "interface",
       "details": {
-        "包括": "setup、use、sync、check、verify、rotate、rollback、doctor、update 等",
+        "包括": "setup、use、sync、check、status、provider、model、client、config、self 等",
         "结构": "每条命令一个包，只通过 invocation 共享行为"
       },
       "files": ["internal/cli/"]
@@ -123,15 +123,6 @@
       "files": ["internal/app/"]
     },
     {
-      "id": "renaming",
-      "label": "重命名",
-      "kind": "coordinator",
-      "details": {
-        "职责": "分两个阶段迁移账户或路由的标识"
-      },
-      "files": ["internal/app/renaming/"]
-    },
-    {
       "id": "activation",
       "label": "激活",
       "kind": "coordinator",
@@ -145,7 +136,7 @@
       "label": "同步",
       "kind": "coordinator",
       "details": {
-        "职责": "收敛客户端绑定和写入客户端的配置",
+        "职责": "收敛客户端选择及其客户端文件",
         "事务": "提交一次配置变更，出错时受保护地补偿"
       },
       "files": ["internal/app/synchronization/"]
@@ -155,7 +146,8 @@
       "label": "就绪状态",
       "kind": "coordinator",
       "details": {
-        "状态": "已配置、端点已检查、推理已检查、已推迟、降级、无效、不可用"
+        "状态": "已配置、已推迟、降级、无效、不可用",
+        "深度": "aigw check 检查到哪一级，就证明到哪一级"
       },
       "files": ["internal/app/readiness/"]
     },
@@ -164,9 +156,10 @@
       "label": "诊断",
       "kind": "observer",
       "details": {
-        "观测": "端点和认证的健康状况；探测有时限，结果会脱敏"
+        "观测": "端点和认证的健康状况；探测有时限，结果会脱敏",
+        "余额": "通过内置探测查询提供商的余额，可选"
       },
-      "files": ["internal/app/diagnostics/", "internal/provider/"]
+      "files": ["internal/app/diagnostics/", "internal/balanceprobe/"]
     },
     {
       "id": "client-admission",
@@ -189,6 +182,9 @@
         "internal/adapter/registry.go",
         "internal/adapter/support.go",
         "internal/adapter/adapters.go",
+        "internal/adapter/apply_failure.go",
+        "internal/adapter/conflict.go",
+        "internal/adapter/target_error.go",
         "internal/adapter/contract/",
         "internal/adapter/surface/",
         "internal/adapter/verification/"
@@ -254,7 +250,7 @@
       "label": "凭据存储",
       "kind": "authority",
       "details": {
-        "管理": "账户令牌，放在选定的一个后端，可以是原生密钥环、DPAPI 或属主专用文件"
+        "管理": "提供商令牌，放在选定的一个后端，可以是原生密钥环、DPAPI 或属主专用文件"
       },
       "files": ["internal/secret/"]
     },
@@ -263,7 +259,8 @@
       "label": "配置存储",
       "kind": "authority",
       "details": {
-        "管理": "一把锁保护的 config.toml，以及它的检查点和模式迁移"
+        "管理": "一把锁保护的 aigw.toml，以及它的备份和已验证快照",
+        "读写": "团队文件，即不含客户端部分的配置"
       },
       "files": ["internal/store/"]
     },
@@ -272,7 +269,7 @@
       "label": "领域",
       "kind": "authority",
       "details": {
-        "管理": "账户、模型、路由、推荐、客户端绑定和团队清单",
+        "管理": "提供商、模型、模型家族、推荐、客户端选择和团队文件",
         "依赖": "只用标准库"
       },
       "files": ["internal/domain/", "manifests/", "go.mod"]
@@ -316,24 +313,66 @@
       "label": "运行",
       "files": [
         "internal/cli/app.go",
-        "internal/cli/catalog/catalog.go",
         "internal/cli/check/check.go",
-        "internal/cli/doctor/doctor.go",
-        "internal/cli/doctor/wording.go",
-        "internal/cli/invocation/accounts.go",
+        "internal/cli/check/depth.go",
+        "internal/cli/check/ladder.go",
+        "internal/cli/check/local.go",
+        "internal/cli/check/model.go",
+        "internal/cli/check/report.go",
+        "internal/cli/check/snapshot.go",
+        "internal/cli/check/unused.go",
+        "internal/cli/client/client.go",
+        "internal/cli/client/documents.go",
+        "internal/cli/client/edit.go",
+        "internal/cli/client/list.go",
+        "internal/cli/invocation/catalog.go",
+        "internal/cli/invocation/closest.go",
+        "internal/cli/invocation/completion.go",
         "internal/cli/invocation/context.go",
+        "internal/cli/invocation/failure.go",
+        "internal/cli/invocation/flag.go",
+        "internal/cli/invocation/models.go",
         "internal/cli/invocation/preview.go",
+        "internal/cli/invocation/protocol.go",
         "internal/cli/invocation/readiness.go",
-        "internal/cli/invocation/rename.go",
-        "internal/cli/models/models.go",
-        "internal/cli/repair/repair.go",
+        "internal/cli/model/add.go",
+        "internal/cli/model/documents.go",
+        "internal/cli/model/edit.go",
+        "internal/cli/model/list.go",
+        "internal/cli/model/model.go",
+        "internal/cli/model/preview.go",
+        "internal/cli/model/recommendations.go",
+        "internal/cli/model/remove.go",
+        "internal/cli/model/search.go",
+        "internal/cli/provider/add.go",
+        "internal/cli/provider/balance.go",
+        "internal/cli/provider/credentials.go",
+        "internal/cli/provider/documents.go",
+        "internal/cli/provider/edit.go",
+        "internal/cli/provider/list.go",
+        "internal/cli/provider/provider.go",
+        "internal/cli/provider/remove.go",
+        "internal/cli/provider/rotate.go",
+        "internal/cli/provider/token.go",
+        "internal/cli/provider/undo.go",
+        "internal/cli/self/custody.go",
+        "internal/cli/self/install.go",
+        "internal/cli/self/rollback.go",
+        "internal/cli/self/self.go",
+        "internal/cli/self/status.go",
+        "internal/cli/self/uninstall.go",
+        "internal/cli/self/update.go",
+        "internal/cli/setup/guided.go",
+        "internal/cli/setup/setup.go",
+        "internal/cli/setup/team.go",
+        "internal/cli/setup/team_report.go",
         "internal/cli/status/report.go",
         "internal/cli/status/status.go",
         "internal/cli/status/status_render.go",
-        "internal/cli/sync/sync.go",
-        "internal/cli/update/custody.go",
-        "internal/cli/update/preview.go",
-        "internal/cli/update/update.go"
+        "internal/cli/use/report.go",
+        "internal/cli/use/resolve.go",
+        "internal/cli/use/token.go",
+        "internal/cli/use/use.go"
       ]
     },
     {
@@ -342,12 +381,16 @@
       "to": "synchronization",
       "label": "收敛",
       "files": [
-        "internal/cli/invocation/accounts.go",
+        "internal/cli/invocation/catalog.go",
+        "internal/cli/invocation/closest.go",
+        "internal/cli/invocation/completion.go",
         "internal/cli/invocation/context.go",
+        "internal/cli/invocation/failure.go",
+        "internal/cli/invocation/flag.go",
+        "internal/cli/invocation/models.go",
         "internal/cli/invocation/preview.go",
-        "internal/cli/invocation/readiness.go",
-        "internal/cli/invocation/rename.go",
-        "internal/cli/sync/sync.go"
+        "internal/cli/invocation/protocol.go",
+        "internal/cli/invocation/readiness.go"
       ]
     },
     {
@@ -357,16 +400,35 @@
       "label": "划定范围",
       "files": [
         "internal/cli/check/check.go",
-        "internal/cli/doctor/doctor.go",
-        "internal/cli/doctor/wording.go",
-        "internal/cli/rotate/rotate.go",
-        "internal/cli/setup/manifest.go",
+        "internal/cli/check/depth.go",
+        "internal/cli/check/ladder.go",
+        "internal/cli/check/local.go",
+        "internal/cli/check/model.go",
+        "internal/cli/check/report.go",
+        "internal/cli/check/snapshot.go",
+        "internal/cli/check/unused.go",
+        "internal/cli/provider/add.go",
+        "internal/cli/provider/balance.go",
+        "internal/cli/provider/credentials.go",
+        "internal/cli/provider/documents.go",
+        "internal/cli/provider/edit.go",
+        "internal/cli/provider/list.go",
+        "internal/cli/provider/provider.go",
+        "internal/cli/provider/remove.go",
+        "internal/cli/provider/rotate.go",
+        "internal/cli/provider/token.go",
+        "internal/cli/provider/undo.go",
+        "internal/cli/setup/guided.go",
         "internal/cli/setup/setup.go",
+        "internal/cli/setup/team.go",
+        "internal/cli/setup/team_report.go",
         "internal/cli/status/report.go",
         "internal/cli/status/status.go",
         "internal/cli/status/status_render.go",
         "internal/cli/sync/sync.go",
-        "internal/cli/use/retries.go",
+        "internal/cli/use/report.go",
+        "internal/cli/use/resolve.go",
+        "internal/cli/use/token.go",
         "internal/cli/use/use.go"
       ]
     },
@@ -376,48 +438,71 @@
       "to": "terminal",
       "label": "渲染",
       "files": [
-        "internal/cli/account/account.go",
-        "internal/cli/account/documents.go",
-        "internal/cli/account/rename.go",
-        "internal/cli/add/add.go",
         "internal/cli/app.go",
-        "internal/cli/balance/balance.go",
-        "internal/cli/catalog/catalog.go",
         "internal/cli/check/check.go",
+        "internal/cli/check/depth.go",
+        "internal/cli/check/ladder.go",
+        "internal/cli/check/local.go",
+        "internal/cli/check/model.go",
+        "internal/cli/check/report.go",
+        "internal/cli/check/snapshot.go",
+        "internal/cli/check/unused.go",
         "internal/cli/client/client.go",
         "internal/cli/client/documents.go",
+        "internal/cli/client/edit.go",
+        "internal/cli/client/list.go",
         "internal/cli/config/config.go",
-        "internal/cli/config/migration.go",
-        "internal/cli/doctor/doctor.go",
-        "internal/cli/doctor/wording.go",
-        "internal/cli/install/install.go",
-        "internal/cli/installation/installation.go",
-        "internal/cli/invocation/accounts.go",
+        "internal/cli/config/rollback.go",
+        "internal/cli/invocation/catalog.go",
+        "internal/cli/invocation/closest.go",
+        "internal/cli/invocation/completion.go",
         "internal/cli/invocation/context.go",
+        "internal/cli/invocation/failure.go",
+        "internal/cli/invocation/flag.go",
+        "internal/cli/invocation/models.go",
         "internal/cli/invocation/preview.go",
+        "internal/cli/invocation/protocol.go",
         "internal/cli/invocation/readiness.go",
-        "internal/cli/invocation/rename.go",
-        "internal/cli/models/models.go",
-        "internal/cli/repair/repair.go",
-        "internal/cli/rollback/rollback.go",
-        "internal/cli/rotate/rotate.go",
-        "internal/cli/route/documents.go",
-        "internal/cli/route/rename.go",
-        "internal/cli/route/route.go",
-        "internal/cli/setup/manifest.go",
+        "internal/cli/model/add.go",
+        "internal/cli/model/documents.go",
+        "internal/cli/model/edit.go",
+        "internal/cli/model/list.go",
+        "internal/cli/model/model.go",
+        "internal/cli/model/preview.go",
+        "internal/cli/model/recommendations.go",
+        "internal/cli/model/remove.go",
+        "internal/cli/model/search.go",
+        "internal/cli/provider/add.go",
+        "internal/cli/provider/balance.go",
+        "internal/cli/provider/credentials.go",
+        "internal/cli/provider/documents.go",
+        "internal/cli/provider/edit.go",
+        "internal/cli/provider/list.go",
+        "internal/cli/provider/provider.go",
+        "internal/cli/provider/remove.go",
+        "internal/cli/provider/rotate.go",
+        "internal/cli/provider/token.go",
+        "internal/cli/provider/undo.go",
+        "internal/cli/self/custody.go",
+        "internal/cli/self/install.go",
+        "internal/cli/self/rollback.go",
+        "internal/cli/self/self.go",
+        "internal/cli/self/status.go",
+        "internal/cli/self/uninstall.go",
+        "internal/cli/self/update.go",
+        "internal/cli/setup/guided.go",
         "internal/cli/setup/setup.go",
+        "internal/cli/setup/team.go",
+        "internal/cli/setup/team_report.go",
         "internal/cli/status/report.go",
         "internal/cli/status/status.go",
         "internal/cli/status/status_render.go",
         "internal/cli/sync/sync.go",
-        "internal/cli/test/test.go",
-        "internal/cli/uninstall/uninstall.go",
-        "internal/cli/update/custody.go",
-        "internal/cli/update/preview.go",
-        "internal/cli/update/update.go",
-        "internal/cli/use/retries.go",
+        "internal/cli/use/report.go",
+        "internal/cli/use/resolve.go",
+        "internal/cli/use/token.go",
         "internal/cli/use/use.go",
-        "internal/cli/verify/verify.go"
+        "internal/cli/version/version.go"
       ]
     },
     {
@@ -438,7 +523,7 @@
       "id": "credential-helper-configuration-store",
       "from": "credential-helper",
       "to": "configuration-store",
-      "label": "读取绑定",
+      "label": "读取提供商和客户端",
       "files": ["internal/cli/credential/credential.go"]
     },
     {
@@ -446,18 +531,6 @@
       "from": "use-cases",
       "to": "synchronization",
       "label": "提交",
-      "files": [
-        "internal/app/catalog.go",
-        "internal/app/dependencies.go",
-        "internal/app/entrypoint.go",
-        "internal/app/status.go"
-      ]
-    },
-    {
-      "id": "use-cases-renaming",
-      "from": "use-cases",
-      "to": "renaming",
-      "label": "重命名",
       "files": [
         "internal/app/catalog.go",
         "internal/app/dependencies.go",
@@ -490,32 +563,6 @@
       ]
     },
     {
-      "id": "renaming-synchronization",
-      "from": "renaming",
-      "to": "synchronization",
-      "label": "提交",
-      "files": [
-        "internal/app/renaming/credentials.go",
-        "internal/app/renaming/finalization.go",
-        "internal/app/renaming/model.go",
-        "internal/app/renaming/planning.go",
-        "internal/app/renaming/workflow.go"
-      ]
-    },
-    {
-      "id": "renaming-credentials",
-      "from": "renaming",
-      "to": "credentials",
-      "label": "移动令牌",
-      "files": [
-        "internal/app/renaming/credentials.go",
-        "internal/app/renaming/finalization.go",
-        "internal/app/renaming/model.go",
-        "internal/app/renaming/planning.go",
-        "internal/app/renaming/workflow.go"
-      ]
-    },
-    {
       "id": "activation-readiness",
       "from": "activation",
       "to": "readiness",
@@ -535,9 +582,7 @@
       "to": "adapter-seam",
       "label": "规划、应用",
       "files": [
-        "internal/app/synchronization/account_connection.go",
         "internal/app/synchronization/preview.go",
-        "internal/app/synchronization/projection.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
         "internal/app/synchronization/synchronizer.go",
@@ -550,9 +595,7 @@
       "to": "discovery",
       "label": "观测",
       "files": [
-        "internal/app/synchronization/account_connection.go",
         "internal/app/synchronization/preview.go",
-        "internal/app/synchronization/projection.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
         "internal/app/synchronization/synchronizer.go",
@@ -565,9 +608,7 @@
       "to": "configuration-store",
       "label": "持久化",
       "files": [
-        "internal/app/synchronization/account_connection.go",
         "internal/app/synchronization/preview.go",
-        "internal/app/synchronization/projection.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
         "internal/app/synchronization/synchronizer.go",
@@ -580,9 +621,7 @@
       "to": "credentials",
       "label": "检查读取程序",
       "files": [
-        "internal/app/synchronization/account_connection.go",
         "internal/app/synchronization/preview.go",
-        "internal/app/synchronization/projection.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
         "internal/app/synchronization/synchronizer.go",
@@ -595,9 +634,7 @@
       "to": "domain",
       "label": "校验",
       "files": [
-        "internal/app/synchronization/account_connection.go",
         "internal/app/synchronization/preview.go",
-        "internal/app/synchronization/projection.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
         "internal/app/synchronization/synchronizer.go",
@@ -650,12 +687,14 @@
         "internal/adapter/codex/conflict.go",
         "internal/adapter/codex/extensions.go",
         "internal/adapter/codex/live_verification.go",
+        "internal/adapter/codex/missing.go",
         "internal/adapter/codex/provider.go",
         "internal/adapter/codex/reconcile.go",
         "internal/adapter/codex/scheduler.go",
         "internal/adapter/codex/selection.go",
         "internal/adapter/codex/surfaces.go",
-        "internal/adapter/codex/targets.go"
+        "internal/adapter/codex/targets.go",
+        "internal/adapter/codex/unrecorded.go"
       ]
     },
     {
@@ -666,6 +705,7 @@
       "files": [
         "internal/adapter/claude/adapter.go",
         "internal/adapter/claude/adapter_verify.go",
+        "internal/adapter/claude/conflict.go",
         "internal/adapter/claude/inspection.go",
         "internal/adapter/claude/live_verification.go",
         "internal/adapter/claude/native_paths.go",
@@ -721,12 +761,14 @@
         "internal/adapter/codex/conflict.go",
         "internal/adapter/codex/extensions.go",
         "internal/adapter/codex/live_verification.go",
+        "internal/adapter/codex/missing.go",
         "internal/adapter/codex/provider.go",
         "internal/adapter/codex/reconcile.go",
         "internal/adapter/codex/scheduler.go",
         "internal/adapter/codex/selection.go",
         "internal/adapter/codex/surfaces.go",
-        "internal/adapter/codex/targets.go"
+        "internal/adapter/codex/targets.go",
+        "internal/adapter/codex/unrecorded.go"
       ]
     },
     {
@@ -737,6 +779,7 @@
       "files": [
         "internal/adapter/claude/adapter.go",
         "internal/adapter/claude/adapter_verify.go",
+        "internal/adapter/claude/conflict.go",
         "internal/adapter/claude/inspection.go",
         "internal/adapter/claude/live_verification.go",
         "internal/adapter/claude/native_paths.go",
@@ -781,8 +824,11 @@
       "label": "发现",
       "files": [
         "internal/adapter/adapters.go",
+        "internal/adapter/apply_failure.go",
+        "internal/adapter/conflict.go",
         "internal/adapter/registry.go",
-        "internal/adapter/support.go"
+        "internal/adapter/support.go",
+        "internal/adapter/target_error.go"
       ]
     },
     {
@@ -792,9 +838,12 @@
       "label": "读取规格",
       "files": [
         "internal/adapter/adapters.go",
+        "internal/adapter/apply_failure.go",
+        "internal/adapter/conflict.go",
         "internal/adapter/contract/contract.go",
         "internal/adapter/registry.go",
         "internal/adapter/support.go",
+        "internal/adapter/target_error.go",
         "internal/adapter/verification/verify.go"
       ]
     },
@@ -804,14 +853,10 @@
       "to": "domain",
       "label": "编码",
       "files": [
-        "internal/store/capabilities.go",
         "internal/store/checkpoint.go",
-        "internal/store/components.go",
-        "internal/store/forwarding.go",
+        "internal/store/credential_view.go",
+        "internal/store/file.go",
         "internal/store/manifest.go",
-        "internal/store/migration.go",
-        "internal/store/ordering.go",
-        "internal/store/retry_store.go",
         "internal/store/store.go",
         "internal/store/store_errors.go"
       ]
@@ -822,14 +867,10 @@
       "to": "platform",
       "label": "加锁、写入",
       "files": [
-        "internal/store/capabilities.go",
         "internal/store/checkpoint.go",
-        "internal/store/components.go",
-        "internal/store/forwarding.go",
+        "internal/store/credential_view.go",
+        "internal/store/file.go",
         "internal/store/manifest.go",
-        "internal/store/migration.go",
-        "internal/store/ordering.go",
-        "internal/store/retry_store.go",
         "internal/store/store.go",
         "internal/store/store_errors.go"
       ]
@@ -856,6 +897,8 @@
         "internal/secret/memory.go",
         "internal/secret/native/keychain_darwin.go",
         "internal/secret/native/keychain_darwin_nocgo.go",
+        "internal/secret/native/keychain_list_darwin.go",
+        "internal/secret/native/listing.go",
         "internal/secret/native/migration_darwin.go",
         "internal/secret/native/provider.go",
         "internal/secret/native/provider_darwin.go",
@@ -871,7 +914,8 @@
         "internal/secret/replacement.go",
         "internal/secret/scoped.go",
         "internal/secret/selection.go",
-        "internal/secret/store.go"
+        "internal/secret/store.go",
+        "internal/secret/unobserved.go"
       ]
     },
     {
@@ -881,8 +925,8 @@
       "label": "构建探测",
       "files": [
         "internal/app/diagnostics/probe.go",
-        "internal/provider/dmxapi/probe.go",
-        "internal/provider/registry.go"
+        "internal/balanceprobe/dmxapi/probe.go",
+        "internal/balanceprobe/registry.go"
       ]
     },
     {
@@ -891,6 +935,11 @@
       "to": "platform",
       "label": "安装",
       "files": [
+        "internal/program/artifact/archive.go",
+        "internal/program/artifact/checksum.go",
+        "internal/program/artifact/identity.go",
+        "internal/program/artifact/matrix.go",
+        "internal/program/artifact/signature.go",
         "internal/program/candidate.go",
         "internal/program/github.go",
         "internal/program/gitlab.go",
@@ -914,7 +963,9 @@
         "internal/terminal/continuation.go",
         "internal/terminal/document.go",
         "internal/terminal/errors.go",
+        "internal/terminal/file_failure.go",
         "internal/terminal/password.go",
+        "internal/terminal/path_fix.go",
         "internal/terminal/prompt.go",
         "internal/terminal/render.go",
         "internal/terminal/target.go",
@@ -928,7 +979,7 @@
     {
       "id": "overview",
       "title": "一份审阅过的配置，写入每个客户端",
-      "question": "一份审阅过的配置，怎样受保护地写入每个已准入的客户端？",
+      "question": "一份审阅过的配置，怎样受保护地写入每个已准入客户端的文件？",
       "summary": "同步通过适配器接口规划并应用改动，每个客户端适配器都实现这个接口，结果保存到配置存储。每次同步提交一次配置变更，中途出错会受保护地补偿。",
       "members": [
         "commands",
@@ -946,12 +997,11 @@
       "id": "authority",
       "title": "哪些状态归谁",
       "question": "配置、令牌和主机路径各归谁管，又有谁会读取？",
-      "summary": "config.toml 归配置存储管，由一把锁保护；账户令牌归凭据存储管；AIGW 自己的路径归平台管。凭据助手读取一个令牌和它的绑定；重命名时令牌随之移动。",
+      "summary": "aigw.toml 归配置存储管，由一把锁保护；提供商令牌归凭据存储管；AIGW 自己的路径归平台管。凭据助手读取一个令牌，以及它所服务的提供商和客户端。",
       "members": [
         "commands",
         "credential-helper",
         "synchronization",
-        "renaming",
         "configuration-store",
         "credentials",
         "domain",
@@ -979,14 +1029,13 @@
       "id": "readiness",
       "title": "命令能报告什么",
       "question": "命令如何决定报告什么、下一步做什么？",
-      "summary": "激活划定已启用客户端的范围；就绪状态从诊断读取健康情况，给出“推理已检查”“降级”这类状态。用例返回的值由终端呈现为给人看的文字或 JSON。",
+      "summary": "激活划定已启用客户端的范围；就绪状态从诊断读取健康情况，给出“已配置”“降级”这类状态；aigw check 检查到哪一级，就证明到哪一级。用例返回的值由终端呈现为给人看的文字或 JSON。",
       "members": [
         "commands",
         "use-cases",
         "activation",
         "readiness",
         "diagnostics",
-        "renaming",
         "synchronization",
         "terminal",
         "domain"

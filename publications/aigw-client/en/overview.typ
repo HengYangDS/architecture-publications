@@ -3,15 +3,15 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([AIGW], [One reviewed configuration, projected into every client], [A local control plane: AIGW turns reviewed configuration into bounded native-client projections, runs only for a command or a credential read, and never carries a request.], read-from: [Read from 208 files, each cited by its SHA-256.], claim-x: 124pt)
+#masthead([AIGW], [One reviewed configuration, projected into every client], [A local control plane: AIGW points each client at one model, writes only its own settings into the client's files, runs only for a command or a credential read, and never carries a request.], read-from: [Read from 245 files, each cited by its SHA-256.], claim-x: 124pt)
 
 // ── Band 1: the configuration, its projection into each client, the clients' own traffic ──
 #head(48pt, 132pt, [Control plane · AIGW])
-#tx(48pt, 152pt, [config.toml under one lock · Tokens kept apart], fill: soft)
+#tx(48pt, 152pt, [aigw.toml under one lock · Tokens kept apart], fill: soft)
 #head(824pt, 132pt, [Data plane · the clients])
 #tx(824pt, 152pt, [each client keeps its own state and calls its endpoint itself], fill: soft)
 
-// The configuration: what an Account exposes, which Route a client uses.
+// The configuration: what a provider serves, which model a client selects.
 #let yr = 236pt
 #let (xa, xr, xb, xbus) = (120pt, 340pt, 560pt, 700pt)
 #seg((xa + 8pt, yr), (xr - 8pt, yr), w: 1.7pt, c: green)
@@ -22,16 +22,16 @@
 #disc(xb, yr, r: 6.5pt)
 #ring(xr, 336pt, r: 5pt, w: 2pt)
 #ring(xa, 336pt, r: 5pt, w: 2pt)
-#tx(xa - 8pt, yr - 16pt, [Account], weight: "semibold")
-#tx(xr - 8pt, yr - 16pt, [Route], weight: "semibold")
-#tx(xb - 8pt, yr - 16pt, [Client Binding], weight: "semibold")
-#tx(xa + 12pt, yr + 26pt, [one provider capability: endpoints by protocol, never a credential], w: 176pt, fill: soft)
-#tx(xr + 12pt, yr + 26pt, [how one Account exposes one Model, by interface and lifecycle], w: 176pt, fill: soft)
-#tx(xb + 12pt, yr + 26pt, [the Route one admitted client uses], w: 116pt, fill: soft)
-#tx(xa + 86pt, yr - 6pt, [exposes], fill: mid, style: "italic")
+#tx(xa - 8pt, yr - 16pt, [Provider], weight: "semibold")
+#tx(xr - 8pt, yr - 16pt, [Model], weight: "semibold")
+#tx(xb - 8pt, yr - 16pt, [Client selection], weight: "semibold")
+#tx(xa + 12pt, yr + 26pt, [a service you hold a Token for: one endpoint per protocol, never a credential], w: 176pt, fill: soft)
+#tx(xr + 12pt, yr + 26pt, [what a provider serves, named provider/model, with its protocols], w: 176pt, fill: soft)
+#tx(xb + 12pt, yr + 26pt, [the model one admitted client uses], w: 116pt, fill: soft)
+#tx(xa + 86pt, yr - 6pt, [serves], fill: mid, style: "italic")
 #tx(xr + 76pt, yr - 6pt, [selected by], fill: mid, style: "italic")
-#tx(xr + 14pt, 341pt, [Model], weight: "semibold")
-#tx(xr + 14pt, 359pt, [one canonical upstream product], fill: soft)
+#tx(xr + 14pt, 341pt, [Family], weight: "semibold")
+#tx(xr + 14pt, 359pt, [optional: which canonical model it is], fill: soft)
 #tx(xa + 14pt, 341pt, [Tokens], weight: "semibold")
 #tx(xa + 14pt, 359pt, [one selected store: keyring, DPAPI or an owner-only file], w: 190pt, fill: soft)
 
@@ -40,7 +40,7 @@
 #seg((xb + 6pt, yr), (xbus, yr), w: 4pt, c: green)
 #seg((xbus, rows.first()), (xbus, rows.last()), w: 4pt, c: green)
 #for y in rows { seg((xbus, y), (852pt, y), w: 2.2pt, c: green) }
-#tx(xbus + 14pt, 186pt, [plan · apply · verify, one guarded transaction], fill: green, style: "italic")
+#tx(xbus + 14pt, 186pt, [plan · apply · check, one guarded transaction], fill: green, style: "italic")
 #let clients = (
   ([Codex], [\~/.codex/config.toml], [conversations, model metadata and the Desktop GUI stay with Codex]),
   ([Claude Code], [\~/.claude/settings.json], [sessions and runtime behaviour stay with Claude Code]),
@@ -64,30 +64,30 @@
 // The credential read: on demand, by the client, matched to its projection.
 #seg((xa, 344pt), (xa, 420pt), (846pt, 420pt), (846pt, rows.last() + 8pt), w: 1.5pt, c: ochre, dash: (4pt, 3pt))
 #place(top + left, polygon(fill: ochre, (846pt, rows.last() + 6pt), (842.5pt, rows.last() + 12pt), (849.5pt, rows.last() + 12pt)))
-#tx(170pt, 414pt, [each client reads its own Token on demand through aigw credential, matched to its projection], fill: ochre, style: "italic")
+#tx(170pt, 414pt, [each client reads its own Token on demand through aigw credential, matched to its client files], fill: ochre, style: "italic")
 
 // Band 1 foot: what the operator does, and the one vocabulary every surface reports.
 #hrule(448pt, x1: 776pt)
 #hrule(448pt, x0: 824pt)
 #dl(48pt, 472pt, 104pt, 728pt, (
-  ([setup], [first-time setup: one Account and one Route, bound to the selected client]),
-  ([use], [select a Route for one client]),
-  ([sync], [resynchronize every enabled client; \-\-dry-run shows the plan and reads no secret]),
-  ([verify], [a Route through a real native client, which may use quota; only a full \-\-for all pass records a checkpoint]),
-  ([rotate], [update one Account Token]),
-  ([rollback], [restore the configuration and the projections, not the program]),
+  ([setup], [first-time setup: one provider, one installed client and one of its models]),
+  ([use], [point one client at one provider/model]),
+  ([sync], [make every enabled client's files match; \-\-dry-run shows the plan and reads no secret]),
+  ([check], [as deep as \-\-depth asks: local, endpoint, model or client; model and client may use quota]),
+  ([provider rotate], [replace one provider's Token]),
+  ([config rollback], [restore the configuration and the client files, not the program]),
 ))
 #dl(824pt, 472pt, 132pt, 728pt, (
-  ([configured], [local prerequisites pass; no endpoint has been observed]),
-  ([endpoint checked], [an endpoint diagnostic succeeded; inference is not proven]),
-  ([inference checked], [a request with the Route's exact model succeeded]),
-  ([deferred], [a credential or a projection postponed on purpose]),
+  ([configured], [local prerequisites pass; the depth of a check says how much more is proven]),
+  ([local · endpoint], [a check without a request · one authenticated request that names no model]),
+  ([model · client], [one bounded inference request · a real client session]),
+  ([deferred], [a credential or a client's files postponed on purpose]),
   ([degraded], [still configured, with a recoverable problem]),
   ([invalid · unavailable], [unsafe to use · a required capability is missing]),
 ))
 
 // ── Band 2: the transaction every projection is, and who owns what ─────────
-#head(48pt, 614pt, [Every projection is one guarded transaction])
+#head(48pt, 614pt, [Every change to client files is one guarded transaction])
 #let yk = 682pt
 #seg((106pt, yk), (744pt, yk), w: 1.7pt, c: green)
 #let steps = (
@@ -111,9 +111,9 @@
 
 #head(824pt, 614pt, [Who owns what])
 #let owners = (
-  ([AIGW configuration], [Accounts, Models, Routes, recommendations and Client Bindings]),
-  ([Selected Token store], [the Account Tokens; AIGW chooses the store]),
-  ([Client adapter], [one admitted, bounded region of a client's own configuration]),
+  ([AIGW configuration], [providers, models, recommendations and each client's selection]),
+  ([Selected Token store], [the provider Tokens; AIGW chooses the store]),
+  ([Client adapter], [AIGW's own settings in one admitted client's files]),
   ([The client], [conversations, memory, tools and GUI state]),
   ([The endpoint product], [traffic normalization, retries and service lifecycle]),
   ([Local Git and the Forges], [signed commits and tags; hosting, CI and Release records]),
@@ -127,19 +127,19 @@
 // ── Band 3: the program, configuration that travels, accounts that change ──
 #hrule(786pt)
 #head(48pt, 812pt, [The program itself])
-#dl(48pt, 836pt, 96pt, 460pt, (
-  ([update], [updates or rolls back only a portable program]),
-  ([uninstall], [withdraws AIGW's projections, then the program]),
+#dl(48pt, 836pt, 108pt, 460pt, (
+  ([self update], [updates or rolls back only a portable program]),
+  ([self uninstall], [removes AIGW's settings from client files, then the program]),
 ))
-#head(560pt, 812pt, [Configuration without secrets])
-#dl(560pt, 836pt, 84pt, 470pt, (
-  ([export], [a secret-free configuration manifest]),
-  ([import], [merges one such manifest; migrate moves the schema]),
+#head(560pt, 812pt, [Team files, without secrets])
+#dl(560pt, 836pt, 108pt, 470pt, (
+  ([setup \-\-from], [applies a team file; what it names wins for models]),
+  ([\-\-dry-run], [previews a team file and writes nothing]),
 ))
-#head(1072pt, 812pt, [Changing an Account])
-#dl(1072pt, 836pt, 84pt, 480pt, (
-  ([rename], [renames an Account; \-\-finalize then removes its old credential slots]),
-  ([rotate], [replaces a Token in the selected store]),
+#head(1072pt, 812pt, [Changing a provider])
+#dl(1072pt, 836pt, 108pt, 480pt, (
+  ([provider edit], [changes an endpoint deliberately; no command renames a provider]),
+  ([provider rotate], [replaces a Token in the selected store]),
 ))
 
 // ── Imprint ─────────────────────────────────────────────────────────────

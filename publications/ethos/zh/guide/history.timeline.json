@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/ethos.git",
       "provider": "github",
-      "revision": "727ee0579ba1fb9e391b5c44ce9fb2c208390199"
+      "revision": "9bf5bdda7292951e1d8a14ee474a0db767daece4"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -43,8 +43,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1499,
-          "end_line": 1507,
+          "line": 1902,
+          "end_line": 1910,
           "label": "0.2.0-alpha.5"
         }
       ]
@@ -58,8 +58,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1411,
-          "end_line": 1424,
+          "line": 1814,
+          "end_line": 1827,
           "label": "0.2.0-alpha.6"
         }
       ]
@@ -73,20 +73,20 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1259,
-          "end_line": 1263,
+          "line": 1662,
+          "end_line": 1666,
           "label": "0.2.0-alpha.8"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 1313,
-          "end_line": 1318,
+          "line": 1716,
+          "end_line": 1721,
           "label": "0.2.0-alpha.8"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 1217,
-          "end_line": 1219,
+          "line": 1620,
+          "end_line": 1622,
           "label": "0.2.0-alpha.10"
         }
       ]
@@ -101,8 +101,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1000,
-          "end_line": 1011,
+          "line": 1403,
+          "end_line": 1414,
           "label": "0.2.0-alpha.18"
         }
       ]
@@ -116,8 +116,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 951,
-          "end_line": 954,
+          "line": 1354,
+          "end_line": 1357,
           "label": "0.2.0-alpha.19"
         }
       ]
@@ -131,8 +131,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 811,
-          "end_line": 817,
+          "line": 1214,
+          "end_line": 1220,
           "label": "0.2.0-alpha.22"
         }
       ]
@@ -147,8 +147,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 689,
-          "end_line": 698,
+          "line": 1092,
+          "end_line": 1101,
           "label": "0.2.0-alpha.26"
         }
       ]
@@ -162,8 +162,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 631,
-          "end_line": 640,
+          "line": 1034,
+          "end_line": 1043,
           "label": "0.2.0-alpha.27"
         }
       ]
@@ -177,8 +177,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 464,
-          "end_line": 471,
+          "line": 867,
+          "end_line": 874,
           "label": "0.2.0-alpha.29"
         }
       ]
@@ -192,8 +192,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 332,
-          "end_line": 354,
+          "line": 735,
+          "end_line": 757,
           "label": "0.2.0-beta.2"
         }
       ]
@@ -208,8 +208,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 232,
-          "end_line": 247,
+          "line": 635,
+          "end_line": 650,
           "label": "0.2.0-beta.3"
         }
       ]
@@ -224,15 +224,52 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 19,
-          "end_line": 28,
+          "line": 422,
+          "end_line": 431,
           "label": "0.2.0-beta.6"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 46,
-          "end_line": 51,
+          "line": 449,
+          "end_line": 454,
           "label": "0.2.0-beta.6"
+        }
+      ]
+    },
+    {
+      "id": "beta-7",
+      "at": "2026-11-11T14:22:20+08:00",
+      "lane": "lanes",
+      "kind": "change",
+      "title": "beta.7 统一的操作目录",
+      "detail": "每条命令都从操作目录中选定一项声明过的操作，CLI、SDK 和 MCP 工具因此拒绝同样的请求。npm 启动器退役，改为直接运行安装好的 ethos。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 139,
+          "end_line": 153,
+          "label": "0.2.0-beta.7"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 414,
+          "end_line": 416,
+          "label": "0.2.0-beta.7"
+        }
+      ]
+    },
+    {
+      "id": "beta-8",
+      "at": "2026-11-12T04:05:55+08:00",
+      "lane": "paradigm",
+      "title": "beta.8 社区健康文件",
+      "detail": "受治理的仓库可以在根目录、CONTRIBUTING.md 旁边保留 GitHub 在那里读取的 Markdown 社区健康文件：ACCESSIBILITY.md、CODE_OF_CONDUCT.md、SECURITY.md 和 SUPPORT.md。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 19,
+          "end_line": 21,
+          "label": "0.2.0-beta.8"
         }
       ]
     }

@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "abf05858f4092a3baf9acea0d5d7488b26898aa5"
+      "revision": "9bf7612c9678d6fc02eade0eda637be1b450af87"
     }
   },
   "components": [
@@ -18,7 +18,7 @@
       "type": "external",
       "icon": "person",
       "label": "Team maintainer",
-      "sublabel": "curates the manifest",
+      "sublabel": "curates the team file",
       "pos": [40, 40],
       "size": [180, 64],
       "sources": [
@@ -33,16 +33,16 @@
     {
       "id": "ctx-manifest",
       "type": "backend",
-      "label": "Team manifest",
+      "label": "Team file",
       "sublabel": "reviewed, token-free",
       "pos": [270, 40],
       "size": [180, 64],
       "sources": [
         {
           "path": "docs/concepts/product-concepts.md",
-          "line": 57,
-          "end_line": 62,
-          "label": "Manifest"
+          "line": 56,
+          "end_line": 61,
+          "label": "Team file"
         }
       ]
     },
@@ -57,8 +57,8 @@
       "sources": [
         {
           "path": "README.md",
-          "line": 94,
-          "end_line": 102,
+          "line": 125,
+          "end_line": 141,
           "label": "Setup"
         }
       ]
@@ -67,7 +67,7 @@
       "id": "ctx-control",
       "type": "security",
       "label": "AIGW control plane",
-      "sublabel": "configuration, projection",
+      "sublabel": "configuration, client files",
       "pos": [270, 180],
       "size": [180, 64],
       "sources": [
@@ -89,8 +89,8 @@
       "sources": [
         {
           "path": "README.md",
-          "line": 255,
-          "end_line": 261,
+          "line": 270,
+          "end_line": 276,
           "label": "Adapters"
         }
       ]
@@ -105,8 +105,8 @@
       "sources": [
         {
           "path": "README.md",
-          "line": 278,
-          "end_line": 280,
+          "line": 293,
+          "end_line": 296,
           "label": "Endpoints"
         }
       ]
@@ -121,8 +121,8 @@
       "sources": [
         {
           "path": "README.md",
-          "line": 158,
-          "end_line": 163,
+          "line": 176,
+          "end_line": 181,
           "label": "Credentials"
         }
       ]
@@ -145,13 +145,13 @@
       "id": "ctx-imports",
       "from": "ctx-control",
       "to": "ctx-manifest",
-      "label": "imports"
+      "label": "applies"
     },
     {
       "id": "ctx-projects",
       "from": "ctx-control",
       "to": "ctx-clients",
-      "label": "bounded region",
+      "label": "its own settings",
       "variant": "emphasis"
     },
     {

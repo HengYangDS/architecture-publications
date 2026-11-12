@@ -4,9 +4,9 @@
   "id": "aigw-client",
   "locale": "en",
   "title": "AIGW Client Projection",
-  "question": "How does AIGW turn one reviewed configuration into guarded native projections in every admitted client?",
-  "summary": "AIGW keeps Accounts, Routes and Client Bindings in one locked configuration and its Tokens in one selected store, and projects each client's bounded region through one adapter seam as a guarded, compensated transaction. It never carries a request.",
-  "scope": "The AIGW program as released at v0.6.1: its production Go packages, the command entry point, the team manifest and go.mod.",
+  "question": "How does AIGW turn one reviewed configuration into guarded client files in every admitted client?",
+  "summary": "AIGW keeps providers, models and client selections in one locked configuration, aigw.toml, and its Tokens in one selected store. It writes AIGW's settings into each client's files through one adapter seam, as a guarded, compensated transaction. It never carries a request.",
+  "scope": "The AIGW program as released at v0.7.0: its production Go packages, the command entry point, the team file and go.mod.",
   "limits": [
     "Each component cites every production file the rules attribute to it; a relation cites the files of the packages that import the other component.",
     "Tests, their inputs and the repository's tools, CI and documentation are outside the scope."
@@ -14,7 +14,7 @@
   "repository": {
     "name": "aigw-cli",
     "url": "https://github.com/HengYangDS/aigw-cli.git",
-    "revision": "abf05858f4092a3baf9acea0d5d7488b26898aa5",
+    "revision": "9bf7612c9678d6fc02eade0eda637be1b450af87",
     "browse": "https://github.com/HengYangDS/aigw-cli/blob/{revision}/{path}"
   },
   "coverage": {
@@ -81,7 +81,7 @@
       "label": "Commands",
       "kind": "interface",
       "details": {
-        "commands": "setup, use, sync, check, verify, rotate, rollback, doctor, update and more",
+        "commands": "setup, use, sync, check, status, provider, model, client, config, self and more",
         "shape": "one package per command, sharing behaviour only through invocation"
       },
       "files": ["internal/cli/"]
@@ -115,15 +115,6 @@
       "files": ["internal/app/"]
     },
     {
-      "id": "renaming",
-      "label": "Renaming",
-      "kind": "coordinator",
-      "details": {
-        "migrates": "an Account or Route identity in two phases"
-      },
-      "files": ["internal/app/renaming/"]
-    },
-    {
       "id": "activation",
       "label": "Activation",
       "kind": "coordinator",
@@ -137,7 +128,7 @@
       "label": "Synchronization",
       "kind": "coordinator",
       "details": {
-        "converges": "Client Bindings and their projections",
+        "converges": "client selections and their client files",
         "commits": "one configuration transition with guarded compensation"
       },
       "files": ["internal/app/synchronization/"]
@@ -147,7 +138,8 @@
       "label": "Readiness",
       "kind": "coordinator",
       "details": {
-        "states": "configured, endpoint checked, inference checked, deferred, degraded, invalid, unavailable"
+        "states": "configured, deferred, degraded, invalid, unavailable",
+        "depth": "the depth that aigw check reached says how much it proved"
       },
       "files": ["internal/app/readiness/"]
     },
@@ -156,9 +148,10 @@
       "label": "Diagnostics",
       "kind": "observer",
       "details": {
-        "observes": "bounded, redacted endpoint and authentication health"
+        "observes": "bounded, redacted endpoint and authentication health",
+        "balance": "a provider's optional balance, through bundled probes"
       },
-      "files": ["internal/app/diagnostics/", "internal/provider/"]
+      "files": ["internal/app/diagnostics/", "internal/balanceprobe/"]
     },
     {
       "id": "client-admission",
@@ -181,6 +174,9 @@
         "internal/adapter/registry.go",
         "internal/adapter/support.go",
         "internal/adapter/adapters.go",
+        "internal/adapter/apply_failure.go",
+        "internal/adapter/conflict.go",
+        "internal/adapter/target_error.go",
         "internal/adapter/contract/",
         "internal/adapter/surface/",
         "internal/adapter/verification/"
@@ -200,7 +196,7 @@
       "label": "Codex",
       "kind": "client",
       "details": {
-        "projects": "a bounded region of ~/.codex/config.toml and its model catalog"
+        "writes": "a bounded region of ~/.codex/config.toml and its model catalog"
       },
       "files": ["internal/adapter/codex/"]
     },
@@ -209,7 +205,7 @@
       "label": "Claude Code",
       "kind": "client",
       "details": {
-        "projects": "~/.claude/settings.json"
+        "writes": "~/.claude/settings.json"
       },
       "files": ["internal/adapter/claude/"]
     },
@@ -218,7 +214,7 @@
       "label": "Claude Desktop",
       "kind": "client",
       "details": {
-        "projects": "its separate third-party inference library"
+        "writes": "its separate third-party inference library"
       },
       "files": ["internal/adapter/claudedesktop/"]
     },
@@ -227,7 +223,7 @@
       "label": "Hermes",
       "kind": "client",
       "details": {
-        "projects": "its provider catalog, protocol and model"
+        "writes": "its provider catalog, protocol and model"
       },
       "files": ["internal/adapter/hermes/"]
     },
@@ -246,7 +242,7 @@
       "label": "Credential store",
       "kind": "authority",
       "details": {
-        "owns": "Account Tokens in one selected backend: native keyring, DPAPI or an owner-only file"
+        "owns": "provider Tokens in one selected backend: native keyring, DPAPI or an owner-only file"
       },
       "files": ["internal/secret/"]
     },
@@ -255,7 +251,8 @@
       "label": "Configuration store",
       "kind": "authority",
       "details": {
-        "owns": "config.toml under one lock, its checkpoint and schema migration"
+        "owns": "aigw.toml under one lock, its backup and its verified snapshot",
+        "reads, writes": "team files, the configuration's form without clients"
       },
       "files": ["internal/store/"]
     },
@@ -264,7 +261,7 @@
       "label": "Domain",
       "kind": "authority",
       "details": {
-        "owns": "Accounts, Models, Routes, recommendations, Client Bindings and the team manifest",
+        "owns": "providers, models, families, recommendations, client selections and the team file",
         "imports": "the standard library only"
       },
       "files": ["internal/domain/", "manifests/", "go.mod"]
@@ -308,24 +305,66 @@
       "label": "runs",
       "files": [
         "internal/cli/app.go",
-        "internal/cli/catalog/catalog.go",
         "internal/cli/check/check.go",
-        "internal/cli/doctor/doctor.go",
-        "internal/cli/doctor/wording.go",
-        "internal/cli/invocation/accounts.go",
+        "internal/cli/check/depth.go",
+        "internal/cli/check/ladder.go",
+        "internal/cli/check/local.go",
+        "internal/cli/check/model.go",
+        "internal/cli/check/report.go",
+        "internal/cli/check/snapshot.go",
+        "internal/cli/check/unused.go",
+        "internal/cli/client/client.go",
+        "internal/cli/client/documents.go",
+        "internal/cli/client/edit.go",
+        "internal/cli/client/list.go",
+        "internal/cli/invocation/catalog.go",
+        "internal/cli/invocation/closest.go",
+        "internal/cli/invocation/completion.go",
         "internal/cli/invocation/context.go",
+        "internal/cli/invocation/failure.go",
+        "internal/cli/invocation/flag.go",
+        "internal/cli/invocation/models.go",
         "internal/cli/invocation/preview.go",
+        "internal/cli/invocation/protocol.go",
         "internal/cli/invocation/readiness.go",
-        "internal/cli/invocation/rename.go",
-        "internal/cli/models/models.go",
-        "internal/cli/repair/repair.go",
+        "internal/cli/model/add.go",
+        "internal/cli/model/documents.go",
+        "internal/cli/model/edit.go",
+        "internal/cli/model/list.go",
+        "internal/cli/model/model.go",
+        "internal/cli/model/preview.go",
+        "internal/cli/model/recommendations.go",
+        "internal/cli/model/remove.go",
+        "internal/cli/model/search.go",
+        "internal/cli/provider/add.go",
+        "internal/cli/provider/balance.go",
+        "internal/cli/provider/credentials.go",
+        "internal/cli/provider/documents.go",
+        "internal/cli/provider/edit.go",
+        "internal/cli/provider/list.go",
+        "internal/cli/provider/provider.go",
+        "internal/cli/provider/remove.go",
+        "internal/cli/provider/rotate.go",
+        "internal/cli/provider/token.go",
+        "internal/cli/provider/undo.go",
+        "internal/cli/self/custody.go",
+        "internal/cli/self/install.go",
+        "internal/cli/self/rollback.go",
+        "internal/cli/self/self.go",
+        "internal/cli/self/status.go",
+        "internal/cli/self/uninstall.go",
+        "internal/cli/self/update.go",
+        "internal/cli/setup/guided.go",
+        "internal/cli/setup/setup.go",
+        "internal/cli/setup/team.go",
+        "internal/cli/setup/team_report.go",
         "internal/cli/status/report.go",
         "internal/cli/status/status.go",
         "internal/cli/status/status_render.go",
-        "internal/cli/sync/sync.go",
-        "internal/cli/update/custody.go",
-        "internal/cli/update/preview.go",
-        "internal/cli/update/update.go"
+        "internal/cli/use/report.go",
+        "internal/cli/use/resolve.go",
+        "internal/cli/use/token.go",
+        "internal/cli/use/use.go"
       ]
     },
     {
@@ -334,12 +373,16 @@
       "to": "synchronization",
       "label": "converges",
       "files": [
-        "internal/cli/invocation/accounts.go",
+        "internal/cli/invocation/catalog.go",
+        "internal/cli/invocation/closest.go",
+        "internal/cli/invocation/completion.go",
         "internal/cli/invocation/context.go",
+        "internal/cli/invocation/failure.go",
+        "internal/cli/invocation/flag.go",
+        "internal/cli/invocation/models.go",
         "internal/cli/invocation/preview.go",
-        "internal/cli/invocation/readiness.go",
-        "internal/cli/invocation/rename.go",
-        "internal/cli/sync/sync.go"
+        "internal/cli/invocation/protocol.go",
+        "internal/cli/invocation/readiness.go"
       ]
     },
     {
@@ -349,16 +392,35 @@
       "label": "scopes",
       "files": [
         "internal/cli/check/check.go",
-        "internal/cli/doctor/doctor.go",
-        "internal/cli/doctor/wording.go",
-        "internal/cli/rotate/rotate.go",
-        "internal/cli/setup/manifest.go",
+        "internal/cli/check/depth.go",
+        "internal/cli/check/ladder.go",
+        "internal/cli/check/local.go",
+        "internal/cli/check/model.go",
+        "internal/cli/check/report.go",
+        "internal/cli/check/snapshot.go",
+        "internal/cli/check/unused.go",
+        "internal/cli/provider/add.go",
+        "internal/cli/provider/balance.go",
+        "internal/cli/provider/credentials.go",
+        "internal/cli/provider/documents.go",
+        "internal/cli/provider/edit.go",
+        "internal/cli/provider/list.go",
+        "internal/cli/provider/provider.go",
+        "internal/cli/provider/remove.go",
+        "internal/cli/provider/rotate.go",
+        "internal/cli/provider/token.go",
+        "internal/cli/provider/undo.go",
+        "internal/cli/setup/guided.go",
         "internal/cli/setup/setup.go",
+        "internal/cli/setup/team.go",
+        "internal/cli/setup/team_report.go",
         "internal/cli/status/report.go",
         "internal/cli/status/status.go",
         "internal/cli/status/status_render.go",
         "internal/cli/sync/sync.go",
-        "internal/cli/use/retries.go",
+        "internal/cli/use/report.go",
+        "internal/cli/use/resolve.go",
+        "internal/cli/use/token.go",
         "internal/cli/use/use.go"
       ]
     },
@@ -368,48 +430,71 @@
       "to": "terminal",
       "label": "renders",
       "files": [
-        "internal/cli/account/account.go",
-        "internal/cli/account/documents.go",
-        "internal/cli/account/rename.go",
-        "internal/cli/add/add.go",
         "internal/cli/app.go",
-        "internal/cli/balance/balance.go",
-        "internal/cli/catalog/catalog.go",
         "internal/cli/check/check.go",
+        "internal/cli/check/depth.go",
+        "internal/cli/check/ladder.go",
+        "internal/cli/check/local.go",
+        "internal/cli/check/model.go",
+        "internal/cli/check/report.go",
+        "internal/cli/check/snapshot.go",
+        "internal/cli/check/unused.go",
         "internal/cli/client/client.go",
         "internal/cli/client/documents.go",
+        "internal/cli/client/edit.go",
+        "internal/cli/client/list.go",
         "internal/cli/config/config.go",
-        "internal/cli/config/migration.go",
-        "internal/cli/doctor/doctor.go",
-        "internal/cli/doctor/wording.go",
-        "internal/cli/install/install.go",
-        "internal/cli/installation/installation.go",
-        "internal/cli/invocation/accounts.go",
+        "internal/cli/config/rollback.go",
+        "internal/cli/invocation/catalog.go",
+        "internal/cli/invocation/closest.go",
+        "internal/cli/invocation/completion.go",
         "internal/cli/invocation/context.go",
+        "internal/cli/invocation/failure.go",
+        "internal/cli/invocation/flag.go",
+        "internal/cli/invocation/models.go",
         "internal/cli/invocation/preview.go",
+        "internal/cli/invocation/protocol.go",
         "internal/cli/invocation/readiness.go",
-        "internal/cli/invocation/rename.go",
-        "internal/cli/models/models.go",
-        "internal/cli/repair/repair.go",
-        "internal/cli/rollback/rollback.go",
-        "internal/cli/rotate/rotate.go",
-        "internal/cli/route/documents.go",
-        "internal/cli/route/rename.go",
-        "internal/cli/route/route.go",
-        "internal/cli/setup/manifest.go",
+        "internal/cli/model/add.go",
+        "internal/cli/model/documents.go",
+        "internal/cli/model/edit.go",
+        "internal/cli/model/list.go",
+        "internal/cli/model/model.go",
+        "internal/cli/model/preview.go",
+        "internal/cli/model/recommendations.go",
+        "internal/cli/model/remove.go",
+        "internal/cli/model/search.go",
+        "internal/cli/provider/add.go",
+        "internal/cli/provider/balance.go",
+        "internal/cli/provider/credentials.go",
+        "internal/cli/provider/documents.go",
+        "internal/cli/provider/edit.go",
+        "internal/cli/provider/list.go",
+        "internal/cli/provider/provider.go",
+        "internal/cli/provider/remove.go",
+        "internal/cli/provider/rotate.go",
+        "internal/cli/provider/token.go",
+        "internal/cli/provider/undo.go",
+        "internal/cli/self/custody.go",
+        "internal/cli/self/install.go",
+        "internal/cli/self/rollback.go",
+        "internal/cli/self/self.go",
+        "internal/cli/self/status.go",
+        "internal/cli/self/uninstall.go",
+        "internal/cli/self/update.go",
+        "internal/cli/setup/guided.go",
         "internal/cli/setup/setup.go",
+        "internal/cli/setup/team.go",
+        "internal/cli/setup/team_report.go",
         "internal/cli/status/report.go",
         "internal/cli/status/status.go",
         "internal/cli/status/status_render.go",
         "internal/cli/sync/sync.go",
-        "internal/cli/test/test.go",
-        "internal/cli/uninstall/uninstall.go",
-        "internal/cli/update/custody.go",
-        "internal/cli/update/preview.go",
-        "internal/cli/update/update.go",
-        "internal/cli/use/retries.go",
+        "internal/cli/use/report.go",
+        "internal/cli/use/resolve.go",
+        "internal/cli/use/token.go",
         "internal/cli/use/use.go",
-        "internal/cli/verify/verify.go"
+        "internal/cli/version/version.go"
       ]
     },
     {
@@ -430,7 +515,7 @@
       "id": "credential-helper-configuration-store",
       "from": "credential-helper",
       "to": "configuration-store",
-      "label": "reads the binding",
+      "label": "reads providers and clients",
       "files": ["internal/cli/credential/credential.go"]
     },
     {
@@ -438,18 +523,6 @@
       "from": "use-cases",
       "to": "synchronization",
       "label": "commits",
-      "files": [
-        "internal/app/catalog.go",
-        "internal/app/dependencies.go",
-        "internal/app/entrypoint.go",
-        "internal/app/status.go"
-      ]
-    },
-    {
-      "id": "use-cases-renaming",
-      "from": "use-cases",
-      "to": "renaming",
-      "label": "renames",
       "files": [
         "internal/app/catalog.go",
         "internal/app/dependencies.go",
@@ -482,32 +555,6 @@
       ]
     },
     {
-      "id": "renaming-synchronization",
-      "from": "renaming",
-      "to": "synchronization",
-      "label": "commits",
-      "files": [
-        "internal/app/renaming/credentials.go",
-        "internal/app/renaming/finalization.go",
-        "internal/app/renaming/model.go",
-        "internal/app/renaming/planning.go",
-        "internal/app/renaming/workflow.go"
-      ]
-    },
-    {
-      "id": "renaming-credentials",
-      "from": "renaming",
-      "to": "credentials",
-      "label": "moves Tokens",
-      "files": [
-        "internal/app/renaming/credentials.go",
-        "internal/app/renaming/finalization.go",
-        "internal/app/renaming/model.go",
-        "internal/app/renaming/planning.go",
-        "internal/app/renaming/workflow.go"
-      ]
-    },
-    {
       "id": "activation-readiness",
       "from": "activation",
       "to": "readiness",
@@ -527,9 +574,7 @@
       "to": "adapter-seam",
       "label": "plans, applies",
       "files": [
-        "internal/app/synchronization/account_connection.go",
         "internal/app/synchronization/preview.go",
-        "internal/app/synchronization/projection.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
         "internal/app/synchronization/synchronizer.go",
@@ -542,9 +587,7 @@
       "to": "discovery",
       "label": "observes",
       "files": [
-        "internal/app/synchronization/account_connection.go",
         "internal/app/synchronization/preview.go",
-        "internal/app/synchronization/projection.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
         "internal/app/synchronization/synchronizer.go",
@@ -557,9 +600,7 @@
       "to": "configuration-store",
       "label": "persists",
       "files": [
-        "internal/app/synchronization/account_connection.go",
         "internal/app/synchronization/preview.go",
-        "internal/app/synchronization/projection.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
         "internal/app/synchronization/synchronizer.go",
@@ -572,9 +613,7 @@
       "to": "credentials",
       "label": "checks the reader",
       "files": [
-        "internal/app/synchronization/account_connection.go",
         "internal/app/synchronization/preview.go",
-        "internal/app/synchronization/projection.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
         "internal/app/synchronization/synchronizer.go",
@@ -587,9 +626,7 @@
       "to": "domain",
       "label": "validates",
       "files": [
-        "internal/app/synchronization/account_connection.go",
         "internal/app/synchronization/preview.go",
-        "internal/app/synchronization/projection.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
         "internal/app/synchronization/synchronizer.go",
@@ -642,12 +679,14 @@
         "internal/adapter/codex/conflict.go",
         "internal/adapter/codex/extensions.go",
         "internal/adapter/codex/live_verification.go",
+        "internal/adapter/codex/missing.go",
         "internal/adapter/codex/provider.go",
         "internal/adapter/codex/reconcile.go",
         "internal/adapter/codex/scheduler.go",
         "internal/adapter/codex/selection.go",
         "internal/adapter/codex/surfaces.go",
-        "internal/adapter/codex/targets.go"
+        "internal/adapter/codex/targets.go",
+        "internal/adapter/codex/unrecorded.go"
       ]
     },
     {
@@ -658,6 +697,7 @@
       "files": [
         "internal/adapter/claude/adapter.go",
         "internal/adapter/claude/adapter_verify.go",
+        "internal/adapter/claude/conflict.go",
         "internal/adapter/claude/inspection.go",
         "internal/adapter/claude/live_verification.go",
         "internal/adapter/claude/native_paths.go",
@@ -713,12 +753,14 @@
         "internal/adapter/codex/conflict.go",
         "internal/adapter/codex/extensions.go",
         "internal/adapter/codex/live_verification.go",
+        "internal/adapter/codex/missing.go",
         "internal/adapter/codex/provider.go",
         "internal/adapter/codex/reconcile.go",
         "internal/adapter/codex/scheduler.go",
         "internal/adapter/codex/selection.go",
         "internal/adapter/codex/surfaces.go",
-        "internal/adapter/codex/targets.go"
+        "internal/adapter/codex/targets.go",
+        "internal/adapter/codex/unrecorded.go"
       ]
     },
     {
@@ -729,6 +771,7 @@
       "files": [
         "internal/adapter/claude/adapter.go",
         "internal/adapter/claude/adapter_verify.go",
+        "internal/adapter/claude/conflict.go",
         "internal/adapter/claude/inspection.go",
         "internal/adapter/claude/live_verification.go",
         "internal/adapter/claude/native_paths.go",
@@ -773,8 +816,11 @@
       "label": "discovers",
       "files": [
         "internal/adapter/adapters.go",
+        "internal/adapter/apply_failure.go",
+        "internal/adapter/conflict.go",
         "internal/adapter/registry.go",
-        "internal/adapter/support.go"
+        "internal/adapter/support.go",
+        "internal/adapter/target_error.go"
       ]
     },
     {
@@ -784,9 +830,12 @@
       "label": "reads specifications",
       "files": [
         "internal/adapter/adapters.go",
+        "internal/adapter/apply_failure.go",
+        "internal/adapter/conflict.go",
         "internal/adapter/contract/contract.go",
         "internal/adapter/registry.go",
         "internal/adapter/support.go",
+        "internal/adapter/target_error.go",
         "internal/adapter/verification/verify.go"
       ]
     },
@@ -796,14 +845,10 @@
       "to": "domain",
       "label": "encodes",
       "files": [
-        "internal/store/capabilities.go",
         "internal/store/checkpoint.go",
-        "internal/store/components.go",
-        "internal/store/forwarding.go",
+        "internal/store/credential_view.go",
+        "internal/store/file.go",
         "internal/store/manifest.go",
-        "internal/store/migration.go",
-        "internal/store/ordering.go",
-        "internal/store/retry_store.go",
         "internal/store/store.go",
         "internal/store/store_errors.go"
       ]
@@ -814,14 +859,10 @@
       "to": "platform",
       "label": "locks, writes",
       "files": [
-        "internal/store/capabilities.go",
         "internal/store/checkpoint.go",
-        "internal/store/components.go",
-        "internal/store/forwarding.go",
+        "internal/store/credential_view.go",
+        "internal/store/file.go",
         "internal/store/manifest.go",
-        "internal/store/migration.go",
-        "internal/store/ordering.go",
-        "internal/store/retry_store.go",
         "internal/store/store.go",
         "internal/store/store_errors.go"
       ]
@@ -848,6 +889,8 @@
         "internal/secret/memory.go",
         "internal/secret/native/keychain_darwin.go",
         "internal/secret/native/keychain_darwin_nocgo.go",
+        "internal/secret/native/keychain_list_darwin.go",
+        "internal/secret/native/listing.go",
         "internal/secret/native/migration_darwin.go",
         "internal/secret/native/provider.go",
         "internal/secret/native/provider_darwin.go",
@@ -863,7 +906,8 @@
         "internal/secret/replacement.go",
         "internal/secret/scoped.go",
         "internal/secret/selection.go",
-        "internal/secret/store.go"
+        "internal/secret/store.go",
+        "internal/secret/unobserved.go"
       ]
     },
     {
@@ -873,8 +917,8 @@
       "label": "builds probes",
       "files": [
         "internal/app/diagnostics/probe.go",
-        "internal/provider/dmxapi/probe.go",
-        "internal/provider/registry.go"
+        "internal/balanceprobe/dmxapi/probe.go",
+        "internal/balanceprobe/registry.go"
       ]
     },
     {
@@ -883,6 +927,11 @@
       "to": "platform",
       "label": "installs",
       "files": [
+        "internal/program/artifact/archive.go",
+        "internal/program/artifact/checksum.go",
+        "internal/program/artifact/identity.go",
+        "internal/program/artifact/matrix.go",
+        "internal/program/artifact/signature.go",
         "internal/program/candidate.go",
         "internal/program/github.go",
         "internal/program/gitlab.go",
@@ -906,7 +955,9 @@
         "internal/terminal/continuation.go",
         "internal/terminal/document.go",
         "internal/terminal/errors.go",
+        "internal/terminal/file_failure.go",
         "internal/terminal/password.go",
+        "internal/terminal/path_fix.go",
         "internal/terminal/prompt.go",
         "internal/terminal/render.go",
         "internal/terminal/target.go",
@@ -919,8 +970,8 @@
   "views": [
     {
       "id": "overview",
-      "title": "One reviewed configuration, projected into every client",
-      "question": "How does one reviewed configuration become a guarded projection in each admitted client?",
+      "title": "One reviewed configuration, written into every client",
+      "question": "How does one reviewed configuration become guarded client files in each admitted client?",
       "summary": "Synchronization persists to the configuration store and plans and applies through the adapter seam that each client adapter implements. It commits one configuration transition with guarded compensation.",
       "members": [
         "commands",
@@ -938,12 +989,11 @@
       "id": "authority",
       "title": "Who owns which state",
       "question": "Which owners hold the configuration, the Tokens and the host's paths, and who reads them?",
-      "summary": "The configuration store owns config.toml under one lock and the credential store owns Account Tokens; the platform owns AIGW-owned paths. The credential helper reads one Token and the binding; renaming moves Tokens.",
+      "summary": "The configuration store owns aigw.toml under one lock and the credential store owns provider Tokens; the platform owns AIGW-owned paths. The credential helper reads one Token and the providers and clients it serves.",
       "members": [
         "commands",
         "credential-helper",
         "synchronization",
-        "renaming",
         "configuration-store",
         "credentials",
         "domain",
@@ -971,14 +1021,13 @@
       "id": "readiness",
       "title": "What a command can report",
       "question": "How does a command decide what to report and what to do next?",
-      "summary": "Activation classifies the enabled-client scope, and readiness reads health from diagnostics to give a state such as inference checked or degraded. Use cases return values the terminal renders as human or JSON output.",
+      "summary": "Activation classifies the enabled-client scope, and readiness reads health from diagnostics to give a state such as configured or degraded; the depth that aigw check reached says how much was proven. Use cases return values the terminal renders as human or JSON output.",
       "members": [
         "commands",
         "use-cases",
         "activation",
         "readiness",
         "diagnostics",
-        "renaming",
         "synchronization",
         "terminal",
         "domain"
@@ -1002,8 +1051,8 @@
     },
     {
       "id": "projection",
-      "title": "One projection, from plan to compensation",
-      "question": "Where does one projection read, plan, write and compensate?",
+      "title": "One sync, from plan to compensation",
+      "question": "Where does one sync read, plan, write and compensate?",
       "summary": "Synchronization observes through discovery, validates against the domain, plans and applies through the adapter seam and persists to the configuration store. The platform owns guarded file writes and their rollback.",
       "members": [
         "synchronization",

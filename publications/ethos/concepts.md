@@ -1,7 +1,7 @@
 # ETHOS: term renderings
 
 The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `ethos` at v0.2.0-beta.6 (`727ee05`) that defines or uses the term; "film" is the owner-approved
+names the file of `ethos` at v0.2.0-beta.8 (`9bf5bdd`) that defines or uses the term; "film" is the owner-approved
 Chinese narration, `content/narration.md` of `ethos-film` at v1.0.1 (`c33e60f`). Product names, command names and
 their options, verdict values (`pass`, `block`, `unknown`), file and ref names, and the kernel names Commitment, Facts
 and TransitionPlan stay in Latin type.
@@ -59,7 +59,7 @@ and TransitionPlan stay in Latin type.
 | candidate (branch), candidate train           | 候选分支                                   | `docs/architecture/runner-and-mutation.md`; film                                                         |
 | accepted / acceptance                         | 已验收 / 验收                              | `src/ethos/adapters/mutation/accepted/`                                                                  |
 | land / landing                                | 落地                                       | `src/ethos/adapters/mutation/landing.py`                                                                 |
-| closeout                                      | 收尾                                       | `src/ethos/domain/land/closeout.py`                                                                      |
+| closeout                                      | 收尾                                       | `src/ethos/application/land/closeout.py`                                                                 |
 | promote                                       | 提升                                       | `src/ethos/adapters/mutation/accepted/promotion.py`                                                      |
 | Model Promotion                               | 模型提升                                   | `docs/reference/glossary.md`; film                                                                       |
 | stale base                                    | 过时的基线                                 | `docs/architecture/runner-and-mutation.md`                                                               |
@@ -97,7 +97,8 @@ and TransitionPlan stay in Latin type.
 | hosted jobs                                   | 托管作业                                   | `src/ethos/repository/release/publication.py`                                                            |
 | surface                                       | 入口                                       | `src/ethos/surface/`                                                                                     |
 | command plane                                 | `ethos` 命令                               | `docs/reference/command-plane.md`                                                                        |
-| launcher                                      | 启动器                                     | `distributions/npm/`                                                                                     |
+| operation catalog                             | 操作目录                                   | `src/ethos/contracts/operations/catalog.py`                                                              |
+| launcher                                      | 启动器                                     | `src/ethos/surface/cli/__init__.py`                                                                      |
 | MCP server                                    | MCP 服务器                                 | `src/ethos/surface/mcp/server.py`                                                                        |
 | root-bound transport                          | 每个服务实例绑定一个仓库根目录             | `src/ethos/surface/mcp/server.py`                                                                        |
 | project / projection                          | 投影（MCP 的 project 作“对外提供”）        | `src/ethos/adapters/projections/`; `docs/reference/glossary.md`                                          |
@@ -121,7 +122,7 @@ and TransitionPlan stay in Latin type.
 | form (a repository)                           | 建立                                       | `src/ethos/adapters/repo/adoption.py`                                                                    |
 | starter                                       | 起始模板                                   | `src/ethos/adapters/repo/starter/`                                                                       |
 | governed repository                           | 受治理的仓库                               | `src/ethos/repository/paradigm/`; film                                                                   |
-| planning / plan                               | 规划 / 计划                                | `src/ethos/domain/plan.py`; film                                                                         |
+| planning / plan                               | 规划 / 计划                                | `src/ethos/application/plan.py`; film                                                                    |
 | compile                                       | 编译                                       | `src/ethos/repository/policy/rules/compile.py`; film                                                     |
 | resolve / resolution                          | 解析                                       | `src/ethos/adapters/admission/current/resolution.py`                                                     |
 | Current resolution                            | 当前状态解析                               | `src/ethos/adapters/admission/current/`                                                                  |

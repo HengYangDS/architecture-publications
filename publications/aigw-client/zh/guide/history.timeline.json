@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "abf05858f4092a3baf9acea0d5d7488b26898aa5"
+      "revision": "9bf7612c9678d6fc02eade0eda637be1b450af87"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -25,7 +25,7 @@
     },
     {
       "id": "clients",
-      "label": "客户端配置"
+      "label": "客户端文件"
     },
     {
       "id": "commands",
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 822,
-          "end_line": 844,
+          "line": 981,
+          "end_line": 1001,
           "label": "0.1.0"
         }
       ]
@@ -58,8 +58,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 728,
-          "end_line": 754,
+          "line": 895,
+          "end_line": 919,
           "label": "0.2.0"
         }
       ]
@@ -74,8 +74,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 698,
-          "end_line": 726,
+          "line": 867,
+          "end_line": 893,
           "label": "0.3.0"
         }
       ]
@@ -89,8 +89,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 467,
-          "end_line": 495,
+          "line": 646,
+          "end_line": 672,
           "label": "0.4.1"
         }
       ]
@@ -104,8 +104,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 395,
-          "end_line": 407,
+          "line": 582,
+          "end_line": 592,
           "label": "0.4.5"
         }
       ]
@@ -120,8 +120,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 377,
-          "end_line": 393,
+          "line": 566,
+          "end_line": 580,
           "label": "0.4.6"
         }
       ]
@@ -135,8 +135,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 364,
-          "end_line": 375,
+          "line": 555,
+          "end_line": 564,
           "label": "0.4.7"
         }
       ]
@@ -150,8 +150,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 338,
-          "end_line": 350,
+          "line": 533,
+          "end_line": 543,
           "label": "0.4.9"
         }
       ]
@@ -166,8 +166,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 205,
-          "end_line": 232,
+          "line": 414,
+          "end_line": 439,
           "label": "0.4.16"
         }
       ]
@@ -181,8 +181,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 172,
-          "end_line": 203,
+          "line": 383,
+          "end_line": 412,
           "label": "0.4.17"
         }
       ]
@@ -197,8 +197,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 51,
-          "end_line": 94,
+          "line": 266,
+          "end_line": 307,
           "label": "0.5.0"
         }
       ]
@@ -212,9 +212,25 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 17,
-          "end_line": 27,
+          "line": 236,
+          "end_line": 244,
           "label": "0.6.1"
+        }
+      ]
+    },
+    {
+      "id": "v070",
+      "at": "2026-11-12T08:03:30+08:00",
+      "lane": "catalog",
+      "kind": "change",
+      "title": "v0.7.0 提供商及其模型",
+      "detail": "不兼容变更：AIGW 把提供商及其模型放在一个版本 8 的 aigw.toml 里，模型名为 provider/model，更早的文件一概不读。aigw use <client> <provider/model> 取代 use --for，aigw check --depth 取代 verify、test 和 --endpoint-only，aigw config rollback 取代 aigw rollback。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 14,
+          "end_line": 235,
+          "label": "0.7.0"
         }
       ]
     }

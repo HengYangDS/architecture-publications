@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/ethos.git",
       "provider": "github",
-      "revision": "727ee0579ba1fb9e391b5c44ce9fb2c208390199"
+      "revision": "9bf5bdda7292951e1d8a14ee474a0db767daece4"
     }
   },
   "components": [
@@ -23,8 +23,8 @@
       "sources": [
         {
           "path": "src/ethos/adapters/openspec/commitment.py",
-          "line": 45,
-          "end_line": 57,
+          "line": 46,
+          "end_line": 58,
           "label": "Compile"
         }
       ]
@@ -71,8 +71,8 @@
       "sources": [
         {
           "path": "src/ethos/adapters/mutation/landing.py",
-          "line": 45,
-          "end_line": 58,
+          "line": 57,
+          "end_line": 70,
           "label": "Land"
         }
       ]
@@ -87,8 +87,8 @@
       "sources": [
         {
           "path": "src/ethos/adapters/admission/prewrite.py",
-          "line": 60,
-          "end_line": 72,
+          "line": 117,
+          "end_line": 149,
           "label": "Guard"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "src/ethos/adapters/mutation/lane_lifecycle/start.py",
-          "line": 343,
-          "end_line": 353,
+          "line": 345,
+          "end_line": 355,
           "label": "Start"
         }
       ]

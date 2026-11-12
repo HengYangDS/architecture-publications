@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([ETHOS · 问道], [意图先编译、再证明，仓库才会改动], [每一步都把正式意图和当下的事实编译成一份 TransitionPlan。只有 pass 才放行改动，每次改动都是一次精确的 compare-and-swap，核验记录不授予任何决定权。], read-from: [依据 467 个文件写成，每个文件都注明 SHA-256。], claim-x: 196pt)
+#masthead([ETHOS · 问道], [意图先编译、再证明，仓库才会改动], [每一步都把正式意图和当下的事实编译成一份 TransitionPlan。只有 pass 才放行改动，每次改动都是一次精确的 compare-and-swap，核验记录不授予任何决定权。], read-from: [依据 505 个文件写成，每个文件都注明 SHA-256。], claim-x: 196pt)
 
 // ── Band 1: the repository's roles above, one change below them ───────────
 #let ys = 236pt
@@ -137,7 +137,7 @@
 ))
 #head(560pt, 770pt, [入口不同，操作相同])
 #dl(560pt, 794pt, 72pt, 470pt, (
-  ([CLI], [status、plan、prove、land、publish、lane 和 hook]),
+  ([CLI], [status、plan、prove、land、publish、lane、hook 和 host]),
   ([MCP], [同样的操作，每个服务实例绑定一个仓库根目录]),
   ([技能], [技能包，按它声明的命令校验]),
 ))

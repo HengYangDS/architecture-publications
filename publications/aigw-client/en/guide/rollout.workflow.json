@@ -2,14 +2,14 @@
   "schema_version": 2,
   "diagram_type": "workflow",
   "meta": {
-    "title": "From a reviewed manifest to a working client",
+    "title": "From a reviewed team file to a working client",
     "output": "rollout.html",
     "quality_profile": "showcase",
     "locale": "en",
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "abf05858f4092a3baf9acea0d5d7488b26898aa5"
+      "revision": "9bf7612c9678d6fc02eade0eda637be1b450af87"
     },
     "legend": {
       "entries": {
@@ -48,7 +48,7 @@
       "lane": "rollout-lane-maintainer",
       "col": 0,
       "type": "backend",
-      "label": "Curate the manifest",
+      "label": "Curate the team file",
       "sources": [
         {
           "path": "docs/guides/team-rollout.md",
@@ -82,8 +82,8 @@
       "sources": [
         {
           "path": "README.md",
-          "line": 29,
-          "end_line": 41,
+          "line": 30,
+          "end_line": 42,
           "label": "Install"
         }
       ]
@@ -93,13 +93,13 @@
       "lane": "rollout-lane-member",
       "col": 2,
       "type": "backend",
-      "label": "Import the manifest",
+      "label": "Apply the team file",
       "sources": [
         {
           "path": "README.md",
-          "line": 94,
-          "end_line": 102,
-          "label": "Import"
+          "line": 125,
+          "end_line": 134,
+          "label": "Apply"
         }
       ]
     },
@@ -108,12 +108,12 @@
       "lane": "rollout-lane-member",
       "col": 3,
       "type": "security",
-      "label": "Connect one Account",
+      "label": "Connect one provider",
       "sources": [
         {
           "path": "README.md",
-          "line": 101,
-          "end_line": 108,
+          "line": 133,
+          "end_line": 141,
           "label": "Connect"
         }
       ]
@@ -127,8 +127,8 @@
       "sources": [
         {
           "path": "README.md",
-          "line": 118,
-          "end_line": 125,
+          "line": 150,
+          "end_line": 157,
           "label": "Activate"
         }
       ]

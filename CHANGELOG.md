@@ -21,10 +21,15 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 ### Changed
 
 - The repository's checks run on ETHOS 0.2.0-beta.8.
-- OpenAI Responses Proxy is pinned at v5.1.10, Architecture Publisher at v0.12.0
-  and Film Kit at v0.20.0. Building the works needs Architecture Publisher 0.10.2
-  or later. The Architecture Publisher work lists the `skill` command, and the
-  Film Kit work claims the engine's own draft and picture repair.
+- OpenAI Responses Proxy is pinned at v5.1.10, Architecture Publisher at v0.12.0,
+  Film Kit at v0.20.0, ETHOS at v0.2.0-beta.8 and AIGW at v0.7.0. Building the
+  works needs Architecture Publisher 0.10.2 or later. The Architecture Publisher
+  work lists the `skill` command, and the Film Kit work claims the engine's own
+  draft and picture repair.
+- The ETHOS work claims the application layer and the operation catalog. The
+  AIGW work uses the client's new vocabulary: it no longer has a renaming
+  component, and its catalog, readiness, configuration and rollout panels follow
+  v0.7.0.
 - The Film Kit work names its subject Film Kit, as its project does, and keeps
   `filmkit` for the package, its commands and paths. Its motion audit lists dash
   snaps, and its 1080p films are averaged over each 2×2 block and keyed every 2 s.

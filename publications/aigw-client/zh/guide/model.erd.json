@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "abf05858f4092a3baf9acea0d5d7488b26898aa5"
+      "revision": "9bf7612c9678d6fc02eade0eda637be1b450af87"
     }
   },
   "layout": {
@@ -19,9 +19,9 @@
   },
   "entities": [
     {
-      "id": "erd-binding",
-      "label": "客户端绑定",
-      "tag": "config.toml",
+      "id": "erd-selection",
+      "label": "客户端选择",
+      "tag": "aigw.toml",
       "row": 0,
       "col": 0,
       "attributes": [
@@ -31,10 +31,10 @@
           "key": "pk"
         },
         {
-          "name": "route",
-          "type": "string",
+          "name": "model",
+          "type": "ModelRef",
           "key": "fk",
-          "references": "erd-route.id"
+          "references": "erd-model.id"
         },
         {
           "name": "enabled",
@@ -52,59 +52,59 @@
       "sources": [
         {
           "path": "internal/domain/clients.go",
-          "line": 200,
-          "end_line": 216,
+          "line": 236,
+          "end_line": 254,
           "label": "ClientBinding"
         }
       ],
       "width": 244
     },
     {
-      "id": "erd-route",
-      "label": "路由",
-      "tag": "config.toml",
+      "id": "erd-model",
+      "label": "模型",
+      "tag": "aigw.toml",
       "row": 0,
       "col": 1,
       "attributes": [
+        {
+          "name": "provider",
+          "type": "string",
+          "key": ["pk", "fk"],
+          "references": "erd-provider.id"
+        },
         {
           "name": "id",
           "type": "string",
           "key": "pk"
         },
         {
-          "name": "account",
+          "name": "family",
           "type": "string",
           "key": "fk",
-          "references": "erd-account.id"
+          "references": "erd-family.id"
         },
         {
-          "name": "model",
-          "type": "string",
-          "key": "fk",
-          "references": "erd-model.id"
+          "name": "protocols",
+          "type": "map"
         },
         {
-          "name": "upstream_model",
-          "type": "string"
-        },
-        {
-          "name": "lifecycle",
-          "type": "RouteLifecycle"
+          "name": "deprecated",
+          "type": "bool"
         }
       ],
       "sources": [
         {
           "path": "internal/domain/model.go",
-          "line": 102,
-          "end_line": 113,
-          "label": "Route"
+          "line": 94,
+          "end_line": 105,
+          "label": "Model"
         }
       ]
     },
     {
-      "id": "erd-model",
-      "label": "模型",
-      "tag": "config.toml",
+      "id": "erd-family",
+      "label": "模型家族",
+      "tag": "aigw.toml",
       "row": 1,
       "col": 0,
       "attributes": [
@@ -121,17 +121,17 @@
       "sources": [
         {
           "path": "internal/domain/model.go",
-          "line": 94,
-          "end_line": 100,
-          "label": "Model"
+          "line": 87,
+          "end_line": 92,
+          "label": "Family"
         }
       ],
       "width": 244
     },
     {
-      "id": "erd-account",
-      "label": "账户",
-      "tag": "config.toml",
+      "id": "erd-provider",
+      "label": "提供商",
+      "tag": "aigw.toml",
       "row": 1,
       "col": 1,
       "attributes": [
@@ -147,29 +147,33 @@
         {
           "name": "endpoints",
           "type": "Endpoints"
+        },
+        {
+          "name": "balance",
+          "type": "BalanceProbe"
         }
       ],
       "sources": [
         {
           "path": "internal/domain/model.go",
-          "line": 85,
-          "end_line": 92,
-          "label": "Account"
+          "line": 78,
+          "end_line": 85,
+          "label": "Provider"
         }
       ]
     },
     {
       "id": "erd-token",
-      "label": "账户令牌",
+      "label": "令牌",
       "tag": "令牌存储",
       "row": 1,
       "col": 2,
       "attributes": [
         {
-          "name": "account",
+          "name": "provider",
           "type": "string",
           "key": ["pk", "fk"],
-          "references": "erd-account.id"
+          "references": "erd-provider.id"
         },
         {
           "name": "token",
@@ -189,32 +193,33 @@
   "relationships": [
     {
       "id": "rel-selects",
-      "from": "erd-binding",
-      "to": "erd-route",
+      "from": "erd-selection",
+      "to": "erd-model",
       "label": "选用",
       "fromCardinality": "many",
       "toCardinality": "one"
     },
     {
-      "id": "rel-uses",
-      "from": "erd-route",
-      "to": "erd-account",
-      "label": "使用",
+      "id": "rel-serves",
+      "from": "erd-model",
+      "to": "erd-provider",
+      "label": "由其提供",
       "fromCardinality": "many",
       "toCardinality": "one"
     },
     {
-      "id": "rel-exposes",
-      "from": "erd-route",
-      "to": "erd-model",
-      "label": "提供",
+      "id": "rel-belongs",
+      "from": "erd-model",
+      "to": "erd-family",
+      "label": "属于",
       "fromCardinality": "many",
-      "toCardinality": "one"
+      "toCardinality": "one",
+      "toOptional": true
     },
     {
       "id": "rel-authenticates",
       "from": "erd-token",
-      "to": "erd-account",
+      "to": "erd-provider",
       "label": "认证",
       "fromCardinality": "one",
       "toCardinality": "one",

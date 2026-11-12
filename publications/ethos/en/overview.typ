@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([ETHOS · 问道], [Intent is compiled and proven before the repository moves], [Each step compiles official intent and fresh facts into one TransitionPlan; only a pass admits an effect, every effect is one exact compare-and-swap, and no Attestation grants authority.], read-from: [Read from 467 files, each cited by its SHA-256.], claim-x: 196pt)
+#masthead([ETHOS · 问道], [Intent is compiled and proven before the repository moves], [Each step compiles official intent and fresh facts into one TransitionPlan; only a pass admits an effect, every effect is one exact compare-and-swap, and no Attestation grants authority.], read-from: [Read from 505 files, each cited by its SHA-256.], claim-x: 196pt)
 
 // ── Band 1: the repository's roles above, one change below them ───────────
 #let ys = 236pt
@@ -137,7 +137,7 @@
 ))
 #head(560pt, 770pt, [Reached the same way])
 #dl(560pt, 794pt, 72pt, 470pt, (
-  ([CLI], [status, plan, prove, land, publish, lane and hook]),
+  ([CLI], [status, plan, prove, land, publish, lane, hook and host]),
   ([MCP], [the same operations over a root-bound transport]),
   ([Skills], [packages checked against the commands they declare]),
 ))
