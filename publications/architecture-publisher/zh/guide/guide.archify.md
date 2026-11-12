@@ -7,7 +7,7 @@
 - [有重叠的布局绝不绘出](block:p-layout)；任何布局都画不出的视图会被拒绝，不会缩小。[](source:contract-layout-floor)
 - [只出版已验收的交付物](block:p-accept)，也绝不覆盖另一份不同的交付物。[](source:contract-acceptance)
 
-@answer scope="Architecture Publisher v0.11.0 · 提交 a7de98b · 源码与项目自身的文档 · 重新固定的计数测于 2026-11-08"
+@answer scope="Architecture Publisher v0.12.0 · 提交 65452c6 · 源码与项目自身的文档 · 重新固定的计数测于 2026-11-08"
 @meta locale=zh-CN style=editorial
 @source contract-product title="产品" path="docs/product-contract.md" lines=13:21
 @source contract-meaning title="含义与形式归谁" path="docs/product-contract.md" lines=23:28
@@ -48,17 +48,17 @@
 @source ops-manifest title="清单" path="docs/reference/operations.md" lines=377:396
 @source ops-accept title="archpub accept" path="docs/reference/operations.md" lines=400:402
 @source ops-publish title="archpub publish" path="docs/reference/operations.md" lines=404:408
-@source readme-layout title="布局即网格" path="README.md" lines=93:98
-@source build-prepare title="一次构建的路线" path="src/build.mjs" lines=127:178
+@source readme-layout title="布局即网格" path="README.md" lines=53:55
+@source build-prepare title="一次构建的路线" path="src/build.mjs" lines=127:189
 @source build-composition title="缺失的编排" path="src/build.mjs" lines=106:125
-@source build-artifacts title="每个产物的摘要" path="src/build.mjs" lines=338:355
-@source build-manifest title="清单记录" path="src/build.mjs" lines=420:489
-@source build-rename title="重命名就位" path="src/build.mjs" lines=490:506
-@source load-top title="模型的字段" path="src/model/load.mjs" lines=36:48
-@source load-problems title="一遍报出全部问题" path="src/model/load.mjs" lines=54:63
-@source load-files title="认领与被引用的文件" path="src/model/load.mjs" lines=119:157
-@source load-version title="第 1 版模型" path="src/model/load.mjs" lines=159:169
-@source load-views title="tiers 或 members" path="src/model/load.mjs" lines=382:411
+@source build-artifacts title="每个产物的摘要" path="src/build.mjs" lines=350:367
+@source build-manifest title="清单记录" path="src/build.mjs" lines=432:501
+@source build-rename title="重命名就位" path="src/build.mjs" lines=502:519
+@source load-top title="模型的字段" path="src/model/load.mjs" lines=37:49
+@source load-problems title="一遍报出全部问题" path="src/model/load.mjs" lines=55:64
+@source load-files title="认领与被引用的文件" path="src/model/load.mjs" lines=120:158
+@source load-version title="第 1 版模型" path="src/model/load.mjs" lines=160:170
+@source load-views title="tiers 或 members" path="src/model/load.mjs" lines=383:412
 @source paths-coverage title="检查覆盖范围" path="src/model/paths.mjs" lines=35:75
 @source git-read title="只读的 Git" path="src/sources/git.mjs" lines=8:31
 @source git-commit title="固定的提交" path="src/sources/git.mjs" lines=68:78
@@ -82,7 +82,7 @@
 @source ops-plate title="图版" path="docs/reference/operations.md" lines=157:166
 @source ops-reading title="图版的宽度与说明栏" path="docs/reference/operations.md" lines=180:209
 @source ops-edition title="图册" path="docs/reference/operations.md" lines=211:221
-@source house-reading title="说明栏过高时的排法" path="src/overview/house.typ" lines=251:291
+@source house-reading title="说明栏过高时的排法" path="src/overview/house.typ" lines=251:287
 @source ops-edition-text title="文字、日期与各页图像" path="docs/reference/operations.md" lines=223:240
 @source ops-refusal-paths title="拒绝指向何处" path="docs/reference/operations.md" lines=412:417
 @source plates-compositions title="图版尝试的每种编排" path="src/poster/compose/plates.mjs" lines=109:121
@@ -102,8 +102,8 @@
 @source worklist-repin title="工作清单" path="src/sources/worklist.mjs" lines=97:110
 @source model-smallest title="最小模型" path="docs/reference/model.md" lines=26:28
 @source model-minimal title="最小的模型" path="docs/reference/model.md" lines=33:53
-@source changelog-first title="第一个版本" path="CHANGELOG.md" lines=847:853
-@source changelog-040 title="0.4.0 版本" path="CHANGELOG.md" lines=266:271
+@source changelog-first title="第一个版本" path="CHANGELOG.md" lines=874:880
+@source changelog-040 title="0.4.0 版本" path="CHANGELOG.md" lines=294:299
 
 ## 模型里有什么，什么时候会被拒绝？ {#p-model}
 
@@ -279,7 +279,7 @@
 
 ## Architecture Publisher 怎样走到今天？ {#p-history}
 
-Architecture Publisher 的变更日志始于 2026 年 9 月 18 日的 0.1.0-alpha.0。[](source:changelog-first)10 月 30 日发布的 0.4.0 让它成为通用的模型到媒介出版工具。[](source:changelog-040)下图从那里开始，列出到 0.11.0 为止八个版本，它们改变了作者或审阅人看到的东西。
+Architecture Publisher 的变更日志始于 2026 年 9 月 18 日的 0.1.0-alpha.0。[](source:changelog-first)10 月 30 日发布的 0.4.0 让它成为通用的模型到媒介出版工具。[](source:changelog-040)下图从那里开始，列出到 0.12.0 为止九个版本，它们改变了作者或审阅人看到的东西。
 
 @diagram timeline id=history source=history.timeline.json title="Architecture Publisher 怎样走到今天"
 

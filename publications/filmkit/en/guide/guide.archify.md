@@ -7,34 +7,35 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 - [A take reaches the soundtrack only if it ends whole](block:p-takes), or if the film declares a release for its join.[](source:abrupt)
 - [The picture renders only after its gate passes](block:p-picture) for the current composition, timeline, stylesheet, fonts and engine version.[](source:render-gate)
 
-@answer scope="Film Kit v0.19.0 · commit e62e799 · its source and its own documents"
+@answer scope="Film Kit v0.20.0 · commit fbe9843 · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What Film Kit does" path="README.md" lines=3:3
 @source spec-rate title="Frame rate" path="src/filmkit/specification.py" lines=25:30
 @source spec-sound title="Sample rate and program level" path="src/filmkit/specification.py" lines=33:47
 @source sample-declaration title="The sample film's declaration" path="examples/sample-film/content/film.toml" lines=6:22
-@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=296:300
-@source changelog-019 title="The 0.19.0 changes" path="CHANGELOG.md" lines=7:23
+@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=311:315
+@source changelog-019 title="The 0.19.0 changes" path="CHANGELOG.md" lines=24:39
+@source changelog-020 title="The 0.20.0 changes" path="CHANGELOG.md" lines=7:23
 @source readme-engine title="The engine carries no film's content" path="README.md" lines=5:5
 @source readme-requirements title="Requirements" path="README.md" lines=9:12
 @source readme-layout title="A film's layout" path="README.md" lines=18:26
-@source readme-words title="Concepts and readings" path="README.md" lines=61:64
-@source readme-neither title="A film without either check" path="README.md" lines=68:68
-@source readme-gate title="The picture gate" path="README.md" lines=80:80
-@source readme-metrics title="Text measured with the film's fonts" path="README.md" lines=82:82
-@source readme-balance title="Balance in every frame" path="README.md" lines=84:84
-@source readme-install title="Installing the engine in a film" path="README.md" lines=165:175
-@source readme-commands title="Commands" path="README.md" lines=181:197
-@source readme-endings title="Whole endings" path="README.md" lines=201:203
-@source readme-dev title="Development" path="README.md" lines=225:225
+@source readme-words title="Concepts and readings" path="README.md" lines=62:65
+@source readme-neither title="A film without either check" path="README.md" lines=69:69
+@source readme-gate title="The picture gate" path="README.md" lines=87:87
+@source readme-metrics title="Text measured with the film's fonts" path="README.md" lines=89:89
+@source readme-balance title="Balance in every frame" path="README.md" lines=91:91
+@source readme-install title="Installing the engine in a film" path="README.md" lines=176:186
+@source readme-commands title="Commands" path="README.md" lines=192:208
+@source readme-endings title="Whole endings" path="README.md" lines=212:214
+@source readme-dev title="Development" path="README.md" lines=236:236
 @source agents-contract title="The engine contract" path="AGENTS.md" lines=10:16
-@source changelog-pin title="A film keeps its pin" path="CHANGELOG.md" lines=196:196
+@source changelog-pin title="A film keeps its pin" path="CHANGELOG.md" lines=211:211
 @source film-root title="Finding the film" path="src/filmkit/repository.py" lines=28:50
-@source film-load title="Checking the declaration" path="src/filmkit/film.py" lines=379:394
+@source film-load title="Checking the declaration" path="src/filmkit/film.py" lines=386:401
 @source edition-places title="Where an edition writes" path="src/filmkit/production.py" lines=138:154
 @source renditions title="The four delivered films" path="src/filmkit/production.py" lines=63:74
 @source program-level title="One program level" path="src/filmkit/specification.py" lines=45:47
-@source produce-actions title="The production actions" path="src/filmkit/produce.py" lines=63:89
+@source produce-actions title="The production actions" path="src/filmkit/produce.py" lines=77:114
 @source narrate-gate title="Checks before synthesis" path="src/filmkit/narration/narrate.py" lines=111:121
 @source narrate-steps title="Synthesis, alignment, transcription" path="src/filmkit/narration/narrate.py" lines=54:108
 @source concepts-doc title="The concept check" path="src/filmkit/concepts.py" lines=1:15
@@ -54,20 +55,20 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 @source snapshots title="The pinned speech models" path="src/filmkit/narration/snapshots.py" lines=58:86
 @source supply-doc title="The supply" path="src/filmkit/supply.py" lines=1:7
 @source assembly-doc title="The assembly" path="src/filmkit/soundtrack/assembly.py" lines=1:10
-@source abrupt title="Abrupt takes refused" path="src/filmkit/soundtrack/assembly.py" lines=127:147
-@source program-gain title="One gain to the program level" path="src/filmkit/soundtrack/assembly.py" lines=413:434
+@source abrupt title="Abrupt takes refused" path="src/filmkit/soundtrack/assembly.py" lines=156:176
+@source program-gain title="One gain to the program level" path="src/filmkit/soundtrack/assembly.py" lines=511:532
 @source releases title="Declared releases" path="src/filmkit/soundtrack/policy.py" lines=159:170
 @source captions-doc title="Caption timing" path="src/filmkit/captions/timing.py" lines=1:6
 @source gate-doc title="The picture gate" path="src/filmkit/picture/gates.py" lines=1:37
 @source frame-gates title="Rules from the reviews" path="src/filmkit/picture/gates.py" lines=56:57
 @source gate-check title="check-picture" path="src/filmkit/picture/gates.py" lines=377:449
-@source candidate-inputs title="The inputs a stage binds" path="src/filmkit/picture/rendering.py" lines=105:135
-@source require-renderer title="One renderer version" path="src/filmkit/picture/rendering.py" lines=191:201
-@source stage title="Staging the picture" path="src/filmkit/picture/rendering.py" lines=235:285
-@source render-gate title="A render needs a passing gate" path="src/filmkit/picture/rendering.py" lines=471:498
-@source render title="Rendering the picture" path="src/filmkit/picture/rendering.py" lines=501:555
-@source validate title="Validating the picture" path="src/filmkit/picture/rendering.py" lines=586:596
-@source equivalence-doc title="Only the captions differ" path="src/filmkit/picture/equivalence.py" lines=1:32
+@source candidate-inputs title="The inputs a stage binds" path="src/filmkit/picture/rendering.py" lines=123:153
+@source require-renderer title="One renderer version" path="src/filmkit/picture/rendering.py" lines=209:219
+@source stage title="Staging the picture" path="src/filmkit/picture/rendering.py" lines=253:303
+@source render-gate title="A render needs a passing gate" path="src/filmkit/picture/rendering.py" lines=489:516
+@source render title="Rendering the picture" path="src/filmkit/picture/rendering.py" lines=585:642
+@source validate title="Validating the picture" path="src/filmkit/picture/rendering.py" lines=656:666
+@source equivalence-doc title="Only the captions differ" path="src/filmkit/picture/equivalence.py" lines=1:33
 @source tools-doc title="The Node tool runner" path="src/filmkit/tools.py" lines=1:17
 @source headless-doc title="The composition, run headlessly" path="src/filmkit/picture/headless-composition.mjs" lines=1:13
 @source package-doc title="Packaging" path="src/filmkit/delivery/packaging.py" lines=1:31
@@ -279,7 +280,7 @@ Delivery fills the film's Documents folder with exactly 25 members, then reads t
 
 ## How did Film Kit get here? {#p-history}
 
-Film Kit released v0.1.0 on 30 October 2026 and v0.19.0 on 10 November.[](source:changelog-010)[](source:changelog-019) These are the twelve releases that changed how a film is made. The repository keeps no dated roadmap; what is still open is listed last on this page.
+Film Kit released v0.1.0 on 30 October 2026 and v0.20.0 on 12 November.[](source:changelog-010)[](source:changelog-020) These are the thirteen releases that changed how a film is made. The repository keeps no dated roadmap; what is still open is listed last on this page.
 
 @diagram timeline id=history source=history.timeline.json title="How Film Kit got here"
 

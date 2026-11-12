@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "e62e7996587d0cfc5e599be78a66747072c83893"
+      "revision": "fbe984344368ff55edfe6dbf627bcbe0147de2da"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 296,
-          "end_line": 305,
+          "line": 311,
+          "end_line": 320,
           "label": "0.1.0"
         }
       ]
@@ -57,8 +57,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 257,
-          "end_line": 267,
+          "line": 272,
+          "end_line": 282,
           "label": "0.3.0"
         }
       ]
@@ -73,8 +73,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 216,
-          "end_line": 225,
+          "line": 231,
+          "end_line": 240,
           "label": "0.6.0"
         }
       ]
@@ -88,8 +88,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 183,
-          "end_line": 194,
+          "line": 198,
+          "end_line": 209,
           "label": "0.8.0"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 157,
-          "end_line": 161,
+          "line": 172,
+          "end_line": 176,
           "label": "0.9.0"
         }
       ]
@@ -118,8 +118,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 137,
-          "end_line": 145,
+          "line": 152,
+          "end_line": 160,
           "label": "0.10.0"
         }
       ]
@@ -134,8 +134,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 90,
-          "end_line": 105,
+          "line": 106,
+          "end_line": 120,
           "label": "0.12.0"
         }
       ]
@@ -150,8 +150,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 74,
-          "end_line": 86,
+          "line": 90,
+          "end_line": 102,
           "label": "0.13.0"
         }
       ]
@@ -165,8 +165,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 56,
-          "end_line": 65,
+          "line": 72,
+          "end_line": 81,
           "label": "0.14.0"
         }
       ]
@@ -180,8 +180,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 34,
-          "end_line": 42,
+          "line": 50,
+          "end_line": 58,
           "label": "0.17.0"
         }
       ]
@@ -196,8 +196,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 24,
-          "end_line": 32,
+          "line": 40,
+          "end_line": 48,
           "label": "0.18.0"
         }
       ]
@@ -212,9 +212,24 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
+          "line": 24,
+          "end_line": 39,
+          "label": "0.19.0"
+        }
+      ]
+    },
+    {
+      "id": "v200",
+      "at": "2026-11-12T08:39:29+08:00",
+      "lane": "picture",
+      "title": "v0.20.0 草稿与修复归入引擎",
+      "detail": "render-draft、fit 和 repair-pictures 把各影片 lane 脚本做的事收进引擎，影片也可以声明逐帧捕获的方式；任何影片的字节都不变。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
           "line": 7,
           "end_line": 23,
-          "label": "0.19.0"
+          "label": "0.20.0"
         }
       ]
     }

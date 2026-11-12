@@ -7,7 +7,7 @@
 - [A layout with an overlap is never drawn](block:p-layout), and a view that no layout draws is refused, not shrunk.[](source:contract-layout-floor)
 - [Only an accepted delivery is published](block:p-accept), and never over a different one.[](source:contract-acceptance)
 
-@answer scope="Architecture Publisher v0.11.0 · commit a7de98b · its source and its own documents · re-pin counts measured on 2026-11-08"
+@answer scope="Architecture Publisher v0.12.0 · commit 65452c6 · its source and its own documents · re-pin counts measured on 2026-11-08"
 @meta locale=en style=editorial
 @source contract-product title="The product" path="docs/product-contract.md" lines=13:21
 @source contract-meaning title="Who owns meaning and form" path="docs/product-contract.md" lines=23:28
@@ -48,17 +48,17 @@
 @source ops-manifest title="The manifest" path="docs/reference/operations.md" lines=377:396
 @source ops-accept title="archpub accept" path="docs/reference/operations.md" lines=400:402
 @source ops-publish title="archpub publish" path="docs/reference/operations.md" lines=404:408
-@source readme-layout title="Layout is a grid" path="README.md" lines=93:98
-@source build-prepare title="One build's route" path="src/build.mjs" lines=127:178
+@source readme-layout title="Layout is a grid" path="README.md" lines=53:55
+@source build-prepare title="One build's route" path="src/build.mjs" lines=127:189
 @source build-composition title="A missing composition" path="src/build.mjs" lines=106:125
-@source build-artifacts title="Every artifact's digest" path="src/build.mjs" lines=338:355
-@source build-manifest title="The manifest record" path="src/build.mjs" lines=420:489
-@source build-rename title="Renamed into place" path="src/build.mjs" lines=490:506
-@source load-top title="The model's fields" path="src/model/load.mjs" lines=36:48
-@source load-problems title="Every problem in one pass" path="src/model/load.mjs" lines=54:63
-@source load-files title="Claims and cited files" path="src/model/load.mjs" lines=119:157
-@source load-version title="A version 1 model" path="src/model/load.mjs" lines=159:169
-@source load-views title="Tiers or members" path="src/model/load.mjs" lines=382:411
+@source build-artifacts title="Every artifact's digest" path="src/build.mjs" lines=350:367
+@source build-manifest title="The manifest record" path="src/build.mjs" lines=432:501
+@source build-rename title="Renamed into place" path="src/build.mjs" lines=502:519
+@source load-top title="The model's fields" path="src/model/load.mjs" lines=37:49
+@source load-problems title="Every problem in one pass" path="src/model/load.mjs" lines=55:64
+@source load-files title="Claims and cited files" path="src/model/load.mjs" lines=120:158
+@source load-version title="A version 1 model" path="src/model/load.mjs" lines=160:170
+@source load-views title="Tiers or members" path="src/model/load.mjs" lines=383:412
 @source paths-coverage title="Checking the coverage scope" path="src/model/paths.mjs" lines=35:75
 @source git-read title="Read-only Git" path="src/sources/git.mjs" lines=8:31
 @source git-commit title="The pinned commit" path="src/sources/git.mjs" lines=68:78
@@ -82,7 +82,7 @@
 @source ops-plate title="A plate" path="docs/reference/operations.md" lines=157:166
 @source ops-reading title="A plate's width and reading" path="docs/reference/operations.md" lines=180:209
 @source ops-edition title="The print edition" path="docs/reference/operations.md" lines=211:221
-@source house-reading title="What a plate's reading does when it is too tall" path="src/overview/house.typ" lines=251:291
+@source house-reading title="What a plate's reading does when it is too tall" path="src/overview/house.typ" lines=251:287
 @source ops-edition-text title="Text, dates and page images" path="docs/reference/operations.md" lines=223:240
 @source ops-refusal-paths title="Where a refusal points" path="docs/reference/operations.md" lines=412:417
 @source plates-compositions title="Every composition a plate tries" path="src/poster/compose/plates.mjs" lines=109:121
@@ -102,8 +102,8 @@
 @source worklist-repin title="The worklist" path="src/sources/worklist.mjs" lines=97:110
 @source model-smallest title="A minimal model" path="docs/reference/model.md" lines=26:28
 @source model-minimal title="The smallest model" path="docs/reference/model.md" lines=33:53
-@source changelog-first title="The first release" path="CHANGELOG.md" lines=847:853
-@source changelog-040 title="The 0.4.0 release" path="CHANGELOG.md" lines=266:271
+@source changelog-first title="The first release" path="CHANGELOG.md" lines=874:880
+@source changelog-040 title="The 0.4.0 release" path="CHANGELOG.md" lines=294:299
 
 ## What does a model hold, and when is it refused? {#p-model}
 
@@ -279,7 +279,7 @@ A build shows only that the delivery came from its inputs. A named reviewer acce
 
 ## How did Architecture Publisher get here? {#p-history}
 
-Architecture Publisher's changelog opens with 0.1.0-alpha.0 on 2026-09-18.[](source:changelog-first) Its 0.4.0, on 2026-10-30, made it a general model-to-media publisher.[](source:changelog-040) The timeline starts there and shows eight releases, up to 0.11.0, that changed what an author or a reviewer meets.
+Architecture Publisher's changelog opens with 0.1.0-alpha.0 on 2026-09-18.[](source:changelog-first) Its 0.4.0, on 2026-10-30, made it a general model-to-media publisher.[](source:changelog-040) The timeline starts there and shows nine releases, up to 0.12.0, that changed what an author or a reviewer meets.
 
 @diagram timeline id=history source=history.timeline.json title="How Architecture Publisher got here"
 

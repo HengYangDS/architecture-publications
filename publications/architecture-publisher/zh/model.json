@@ -6,7 +6,7 @@
   "title": "Architecture Publisher",
   "question": "Architecture Publisher 如何把架构模型变成图册和页面？",
   "summary": "作者用 archpub 处理模型。构建时先校验模型，按固定的修订把范围内的每个文件交给认领它的组件，再规划视图，把每个视图都布局在同一套网格上。随后排出一部图册，收入作者编排的总览，每个视图各占一幅图版；写出一个 Archify 页面，模型指定了导读时，页面就是作者写的导读；并写出一份清单，记录这些产物的摘要。交付物须经一位具名审阅人验收，才能出版。",
-  "scope": "v0.11.0 发布版的 Architecture Publisher：src/ 下的源码、包清单，以及各项随附物料的清单。",
+  "scope": "v0.12.0 发布版的 Architecture Publisher：src/ 下的源码、包清单，以及各项随附物料的清单。",
   "limits": [
     "每个组件按路径规则认领目录和文件，范围内的每个文件都归最具体的那项认领；关系引用的是导入或调用另一组件的模块。",
     "关系指源码中的导入和进程调用，并非运行时的先后顺序；共用的拒绝类型和子进程环境不画成关系。",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "a7de98b5fb27daa13a59dd311a3123980b893323",
+    "revision": "65452c600ff6e596ce13c769db54b740a26c5d6a",
     "browse": "https://github.com/HengYangDS/architecture-publisher/blob/{revision}/{path}"
   },
   "coverage": {
@@ -102,7 +102,7 @@
       "label": "archpub",
       "kind": "command",
       "details": {
-        "命令": "check、build、import likec4、scaffold guide、migrate、accept、publish",
+        "命令": "check、build、import likec4、scaffold guide、migrate、accept、publish、skill",
         "退出码": "0 完成、1 拒绝、2 用法错误、3 失败"
       },
       "files": ["src/cli/", "src/refusal.mjs", "package.json"]

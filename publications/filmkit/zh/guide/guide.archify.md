@@ -7,34 +7,35 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 - [录音只有完整收尾才能进入音轨](block:p-takes)，除非影片为它的衔接声明了尾音淡出。[](source:abrupt)
 - [画面只有通过门禁才会渲染](block:p-picture)，而且门禁针对的必须是当前的画面合成、时间线、样式表、字体和引擎版本。[](source:render-gate)
 
-@answer scope="Film Kit v0.19.0 · 提交 e62e799 · 源码及项目自带文档"
+@answer scope="Film Kit v0.20.0 · 提交 fbe9843 · 源码及项目自带文档"
 @meta locale=zh-CN style=editorial
 @source readme-what title="Film Kit 做什么" path="README.md" lines=3:3
 @source spec-rate title="帧率" path="src/filmkit/specification.py" lines=25:30
 @source spec-sound title="采样率与节目响度" path="src/filmkit/specification.py" lines=33:47
 @source sample-declaration title="示例影片的声明" path="examples/sample-film/content/film.toml" lines=6:22
-@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=296:300
-@source changelog-019 title="0.19.0 的改动" path="CHANGELOG.md" lines=7:23
+@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=311:315
+@source changelog-019 title="0.19.0 的改动" path="CHANGELOG.md" lines=24:39
+@source changelog-020 title="0.20.0 的改动" path="CHANGELOG.md" lines=7:23
 @source readme-engine title="引擎不带任何影片的内容" path="README.md" lines=5:5
 @source readme-requirements title="运行要求" path="README.md" lines=9:12
 @source readme-layout title="影片的目录结构" path="README.md" lines=18:26
-@source readme-words title="概念与读音" path="README.md" lines=61:64
-@source readme-neither title="两项检查都不声明的影片" path="README.md" lines=68:68
-@source readme-gate title="画面门禁" path="README.md" lines=80:80
-@source readme-metrics title="用影片的字体测量文字" path="README.md" lines=82:82
-@source readme-balance title="每一帧的平衡" path="README.md" lines=84:84
-@source readme-install title="在影片中安装引擎" path="README.md" lines=165:175
-@source readme-commands title="命令" path="README.md" lines=181:197
-@source readme-endings title="完整收尾" path="README.md" lines=201:203
-@source readme-dev title="开发" path="README.md" lines=225:225
+@source readme-words title="概念与读音" path="README.md" lines=62:65
+@source readme-neither title="两项检查都不声明的影片" path="README.md" lines=69:69
+@source readme-gate title="画面门禁" path="README.md" lines=87:87
+@source readme-metrics title="用影片的字体测量文字" path="README.md" lines=89:89
+@source readme-balance title="每一帧的平衡" path="README.md" lines=91:91
+@source readme-install title="在影片中安装引擎" path="README.md" lines=176:186
+@source readme-commands title="命令" path="README.md" lines=192:208
+@source readme-endings title="完整收尾" path="README.md" lines=212:214
+@source readme-dev title="开发" path="README.md" lines=236:236
 @source agents-contract title="引擎契约" path="AGENTS.md" lines=10:16
-@source changelog-pin title="影片保留原有的锁定版本" path="CHANGELOG.md" lines=196:196
+@source changelog-pin title="影片保留原有的锁定版本" path="CHANGELOG.md" lines=211:211
 @source film-root title="查找影片" path="src/filmkit/repository.py" lines=28:50
-@source film-load title="检查声明" path="src/filmkit/film.py" lines=379:394
+@source film-load title="检查声明" path="src/filmkit/film.py" lines=386:401
 @source edition-places title="语言版写到哪里" path="src/filmkit/production.py" lines=138:154
 @source renditions title="四部交付成片" path="src/filmkit/production.py" lines=63:74
 @source program-level title="统一的节目响度" path="src/filmkit/specification.py" lines=45:47
-@source produce-actions title="制作动作" path="src/filmkit/produce.py" lines=63:89
+@source produce-actions title="制作动作" path="src/filmkit/produce.py" lines=77:114
 @source narrate-gate title="语音合成之前的检查" path="src/filmkit/narration/narrate.py" lines=111:121
 @source narrate-steps title="语音合成、对齐、转写" path="src/filmkit/narration/narrate.py" lines=54:108
 @source concepts-doc title="概念检查" path="src/filmkit/concepts.py" lines=1:15
@@ -54,20 +55,20 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @source snapshots title="锁定版本的语音模型" path="src/filmkit/narration/snapshots.py" lines=58:86
 @source supply-doc title="供应" path="src/filmkit/supply.py" lines=1:7
 @source assembly-doc title="拼接" path="src/filmkit/soundtrack/assembly.py" lines=1:10
-@source abrupt title="拒绝收尾突兀的录音" path="src/filmkit/soundtrack/assembly.py" lines=127:147
-@source program-gain title="用一次增益达到节目响度" path="src/filmkit/soundtrack/assembly.py" lines=413:434
+@source abrupt title="拒绝收尾突兀的录音" path="src/filmkit/soundtrack/assembly.py" lines=156:176
+@source program-gain title="用一次增益达到节目响度" path="src/filmkit/soundtrack/assembly.py" lines=511:532
 @source releases title="声明的尾音淡出" path="src/filmkit/soundtrack/policy.py" lines=159:170
 @source captions-doc title="字幕定时" path="src/filmkit/captions/timing.py" lines=1:6
 @source gate-doc title="画面门禁" path="src/filmkit/picture/gates.py" lines=1:37
 @source frame-gates title="来自评审的规则" path="src/filmkit/picture/gates.py" lines=56:57
 @source gate-check title="check-picture" path="src/filmkit/picture/gates.py" lines=377:449
-@source candidate-inputs title="预置绑定的输入" path="src/filmkit/picture/rendering.py" lines=105:135
-@source require-renderer title="唯一的渲染器版本" path="src/filmkit/picture/rendering.py" lines=191:201
-@source stage title="画面的预置" path="src/filmkit/picture/rendering.py" lines=235:285
-@source render-gate title="渲染须有通过的门禁" path="src/filmkit/picture/rendering.py" lines=471:498
-@source render title="渲染画面" path="src/filmkit/picture/rendering.py" lines=501:555
-@source validate title="校验画面" path="src/filmkit/picture/rendering.py" lines=586:596
-@source equivalence-doc title="只在字幕上不同" path="src/filmkit/picture/equivalence.py" lines=1:32
+@source candidate-inputs title="预置绑定的输入" path="src/filmkit/picture/rendering.py" lines=123:153
+@source require-renderer title="唯一的渲染器版本" path="src/filmkit/picture/rendering.py" lines=209:219
+@source stage title="画面的预置" path="src/filmkit/picture/rendering.py" lines=253:303
+@source render-gate title="渲染须有通过的门禁" path="src/filmkit/picture/rendering.py" lines=489:516
+@source render title="渲染画面" path="src/filmkit/picture/rendering.py" lines=585:642
+@source validate title="校验画面" path="src/filmkit/picture/rendering.py" lines=656:666
+@source equivalence-doc title="只在字幕上不同" path="src/filmkit/picture/equivalence.py" lines=1:33
 @source tools-doc title="Node 工具运行器" path="src/filmkit/tools.py" lines=1:17
 @source headless-doc title="无头运行的画面合成" path="src/filmkit/picture/headless-composition.mjs" lines=1:13
 @source package-doc title="打包" path="src/filmkit/delivery/packaging.py" lines=1:31
@@ -279,7 +280,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 
 ## Film Kit 怎样走到今天？ {#p-history}
 
-Film Kit 在 2026 年 10 月 30 日发布 v0.1.0，11 月 10 日发布 v0.19.0。[](source:changelog-010)[](source:changelog-019)下面列出其中改变影片做法的十二个版本。仓库里没有带日期的路线图，还没做的事列在本页最后。
+Film Kit 在 2026 年 10 月 30 日发布 v0.1.0，11 月 12 日发布 v0.20.0。[](source:changelog-010)[](source:changelog-020)下面列出其中改变影片做法的十三个版本。仓库里没有带日期的路线图，还没做的事列在本页最后。
 
 @diagram timeline id=history source=history.timeline.json title="Film Kit 怎样走到今天"
 

@@ -1,7 +1,7 @@
 # Architecture Publisher: term renderings
 
 The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `architecture-publisher` at v0.11.0 (`a7de98b`) that defines or uses the term; the edition's own
+names the file of `architecture-publisher` at v0.12.0 (`65452c6`) that defines or uses the term; the edition's own
 Chinese words come from `src/edition/words.mjs` and `src/locale.mjs`. Renderings marked "approved" are the
 owner-approved shared renderings.
 

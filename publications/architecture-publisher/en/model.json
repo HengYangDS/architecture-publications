@@ -6,7 +6,7 @@
   "title": "Architecture Publisher",
   "question": "How does Architecture Publisher turn an architecture model into a print edition and a page?",
   "summary": "An author runs archpub on a model. A build validates it, gives each file in its scope to the component that claims it at the pinned revision, plans the views and lays each out on one grid. It typesets a print edition of the overview the author composes and one plate per view, writes one Archify page, which is the author's guide when the model names one, and a manifest of their digests; a named reviewer accepts the delivery before it is published.",
-  "scope": "Architecture Publisher as released at v0.11.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
+  "scope": "Architecture Publisher as released at v0.12.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
   "limits": [
     "Each component claims the directories and files its path rules name, and each file in the scope goes to its most specific claim; a relation cites the modules that import or call the other component.",
     "Relations are imports and process calls in the source, not runtime order; the shared refusal type and the child environment are not drawn as relations.",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "a7de98b5fb27daa13a59dd311a3123980b893323",
+    "revision": "65452c600ff6e596ce13c769db54b740a26c5d6a",
     "browse": "https://github.com/HengYangDS/architecture-publisher/blob/{revision}/{path}"
   },
   "coverage": {
@@ -102,7 +102,7 @@
       "label": "archpub",
       "kind": "command",
       "details": {
-        "commands": "check, build, import likec4, scaffold guide, migrate, accept, publish",
+        "commands": "check, build, import likec4, scaffold guide, migrate, accept, publish, skill",
         "exits": "0 done, 1 refused, 2 usage, 3 failure"
       },
       "files": ["src/cli/", "src/refusal.mjs", "package.json"]

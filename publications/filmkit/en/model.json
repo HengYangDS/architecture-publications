@@ -6,7 +6,7 @@
   "title": "Film Kit",
   "question": "How does Film Kit rebuild a film's two editions from its tracked sources, and what holds each step to its inputs?",
   "summary": "Film Kit narrates each edition thought by thought with a pinned local voice model, assembles one soundtrack at one program level, times the captions, gates and renders the picture, and packages four films, a UHD master and a 1080p film each with captions and without. Each step records the SHA-256 of what it read, and a later step refuses a record bound to other bytes.",
-  "scope": "The Film Kit engine as released at v0.19.0: the src/filmkit package, with its Python modules, Node tools and watch list, and the pyproject.toml and VERSION that package it.",
+  "scope": "The Film Kit engine as released at v0.20.0: the src/filmkit package, with its Python modules, Node tools and watch list, and the pyproject.toml and VERSION that package it.",
   "limits": [
     "Each component cites every file the rules attribute to it; a relation cites the modules that make its call or run its process.",
     "Relations are calls and process calls in the source, not runtime order, and not every call is drawn: reads of the film record and the spoken units, which most modules make, and the calls that verification and review make across the build are named in component details.",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "filmkit",
     "url": "https://github.com/HengYangDS/filmkit.git",
-    "revision": "e62e7996587d0cfc5e599be78a66747072c83893",
+    "revision": "fbe984344368ff55edfe6dbf627bcbe0147de2da",
     "browse": "https://github.com/HengYangDS/filmkit/blob/{revision}/{path}"
   },
   "coverage": {
@@ -365,7 +365,9 @@
         "src/filmkit/picture/rendering.py",
         "src/filmkit/picture/still_scan.py",
         "src/filmkit/picture/equivalence.py",
-        "src/filmkit/picture/faults.py"
+        "src/filmkit/picture/faults.py",
+        "src/filmkit/picture/draft.py",
+        "src/filmkit/picture/repair.py"
       ]
     },
     {
@@ -442,7 +444,7 @@
       "kind": "contract",
       "details": {
         "packages": "src/filmkit as one wheel, its Node tools included",
-        "version": "0.19.0, from VERSION",
+        "version": "0.20.0, from VERSION",
         "depends": "mlx-audio 0.6.4, NumPy, Pillow, Pydantic and pypinyin"
       },
       "files": ["pyproject.toml", "VERSION"]

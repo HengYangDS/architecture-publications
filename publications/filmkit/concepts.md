@@ -1,7 +1,7 @@
 # Film Kit: term renderings
 
 The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `filmkit` at v0.19.0 (`e62e799`) that defines or uses the term. Film Kit's own Chinese words come
+names the file of `filmkit` at v0.20.0 (`fbe9843`) that defines or uses the term. Film Kit's own Chinese words come
 from its player (`src/filmkit/delivery/player.py`) and its sample film (`examples/sample-film/`); the owner-approved
 film editions are cited as `ethos-film` at v1.0.1 (`c33e60f`) or `ddwg-film`, the repository
 `data-department-work-guidelines-film` at v1.2.0 (`f286c43`), with their file. An edition is one language version of

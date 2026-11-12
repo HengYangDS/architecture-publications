@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "e62e7996587d0cfc5e599be78a66747072c83893"
+      "revision": "fbe984344368ff55edfe6dbf627bcbe0147de2da"
     }
   },
   "components": [
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "src/filmkit/produce.py",
-          "line": 63,
-          "end_line": 89,
+          "line": 77,
+          "end_line": 114,
           "label": "Actions"
         }
       ]
@@ -71,8 +71,8 @@
       "sources": [
         {
           "path": "src/filmkit/soundtrack/assembly.py",
-          "line": 480,
-          "end_line": 561,
+          "line": 576,
+          "end_line": 631,
           "label": "Assemble"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "src/filmkit/picture/rendering.py",
-          "line": 501,
-          "end_line": 555,
+          "line": 585,
+          "end_line": 642,
           "label": "Render"
         }
       ]

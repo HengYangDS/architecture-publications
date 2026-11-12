@@ -6,7 +6,7 @@
   "title": "Film Kit",
   "question": "Film Kit 怎样用受版本管理的源文件，重建一部影片的两个语言版？又靠什么保证每一步用的都是该用的输入？",
   "summary": "Film Kit 用锁定版本的本地语音合成模型逐个意群朗读每个语言版，按统一的节目响度拼成一条音轨，给字幕定时，画面先过门禁再渲染，最后打包出四部成片：超高清母版和 1080p 观看版，各有带字幕和无字幕两种。每一步都记下所读内容的 SHA-256，记录绑定的字节一旦对不上，后面的步骤就拒绝它。",
-  "scope": "v0.19.0 发布时的 Film Kit 引擎：src/filmkit 包，包括 Python 模块、Node 工具和关注列表，以及用来打包它的 pyproject.toml 和 VERSION。",
+  "scope": "v0.20.0 发布时的 Film Kit 引擎：src/filmkit 包，包括 Python 模块、Node 工具和关注列表，以及用来打包它的 pyproject.toml 和 VERSION。",
   "limits": [
     "每个组件都引用规则划归给它的全部文件，每条关系引用发起调用或运行进程的模块。",
     "关系表示源码里的调用和进程调用，不表示运行顺序，也没有把每次调用都画出来：读取影片记录和朗读单元的调用多数模块都有，核验和评审的调用遍及整个构建，这些都写在组件详情里。",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "filmkit",
     "url": "https://github.com/HengYangDS/filmkit.git",
-    "revision": "e62e7996587d0cfc5e599be78a66747072c83893",
+    "revision": "fbe984344368ff55edfe6dbf627bcbe0147de2da",
     "browse": "https://github.com/HengYangDS/filmkit/blob/{revision}/{path}"
   },
   "coverage": {
@@ -365,7 +365,9 @@
         "src/filmkit/picture/rendering.py",
         "src/filmkit/picture/still_scan.py",
         "src/filmkit/picture/equivalence.py",
-        "src/filmkit/picture/faults.py"
+        "src/filmkit/picture/faults.py",
+        "src/filmkit/picture/draft.py",
+        "src/filmkit/picture/repair.py"
       ]
     },
     {
@@ -442,7 +444,7 @@
       "kind": "contract",
       "details": {
         "打包": "把 src/filmkit 打成一个 wheel，Node 工具也打在里面",
-        "版本": "0.19.0，取自 VERSION",
+        "版本": "0.20.0，取自 VERSION",
         "依赖": "mlx-audio 0.6.4、NumPy、Pillow、Pydantic 和 pypinyin"
       },
       "files": ["pyproject.toml", "VERSION"]

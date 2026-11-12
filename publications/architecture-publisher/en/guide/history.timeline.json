@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "a7de98b5fb27daa13a59dd311a3123980b893323"
+      "revision": "65452c600ff6e596ce13c769db54b740a26c5d6a"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 266,
-          "end_line": 276,
+          "line": 294,
+          "end_line": 304,
           "label": "0.4.0"
         }
       ]
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 221,
-          "end_line": 226,
+          "line": 249,
+          "end_line": 254,
           "label": "0.6.0"
         }
       ]
@@ -71,8 +71,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 114,
-          "end_line": 159,
+          "line": 142,
+          "end_line": 187,
           "label": "0.8.0"
         }
       ]
@@ -86,8 +86,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 97,
-          "end_line": 105,
+          "line": 125,
+          "end_line": 133,
           "label": "0.9.0"
         }
       ]
@@ -102,14 +102,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 53,
-          "end_line": 64,
+          "line": 81,
+          "end_line": 92,
           "label": "0.10.0"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 89,
-          "end_line": 92,
+          "line": 117,
+          "end_line": 120,
           "label": "Removed"
         }
       ]
@@ -123,8 +123,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 40,
-          "end_line": 51,
+          "line": 68,
+          "end_line": 79,
           "label": "0.10.1"
         }
       ]
@@ -138,8 +138,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 31,
-          "end_line": 38,
+          "line": 59,
+          "end_line": 66,
           "label": "0.10.2"
         }
       ]
@@ -153,9 +153,24 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 10,
-          "end_line": 23,
+          "line": 38,
+          "end_line": 51,
           "label": "0.11.0"
+        }
+      ]
+    },
+    {
+      "id": "v0120",
+      "at": "2026-11-12T14:40:48+08:00",
+      "lane": "edition",
+      "title": "0.12.0 Easy to start",
+      "detail": "Each command explains itself with --help, the agent Skill ships with the package, archives cover Linux and Windows on x86-64, and every reading in the edition is justified.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 10,
+          "end_line": 36,
+          "label": "0.12.0"
         }
       ]
     }
