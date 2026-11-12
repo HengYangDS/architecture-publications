@@ -4,12 +4,17 @@
       with 0.2.0-beta.9, checked against the release's `SHA256SUMS` and asset digests, and lock it
       again with native `mise lock`; done when the lock holds 0.2.0-beta.9 for every platform it
       held 0.2.0-beta.8 for, no 0.2.0-beta.8 entry remains, the Node entries are unchanged and it
-      keeps `lockfile_version = 3`.
+      keeps `lockfile_version = 3`. The declaration's five platform checksums equal the release's
+      `SHA256SUMS` and the asset digests; the lock, written with Mise 2026.11.7, which reproduces
+      the 0.2.0-beta.8 lock byte for byte, holds 0.2.0-beta.9 for the same six platform entries,
+      keeps Node 26.13.0 and `lockfile_version = 3`, and has no 0.2.0-beta.8 entry.
 - [x] 1.2 Bind the repository family to the 0.2.0-beta.9 runtime with the locked console's
       `hook install`, keeping 0.2.0-beta.8 as the rollback; done when `ethos status` reports the
-      lane ready under the 0.2.0-beta.9 runtime.
+      lane ready under the 0.2.0-beta.9 runtime. `CURRENT` names the 0.2.0b9 runtime and `ROLLBACK`
+      the 0.2.0-beta.8 one; status after the bind passes in the lane.
 - [x] 1.3 Check both pipelines against the 0.2.0-beta.9 common model; done when
-      `ethos lane project --check --json` reports both projections conforming. The declaration's five platform checksums equal the release's `SHA256SUMS` and the asset digests; the lock, written with Mise 2026.11.7, which reproduces the 0.2.0-beta.8 lock byte for byte, holds 0.2.0-beta.9 for the same six platform entries, keeps Node 26.13.0 and `lockfile_version = 3`, and has no 0.2.0-beta.8 entry. `CURRENT` names the 0.2.0b9 runtime and `ROLLBACK` the 0.2.0-beta.8 one; status after the bind passes in the lane. The check reports `conforming` under 0.2.0-beta.9, so the workflow does not change.
+      `ethos lane project --check --json` reports both projections conforming. The check reports
+      `conforming` under 0.2.0-beta.9, so the workflow does not change.
 
 ## 2. ETHOS work
 
