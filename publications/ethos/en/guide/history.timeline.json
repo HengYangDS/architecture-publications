@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/ethos.git",
       "provider": "github",
-      "revision": "9bf5bdda7292951e1d8a14ee474a0db767daece4"
+      "revision": "999784081fa3de9a97879ac17862f425b8120437"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -43,8 +43,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1902,
-          "end_line": 1910,
+          "line": 1975,
+          "end_line": 1983,
           "label": "0.2.0-alpha.5"
         }
       ]
@@ -58,8 +58,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1814,
-          "end_line": 1827,
+          "line": 1887,
+          "end_line": 1900,
           "label": "0.2.0-alpha.6"
         }
       ]
@@ -73,20 +73,20 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1662,
-          "end_line": 1666,
+          "line": 1735,
+          "end_line": 1739,
           "label": "0.2.0-alpha.8"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 1716,
-          "end_line": 1721,
+          "line": 1789,
+          "end_line": 1794,
           "label": "0.2.0-alpha.8"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 1620,
-          "end_line": 1622,
+          "line": 1693,
+          "end_line": 1695,
           "label": "0.2.0-alpha.10"
         }
       ]
@@ -101,8 +101,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1403,
-          "end_line": 1414,
+          "line": 1476,
+          "end_line": 1487,
           "label": "0.2.0-alpha.18"
         }
       ]
@@ -116,8 +116,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1354,
-          "end_line": 1357,
+          "line": 1427,
+          "end_line": 1430,
           "label": "0.2.0-alpha.19"
         }
       ]
@@ -131,8 +131,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1214,
-          "end_line": 1220,
+          "line": 1287,
+          "end_line": 1293,
           "label": "0.2.0-alpha.22"
         }
       ]
@@ -147,8 +147,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1092,
-          "end_line": 1101,
+          "line": 1165,
+          "end_line": 1174,
           "label": "0.2.0-alpha.26"
         }
       ]
@@ -162,8 +162,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1034,
-          "end_line": 1043,
+          "line": 1107,
+          "end_line": 1116,
           "label": "0.2.0-alpha.27"
         }
       ]
@@ -177,8 +177,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 867,
-          "end_line": 874,
+          "line": 940,
+          "end_line": 947,
           "label": "0.2.0-alpha.29"
         }
       ]
@@ -192,8 +192,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 735,
-          "end_line": 757,
+          "line": 808,
+          "end_line": 830,
           "label": "0.2.0-beta.2"
         }
       ]
@@ -208,8 +208,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 635,
-          "end_line": 650,
+          "line": 708,
+          "end_line": 723,
           "label": "0.2.0-beta.3"
         }
       ]
@@ -224,14 +224,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 422,
-          "end_line": 431,
+          "line": 495,
+          "end_line": 504,
           "label": "0.2.0-beta.6"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 449,
-          "end_line": 454,
+          "line": 522,
+          "end_line": 527,
           "label": "0.2.0-beta.6"
         }
       ]
@@ -246,14 +246,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 139,
-          "end_line": 153,
+          "line": 212,
+          "end_line": 226,
           "label": "0.2.0-beta.7"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 414,
-          "end_line": 416,
+          "line": 487,
+          "end_line": 489,
           "label": "0.2.0-beta.7"
         }
       ]
@@ -267,9 +267,31 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 19,
-          "end_line": 21,
+          "line": 92,
+          "end_line": 94,
           "label": "0.2.0-beta.8"
+        }
+      ]
+    },
+    {
+      "id": "beta-9",
+      "at": "2026-11-12T18:58:15+08:00",
+      "lane": "paradigm",
+      "kind": "change",
+      "title": "beta.9 OpenSpec 2.0 and tutorials",
+      "detail": "The embedded OpenSpec CLI moves to 2.0.0; the skills that OpenSpec installs in .agents/skills/ and records as its own are now routed to OpenSpec. The documentation registry admits role: tutorial, Diátaxis's learning-oriented page.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 35,
+          "end_line": 40,
+          "label": "0.2.0-beta.9"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 26,
+          "end_line": 27,
+          "label": "0.2.0-beta.9"
         }
       ]
     }

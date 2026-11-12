@@ -18,12 +18,12 @@
 
 ## 2. ETHOS work
 
-- [ ] 2.1 Re-pin the ETHOS work at v0.2.0-beta.9 in both languages: update the claims, relations and
+- [x] 2.1 Re-pin the ETHOS work at v0.2.0-beta.9 in both languages: update the claims, relations and
       guide citations the worklist names, add beta.9 to the history and name the pin in the README,
       term table, scope and overview; done when `archpub check --repo` against v0.2.0-beta.9
       refuses nothing, leaves no file uncovered and finds every citation the same.
 
 ## 3. Record
 
-- [ ] 3.1 Record the move under `Unreleased` in `CHANGELOG.md`; done when `mise run check` passes and
+- [x] 3.1 Record the move under `Unreleased` in `CHANGELOG.md`; done when `mise run check` passes and
       both ETHOS pages build with Architecture Publisher 0.12.0.

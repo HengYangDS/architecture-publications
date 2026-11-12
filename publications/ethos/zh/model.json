@@ -6,7 +6,7 @@
   "title": "ETHOS",
   "question": "ETHOS 怎样根据正式意图和当下的事实改动仓库，并让每次改动都经过证明？它又要求每个仓库守住什么？",
   "summary": "ETHOS 把 OpenSpec 正式变更、当下的事实和先前的核验记录编译成一份 TransitionPlan，每项改动只有判定为 pass 才放行。每个受治理的仓库，包括 ETHOS 自己，都要遵守同一套声明好的结构。",
-  "scope": "ETHOS 产品的 v0.2.0-beta.8 发布版：src/ethos 包、system/ 中的声明，以及仓库自己的 .ethos 绑定。",
+  "scope": "ETHOS 产品的 v0.2.0-beta.9 发布版：src/ethos 包、system/ 中的声明，以及仓库自己的 .ethos 绑定。",
   "limits": [
     "每个组件都列出规则划归它的全部文件；每条关系都列出导入对方组件的模块。",
     "关系是源码中的导入和进程调用，不代表运行时顺序或设计意图。"
@@ -14,7 +14,7 @@
   "repository": {
     "name": "ethos",
     "url": "https://github.com/HengYangDS/ethos.git",
-    "revision": "9bf5bdda7292951e1d8a14ee474a0db767daece4",
+    "revision": "999784081fa3de9a97879ac17862f425b8120437",
     "browse": "https://github.com/HengYangDS/ethos/blob/{revision}/{path}"
   },
   "coverage": {
@@ -455,7 +455,8 @@
       "files": [
         "src/ethos/adapters/repo/commit/",
         "src/ethos/adapters/repo/trust_anchor/",
-        "src/ethos/repository/policy/commit.py"
+        "src/ethos/repository/policy/commit.py",
+        "src/ethos/repository/rebuild_record.py"
       ]
     },
     {

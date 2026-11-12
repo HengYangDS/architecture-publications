@@ -7,7 +7,7 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 - [Every effect is compiled, judged, freshly admitted and applied by exact compare-and-swap](block:p-plan).[](source:invariants)
 - [Each kind of evidence proves only its own plane](block:p-evidence), so local proof is not anti-forgery assurance.[](source:planes)[](source:proof-boundary)
 
-@answer scope="ETHOS v0.2.0-beta.8 · commit 9bf5bdd · its source and its own documents · proof timings measured on 2026-11-08 under v0.2.0-beta.6"
+@answer scope="ETHOS v0.2.0-beta.9 · commit 9997840 · its source and its own documents · proof timings measured on 2026-11-08 under v0.2.0-beta.6"
 @meta locale=en style=editorial
 @source kernel title="The kernel" path="README.md" lines=100:107
 @source native title="What stays native" path="README.md" lines=26:29
@@ -91,8 +91,8 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 @source python-range title="The supported Python versions" path="pyproject.toml" lines=1:6
 @source branch-roles title="The branch roles" path="src/ethos/contracts/paradigm/paradigm.toml" lines=50:57
 @source parameters title="Per-file ceilings and the gate deadline" path="src/ethos/contracts/paradigm/paradigm.toml" lines=94:129
-@source changelog-first title="0.1.0-alpha.1, the first entry" path="CHANGELOG.md" lines=2129:2135
-@source changelog-pinned title="0.2.0-beta.8, the pinned release" path="CHANGELOG.md" lines=15:21
+@source changelog-first title="0.1.0-alpha.1, the first entry" path="CHANGELOG.md" lines=2202:2208
+@source changelog-pinned title="0.2.0-beta.9, the pinned release" path="CHANGELOG.md" lines=15:27
 
 ## Who uses ETHOS, and what does it own? {#p-context}
 
@@ -305,7 +305,7 @@ Four authored verses constrain its design.[](source:root-constraint) They ask to
 
 ## How did ETHOS get here? {#p-history}
 
-ETHOS's changelog opens with 0.1.0-alpha.1 on 2026-06-30 and reaches 0.2.0-beta.8 on 2026-11-12.[](source:changelog-first)[](source:changelog-pinned) Fourteen 0.2.0 releases along the way changed what ETHOS does for the repositories it governs; each is labelled by its pre-release name.
+ETHOS's changelog opens with 0.1.0-alpha.1 on 2026-06-30 and reaches 0.2.0-beta.9 on 2026-11-12.[](source:changelog-first)[](source:changelog-pinned) Fifteen 0.2.0 releases along the way changed what ETHOS does for the repositories it governs; each is labelled by its pre-release name.
 
 @diagram timeline id=history source=history.timeline.json title="How ETHOS got here"
 

@@ -1,7 +1,7 @@
 # ETHOS: term renderings
 
 The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `ethos` at v0.2.0-beta.8 (`9bf5bdd`) that defines or uses the term; "film" is the owner-approved
+names the file of `ethos` at v0.2.0-beta.9 (`9997840`) that defines or uses the term; "film" is the owner-approved
 Chinese narration, `content/narration.md` of `ethos-film` at v1.0.1 (`c33e60f`). Product names, command names and
 their options, verdict values (`pass`, `block`, `unknown`), file and ref names, and the kernel names Commitment, Facts
 and TransitionPlan stay in Latin type.

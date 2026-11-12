@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([ETHOS · 问道], [Intent is compiled and proven before the repository moves], [Each step compiles official intent and fresh facts into one TransitionPlan; only a pass admits an effect, every effect is one exact compare-and-swap, and no Attestation grants authority.], read-from: [Read from 505 files, each cited by its SHA-256.], claim-x: 196pt)
+#masthead([ETHOS · 问道], [Intent is compiled and proven before the repository moves], [Each step compiles official intent and fresh facts into one TransitionPlan; only a pass admits an effect, every effect is one exact compare-and-swap, and no Attestation grants authority.], read-from: [Read from 515 files, each cited by its SHA-256.], claim-x: 196pt)
 
 // ── Band 1: the repository's roles above, one change below them ───────────
 #let ys = 236pt

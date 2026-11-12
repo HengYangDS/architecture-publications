@@ -6,7 +6,7 @@
   "title": "ETHOS",
   "question": "How does ETHOS turn official intent and fresh facts into proven repository change, and what does it hold every repository to?",
   "summary": "ETHOS compiles an OpenSpec Change, fresh facts and prior Attestations into a TransitionPlan, admits each effect only on a pass, and holds every governed repository, itself included, to one declared structure.",
-  "scope": "The ETHOS product as released at v0.2.0-beta.8: the src/ethos package, its system declarations and the repository's own .ethos binding.",
+  "scope": "The ETHOS product as released at v0.2.0-beta.9: the src/ethos package, its system declarations and the repository's own .ethos binding.",
   "limits": [
     "Each component cites every file the rules attribute to it; a relation cites the modules that import the other component.",
     "Relations are imports and process calls in the source, not runtime order or design intent."
@@ -14,7 +14,7 @@
   "repository": {
     "name": "ethos",
     "url": "https://github.com/HengYangDS/ethos.git",
-    "revision": "9bf5bdda7292951e1d8a14ee474a0db767daece4",
+    "revision": "999784081fa3de9a97879ac17862f425b8120437",
     "browse": "https://github.com/HengYangDS/ethos/blob/{revision}/{path}"
   },
   "coverage": {
@@ -455,7 +455,8 @@
       "files": [
         "src/ethos/adapters/repo/commit/",
         "src/ethos/adapters/repo/trust_anchor/",
-        "src/ethos/repository/policy/commit.py"
+        "src/ethos/repository/policy/commit.py",
+        "src/ethos/repository/rebuild_record.py"
       ]
     },
     {

@@ -7,7 +7,7 @@ ETHOS 准入改动只看证据：OpenSpec 正式变更说明意图，当场观�
 - [每次改动都要经过编译和判定，当场放行，再用精确的 compare-and-swap 执行](block:p-plan)。[](source:invariants)
 - [每种证据只证明自己那个层面](block:p-evidence)，所以本地证明不是防伪保证。[](source:planes)[](source:proof-boundary)
 
-@answer scope="ETHOS v0.2.0-beta.8 · 提交 9bf5bdd · 它的源码和文档 · 证明耗时实测于 2026-11-08，所用版本为 v0.2.0-beta.6"
+@answer scope="ETHOS v0.2.0-beta.9 · 提交 9997840 · 它的源码和文档 · 证明耗时实测于 2026-11-08，所用版本为 v0.2.0-beta.6"
 @meta locale=zh-CN style=editorial
 @source kernel title="内核" path="README.md" lines=100:107
 @source native title="哪些保持原生" path="README.md" lines=26:29
@@ -91,8 +91,8 @@ ETHOS 准入改动只看证据：OpenSpec 正式变更说明意图，当场观�
 @source python-range title="支持的 Python 版本" path="pyproject.toml" lines=1:6
 @source branch-roles title="分支角色" path="src/ethos/contracts/paradigm/paradigm.toml" lines=50:57
 @source parameters title="单个文件的上限与门禁时限" path="src/ethos/contracts/paradigm/paradigm.toml" lines=94:129
-@source changelog-first title="第一条记录：0.1.0-alpha.1" path="CHANGELOG.md" lines=2129:2135
-@source changelog-pinned title="本作品锁定的 0.2.0-beta.8" path="CHANGELOG.md" lines=15:21
+@source changelog-first title="第一条记录：0.1.0-alpha.1" path="CHANGELOG.md" lines=2202:2208
+@source changelog-pinned title="本作品锁定的 0.2.0-beta.9" path="CHANGELOG.md" lines=15:27
 
 ## 谁在使用 ETHOS，它又负责什么？ {#p-context}
 
@@ -305,7 +305,7 @@ xychart-beta horizontal
 
 ## ETHOS 怎样走到今天？ {#p-history}
 
-变更日志第一条是 2026 年 6 月 30 日的 0.1.0-alpha.1；本作品锁定 0.2.0-beta.8，它发布于 11 月 12 日。[](source:changelog-first)[](source:changelog-pinned)下面列出其间十四个版本，图中按预发布名标注，它们改变了 ETHOS 为受治理的仓库所做的事。
+变更日志第一条是 2026 年 6 月 30 日的 0.1.0-alpha.1；本作品锁定 0.2.0-beta.9，它发布于 11 月 12 日。[](source:changelog-first)[](source:changelog-pinned)下面列出其间十五个版本，图中按预发布名标注，它们改变了 ETHOS 为受治理的仓库所做的事。
 
 @diagram timeline id=history source=history.timeline.json title="ETHOS 怎样走到今天"
 
