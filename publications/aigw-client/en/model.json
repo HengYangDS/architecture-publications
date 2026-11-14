@@ -6,7 +6,7 @@
   "title": "AIGW Client Projection",
   "question": "How does AIGW turn one reviewed configuration into guarded client files in every admitted client?",
   "summary": "AIGW keeps providers, models and client selections in one locked configuration, aigw.toml, and its Tokens in one selected store. It writes AIGW's settings into each client's files through one adapter seam, as a guarded, compensated transaction. It never carries a request.",
-  "scope": "The AIGW program as released at v0.7.1: its production Go packages, the command entry point, the team file and go.mod.",
+  "scope": "The AIGW program as released at v0.7.2: its production Go packages, the command entry point, the team file and go.mod.",
   "limits": [
     "Each component cites every production file the rules attribute to it; a relation cites the files of the packages that import the other component.",
     "Tests, their inputs and the repository's tools, CI and documentation are outside the scope."
@@ -14,7 +14,7 @@
   "repository": {
     "name": "aigw-cli",
     "url": "https://github.com/HengYangDS/aigw-cli.git",
-    "revision": "e63cd12f91b7bb8bb5e1605742bd4aefe92e6a35",
+    "revision": "ed8b2fed94ef569f0f2d7fdfd2ec3259c65e37e2",
     "browse": "https://github.com/HengYangDS/aigw-cli/blob/{revision}/{path}"
   },
   "coverage": {

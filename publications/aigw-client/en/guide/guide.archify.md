@@ -7,7 +7,7 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 - [No client file holds a Token](block:p-token): a helper reads it from one selected store when the client asks.[](source:helper-projection)
 - [Each check proves one more thing](block:p-ready), and synchronized client files are not an answered request.[](source:experience-readiness)
 
-@answer scope="AIGW v0.7.1 · commit e63cd12 · its source and its own documents"
+@answer scope="AIGW v0.7.2 · commit ed8b2fe · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What AIGW is" path="README.md" lines=3:6
 @source readme-install title="Install" path="README.md" lines=30:42
@@ -74,12 +74,17 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 @source readme-for title="The clients aigw takes" path="README.md" lines=164:164
 @source readme-environment title="Environment Tokens" path="README.md" lines=183:185
 @source manifest-provider title="A provider in the team file" path="manifests/team.toml" lines=1:18
-@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=1020:1040
-@source changelog-071 title="The 0.7.1 release" path="CHANGELOG.md" lines=14:52
-@source setup-model-kept title="A model preference kept at the first setup" path="CHANGELOG.md" lines=18:22
-@source team-labels title="The labels a team file replaces" path="CHANGELOG.md" lines=23:25
-@source check-parent-session title="A client check inside an agent session" path="CHANGELOG.md" lines=26:30
-@source check-names title="Environment variable names on Windows" path="CHANGELOG.md" lines=32:34
+@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=1058:1066
+@source changelog-072 title="The 0.7.2 release" path="CHANGELOG.md" lines=14:50
+@source setup-model-kept title="A model preference kept at the first setup" path="CHANGELOG.md" lines=56:60
+@source team-labels title="The labels a team file replaces" path="CHANGELOG.md" lines=61:63
+@source check-parent-session title="A client check inside an agent session" path="CHANGELOG.md" lines=64:68
+@source check-names title="Environment variable names on Windows" path="CHANGELOG.md" lines=70:72
+@source check-client-report title="A client's own warning or error" path="CHANGELOG.md" lines=18:29
+@source check-codex-memory title="Codex's memory work in a client check" path="CHANGELOG.md" lines=30:31
+@source redaction-forms title="The credential forms that redaction covers" path="CHANGELOG.md" lines=32:36
+@source check-schema title="The JSON document of aigw check" path="CHANGELOG.md" lines=40:44
+@source team-lines title="The newest model of every line" path="CHANGELOG.md" lines=45:47
 
 ## Who uses AIGW, and what does it touch? {#p-context}
 
@@ -90,7 +95,7 @@ AIGW's value hypothesis: a team member with any one supported provider credentia
 | Token store | The platform credential service when available, else one local fallback; an explicit `AIGW_SECRET_BACKEND` of `keyring`, `file` or `env` fails closed |
 | Environment Tokens | Read-only, from `AIGW_TOKEN_<PROVIDER>`; the client process must inherit the same environment |
 
-AIGW fixes these values.[](source:readme-for)[](source:readme-credentials)[](source:readme-environment) A team curates a team file of only reviewed provider endpoints and qualified models, without Tokens.[](source:rollout-maintainer) Below is the start of the shipped `manifests/team.toml`: its version and one provider with two of its models.[](source:manifest-provider)
+AIGW fixes these values.[](source:readme-for)[](source:readme-credentials)[](source:readme-environment) A team curates a team file of only reviewed provider endpoints and qualified models, without Tokens.[](source:rollout-maintainer) AIGW ships a team file of its own, which keeps the newest model of every Claude, GPT and Gemini line.[](source:team-lines) Below is the start of the shipped `manifests/team.toml`: its version and one provider with two of its models.[](source:manifest-provider)
 
 @code id=provider source=manifest-provider language=toml
 
@@ -222,7 +227,7 @@ AIGW's output answers three questions: what is selected, whether it is ready, an
 | step-status | aigw status | Reports each client's model and whether its client files are ready, without reading Tokens or running a client.[](source:experience-readiness) |
 | step-endpoint | aigw check --depth endpoint | Checks each endpoint with one request that names no model.[](source:readme-check)[](source:readme-depths) |
 | step-inference | aigw check | The default depth sends one bounded inference request per checked client, which may use provider quota.[](source:readme-check)[](source:experience-readiness) |
-| step-session | aigw check --depth client | Runs a real session in each enabled client, started without the variables of a parent agent session.[](source:readme-depths)[](source:check-parent-session) When it names no client and every client passes, it writes the verified snapshot that `aigw config rollback` restores first.[](source:verify-snapshot)[](source:rollback-snapshot) |
+| step-session | aigw check --depth client | Runs a real session in each enabled client, started without the variables of a parent agent session.[](source:readme-depths)[](source:check-parent-session) When it names no client and every client passes, it writes the verified snapshot that `aigw config rollback` restores first.[](source:verify-snapshot)[](source:rollback-snapshot) A client-depth check of Codex does not start Codex's memory work, which sends requests for another model than the one being checked.[](source:check-codex-memory) |
 
 | Depth or state | Meaning                                                                                                |
 | -------------- | ------------------------------------------------------------------------------------------------------ |
@@ -237,6 +242,12 @@ AIGW's output answers three questions: what is selected, whether it is ready, an
 | unavailable    | A required external capability is missing.                                                             |
 
 A check to one depth runs every depth before it.[](source:check-depths) On Windows, `aigw check` compares environment variable names without regard to letter case, so a lower-case `anthropic_auth_token` neither reaches a checked client nor escapes the `local` depth.[](source:check-names) Setup, synchronization, inspection and verification all report in these states, and the depth, not a state, says how much a check proved.[](source:readiness)
+
+When Codex or Claude Code itself reports a warning or an error, `aigw check <client> --depth client` says what to do. It names a configuration key that the client calls deprecated, such as `[features].multi_agent`, and the fix it gives is to remove that key.[](source:check-client-report)
+
+For another report, `--verbose` adds at most four of the client's own lines after AIGW's, without the provider's Token and the known credential forms. A client that authenticates itself, or through an external credential helper, shows no such lines, and the fix is to run the client itself.[](source:check-client-report)
+
+AIGW's redaction covers an `Authorization` header to the end of its line, a cookie header, and a URL's user with or without a password. It also covers a `key`, `sig` or `signature` query parameter and a bare `sk-` key of at least 20 further characters.[](source:redaction-forms) The JSON document of `aigw check` has `schema_version` 4, which adds `clients[].failure.client_report`: the client's own lines behind a failed session, present only with `--verbose`. For such a failure the next step is prose in `next_detail`, and `next_action` is absent.[](source:check-schema)
 
 ## What happens to a provider's models over time? {#p-catalog}
 
@@ -307,7 +318,7 @@ AIGW answers one question of four, and leaves the others to the products built f
 
 ## How did AIGW get here? {#p-history}
 
-AIGW released v0.1.0 on 19 September 2026 and v0.7.1, the version this page describes, on 12 November 2026.[](source:changelog-010)[](source:changelog-071) The timeline shows fourteen releases that changed what AIGW does for its users, and the last panel lists what is still open.
+AIGW released v0.1.0 on 19 September 2026 and v0.7.2, the version this page describes, on 14 November 2026.[](source:changelog-010)[](source:changelog-072) The timeline shows fifteen releases that changed what AIGW does for its users, and the last panel lists what is still open.
 
 @diagram timeline id=history source=history.timeline.json title="How AIGW got here"
 

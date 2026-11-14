@@ -1,7 +1,7 @@
 # AIGW Client Projection: term renderings
 
 The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `aigw-cli` at v0.7.1 (`e63cd12`) that defines or uses the term; the repository defines no Chinese
+names the file of `aigw-cli` at v0.7.2 (`ed8b2fe`) that defines or uses the term; the repository defines no Chinese
 renderings of its own, and its glossary is `docs/concepts/product-concepts.md`. Command names, flags, paths, package
 names, `aigw check` depths and readiness JSON values stay in Latin type.
 
@@ -109,6 +109,11 @@ names, `aigw check` depths and readiness JSON values stay in Latin type.
 | local fallback (store); cross-client fallback                                       | 本地后备存储；跨客户端的回退                             | `README.md`, `docs/concepts/product-concepts.md`                                            |
 | conversation; session                                                               | 对话；会话                                               | `docs/architecture/authority-and-projection-boundary.md`                                    |
 | parent agent session                                                                | 父级智能体会话                                           | `CHANGELOG.md`                                                                              |
+| a client's own report; the client's own lines                                       | 客户端自己的报告；客户端自己的输出                       | `CHANGELOG.md`                                                                              |
+| configuration key; fix (of a check)                                                 | 配置键；修复办法                                         | `CHANGELOG.md`                                                                              |
+| credential form                                                                     | 凭据形式                                                 | `CHANGELOG.md`                                                                              |
+| memory work (Codex)                                                                 | 记忆任务                                                 | `CHANGELOG.md`                                                                              |
+| line (of a vendor's models)                                                         | 产品线                                                   | `CHANGELOG.md`                                                                              |
 | gateway; proxy                                                                      | 网关；代理                                               | `docs/research/provider-tooling-assessment.md`                                              |
 | configuration control; request execution; session continuity; organizational access | 配置控制；请求执行；会话连续性；组织访问                 | `docs/research/provider-tooling-assessment.md`                                              |
 | value hypothesis                                                                    | 价值假设                                                 | `docs/research/provider-tooling-assessment.md`                                              |
