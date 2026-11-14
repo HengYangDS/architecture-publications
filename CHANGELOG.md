@@ -30,12 +30,16 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   「审阅人」 in a work's Chinese files and term table.
 - The repository's checks run on ETHOS 0.2.0-beta.10.
 - OpenAI Responses Proxy is pinned at v5.1.10, Architecture Publisher at
-  v0.13.1, Film Kit at v0.21.2, ETHOS at v0.2.0-beta.9 and AIGW at v0.7.0.
+  v0.14.0, Film Kit at v0.21.3, ETHOS at v0.2.0-beta.10 and AIGW at v0.7.0.
   Building the works needs Architecture Publisher 0.10.2 or later. The
   Architecture Publisher work lists the `skill` command, describes strips,
   palettes, age bands and the sealed acceptance of an edition, and claims
   `src/style.mjs`. The Film Kit work claims the engine's own draft and picture
   repair, its Spotlight readback and the label matches of its picture gate.
+  At v0.14.0 the Architecture Publisher work describes details set as a justified paragraph in a language written
+  without spaces between words, the house faces measured with their pair kerning, and a key set by its baseline. At
+  v0.2.0-beta.10 the ETHOS work describes the blank-line owner of every format, the Markdown list rule, package
+  markers, and the repair preview a refusal names as its next action.
 - The ETHOS work claims the application layer and the operation catalog. The
   AIGW work uses the client's new vocabulary: it no longer has a renaming
   component, and its catalog, readiness, configuration and rollout panels follow
