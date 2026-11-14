@@ -7,7 +7,7 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 - [Every effect is compiled, judged, freshly admitted and applied by exact compare-and-swap](block:p-plan).[](source:invariants)
 - [Each kind of evidence proves only its own plane](block:p-evidence), so local proof is not anti-forgery assurance.[](source:planes)[](source:proof-boundary)
 
-@answer scope="ETHOS v0.2.0-beta.9 · commit 9997840 · its source and its own documents · proof timings measured on 2026-11-08 under v0.2.0-beta.6"
+@answer scope="ETHOS v0.2.0-beta.10 · commit b10254f · its source and its own documents · proof timings measured on 2026-11-08 under v0.2.0-beta.6"
 @meta locale=en style=editorial
 @source kernel title="The kernel" path="README.md" lines=100:107
 @source native title="What stays native" path="README.md" lines=26:29
@@ -30,11 +30,11 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 @source non-authorizing title="Inputs, not authority" path="docs/governance/product-design-contract.md" lines=532:537
 @source invariants title="Invariants" path="docs/governance/product-design-contract.md" lines=586:602
 @source axioms title="Engineering axioms" path="system/axioms.md" lines=15:31
-@source service title="One application service" path="docs/plans/terminal-governance-product-design.md" lines=402:405
-@source recovery title="Recovery from repository evidence" path="docs/plans/terminal-governance-product-design.md" lines=420:422
-@source resume title="Another agent resumes" path="docs/plans/terminal-governance-product-design.md" lines=170:174
-@source route title="The remaining route" path="docs/plans/terminal-governance-product-design.md" lines=155:159
-@source acceptance title="Task-based acceptance" path="docs/plans/terminal-governance-product-design.md" lines=424:428
+@source service title="One application service" path="docs/plans/terminal-governance-product-design.md" lines=403:406
+@source recovery title="Recovery from repository evidence" path="docs/plans/terminal-governance-product-design.md" lines=421:423
+@source resume title="Another agent resumes" path="docs/plans/terminal-governance-product-design.md" lines=171:175
+@source route title="The remaining route" path="docs/plans/terminal-governance-product-design.md" lines=156:160
+@source acceptance title="Task-based acceptance" path="docs/plans/terminal-governance-product-design.md" lines=425:429
 @source mcp-authority title="Labels and earlier checks grant nothing" path="docs/architecture/mcp-server.md" lines=28:31
 @source mcp-open title="MCP conformance still open" path="docs/architecture/mcp-server.md" lines=33:40
 @source standards title="Standards enter by adapter" path="docs/architecture/protocol-contracts.md" lines=18:22
@@ -65,6 +65,7 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 @source proof-gates title="Packaged gates and a repository's own" path="docs/reference/command-plane.md" lines=438:442
 @source load-limit title="Readiness, then the host load" path="docs/reference/command-plane.md" lines=449:449
 @source standard-proof title="Full proof of a frozen head" path="docs/reference/command-plane.md" lines=444:447
+@source blank-lines title="Blank lines by format" path="docs/reference/configuration.md" lines=178:192
 @source gates-floor title="The packaged proof sets" path="system/gates.toml" lines=5:7
 @source preflight title="The readiness tier before the tests" path="src/ethos/adapters/gates/runner.py" lines=295:327
 @source ready-set title="A bounded compatible ready set" path="src/ethos/adapters/gates/runner.py" lines=330:355
@@ -73,6 +74,11 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 @source paradigm-context title="DR-0012: the drift that was found" path="docs/decisions/dr-0012-repository-paradigm.md" lines=21:34
 @source paradigm title="DR-0012: what the paradigm fixes" path="docs/decisions/dr-0012-repository-paradigm.md" lines=45:58
 @source paradigm-gap title="DR-0012: what a gap blocks" path="docs/decisions/dr-0012-repository-paradigm.md" lines=69:69
+@source paradigm-preview title="The paradigm repair's preview" path="src/ethos/repository/paradigm/repair.py" lines=58:59
+@source paradigm-next title="The next action of a paradigm report" path="src/ethos/repository/paradigm/repair.py" lines=123:128
+@source list-rule title="The Markdown list rule" path="src/ethos/repository/paradigm/markdown_spacing.py" lines=1:9
+@source text-layout title="The canonical text layout" path="src/ethos/repository/paradigm/text_layout.py" lines=1:6
+@source package-docstring title="A package marker's docstring" path="src/ethos/repository/paradigm/packages.py" lines=1:5
 @source commitment title="Compiling the Commitment" path="src/ethos/adapters/openspec/commitment.py" lines=46:58
 @source commitment-class title="Commitment" path="src/ethos/contracts/semantic.py" lines=199:204
 @source facts-class title="Facts" path="src/ethos/contracts/semantic.py" lines=400:409
@@ -82,7 +88,10 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 @source plan-inputs title="PlanInputs" path="src/ethos/contracts/plan.py" lines=91:98
 @source prewrite title="The prewrite guard" path="src/ethos/adapters/admission/prewrite.py" lines=117:149
 @source lane title="Starting a Work Lane" path="src/ethos/adapters/mutation/lane_lifecycle/start.py" lines=345:355
+@source lane-status title="Inspecting a lane's status" path="src/ethos/application/lane/lifecycle.py" lines=44:46
+@source worktree-record title="One worktree in a lane's status" path="src/ethos/adapters/repo/status/workspace.py" lines=394:409
 @source hook title="One hook entry point" path="src/ethos/adapters/repo/hook/protocol.py" lines=21:34
+@source staged-text title="The layout rules pre-commit admits" path="src/ethos/adapters/repo/hook/staged_text.py" lines=1:6
 @source proof title="The proof of one HEAD" path="src/ethos/adapters/mutation/proof.py" lines=417:422
 @source landing title="Landing on the candidate" path="src/ethos/adapters/mutation/landing.py" lines=57:70
 @source push title="An exact push to one peer" path="src/ethos/adapters/mutation/publication/execution.py" lines=45:56
@@ -91,8 +100,8 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 @source python-range title="The supported Python versions" path="pyproject.toml" lines=1:6
 @source branch-roles title="The branch roles" path="src/ethos/contracts/paradigm/paradigm.toml" lines=50:57
 @source parameters title="Per-file ceilings and the gate deadline" path="src/ethos/contracts/paradigm/paradigm.toml" lines=94:129
-@source changelog-first title="0.1.0-alpha.1, the first entry" path="CHANGELOG.md" lines=2202:2208
-@source changelog-pinned title="0.2.0-beta.9, the pinned release" path="CHANGELOG.md" lines=15:27
+@source changelog-first title="0.1.0-alpha.1, the first entry" path="CHANGELOG.md" lines=2301:2307
+@source changelog-pinned title="0.2.0-beta.10, the pinned release" path="CHANGELOG.md" lines=15:23
 
 ## Who uses ETHOS, and what does it own? {#p-context}
 
@@ -172,7 +181,7 @@ Each command returns `pass`, `block` or `unknown`, and only `pass` lets it chang
 
 ## How does a lane live, and how does it recover? {#p-lane}
 
-Lanes let people and agents change one repository at once. Seeing another lane grants no write, and a fast-forward land is the final arbiter.[](source:visibility)[](source:coordination)
+Lanes let people and agents change one repository at once. Seeing another lane grants no write, and a fast-forward land is the final arbiter.[](source:visibility)[](source:coordination) `ethos lane status --json` reports the lane topology and its foreign lanes.[](source:lane-status) Each entry of its `worktrees` names a worktree's role, whether it is locked and whether Git can prune it, with Git's reason for each.[](source:worktree-record)
 
 @diagram lifecycle id=lane-life source=lane.lifecycle.json title="A Work Lane, from start to retirement"
 
@@ -284,7 +293,11 @@ One paradigm now fixes only what every repository shares, and no repository can 
 @facts
 | Shared by every repository | Root entries, configuration by tool, bindings, commit, branch and release conventions, document metadata, formatters, toolchain verbs, orchestration, CI and names[](source:paradigm) |
 | Kept by each repository | Product and domain structure, tests, documentation subjects and provider shape[](source:paradigm) |
-| When a repository drifts | The gap blocks prove, land and publish, and prewrite refuses the path.[](source:paradigm-gap) |
+| When a repository drifts | The gap blocks prove, land and publish, and prewrite refuses the path.[](source:paradigm-gap) When `ethos lane repair-paradigm` can write the repair, the paradigm report's next action is that repair's preview, `ethos lane repair-paradigm --json`.[](source:paradigm-next)[](source:paradigm-preview) A gap that needs judgment names its own repair.[](source:paradigm-next) |
+| Blank lines | One owner decides the blank lines of each authored format. `ethos lane format` checks and repairs them, and `pre-commit` refuses a staged Markdown or canonical-text file that breaks its rule.[](source:blank-lines)[](source:staged-text) |
+| Markdown lists | After Prettier, one list rule applies.[](source:blank-lines) An item whose blocks are separated by a blank line is followed by one, and every other item directly by the next.[](source:list-rule) |
+| Text no formatter owns | INI and `.cfg` files, Vale vocabularies, `LICENSE`, `VERSION`, Git and editor dotfiles and the CI supply's `Dockerfile` keep the repository's canonical text.[](source:blank-lines) That text has no blank line at the start or the end, at most one in a row, and one final newline.[](source:blank-lines)[](source:text-layout) |
+| Package markers | Each `__init__.py` opens with a docstring that states its package's purpose. Only its authors know that purpose, so the gap is report-only, and `pre-commit` refuses a staged marker without a docstring.[](source:package-docstring)[](source:staged-text) |
 
 ## Which principles decide how ETHOS is built? {#p-principles}
 
@@ -305,7 +318,7 @@ Four authored verses constrain its design.[](source:root-constraint) They ask to
 
 ## How did ETHOS get here? {#p-history}
 
-ETHOS's changelog opens with 0.1.0-alpha.1 on 2026-06-30 and reaches 0.2.0-beta.9 on 2026-11-12.[](source:changelog-first)[](source:changelog-pinned) Fifteen 0.2.0 releases along the way changed what ETHOS does for the repositories it governs; each is labelled by its pre-release name.
+ETHOS's changelog opens with 0.1.0-alpha.1 on 2026-06-30 and reaches 0.2.0-beta.10 on 2026-11-14.[](source:changelog-first)[](source:changelog-pinned) Sixteen 0.2.0 releases along the way changed what ETHOS does for the repositories it governs; each is labelled by its pre-release name.
 
 @diagram timeline id=history source=history.timeline.json title="How ETHOS got here"
 
