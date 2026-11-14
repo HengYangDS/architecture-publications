@@ -1,7 +1,7 @@
 # Architecture Publisher: term renderings
 
 The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `architecture-publisher` at v0.13.1 (`1b8d1b5`) that defines or uses the term; the edition's own
+names the file of `architecture-publisher` at v0.14.0 (`4be4dd7`) that defines or uses the term; the edition's own
 Chinese words come from `src/edition/words.mjs` and `src/locale.mjs`. Renderings marked "approved" are the
 owner-approved shared renderings.
 
@@ -179,3 +179,14 @@ owner-approved shared renderings.
 | in-toto Statement; subject, predicate                       | in-toto Statement (kept); 主体, 谓词             | `src/delivery.mjs`                                                               |
 | sign, signature, signer                                     | 签名, 签名者                                     | `src/delivery.mjs`                                                               |
 | signing key, fingerprint                                    | 签名密钥, 指纹                                   | `src/edition/words.mjs`, `src/delivery.mjs`                                      |
+| key (a plate's)                                             | 图例                                             | `docs/reference/operations.md`, `src/overview/house.typ`                         |
+| mark, label (of a key's entry)                              | 标记, 标签                                       | `src/overview/house.typ`                                                         |
+| baseline                                                    | 基线                                             | `src/overview/house.typ`                                                         |
+| hub (the part a view's relations lead to)                   | 枢纽                                             | `src/poster/strip.mjs`; the rendering is this work's                             |
+| arrowhead                                                   | 箭头                                             | `src/poster/strip.mjs`                                                           |
+| written without spaces between words                        | 词间不留空格                                     | `src/locale.mjs`                                                                 |
+| justified paragraph; flush left                             | 两端对齐的段落; 左对齐                           | `src/poster/spread.mjs`                                                          |
+| measure (the width lines wrap to)                           | 行宽                                             | `src/poster/spread.mjs`                                                          |
+| spread (a line to its measure)                              | 撑满                                             | `src/poster/spread.mjs`, `src/overview/house.typ`                                |
+| slack (of a line short of its measure)                      | 余量                                             | `src/poster/spread.mjs`                                                          |
+| pair kerning                                                | 字偶间距                                         | `src/poster/kerning.mjs`, `src/poster/text.mjs`                                  |

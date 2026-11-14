@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "1b8d1b57439fd11c3ad82b9f77f7c77c1f95699c"
+      "revision": "4be4dd77940a5990336e17ae5fc6d884941f27f2"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 363,
-          "end_line": 373,
+          "line": 399,
+          "end_line": 409,
           "label": "0.4.0"
         }
       ]
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 318,
-          "end_line": 323,
+          "line": 354,
+          "end_line": 359,
           "label": "0.6.0"
         }
       ]
@@ -71,8 +71,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 211,
-          "end_line": 256,
+          "line": 247,
+          "end_line": 292,
           "label": "0.8.0"
         }
       ]
@@ -86,8 +86,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 194,
-          "end_line": 202,
+          "line": 230,
+          "end_line": 238,
           "label": "0.9.0"
         }
       ]
@@ -102,14 +102,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 150,
-          "end_line": 161,
+          "line": 186,
+          "end_line": 197,
           "label": "0.10.0"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 186,
-          "end_line": 189,
+          "line": 222,
+          "end_line": 225,
           "label": "Removed"
         }
       ]
@@ -123,8 +123,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 137,
-          "end_line": 148,
+          "line": 173,
+          "end_line": 184,
           "label": "0.10.1"
         }
       ]
@@ -138,8 +138,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 128,
-          "end_line": 135,
+          "line": 164,
+          "end_line": 171,
           "label": "0.10.2"
         }
       ]
@@ -153,8 +153,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 107,
-          "end_line": 120,
+          "line": 143,
+          "end_line": 156,
           "label": "0.11.0"
         }
       ]
@@ -168,8 +168,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 79,
-          "end_line": 105,
+          "line": 115,
+          "end_line": 141,
           "label": "0.12.0"
         }
       ]
@@ -184,8 +184,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 22,
-          "end_line": 77,
+          "line": 58,
+          "end_line": 113,
           "label": "0.13.0"
         }
       ]
@@ -199,9 +199,24 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 10,
-          "end_line": 20,
+          "line": 46,
+          "end_line": 56,
           "label": "0.13.1"
+        }
+      ]
+    },
+    {
+      "id": "v0140",
+      "at": "2026-11-14T11:56:26+08:00",
+      "lane": "layout",
+      "title": "0.14.0 Justified details, centred key marks",
+      "detail": "In a Chinese edition a part's details are set as a justified paragraph. The engine measures the house faces with their pair kerning, as Typst sets them. A plate's key is set by its baseline, each mark centred on its label.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 10,
+          "end_line": 44,
+          "label": "0.14.0"
         }
       ]
     }

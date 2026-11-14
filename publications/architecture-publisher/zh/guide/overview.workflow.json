@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "1b8d1b57439fd11c3ad82b9f77f7c77c1f95699c"
+      "revision": "4be4dd77940a5990336e17ae5fc6d884941f27f2"
     },
     "legend": {
       "entries": {
@@ -122,8 +122,8 @@
       "sources": [
         {
           "path": "docs/reference/operations.md",
-          "line": 345,
-          "end_line": 348,
+          "line": 347,
+          "end_line": 350,
           "label": "In the edition"
         }
       ]

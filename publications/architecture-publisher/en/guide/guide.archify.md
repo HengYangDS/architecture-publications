@@ -7,7 +7,7 @@
 - [A layout with an overlap is never drawn](block:p-layout), and a view that no layout draws is refused, not shrunk.[](source:contract-layout-floor)
 - [Only an accepted delivery is published](block:p-accept), and never over a different one.[](source:contract-acceptance)
 
-@answer scope="Architecture Publisher v0.13.1 · commit 1b8d1b5 · its source and its own documents · re-pin counts measured on 2026-11-08"
+@answer scope="Architecture Publisher v0.14.0 · commit 4be4dd7 · its source and its own documents · re-pin counts measured on 2026-11-08"
 @meta locale=en style=editorial
 @source contract-product title="The product" path="docs/product-contract.md" lines=13:21
 @source contract-meaning title="Who owns meaning and form" path="docs/product-contract.md" lines=23:28
@@ -31,24 +31,24 @@
 @source model-groups title="Groups" path="docs/reference/model.md" lines=422:428
 @source model-views title="Views" path="docs/reference/model.md" lines=432:444
 @source model-views-plan title="Declared and planned views" path="docs/reference/model.md" lines=456:460
-@source ops-check title="archpub check" path="docs/reference/operations.md" lines=62:74
-@source ops-build title="archpub build" path="docs/reference/operations.md" lines=75:77
-@source ops-migrate title="Import, scaffold and migrate" path="docs/reference/operations.md" lines=92:98
-@source ops-exit title="Exit status and refusals" path="docs/reference/operations.md" lines=110:116
-@source ops-rows title="Rows, placement and channels" path="docs/reference/operations.md" lines=123:136
-@source ops-overlap title="A layout never overlaps" path="docs/reference/operations.md" lines=138:143
-@source ops-gates title="The four balance gates" path="docs/reference/operations.md" lines=175:181
-@source ops-page title="The generated page" path="docs/reference/operations.md" lines=257:266
-@source ops-page-grid title="The page's diagrams on the same grid" path="docs/reference/operations.md" lines=268:273
-@source ops-overview title="The overview" path="docs/reference/operations.md" lines=334:348
-@source ops-guide title="The guide" path="docs/reference/operations.md" lines=352:359
-@source ops-guide-clone title="Sources verified at the revision" path="docs/reference/operations.md" lines=361:369
-@source ops-scaffold title="A starting guide" path="docs/reference/operations.md" lines=371:373
-@source ops-delivery title="The delivery's files" path="docs/reference/operations.md" lines=380:392
-@source ops-manifest title="The manifest" path="docs/reference/operations.md" lines=394:418
+@source ops-check title="archpub check" path="docs/reference/operations.md" lines=61:73
+@source ops-build title="archpub build" path="docs/reference/operations.md" lines=74:76
+@source ops-migrate title="Import, scaffold and migrate" path="docs/reference/operations.md" lines=91:97
+@source ops-exit title="Exit status and refusals" path="docs/reference/operations.md" lines=109:115
+@source ops-rows title="Rows, placement and channels" path="docs/reference/operations.md" lines=121:134
+@source ops-overlap title="A layout never overlaps" path="docs/reference/operations.md" lines=136:141
+@source ops-gates title="The four balance gates" path="docs/reference/operations.md" lines=173:179
+@source ops-page title="The generated page" path="docs/reference/operations.md" lines=259:268
+@source ops-page-grid title="The page's diagrams on the same grid" path="docs/reference/operations.md" lines=270:275
+@source ops-overview title="The overview" path="docs/reference/operations.md" lines=336:350
+@source ops-guide title="The guide" path="docs/reference/operations.md" lines=354:360
+@source ops-guide-clone title="Sources verified at the revision" path="docs/reference/operations.md" lines=362:370
+@source ops-scaffold title="A starting guide" path="docs/reference/operations.md" lines=372:374
+@source ops-delivery title="The delivery's files" path="docs/reference/operations.md" lines=381:393
+@source ops-manifest title="The manifest" path="docs/reference/operations.md" lines=395:418
 @source ops-accept title="archpub accept" path="docs/reference/operations.md" lines=422:426
 @source ops-publish title="archpub publish" path="docs/reference/operations.md" lines=474:478
-@source readme-layout title="Layout is a grid" path="README.md" lines=53:55
+@source readme-layout title="Layout is a grid" path="README.md" lines=54:56
 @source build-prepare title="One build's route" path="src/build.mjs" lines=129:210
 @source build-composition title="A missing composition" path="src/build.mjs" lines=108:127
 @source build-artifacts title="Every artifact's digest" path="src/build.mjs" lines=371:388
@@ -79,15 +79,15 @@
 @source typeset-stage title="Staging the composition" path="src/overview/typeset.mjs" lines=86:123
 @source typeset-problems title="Refusals at the composition's line" path="src/overview/typeset.mjs" lines=144:175
 @source contract-plate-floor title="The plate quality floor" path="docs/product-contract.md" lines=105:110
-@source ops-plate title="A plate" path="docs/reference/operations.md" lines=165:174
-@source ops-reading title="A plate's width and reading" path="docs/reference/operations.md" lines=192:221
-@source ops-edition title="The print edition" path="docs/reference/operations.md" lines=223:236
-@source house-reading title="What a plate's reading does when it is too tall" path="src/overview/house.typ" lines=270:306
-@source ops-edition-text title="Text, dates and page images" path="docs/reference/operations.md" lines=238:255
+@source ops-plate title="A plate" path="docs/reference/operations.md" lines=163:172
+@source ops-reading title="A plate's width and reading" path="docs/reference/operations.md" lines=189:218
+@source ops-edition title="The print edition" path="docs/reference/operations.md" lines=220:233
+@source house-reading title="What a plate's reading does when it is too tall" path="src/overview/house.typ" lines=304:340
+@source ops-edition-text title="Text, dates and page images" path="docs/reference/operations.md" lines=235:257
 @source ops-refusal-paths title="Where a refusal points" path="docs/reference/operations.md" lines=486:491
-@source plates-compositions title="Every composition a plate tries" path="src/poster/compose/plates.mjs" lines=126:136
-@source plates-admit title="A view the body admits" path="src/poster/compose/plates.mjs" lines=176:188
-@source plates-width title="The plate width rule" path="src/poster/compose/plates.mjs" lines=231:286
+@source plates-compositions title="Every composition a plate tries" path="src/poster/compose/plates.mjs" lines=127:137
+@source plates-admit title="A view the body admits" path="src/poster/compose/plates.mjs" lines=177:189
+@source plates-width title="The plate width rule" path="src/poster/compose/plates.mjs" lines=232:287
 @source plates-gates title="Gates recorded, not refused" path="src/poster/compose/gates.mjs" lines=1:24
 @source edition-typeset title="One pass, one PDF" path="src/edition/typeset.mjs" lines=11:14
 @source edition-images title="The page images" path="src/edition/typeset.mjs" lines=120:141
@@ -102,8 +102,8 @@
 @source worklist-repin title="The worklist" path="src/sources/worklist.mjs" lines=97:110
 @source model-smallest title="A minimal model" path="docs/reference/model.md" lines=26:28
 @source model-minimal title="The smallest model" path="docs/reference/model.md" lines=33:58
-@source changelog-first title="The first release" path="CHANGELOG.md" lines=943:949
-@source changelog-040 title="The 0.4.0 release" path="CHANGELOG.md" lines=363:368
+@source changelog-first title="The first release" path="CHANGELOG.md" lines=979:985
+@source changelog-040 title="The 0.4.0 release" path="CHANGELOG.md" lines=399:404
 @source model-marks title="Marks: strips or cards" path="docs/reference/model.md" lines=265:285
 @source model-ages title="The three age bands" path="docs/reference/model.md" lines=287:291
 @source model-ticks title="One tick per cited file" path="docs/reference/model.md" lines=293:300
@@ -111,7 +111,7 @@
 @source model-palette-rules title="The rules a palette must pass" path="docs/reference/model.md" lines=319:330
 @source model-marks-default title="The defaults, and when cards are drawn" path="docs/reference/model.md" lines=340:344
 @source model-palette-overview title="The overview in the same palette" path="docs/reference/model.md" lines=346:347
-@source ops-strip-box title="A strip's box" path="docs/reference/operations.md" lines=185:190
+@source ops-strip-box title="A strip's box" path="docs/reference/operations.md" lines=182:187
 @source ops-acceptance-scope title="What acceptance establishes" path="docs/reference/operations.md" lines=428:429
 @source ops-colophon title="The colophon page" path="docs/reference/operations.md" lines=431:449
 @source ops-statement title="The acceptance record" path="docs/reference/operations.md" lines=451:456
@@ -123,13 +123,24 @@
 @source ages-bands title="The same bands for every edition" path="src/sources/ages.mjs" lines=1:9
 @source bind-times title="Each file's last change" path="src/sources/bind.mjs" lines=32:48
 @source edition-read title="Reading the edition object" path="src/model/edition.mjs" lines=259:288
-@source strip-marks title="What a strip shows" path="src/poster/strip.mjs" lines=7:16
-@source strip-lengths title="One strip length for the edition" path="src/poster/strip.mjs" lines=45:49
+@source strip-marks title="What a strip shows" path="src/poster/strip.mjs" lines=8:17
+@source strip-lengths title="One strip length for the edition" path="src/poster/strip.mjs" lines=46:50
 @source placement-narrowest title="No column narrower than a strip" path="src/layout/placement.mjs" lines=209:216
 @source delivery-statement title="An in-toto Statement" path="src/delivery.mjs" lines=14:21
 @source delivery-sign title="Signing the record's exact bytes" path="src/delivery.mjs" lines=97:106
 @source delivery-check title="Verifying an acceptance" path="src/delivery.mjs" lines=260:279
 @source colophon-page title="What the colophon page sets" path="src/edition/colophon.mjs" lines=38:78
+@source ops-key-line title="The key's line" path="docs/reference/operations.md" lines=237:240
+@source house-key title="A key set by its baseline" path="src/overview/house.typ" lines=280:283
+@source strip-key title="A strip plate's key" path="src/poster/strip.mjs" lines=575:583
+@source strip-hub title="The hub's line in the key" path="src/poster/strip.mjs" lines=636:646
+@source words-leads title="The words beside the hub's line" path="src/locale.mjs" lines=57:57
+@source locale-unspaced title="Languages written without word spaces" path="src/locale.mjs" lines=177:184
+@source text-paragraph title="A detail wrapped as a paragraph" path="src/poster/text.mjs" lines=303:307
+@source spread-lines title="Which details are spread" path="src/poster/spread.mjs" lines=3:9
+@source spread-limit title="The slack a spread line closes" path="src/poster/spread.mjs" lines=11:20
+@source text-kerning title="The house faces with their kerning" path="src/poster/text.mjs" lines=18:23
+@source kerning-read title="Pair kerning read from the face" path="src/poster/kerning.mjs" lines=1:5
 
 ## What does a model hold, and when is it refused? {#p-model}
 
@@ -245,6 +256,15 @@ The manifest records each plate's share of the body, its reading and the gates i
 | `edition.marks` | `strip` or `card`. A build without a checkout or claimed files draws cards and warns `marks_fallback`; a model that names `strip` there is refused with `marks_need_files`.[](source:model-marks-default)[](source:style-choice) |
 | `edition.palette` | Indigo by default; persimmon, soot and patina are built in. A palette of the model's own must pass rules of contrast, lightness, chroma and hue, or is refused with `model_palette_rejected`.[](source:model-palette)[](source:model-palette-rules) |
 
+The edition sets each plate's runs where the engine measured them, with the faces' kerning, and the plate's key under the body.[](source:ops-edition-text)
+
+@facts id=edition-text-facts
+| Key | Each plate has a key of what its figure shows.[](source:ops-edition) It is set by its baseline, at 850 points on every plate, with each mark centred on the middle of its label. A key wider than the body takes a second line, and one that two lines do not hold is refused with `edition_key_too_long`.[](source:ops-key-line)[](source:house-key) |
+| Hub | A strip plate's key shows the hub its view's relations lead to by a line as heavy as the plate's wires that ends in their arrowhead. Its label says which part the dark lines lead to.[](source:strip-key)[](source:strip-hub)[](source:words-leads) |
+| Details | Chinese, in either script, is written without spaces between words, so a Chinese edition sets a part's details as a justified paragraph. They break wherever the script allows, and a last line of one character takes the unit before it.[](source:locale-unspaced)[](source:text-paragraph) |
+| Spread lines | Each line of a detail but its last is spread to the measure the details wrap to. A line whose slack is more than a tenth of an em for each place it opens stays flush left. So do details in every other language.[](source:spread-lines)[](source:spread-limit) |
+| Kerning | The engine measures Source Sans 3 and Source Serif 4 with their own pair kerning, as Typst sets them.[](source:text-kerning) The font reader does not read the lookups where the two faces keep it, so the engine reads the pairs from each face's GPOS table.[](source:kerning-read) |
+
 ## How is the page made and checked? {#p-page}
 
 The page is one standalone `<model id>.html`, delivered by the vendored Archify 3.2.0. When the model names a draft in `guide`, that draft is the page.[](source:contract-guide)[](source:ops-guide)
@@ -328,7 +348,7 @@ A build shows only that the delivery came from its inputs. A named reviewer acce
 
 ## How did Architecture Publisher get here? {#p-history}
 
-Architecture Publisher's changelog opens with 0.1.0-alpha.0 on 2026-09-18.[](source:changelog-first) Its 0.4.0, on 2026-10-30, made it a general model-to-media publisher.[](source:changelog-040) The timeline starts there and shows eleven releases, up to 0.13.1; all but the last changed what an author or a reviewer meets.
+Architecture Publisher's changelog opens with 0.1.0-alpha.0 on 2026-09-18.[](source:changelog-first) Its 0.4.0, on 2026-10-30, made it a general model-to-media publisher.[](source:changelog-040) The timeline starts there and shows twelve releases, up to 0.14.0; all but 0.13.1 changed what an author or a reviewer meets.
 
 @diagram timeline id=history source=history.timeline.json title="How Architecture Publisher got here"
 

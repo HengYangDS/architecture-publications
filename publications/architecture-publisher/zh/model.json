@@ -6,7 +6,7 @@
   "title": "Architecture Publisher",
   "question": "Architecture Publisher 如何把架构模型变成图册和页面？",
   "summary": "作者用 archpub 处理模型。构建时先校验模型，按固定的提交把范围内的每个文件交给认领它的组件，再规划视图，把每个视图都布局在同一套网格上。随后排出一部图册，收入作者编排的总览，每个视图各占一幅图版，图版上每个组件画成与代码量等长的条带；写出一个 Archify 页面，模型指定了导读时，页面就是作者写的导读；并写出一份清单，记录这些产物的摘要。交付物须经一位具名审阅者验收，才能出版。",
-  "scope": "v0.13.1 发布版的 Architecture Publisher：src/ 下的源码、包清单，以及各项随附物料的清单。",
+  "scope": "v0.14.0 发布版的 Architecture Publisher：src/ 下的源码、包清单，以及各项随附物料的清单。",
   "limits": [
     "每个组件按路径规则认领目录和文件，范围内的每个文件都归最具体的那项认领；关系引用的是导入或调用另一组件的模块。",
     "关系指源码中的导入和进程调用，并非运行时的先后顺序；共用的拒绝类型和子进程环境不画成关系。",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "1b8d1b57439fd11c3ad82b9f77f7c77c1f95699c",
+    "revision": "4be4dd77940a5990336e17ae5fc6d884941f27f2",
     "browse": "https://github.com/HengYangDS/architecture-publisher/blob/{revision}/{path}"
   },
   "coverage": {
@@ -253,7 +253,9 @@
       "details": {
         "编排": "每个视图排成图册正文区的一幅图版，三种宽度里取连线不变差的最窄一档，或保持全宽，把概述排在图上方",
         "记录": "每幅图版未通过的平衡门槛，供审阅者查看",
-        "绘制": "每个组件画成条带，条长即代码量，全册同一比例；也可画成卡片"
+        "绘制": "每个组件画成条带，条长即代码量，全册同一比例；也可画成卡片",
+        "对齐": "词间不留空格的语言里，组件详情除每条末行外，各行都撑满同一行宽",
+        "标明": "图中所画的内容，列在图版的图例里；条带图版用一条末端带箭头的线表示枢纽"
       },
       "files": ["src/poster/"]
     },
@@ -262,7 +264,8 @@
       "label": "字体",
       "kind": "medium",
       "details": {
-        "度量": "图中文字按 Source Sans 3 和 Noto Sans CJK SC 计，图上方的概述按 Source Serif 4 计，都与图册排版一致"
+        "度量": "图中文字按 Source Sans 3 和 Noto Sans CJK SC 计，图上方的概述按 Source Serif 4 计，都与图册排版一致；版式字体计入自带的字偶间距",
+        "断行": "词间不留空格的语言里，组件详情按段落断行，每行按 Typst 排出的宽度填满"
       },
       "files": ["src/poster/text.mjs", "src/breaks.mjs"]
     },
@@ -280,7 +283,8 @@
       "label": "用语",
       "kind": "medium",
       "details": {
-        "存放": "出版工具自己的用语，五种语言"
+        "存放": "出版工具自己的用语，五种语言",
+        "列出": "词间不留空格的语言：简体中文和繁体中文"
       },
       "files": ["src/locale.mjs"]
     },
@@ -309,7 +313,8 @@
       "kind": "medium",
       "details": {
         "存放": "版式类和版式设计令牌，含四套内置配色，图册据此排版",
-        "检查": "作者编排中的代码规范、文本框和字形"
+        "检查": "作者编排中的代码规范、文本框和字形",
+        "排出": "图版的图例，按基线定位，每个标记对准标签的中线；详情里要撑满的行，排到它的行宽"
       },
       "files": ["src/overview/", "src/house.json"]
     },
@@ -586,7 +591,7 @@
       "from": "plates",
       "to": "typefaces",
       "label": "断行",
-      "files": ["src/poster/plate.mjs", "src/poster/strip.mjs"]
+      "files": ["src/poster/plate.mjs", "src/poster/spread.mjs", "src/poster/strip.mjs"]
     },
     {
       "id": "plates-presentation",

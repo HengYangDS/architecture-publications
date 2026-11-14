@@ -2,8 +2,8 @@
 
 [`en/model.json`](en/model.json) is an Architecture Model of how Architecture
 Publisher turns an architecture model into a print edition and a page. It pins
-`architecture-publisher` at v0.13.1
-(`1b8d1b57439fd11c3ad82b9f77f7c77c1f95699c`), and its components own all 71
+`architecture-publisher` at v0.14.0
+(`4be4dd77940a5990336e17ae5fc6d884941f27f2`), and its components own all 73
 files of its coverage scope: the publisher's source under `src/`, its
 `package.json` and the manifests of its six vendored supplies. Thirty-one
 components, fifty-three relations and six views show one build from the author
@@ -22,7 +22,7 @@ page of the print edition and how a plate draws its parts as strips of their
 code, how the page and the overview are made and checked,
 what the manifest binds and how a delivery is accepted and published. It shows
 the releases that brought the publisher here and ends with what moving the pin
-changes. Each claim about the product cites a line range at v0.13.1, and the
+changes. Each claim about the product cites a line range at v0.14.0, and the
 diagrams the draft names sit beside it. The re-pin counts were measured on
 2026-11-08, when this work moved from v0.9.0 to v0.10.0; the move to v0.10.1
 changed no claim, the move to v0.10.2 changed only what a reading too tall for
@@ -31,7 +31,10 @@ move to v0.12.0 only the command list and line ranges. The move to v0.13.1
 rewrote what the work says of how a plate draws its parts, what the manifest
 records and what acceptance writes; it gave `src/style.mjs` to the delivery
 builder and drew one new relation, from acceptance to the print edition, which
-sets the colophon page.
+sets the colophon page. The move to v0.14.0 added how a plate sets a part's
+details and its key and how the engine measures the house faces; the two files
+the release added fall to the plate composer, and its relation to the typefaces
+cites one of them, `src/poster/spread.mjs`.
 
 Each component claims the directories and files its path rules name, and each
 file goes to its most specific claim, so every file in the scope has one owner;
