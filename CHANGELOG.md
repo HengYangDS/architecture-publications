@@ -9,6 +9,11 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 ### Added
 
+- `questions/question-table.json`, the 27 questions a work is checked against, each asking one thing, with
+  a test of the table's form; and the matrices of three works filled against it by hand.
+- `trials/`, the rules and records of the trials that Architecture Publisher's roadmap opens with: the
+  reviewer's procedure and seeded checks with the record of the first run, the reader experiment's protocol and
+  item bank, and the definitions of the comparison of lines on screen.
 - A summary on every view of every work, in English and in Chinese, set beside
   its figure in the print edition. The input check refuses a view without one.
 - Each work's page shows how its system got here: a timeline of the releases

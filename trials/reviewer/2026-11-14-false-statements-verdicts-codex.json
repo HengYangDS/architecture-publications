@@ -1,0 +1,379 @@
+{
+  "holder": "Codex (GPT-6)",
+  "judged": {
+    "components": 28,
+    "relations": 55,
+    "guide_sentences": 113
+  },
+  "supported": {
+    "components": 15,
+    "relations": 49,
+    "guide_sentences": 82
+  },
+  "findings": [
+    {
+      "statement": "component:film-and-editions",
+      "what": "claim",
+      "file": "src/filmkit/delivery/track_language.py",
+      "verdict": "not supported",
+      "reason": "This file edits an already packaged MP4 chapter track's language in place; it does not locate a film, validate its declaration, define editions or declare production specifications. That responsibility belongs to packaging, which calls set_chapter_language."
+    },
+    {
+      "statement": "component:supply",
+      "what": "claim",
+      "file": "src/filmkit/sources.py",
+      "verdict": "not supported",
+      "reason": "The supply component describes installing and checking a browser and speech models. This file instead reads the film's canonical-source manifest and optionally checks source documents in a local clone; it performs no tool or model supply."
+    },
+    {
+      "statement": "component:captions",
+      "what": "detail",
+      "file": "src/filmkit/captions/",
+      "verdict": "not supported",
+      "reason": "The timing detail says captions have two lines. __init__.py, phrasing.py and documents.py require readable one-line cues and write each SRT/VTT cue on one line; timing.py binds those cues to aligned words without crossing thoughts."
+    },
+    {
+      "statement": "component:tool-runner",
+      "what": "detail",
+      "file": "src/filmkit/tools.py",
+      "verdict": "not supported",
+      "reason": "The run detail says the tools use the engine's npm packages. The module's contract and run() execute the cached tools at the film's root so imports resolve from the film's npm packages."
+    },
+    {
+      "statement": "component:picture-audits",
+      "what": "detail",
+      "file": "src/filmkit/picture/caption-equivalence.mjs",
+      "verdict": "not supported",
+      "reason": "The comparison detail claims every uncaptioned frame is compared with the captioned frame minus captions. instants() and equivalence() compare caption starts, middles and ends plus a periodic grid (0.5 s by default); the exhaustive encoded-frame scan is in the separate picture-rendering component."
+    },
+    {
+      "statement": "component:delivery",
+      "what": "detail",
+      "file": "src/filmkit/delivery/documents_folder.py",
+      "verdict": "not supported",
+      "reason": "The provide detail assigns byte-range serving of local review media to this component. Its only claimed file copies delivery members and invokes player checks; the HTTP byte-range server is delivery/media_server.py, claimed by media-probe instead."
+    },
+    {
+      "statement": "component:media-probe",
+      "what": "claim",
+      "file": "src/filmkit/delivery/media_server.py",
+      "verdict": "not supported",
+      "reason": "This file implements an HTTP media server with byte-range responses for browser seeking. It neither invokes FFprobe/FFmpeg nor probes streams, cadence, complete decoding or loudness, which are the responsibilities stated for media-probe."
+    },
+    {
+      "statement": "component:engine-package",
+      "what": "detail",
+      "file": "pyproject.toml",
+      "verdict": "not supported",
+      "reason": "The dependency detail lists jieba. The declared runtime dependencies are mlx-audio 0.6.4, NumPy, Pillow, Pydantic, pypinyin and snowballstemmer; jieba is not declared."
+    },
+    {
+      "statement": "component:film-repository",
+      "what": "detail",
+      "file": "work/model.json",
+      "verdict": "cannot tell",
+      "reason": "Storage of declarations, scripts, casts, pronunciation contracts, pages, review policy and composition is asserted in details.存放, but this component has no files. There is no component-claimed evidence against which to judge this detail."
+    },
+    {
+      "statement": "component:speech-models",
+      "what": "detail",
+      "file": "work/model.json",
+      "verdict": "cannot tell",
+      "reason": "The three named Qwen3 speech models and their sizes is asserted in details.模型, but this component has no files. There is no component-claimed evidence against which to judge this detail."
+    },
+    {
+      "statement": "component:speech-models",
+      "what": "detail",
+      "file": "work/model.json",
+      "verdict": "cannot tell",
+      "reason": "MLX with mlx-audio 0.6.4 is asserted in details.运行时, but this component has no files. There is no component-claimed evidence against which to judge this detail."
+    },
+    {
+      "statement": "component:renderer",
+      "what": "detail",
+      "file": "work/model.json",
+      "verdict": "cannot tell",
+      "reason": "HyperFrames 0.9.9 and GSAP supplied by the film's npm packages is asserted in details.渲染器, but this component has no files. There is no component-claimed evidence against which to judge this detail."
+    },
+    {
+      "statement": "component:renderer",
+      "what": "detail",
+      "file": "work/model.json",
+      "verdict": "cannot tell",
+      "reason": "Chrome Headless Shell 152.0.7977.30 is asserted in details.浏览器, but this component has no files. There is no component-claimed evidence against which to judge this detail."
+    },
+    {
+      "statement": "component:host-tools",
+      "what": "detail",
+      "file": "work/model.json",
+      "verdict": "cannot tell",
+      "reason": "Homebrew-supplied FFmpeg with VideoToolbox, ExifTool and rsync 3 is asserted in details.工具, but this component has no files. There is no component-claimed evidence against which to judge this detail."
+    },
+    {
+      "statement": "component:reviewer",
+      "what": "detail",
+      "file": "work/model.json",
+      "verdict": "cannot tell",
+      "reason": "Independent scoring of every declared dimension for each edition is asserted in details.打分, but this component has no files. There is no component-claimed evidence against which to judge this detail."
+    },
+    {
+      "statement": "relation:auditions-alignment",
+      "what": "direction",
+      "file": "src/filmkit/narration/audition.py",
+      "verdict": "not supported",
+      "reason": "The declared direction is alignment -> auditions and the label says an alignment failure launches an audition. The cited audition module instead calls alignment.verify_aligner and selection.validate_voice_record; it shows auditions using alignment and no automatic audition initiated by an alignment failure."
+    },
+    {
+      "statement": "relation:supply-renderer",
+      "what": "citation",
+      "file": "src/filmkit/narration/snapshots.py",
+      "verdict": "not supported",
+      "reason": "The relation claims supply installs the renderer's browser build. snapshots.py defines and verifies speech-model snapshots only; supply_browser() in supply.py is the browser installation caller."
+    },
+    {
+      "statement": "relation:soundtrack-media-probe",
+      "what": "citation",
+      "file": "src/filmkit/soundtrack/quiet.py",
+      "verdict": "not supported",
+      "reason": "The relation claims a call to media-probe to measure program loudness. quiet.py manipulates PCM quiet and imports spoken_units, with no media-probe call; level.measure_program_level() calls media.loudness() in soundtrack/level.py."
+    },
+    {
+      "statement": "relation:captions-spoken-units",
+      "what": "direction",
+      "file": "src/filmkit/captions/chinese.py; src/filmkit/captions/english.py; src/filmkit/captions/timing.py",
+      "verdict": "not supported",
+      "reason": "The declared direction is spoken-units -> captions. All three cited caption modules import and use spoken-unit punctuation, units or alignment helpers, showing captions -> spoken-units instead."
+    },
+    {
+      "statement": "relation:picture-gate-engine-package",
+      "what": "citation",
+      "file": "src/filmkit/picture/text_trace.py",
+      "verdict": "not supported",
+      "reason": "The relation claims the gate binds the engine version. text_trace.py measures opening-title visibility and resting-text contrast and never reads the engine version; gates.current_bindings() in picture/gates.py calls version('filmkit')."
+    },
+    {
+      "statement": "relation:reproduction-verification",
+      "what": "direction",
+      "file": "src/filmkit/delivery/reproduction.py",
+      "verdict": "not supported",
+      "reason": "The declared direction is verification -> reproduction. reproduction.py imports verification and its review() calls verification.verify_review(), showing reproduction -> verification; verification.py does not call the reproduction comparison."
+    },
+    {
+      "statement": "guide:readme-what",
+      "what": "sentence",
+      "file": "3",
+      "verdict": "cannot tell",
+      "reason": "The sentence says the local speech model is version-pinned. README.md:3 describes local-model narration and the subsequent production pipeline, but contains no model pin or revision."
+    },
+    {
+      "statement": "guide:candidate-inputs",
+      "what": "sentence",
+      "file": "3",
+      "verdict": "cannot tell",
+      "reason": "The sentence says every build step records the SHA-256 of what it reads. rendering.py:123-153 establishes bindings for candidate-picture inputs and 489-516 checks picture gates only; neither range establishes this universal claim."
+    },
+    {
+      "statement": "guide:render-gate",
+      "what": "sentence",
+      "file": "3",
+      "verdict": "cannot tell",
+      "reason": "The sentence says later steps reject any byte mismatch in any record. The cited ranges reject a candidate soundtrack or picture gate bound to different inputs; they do not establish this behavior for every downstream record consumer."
+    },
+    {
+      "statement": "guide:narrate-gate",
+      "what": "sentence",
+      "file": "6",
+      "verdict": "cannot tell",
+      "reason": "The sentence says checks run before any speech model loads and a refusal lists every failure. narrate.py:111-121 only defines gate() and catches a check error; it does not show when gate() is invoked or whether both checks' failures are collected."
+    },
+    {
+      "statement": "guide:abrupt",
+      "what": "sentence",
+      "file": "7",
+      "verdict": "cannot tell",
+      "reason": "The sentence says only naturally ended takes, except declared releases, can enter assembly. assembly.py:156-176 identifies abrupt unreleased takes but only returns their ids; the caller that refuses assembly lies outside the cited range."
+    },
+    {
+      "statement": "guide:sample-declaration",
+      "what": "sentence",
+      "file": "101",
+      "verdict": "not supported",
+      "reason": "The sentence assigns everything beyond the listed fixed specifications to content/film.toml. The cited sample lines point to a source manifest and edition source folders and declare only a few fields; production.py and specification.py show duration, titles, author and chapters read from edition scripts instead."
+    },
+    {
+      "statement": "guide:produce-actions",
+      "what": "sentence",
+      "file": "109",
+      "verdict": "cannot tell",
+      "reason": "The sentence says preflight reports all stale or missing inputs before rendering. produce.py:77-114 merely dispatches preflight(edition), and film.py:386-401 validates the declaration; neither cited range shows preflight's report."
+    },
+    {
+      "statement": "guide:snapshots",
+      "what": "sentence",
+      "file": "111",
+      "verdict": "cannot tell",
+      "reason": "The sentence assigns narration, word timing and transcription to the three models and says all run on MLX. snapshots.py:58-86 lists their mlx-community identities, revisions, folders and weight digests, but contains no model execution or word-timing behavior."
+    },
+    {
+      "statement": "guide:require-renderer",
+      "what": "sentence",
+      "file": "112",
+      "verdict": "cannot tell",
+      "reason": "The sentence gives the exact allowed version HyperFrames 0.9.9. rendering.py:209-219 compares installed metadata with RENDERER_VERSION but does not define that constant; the value 0.9.9 is at line 67, outside the citation."
+    },
+    {
+      "statement": "guide:edition-places",
+      "what": "sentence",
+      "file": "113",
+      "verdict": "cannot tell",
+      "reason": "The sentence says all edition media and records live under build/ and that build/ is untracked. production.py:138-154 defines artifact, evidence and rendered-picture paths but contains no version-control rule and does not enumerate every output."
+    },
+    {
+      "statement": "guide:narrate-gate",
+      "what": "sentence",
+      "file": "146",
+      "verdict": "cannot tell",
+      "reason": "The sentence says the checks run even on a dry run before narration starts. narrate.py:111-121 defines gate() but contains neither dry-run selection nor its invocation; those are in main() outside the cited range."
+    },
+    {
+      "statement": "guide:synthesis-reuse",
+      "what": "sentence",
+      "file": "147",
+      "verdict": "cannot tell",
+      "reason": "The sentence says each thought is narrated once using the cast's seed or retake. synthesis.py:197-225 only verifies and reuses retained recordings or refuses mismatches; it contains no generation or cast seed/retake selection."
+    },
+    {
+      "statement": "guide:narrate-steps",
+      "what": "sentence",
+      "file": "148",
+      "verdict": "cannot tell",
+      "reason": "The sentence says a pinned aligner times every word. narrate.py:54-108 constructs an alignment subprocess with the symbolic ALIGNER path and transcription.py:1-10 describes transcription; neither range establishes aligner pin verification or word timing."
+    },
+    {
+      "statement": "guide:selection",
+      "what": "sentence",
+      "file": "149",
+      "verdict": "cannot tell",
+      "reason": "The sentence says selected recordings and alignments are bound to the narrator reference as well as the current script and cast. selection.py:73-108 records script/cast hashes and calls validate_voice_record(), but the reference-binding checks are at lines 31-53 outside the cited range."
+    },
+    {
+      "statement": "guide:readings-doc",
+      "what": "sentence",
+      "file": "165",
+      "verdict": "not supported",
+      "reason": "The guide sets the English-name requirement at three or more capital letters. readings.py:18-20 requires a declared target for every English word with two or more capitals."
+    },
+    {
+      "statement": "guide:narrate-gate",
+      "what": "sentence",
+      "file": "169",
+      "verdict": "cannot tell",
+      "reason": "The sentence says narration stops before any model loads and reports all failures at once. narrate.py:111-121 catches an error from gate checks, but does not show model-loading order or aggregate failures across both checks."
+    },
+    {
+      "statement": "guide:abrupt",
+      "what": "sentence",
+      "file": "180",
+      "verdict": "cannot tell",
+      "reason": "The sentence says assembly lists abrupt thoughts and refuses the edition. assembly.py:156-176 only returns the abrupt-thought list, excluding declared releases; the refusal and its message are at lines 585-588 outside the citation."
+    },
+    {
+      "statement": "guide:audition-propose",
+      "what": "sentence",
+      "file": "181",
+      "verdict": "cannot tell",
+      "reason": "The sentence says auditions synthesize alternative seeds or run on into the next thought and cut in quiet. audition.py:86-112 selects a proposal from already measured takes; run_on.py:1-8 describes run-on cuts and retakes.py:1-9 describes bindings, but none of these ranges shows alternative-seed synthesis."
+    },
+    {
+      "statement": "guide:releases",
+      "what": "sentence",
+      "file": "182",
+      "verdict": "cannot tell",
+      "reason": "The sentence specifies a release no longer than 0.3 s and says assembly fades it into silence. policy.py:159-170 validates declarations against symbolic RELEASE_SECONDS and LONGEST_RELEASE_SECONDS; neither the 0.3 constant nor the fade operation appears in the range."
+    },
+    {
+      "statement": "guide:selection",
+      "what": "sentence",
+      "file": "183",
+      "verdict": "cannot tell",
+      "reason": "The sentence says selection binds the recordings and alignments to the narrator reference. selection.py:73-108 records script/cast bindings and calls validate_voice_record(), but the reference audio, transcript and treatment checks are outside the cited range."
+    },
+    {
+      "statement": "guide:readme-endings",
+      "what": "sentence",
+      "file": "187",
+      "verdict": "not supported",
+      "reason": "The guide says each frame whose first codebook id is 0 removes 40 ms from an in-context take's ending. README.md:219 states that each such frame in either the reference or take removes 80 ms."
+    },
+    {
+      "statement": "guide:candidate-inputs",
+      "what": "sentence",
+      "file": "191",
+      "verdict": "cannot tell",
+      "reason": "The sentence says every record hashes the files its step reads and every consumer rejects different bytes. rendering.py:123-153 and 489-516 establish candidate-input and picture-gate bindings only, not a contract for every record."
+    },
+    {
+      "statement": "guide:assembly-doc",
+      "what": "sentence",
+      "file": "197",
+      "verdict": "cannot tell",
+      "reason": "The sentence says audio-assembly.json binds the script, output soundtrack, designed pauses and program level. assembly.py:1-10 describes assembly and says the timeline, captions and receipt record its result, but does not show these record fields or their hashes."
+    },
+    {
+      "statement": "guide:gate-check",
+      "what": "sentence",
+      "file": "199",
+      "verdict": "cannot tell",
+      "reason": "The sentence says picture-gates.json binds composition, timeline, stylesheet, fonts and engine version. gates.py:370-442 spreads current_bindings(edition) into the record without defining its fields; the binding definitions are at lines 351-359 outside the citation."
+    },
+    {
+      "statement": "guide:stage",
+      "what": "sentence",
+      "file": "230",
+      "verdict": "cannot tell",
+      "reason": "The sentence says stage-picture inlines the timeline, composition script and style into its document. rendering.py:253-303 writes the result of picture_html() and records inputs, but picture_html's inlining implementation is at lines 165-206 outside the cited range."
+    },
+    {
+      "statement": "guide:narrate-steps",
+      "what": "sentence",
+      "file": "246",
+      "verdict": "cannot tell",
+      "reason": "The sentence says checks run first and synthesis, alignment and transcription execute in independent processes. narrate.py:54-108 constructs the ordered subprocess command lists but contains neither the gate invocation nor subprocess.run(), both of which lie outside this citation."
+    },
+    {
+      "statement": "guide:produce-actions",
+      "what": "sentence",
+      "file": "247",
+      "verdict": "cannot tell",
+      "reason": "The sentence says a refused action reports its name and reason. produce.py:77-114 shows action dispatch only; exception handling that builds '<action>: <reason>' is at lines 174-176 outside the citation."
+    },
+    {
+      "statement": "guide:render",
+      "what": "sentence",
+      "file": "251",
+      "verdict": "cannot tell",
+      "reason": "The sentence says this component stages, renders and validates both UHD pictures and proves caption-only differences. rendering.py:585-642 renders an existing stage and checks receipt properties; equivalence.py:1-33 supports comparison and requires prior validation, but neither cited range shows staging and validation of both UHD pictures."
+    },
+    {
+      "statement": "guide:documents-doc",
+      "what": "sentence",
+      "file": "272",
+      "verdict": "not supported",
+      "reason": "The sentence says replaced delivery members leave no copies. documents_folder.py:7-10 explicitly preserves each replaced or removed entry under build/artifacts/delivery/predecessors/<time>/ as a rollback copy."
+    },
+    {
+      "statement": "guide:delivered-check",
+      "what": "sentence",
+      "file": "276",
+      "verdict": "not supported",
+      "reason": "The sentence says every track in every film bears the edition's language. packaging.py:544-571 explicitly exempts the attached-cover stream; only the other streams, including chapters, must carry the language."
+    },
+    {
+      "statement": "guide:changelog-0211",
+      "what": "sentence",
+      "file": "286",
+      "verdict": "cannot tell",
+      "reason": "The sentence says the timeline contains fourteen versions that changed film production. CHANGELOG.md:13-19 and 7-11 describe only the 0.21.1 and 0.21.2 patches, with no fourteen-event inventory or timeline contents."
+    }
+  ]
+}

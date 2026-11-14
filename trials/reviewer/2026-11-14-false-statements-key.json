@@ -1,0 +1,156 @@
+{
+  "work": "filmkit",
+  "pin": "382424720002fad853029306d697d6ea978b8880",
+  "seeds": [
+    {
+      "n": 1,
+      "class": "wrong-claim",
+      "file": "model.json",
+      "where": "components[id=media-probe].files",
+      "id": "media-probe",
+      "original": "components[id=delivery].files claims src/filmkit/delivery/media_server.py; components[id=media-probe].files is [\"src/filmkit/media.py\"]",
+      "seeded": "components[id=media-probe].files claims src/filmkit/delivery/media_server.py; the path is removed from components[id=delivery].files",
+      "why_false": "src/filmkit/delivery/media_server.py lines 1-25 is an HTTP server that serves local review media with byte ranges for browser seeking (SimpleHTTPRequestHandler, ThreadingHTTPServer); it runs no FFprobe or FFmpeg and reads no stream, cadence, decode or loudness. The media probe is src/filmkit/media.py lines 1-5, which media_server.py does not import."
+    },
+    {
+      "n": 2,
+      "class": "wrong-claim",
+      "file": "model.json",
+      "where": "components[id=film-and-editions].files",
+      "id": "film-and-editions",
+      "original": "components[id=packaging].files claims src/filmkit/delivery/track_language.py",
+      "seeded": "components[id=film-and-editions].files claims src/filmkit/delivery/track_language.py; the path is removed from components[id=packaging].files",
+      "why_false": "src/filmkit/delivery/track_language.py lines 1-7 sets the language of a finished film's MP4 chapter track in place, two bytes of the track's media header that FFmpeg's muxer wrote; it locates no film, reads no declaration and fixes no specification. Packaging calls it: src/filmkit/delivery/packaging.py line 57 imports set_chapter_language and line 609 applies it to the finished film."
+    },
+    {
+      "n": 3,
+      "class": "wrong-claim",
+      "file": "model.json",
+      "where": "components[id=supply].files",
+      "id": "supply",
+      "original": "components[id=film-and-editions].files claims src/filmkit/sources.py; components[id=supply].files is [\"src/filmkit/supply.py\", \"src/filmkit/narration/snapshots.py\"]",
+      "seeded": "components[id=supply].files claims src/filmkit/sources.py; the path is removed from components[id=film-and-editions].files",
+      "why_false": "src/filmkit/sources.py lines 1-7 is the manifest of the canonical source documents the film explains and its check against a local clone; it says a build never reads the source repository, and it installs nothing and reaches no network. Supply is src/filmkit/supply.py lines 1-7: it installs the pinned browser build and downloads the pinned speech model snapshots, and does not import sources.py."
+    },
+    {
+      "n": 4,
+      "class": "reversed-relation",
+      "file": "model.json",
+      "where": "relations[id=reproduction-verification]",
+      "id": "reproduction-verification",
+      "original": "from reproduction to verification, label \"验收已发布的评审\"",
+      "seeded": "from verification to reproduction, label \"调用复现比对已发布版本\"",
+      "why_false": "The cited src/filmkit/delivery/reproduction.py imports filmkit.delivery.verification and calls verification.verify_review at line 218 (catching verification.VerificationError at line 219) to accept the published review: reproduction calls the verifier. src/filmkit/delivery/verification.py and src/filmkit/delivery/spotlight.py hold no reference to reproduction, so the verifier never runs the comparison with the published release."
+    },
+    {
+      "n": 5,
+      "class": "reversed-relation",
+      "file": "model.json",
+      "where": "relations[id=auditions-alignment]",
+      "id": "auditions-alignment",
+      "original": "from auditions to alignment, label \"对齐、转写录音\"",
+      "seeded": "from alignment to auditions, label \"对齐失败时发起试音\"",
+      "why_false": "The cited src/filmkit/narration/audition.py imports verify_aligner from alignment (line 57), validate_voice_record from selection (line 64) and load_asr, transcribe from transcription (line 68), and calls them at lines 159, 273, 284 and 330: the audition aligns and transcribes its own takes. None of alignment's modules (alignment.py, alignment_records.py, transcription.py, recognition.py, receipts.py, selection.py) imports or starts audition."
+    },
+    {
+      "n": 6,
+      "class": "reversed-relation",
+      "file": "model.json",
+      "where": "relations[id=captions-spoken-units]",
+      "id": "captions-spoken-units",
+      "original": "from captions to spoken-units, label \"读取标点、单元\"",
+      "seeded": "from spoken-units to captions, label \"读取字幕条、断句\"",
+      "why_false": "The cited src/filmkit/captions/chinese.py line 15, english.py line 15 and timing.py line 20 each import from filmkit.narration.spoken_units: captions read the punctuation roles and units. src/filmkit/narration/spoken_units.py imports nothing from captions and its docstring line 6 says the captions and the soundtrack read each role from this module; flow.py imports only spoken_units and soundtrack.quiet (lines 42, 48)."
+    },
+    {
+      "n": 7,
+      "class": "irrelevant-citation",
+      "file": "model.json",
+      "where": "relations[id=supply-renderer].files",
+      "id": "supply-renderer",
+      "original": "[\"src/filmkit/supply.py\"]",
+      "seeded": "[\"src/filmkit/narration/snapshots.py\"]",
+      "why_false": "src/filmkit/narration/snapshots.py lines 1-30 defines the pinned speech model snapshots (hub repository, revision, files, weights) and nothing else; it names no browser, renderer or installer. The browser build is installed in src/filmkit/supply.py (docstring lines 1-7, BROWSER_INSTALLER lines 24-25, supply_browser lines 36-37)."
+    },
+    {
+      "n": 8,
+      "class": "irrelevant-citation",
+      "file": "model.json",
+      "where": "relations[id=soundtrack-media-probe].files",
+      "id": "soundtrack-media-probe",
+      "original": "[\"src/filmkit/soundtrack/level.py\"]",
+      "seeded": "[\"src/filmkit/soundtrack/quiet.py\"]",
+      "why_false": "src/filmkit/soundtrack/quiet.py lines 1-30 finds and shapes quiet inside and between spoken units from PCM samples with NumPy; its only engine import is narration.spoken_units (line 17), and it neither imports filmkit.media nor measures a program loudness. The measurement is in src/filmkit/soundtrack/level.py: line 11 imports filmkit.media and line 53 calls media.loudness."
+    },
+    {
+      "n": 9,
+      "class": "irrelevant-citation",
+      "file": "model.json",
+      "where": "relations[id=picture-gate-engine-package].files",
+      "id": "picture-gate-engine-package",
+      "original": "[\"src/filmkit/picture/gates.py\"]",
+      "seeded": "[\"src/filmkit/picture/text_trace.py\"]",
+      "why_false": "src/filmkit/picture/text_trace.py lines 1-21 reads the frame audit's text trace for the opening title and the contrast of text at rest; it holds no engine version, package metadata or binding. The version is bound in src/filmkit/picture/gates.py: docstring lines 8-9 and line 357, \"engine_version\": version(\"filmkit\")."
+    },
+    {
+      "n": 10,
+      "class": "false-detail",
+      "file": "model.json",
+      "where": "components[id=engine-package].details.依赖",
+      "id": "engine-package",
+      "original": "mlx-audio 0.6.4、NumPy、Pillow、Pydantic、pypinyin 和 snowballstemmer",
+      "seeded": "mlx-audio 0.6.4、NumPy、Pillow、Pydantic、jieba 和 snowballstemmer",
+      "why_false": "pyproject.toml lines 8-15 lists the dependencies mlx-audio, numpy, pillow, pydantic, pypinyin and snowballstemmer; jieba is not a dependency and appears nowhere in the file, and pypinyin (line 13) is dropped from the seeded list."
+    },
+    {
+      "n": 11,
+      "class": "false-detail",
+      "file": "model.json",
+      "where": "components[id=tool-runner].details.运行",
+      "id": "tool-runner",
+      "original": "引擎的 Node 工具，取自影片工具缓存里的副本，用影片的 npm 包",
+      "seeded": "引擎的 Node 工具，取自影片工具缓存里的副本，用引擎的 npm 包",
+      "why_false": "src/filmkit/tools.py line 1 says a tool runs \"with the film's packages\", and lines 3-6 say the run copies the modules into the film's tool cache and runs the tool at the film's root so that \"its imports resolve from the film's npm packages\". The engine supplies no npm packages to a run."
+    },
+    {
+      "n": 12,
+      "class": "false-detail",
+      "file": "model.json",
+      "where": "components[id=captions].details.定时",
+      "id": "captions",
+      "original": "单行字幕条，卡准对齐好的词，绝不跨意群",
+      "seeded": "双行字幕条，卡准对齐好的词，绝不跨意群",
+      "why_false": "Cues are one line: src/filmkit/captions/__init__.py lines 3-4 (\"readable one-line cues\"), src/filmkit/captions/chinese.py line 1 (\"single caption lines\"), src/filmkit/captions/phrasing.py line 41 (\"readable single-line semantic cues\") and src/filmkit/captions/documents.py line 3 (each cue's display copy on one line). No file under src/filmkit/captions/ sets a two-line cue."
+    },
+    {
+      "n": 13,
+      "class": "false-sentence",
+      "file": "guide/guide.archify.md",
+      "where": "line 187",
+      "id": "readme-endings",
+      "original": "在 mlx-audio 0.6.4 中，首个码本 id 为 0 的每一帧，都会让带参考上下文的录音结尾少掉 80 ms。",
+      "seeded": "在 mlx-audio 0.6.4 中，首个码本 id 为 0 的每一帧，都会让带参考上下文的录音结尾少掉 40 ms。",
+      "why_false": "README.md line 219 (cited range 219-221) says each frame with id 0 \"removes 80 ms from the end of the take\"; the cited lines name no 40 ms."
+    },
+    {
+      "n": 14,
+      "class": "false-sentence",
+      "file": "guide/guide.archify.md",
+      "where": "line 165",
+      "id": "readings-doc",
+      "original": "中文旁白里的每个拉丁字母单词，和每个至少含两个大写字母的英文单词，都要声明读法。",
+      "seeded": "中文旁白里的每个拉丁字母单词，和每个至少含三个大写字母的英文单词，都要声明读法。",
+      "why_false": "src/filmkit/narration/readings.py lines 18-20 (cited range 1-27) say every word of the English narration \"written with two or more capitals\" must be an English target; the threshold is two capitals, not three."
+    },
+    {
+      "n": 15,
+      "class": "false-sentence",
+      "file": "guide/guide.archify.md",
+      "where": "line 272",
+      "id": "documents-doc",
+      "original": "随后 rsync 复制字节不同的每个交付项，并把替换掉的每一项留作回滚副本。",
+      "seeded": "随后 rsync 复制字节不同的每个交付项，替换掉的每一项则不留任何副本。",
+      "why_false": "src/filmkit/delivery/documents_folder.py lines 7-10 (cited range 1-27) say each entry rsync replaces or removes moves into build/artifacts/delivery/predecessors/<time>/, outside the destination, as the rollback copy; a copy of every replaced entry is kept."
+    }
+  ]
+}

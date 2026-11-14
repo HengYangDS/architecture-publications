@@ -239,3 +239,50 @@ export async function verifyPublications(publications, repositoryRoot) {
   }
   return works;
 }
+
+const LENSES = new Set(["product", "architecture", "project"]);
+const ASKING_ROLES = new Set(["newcomer", "evaluator"]);
+
+/**
+ * Verify the question table's form and return its entries: each has an id unique in the table, a lens, at
+ * least one role that asks it and a question, and may name the one genre of repository it applies to.
+ */
+export async function verifyQuestionTable(file) {
+  const table = await readJson(file);
+  assert.equal(
+    table.format,
+    "architecture-publications.question-table",
+    "the question table names another format",
+  );
+  assert.ok(
+    Array.isArray(table.entries) && table.entries.length > 0,
+    "the question table holds no entries",
+  );
+  const seen = new Set();
+  for (const entry of table.entries) {
+    assert.match(
+      String(entry.id),
+      /^[a-z][a-z0-9-]*$/u,
+      `the entry id ${entry.id} is not a lower-case slug`,
+    );
+    assert.ok(!seen.has(entry.id), `the entry ${entry.id} is named twice`);
+    seen.add(entry.id);
+    assert.ok(LENSES.has(entry.lens), `the entry ${entry.id} names no known lens`);
+    assert.ok(
+      Array.isArray(entry.asks) && entry.asks.length > 0,
+      `no role asks the entry ${entry.id}`,
+    );
+    for (const role of entry.asks)
+      assert.ok(ASKING_ROLES.has(role), `the entry ${entry.id} names the unknown role ${role}`);
+    assert.ok(
+      typeof entry.question === "string" && entry.question.trim(),
+      `the entry ${entry.id} has no question`,
+    );
+    if ("genre" in entry)
+      assert.ok(
+        typeof entry.genre === "string" && entry.genre.trim(),
+        `the entry ${entry.id} names an empty genre`,
+      );
+  }
+  return table.entries;
+}

@@ -15,8 +15,9 @@ later reader needs to judge a result: the questions, the rules and the records.
 
 - A check that grades a work against the question table. The publisher's model gains that with its next
   version, and until then the matrices are filled by hand. This Change checks the table's own form only.
-- The scripts that run and score the trials. They stay with the publisher's work directory, and the reader
-  protocol names each by its SHA-256.
+- The scripts that run and score the trials. They start agents and unpack sibling repositories, and ETHOS admits
+  no such program here: adding them was refused for naming two executables this repository does not admit. They
+  stay with the publisher's working records, and the trials' index names each by its SHA-256.
 - Corrections to the works. The five statements a reviewer refused outside the seeds are listed in the record as
   candidates and are corrected by a Change of their own.
 

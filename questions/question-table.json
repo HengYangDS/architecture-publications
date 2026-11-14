@@ -1,0 +1,172 @@
+{
+  "format": "architecture-publications.question-table",
+  "version": 2,
+  "note": "Revised after the first three matrices (ETHOS 13 cited of 13, Film Kit 12, DDWG 12): ten of thirteen questions joined two or three clauses, and one answered clause made the whole entry count. Each entry now asks one thing. Entries marked for a genre apply to that genre only.",
+  "entries": [
+    {
+      "id": "what-it-is",
+      "lens": "product",
+      "asks": ["evaluator", "newcomer"],
+      "question": "What is this system?"
+    },
+    {
+      "id": "for-whom",
+      "lens": "product",
+      "asks": ["evaluator"],
+      "question": "Whom does it serve?"
+    },
+    {
+      "id": "what-it-is-not",
+      "lens": "product",
+      "asks": ["evaluator", "newcomer"],
+      "question": "What does it leave to others, and what is it not?"
+    },
+    {
+      "id": "surroundings",
+      "lens": "product",
+      "asks": ["evaluator"],
+      "question": "What does it work beside and depend on from outside?"
+    },
+    {
+      "id": "goals",
+      "lens": "product",
+      "asks": ["evaluator"],
+      "question": "What must it achieve, and who answers for it?"
+    },
+    {
+      "id": "main-parts",
+      "lens": "architecture",
+      "asks": ["newcomer", "evaluator"],
+      "question": "What are its main parts?"
+    },
+    {
+      "id": "dependencies",
+      "lens": "architecture",
+      "asks": ["newcomer", "evaluator"],
+      "question": "How do the parts depend on each other?"
+    },
+    {
+      "id": "mechanisms",
+      "lens": "architecture",
+      "asks": ["newcomer"],
+      "question": "How does its most important work run, step by step?"
+    },
+    {
+      "id": "data",
+      "lens": "architecture",
+      "asks": ["newcomer", "evaluator"],
+      "question": "What data does it keep, and where?"
+    },
+    {
+      "id": "interfaces",
+      "lens": "architecture",
+      "asks": ["newcomer", "evaluator"],
+      "question": "Through which interfaces is it used and does it reach others?"
+    },
+    {
+      "id": "built-with",
+      "lens": "architecture",
+      "asks": ["evaluator"],
+      "question": "What is it built with?"
+    },
+    {
+      "id": "installed-and-run",
+      "lens": "architecture",
+      "asks": ["evaluator", "newcomer"],
+      "question": "How is it installed or distributed, and where does it run?"
+    },
+    {
+      "id": "repository-structure",
+      "lens": "architecture",
+      "asks": ["newcomer"],
+      "question": "Where in the repository does each part live?"
+    },
+    {
+      "id": "invariants",
+      "lens": "architecture",
+      "asks": ["newcomer", "evaluator"],
+      "question": "What must always hold inside it?"
+    },
+    {
+      "id": "never-break",
+      "lens": "architecture",
+      "asks": ["newcomer"],
+      "question": "What must a change never break?"
+    },
+    {
+      "id": "using-it",
+      "lens": "project",
+      "asks": ["newcomer"],
+      "question": "How does one start using it?"
+    },
+    {
+      "id": "changing-it",
+      "lens": "project",
+      "asks": ["newcomer"],
+      "question": "How does one make a change to this repository?"
+    },
+    {
+      "id": "verification",
+      "lens": "project",
+      "asks": ["newcomer", "evaluator"],
+      "question": "How is a change verified?"
+    },
+    {
+      "id": "release",
+      "lens": "project",
+      "asks": ["evaluator", "newcomer"],
+      "question": "How is a release made?"
+    },
+    {
+      "id": "decisions",
+      "lens": "project",
+      "asks": ["evaluator"],
+      "question": "Which decisions shaped it, and why?"
+    },
+    {
+      "id": "open-risks",
+      "lens": "project",
+      "asks": ["evaluator"],
+      "question": "What risks, limits or open items remain?"
+    },
+    {
+      "id": "history",
+      "lens": "project",
+      "asks": ["evaluator", "newcomer"],
+      "question": "How did it get here?"
+    },
+    {
+      "id": "direction",
+      "lens": "project",
+      "asks": ["evaluator", "newcomer"],
+      "question": "Where is it going?"
+    },
+    {
+      "id": "terms",
+      "lens": "project",
+      "asks": ["newcomer"],
+      "question": "What do its own words mean?"
+    },
+    {
+      "id": "binds-whom",
+      "lens": "product",
+      "genre": "guidance",
+      "asks": ["evaluator", "newcomer"],
+      "question": "Whom does the guidance bind, and with what force?"
+    },
+    {
+      "id": "owned-by",
+      "lens": "project",
+      "genre": "guidance",
+      "asks": ["evaluator"],
+      "question": "Who owns the guidance and may change it?"
+    },
+    {
+      "id": "in-use",
+      "lens": "project",
+      "genre": "guidance",
+      "asks": ["evaluator"],
+      "question": "Is the guidance in use, and how is that known?"
+    }
+  ]
+}

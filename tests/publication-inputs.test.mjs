@@ -10,6 +10,7 @@ import {
   verifyCustody,
   verifyModel,
   verifyPublications,
+  verifyQuestionTable,
   verifyWork,
 } from "../tools/verification/publication-inputs.mjs";
 
@@ -406,4 +407,26 @@ test("custody refuses corrupt identity, escaping paths and unsupported storage",
       await assert.rejects(verifyCustody(directory, directory));
     }
   });
+});
+
+test("the question table holds entries with a unique id, a lens, the roles that ask and a question", async (t) => {
+  const table = path.join(root, "questions/question-table.json");
+  const entries = await verifyQuestionTable(table);
+  assert.ok(entries.length > 0);
+  const source = JSON.parse(await (await import("node:fs/promises")).readFile(table, "utf8"));
+  const directory = await mkdtemp(path.join(os.tmpdir(), "publications-questions-"));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  for (const [mutate, message] of [
+    [(copy) => copy.entries.push({ ...copy.entries[0] }), /named twice/u],
+    [(copy) => (copy.entries[0].asks = []), /no role asks/u],
+    [(copy) => (copy.entries[0].lens = "style"), /lens/u],
+    [(copy) => (copy.entries[0].question = " "), /question/u],
+    [(copy) => (copy.entries[0].asks = ["reviewer"]), /role/u],
+  ]) {
+    const copy = structuredClone(source);
+    mutate(copy);
+    const file = path.join(directory, "table.json");
+    await writeFile(file, JSON.stringify(copy));
+    await assert.rejects(verifyQuestionTable(file), message);
+  }
 });

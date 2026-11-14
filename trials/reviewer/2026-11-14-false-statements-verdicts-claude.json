@@ -1,0 +1,133 @@
+{
+  "holder": "Claude (Fable 5.2, claude-fable-5-2)",
+  "judged": { "components": 28, "relations": 55, "guide_sentences": 87 },
+  "supported": { "components": 20, "relations": 49, "guide_sentences": 83 },
+  "findings": [
+    {
+      "statement": "component:film-and-editions",
+      "what": "claim",
+      "file": "src/filmkit/delivery/track_language.py",
+      "verdict": "not supported",
+      "reason": "The component is the film's location, declaration and fixed format. The file sets the language of a finished film's chapter track in place in the MP4; only delivery/packaging.py imports it, and it is what the packaging component's own detail describes."
+    },
+    {
+      "statement": "component:supply",
+      "what": "claim",
+      "file": "src/filmkit/sources.py",
+      "verdict": "not supported",
+      "reason": "Supply is said to install the pinned browser build and three speech models and to be the only step on the network. The file holds the manifest of the canonical sources the film explains and their check, installs nothing and says a build never reads the source repository; the declaration (film.py) names that manifest."
+    },
+    {
+      "statement": "component:media-probe",
+      "what": "claim",
+      "file": "src/filmkit/delivery/media_server.py",
+      "verdict": "not supported",
+      "reason": "The component is said to read streams, cadence, decodes and loudness with FFprobe and FFmpeg. The file serves local review media over HTTP with byte ranges for browser seeking and probes nothing; no module of src/filmkit imports it."
+    },
+    {
+      "statement": "component:delivery",
+      "what": "detail",
+      "file": "src/filmkit/delivery/documents_folder.py",
+      "verdict": "not supported",
+      "reason": "The detail says the component serves local review media with byte ranges. Its only claimed file delivers with rsync, reads back with shasum and runs the player check; the serving is in delivery/media_server.py, which the media-probe component claims."
+    },
+    {
+      "statement": "component:captions",
+      "what": "detail",
+      "file": "src/filmkit/captions/",
+      "verdict": "not supported",
+      "reason": "The detail says two-line caption cues. captions/__init__.py requires readable one-line cues, chinese.py sets single caption lines, documents.py shows each cue on one line and phrasing.py keeps each phrase on one readable line."
+    },
+    {
+      "statement": "component:tool-runner",
+      "what": "detail",
+      "file": "src/filmkit/tools.py",
+      "verdict": "not supported",
+      "reason": "The detail says the Node tools run with the engine's npm packages. tools.py lines 1-6 say the tool runs at the film's root and its imports resolve from the film's npm packages; the engine carries only the tool modules as package data."
+    },
+    {
+      "statement": "component:engine-package",
+      "what": "detail",
+      "file": "pyproject.toml",
+      "verdict": "not supported",
+      "reason": "The detail lists jieba among the dependencies. pyproject.toml declares mlx-audio 0.6.4, numpy, pillow, pydantic, pypinyin and snowballstemmer; jieba is not there and pypinyin is missing from the detail."
+    },
+    {
+      "statement": "component:alignment",
+      "what": "detail",
+      "file": "src/filmkit/narration/transcription.py",
+      "verdict": "not supported",
+      "reason": "The detail says the transcript serves only as a proxy for recognition. transcription.py line 4-5 says recognition is a proxy for pronunciation, not certification or listening, which is also how the guide words it."
+    },
+    {
+      "statement": "relation:auditions-alignment",
+      "what": "direction",
+      "file": "src/filmkit/narration/audition.py",
+      "verdict": "not supported",
+      "reason": "The relation runs from alignment to auditions and says alignment starts an audition when it fails. audition.py shows the opposite: it imports verify_aligner, transcription, recognition, receipts and selection; no file of the alignment component imports or calls audition."
+    },
+    {
+      "statement": "relation:captions-spoken-units",
+      "what": "direction",
+      "file": "src/filmkit/captions/chinese.py, src/filmkit/captions/english.py, src/filmkit/captions/timing.py",
+      "verdict": "not supported",
+      "reason": "The relation runs from spoken-units to captions. All three cited files are caption modules importing filmkit.narration.spoken_units, so captions uses spoken-units; spoken_units.py imports nothing from the engine and flow.py nothing from captions."
+    },
+    {
+      "statement": "relation:reproduction-verification",
+      "what": "direction",
+      "file": "src/filmkit/delivery/reproduction.py",
+      "verdict": "not supported",
+      "reason": "The relation runs from verification to reproduction and says verification calls reproduction. reproduction.py imports filmkit.delivery.verification and calls verification.verify_review; verification.py does not import reproduction and nothing else in src/filmkit references it."
+    },
+    {
+      "statement": "relation:supply-renderer",
+      "what": "citation",
+      "file": "src/filmkit/narration/snapshots.py",
+      "verdict": "not supported",
+      "reason": "The relation says supply installs the browser build. snapshots.py only pins the three speech-model snapshots and their check; the browser install (supply_browser) is in src/filmkit/supply.py, which is not cited."
+    },
+    {
+      "statement": "relation:soundtrack-media-probe",
+      "what": "citation",
+      "file": "src/filmkit/soundtrack/quiet.py",
+      "verdict": "not supported",
+      "reason": "The relation says the soundtrack measures program loudness through media-probe. quiet.py imports only narration.spoken_units and calls no media function; the call media.loudness is in soundtrack/level.py (measure_program_level), which is not cited."
+    },
+    {
+      "statement": "relation:picture-gate-engine-package",
+      "what": "citation",
+      "file": "src/filmkit/picture/text_trace.py",
+      "verdict": "not supported",
+      "reason": "The relation says the gate binds the engine version. text_trace.py measures the opening title and text contrast and reads no version; version(\"filmkit\") is bound in picture/gates.py (current_bindings), which is not cited."
+    },
+    {
+      "statement": "guide:readme-endings",
+      "what": "sentence",
+      "file": "187",
+      "verdict": "not supported",
+      "reason": "The sentence says each frame whose first codebook id is 0 removes 40 ms from the end of a take. README.md line 219 says each such frame removes 80 ms."
+    },
+    {
+      "statement": "guide:readings-doc",
+      "what": "sentence",
+      "file": "165",
+      "verdict": "not supported",
+      "reason": "The sentence says every English word with at least three capitals needs a declared spoken form. readings.py lines 18-20 say every word of the English narration written with two or more capitals."
+    },
+    {
+      "statement": "guide:documents-doc",
+      "what": "sentence",
+      "file": "272",
+      "verdict": "not supported",
+      "reason": "The sentence says no copy is kept of an entry rsync replaces. documents_folder.py lines 7-10 say each entry it replaces or removes moves into build/artifacts/delivery/predecessors/<time>/ as the rollback copy."
+    },
+    {
+      "statement": "guide:produce-actions",
+      "what": "citation",
+      "file": "109",
+      "verdict": "not supported",
+      "reason": "The third sentence says preflight reports every stale or missing input before a render. The cited lines (produce.py 77-114, film.py 386-401) only name the preflight action; the statement is true but it is said in src/filmkit/preflight.py lines 1-19, which is not cited."
+    }
+  ]
+}

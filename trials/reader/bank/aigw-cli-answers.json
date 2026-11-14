@@ -1,0 +1,190 @@
+{
+  "items": [
+    {
+      "id": "aigw-01",
+      "change": "2026-11-06-hermes-gateway-cleanup",
+      "kind": "product",
+      "commits": "0999b4df..af8c8bf6",
+      "change_commits": ["0999b4df", "7e21096b", "c9858d0a", "2e8215f7", "1837a3dd", "af8c8bf6"],
+      "implementing_commits": ["0999b4df", "c9858d0a", "af8c8bf6"],
+      "range_holds_other_changes": true,
+      "answer_paths": [
+        "internal/adapter/hermes/adapter_verification_unix.go",
+        "internal/adapter/hermes/gateway_unix_test.go",
+        "internal/adapter/hermes/verification_home_unix.go",
+        "internal/adapter/hermes/verification_home_unix_test.go",
+        "openspec/specs/cli-readiness/spec.md"
+      ],
+      "answer_dirs": ["internal/adapter/hermes", "openspec/specs/cli-readiness"],
+      "paths_created_by_this_change": [],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": [],
+      "incidental_paths": ["openspec/specs/cli-readiness/spec.md"],
+      "motivation_words_that_are_some_file_stem_at_the_pin": ["process", "program", "settings"],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "aigw-02",
+      "change": "2026-11-06-hermes-verification-isolation",
+      "kind": "product",
+      "commits": "20b9cee7..2888625c",
+      "change_commits": ["20b9cee7", "cc49544e", "90e8f86c", "31f3dba5", "3d4ae062", "2888625c"],
+      "implementing_commits": ["20b9cee7", "cc49544e", "90e8f86c", "2888625c"],
+      "range_holds_other_changes": true,
+      "answer_paths": [
+        "internal/adapter/hermes/adapter_verification_test.go",
+        "internal/adapter/hermes/document.go",
+        "internal/adapter/hermes/verification_test.go",
+        "openspec/specs/route-client-selection/spec.md"
+      ],
+      "answer_dirs": ["internal/adapter/hermes", "openspec/specs/route-client-selection"],
+      "paths_created_by_this_change": [],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": ["openspec/specs/route-client-selection/spec.md"],
+      "incidental_paths": ["openspec/specs/route-client-selection/spec.md"],
+      "motivation_words_that_are_some_file_stem_at_the_pin": [
+        "check",
+        "configuration",
+        "extensions",
+        "memory",
+        "program",
+        "provider"
+      ],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "aigw-03",
+      "change": "2026-11-06-windows-job-assign",
+      "kind": "product",
+      "commits": "a8c98a8f..4eda241b",
+      "change_commits": ["a8c98a8f", "90cdca08", "4779284c", "4dc3d2f3", "4eda241b"],
+      "implementing_commits": ["a8c98a8f", "90cdca08", "4779284c", "4eda241b"],
+      "range_holds_other_changes": true,
+      "answer_paths": [
+        "internal/platform/process/capture_windows.go",
+        "internal/platform/process/job_windows_test.go",
+        "openspec/specs/secret-storage/spec.md"
+      ],
+      "answer_dirs": ["internal/platform/process", "openspec/specs/secret-storage"],
+      "paths_created_by_this_change": [],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": [],
+      "incidental_paths": ["openspec/specs/secret-storage/spec.md"],
+      "motivation_words_that_are_some_file_stem_at_the_pin": ["checks", "command", "credential"],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "aigw-04",
+      "change": "2026-11-07-start-cancellation",
+      "kind": "product",
+      "commits": "6a7e0a3b..47cc4567",
+      "change_commits": ["6a7e0a3b", "1b37afc3", "47cc4567"],
+      "implementing_commits": ["6a7e0a3b", "47cc4567"],
+      "range_holds_other_changes": false,
+      "answer_paths": [
+        "internal/platform/process/runner.go",
+        "internal/platform/process/runner_windows_test.go",
+        "openspec/specs/release-distribution/spec.md"
+      ],
+      "answer_dirs": ["internal/platform/process", "openspec/specs/release-distribution"],
+      "paths_created_by_this_change": [],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": [],
+      "incidental_paths": ["openspec/specs/release-distribution/spec.md"],
+      "motivation_words_that_are_some_file_stem_at_the_pin": [
+        "check",
+        "context",
+        "pipeline",
+        "state"
+      ],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "aigw-05",
+      "change": "2026-11-12-team-file-curation",
+      "kind": "product",
+      "commits": "0e0f5cd5..7dd11222",
+      "change_commits": ["0e0f5cd5", "f529da7c", "c9cba638", "08ebf295", "71c95b1c", "7dd11222"],
+      "implementing_commits": ["c9cba638", "08ebf295", "7dd11222"],
+      "range_holds_other_changes": true,
+      "answer_paths": [
+        "docs/research/provider-model-qualification.md",
+        "internal/store/team_test.go",
+        "manifests/team.toml",
+        "openspec/specs/progressive-team-onboarding/spec.md"
+      ],
+      "answer_dirs": [
+        "docs/research",
+        "internal/store",
+        "manifests",
+        "openspec/specs/progressive-team-onboarding"
+      ],
+      "paths_created_by_this_change": [],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": [],
+      "incidental_paths": ["openspec/specs/progressive-team-onboarding/spec.md"],
+      "motivation_words_that_are_some_file_stem_at_the_pin": [],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "aigw-06",
+      "change": "2026-11-13-team-file-lines",
+      "kind": "product",
+      "commits": "38815de1..46fb317e",
+      "change_commits": ["38815de1", "5eda9b3a", "46fb317e"],
+      "implementing_commits": ["38815de1", "46fb317e"],
+      "range_holds_other_changes": false,
+      "answer_paths": [
+        "docs/guides/team-rollout.md",
+        "docs/research/provider-model-qualification.md",
+        "internal/adapter/claudedesktop/adapter_tool_search_test.go",
+        "internal/store/team_lines_test.go",
+        "internal/store/team_test.go",
+        "manifests/team.toml",
+        "openspec/specs/progressive-team-onboarding/spec.md"
+      ],
+      "answer_dirs": [
+        "docs/guides",
+        "docs/research",
+        "internal/adapter/claudedesktop",
+        "internal/store",
+        "manifests",
+        "openspec/specs/progressive-team-onboarding"
+      ],
+      "paths_created_by_this_change": ["internal/store/team_lines_test.go"],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": [],
+      "incidental_paths": ["openspec/specs/progressive-team-onboarding/spec.md"],
+      "motivation_words_that_are_some_file_stem_at_the_pin": ["check", "evidence", "support"],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "aigw-07",
+      "change": "2026-11-13-keychain-fixture-bounds",
+      "kind": "tests-only",
+      "commits": "fc9051a9..5b6143f9",
+      "change_commits": ["fc9051a9", "2bfa8660", "5b6143f9"],
+      "implementing_commits": ["fc9051a9", "5b6143f9"],
+      "range_holds_other_changes": true,
+      "answer_paths": [
+        "internal/secret/native/migration_darwin_test.go",
+        "internal/secret/native/provider_darwin_test.go",
+        "openspec/specs/secret-storage/spec.md"
+      ],
+      "answer_dirs": ["internal/secret/native", "openspec/specs/secret-storage"],
+      "paths_created_by_this_change": [],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": [],
+      "incidental_paths": ["openspec/specs/secret-storage/spec.md"],
+      "motivation_words_that_are_some_file_stem_at_the_pin": ["command", "credential", "prompt"],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    }
+  ]
+}

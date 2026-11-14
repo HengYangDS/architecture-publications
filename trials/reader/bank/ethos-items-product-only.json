@@ -1,0 +1,56 @@
+{
+  "repository": "ethos",
+  "pin": "999784081fa3de9a97879ac17862f425b8120437",
+  "items": [
+    {
+      "id": "ethos-02",
+      "motivation": "A newcomer created a new governed project under a directory that the operating system reaches through a symbolic link (as macOS does for its temporary directory). The creation preview reported the resolved root and offered a continuation that names it, but running that continuation verbatim was refused with a plan digest mismatch, because the digest binds the root as the caller spelled it. A preview and an apply that name one destination through different spellings should bind one plan, while a parent directory that is retargeted between them must still be refused.",
+      "size": 3
+    },
+    {
+      "id": "ethos-03",
+      "motivation": "A public third-party installer of reusable procedures for coding assistants scans a checkout and offers what it finds. Run against this project, it offers the four maintainer-only procedures, which guide changes to the tool itself and not to an adopter's codebase; and when everything it finds is hidden it searches the whole tree and offers the bundled end-user procedure from the default branch, which can disagree with the version a user runs. Every such procedure that the project tracks should be marked internal so that the installer's default discovery offers none of them. The maintainer bundles' recorded digests should follow, the overview beside them should say why, and a check should require the mark on each tracked procedure.",
+      "size": 11
+    },
+    {
+      "id": "ethos-04",
+      "motivation": "The structural conformance rules require a tracked lock file whenever a project tracks a configuration for the prescribed tool-version manager. That manager writes no lock for a configuration that selects no tool, so a project whose configuration only declares tasks, such as the minimal starter that the create command will write, can conform only with a placeholder lock that no real tool wrote. The quality gates already treat such a configuration as task-only and need no lock. One shared predicate for whether a declaration selects tools should decide both, and the lock should be required only when a tool is selected; the locked setting and the three task verbs stay required.",
+      "size": 4
+    },
+    {
+      "id": "ethos-05",
+      "motivation": "A newcomer created a new governed project from the minimal built-in template. Status reported it ready, but the first proof refused with eight structural-rule gaps: no contributing guide, no shared attribute and editor rules, no common rules for the four change-proposal artifacts, and no declared owner of tool versions. Six of the gaps have deterministic fixes in the existing fixing command; the other two exist only as gap text. What the tool writes should pass the tool's own structural rules on the very commit that creation makes: creation should author the missing files, apply the existing fixes to the candidate, check the composed candidate, and refuse before any effect when a gap remains.",
+      "size": 4
+    },
+    {
+      "id": "ethos-06",
+      "motivation": "The owner asked that the blank-line rules for this project and every governed codebase be defined clearly and enforced strictly, above all inside the list items of CommonMark documents; today nothing enforces them. Prettier adds a missing blank line after a list item that holds two paragraphs, but it keeps a stray blank line after a single-paragraph item and a blank line between a paragraph and the code block or nested list that it introduces, and one such line makes the whole list render loose. One rule should say where a blank line belongs inside and after a list item. The project's own reformat step should apply it after Prettier, so that its verify mode and the proof refuse a violation and its fix mode repairs one, and the commit-time step should refuse a violating file with its path and line.",
+      "size": 12
+    },
+    {
+      "id": "ethos-07",
+      "motivation": "The owner asked for clear, enforced blank-line rules in every kind of file. Each language-specific formatter already decides them for its own files, but a group of plain files that the ownership table assigns to the project's built-in formatter has no owner that acts: INI files, spelling vocabularies, the licence and version files, and the ignore, attribute and editor-settings files. Their declared command names a session that does not exist, the built-in formatter skips them, and a governed codebase verifies nothing about them. That formatter should become real for these files: no blank line at the start or end, at most one blank line in a row, whitespace-only lines emptied and one final newline. Its verify and fix modes, the proof and the commit-time step should all apply it, in this project and in every governed codebase.",
+      "size": 12
+    },
+    {
+      "id": "ethos-08",
+      "motivation": "The owner asked for one rule for the marker file that makes a Python directory importable: a docstring or an empty file. The governed codebases disagree, some all with a docstring, some all empty and some mixed, and the structural rules state nothing, so each codebase's own linter selection decides. Every tracked marker should open with a docstring that names its purpose. An empty or docstring-less marker should count as a structural-rule gap that names the file, and the commit-time step should refuse one that is about to be committed.",
+      "size": 7
+    },
+    {
+      "id": "ethos-10",
+      "motivation": "When a proof is refused for structural-rule gaps, the step that it suggests to the user is the hand edit for the first gap, even when the automatic fixing command could write that fix and the others. A newcomer audit shows the cost: a freshly created project failed its first proof with eight such gaps, seven of them fixable automatically, and the suggestion named a hand edit. When the automatic fix would edit a file, the suggestion should be the preview of the fixing command, whose own suggestion is then the apply; otherwise it should be the fix's first follow-up command, else the first gap's hand edit. One shared decision should serve both the proof's suggestion and the fixing command's own preview, and the private copy should go.",
+      "size": 8
+    },
+    {
+      "id": "ethos-11",
+      "motivation": "A directory's overview page in the documentation tree can declare any document role and grow to any length. The documentation checks require only that such a page exists where a directory has two or more children and that it links to one of them, and the rule text names a boundary that it never defines. In one governed codebase such a page grew into a 270-line policy page over 33 commits while every check passed. Every overview page that the documentation catalogue admits should declare the navigation role and hold only its directory's purpose, scope and navigation, in at most 100 nonblank lines. The checks should name a page with another role and a page that is too long, neither with an automatic fix, and the rule text should drop the undefined boundary.",
+      "size": 4
+    },
+    {
+      "id": "ethos-12",
+      "motivation": "The product reads Git's machine-readable listing of linked working trees in fourteen places and one helper script, each through its own parser. Ten of them split the newline-terminated form, so a linked tree whose path holds a newline, which Git allows on macOS and Linux, is misread: the path ends at the newline, the remainder becomes a stray attribute or a false entry, lookups by path miss it, and the machine-readable view of the working state shows a wrong path. That form also quotes a lock reason that holds unusual characters, and Git documents a NUL-terminated form for exactly this case. One owner should read the NUL-terminated listing and map each entry to its labels and exact values, and every reader should use it while keeping its own refusal code or fallback. Each tree in that view should also say whether Git considers it prunable and why, with the lock reason as Git recorded it, no longer quoted.",
+      "size": 24
+    }
+  ]
+}

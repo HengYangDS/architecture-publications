@@ -1,0 +1,170 @@
+diff -ru zh/guide/guide.archify.md zh.seeded/guide/guide.archify.md
+--- zh/guide/guide.archify.md
++++ zh.seeded/guide/guide.archify.md
+@@ -162,7 +162,7 @@
+ | 概念 | 每个段落声明的概念在两个语言版中相同，都要用认可的说法讲到。旁白、标题、字幕术语、发布文案、播放器摘要和画面源文件里，都不能出现反例。[](source:concepts-doc) |
+ | 引文 | 本地有源仓库的克隆时，每条概念引文都必须能在锁定提交的对应文档里找到。[](source:concepts-doc) |
+ | 读音 | 关注列表中每个汉字都必须落在声明过的词里，这个词的读音必须是字典读音。字典按上下文读成别的音时，这个词要记下原因。[](source:readings-doc)[](source:watch-list) |
+-| 名称 | 中文旁白里的每个拉丁字母单词，和每个至少含两个大写字母的英文单词，都要声明读法。[](source:readings-doc) |
++| 名称 | 中文旁白里的每个拉丁字母单词，和每个至少含三个大写字母的英文单词，都要声明读法。[](source:readings-doc) |
+ | 术语 | 每种语言的文本规范化，都必须让每个声明的拉丁字母术语只有一种读法。凡是说到该术语的语言版，都必须包含它的参照处。[](source:readings-doc) |
+ 
+ @callout level=note title="一次拒绝，列出全部失败"
+@@ -184,7 +184,7 @@
+ | step-take-assembled | 已拼接 | 音轨的综合响度为 -16.5 LUFS，真峰值上限为 -1 dBTP。[](source:program-level)[](source:program-gain) | take-life | take-assembled |
+ 
+ @callout level=note title="录音为何会在音节中途结束"
+-| 在 mlx-audio 0.6.4 中，首个码本 id 为 0 的每一帧，都会让带参考上下文的录音结尾少掉 80 ms。[](source:readme-endings)修复已向上游提出，即 `Blaizzy/mlx-audio#1116`。 |
++| 在 mlx-audio 0.6.4 中，首个码本 id 为 0 的每一帧，都会让带参考上下文的录音结尾少掉 40 ms。[](source:readme-endings)修复已向上游提出，即 `Blaizzy/mlx-audio#1116`。 |
+ 
+ ## 每份记录绑定什么？ {#p-records}
+ 
+@@ -269,7 +269,7 @@
+ | dl-player | 播放器页面 | dl-edition |
+ 
+ @steps id=delivery-steps
+-| step-dl-root | Documents 文件夹 | rsync 改动任何内容之前，真实浏览器先读回入口页和两个播放器，并播放每个播放器的全部四部成片。随后 rsync 复制字节不同的每个交付项，并把替换掉的每一项留作回滚副本。[](source:documents-doc) | delivery-tree | dl-root |
++| step-dl-root | Documents 文件夹 | rsync 改动任何内容之前，真实浏览器先读回入口页和两个播放器，并播放每个播放器的全部四部成片。随后 rsync 复制字节不同的每个交付项，替换掉的每一项则不留任何副本。[](source:documents-doc) | delivery-tree | dl-root |
+ | step-dl-uhd | 超高清母版 | 一部的字幕绘在画面上，一部不带字幕，各自复制自己那份渲染画面的视频流。全部四部成片的音轨、章节、封面和发布元数据标签都相同。[](source:renditions)[](source:package-doc) | delivery-tree | dl-uhd |
+ | step-dl-hd | 1080p 观看版 | 每部都用 VideoToolbox 重新编码自己的画面：解码与编码之间按每 2×2 像素块取平均，每 2 s 一个关键帧。同一尺寸的两部成片，都以相同方式从各自画面制成。[](source:renditions) | delivery-tree | dl-hd |
+ | step-dl-player | 播放器页面 | 播放器由引擎渲染；影片只声明每个语言版的摘要和播放器的五种颜色。[](source:player-doc) | delivery-tree | dl-player |
+diff -ru zh/model.json zh.seeded/model.json
+--- zh/model.json
++++ zh.seeded/model.json
+@@ -176,7 +176,7 @@
+         "src/filmkit/film.py",
+         "src/filmkit/production.py",
+         "src/filmkit/specification.py",
+-        "src/filmkit/sources.py"
++        "src/filmkit/delivery/track_language.py"
+       ]
+     },
+     {
+@@ -253,7 +253,11 @@
+         "安装": "锁定版本的浏览器构建和三个语音模型，每一项都按摘要检查",
+         "网络": "只有这一步会联网"
+       },
+-      "files": ["src/filmkit/supply.py", "src/filmkit/narration/snapshots.py"]
++      "files": [
++        "src/filmkit/supply.py",
++        "src/filmkit/narration/snapshots.py",
++        "src/filmkit/sources.py"
++      ]
+     },
+     {
+       "id": "spoken-units",
+@@ -281,7 +285,7 @@
+       "label": "字幕",
+       "kind": "step",
+       "details": {
+-        "定时": "单行字幕条，卡准对齐好的词，绝不跨意群",
++        "定时": "双行字幕条，卡准对齐好的词，绝不跨意群",
+         "产物": "SRT、VTT、讲稿、章节及章节元数据"
+       },
+       "files": ["src/filmkit/captions/"]
+@@ -306,7 +310,7 @@
+       "label": "Node 工具运行器",
+       "kind": "adapter",
+       "details": {
+-        "运行": "引擎的 Node 工具，取自影片工具缓存里的副本，用影片的 npm 包",
++        "运行": "引擎的 Node 工具，取自影片工具缓存里的副本，用引擎的 npm 包",
+         "测量": "按影片声明字体的步进宽度测量文字"
+       },
+       "files": ["src/filmkit/tools.py", "src/filmkit/picture/metrics.py"]
+@@ -384,7 +388,6 @@
+       "files": [
+         "src/filmkit/delivery/__init__.py",
+         "src/filmkit/delivery/packaging.py",
+-        "src/filmkit/delivery/track_language.py",
+         "src/filmkit/delivery/player.py",
+         "src/filmkit/delivery/player-page.js"
+       ]
+@@ -418,7 +421,7 @@
+         "提供": "本地评审媒体，支持按字节范围读取",
+         "读回": "rsync 改动任何内容之前，先用真实浏览器读一遍入口页和两个播放器"
+       },
+-      "files": ["src/filmkit/delivery/documents_folder.py", "src/filmkit/delivery/media_server.py"]
++      "files": ["src/filmkit/delivery/documents_folder.py"]
+     },
+     {
+       "id": "review",
+@@ -438,7 +441,7 @@
+       "details": {
+         "读取": "流、帧节奏、完整解码结果和响度，用 FFprobe 和 FFmpeg"
+       },
+-      "files": ["src/filmkit/media.py"]
++      "files": ["src/filmkit/media.py", "src/filmkit/delivery/media_server.py"]
+     },
+     {
+       "id": "engine-package",
+@@ -447,7 +450,7 @@
+       "details": {
+         "打包": "把 src/filmkit 打成一个 wheel，Node 工具也打在里面",
+         "版本": "0.21.2，取自 VERSION",
+-        "依赖": "mlx-audio 0.6.4、NumPy、Pillow、Pydantic、pypinyin 和 snowballstemmer"
++        "依赖": "mlx-audio 0.6.4、NumPy、Pillow、Pydantic、jieba 和 snowballstemmer"
+       },
+       "files": ["pyproject.toml", "VERSION"]
+     },
+@@ -641,9 +644,9 @@
+     },
+     {
+       "id": "auditions-alignment",
+-      "from": "auditions",
+-      "to": "alignment",
+-      "label": "对齐、转写录音",
++      "from": "alignment",
++      "to": "auditions",
++      "label": "对齐失败时发起试音",
+       "files": ["src/filmkit/narration/audition.py"]
+     },
+     {
+@@ -658,7 +661,7 @@
+       "from": "supply",
+       "to": "renderer",
+       "label": "安装浏览器构建",
+-      "files": ["src/filmkit/supply.py"]
++      "files": ["src/filmkit/narration/snapshots.py"]
+     },
+     {
+       "id": "soundtrack-alignment",
+@@ -699,13 +702,13 @@
+       "from": "soundtrack",
+       "to": "media-probe",
+       "label": "测量节目响度",
+-      "files": ["src/filmkit/soundtrack/level.py"]
++      "files": ["src/filmkit/soundtrack/quiet.py"]
+     },
+     {
+       "id": "captions-spoken-units",
+-      "from": "captions",
+-      "to": "spoken-units",
+-      "label": "读取标点、单元",
++      "from": "spoken-units",
++      "to": "captions",
++      "label": "读取字幕条、断句",
+       "files": [
+         "src/filmkit/captions/chinese.py",
+         "src/filmkit/captions/english.py",
+@@ -738,7 +741,7 @@
+       "from": "picture-gate",
+       "to": "engine-package",
+       "label": "绑定引擎版本",
+-      "files": ["src/filmkit/picture/gates.py"]
++      "files": ["src/filmkit/picture/text_trace.py"]
+     },
+     {
+       "id": "tool-runner-picture-audits",
+@@ -854,9 +857,9 @@
+     },
+     {
+       "id": "reproduction-verification",
+-      "from": "reproduction",
+-      "to": "verification",
+-      "label": "验收已发布的评审",
++      "from": "verification",
++      "to": "reproduction",
++      "label": "调用复现比对已发布版本",
+       "files": ["src/filmkit/delivery/reproduction.py"]
+     },
+     {

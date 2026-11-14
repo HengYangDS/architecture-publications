@@ -1,0 +1,41 @@
+{
+  "repository": "aigw-cli",
+  "pin": "abf05858f4092a3baf9acea0d5d7488b26898aa5",
+  "items": [
+    {
+      "id": "aigw-01",
+      "motivation": "When the live confirmation run for one supported agent program times out, the background service that the run's chat launched can still be starting: it has written its launch log but has not yet taken its lock or recorded its process identifier. The cleanup reads only the lock and that record, so it sees no service and deletes the run's private settings directory; the service re-creates the directory a moment later without the two-second idle exit and then runs for its default ten minutes in a directory that was reported as reclaimed. A private directory whose launch log exists should count as owned by a service until that program's lifecycle record says the service exited or names a process that is gone. The cleanup should then wait within its existing bounds, and if they pass it should retain and name the directory, as it already does for a running service.",
+      "size": 5
+    },
+    {
+      "id": "aigw-02",
+      "motivation": "The live confirmation run for one supported agent program copies the operator's own configuration of that program into a private directory. The copy drops plugins and the memory provider, but it keeps the operator's MCP servers, shell hooks and automatic hook consent, so the program starts every enabled server and registers every hook inside the confirmation turn. That work counts against the 60-second turn bound, and on a busy host the run timed out, although the written requirement already forbids starting the operator's extensions there. The isolated copy should name no MCP servers and no shell hooks and carry no hook consent, a regression check should prove that none of them reaches it, and the operator's own configuration must stay unchanged.",
+      "size": 4
+    },
+    {
+      "id": "aigw-03",
+      "motivation": "On Microsoft's desktop operating system the tool starts every child whose output it collects, such as a credential command, and only afterwards assigns it to the kernel grouping object that owns its cleanup. A child that exits at once makes the assignment fail with an access-denied error, so the start reports a failure for a child that ran correctly, and anything the child starts before the assignment lands outside the group and survives cleanup; a hosted CI machine hit this twice in two days. Such a child should start suspended, join its group and only then resume, so that it runs no code outside the group. A child that cannot resume should be stopped with the reason reported, and checks should pin the order, the caller's creation flags and the resume failure.",
+      "size": 3
+    },
+    {
+      "id": "aigw-04",
+      "motivation": "On Microsoft's desktop operating system the tool starts a child whose output it collects in a suspended state, assigns it to the kernel grouping object that owns its cleanup, and then resumes it. The standard library watches the child's context from the moment the child exists, so a deadline that ends inside that interval terminates the suspended child before it resumes. The start then fails with a message that the suspended child has no thread to resume, and the caller receives that failure without the deadline, although after the wait the same code already joins the context's error; a hosted pipeline hit this under host load. A failed start should carry the context's error as well, so that a deadline or cancellation that ends the start reaches the caller, and a check should end the context while the child is suspended and require the cancellation.",
+      "size": 3
+    },
+    {
+      "id": "aigw-05",
+      "motivation": "The owner fixed which families the shipped shared catalogue offers: a named list for the Claude, GPT and Gemini series, and for every other vendor only its strongest generally available one. The catalogue lacks Claude Fable 5.2 and Gemini 4 Carbon, the written requirement still curates only two vendors and gives Google a single general family, and the catalogue holds two Doubao families where one is allowed. The requirement should curate the three named series by the owner's list, the catalogue should gain the missing families on each upstream service that serves them once each passes its acceptance turns, and every other vendor should be reduced to one current family.",
+      "size": 4
+    },
+    {
+      "id": "aigw-06",
+      "motivation": "The owner restated the curation of the shipped shared catalogue as a rule over named series instead of a list of families: each Claude, GPT and Gemini series takes its newest generally available member, a newer member replaces the older one, and every other vendor keeps its single strongest one. Under that rule the catalogue lacks GPT-6 Astra, GPT-6 Luna and Gemini 4 Hydrogen. One upstream service's Claude Fable 5.2 had also stayed out only because the desktop chat application turns a host feature off for a service unless every Claude entry of that service declares support for it, and evidence of that support now exists. The rule should be stated as a requirement, the missing entries added once each passes its acceptance turns, and a check should fail while one curated series holds two families.",
+      "size": 7
+    },
+    {
+      "id": "aigw-07",
+      "motivation": "The macOS jobs on one hosted CI peer failed twice under host load, and each needed a retry of 10 to 20 minutes. One failure was a fixture's own doing: a case that verifies that locked Keychain metadata does not prompt killed the platform's Keychain command at a five-second bound. Six such fixture-side bounds copy the product's five-second deadline although they only guard against a hang. The fixture-side calls to the platform credential command, and the child processes that the cases wait for, should share one named 30-second bound, while five seconds stays the bound of the product's own operations.",
+      "size": 3
+    }
+  ]
+}

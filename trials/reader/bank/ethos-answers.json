@@ -1,0 +1,546 @@
+{
+  "items": [
+    {
+      "id": "ethos-01",
+      "change": "2026-11-12-native-timeout-fixture",
+      "kind": "tests-only",
+      "commits": "0a168a177..20a719a91",
+      "change_commits": ["0a168a177", "7cee8a569", "e0a6cd923", "20a719a91"],
+      "implementing_commits": ["0a168a177"],
+      "range_holds_other_changes": true,
+      "answer_paths": ["tests/support/native_quality.py"],
+      "answer_dirs": ["tests/support"],
+      "paths_created_by_this_change": [],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": [],
+      "incidental_paths": [],
+      "motivation_words_that_are_some_file_stem_at_the_pin": [
+        "commit",
+        "coverage",
+        "nox",
+        "pytest",
+        "ruff",
+        "runner"
+      ],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "ethos-02",
+      "change": "2026-11-12-formation-path-identity",
+      "kind": "product",
+      "commits": "616b909f3..550c2d1ed",
+      "change_commits": ["616b909f3", "dcaed3c7e", "a8db91925", "db56102b1", "550c2d1ed"],
+      "implementing_commits": ["616b909f3", "550c2d1ed"],
+      "range_holds_other_changes": true,
+      "answer_paths": [
+        "openspec/specs/command-plane/spec.md",
+        "src/ethos/adapters/repo/starter/formation.py",
+        "tests/unit/adoption/test_greenfield.py"
+      ],
+      "answer_dirs": ["openspec/specs/command-plane", "src/ethos/adapters", "tests/unit/adoption"],
+      "paths_created_by_this_change": [],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": [],
+      "incidental_paths": ["openspec/specs/command-plane/spec.md"],
+      "motivation_words_that_are_some_file_stem_at_the_pin": [
+        "apply",
+        "continuation",
+        "creation",
+        "digest",
+        "names",
+        "plan"
+      ],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "ethos-03",
+      "change": "2026-11-12-maintainer-skills-internal",
+      "kind": "product",
+      "commits": "e2780ea39..487075229",
+      "change_commits": ["e2780ea39", "1b969aa0f", "d1be14275", "8f4228db4", "487075229"],
+      "implementing_commits": ["e2780ea39"],
+      "range_holds_other_changes": true,
+      "answer_paths": [
+        ".agents/skills/README.md",
+        ".agents/skills/ethos-adoption-profile-governance/SKILL.md",
+        ".agents/skills/ethos-adoption-profile-governance/package.toml",
+        ".agents/skills/ethos-quality-gate-governance/SKILL.md",
+        ".agents/skills/ethos-quality-gate-governance/package.toml",
+        ".agents/skills/ethos-repository-governance/SKILL.md",
+        ".agents/skills/ethos-repository-governance/package.toml",
+        ".agents/skills/ethos-skill-portfolio-governance/SKILL.md",
+        ".agents/skills/ethos-skill-portfolio-governance/package.toml",
+        "src/ethos/resources/skills/ethos-repository-work/SKILL.md",
+        "tests/architecture/test_product_design_contract.py"
+      ],
+      "answer_dirs": [
+        ".agents/skills",
+        ".agents/skills/ethos-adoption-profile-governance",
+        ".agents/skills/ethos-quality-gate-governance",
+        ".agents/skills/ethos-repository-governance",
+        ".agents/skills/ethos-skill-portfolio-governance",
+        "src/ethos/resources",
+        "tests/architecture"
+      ],
+      "paths_created_by_this_change": [],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": [],
+      "incidental_paths": [
+        ".agents/skills/ethos-adoption-profile-governance/package.toml",
+        ".agents/skills/ethos-quality-gate-governance/package.toml",
+        ".agents/skills/ethos-repository-governance/package.toml",
+        ".agents/skills/ethos-skill-portfolio-governance/package.toml"
+      ],
+      "motivation_words_that_are_some_file_stem_at_the_pin": [
+        "adopter",
+        "default",
+        "discovery",
+        "tool",
+        "version"
+      ],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "ethos-04",
+      "change": "2026-11-12-toolchain-lock-scope",
+      "kind": "product",
+      "commits": "12c94ed56..ab2e7c575",
+      "change_commits": ["12c94ed56", "10ab15174", "ea60b3f1a", "ab2e7c575"],
+      "implementing_commits": ["12c94ed56", "ab2e7c575"],
+      "range_holds_other_changes": true,
+      "answer_paths": [
+        "openspec/specs/repository-paradigm/spec.md",
+        "src/ethos/adapters/toolchain/mise.py",
+        "src/ethos/repository/paradigm/toolchain.py",
+        "tests/unit/repository/test_paradigm_toolchain.py"
+      ],
+      "answer_dirs": [
+        "openspec/specs/repository-paradigm",
+        "src/ethos/adapters",
+        "src/ethos/repository",
+        "tests/unit/repository"
+      ],
+      "paths_created_by_this_change": [],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": [],
+      "incidental_paths": ["openspec/specs/repository-paradigm/spec.md"],
+      "motivation_words_that_are_some_file_stem_at_the_pin": [
+        "command",
+        "configuration",
+        "declaration",
+        "gates",
+        "rules",
+        "task",
+        "tasks",
+        "tool",
+        "version"
+      ],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "ethos-05",
+      "change": "2026-11-12-starter-passes-proof",
+      "kind": "product",
+      "commits": "66fbac7c8..18337bc36",
+      "change_commits": ["66fbac7c8", "0aa46818a", "66e147d6b", "18337bc36"],
+      "implementing_commits": ["66fbac7c8", "18337bc36"],
+      "range_holds_other_changes": true,
+      "answer_paths": [
+        "openspec/specs/repository-governance/spec.md",
+        "src/ethos/adapters/repo/starter/conformance.py",
+        "src/ethos/adapters/repo/starter/formation.py",
+        "tests/unit/adoption/test_greenfield.py"
+      ],
+      "answer_dirs": [
+        "openspec/specs/repository-governance",
+        "src/ethos/adapters",
+        "tests/unit/adoption"
+      ],
+      "paths_created_by_this_change": ["src/ethos/adapters/repo/starter/conformance.py"],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": [],
+      "incidental_paths": ["openspec/specs/repository-governance/spec.md"],
+      "motivation_words_that_are_some_file_stem_at_the_pin": [
+        "apply",
+        "artifacts",
+        "command",
+        "commit",
+        "contributing",
+        "creation",
+        "effect",
+        "gap",
+        "proof",
+        "proposal",
+        "rule",
+        "rules",
+        "status",
+        "tool"
+      ],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "ethos-06",
+      "change": "2026-11-12-markdown-list-rule",
+      "kind": "product",
+      "commits": "f10df8694..5f014d8ba",
+      "change_commits": ["f10df8694", "3d6521dbb", "5d7a5f2e3", "5f014d8ba"],
+      "implementing_commits": ["f10df8694", "5f014d8ba"],
+      "range_holds_other_changes": true,
+      "answer_paths": [
+        "docs/reference/configuration.md",
+        "openspec/specs/repository-paradigm/spec.md",
+        "src/ethos/adapters/gates/formatting.py",
+        "src/ethos/adapters/gates/native/inputs.py",
+        "src/ethos/adapters/gates/tool.py",
+        "src/ethos/adapters/repo/hook/admission.py",
+        "src/ethos/adapters/repo/hook/staged_markdown.py",
+        "src/ethos/adapters/repo/hook/staged_size.py",
+        "src/ethos/repository/paradigm/markdown_spacing.py",
+        "tests/unit/adapters/gates/test_markdown_lint.py",
+        "tests/unit/adapters/repo/hook/test_staged_markdown.py",
+        "tests/unit/repository/test_paradigm_markdown_spacing.py"
+      ],
+      "answer_dirs": [
+        "docs/reference",
+        "openspec/specs/repository-paradigm",
+        "src/ethos/adapters",
+        "src/ethos/repository",
+        "tests/unit/adapters",
+        "tests/unit/repository"
+      ],
+      "paths_created_by_this_change": [
+        "src/ethos/adapters/repo/hook/staged_markdown.py",
+        "src/ethos/repository/paradigm/markdown_spacing.py",
+        "tests/unit/adapters/repo/hook/test_staged_markdown.py",
+        "tests/unit/repository/test_paradigm_markdown_spacing.py"
+      ],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": ["src/ethos/adapters/repo/hook/staged_markdown.py"],
+      "incidental_paths": ["openspec/specs/repository-paradigm/spec.md"],
+      "motivation_words_that_are_some_file_stem_at_the_pin": [
+        "apply",
+        "commit",
+        "documents",
+        "prettier",
+        "proof",
+        "rule",
+        "rules"
+      ],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "ethos-07",
+      "change": "2026-11-12-text-layout-rule",
+      "kind": "product",
+      "commits": "d0cfdfb27..cbc585eb9",
+      "change_commits": ["d0cfdfb27", "cc83d11b1", "60d96ea96", "cbc585eb9"],
+      "implementing_commits": ["d0cfdfb27", "cbc585eb9"],
+      "range_holds_other_changes": true,
+      "answer_paths": [
+        ".config/checks/format-selection/policy.toml",
+        "docs/reference/configuration.md",
+        "openspec/specs/repository-paradigm/spec.md",
+        "src/ethos/adapters/gates/formatting.py",
+        "src/ethos/adapters/repo/hook/admission.py",
+        "src/ethos/adapters/repo/hook/staged_text.py",
+        "src/ethos/repository/paradigm/text_layout.py",
+        "src/ethos/repository/policy/quality/format_selection.py",
+        "tests/architecture/test_format_selection.py",
+        "tests/unit/adapters/gates/test_source_format_canonical_text.py",
+        "tests/unit/adapters/repo/hook/test_staged_text.py",
+        "tests/unit/repository/test_paradigm_text_layout.py"
+      ],
+      "answer_dirs": [
+        ".config/checks/format-selection",
+        "docs/reference",
+        "openspec/specs/repository-paradigm",
+        "src/ethos/adapters",
+        "src/ethos/repository",
+        "tests/architecture",
+        "tests/unit/adapters",
+        "tests/unit/repository"
+      ],
+      "paths_created_by_this_change": [
+        "src/ethos/adapters/repo/hook/staged_text.py",
+        "src/ethos/repository/paradigm/text_layout.py",
+        "tests/unit/adapters/gates/test_source_format_canonical_text.py",
+        "tests/unit/adapters/repo/hook/test_staged_text.py",
+        "tests/unit/repository/test_paradigm_text_layout.py"
+      ],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": [],
+      "incidental_paths": ["openspec/specs/repository-paradigm/spec.md"],
+      "motivation_words_that_are_some_file_stem_at_the_pin": [
+        "apply",
+        "command",
+        "commit",
+        "names",
+        "proof",
+        "rules",
+        "session",
+        "start",
+        "version"
+      ],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "ethos-08",
+      "change": "2026-11-12-package-docstring-rule",
+      "kind": "product",
+      "commits": "29d1901fd..9d98f8fb1",
+      "change_commits": ["29d1901fd", "784568df4", "962254ff8", "9d98f8fb1"],
+      "implementing_commits": ["29d1901fd", "9d98f8fb1"],
+      "range_holds_other_changes": true,
+      "answer_paths": [
+        "openspec/specs/repository-paradigm/spec.md",
+        "src/ethos/adapters/repo/hook/admission.py",
+        "src/ethos/adapters/repo/hook/staged_text.py",
+        "src/ethos/repository/paradigm/packages.py",
+        "src/ethos/repository/paradigm/report.py",
+        "tests/unit/adapters/repo/hook/test_staged_text.py",
+        "tests/unit/repository/test_paradigm_packages.py"
+      ],
+      "answer_dirs": [
+        "openspec/specs/repository-paradigm",
+        "src/ethos/adapters",
+        "src/ethos/repository",
+        "tests/unit/adapters",
+        "tests/unit/repository"
+      ],
+      "paths_created_by_this_change": [
+        "src/ethos/repository/paradigm/packages.py",
+        "tests/unit/repository/test_paradigm_packages.py"
+      ],
+      "paths_created_by_an_earlier_change_after_the_pin": [
+        "src/ethos/adapters/repo/hook/staged_text.py",
+        "tests/unit/adapters/repo/hook/test_staged_text.py"
+      ],
+      "paths_absent_at_dev": [],
+      "incidental_paths": ["openspec/specs/repository-paradigm/spec.md"],
+      "motivation_words_that_are_some_file_stem_at_the_pin": [
+        "commit",
+        "gap",
+        "names",
+        "python",
+        "rule",
+        "rules",
+        "selection"
+      ],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "ethos-09",
+      "change": "2026-11-12-output-pipe-test-bound",
+      "kind": "tests-only",
+      "commits": "2249ff45f..21fbc6034",
+      "change_commits": ["2249ff45f", "9d2a8e596", "21fbc6034"],
+      "implementing_commits": ["2249ff45f"],
+      "range_holds_other_changes": false,
+      "answer_paths": ["tests/unit/surface/cli/test_output.py"],
+      "answer_dirs": ["tests/unit/surface"],
+      "paths_created_by_this_change": [],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": [],
+      "incidental_paths": [],
+      "motivation_words_that_are_some_file_stem_at_the_pin": [
+        "cases",
+        "host",
+        "proof",
+        "python",
+        "result"
+      ],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "ethos-10",
+      "change": "2026-11-13-prove-repair-hint",
+      "kind": "product",
+      "commits": "81470c702..e39be4e0f",
+      "change_commits": ["81470c702", "babe19eea", "f71ab5a72", "d76b695a0", "e39be4e0f"],
+      "implementing_commits": ["babe19eea", "e39be4e0f"],
+      "range_holds_other_changes": true,
+      "answer_paths": [
+        "openspec/specs/repository-paradigm/spec.md",
+        "src/ethos/adapters/mutation/paradigm_repair.py",
+        "src/ethos/repository/paradigm/repair.py",
+        "src/ethos/repository/paradigm/report.py",
+        "tests/unit/cli/land/test_readiness.py",
+        "tests/unit/repository/test_paradigm_conventions.py",
+        "tests/unit/repository/test_paradigm_next_action.py",
+        "tests/unit/repository/test_paradigm_report.py"
+      ],
+      "answer_dirs": [
+        "openspec/specs/repository-paradigm",
+        "src/ethos/adapters",
+        "src/ethos/repository",
+        "tests/unit/cli",
+        "tests/unit/repository"
+      ],
+      "paths_created_by_this_change": ["tests/unit/repository/test_paradigm_next_action.py"],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": [],
+      "incidental_paths": ["openspec/specs/repository-paradigm/spec.md"],
+      "motivation_words_that_are_some_file_stem_at_the_pin": [
+        "apply",
+        "audit",
+        "command",
+        "decision",
+        "gap",
+        "proof",
+        "rule"
+      ],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "ethos-11",
+      "change": "2026-11-13-readme-index-role",
+      "kind": "product",
+      "commits": "cc92f237f..b5f792403",
+      "change_commits": ["cc92f237f", "f7133c4df", "63b92312a", "98d6688ba", "b5f792403"],
+      "implementing_commits": ["f7133c4df", "b5f792403"],
+      "range_holds_other_changes": true,
+      "answer_paths": [
+        "docs/governance/docs-registry.md",
+        "openspec/specs/repository-governance/spec.md",
+        "src/ethos/repository/registry/docs/health.py",
+        "tests/unit/governance/test_docs_readme_index.py"
+      ],
+      "answer_dirs": [
+        "docs/governance",
+        "openspec/specs/repository-governance",
+        "src/ethos/repository",
+        "tests/unit/governance"
+      ],
+      "paths_created_by_this_change": ["tests/unit/governance/test_docs_readme_index.py"],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": [],
+      "incidental_paths": ["openspec/specs/repository-governance/spec.md"],
+      "motivation_words_that_are_some_file_stem_at_the_pin": [
+        "documentation",
+        "links",
+        "names",
+        "policy",
+        "rule",
+        "scope"
+      ],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "ethos-12",
+      "change": "2026-11-13-worktree-records-nul",
+      "kind": "product",
+      "commits": "3ef71fac7..3cb6bf96a",
+      "change_commits": ["3ef71fac7", "fb8121ca9", "424e57718", "cf21ad616", "3cb6bf96a"],
+      "implementing_commits": ["fb8121ca9", "3cb6bf96a"],
+      "range_holds_other_changes": true,
+      "answer_paths": [
+        "openspec/specs/adapters/spec.md",
+        "src/ethos/adapters/admission/role_rename.py",
+        "src/ethos/adapters/mutation/accepted/release.py",
+        "src/ethos/adapters/mutation/branch_roles.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/handoff/destination_cleanup.py",
+        "src/ethos/adapters/mutation/lane_lifecycle/start.py",
+        "src/ethos/adapters/mutation/lane_retirement/operation.py",
+        "src/ethos/adapters/mutation/worktree/detached_cleanup.py",
+        "src/ethos/adapters/repo/attestation_lifetime_facts.py",
+        "src/ethos/adapters/repo/commit/rebuild/readiness.py",
+        "src/ethos/adapters/repo/commit/signature.py",
+        "src/ethos/adapters/repo/hook/activation.py",
+        "src/ethos/adapters/repo/runtime/authority.py",
+        "src/ethos/adapters/repo/runtime/retirement.py",
+        "src/ethos/adapters/repo/status/workspace.py",
+        "src/ethos/adapters/repo/worktree_effects.py",
+        "src/ethos/adapters/repo/worktree_list.py",
+        "src/ethos/adapters/store/retention/writers.py",
+        "system/schemas/kernel/workspace-status.schema.json",
+        "tests/unit/adapters/repo/test_worktree_list.py",
+        "tests/unit/lanes/retirement/test_operation.py",
+        "tests/unit/lanes/test_worktree_housekeeping.py",
+        "tests/unit/mutation/test_worktree_effects_failure_matrix.py",
+        "tools/ci/delivery/acceptance/brownfield.py"
+      ],
+      "answer_dirs": [
+        "openspec/specs/adapters",
+        "src/ethos/adapters",
+        "system/schemas/kernel",
+        "tests/unit/adapters",
+        "tests/unit/lanes",
+        "tests/unit/mutation",
+        "tools/ci/delivery"
+      ],
+      "paths_created_by_this_change": [
+        "src/ethos/adapters/repo/worktree_list.py",
+        "tests/unit/adapters/repo/test_worktree_list.py"
+      ],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": [],
+      "incidental_paths": ["openspec/specs/adapters/spec.md"],
+      "motivation_words_that_are_some_file_stem_at_the_pin": [
+        "documents",
+        "fallback",
+        "git",
+        "linked",
+        "product"
+      ],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    },
+    {
+      "id": "ethos-13",
+      "change": "2026-11-13-installed-hook-smoke",
+      "kind": "acceptance-tooling",
+      "commits": "4b93d4d54..23538df6b",
+      "change_commits": [
+        "4b93d4d54",
+        "335a9432f",
+        "83479ede3",
+        "8626acbf2",
+        "fc3066a78",
+        "1040a726b",
+        "23538df6b"
+      ],
+      "implementing_commits": ["335a9432f", "fc3066a78", "23538df6b"],
+      "range_holds_other_changes": false,
+      "answer_paths": [
+        "openspec/specs/quality/spec.md",
+        "tests/unit/ci/delivery/runtime/test_selection.py",
+        "tests/unit/ci/delivery/test_acceptance.py",
+        "tests/unit/ci/delivery/test_commands.py",
+        "tests/unit/ci/delivery/test_product_hook.py",
+        "tools/ci/delivery/acceptance/effect.py",
+        "tools/ci/delivery/acceptance/invocation.py",
+        "tools/ci/delivery/acceptance/journey.py",
+        "tools/ci/delivery/acceptance/product_hook.py",
+        "tools/ci/delivery/acceptance/receipt.py"
+      ],
+      "answer_dirs": ["openspec/specs/quality", "tests/unit/ci", "tools/ci/delivery"],
+      "paths_created_by_this_change": [
+        "tests/unit/ci/delivery/test_product_hook.py",
+        "tools/ci/delivery/acceptance/product_hook.py"
+      ],
+      "paths_created_by_an_earlier_change_after_the_pin": [],
+      "paths_absent_at_dev": [],
+      "incidental_paths": ["openspec/specs/quality/spec.md"],
+      "motivation_words_that_are_some_file_stem_at_the_pin": [
+        "adopter",
+        "commit",
+        "result",
+        "sources",
+        "version"
+      ],
+      "motivation_strict_hits": [],
+      "motivation_soft_hits": []
+    }
+  ]
+}

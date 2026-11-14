@@ -16,7 +16,7 @@ design: the publisher knows an entry's three states and none of its questions.
 - `trials/reader/` holds the reader experiment's protocol, its item bank with the answers, and the two
   hand-written pages of its fourth arm, all fixed before a subject is shown an item.
 - `trials/screen/` holds the definitions and the stop line of the comparison of lines on screen, fixed before
-  anything is rendered.
+  anything is rendered, and the table of what each mark on a plate means today.
 
 ## Capabilities
 

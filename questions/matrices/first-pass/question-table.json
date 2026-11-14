@@ -1,0 +1,85 @@
+{
+  "format": "architecture-publications.question-table",
+  "version": 1,
+  "note": "The questions a work is checked against. The publications own this table; the publisher knows only an entry's three states. Initial content: the twelve concerns of the 2026-11-07 design under the owner's three lenses, plus constraints and invariants (committee default D8, to be tested by the step 1 matrices).",
+  "entries": [
+    {
+      "id": "positioning",
+      "lens": "product",
+      "asks": ["evaluator", "newcomer"],
+      "question": "What is this system, for whom, and what is it not?"
+    },
+    {
+      "id": "context-and-goals",
+      "lens": "product",
+      "asks": ["evaluator"],
+      "question": "In what surroundings does it work, and what must it achieve?"
+    },
+    {
+      "id": "top-level-design",
+      "lens": "architecture",
+      "asks": ["newcomer", "evaluator"],
+      "question": "What are its main parts and how do they depend on each other?"
+    },
+    {
+      "id": "mechanisms",
+      "lens": "architecture",
+      "asks": ["newcomer"],
+      "question": "How does its most important work run, step by step?"
+    },
+    {
+      "id": "data-and-interfaces",
+      "lens": "architecture",
+      "asks": ["newcomer", "evaluator"],
+      "question": "What data does it keep and exchange, and through which interfaces?"
+    },
+    {
+      "id": "stack-and-deployment",
+      "lens": "architecture",
+      "asks": ["evaluator"],
+      "question": "What is it built with, where does it run, and how is it kept running?"
+    },
+    {
+      "id": "repository-structure",
+      "lens": "architecture",
+      "asks": ["newcomer"],
+      "question": "Where in the repository does each part live?"
+    },
+    {
+      "id": "constraints-and-invariants",
+      "lens": "architecture",
+      "asks": ["newcomer", "evaluator"],
+      "question": "What must always hold, and what must a change never break?"
+    },
+    {
+      "id": "start-and-change",
+      "lens": "project",
+      "asks": ["newcomer"],
+      "question": "How does one start working on it and make a change?"
+    },
+    {
+      "id": "verification-and-release",
+      "lens": "project",
+      "asks": ["newcomer", "evaluator"],
+      "question": "How is a change verified and a release made?"
+    },
+    {
+      "id": "decisions-and-risks",
+      "lens": "project",
+      "asks": ["evaluator"],
+      "question": "Which decisions shaped it, why, and what risks remain?"
+    },
+    {
+      "id": "changes-and-direction",
+      "lens": "project",
+      "asks": ["evaluator", "newcomer"],
+      "question": "How did it get here, and where is it going?"
+    },
+    {
+      "id": "terms",
+      "lens": "project",
+      "asks": ["newcomer"],
+      "question": "What do its own words mean?"
+    }
+  ]
+}
