@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "65452c600ff6e596ce13c769db54b740a26c5d6a"
+      "revision": "1b8d1b57439fd11c3ad82b9f77f7c77c1f95699c"
     }
   },
   "mainPath": ["life-delivered", "life-accepted", "life-published"],
@@ -22,14 +22,14 @@
       "sources": [
         {
           "path": "src/build.mjs",
-          "line": 376,
-          "end_line": 385,
+          "line": 397,
+          "end_line": 406,
           "label": "Staging"
         },
         {
           "path": "src/build.mjs",
-          "line": 502,
-          "end_line": 519,
+          "line": 525,
+          "end_line": 542,
           "label": "Rename"
         }
       ]
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "src/delivery.mjs",
-          "line": 52,
-          "end_line": 77,
+          "line": 115,
+          "end_line": 183,
           "label": "Accept"
         }
       ]
@@ -56,8 +56,8 @@
       "sources": [
         {
           "path": "src/delivery.mjs",
-          "line": 79,
-          "end_line": 136,
+          "line": 281,
+          "end_line": 322,
           "label": "Publish"
         }
       ]
@@ -70,8 +70,8 @@
       "sources": [
         {
           "path": "src/delivery.mjs",
-          "line": 28,
-          "end_line": 34,
+          "line": 46,
+          "end_line": 52,
           "label": "Changed"
         }
       ]
@@ -84,8 +84,8 @@
       "sources": [
         {
           "path": "src/delivery.mjs",
-          "line": 111,
-          "end_line": 116,
+          "line": 297,
+          "end_line": 302,
           "label": "Conflict"
         }
       ]
@@ -98,8 +98,8 @@
       "sources": [
         {
           "path": "src/delivery.mjs",
-          "line": 111,
-          "end_line": 116,
+          "line": 297,
+          "end_line": 302,
           "label": "Identical"
         }
       ]
@@ -144,12 +144,21 @@
     {
       "dot": "emerald",
       "title": "验收记录什么",
-      "items": ["所验收清单的 SHA-256。", "模型 id、审阅人和一段可选备注。"]
+      "items": [
+        "清单和题跋页的 SHA-256。",
+        "审阅人、UTC 时间、模型 id 和一段可选备注。",
+        "审阅人签名时，签名密钥的指纹。"
+      ]
     },
     {
       "dot": "amber",
       "title": "出版时再查什么",
-      "items": ["每个产物与清单是否一致。", "针对同一份清单的验收。", "重命名就位前的副本。"]
+      "items": [
+        "每个产物与清单是否一致。",
+        "针对同一份清单和题跋页的验收记录。",
+        "签名的有无是否与记录相符。",
+        "重命名就位前的副本。"
+      ]
     }
   ]
 }

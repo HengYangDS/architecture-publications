@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "65452c600ff6e596ce13c769db54b740a26c5d6a"
+      "revision": "1b8d1b57439fd11c3ad82b9f77f7c77c1f95699c"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 294,
-          "end_line": 304,
+          "line": 363,
+          "end_line": 373,
           "label": "0.4.0"
         }
       ]
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 249,
-          "end_line": 254,
+          "line": 318,
+          "end_line": 323,
           "label": "0.6.0"
         }
       ]
@@ -71,8 +71,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 142,
-          "end_line": 187,
+          "line": 211,
+          "end_line": 256,
           "label": "0.8.0"
         }
       ]
@@ -86,8 +86,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 125,
-          "end_line": 133,
+          "line": 194,
+          "end_line": 202,
           "label": "0.9.0"
         }
       ]
@@ -102,14 +102,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 81,
-          "end_line": 92,
+          "line": 150,
+          "end_line": 161,
           "label": "0.10.0"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 117,
-          "end_line": 120,
+          "line": 186,
+          "end_line": 189,
           "label": "Removed"
         }
       ]
@@ -123,8 +123,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 68,
-          "end_line": 79,
+          "line": 137,
+          "end_line": 148,
           "label": "0.10.1"
         }
       ]
@@ -138,8 +138,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 59,
-          "end_line": 66,
+          "line": 128,
+          "end_line": 135,
           "label": "0.10.2"
         }
       ]
@@ -153,8 +153,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 38,
-          "end_line": 51,
+          "line": 107,
+          "end_line": 120,
           "label": "0.11.0"
         }
       ]
@@ -168,9 +168,40 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 10,
-          "end_line": 36,
+          "line": 79,
+          "end_line": 105,
           "label": "0.12.0"
+        }
+      ]
+    },
+    {
+      "id": "v0130",
+      "at": "2026-11-13T14:18:10+08:00",
+      "lane": "layout",
+      "kind": "change",
+      "title": "0.13.0 Strips, palettes and a colophon",
+      "detail": "Each part is a strip as long as its code, on one scale for the edition, dyed by fixed age bands. A model may choose its marks and palette. The acceptance record is an in-toto Statement with a colophon page, and archpub verify checks both.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 22,
+          "end_line": 77,
+          "label": "0.13.0"
+        }
+      ]
+    },
+    {
+      "id": "v0131",
+      "at": "2026-11-13T20:39:17+08:00",
+      "lane": "edition",
+      "title": "0.13.1 Node.js 26.13.1 in the archives",
+      "detail": "The release archives carry Node.js 26.13.1, a security release, and the repository runs ETHOS 0.2.0-beta.9. The publisher's behaviour, model format and manifest do not change.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 10,
+          "end_line": 20,
+          "label": "0.13.1"
         }
       ]
     }

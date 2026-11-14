@@ -2,11 +2,11 @@
 
 [`en/model.json`](en/model.json) is an Architecture Model of how Architecture
 Publisher turns an architecture model into a print edition and a page. It pins
-`architecture-publisher` at v0.12.0
-(`65452c600ff6e596ce13c769db54b740a26c5d6a`), and its components own all 65
+`architecture-publisher` at v0.13.1
+(`1b8d1b57439fd11c3ad82b9f77f7c77c1f95699c`), and its components own all 71
 files of its coverage scope: the publisher's source under `src/`, its
 `package.json` and the manifests of its six vendored supplies. Thirty-one
-components, fifty-two relations and six views show one build from the author
+components, fifty-three relations and six views show one build from the author
 to a published delivery, the files bound at the pinned revision, where a model
 comes from, the grid layout, the print edition and the page.
 
@@ -18,15 +18,20 @@ between them to two media, and what each step refuses.
 Archify explainer that Architecture Publisher delivers as its page. It follows
 one build: what a model holds, how each file finds its owner at the pinned
 revision, which views are drawn and how one is laid out, how a view becomes a
-page of the print edition, how the page and the overview are made and checked,
+page of the print edition and how a plate draws its parts as strips of their
+code, how the page and the overview are made and checked,
 what the manifest binds and how a delivery is accepted and published. It shows
 the releases that brought the publisher here and ends with what moving the pin
-changes. Each claim about the product cites a line range at v0.12.0, and the
+changes. Each claim about the product cites a line range at v0.13.1, and the
 diagrams the draft names sit beside it. The re-pin counts were measured on
 2026-11-08, when this work moved from v0.9.0 to v0.10.0; the move to v0.10.1
 changed no claim, the move to v0.10.2 changed only what a reading too tall for
 the body does, the move to v0.11.0 only where a plate sets its summary, and the
-move to v0.12.0 only the command list and line ranges.
+move to v0.12.0 only the command list and line ranges. The move to v0.13.1
+rewrote what the work says of how a plate draws its parts, what the manifest
+records and what acceptance writes; it gave `src/style.mjs` to the delivery
+builder and drew one new relation, from acceptance to the print edition, which
+sets the colophon page.
 
 Each component claims the directories and files its path rules name, and each
 file goes to its most specific claim, so every file in the scope has one owner;

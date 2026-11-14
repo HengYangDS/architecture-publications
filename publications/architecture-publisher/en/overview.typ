@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([Architecture Publisher], [Meaning, evidence, form and acceptance each have one owner], [archpub draws any repository's architecture from an explicit model, binds every byte of a delivery to its inputs, and publishes only what a named reviewer accepted.], read-from: [Read from 64 files, each cited by its SHA-256.], claim-x: 270pt)
+#masthead([Architecture Publisher], [Meaning, evidence, form and acceptance each have one owner], [archpub draws any repository's architecture from an explicit model, binds every byte of a delivery to its inputs, and publishes only what a named reviewer accepted.], read-from: [Read from 71 files, each cited by its SHA-256.], claim-x: 270pt)
 
 // ── Band 1: four owners side by side; one build passes through them ───────
 #let cols = ((48pt, [Author], [owns the meaning]), (346pt, [Repository], [holds the evidence]), (636pt, [Publisher], [gives it form]), (1196pt, [Reviewer], [accepts and publishes]))
@@ -62,11 +62,11 @@
 #tx(346pt, yn, [read through Git at the pinned revision, each file given to its most specific claim; no fetch, no prompt, no change to the checkout], w: 260pt)
 #tx(636pt, yn, [views on one column lattice, wires only horizontal or vertical; the edition set by Typst in the house faces], w: 196pt)
 #tx(1030pt, yn, [staged in a new directory, renamed into place only when complete], w: 150pt)
-#tx(1196pt, yn, [acceptance.json names the reviewer and the manifest, once], w: 150pt)
+#tx(1196pt, yn, [acceptance.json records who accepted which bytes and when, once], w: 150pt)
 #tx(1376pt, yn, [root/id/version; only an accepted delivery, never over another], w: 176pt)
 // The supplies the publisher runs, each verified by digest before use.
 #tx(636pt, 435pt, [Supplies in custody], weight: "semibold")
-#tx(788pt, 435pt, [Archify 3.2.0 · opentype.js 2.0.0 · Lucide 1.66.0], fill: soft)
+#tx(788pt, 435pt, [Archify 3.2.0 · opentype.js 2.0.0 · Lucide 1.70.0], fill: soft)
 #tx(788pt, 451pt, [Noto Sans CJK SC 2.004], fill: soft)
 #tx(788pt, 467pt, [Source Serif 4 4.005 · Source Sans 3 3.052], fill: soft)
 
@@ -74,7 +74,7 @@
 #hrule(476pt, x1: 776pt)
 #hrule(476pt, x0: 824pt)
 #dl(48pt, 500pt, 104pt, 728pt, (
-  ([Rows], [cards on shared row lines of one column lattice, each as wide as its text]),
+  ([Rows], [parts on shared row lines of one column lattice, each as wide as its text or its strip]),
   ([Wires], [only horizontal or vertical, in channels between rows]),
   ([Overlap], [a layout that overlaps is never drawn]),
   ([Refusal], [a view no layout draws is refused, never shrunk]),
@@ -84,7 +84,7 @@
   ([Page], [one HTML file: the author's guide, or one Archify panel per view]),
   ([Overview], [the author's composition in the house class, set in the edition]),
   ([Manifest], [digests of the model, every owned and cited file, the supplies and the artifacts]),
-  ([Acceptance], [the reviewer, a note and the manifest it accepts]),
+  ([Acceptance], [an in-toto Statement of who accepted which bytes and when, with a colophon page]),
 ))
 
 // ── Band 2: what is refused, and what the publisher may touch ─────────────
@@ -123,7 +123,7 @@
 #head(48pt, 800pt, [Commands])
 #dl(48pt, 822pt, 70pt, 470pt, (
   ([check], [validate, bind, compose and count coverage; \-\-against lists the re-pin work]),
-  ([build], [write a delivery; accept and publish follow]),
+  ([build], [write a delivery; accept, verify and publish follow]),
   ([import], [write a model from LikeC4; migrate converts versions 1 and 2]),
 ))
 #head(560pt, 800pt, [In the model's language])

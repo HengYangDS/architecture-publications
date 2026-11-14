@@ -5,8 +5,8 @@
   "locale": "en",
   "title": "Architecture Publisher",
   "question": "How does Architecture Publisher turn an architecture model into a print edition and a page?",
-  "summary": "An author runs archpub on a model. A build validates it, gives each file in its scope to the component that claims it at the pinned revision, plans the views and lays each out on one grid. It typesets a print edition of the overview the author composes and one plate per view, writes one Archify page, which is the author's guide when the model names one, and a manifest of their digests; a named reviewer accepts the delivery before it is published.",
-  "scope": "Architecture Publisher as released at v0.12.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
+  "summary": "An author runs archpub on a model. A build validates it, gives each file in its scope to the component that claims it at the pinned revision, plans the views and lays each out on one grid. It typesets a print edition of the overview the author composes and one plate per view, each part a strip as long as its code, writes one Archify page, which is the author's guide when the model names one, and a manifest of their digests; a named reviewer accepts the delivery before it is published.",
+  "scope": "Architecture Publisher as released at v0.13.1: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
   "limits": [
     "Each component claims the directories and files its path rules name, and each file in the scope goes to its most specific claim; a relation cites the modules that import or call the other component.",
     "Relations are imports and process calls in the source, not runtime order; the shared refusal type and the child environment are not drawn as relations.",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "65452c600ff6e596ce13c769db54b740a26c5d6a",
+    "revision": "1b8d1b57439fd11c3ad82b9f77f7c77c1f95699c",
     "browse": "https://github.com/HengYangDS/architecture-publisher/blob/{revision}/{path}"
   },
   "coverage": {
@@ -102,7 +102,7 @@
       "label": "archpub",
       "kind": "command",
       "details": {
-        "commands": "check, build, import likec4, scaffold guide, migrate, accept, publish, skill",
+        "commands": "check, build, import likec4, scaffold guide, migrate, accept, verify, publish, skill",
         "exits": "0 done, 1 refused, 2 usage, 3 failure"
       },
       "files": ["src/cli/", "src/refusal.mjs", "package.json"]
@@ -130,7 +130,8 @@
       "label": "Model loader",
       "kind": "check",
       "details": {
-        "validates": "version 3, every problem with its JSON path"
+        "validates": "version 3, every problem with its JSON path",
+        "admits": "an optional edition object: strip or card marks, and a built-in palette or the model's own, held to print rules"
       },
       "files": ["src/model/"]
     },
@@ -139,9 +140,10 @@
       "label": "Delivery builder",
       "kind": "stage",
       "details": {
-        "writes": "one delivery, renamed into place when complete"
+        "writes": "one delivery, renamed into place when complete",
+        "chooses": "the edition's marks and palette once, before the plan"
       },
-      "files": ["src/build.mjs"]
+      "files": ["src/build.mjs", "src/style.mjs"]
     },
     {
       "id": "binding",
@@ -149,7 +151,8 @@
       "kind": "check",
       "details": {
         "gives": "each file in the scope to its most specific claim",
-        "reads": "Git at the pinned revision, never changing the checkout"
+        "reads": "Git at the pinned revision, never changing the checkout",
+        "dates": "each file by its last change, for three fixed age bands"
       },
       "files": ["src/sources/", "src/environment.mjs"]
     },
@@ -249,7 +252,8 @@
       "kind": "medium",
       "details": {
         "composes": "each view as one plate for the edition's body, at the narrowest of three widths that wires no worse, or at the full width with its summary above it",
-        "records": "the balance gates each plate misses, for the reviewer"
+        "records": "the balance gates each plate misses, for the reviewer",
+        "draws": "each part as a strip as long as its code, on one scale for the edition, or as a card"
       },
       "files": ["src/poster/"]
     },
@@ -304,7 +308,7 @@
       "label": "House class and overview",
       "kind": "medium",
       "details": {
-        "holds": "the house class and its tokens, which typeset the edition",
+        "holds": "the house class and its tokens, with the four built-in palettes, which typeset the edition",
         "checks": "the author's composition: its lint, its text boxes and its glyphs"
       },
       "files": ["src/overview/", "src/house.json"]
@@ -316,7 +320,8 @@
       "details": {
         "typesets": "the record, every plate and the overview in one Typst pass, as PDF/A-3a and PDF/UA-1",
         "renders": "the overview's and each plate's page as PNG at each width",
-        "sets": "its own words in the model's language"
+        "sets": "its own words in the model's language",
+        "adds": "a colophon page to an accepted delivery: a round mark and an acceptance slip"
       },
       "files": ["src/edition/"]
     },
@@ -325,7 +330,9 @@
       "label": "Acceptance and publication",
       "kind": "stage",
       "details": {
-        "records": "the reviewer and the manifest digest",
+        "records": "who accepted which bytes and when, as an in-toto Statement",
+        "signs": "the record with an SSH key, when the reviewer names one",
+        "verifies": "the artifacts, the record, the colophon page and the signature",
         "copies": "only an accepted delivery"
       },
       "files": ["src/delivery.mjs"]
@@ -403,7 +410,7 @@
       "id": "cli-acceptance",
       "from": "cli",
       "to": "acceptance",
-      "label": "accept, publish",
+      "label": "accept, verify, publish",
       "files": ["src/cli/run.mjs"]
     },
     {
@@ -439,14 +446,14 @@
       "from": "builder",
       "to": "model",
       "label": "loads",
-      "files": ["src/build.mjs"]
+      "files": ["src/build.mjs", "src/style.mjs"]
     },
     {
       "id": "builder-binding",
       "from": "builder",
       "to": "binding",
       "label": "binds files",
-      "files": ["src/build.mjs"]
+      "files": ["src/build.mjs", "src/style.mjs"]
     },
     {
       "id": "builder-coverage",
@@ -579,21 +586,26 @@
       "from": "plates",
       "to": "typefaces",
       "label": "breaks lines",
-      "files": ["src/poster/plate.mjs"]
+      "files": ["src/poster/plate.mjs", "src/poster/strip.mjs"]
     },
     {
       "id": "plates-presentation",
       "from": "plates",
       "to": "presentation",
-      "label": "styles cards",
-      "files": ["src/poster/compose/plates.mjs", "src/poster/figure.mjs", "src/poster/plate.mjs"]
+      "label": "styles parts",
+      "files": [
+        "src/poster/compose/plates.mjs",
+        "src/poster/figure.mjs",
+        "src/poster/plate.mjs",
+        "src/poster/strip.mjs"
+      ]
     },
     {
       "id": "plates-words",
       "from": "plates",
       "to": "words",
       "label": "sets its words",
-      "files": ["src/poster/compose/plates.mjs", "src/poster/plate.mjs"]
+      "files": ["src/poster/compose/plates.mjs", "src/poster/plate.mjs", "src/poster/strip.mjs"]
     },
     {
       "id": "map-layout",
@@ -691,21 +703,21 @@
       "from": "edition",
       "to": "overview",
       "label": "stages the house class",
-      "files": ["src/edition/typeset.mjs"]
+      "files": ["src/edition/colophon.mjs", "src/edition/typeset.mjs"]
     },
     {
       "id": "edition-typst",
       "from": "edition",
       "to": "typst",
       "label": "runs Typst",
-      "files": ["src/edition/typeset.mjs"]
+      "files": ["src/edition/colophon.mjs", "src/edition/typeset.mjs"]
     },
     {
       "id": "edition-supplies",
       "from": "edition",
       "to": "supplies",
       "label": "sets the house faces",
-      "files": ["src/edition/typeset.mjs"]
+      "files": ["src/edition/colophon.mjs", "src/edition/typeset.mjs"]
     },
     {
       "id": "edition-words",
@@ -722,6 +734,13 @@
       "files": ["src/delivery.mjs"]
     },
     {
+      "id": "acceptance-edition",
+      "from": "acceptance",
+      "to": "edition",
+      "label": "sets the colophon page",
+      "files": ["src/delivery.mjs"]
+    },
+    {
       "id": "acceptance-publication-root",
       "from": "acceptance",
       "to": "publication-root",
@@ -734,7 +753,7 @@
       "id": "overview",
       "title": "One build, end to end",
       "question": "Which parts does one build pass through, from the author's model to a published delivery?",
-      "summary": "The author runs archpub build, and the delivery builder makes plates, the print edition and the page. The reviewer runs accept and publish; the acceptance stage copies only an accepted delivery to the publication root.",
+      "summary": "The author runs archpub build, and the delivery builder makes plates, the print edition and the page. The reviewer runs accept and publish; acceptance sets a colophon page beside the delivery, and only an accepted delivery is copied to the publication root.",
       "tiers": [
         {
           "id": "people",
@@ -767,7 +786,7 @@
       "id": "files",
       "title": "Files at the pinned revision",
       "question": "How does a build give each file to its owner at the pinned revision, and what does archpub check report?",
-      "summary": "At the pinned revision, file binding gives each file in the scope to its most specific claim. The coverage report counts owned, uncovered and excluded files; the re-pin worklist lists what moving the pin changes.",
+      "summary": "At the pinned revision, file binding gives each file in the scope to its most specific claim and reads its digest, size and last change. The coverage report counts owned, uncovered and excluded files; the re-pin worklist lists what moving the pin changes.",
       "members": ["builder", "model", "binding", "scope", "coverage", "worklist", "repository"]
     },
     {
@@ -804,7 +823,7 @@
       "id": "edition",
       "title": "The print edition",
       "question": "What turns the planned views into the print edition, and which supplies does it use?",
-      "summary": "The plate composer turns each planned view into one plate, and the print edition typesets every plate and the overview in one Typst pass. The supplies provide the fonts, the icons and the house faces.",
+      "summary": "The plate composer turns each planned view into one plate and draws each part as a strip as long as its code, or as a card. The print edition typesets every plate and the overview in one Typst pass; the supplies provide the fonts, the icons and the house faces.",
       "members": [
         "builder",
         "plan",

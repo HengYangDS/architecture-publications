@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "65452c600ff6e596ce13c769db54b740a26c5d6a"
+      "revision": "1b8d1b57439fd11c3ad82b9f77f7c77c1f95699c"
     },
     "legend": {
       "entries": {
@@ -47,8 +47,8 @@
       "sources": [
         {
           "path": "src/build.mjs",
-          "line": 106,
-          "end_line": 125,
+          "line": 108,
+          "end_line": 127,
           "label": "Composition"
         }
       ]
@@ -77,8 +77,8 @@
       "sources": [
         {
           "path": "src/overview/typeset.mjs",
-          "line": 73,
-          "end_line": 109,
+          "line": 86,
+          "end_line": 123,
           "label": "Stage"
         }
       ]
@@ -92,8 +92,8 @@
       "sources": [
         {
           "path": "src/overview/typeset.mjs",
-          "line": 178,
-          "end_line": 217,
+          "line": 192,
+          "end_line": 231,
           "label": "Boxes"
         }
       ]
@@ -122,8 +122,8 @@
       "sources": [
         {
           "path": "docs/reference/operations.md",
-          "line": 330,
-          "end_line": 333,
+          "line": 345,
+          "end_line": 348,
           "label": "In the edition"
         }
       ]
@@ -137,8 +137,8 @@
       "sources": [
         {
           "path": "src/overview/typeset.mjs",
-          "line": 130,
-          "end_line": 161,
+          "line": 144,
+          "end_line": 175,
           "label": "Refusals"
         }
       ]

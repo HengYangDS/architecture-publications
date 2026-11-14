@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "65452c600ff6e596ce13c769db54b740a26c5d6a"
+      "revision": "1b8d1b57439fd11c3ad82b9f77f7c77c1f95699c"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 294,
-          "end_line": 304,
+          "line": 363,
+          "end_line": 373,
           "label": "0.4.0"
         }
       ]
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 249,
-          "end_line": 254,
+          "line": 318,
+          "end_line": 323,
           "label": "0.6.0"
         }
       ]
@@ -67,12 +67,12 @@
       "lane": "model",
       "kind": "change",
       "title": "0.8.0 组件认领自己的文件",
-      "detail": "第 2 版模型：每个组件认领它拥有的路径，构建在固定的修订上解析它们。模型可以指定导读和总览，check --against 给出重新固定的工作清单。",
+      "detail": "第 2 版模型：每个组件认领它拥有的路径，构建在固定的提交上解析它们。模型可以指定导读和总览，check --against 给出重新固定的工作清单。",
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 142,
-          "end_line": 187,
+          "line": 211,
+          "end_line": 256,
           "label": "0.8.0"
         }
       ]
@@ -86,8 +86,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 125,
-          "end_line": 133,
+          "line": 194,
+          "end_line": 202,
           "label": "0.9.0"
         }
       ]
@@ -102,14 +102,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 81,
-          "end_line": 92,
+          "line": 150,
+          "end_line": 161,
           "label": "0.10.0"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 117,
-          "end_line": 120,
+          "line": 186,
+          "end_line": 189,
           "label": "Removed"
         }
       ]
@@ -123,8 +123,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 68,
-          "end_line": 79,
+          "line": 137,
+          "end_line": 148,
           "label": "0.10.1"
         }
       ]
@@ -138,8 +138,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 59,
-          "end_line": 66,
+          "line": 128,
+          "end_line": 135,
           "label": "0.10.2"
         }
       ]
@@ -153,8 +153,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 38,
-          "end_line": 51,
+          "line": 107,
+          "end_line": 120,
           "label": "0.11.0"
         }
       ]
@@ -168,9 +168,40 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 10,
-          "end_line": 36,
+          "line": 79,
+          "end_line": 105,
           "label": "0.12.0"
+        }
+      ]
+    },
+    {
+      "id": "v0130",
+      "at": "2026-11-13T14:18:10+08:00",
+      "lane": "layout",
+      "kind": "change",
+      "title": "0.13.0 条带、配色与题跋页",
+      "detail": "每个组件画成与代码量等长的条带，全册同一比例，按固定的新旧三档上色。模型可以选定画法和配色。验收记录改为 in-toto Statement，另排一页题跋页，两者都可用 archpub verify 核验。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 22,
+          "end_line": 77,
+          "label": "0.13.0"
+        }
+      ]
+    },
+    {
+      "id": "v0131",
+      "at": "2026-11-13T20:39:17+08:00",
+      "lane": "edition",
+      "title": "0.13.1 归档改用 Node.js 26.13.1",
+      "detail": "发布归档自带的 Node.js 升到 26.13.1，这是一次安全更新；仓库自身改用 ETHOS 0.2.0-beta.9。出版工具的行为、模型格式和清单都不变。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 10,
+          "end_line": 20,
+          "label": "0.13.1"
         }
       ]
     }

@@ -1,7 +1,7 @@
 # Architecture Publisher: term renderings
 
 The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `architecture-publisher` at v0.12.0 (`65452c6`) that defines or uses the term; the edition's own
+names the file of `architecture-publisher` at v0.13.1 (`1b8d1b5`) that defines or uses the term; the edition's own
 Chinese words come from `src/edition/words.mjs` and `src/locale.mjs`. Renderings marked "approved" are the
 owner-approved shared renderings.
 
@@ -66,10 +66,10 @@ owner-approved shared renderings.
 | excluded                                                    | 已排除                                           | `src/sources/scope.mjs`                                                          |
 | coverage                                                    | 覆盖                                             | `src/sources/coverage.mjs`                                                       |
 | bind, binding                                               | 绑定                                             | `src/sources/bind.mjs`                                                           |
-| pin, pinned revision                                        | 固定, 固定的修订                                 | `src/build.mjs`, `src/map/guide.mjs`                                             |
+| pin, pinned revision                                        | 固定, 固定的提交                                 | `src/build.mjs`, `src/map/guide.mjs`                                             |
 | re-pin                                                      | 重新固定                                         | `src/sources/worklist.mjs`                                                       |
 | worklist                                                    | 工作清单                                         | `src/sources/worklist.mjs`                                                       |
-| revision                                                    | 修订                                             | `src/edition/words.mjs` (foot)                                                   |
+| revision                                                    | 提交 (as commit; the foot says 提交)             | `src/edition/words.mjs` (foot)                                                   |
 | repository                                                  | 仓库 (approved)                                  | `src/edition/words.mjs`                                                          |
 | commit                                                      | 提交 (approved)                                  | `src/sources/worklist.mjs`                                                       |
 | checkout                                                    | 检出 (approved)                                  | `src/build.mjs`, `src/map/guide.mjs`                                             |
@@ -162,3 +162,20 @@ owner-approved shared renderings.
 | rasterizer (deleted at this pin)                            | 栅格化器                                         | this work's `guide/guide.archify.md`                                             |
 | details, status (of a component)                            | 详情, 状态                                       | `docs/reference/operations.md`                                                   |
 | host path, user name                                        | 主机路径, 用户名                                 | `docs/reference/operations.md`                                                   |
+| marks (how the edition draws its parts)                     | 画法                                             | `docs/reference/model.md` (Marks and palette)                                    |
+| strip (a part drawn from its code)                          | 条带                                             | `docs/reference/model.md`, `src/poster/strip.mjs`                                |
+| one scale for the edition                                   | 全册同一比例                                     | `src/poster/strip.mjs`                                                           |
+| indigo, persimmon, soot, patina (palettes)                  | 靛蓝, 柿漆, 松烟, 铜绿                           | `src/house.json`                                                                 |
+| contrast, lightness, chroma, hue                            | 对比度, 明度, 彩度, 色相                         | `src/model/edition.mjs`                                                          |
+| age band, the three age bands                               | 新旧档, 新旧三档                                 | `src/sources/ages.mjs`; the rendering is this work's                             |
+| last change (of a file)                                     | 最近一次改动                                     | `src/sources/bind.mjs`                                                           |
+| shallow clone                                               | 浅克隆                                           | `src/sources/bind.mjs`                                                           |
+| tick (one per file a relation cites)                        | 刻痕                                             | `src/locale.mjs`                                                                 |
+| colophon page                                               | 题跋页                                           | `src/edition/colophon.mjs`                                                       |
+| acceptance record                                           | 验收记录                                         | `src/edition/words.mjs` (colophon)                                               |
+| acceptance slip, slip                                       | 签条                                             | `src/edition/colophon.typ`                                                       |
+| acceptance mark, round mark                                 | 印记, 圆形印记                                   | `src/edition/colophon.typ`; the rendering is this work's                         |
+| cinnabar                                                    | 朱砂色                                           | `src/edition/colophon.typ`                                                       |
+| in-toto Statement; subject, predicate                       | in-toto Statement (kept); 主体, 谓词             | `src/delivery.mjs`                                                               |
+| sign, signature, signer                                     | 签名, 签名者                                     | `src/delivery.mjs`                                                               |
+| signing key, fingerprint                                    | 签名密钥, 指纹                                   | `src/edition/words.mjs`, `src/delivery.mjs`                                      |

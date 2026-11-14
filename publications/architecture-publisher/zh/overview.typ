@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([Architecture Publisher], [含义、证据、形式与验收，各归一方], [archpub 依据显式模型画出任何仓库的架构，把交付物的每个字节绑定到输入，只出版具名审阅人验收过的内容。], read-from: [读取 64 个文件，各附 SHA-256。], claim-x: 270pt)
+#masthead([Architecture Publisher], [含义、证据、形式与验收，各归一方], [archpub 依据显式模型画出任何仓库的架构，把交付物的每个字节绑定到输入，只出版具名审阅人验收过的内容。], read-from: [读取 71 个文件，各附 SHA-256。], claim-x: 270pt)
 
 // ── Band 1: four owners side by side; one build passes through them ───────
 #let cols = ((48pt, [作者], [决定含义]), (346pt, [仓库], [存放证据]), (636pt, [出版工具], [赋予形式]), (1196pt, [审阅人], [验收并出版]))
@@ -59,14 +59,14 @@
 #ring(84pt, 430pt, r: 5pt, w: 2pt)
 #tx(98pt, 435pt, [LikeC4，第 1 或第 2 版], weight: "semibold")
 #tx(98pt, 452pt, [导入，或迁移到第 3 版], fill: soft)
-#tx(346pt, yn, [经 Git 读取固定的修订，\ 每个文件归最具体的认领；\ 不拉取、不提示、不改动检出], w: 260pt)
+#tx(346pt, yn, [经 Git 读取固定的提交，\ 每个文件归最具体的认领；\ 不拉取、不提示、不改动检出], w: 260pt)
 #tx(636pt, yn, [视图排在同一套列栅格上，\ 连线只走水平或竖直方向；\ 图册由 Typst 用版式字体排版], w: 196pt)
 #tx(1030pt, yn, [先暂存到新目录，\ 写完才重命名就位], w: 150pt)
-#tx(1196pt, yn, [acceptance.json 写明审阅人和清单，只写一次], w: 150pt)
+#tx(1196pt, yn, [acceptance.json 写明谁在何时验收了哪些字节，只写一次], w: 150pt)
 #tx(1376pt, yn, [root/id/version；只放已验收的交付物，不会覆盖另一份], w: 176pt)
 // The supplies the publisher runs, each verified by digest before use.
 #tx(636pt, 435pt, [保管中的物料], weight: "semibold")
-#tx(788pt, 435pt, [Archify 3.2.0 · opentype.js 2.0.0 · Lucide 1.66.0], fill: soft)
+#tx(788pt, 435pt, [Archify 3.2.0 · opentype.js 2.0.0 · Lucide 1.70.0], fill: soft)
 #tx(788pt, 451pt, [Noto Sans CJK SC 2.004], fill: soft)
 #tx(788pt, 467pt, [Source Serif 4 4.005 · Source Sans 3 3.052], fill: soft)
 
@@ -74,7 +74,7 @@
 #hrule(476pt, x1: 776pt)
 #hrule(476pt, x0: 824pt)
 #dl(48pt, 500pt, 104pt, 728pt, (
-  ([行], [卡片排在同一套列栅格的共用行线上，每张都与文字同宽]),
+  ([行], [组件排在同一套列栅格的共用行线上，宽度取文字和条带中较宽者]),
   ([连线], [只走水平或竖直方向，都在行间的通道里]),
   ([重叠], [有重叠的布局绝不绘出]),
   ([拒绝], [任何布局都画不出的视图一律拒绝，绝不缩小]),
@@ -84,7 +84,7 @@
   ([页面], [一个 HTML 文件：作者的导读，或每个视图一个 Archify 面板]),
   ([总览], [作者用版式类完成的编排，排入图册]),
   ([清单], [模型、已归属和被引用的每个文件、物料与产物的摘要]),
-  ([验收], [审阅人、一段备注，以及它所验收的清单]),
+  ([验收], [一份 in-toto Statement，写明谁在何时验收了哪些字节，另附题跋页]),
 ))
 
 // ── Band 2: what is refused, and what the publisher may touch ─────────────
@@ -111,7 +111,7 @@
 
 #head(824pt, 594pt, [出版工具可触及的范围])
 #dl(824pt, 626pt, 104pt, 728pt, (
-  ([Git], [读取固定的修订，只有检查导读时才克隆；绝不拉取，也不改动检出]),
+  ([Git], [读取固定的提交，只有检查导读时才克隆；绝不拉取，也不改动检出]),
   ([子进程], [Git、Archify 和 Typst 在白名单环境中运行]),
   ([LikeC4], [在 Node 的权限模型下解析，只读取它自己的物料]),
   ([输出], [一个新的交付物目录，完成后重命名就位]),
@@ -123,7 +123,7 @@
 #head(48pt, 800pt, [命令])
 #dl(48pt, 822pt, 70pt, 470pt, (
   ([check], [校验、绑定、编排并统计覆盖；\-\-against 列出重新固定的待办]),
-  ([build], [写出交付物；之后运行 accept 和 publish]),
+  ([build], [写出交付物；之后运行 accept、verify 和 publish]),
   ([import], [从 LikeC4 写出模型；migrate 转换第 1、2 版]),
 ))
 #head(560pt, 800pt, [跟随模型的语言])
