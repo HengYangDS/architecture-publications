@@ -14,6 +14,10 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 - `trials/`, the rules and records of the trials that Architecture Publisher's roadmap opens with: the
   reviewer's procedure and seeded checks with the record of the first run, the reader experiment's protocol and
   item bank, and the definitions of the comparison of lines on screen.
+- The records of those trials, each with its data, and one page on what they decided: the reader experiment (a
+  work's model and guide text beside its repository raise a reader's recall from 0.450 to 0.652; one hand-written
+  page of constraints does not), the reviewer's check on defects of form (no holder passes by eye), the comparison
+  of lines on screen with a first figure-reading check, and the author's timing, whose protocol is added.
 - A summary on every view of every work, in English and in Chinese, set beside
   its figure in the print edition. The input check refuses a view without one.
 - Each work's page shows how its system got here: a timeline of the releases

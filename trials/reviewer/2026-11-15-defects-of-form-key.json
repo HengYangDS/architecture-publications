@@ -1,0 +1,356 @@
+{
+  "plates": {
+    "plate-01": {
+      "work": "ddwg",
+      "language": "zh",
+      "plate": 5,
+      "release": "0.14.0",
+      "built_as": "the 0.14.0 review set of 2026-11-14",
+      "image": "05-checks.png",
+      "classes": {
+        "key-off-line": false,
+        "lone-character": false,
+        "open-boundary": false,
+        "colour-only": true,
+        "blank-area": false
+      },
+      "evidence": {
+        "key-off-line": "Seen at 2x native: samples centred on their labels; first swatch rows 1263-1274 against label rows 1261-1276, centre +0.0 px; the hub sample is an arrow on the label's middle.",
+        "lone-character": "Seen at 2x native: 生成的流水线 ends '… ETHOS 检 / 查图', two characters, as in 0.13.1; no lone character.",
+        "open-boundary": "Seen on the whole plate: the boundary has four sides; dashed columns measured at x 84 and x 2314.",
+        "colour-only": "Read off the key at 2x native: entry '深色连线：通向已安装的 ETHOS' with a dark line sample; dark lines seen leading into that part on the plate.",
+        "blank-area": "From the manifest, not judged by eye: plates[4] has no miss on emptyShare or blankBand (emptyShare 0.09, blankBand 88; no misses at all)."
+      }
+    },
+    "plate-02": {
+      "work": "ddwg",
+      "language": "zh",
+      "plate": 2,
+      "release": "0.13.1",
+      "built_as": "a build by the 0.13.1 release archive",
+      "image": "02-readers.png",
+      "classes": {
+        "key-off-line": true,
+        "lone-character": false,
+        "open-boundary": false,
+        "colour-only": true,
+        "blank-area": false
+      },
+      "evidence": {
+        "key-off-line": "Seen at 2x native (key line, tiles c and d): the samples stand below the middle of their labels; first swatch rows 1260-1271 against label rows 1255-1270, centre +3.0 px; the hub sample is a short line at the foot of '指向任务地图', reading as an underline.",
+        "lone-character": "Whole plate read by eye at 0.83 scale and scanned by script (key/evidence/lone.py): no detail ends on a line of one Han character.",
+        "open-boundary": "Seen on the whole plate: the boundary has four sides; dashed columns measured at x 381 and x 1797.",
+        "colour-only": "Read off the key at 2x native: entry '指向任务地图' with a dark line sample; dark lines seen leading into that part on the plate.",
+        "blank-area": "From the manifest, not judged by eye: plates[1] has no miss on emptyShare or blankBand (emptyShare 0.106, blankBand 56; no misses at all)."
+      }
+    },
+    "plate-03": {
+      "work": "architecture-publisher",
+      "language": "zh",
+      "plate": 1,
+      "release": "0.14.0",
+      "built_as": "the 0.14.0 review set of 2026-11-14",
+      "image": "01-overview.png",
+      "classes": {
+        "key-off-line": false,
+        "lone-character": false,
+        "open-boundary": false,
+        "colour-only": false,
+        "blank-area": true
+      },
+      "evidence": {
+        "key-off-line": "Seen at 2x native: samples centred on their labels; first swatch rows 1263-1274 against label rows 1261-1276, centre +0.0 px.",
+        "lone-character": "Whole plate read by eye at 0.83 scale and scanned by script (key/evidence/lone.py): no detail ends on a line of one Han character.",
+        "open-boundary": "Seen on the whole plate: the boundary has four sides; dashed columns measured at x 453 and x 1741.",
+        "colour-only": "Read off the key at 2x native: no entry for dark lines leading to a part.",
+        "blank-area": "From the manifest, not judged by eye: plates[0].misses has emptyShare 0.188 (limit 0.12); also holes, not counted; emptyRectangle [1208, 0, 600, 608]."
+      }
+    },
+    "plate-04": {
+      "work": "ethos",
+      "language": "zh",
+      "plate": 1,
+      "release": "0.13.1",
+      "built_as": "a build by the 0.13.1 release archive",
+      "image": "01-overview.png",
+      "classes": {
+        "key-off-line": true,
+        "lone-character": false,
+        "open-boundary": false,
+        "colour-only": true,
+        "blank-area": false
+      },
+      "evidence": {
+        "key-off-line": "Seen at 2x native (key line, tiles c and d): the samples stand below the middle of their labels; first swatch rows 1260-1271 against label rows 1255-1270, centre +3.0 px; the hub sample is a short line at the foot of '指向 Git 改动引擎', reading as an underline.",
+        "lone-character": "NOT CONFIRMED: the probe listed '…head 和当前事|实', but on this image the detail of 改动决策 breaks '--expect-head 和当前 / 事实', two characters on the last line (seen at 2x native); the 0.14.0 image breaks the same way.",
+        "open-boundary": "Seen: this plate draws no system boundary and its key has no boundary entry; nothing to lack a side.",
+        "colour-only": "Read off the key at 2x native: entry '指向 Git 改动引擎' with a dark line sample; dark lines seen leading into that part on the plate.",
+        "blank-area": "From the manifest, not judged by eye: plates[0] has no miss on emptyShare or blankBand (emptyShare 0.112, blankBand 64; no misses at all)."
+      }
+    },
+    "plate-05": {
+      "work": "ethos",
+      "language": "zh",
+      "plate": 7,
+      "release": "0.13.1",
+      "built_as": "a build by the 0.13.1 release archive",
+      "image": "07-commits.png",
+      "classes": {
+        "key-off-line": true,
+        "lone-character": false,
+        "open-boundary": false,
+        "colour-only": false,
+        "blank-area": true
+      },
+      "evidence": {
+        "key-off-line": "Seen at 2x native (key line, tiles c and d): the samples stand below the middle of their labels; first swatch rows 1260-1271 against label rows 1255-1270, centre +3.0 px; this key has no hub entry.",
+        "lone-character": "Whole plate read by eye at 0.83 scale and scanned by script (key/evidence/lone.py): no detail ends on a line of one Han character.",
+        "open-boundary": "Seen on the whole plate: the boundary has four sides; dashed columns measured at x 523 and x 2303.",
+        "colour-only": "Read off the key at 2x native: no entry for dark lines leading to a part.",
+        "blank-area": "From the manifest, not judged by eye: plates[6].misses has emptyShare 0.144 (limit 0.12); emptyRectangle [1304, 616, 952, 320]."
+      }
+    },
+    "plate-06": {
+      "work": "architecture-publisher",
+      "language": "zh",
+      "plate": 3,
+      "release": "0.13.1",
+      "built_as": "a build by the 0.13.1 release archive",
+      "image": "03-models.png",
+      "classes": {
+        "key-off-line": true,
+        "lone-character": false,
+        "open-boundary": false,
+        "colour-only": false,
+        "blank-area": true
+      },
+      "evidence": {
+        "key-off-line": "Seen at 2x native (key line, tiles c and d): the samples stand below the middle of their labels; first swatch rows 1260-1271 against label rows 1255-1270, centre +3.0 px; this key has no hub entry.",
+        "lone-character": "Whole plate read by eye at 0.83 scale and scanned by script (key/evidence/lone.py): no detail ends on a line of one Han character.",
+        "open-boundary": "Seen on the whole plate: the boundary has four sides; dashed columns measured at x 510 and x 1821.",
+        "colour-only": "Read off the key at 2x native: no entry for dark lines leading to a part.",
+        "blank-area": "From the manifest, not judged by eye: plates[2].misses has emptyShare 0.198 (limit 0.12); also holes, not counted; emptyRectangle [0, 232, 456, 840]."
+      }
+    },
+    "plate-07": {
+      "work": "ethos",
+      "language": "zh",
+      "plate": 7,
+      "release": "0.14.0",
+      "built_as": "the 0.14.0 review set of 2026-11-14",
+      "image": "07-commits.png",
+      "classes": {
+        "key-off-line": false,
+        "lone-character": false,
+        "open-boundary": false,
+        "colour-only": false,
+        "blank-area": true
+      },
+      "evidence": {
+        "key-off-line": "Seen at 2x native: samples centred on their labels; first swatch rows 1263-1274 against label rows 1261-1276, centre +0.0 px.",
+        "lone-character": "Whole plate read by eye at 0.83 scale and scanned by script (key/evidence/lone.py): no detail ends on a line of one Han character.",
+        "open-boundary": "Seen on the whole plate: the boundary has four sides; dashed columns measured at x 523 and x 2303.",
+        "colour-only": "Read off the key at 2x native: no entry for dark lines leading to a part.",
+        "blank-area": "From the manifest, not judged by eye: plates[6].misses has emptyShare 0.144 (limit 0.12); emptyRectangle [1304, 616, 952, 320]."
+      }
+    },
+    "plate-08": {
+      "work": "architecture-publisher",
+      "language": "zh",
+      "plate": 5,
+      "release": "0.13.1",
+      "built_as": "a build by the 0.13.1 release archive",
+      "image": "05-edition.png",
+      "classes": {
+        "key-off-line": true,
+        "lone-character": true,
+        "open-boundary": false,
+        "colour-only": true,
+        "blank-area": true
+      },
+      "evidence": {
+        "key-off-line": "Seen at 2x native (key line, tiles c and d): the samples stand below the middle of their labels; first swatch rows 1260-1271 against label rows 1255-1270, centre +3.0 px; the hub sample is a short line at the foot of '指向物料', reading as an underline.",
+        "lone-character": "Seen at 2x native and in the pixel mask: the detail of 图版编排器 ends '…把概述排在图上 / 方' (方 alone at about x 585, y 561; tile a), as the probe listed; the detail of 字体 ends '…都与图册排版一 / 致' (致 alone at about x 585, y 938; tile c), not in the probe's list.",
+        "open-boundary": "Seen on the whole plate: the boundary has four sides; dashed columns measured at x 151 and x 1823.",
+        "colour-only": "Read off the key at 2x native: entry '指向物料' with a dark line sample; dark lines seen leading into that part on the plate.",
+        "blank-area": "From the manifest, not judged by eye: plates[4].misses has emptyShare 0.147 (limit 0.12); emptyRectangle [0, 376, 512, 696]."
+      }
+    },
+    "plate-09": {
+      "work": "ddwg",
+      "language": "zh",
+      "plate": 4,
+      "release": "0.14.0",
+      "built_as": "the 0.14.0 review set of 2026-11-14",
+      "image": "04-change.png",
+      "classes": {
+        "key-off-line": false,
+        "lone-character": false,
+        "open-boundary": true,
+        "colour-only": true,
+        "blank-area": true
+      },
+      "evidence": {
+        "key-off-line": "Seen at 2x native: samples centred on their labels; first swatch rows 1263-1274 against label rows 1261-1276, centre +0.0 px; the hub sample is an arrow on the label's middle.",
+        "lone-character": "Seen at 2x native: OpenSpec 工作空间 now ends '…都作为一项正式 / 变更'; no lone character.",
+        "open-boundary": "Seen on a native crop and measured: the top and bottom dashed lines run to about x 1870 and stop with no corner; a dashed column stands at the left (x about 90) and none at the right (tiles b and d). The same on both releases' images of this plate.",
+        "colour-only": "Read off the key at 2x native: entry '深色连线：通向 OpenSpec 工作空间' with a dark line sample; dark lines seen leading into that part on the plate.",
+        "blank-area": "From the manifest, not judged by eye: plates[3].misses has blankBand 112 (limit 96); emptyRectangle [360, 0, 1448, 144]."
+      }
+    },
+    "plate-10": {
+      "work": "ethos",
+      "language": "zh",
+      "plate": 10,
+      "release": "0.14.0",
+      "built_as": "the 0.14.0 review set of 2026-11-14",
+      "image": "10-runtime.png",
+      "classes": {
+        "key-off-line": false,
+        "lone-character": false,
+        "open-boundary": false,
+        "colour-only": false,
+        "blank-area": true
+      },
+      "evidence": {
+        "key-off-line": "Seen at 2x native: samples centred on their labels; first swatch rows 1263-1274 against label rows 1261-1276, centre +0.0 px.",
+        "lone-character": "Whole plate read by eye at 0.83 scale and scanned by script (key/evidence/lone.py): no detail ends on a line of one Han character.",
+        "open-boundary": "Seen on the whole plate: the boundary has four sides; dashed columns measured at x 541 and x 2269.",
+        "colour-only": "Read off the key at 2x native: no entry for dark lines leading to a part.",
+        "blank-area": "From the manifest, not judged by eye: plates[9].misses has emptyShare 0.157 (limit 0.12); also holes, not counted; emptyRectangle [0, 0, 488, 680]."
+      }
+    },
+    "plate-11": {
+      "work": "ethos",
+      "language": "zh",
+      "plate": 1,
+      "release": "0.14.0",
+      "built_as": "the 0.14.0 review set of 2026-11-14",
+      "image": "01-overview.png",
+      "classes": {
+        "key-off-line": false,
+        "lone-character": false,
+        "open-boundary": false,
+        "colour-only": true,
+        "blank-area": false
+      },
+      "evidence": {
+        "key-off-line": "Seen at 2x native: samples centred on their labels; first swatch rows 1263-1274 against label rows 1261-1276, centre +0.0 px; the hub sample is an arrow on the label's middle.",
+        "lone-character": "Seen at 2x native: 改动决策 ends '…和当前 / 事实', two characters, as in 0.13.1; no lone character.",
+        "open-boundary": "Seen: this plate draws no system boundary and its key has no boundary entry; nothing to lack a side.",
+        "colour-only": "Read off the key at 2x native: entry '深色连线：通向 Git 改动引擎' with a dark line sample; dark lines seen leading into that part on the plate.",
+        "blank-area": "From the manifest, not judged by eye: plates[0] has no miss on emptyShare or blankBand (emptyShare 0.112, blankBand 64; no misses at all)."
+      }
+    },
+    "plate-12": {
+      "work": "ethos",
+      "language": "zh",
+      "plate": 9,
+      "release": "0.13.1",
+      "built_as": "a build by the 0.13.1 release archive",
+      "image": "09-structure.png",
+      "classes": {
+        "key-off-line": true,
+        "lone-character": false,
+        "open-boundary": false,
+        "colour-only": false,
+        "blank-area": true
+      },
+      "evidence": {
+        "key-off-line": "Seen at 2x native (key line, tiles c and d): the samples stand below the middle of their labels; first swatch rows 1260-1271 against label rows 1255-1270, centre +3.0 px; this key has no hub entry.",
+        "lone-character": "Whole plate read by eye at 0.83 scale and scanned by script (key/evidence/lone.py): no detail ends on a line of one Han character.",
+        "open-boundary": "Seen on the whole plate: the boundary has four sides; dashed columns measured at x 247 and x 1943.",
+        "colour-only": "Read off the key at 2x native: no entry for dark lines leading to a part.",
+        "blank-area": "From the manifest, not judged by eye: plates[8].misses has emptyShare 0.146 (limit 0.12); emptyRectangle [992, 600, 920, 336]."
+      }
+    },
+    "plate-13": {
+      "work": "architecture-publisher",
+      "language": "zh",
+      "plate": 3,
+      "release": "0.14.0",
+      "built_as": "the 0.14.0 review set of 2026-11-14",
+      "image": "03-models.png",
+      "classes": {
+        "key-off-line": false,
+        "lone-character": false,
+        "open-boundary": false,
+        "colour-only": false,
+        "blank-area": true
+      },
+      "evidence": {
+        "key-off-line": "Seen at 2x native: samples centred on their labels; first swatch rows 1263-1274 against label rows 1261-1276, centre +0.0 px.",
+        "lone-character": "Whole plate read by eye at 0.83 scale and scanned by script (key/evidence/lone.py): no detail ends on a line of one Han character.",
+        "open-boundary": "Seen on the whole plate: the boundary has four sides; dashed columns measured at x 530 and x 1841.",
+        "colour-only": "Read off the key at 2x native: no entry for dark lines leading to a part.",
+        "blank-area": "From the manifest, not judged by eye: plates[2].misses has emptyShare 0.197 (limit 0.12), blankBand 104 (limit 96); emptyRectangle [0, 264, 472, 808]."
+      }
+    },
+    "plate-14": {
+      "work": "architecture-publisher",
+      "language": "zh",
+      "plate": 5,
+      "release": "0.14.0",
+      "built_as": "the 0.14.0 review set of 2026-11-14",
+      "image": "05-edition.png",
+      "classes": {
+        "key-off-line": false,
+        "lone-character": false,
+        "open-boundary": false,
+        "colour-only": true,
+        "blank-area": true
+      },
+      "evidence": {
+        "key-off-line": "Seen at 2x native: samples centred on their labels; first swatch rows 1263-1274 against label rows 1261-1276, centre +0.0 px; the hub sample is an arrow on the label's middle.",
+        "lone-character": "Seen at 2x native: 图版编排器 now ends '…把概述排在图 / 上方' and the detail of 字体 fits two lines; no lone character.",
+        "open-boundary": "Seen on the whole plate: the boundary has four sides; dashed columns measured at x 151 and x 1823.",
+        "colour-only": "Read off the key at 2x native: entry '深色连线：通向物料' with a dark line sample; dark lines seen leading into that part on the plate.",
+        "blank-area": "From the manifest, not judged by eye: plates[4].misses has emptyShare 0.147 (limit 0.12); emptyRectangle [0, 376, 512, 696]."
+      }
+    },
+    "plate-15": {
+      "work": "ddwg",
+      "language": "zh",
+      "plate": 5,
+      "release": "0.13.1",
+      "built_as": "a build by the 0.13.1 release archive",
+      "image": "05-checks.png",
+      "classes": {
+        "key-off-line": true,
+        "lone-character": false,
+        "open-boundary": false,
+        "colour-only": true,
+        "blank-area": false
+      },
+      "evidence": {
+        "key-off-line": "Seen at 2x native (key line, tiles c and d): the samples stand below the middle of their labels; first swatch rows 1260-1271 against label rows 1255-1270, centre +3.0 px; the hub sample is a short line at the foot of '指向已安装的 ETHOS', reading as an underline.",
+        "lone-character": "NOT CONFIRMED: the probe listed 'ETHOS 检查|图', but on this image the detail of 生成的流水线 breaks 'Windows 上跑完整的 ETHOS 检 / 查图', two characters on the last line (seen at 2x native); the 0.14.0 image breaks the same way.",
+        "open-boundary": "Seen on the whole plate: the boundary has four sides; dashed columns measured at x 84 and x 2314.",
+        "colour-only": "Read off the key at 2x native: entry '指向已安装的 ETHOS' with a dark line sample; dark lines seen leading into that part on the plate.",
+        "blank-area": "From the manifest, not judged by eye: plates[4] has no miss on emptyShare or blankBand (emptyShare 0.09, blankBand 88; no misses at all)."
+      }
+    },
+    "plate-16": {
+      "work": "ddwg",
+      "language": "zh",
+      "plate": 4,
+      "release": "0.13.1",
+      "built_as": "a build by the 0.13.1 release archive",
+      "image": "04-change.png",
+      "classes": {
+        "key-off-line": true,
+        "lone-character": true,
+        "open-boundary": true,
+        "colour-only": true,
+        "blank-area": true
+      },
+      "evidence": {
+        "key-off-line": "Seen at 2x native (key line, tiles c and d): the samples stand below the middle of their labels; first swatch rows 1260-1271 against label rows 1255-1270, centre +3.0 px; the hub sample is a short line at the foot of '指向 OpenSpec 工作空间', reading as an underline.",
+        "lone-character": "Seen at 2x native and in the pixel mask: the detail of OpenSpec 工作空间 ends '…都作为一项正式变 / 更' (更 alone at about x 111, y 786; tile c), as the probe listed.",
+        "open-boundary": "Seen on a native crop and measured: the top and bottom dashed lines run to about x 1870 and stop with no corner; a dashed column stands at the left (x about 90) and none at the right (tiles b and d). The same on both releases' images of this plate.",
+        "colour-only": "Read off the key at 2x native: entry '指向 OpenSpec 工作空间' with a dark line sample; dark lines seen leading into that part on the plate.",
+        "blank-area": "From the manifest, not judged by eye: plates[3].misses has blankBand 112 (limit 96); emptyRectangle [368, 0, 1440, 144]."
+      }
+    }
+  }
+}
