@@ -72,24 +72,24 @@ by eye before; a kind of fault nobody thought to seed is not tested.
 Each cell says whether the pair of plate and class is positive in the seed author's key, and which holder named
 the class on the plate. An empty cell is a negative pair that nobody named.
 
-| Plate | Work, plate, release             | `key-off-line`          | `lone-character`        | `open-boundary`         | `colour-only`           | `blank-area`             |
-| ----- | -------------------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ------------------------ |
-| 01    | ddwg 5, 0.14.0                   |                         |                         |                         | positive: Codex, Claude | named by Codex           |
-| 02    | ddwg 2, 0.13.1                   | positive: Codex, Claude |                         |                         | positive: Codex, Claude |                          |
-| 03    | architecture-publisher 1, 0.14.0 |                         |                         |                         |                         | positive: Codex, Claude  |
-| 04    | ethos 1, 0.13.1                  | positive: Codex, Claude |                         |                         | positive: Codex, Claude |                          |
-| 05    | ethos 7, 0.13.1                  | positive: Claude        |                         |                         |                         | positive: Codex          |
-| 06    | architecture-publisher 3, 0.13.1 | positive: Claude        |                         |                         |                         | positive: Codex, Claude  |
-| 07    | ethos 7, 0.14.0                  |                         |                         |                         |                         | positive: Codex          |
-| 08    | architecture-publisher 5, 0.13.1 | positive: Codex, Claude | positive: Codex, Claude |                         | positive: Codex, Claude | positive: Codex          |
-| 09    | ddwg 4, 0.14.0                   |                         |                         | positive: Codex, Claude | positive: Codex         | positive: missed by both |
-| 10    | ethos 10, 0.14.0                 |                         |                         |                         |                         | positive: Codex, Claude  |
-| 11    | ethos 1, 0.14.0                  |                         |                         |                         | positive: Codex, Claude |                          |
-| 12    | ethos 9, 0.13.1                  | positive: Claude        |                         |                         |                         | positive: Codex, Claude  |
-| 13    | architecture-publisher 3, 0.14.0 |                         |                         |                         |                         | positive: Codex, Claude  |
-| 14    | architecture-publisher 5, 0.14.0 |                         |                         |                         | positive: Codex, Claude | positive: Codex          |
-| 15    | ddwg 5, 0.13.1                   | positive: Codex, Claude |                         |                         | positive: Codex         | named by Codex           |
-| 16    | ddwg 4, 0.13.1                   | positive: Codex, Claude | positive: Codex, Claude | positive: Codex, Claude | positive: Codex         | positive: missed by both |
+| Plate | Work, plate, release               | `key-off-line`          | `lone-character`        | `open-boundary`         | `colour-only`           | `blank-area`             |
+| ----- | ---------------------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ------------------------ |
+| 01    | `ddwg` 5, 0.14.0                   |                         |                         |                         | positive: Codex, Claude | named by Codex           |
+| 02    | `ddwg` 2, 0.13.1                   | positive: Codex, Claude |                         |                         | positive: Codex, Claude |                          |
+| 03    | `architecture-publisher` 1, 0.14.0 |                         |                         |                         |                         | positive: Codex, Claude  |
+| 04    | `ethos` 1, 0.13.1                  | positive: Codex, Claude |                         |                         | positive: Codex, Claude |                          |
+| 05    | `ethos` 7, 0.13.1                  | positive: Claude        |                         |                         |                         | positive: Codex          |
+| 06    | `architecture-publisher` 3, 0.13.1 | positive: Claude        |                         |                         |                         | positive: Codex, Claude  |
+| 07    | `ethos` 7, 0.14.0                  |                         |                         |                         |                         | positive: Codex          |
+| 08    | `architecture-publisher` 5, 0.13.1 | positive: Codex, Claude | positive: Codex, Claude |                         | positive: Codex, Claude | positive: Codex          |
+| 09    | `ddwg` 4, 0.14.0                   |                         |                         | positive: Codex, Claude | positive: Codex         | positive: missed by both |
+| 10    | `ethos` 10, 0.14.0                 |                         |                         |                         |                         | positive: Codex, Claude  |
+| 11    | `ethos` 1, 0.14.0                  |                         |                         |                         | positive: Codex, Claude |                          |
+| 12    | `ethos` 9, 0.13.1                  | positive: Claude        |                         |                         |                         | positive: Codex, Claude  |
+| 13    | `architecture-publisher` 3, 0.14.0 |                         |                         |                         |                         | positive: Codex, Claude  |
+| 14    | `architecture-publisher` 5, 0.14.0 |                         |                         |                         | positive: Codex, Claude | positive: Codex          |
+| 15    | `ddwg` 5, 0.13.1                   | positive: Codex, Claude |                         |                         | positive: Codex         | named by Codex           |
+| 16    | `ddwg` 4, 0.13.1                   | positive: Codex, Claude | positive: Codex, Claude | positive: Codex, Claude | positive: Codex         | positive: missed by both |
 
 The holders' findings as returned: [Codex](2026-11-15-defects-of-form-findings-codex.json),
 [Claude](2026-11-15-defects-of-form-findings-claude.json).
