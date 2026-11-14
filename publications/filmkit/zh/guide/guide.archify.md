@@ -7,29 +7,31 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 - [录音只有完整收尾才能进入音轨](block:p-takes)，除非影片为它的衔接声明了尾音淡出。[](source:abrupt)
 - [画面只有通过门禁才会渲染](block:p-picture)，而且门禁针对的必须是当前的画面合成、时间线、样式表、字体和引擎版本。[](source:render-gate)
 
-@answer scope="Film Kit v0.20.0 · 提交 fbe9843 · 源码及项目自带文档"
+@answer scope="Film Kit v0.21.2 · 提交 3824247 · 源码及项目自带文档"
 @meta locale=zh-CN style=editorial
 @source readme-what title="Film Kit 做什么" path="README.md" lines=3:3
 @source spec-rate title="帧率" path="src/filmkit/specification.py" lines=25:30
 @source spec-sound title="采样率与节目响度" path="src/filmkit/specification.py" lines=33:47
 @source sample-declaration title="示例影片的声明" path="examples/sample-film/content/film.toml" lines=6:22
-@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=311:315
-@source changelog-019 title="0.19.0 的改动" path="CHANGELOG.md" lines=24:39
-@source changelog-020 title="0.20.0 的改动" path="CHANGELOG.md" lines=7:23
+@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=348:352
+@source changelog-019 title="0.19.0 的改动" path="CHANGELOG.md" lines=61:76
+@source changelog-020 title="0.20.0 的改动" path="CHANGELOG.md" lines=44:60
+@source changelog-0211 title="0.21.1 的改动" path="CHANGELOG.md" lines=13:19
+@source changelog-0212 title="0.21.2 的发布" path="CHANGELOG.md" lines=7:11
 @source readme-engine title="引擎不带任何影片的内容" path="README.md" lines=5:5
 @source readme-requirements title="运行要求" path="README.md" lines=9:12
 @source readme-layout title="影片的目录结构" path="README.md" lines=18:26
-@source readme-words title="概念与读音" path="README.md" lines=62:65
-@source readme-neither title="两项检查都不声明的影片" path="README.md" lines=69:69
-@source readme-gate title="画面门禁" path="README.md" lines=87:87
-@source readme-metrics title="用影片的字体测量文字" path="README.md" lines=89:89
-@source readme-balance title="每一帧的平衡" path="README.md" lines=91:91
-@source readme-install title="在影片中安装引擎" path="README.md" lines=176:186
-@source readme-commands title="命令" path="README.md" lines=192:208
-@source readme-endings title="完整收尾" path="README.md" lines=212:214
-@source readme-dev title="开发" path="README.md" lines=236:236
+@source readme-words title="概念与读音" path="README.md" lines=66:69
+@source readme-neither title="两项检查都不声明的影片" path="README.md" lines=73:73
+@source readme-gate title="画面门禁" path="README.md" lines=91:91
+@source readme-metrics title="用影片的字体测量文字" path="README.md" lines=93:93
+@source readme-balance title="每一帧的平衡" path="README.md" lines=95:95
+@source readme-install title="在影片中安装引擎" path="README.md" lines=183:193
+@source readme-commands title="命令" path="README.md" lines=199:215
+@source readme-endings title="完整收尾" path="README.md" lines=219:221
+@source readme-dev title="开发" path="README.md" lines=243:243
 @source agents-contract title="引擎契约" path="AGENTS.md" lines=10:16
-@source changelog-pin title="影片保留原有的锁定版本" path="CHANGELOG.md" lines=211:211
+@source changelog-pin title="影片保留原有的锁定版本" path="CHANGELOG.md" lines=248:248
 @source film-root title="查找影片" path="src/filmkit/repository.py" lines=28:50
 @source film-load title="检查声明" path="src/filmkit/film.py" lines=386:401
 @source edition-places title="语言版写到哪里" path="src/filmkit/production.py" lines=138:154
@@ -58,10 +60,10 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @source abrupt title="拒绝收尾突兀的录音" path="src/filmkit/soundtrack/assembly.py" lines=156:176
 @source program-gain title="用一次增益达到节目响度" path="src/filmkit/soundtrack/assembly.py" lines=511:532
 @source releases title="声明的尾音淡出" path="src/filmkit/soundtrack/policy.py" lines=159:170
-@source captions-doc title="字幕定时" path="src/filmkit/captions/timing.py" lines=1:6
+@source captions-doc title="字幕定时" path="src/filmkit/captions/timing.py" lines=1:8
 @source gate-doc title="画面门禁" path="src/filmkit/picture/gates.py" lines=1:37
 @source frame-gates title="来自评审的规则" path="src/filmkit/picture/gates.py" lines=56:57
-@source gate-check title="check-picture" path="src/filmkit/picture/gates.py" lines=377:449
+@source gate-check title="check-picture" path="src/filmkit/picture/gates.py" lines=370:442
 @source candidate-inputs title="预置绑定的输入" path="src/filmkit/picture/rendering.py" lines=123:153
 @source require-renderer title="唯一的渲染器版本" path="src/filmkit/picture/rendering.py" lines=209:219
 @source stage title="画面的预置" path="src/filmkit/picture/rendering.py" lines=253:303
@@ -72,13 +74,14 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @source tools-doc title="Node 工具运行器" path="src/filmkit/tools.py" lines=1:17
 @source headless-doc title="无头运行的画面合成" path="src/filmkit/picture/headless-composition.mjs" lines=1:13
 @source package-doc title="打包" path="src/filmkit/delivery/packaging.py" lines=1:31
-@source delivered-check title="检查成片" path="src/filmkit/delivery/packaging.py" lines=539:582
-@source package-film title="打包每部成片" path="src/filmkit/delivery/packaging.py" lines=617:652
+@source delivered-check title="检查成片" path="src/filmkit/delivery/packaging.py" lines=541:584
+@source package-film title="打包每部成片" path="src/filmkit/delivery/packaging.py" lines=619:654
 @source package-inputs title="成片包绑定什么" path="src/filmkit/delivery/packaging.py" lines=272:284
 @source player-doc title="播放器页面" path="src/filmkit/delivery/player.py" lines=1:5
-@source verification-doc title="核验" path="src/filmkit/delivery/verification.py" lines=1:13
-@source verify-review title="能通过核验的评审" path="src/filmkit/delivery/verification.py" lines=308:371
-@source verification-qualify title="一个语言版的检查" path="src/filmkit/delivery/verification.py" lines=374:403
+@source verification-doc title="核验" path="src/filmkit/delivery/verification.py" lines=1:14
+@source verify-spotlight title="读回 Spotlight 导入的内容" path="src/filmkit/delivery/verification.py" lines=310:340
+@source verify-review title="能通过核验的评审" path="src/filmkit/delivery/verification.py" lines=343:406
+@source verification-qualify title="一个语言版的检查" path="src/filmkit/delivery/verification.py" lines=409:439
 @source reproduction-doc title="复现" path="src/filmkit/delivery/reproduction.py" lines=1:24
 @source documents-doc title="交付到 Documents 文件夹" path="src/filmkit/delivery/documents_folder.py" lines=1:27
 @source round-doc title="一轮评审" path="src/filmkit/review/round.py" lines=1:11
@@ -149,7 +152,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 | step-route-render | 预置、渲染 | 带字幕和无字幕的画面各预置成一份文档；有了通过的门禁记录，才由 HyperFrames 渲染。[](source:stage)[](source:render-gate)[](source:render) | route-flow | route-render |
 | step-route-compare | 比对两份画面 | 两份画面只能在字幕上不同：画面合成在每条字幕处和每半秒比对，解码后的帧则比对字幕带以外的区域。随后逐帧扫描两份画面，找出只持续一帧的故障。[](source:equivalence-doc) | route-flow | route-compare |
 | step-route-package | 打包成片 | FFmpeg 把每部成片的画面（带字幕或无字幕）与音轨和章节封装在一起；每部成片都先检查，再链接到位。[](source:package-doc)[](source:package-film) | route-flow | route-package |
-| step-route-verify | 核验每个输入 | 核验器只读取和解码，检查范围包括来源、旁白、两份画面及二者的等效性、两个包、解码后的全部四部成片和评审。[](source:verification-doc) | route-flow | route-verify |
+| step-route-verify | 核验每个输入 | 核验器只读取和解码，检查范围包括来源、旁白、两份画面及二者的等效性、两个包、解码后的全部四部成片和评审。主机上有 `mdimport` 时，还读回 Spotlight 从每部成片导入的关键词和作者。[](source:verification-doc)[](source:verify-spotlight) | route-flow | route-verify |
 
 ## 开始朗读之前，要检查什么？ {#p-words}
 
@@ -272,15 +275,15 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 | step-dl-player | 播放器页面 | 播放器由引擎渲染；影片只声明每个语言版的摘要和播放器的五种颜色。[](source:player-doc) | delivery-tree | dl-player |
 | step-dl-chapters | 章节，JSON 和 FFmetadata | 每部成片的每条轨道都标明所属语言版的语言。打包步骤原地写入章节轨的语言。[](source:delivered-check)[](source:package-doc) | delivery-tree | dl-chapters |
 
-| 检查     | 读取什么                                                                                        | 通过意味着什么                                                                             |
-| -------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| 评审轮次 | 附有每部成片 SHA-256 的提示词，以及本轮的测量结果[](source:round-doc)[](source:measurement-doc) | 独立评审按每个声明的维度，为每个语言版打分 {good:已打分}                                   |
-| 核验     | 来源、旁白、渲染、包、解码后的成片和评审[](source:verification-qualify)[](source:verify-review) | 语言版绑定当前输入，评审达到影片的评审下限 {good:已绑定}                                   |
-| 复现     | 发布清单和已发布资产[](source:reproduction-doc)                                                 | 重建结果的解码音频、流、章节和标签都与已发布版本一致，每一帧都达到 PSNR 下限 {good:已复现} |
+| 检查     | 读取什么                                                                                                                                         | 通过意味着什么                                                                             |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| 评审轮次 | 附有每部成片 SHA-256 的提示词，以及本轮的测量结果[](source:round-doc)[](source:measurement-doc)                                                  | 独立评审按每个声明的维度，为每个语言版打分 {good:已打分}                                   |
+| 核验     | 来源、旁白、渲染、包、解码后的成片、Spotlight 导入的内容和评审[](source:verification-qualify)[](source:verify-spotlight)[](source:verify-review) | 语言版绑定当前输入，评审达到影片的评审下限 {good:已绑定}                                   |
+| 复现     | 发布清单和已发布资产[](source:reproduction-doc)                                                                                                  | 重建结果的解码音频、流、章节和标签都与已发布版本一致，每一帧都达到 PSNR 下限 {good:已复现} |
 
 ## Film Kit 怎样走到今天？ {#p-history}
 
-Film Kit 在 2026 年 10 月 30 日发布 v0.1.0，11 月 12 日发布 v0.20.0。[](source:changelog-010)[](source:changelog-020)下面列出其中改变影片做法的十三个版本。仓库里没有带日期的路线图，还没做的事列在本页最后。
+Film Kit 在 2026 年 10 月 30 日发布 v0.1.0，11 月 13 日发布 v0.21.2。[](source:changelog-010)[](source:changelog-0212)时间线列出其中改变影片做法的十四个版本。最后两个事件是 v0.21.0 之后的补丁版本，只更新了仓库工具链和锁定的依赖包。[](source:changelog-0211)[](source:changelog-0212)仓库里没有带日期的路线图，还没做的事列在本页最后。
 
 @diagram timeline id=history source=history.timeline.json title="Film Kit 怎样走到今天"
 
@@ -288,12 +291,12 @@ Film Kit 在 2026 年 10 月 30 日发布 v0.1.0，11 月 12 日发布 v0.20.0�
 
 引擎改动不会改变任何影片的输出字节，除非该发布版本另有说明。[](source:agents-contract)
 
-| 方面           | 状态                              | 含义                                                                                                                                              |
-| -------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 平台           | Apple 芯片 {caution:仅一个平台}   | 语音模型运行于 MLX，1080p 成片用 VideoToolbox 编码。[](source:readme-requirements)                                                                |
-| 样例影片       | 本地验收 {caution:不在 CI 中}     | 构建它需要语音模型和浏览器构建，所以托管 CI 只运行可移植的证明。[](source:readme-dev)                                                             |
-| 人工试听       | 单独进行 {caution:不计分}         | 评审依据自动化证据为音频打分；人工试听是之后的验收。[](source:human-listening)                                                                    |
-| 录音收尾       | 有防护 {good:拒绝}                | 在 mlx-audio 发布带上游修复的版本之前，由试音保持录音完整收尾，拼接步骤拒绝收尾突兀的录音。[](source:readme-endings)[](source:abrupt)             |
-| 文字宽度       | 实测 {good:影片自己的字体}        | 审查用影片自己的字体测量宽度；文字高度仍用估算值。[](source:readme-metrics)                                                                       |
-| 静止时偏离中心 | 取代即拒绝 {caution:阶段内只记录} | 若阶段切换或下一个场景随后取代了这个状态，门禁就拒绝它。在本阶段之内，构图是已完成还是仍在搭建，只有该阶段的意图能说明。[](source:readme-balance) |
-| 新的渲染器     | 锁定版本 {caution:由影片决定}     | 影片继续锁定现有的 `filmkit` 版本，直到用新的发布版本制作、评审并验收一个语言版。[](source:changelog-pin)                                         |
+| 方面           | 状态                            | 含义                                                                                                                                                                             |
+| -------------- | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 平台           | Apple 芯片 {caution:仅一个平台} | 语音模型运行于 MLX，1080p 成片用 VideoToolbox 编码。[](source:readme-requirements)                                                                                               |
+| 样例影片       | 本地验收 {caution:不在 CI 中}   | 构建它需要语音模型和浏览器构建，所以托管 CI 只运行可移植的证明。[](source:readme-dev)                                                                                            |
+| 人工试听       | 单独进行 {caution:不计分}       | 评审依据自动化证据为音频打分；人工试听是之后的验收。[](source:human-listening)                                                                                                   |
+| 录音收尾       | 有防护 {good:拒绝}              | 在 mlx-audio 发布带上游修复的版本之前，由试音保持录音完整收尾，拼接步骤拒绝收尾突兀的录音。[](source:readme-endings)[](source:abrupt)                                            |
+| 文字宽度       | 实测 {good:影片自己的字体}      | 审查用影片自己的字体测量宽度；文字高度仍用估算值。[](source:readme-metrics)                                                                                                      |
+| 静止时偏离中心 | 一律拒绝 {good:不论后续}        | 偏离中心超过 50 px、持续不少于 2 s 的静止状态，门禁一律拒绝。不论画面随后在它之上继续扩展，还是停在本阶段之内，或被阶段切换、下一个场景取代，都不例外。[](source:readme-balance) |
+| 新的渲染器     | 锁定版本 {caution:由影片决定}   | 影片继续锁定现有的 `filmkit` 版本，直到用新的发布版本制作、评审并验收一个语言版。[](source:changelog-pin)                                                                        |

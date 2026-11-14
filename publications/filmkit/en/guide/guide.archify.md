@@ -7,29 +7,31 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 - [A take reaches the soundtrack only if it ends whole](block:p-takes), or if the film declares a release for its join.[](source:abrupt)
 - [The picture renders only after its gate passes](block:p-picture) for the current composition, timeline, stylesheet, fonts and engine version.[](source:render-gate)
 
-@answer scope="Film Kit v0.20.0 · commit fbe9843 · its source and its own documents"
+@answer scope="Film Kit v0.21.2 · commit 3824247 · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What Film Kit does" path="README.md" lines=3:3
 @source spec-rate title="Frame rate" path="src/filmkit/specification.py" lines=25:30
 @source spec-sound title="Sample rate and program level" path="src/filmkit/specification.py" lines=33:47
 @source sample-declaration title="The sample film's declaration" path="examples/sample-film/content/film.toml" lines=6:22
-@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=311:315
-@source changelog-019 title="The 0.19.0 changes" path="CHANGELOG.md" lines=24:39
-@source changelog-020 title="The 0.20.0 changes" path="CHANGELOG.md" lines=7:23
+@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=348:352
+@source changelog-019 title="The 0.19.0 changes" path="CHANGELOG.md" lines=61:76
+@source changelog-020 title="The 0.20.0 changes" path="CHANGELOG.md" lines=44:60
+@source changelog-0211 title="The 0.21.1 changes" path="CHANGELOG.md" lines=13:19
+@source changelog-0212 title="The 0.21.2 release" path="CHANGELOG.md" lines=7:11
 @source readme-engine title="The engine carries no film's content" path="README.md" lines=5:5
 @source readme-requirements title="Requirements" path="README.md" lines=9:12
 @source readme-layout title="A film's layout" path="README.md" lines=18:26
-@source readme-words title="Concepts and readings" path="README.md" lines=62:65
-@source readme-neither title="A film without either check" path="README.md" lines=69:69
-@source readme-gate title="The picture gate" path="README.md" lines=87:87
-@source readme-metrics title="Text measured with the film's fonts" path="README.md" lines=89:89
-@source readme-balance title="Balance in every frame" path="README.md" lines=91:91
-@source readme-install title="Installing the engine in a film" path="README.md" lines=176:186
-@source readme-commands title="Commands" path="README.md" lines=192:208
-@source readme-endings title="Whole endings" path="README.md" lines=212:214
-@source readme-dev title="Development" path="README.md" lines=236:236
+@source readme-words title="Concepts and readings" path="README.md" lines=66:69
+@source readme-neither title="A film without either check" path="README.md" lines=73:73
+@source readme-gate title="The picture gate" path="README.md" lines=91:91
+@source readme-metrics title="Text measured with the film's fonts" path="README.md" lines=93:93
+@source readme-balance title="Balance in every frame" path="README.md" lines=95:95
+@source readme-install title="Installing the engine in a film" path="README.md" lines=183:193
+@source readme-commands title="Commands" path="README.md" lines=199:215
+@source readme-endings title="Whole endings" path="README.md" lines=219:221
+@source readme-dev title="Development" path="README.md" lines=243:243
 @source agents-contract title="The engine contract" path="AGENTS.md" lines=10:16
-@source changelog-pin title="A film keeps its pin" path="CHANGELOG.md" lines=211:211
+@source changelog-pin title="A film keeps its pin" path="CHANGELOG.md" lines=248:248
 @source film-root title="Finding the film" path="src/filmkit/repository.py" lines=28:50
 @source film-load title="Checking the declaration" path="src/filmkit/film.py" lines=386:401
 @source edition-places title="Where an edition writes" path="src/filmkit/production.py" lines=138:154
@@ -58,10 +60,10 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 @source abrupt title="Abrupt takes refused" path="src/filmkit/soundtrack/assembly.py" lines=156:176
 @source program-gain title="One gain to the program level" path="src/filmkit/soundtrack/assembly.py" lines=511:532
 @source releases title="Declared releases" path="src/filmkit/soundtrack/policy.py" lines=159:170
-@source captions-doc title="Caption timing" path="src/filmkit/captions/timing.py" lines=1:6
+@source captions-doc title="Caption timing" path="src/filmkit/captions/timing.py" lines=1:8
 @source gate-doc title="The picture gate" path="src/filmkit/picture/gates.py" lines=1:37
 @source frame-gates title="Rules from the reviews" path="src/filmkit/picture/gates.py" lines=56:57
-@source gate-check title="check-picture" path="src/filmkit/picture/gates.py" lines=377:449
+@source gate-check title="check-picture" path="src/filmkit/picture/gates.py" lines=370:442
 @source candidate-inputs title="The inputs a stage binds" path="src/filmkit/picture/rendering.py" lines=123:153
 @source require-renderer title="One renderer version" path="src/filmkit/picture/rendering.py" lines=209:219
 @source stage title="Staging the picture" path="src/filmkit/picture/rendering.py" lines=253:303
@@ -72,13 +74,14 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 @source tools-doc title="The Node tool runner" path="src/filmkit/tools.py" lines=1:17
 @source headless-doc title="The composition, run headlessly" path="src/filmkit/picture/headless-composition.mjs" lines=1:13
 @source package-doc title="Packaging" path="src/filmkit/delivery/packaging.py" lines=1:31
-@source delivered-check title="Checking a finished film" path="src/filmkit/delivery/packaging.py" lines=539:582
-@source package-film title="Packaging every film" path="src/filmkit/delivery/packaging.py" lines=617:652
+@source delivered-check title="Checking a finished film" path="src/filmkit/delivery/packaging.py" lines=541:584
+@source package-film title="Packaging every film" path="src/filmkit/delivery/packaging.py" lines=619:654
 @source package-inputs title="What the film package binds" path="src/filmkit/delivery/packaging.py" lines=272:284
 @source player-doc title="The player page" path="src/filmkit/delivery/player.py" lines=1:5
-@source verification-doc title="Verification" path="src/filmkit/delivery/verification.py" lines=1:13
-@source verify-review title="The review it accepts" path="src/filmkit/delivery/verification.py" lines=308:371
-@source verification-qualify title="One edition's checks" path="src/filmkit/delivery/verification.py" lines=374:403
+@source verification-doc title="Verification" path="src/filmkit/delivery/verification.py" lines=1:14
+@source verify-spotlight title="Spotlight's import, read back" path="src/filmkit/delivery/verification.py" lines=310:340
+@source verify-review title="The review it accepts" path="src/filmkit/delivery/verification.py" lines=343:406
+@source verification-qualify title="One edition's checks" path="src/filmkit/delivery/verification.py" lines=409:439
 @source reproduction-doc title="Reproduction" path="src/filmkit/delivery/reproduction.py" lines=1:24
 @source documents-doc title="Delivery to the Documents folder" path="src/filmkit/delivery/documents_folder.py" lines=1:27
 @source round-doc title="A review round" path="src/filmkit/review/round.py" lines=1:11
@@ -149,7 +152,7 @@ Each command runs at the film's root, and each production action names its editi
 | step-route-render | Stage, render | The captioned and the uncaptioned picture are each staged as one document and rendered by HyperFrames, only after a passing gate record.[](source:stage)[](source:render-gate)[](source:render) | route-flow | route-render |
 | step-route-compare | Compare the pictures | The two pictures may differ only by their captions, in the composition at every caption and every half second, and in the decoded frames outside the captions' band. Every frame of both is then scanned for a fault that lasts one frame.[](source:equivalence-doc) | route-flow | route-compare |
 | step-route-package | Package the films | FFmpeg muxes each film's picture, with captions or without, with the soundtrack and chapters; each film is checked before it is linked into place.[](source:package-doc)[](source:package-film) | route-flow | route-package |
-| step-route-verify | Verify every input | The verifier reads and decodes. It checks the sources, narration, both pictures and their equivalence, packages, all four decoded films and the review.[](source:verification-doc) | route-flow | route-verify |
+| step-route-verify | Verify every input | The verifier reads and decodes. It checks the sources, narration, both pictures and their equivalence, packages, all four decoded films and the review. Where the host has `mdimport`, it also reads back the keywords and authors Spotlight imports from each film.[](source:verification-doc)[](source:verify-spotlight) | route-flow | route-verify |
 
 ## What is checked before anything is narrated? {#p-words}
 
@@ -272,15 +275,15 @@ Delivery fills the film's Documents folder with exactly 25 members, then reads t
 | step-dl-player | Player page | The engine renders it; a film declares only each edition's summary and the player's five colours.[](source:player-doc) | delivery-tree | dl-player |
 | step-dl-chapters | Chapters, JSON and FFmetadata | Every track of each film carries the edition's language; packaging writes the chapter track's language in place.[](source:delivered-check)[](source:package-doc) | delivery-tree | dl-chapters |
 
-| Check        | What it reads                                                                                                             | What passing means                                                                                                             |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Review round | Prompts with each film's SHA-256, and the round's measurements[](source:round-doc)[](source:measurement-doc)              | Independent reviews score each edition on every declared dimension {good:Scored}                                               |
-| Verification | Sources, narration, render, packages, decoded films and the review[](source:verification-qualify)[](source:verify-review) | The edition binds its current inputs, and its review meets the film's floors {good:Bound}                                      |
-| Reproduction | The release manifest and the published assets[](source:reproduction-doc)                                                  | A rebuild keeps the release's decoded audio, streams, chapters and tags, and each frame meets its PSNR floor {good:Reproduced} |
+| Check        | What it reads                                                                                                                                                            | What passing means                                                                                                             |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| Review round | Prompts with each film's SHA-256, and the round's measurements[](source:round-doc)[](source:measurement-doc)                                                             | Independent reviews score each edition on every declared dimension {good:Scored}                                               |
+| Verification | Sources, narration, render, packages, decoded films, Spotlight's import and the review[](source:verification-qualify)[](source:verify-spotlight)[](source:verify-review) | The edition binds its current inputs, and its review meets the film's floors {good:Bound}                                      |
+| Reproduction | The release manifest and the published assets[](source:reproduction-doc)                                                                                                 | A rebuild keeps the release's decoded audio, streams, chapters and tags, and each frame meets its PSNR floor {good:Reproduced} |
 
 ## How did Film Kit get here? {#p-history}
 
-Film Kit released v0.1.0 on 30 October 2026 and v0.20.0 on 12 November.[](source:changelog-010)[](source:changelog-020) These are the thirteen releases that changed how a film is made. The repository keeps no dated roadmap; what is still open is listed last on this page.
+Film Kit released v0.1.0 on 30 October 2026 and v0.21.2 on 13 November.[](source:changelog-010)[](source:changelog-0212) The timeline shows the fourteen releases that changed how a film is made. Its last two events are the patch releases after v0.21.0, which moved only the repository's tools and pinned packages.[](source:changelog-0211)[](source:changelog-0212) The repository keeps no dated roadmap; what is still open is listed last on this page.
 
 @diagram timeline id=history source=history.timeline.json title="How Film Kit got here"
 
@@ -288,12 +291,12 @@ Film Kit released v0.1.0 on 30 October 2026 and v0.20.0 on 12 November.[](source
 
 An engine change keeps every film's output bytes unless its release says otherwise.[](source:agents-contract)
 
-| Area                    | State                                                    | What that means                                                                                                                                                                  |
-| ----------------------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Platform                | Apple silicon {caution:One platform}                     | The speech models run on MLX, and the 1080p films are encoded with VideoToolbox.[](source:readme-requirements)                                                                   |
-| Sample film             | Local acceptance {caution:Not in CI}                     | Its build needs the speech models and the browser build, so hosted CI runs only the portable proof.[](source:readme-dev)                                                         |
-| Human listening         | Separate {caution:Not scored}                            | A review scores audio from automated evidence; listening is a later acceptance.[](source:human-listening)                                                                        |
-| Take endings            | Guarded {good:Refused}                                   | Auditions keep endings whole until a mlx-audio release carries the upstream fix, and the assembly refuses an abrupt take.[](source:readme-endings)[](source:abrupt)              |
-| Text widths             | Measured {good:The film's fonts}                         | Audits measure widths with the film's own faces; a text's height keeps an estimate.[](source:readme-metrics)                                                                     |
-| Still off-centre states | Refused when replaced {caution:Within a stage, recorded} | A state that a stage cut or the next scene replaces is refused. Within its stage, only the stage's intent tells a finished composition from a build-up.[](source:readme-balance) |
-| A new renderer          | Pinned {caution:The film decides}                        | A film keeps its `filmkit` pin until it produces, reviews and accepts an edition on the new release.[](source:changelog-pin)                                                     |
+| Area                    | State                                | What that means                                                                                                                                                                                                                                |
+| ----------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Platform                | Apple silicon {caution:One platform} | The speech models run on MLX, and the 1080p films are encoded with VideoToolbox.[](source:readme-requirements)                                                                                                                                 |
+| Sample film             | Local acceptance {caution:Not in CI} | Its build needs the speech models and the browser build, so hosted CI runs only the portable proof.[](source:readme-dev)                                                                                                                       |
+| Human listening         | Separate {caution:Not scored}        | A review scores audio from automated evidence; listening is a later acceptance.[](source:human-listening)                                                                                                                                      |
+| Take endings            | Guarded {good:Refused}               | Auditions keep endings whole until a mlx-audio release carries the upstream fix, and the assembly refuses an abrupt take.[](source:readme-endings)[](source:abrupt)                                                                            |
+| Text widths             | Measured {good:The film's fonts}     | Audits measure widths with the film's own faces; a text's height keeps an estimate.[](source:readme-metrics)                                                                                                                                   |
+| Still off-centre states | Refused {good:Whatever follows}      | The gate refuses every still state that stands more than 50 px off centre for 2 s or more. That holds whether the picture then grows from it, it ends within its stage, or a stage cut or the next scene replaces it.[](source:readme-balance) |
+| A new renderer          | Pinned {caution:The film decides}    | A film keeps its `filmkit` pin until it produces, reviews and accepts an edition on the new release.[](source:changelog-pin)                                                                                                                   |

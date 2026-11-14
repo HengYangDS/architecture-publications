@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "fbe984344368ff55edfe6dbf627bcbe0147de2da"
+      "revision": "382424720002fad853029306d697d6ea978b8880"
     }
   },
   "mainPath": ["take-narrated", "take-judged", "take-selected", "take-assembled"],
@@ -70,8 +70,8 @@
       "sources": [
         {
           "path": "src/filmkit/soundtrack/assembly.py",
-          "line": 576,
-          "end_line": 631,
+          "line": 578,
+          "end_line": 633,
           "label": "Assemble"
         }
       ]

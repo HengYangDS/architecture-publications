@@ -1,7 +1,7 @@
 # Film Kit: term renderings
 
 The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `filmkit` at v0.20.0 (`fbe9843`) that defines or uses the term. Film Kit's own Chinese words come
+names the file of `filmkit` at v0.21.2 (`3824247`) that defines or uses the term. Film Kit's own Chinese words come
 from its player (`src/filmkit/delivery/player.py`) and its sample film (`examples/sample-film/`); the owner-approved
 film editions are cited as `ethos-film` at v1.0.1 (`c33e60f`) or `ddwg-film`, the repository
 `data-department-work-guidelines-film` at v1.2.0 (`f286c43`), with their file. An edition is one language version of
@@ -89,6 +89,7 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | audit; frame, sync, motion audit               | 审查；逐帧、同步、动效审查           | `src/filmkit/picture/gates.py`; `src/filmkit/picture/sync_audit.py`                                            |
 | ghosts, stalls, pops, jumps, dash snaps        | 残影、停滞、突现、跳变、虚线突变     | `src/filmkit/picture/motion-audit.mjs`                                                                         |
 | label; mark; at rest; contrast                 | 标签；标记；静止；对比度             | `src/filmkit/picture/sync_audit.py`; `src/filmkit/picture/text_trace.py`                                       |
+| piece (of a mark); appearance (of a label)     | 片段；出现                           | `src/filmkit/picture/motion-audit/pieces.mjs`; `src/filmkit/picture/sync_audit.py`                             |
 | stage (verb, noun); staged picture             | 预置；预置画面                       | `src/filmkit/picture/rendering.py`                                                                             |
 | render; renderer                               | 渲染；渲染器                         | `src/filmkit/picture/rendering.py`; `examples/sample-film/content/narration.md`                                |
 | validate                                       | 校验                                 | `src/filmkit/picture/rendering.py`                                                                             |
@@ -140,8 +141,9 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | finding; gated finding                         | 问题；门禁问题                       | `src/filmkit/picture/gates.py`                                                                                 |
 | off-centre                                     | 偏离中心                             | `README.md`                                                                                                    |
 | stage (of a scene); stage cut                  | 阶段；阶段切换                       | `README.md`; distinct from 预置 (staging the picture)                                                          |
-| finished composition; build-up                 | 已完成的构图；仍在搭建               | `README.md`                                                                                                    |
+| still state (off centre)                       | 静止状态                             | `README.md`                                                                                                    |
 | verifier                                       | 核验器                               | `src/filmkit/delivery/verification.py`                                                                         |
+| keywords; authors (as Spotlight imports them)  | 关键词；作者                         | `src/filmkit/delivery/spotlight.py`                                                                            |
 | taste; aesthetic judgment                      | 审美                                 | `src/filmkit/delivery/verification.py`; `src/filmkit/review/measurement.py`                                    |
 | human listening                                | 人工试听                             | `src/filmkit/review/round.py`                                                                                  |
 | sample film (page)                             | 样例影片                             | `examples/sample-film/` (its own title 示例影片; Archify's strict qualification rule refuses 示例 on the page) |

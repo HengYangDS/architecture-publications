@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "fbe984344368ff55edfe6dbf627bcbe0147de2da"
+      "revision": "382424720002fad853029306d697d6ea978b8880"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 311,
-          "end_line": 320,
+          "line": 348,
+          "end_line": 357,
           "label": "0.1.0"
         }
       ]
@@ -57,8 +57,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 272,
-          "end_line": 282,
+          "line": 309,
+          "end_line": 319,
           "label": "0.3.0"
         }
       ]
@@ -73,8 +73,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 231,
-          "end_line": 240,
+          "line": 268,
+          "end_line": 277,
           "label": "0.6.0"
         }
       ]
@@ -88,8 +88,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 198,
-          "end_line": 209,
+          "line": 235,
+          "end_line": 246,
           "label": "0.8.0"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 172,
-          "end_line": 176,
+          "line": 209,
+          "end_line": 213,
           "label": "0.9.0"
         }
       ]
@@ -118,8 +118,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 152,
-          "end_line": 160,
+          "line": 189,
+          "end_line": 197,
           "label": "0.10.0"
         }
       ]
@@ -134,8 +134,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 106,
-          "end_line": 120,
+          "line": 143,
+          "end_line": 157,
           "label": "0.12.0"
         }
       ]
@@ -150,8 +150,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 90,
-          "end_line": 102,
+          "line": 127,
+          "end_line": 139,
           "label": "0.13.0"
         }
       ]
@@ -165,8 +165,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 72,
-          "end_line": 81,
+          "line": 109,
+          "end_line": 118,
           "label": "0.14.0"
         }
       ]
@@ -180,8 +180,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 50,
-          "end_line": 58,
+          "line": 87,
+          "end_line": 95,
           "label": "0.17.0"
         }
       ]
@@ -196,8 +196,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 40,
-          "end_line": 48,
+          "line": 77,
+          "end_line": 85,
           "label": "0.18.0"
         }
       ]
@@ -212,8 +212,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 24,
-          "end_line": 39,
+          "line": 61,
+          "end_line": 76,
           "label": "0.19.0"
         }
       ]
@@ -227,9 +227,55 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 7,
-          "end_line": 23,
+          "line": 44,
+          "end_line": 60,
           "label": "0.20.0"
+        }
+      ]
+    },
+    {
+      "id": "v210",
+      "at": "2026-11-13T02:44:38+08:00",
+      "lane": "picture",
+      "kind": "alert",
+      "title": "v0.21.0 静止偏离中心一律拒绝，读回 Spotlight 导入的内容",
+      "detail": "check-picture 拒绝评审人算作偏离中心的每个静止状态，也拒绝标记在一帧之内整个多出或消失的片段。同步审查对标签的每次出现分别判定；英文标签的词若在旁白里换了词形，也据此判定。核验器读回 Spotlight 从每部成片导入的关键词和作者，并拒绝更早打包的成片。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 21,
+          "end_line": 42,
+          "label": "0.21.0"
+        }
+      ]
+    },
+    {
+      "id": "v211",
+      "at": "2026-11-13T09:12:45+08:00",
+      "lane": "engine",
+      "title": "v0.21.1 锁文件更新，录音不变",
+      "detail": "仓库的工具升到 ETHOS 0.2.0-beta.9，锁文件换用更新的版本，其中有 Pydantic 2.14.3。在新锁文件下重新合成，样例影片的八条录音逐字节不变；mlx-audio 仍是 0.6.4。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 13,
+          "end_line": 19,
+          "label": "0.21.1"
+        }
+      ]
+    },
+    {
+      "id": "v212",
+      "at": "2026-11-13T10:16:11+08:00",
+      "lane": "engine",
+      "title": "v0.21.2 Node 安全更新",
+      "detail": "仓库的 Node 升到 26.13.1，这个安全更新修复了九个高危问题。画面流水线由 Node 运行，样例影片在这个版本上构建并通过了核验。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 7,
+          "end_line": 11,
+          "label": "0.21.2"
         }
       ]
     }

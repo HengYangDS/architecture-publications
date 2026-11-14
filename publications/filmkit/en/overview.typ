@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([Film Kit], [Each edition rebuilt from the film's own sources], [A local engine: Film Kit narrates, assembles, captions, gates, renders and packages each edition of a narrated explainer film, and every step records the SHA-256 of what it read.], read-from: [Read from 112 files, each cited by its SHA-256.], claim-x: 124pt)
+#masthead([Film Kit], [Each edition rebuilt from the film's own sources], [A local engine: Film Kit narrates, assembles, captions, gates, renders and packages each edition of a narrated explainer film, and every step records the SHA-256 of what it read.], read-from: [Read from 119 files, each cited by its SHA-256.], claim-x: 124pt)
 
 // ── Band 1: one edition's route, from the declaration to a compared rebuild ──
 #let ys = 250pt

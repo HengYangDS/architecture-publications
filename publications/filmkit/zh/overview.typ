@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([Film Kit], [每个语言版都从影片自己的源文件重建], [Film Kit 是本地运行的引擎：带旁白的讲解影片，每个语言版的朗读、拼接、字幕、门禁、渲染和打包都由它完成，每一步都记下所读内容的 SHA-256。], read-from: [依据 112 个文件写成，每个文件都按 SHA-256 引用。], claim-x: 124pt)
+#masthead([Film Kit], [每个语言版都从影片自己的源文件重建], [Film Kit 是本地运行的引擎：带旁白的讲解影片，每个语言版的朗读、拼接、字幕、门禁、渲染和打包都由它完成，每一步都记下所读内容的 SHA-256。], read-from: [依据 119 个文件写成，每个文件都按 SHA-256 引用。], claim-x: 124pt)
 
 // ── Band 1: one edition's route, from the declaration to a compared rebuild ──
 #let ys = 250pt
