@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "382424720002fad853029306d697d6ea978b8880"
+      "revision": "d79dbb58277d8045bfc718ed33df20287e657f5b"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 348,
-          "end_line": 357,
+          "line": 361,
+          "end_line": 370,
           "label": "0.1.0"
         }
       ]
@@ -57,8 +57,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 309,
-          "end_line": 319,
+          "line": 322,
+          "end_line": 332,
           "label": "0.3.0"
         }
       ]
@@ -73,8 +73,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 268,
-          "end_line": 277,
+          "line": 281,
+          "end_line": 290,
           "label": "0.6.0"
         }
       ]
@@ -88,8 +88,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 235,
-          "end_line": 246,
+          "line": 248,
+          "end_line": 259,
           "label": "0.8.0"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 209,
-          "end_line": 213,
+          "line": 222,
+          "end_line": 226,
           "label": "0.9.0"
         }
       ]
@@ -118,8 +118,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 189,
-          "end_line": 197,
+          "line": 202,
+          "end_line": 210,
           "label": "0.10.0"
         }
       ]
@@ -134,8 +134,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 143,
-          "end_line": 157,
+          "line": 156,
+          "end_line": 170,
           "label": "0.12.0"
         }
       ]
@@ -150,8 +150,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 127,
-          "end_line": 139,
+          "line": 140,
+          "end_line": 152,
           "label": "0.13.0"
         }
       ]
@@ -165,8 +165,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 109,
-          "end_line": 118,
+          "line": 122,
+          "end_line": 131,
           "label": "0.14.0"
         }
       ]
@@ -180,8 +180,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 87,
-          "end_line": 95,
+          "line": 100,
+          "end_line": 108,
           "label": "0.17.0"
         }
       ]
@@ -196,8 +196,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 77,
-          "end_line": 85,
+          "line": 90,
+          "end_line": 98,
           "label": "0.18.0"
         }
       ]
@@ -212,8 +212,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 61,
-          "end_line": 76,
+          "line": 74,
+          "end_line": 89,
           "label": "0.19.0"
         }
       ]
@@ -227,8 +227,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 44,
-          "end_line": 60,
+          "line": 57,
+          "end_line": 73,
           "label": "0.20.0"
         }
       ]
@@ -243,8 +243,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 21,
-          "end_line": 42,
+          "line": 34,
+          "end_line": 55,
           "label": "0.21.0"
         }
       ]
@@ -258,8 +258,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 13,
-          "end_line": 19,
+          "line": 26,
+          "end_line": 32,
           "label": "0.21.1"
         }
       ]
@@ -273,8 +273,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 7,
-          "end_line": 11,
+          "line": 20,
+          "end_line": 24,
           "label": "0.21.2"
         }
       ]
