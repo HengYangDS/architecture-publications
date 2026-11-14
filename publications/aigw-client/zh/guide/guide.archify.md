@@ -7,7 +7,7 @@ AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-wha
 - [客户端文件里没有令牌](block:p-token)：客户端请求时，由凭据助手从选定的那个存储读取令牌。[](source:helper-projection)
 - [每一级检查多证明一件事](block:p-ready)，而客户端文件已同步，不等于请求已得到应答。[](source:experience-readiness)
 
-@answer scope="AIGW v0.7.0 · 提交 9bf7612 · 源代码及自带文档"
+@answer scope="AIGW v0.7.1 · 提交 e63cd12 · 源代码及自带文档"
 @meta locale=zh-CN style=editorial
 @source readme-what title="AIGW 是什么" path="README.md" lines=3:6
 @source readme-install title="安装" path="README.md" lines=30:42
@@ -74,8 +74,12 @@ AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-wha
 @source readme-for title="aigw 接受的客户端" path="README.md" lines=164:164
 @source readme-environment title="环境变量中的令牌" path="README.md" lines=183:185
 @source manifest-provider title="团队文件里的一个提供商" path="manifests/team.toml" lines=1:18
-@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=981:1001
-@source changelog-070 title="0.7.0 的发布" path="CHANGELOG.md" lines=14:235
+@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=1020:1040
+@source changelog-071 title="0.7.1 的发布" path="CHANGELOG.md" lines=14:52
+@source setup-model-kept title="首次 setup 保留的模型偏好" path="CHANGELOG.md" lines=18:22
+@source team-labels title="团队文件替换的 label" path="CHANGELOG.md" lines=23:25
+@source check-parent-session title="在智能体会话里检查客户端" path="CHANGELOG.md" lines=26:30
+@source check-names title="Windows 上的环境变量名" path="CHANGELOG.md" lines=32:34
 
 ## 谁使用 AIGW，它又牵涉到什么？ {#p-context}
 
@@ -110,7 +114,7 @@ AIGW 的价值假设是：团队成员只要持有任一受支持提供商凭据
 | step-curate | 编订团队文件 | 只收录审阅过的提供商端点和已鉴定的模型；令牌、个人路径、身份和发布凭据一概不收。[](source:rollout-maintainer) | rollout-flow | rollout-curate |
 | step-publish | 按标签发布 | 从发布标签或不可变的提交发布，让每位成员拿到同一份文件。[](source:rollout-maintainer) | rollout-flow | rollout-publish |
 | step-install | 安装 AIGW | 在 macOS 上用已签名、经公证的 Homebrew cask，或用适用于 macOS、Linux 和 Windows 的便携归档包，由 `aigw self install` 安装。[](source:readme-install) | rollout-flow | rollout-install |
-| step-import | 应用团队文件 | 应用时，既不需要备齐每个提供商的令牌，也不需要已装好客户端。[](source:readme-team) | rollout-flow | rollout-import |
+| step-import | 应用团队文件 | 应用时，既不需要备齐每个提供商的令牌，也不需要已装好客户端。[](source:readme-team)预览、结果和 `--json` 都会列出文件替换的每个 `label`，涵盖提供商、模型家族和模型，新旧取值并列。[](source:team-labels) | rollout-flow | rollout-import |
 | step-connect | 连接一个提供商 | 只指定你持有令牌的提供商；其余提供商仍然可用，但不会成为前提。[](source:readme-connect)[](source:readme-activate) | rollout-flow | rollout-connect |
 | step-check | 同步并检查 | 凡是模型、认证和客户端文件都可用的已启用客户端，`aigw sync` 都会更新，但绝不会创建缺失的客户端。[](source:readme-sync) | rollout-flow | rollout-check |
 
@@ -218,7 +222,7 @@ AIGW 的输出回答三个问题：选中了什么，是否就绪，下一步做
 | step-status | aigw status | 报告每个客户端的模型，以及它的客户端文件是否就绪；不读取令牌，也不运行客户端。[](source:experience-readiness) |
 | step-endpoint | aigw check --depth endpoint | 检查每个端点，只发一次不指定模型的请求。[](source:readme-check)[](source:readme-depths) |
 | step-inference | aigw check | 默认深度：为每个受检查的客户端发一次有上限的推理请求，可能消耗提供商配额。[](source:readme-check)[](source:experience-readiness) |
-| step-session | aigw check --depth client | 在每个已启用的客户端里真实运行一次会话。[](source:readme-depths)不指定客户端且全部通过时，写入已验证快照，`aigw config rollback` 优先恢复的就是它。[](source:verify-snapshot)[](source:rollback-snapshot) |
+| step-session | aigw check --depth client | 在每个已启用的客户端里真实运行一次会话，启动客户端时不带父级智能体会话的环境变量。[](source:readme-depths)[](source:check-parent-session)不指定客户端且全部通过时，写入已验证快照，`aigw config rollback` 优先恢复的就是它。[](source:verify-snapshot)[](source:rollback-snapshot) |
 
 | 深度或状态 | 含义                                                           |
 | ---------- | -------------------------------------------------------------- |
@@ -232,7 +236,7 @@ AIGW 的输出回答三个问题：选中了什么，是否就绪，下一步做
 | 无效       | 配置或自有状态不能安全使用。                                   |
 | 不可用     | 缺少一项必需的外部能力。                                       |
 
-检查到哪一级，都会先跑完它之前的每一级。[](source:check-depths) 设置、同步、检视和验证，都用这些状态报告；证明了多少，看的是检查深度，而不是状态。[](source:readiness)
+检查到哪一级，都会先跑完它之前的每一级。[](source:check-depths) 在 Windows 上，`aigw check` 比较环境变量名时不区分大小写，小写的 `anthropic_auth_token` 既到不了受检查的客户端，也逃不过 `local` 深度。[](source:check-names) 设置、同步、检视和验证，都用这些状态报告；证明了多少，看的是检查深度，而不是状态。[](source:readiness)
 
 ## 提供商的模型会经历哪些状态？ {#p-catalog}
 
@@ -259,7 +263,7 @@ AIGW 的输出回答三个问题：选中了什么，是否就绪，下一步做
 | step-store | 配置存储 | 管理 `aigw.toml`、它的锁、备份和已验证快照，并保留自己写入的确切文件，供受保护的回滚使用。[](source:store-owner)[](source:store-commit) | parts-map | parts-store |
 | step-seam | 适配器接口 | 所有客户端共用一份契约：发现、收敛、规划、应用、检视、验证和撤回。[](source:seam) | parts-map | parts-seam |
 | step-codex | Codex | `~/.codex/config.toml` 中归 AIGW 管的一块，以及模型目录。 | parts-map | parts-codex |
-| step-claude-code | Claude Code | `~/.claude/settings.json`：端点、模型偏好和凭据助手。 | parts-map | parts-claude-code |
+| step-claude-code | Claude Code | `~/.claude/settings.json`：端点、模型偏好和凭据助手。从 0.6.1 升级后首次运行 `aigw setup` 时，0.6.1 写入的 `model` 即使被你改过或删掉，这份设置也会被接受。只要提供商和端点没有变，你的选择就会保留。[](source:setup-model-kept) | parts-map | parts-claude-code |
 | step-claude-desktop | Claude Desktop | 单独的第三方推理库。 | parts-map | parts-claude-desktop |
 | step-hermes | Hermes | Hermes 的提供商目录、协议和模型。 | parts-map | parts-hermes |
 
@@ -303,7 +307,7 @@ AIGW 的输出回答三个问题：选中了什么，是否就绪，下一步做
 
 ## AIGW 怎样走到今天？ {#p-history}
 
-AIGW 于 2026 年 9 月 19 日发布 v0.1.0，11 月 12 日发布本页所述的 v0.7.0。[](source:changelog-010)[](source:changelog-070)下图选出十三个版本，每个都改变了 AIGW 为用户做的事；仍待解决的事项列在本页最后。
+AIGW 于 2026 年 9 月 19 日发布 v0.1.0，11 月 12 日发布本页所述的 v0.7.1。[](source:changelog-010)[](source:changelog-071)下图选出十四个版本，每个都改变了 AIGW 为用户做的事；仍待解决的事项列在本页最后。
 
 @diagram timeline id=history source=history.timeline.json title="AIGW 怎样走到今天"
 

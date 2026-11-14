@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "9bf7612c9678d6fc02eade0eda637be1b450af87"
+      "revision": "e63cd12f91b7bb8bb5e1605742bd4aefe92e6a35"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 981,
-          "end_line": 1001,
+          "line": 1020,
+          "end_line": 1040,
           "label": "0.1.0"
         }
       ]
@@ -58,8 +58,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 895,
-          "end_line": 919,
+          "line": 934,
+          "end_line": 958,
           "label": "0.2.0"
         }
       ]
@@ -74,8 +74,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 867,
-          "end_line": 893,
+          "line": 906,
+          "end_line": 932,
           "label": "0.3.0"
         }
       ]
@@ -89,8 +89,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 646,
-          "end_line": 672,
+          "line": 685,
+          "end_line": 711,
           "label": "0.4.1"
         }
       ]
@@ -104,8 +104,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 582,
-          "end_line": 592,
+          "line": 621,
+          "end_line": 631,
           "label": "0.4.5"
         }
       ]
@@ -120,8 +120,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 566,
-          "end_line": 580,
+          "line": 605,
+          "end_line": 619,
           "label": "0.4.6"
         }
       ]
@@ -135,8 +135,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 555,
-          "end_line": 564,
+          "line": 594,
+          "end_line": 603,
           "label": "0.4.7"
         }
       ]
@@ -150,8 +150,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 533,
-          "end_line": 543,
+          "line": 572,
+          "end_line": 582,
           "label": "0.4.9"
         }
       ]
@@ -166,8 +166,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 414,
-          "end_line": 439,
+          "line": 453,
+          "end_line": 478,
           "label": "0.4.16"
         }
       ]
@@ -181,8 +181,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 383,
-          "end_line": 412,
+          "line": 422,
+          "end_line": 451,
           "label": "0.4.17"
         }
       ]
@@ -197,8 +197,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 266,
-          "end_line": 307,
+          "line": 305,
+          "end_line": 346,
           "label": "0.5.0"
         }
       ]
@@ -212,8 +212,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 236,
-          "end_line": 244,
+          "line": 275,
+          "end_line": 283,
           "label": "0.6.1"
         }
       ]
@@ -228,9 +228,24 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 14,
-          "end_line": 235,
+          "line": 53,
+          "end_line": 274,
           "label": "0.7.0"
+        }
+      ]
+    },
+    {
+      "id": "v071",
+      "at": "2026-11-13T01:25:13+08:00",
+      "lane": "commands",
+      "title": "v0.7.1 在智能体会话里检查客户端",
+      "detail": "aigw check --depth client 启动每个客户端时不带父级智能体会话的环境变量，在 Claude Code、Claude Desktop 或 Hermes 里运行的检查，验证的是 AIGW 写入的文件。升级后首次运行 aigw setup，会保留你对 model 的选择；aigw setup --from 会列出团队文件替换的每个 label。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 14,
+          "end_line": 52,
+          "label": "0.7.1"
         }
       ]
     }

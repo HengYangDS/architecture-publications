@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "9bf7612c9678d6fc02eade0eda637be1b450af87"
+      "revision": "e63cd12f91b7bb8bb5e1605742bd4aefe92e6a35"
     }
   },
   "components": [

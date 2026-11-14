@@ -7,7 +7,7 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 - [No client file holds a Token](block:p-token): a helper reads it from one selected store when the client asks.[](source:helper-projection)
 - [Each check proves one more thing](block:p-ready), and synchronized client files are not an answered request.[](source:experience-readiness)
 
-@answer scope="AIGW v0.7.0 · commit 9bf7612 · its source and its own documents"
+@answer scope="AIGW v0.7.1 · commit e63cd12 · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What AIGW is" path="README.md" lines=3:6
 @source readme-install title="Install" path="README.md" lines=30:42
@@ -74,8 +74,12 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 @source readme-for title="The clients aigw takes" path="README.md" lines=164:164
 @source readme-environment title="Environment Tokens" path="README.md" lines=183:185
 @source manifest-provider title="A provider in the team file" path="manifests/team.toml" lines=1:18
-@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=981:1001
-@source changelog-070 title="The 0.7.0 release" path="CHANGELOG.md" lines=14:235
+@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=1020:1040
+@source changelog-071 title="The 0.7.1 release" path="CHANGELOG.md" lines=14:52
+@source setup-model-kept title="A model preference kept at the first setup" path="CHANGELOG.md" lines=18:22
+@source team-labels title="The labels a team file replaces" path="CHANGELOG.md" lines=23:25
+@source check-parent-session title="A client check inside an agent session" path="CHANGELOG.md" lines=26:30
+@source check-names title="Environment variable names on Windows" path="CHANGELOG.md" lines=32:34
 
 ## Who uses AIGW, and what does it touch? {#p-context}
 
@@ -110,7 +114,7 @@ A team distributes a reviewed public team file, and each member supplies Tokens 
 | step-curate | Curate the team file | Only reviewed provider endpoints and qualified models; no Tokens, personal paths, identities or release credentials.[](source:rollout-maintainer) | rollout-flow | rollout-curate |
 | step-publish | Publish at a tag | From a release tag or immutable commit, so every member receives the same file.[](source:rollout-maintainer) | rollout-flow | rollout-publish |
 | step-install | Install AIGW | A signed, notarized Homebrew cask on macOS, or a portable archive for macOS, Linux and Windows that `aigw self install` installs.[](source:readme-install) | rollout-flow | rollout-install |
-| step-import | Apply the team file | Applying it needs neither every provider Token nor an installed client.[](source:readme-team) | rollout-flow | rollout-import |
+| step-import | Apply the team file | Applying it needs neither every provider Token nor an installed client.[](source:readme-team) Its preview, its result and `--json` list every label that the file replaces, for providers, families and models, with the old and the new value.[](source:team-labels) | rollout-flow | rollout-import |
 | step-connect | Connect one provider | Name only the provider you hold; the others stay available without becoming prerequisites.[](source:readme-connect)[](source:readme-activate) | rollout-flow | rollout-connect |
 | step-check | Sync and check | `aigw sync` updates every enabled client whose model, authentication and client files are available, and never creates a missing client.[](source:readme-sync) | rollout-flow | rollout-check |
 
@@ -218,7 +222,7 @@ AIGW's output answers three questions: what is selected, whether it is ready, an
 | step-status | aigw status | Reports each client's model and whether its client files are ready, without reading Tokens or running a client.[](source:experience-readiness) |
 | step-endpoint | aigw check --depth endpoint | Checks each endpoint with one request that names no model.[](source:readme-check)[](source:readme-depths) |
 | step-inference | aigw check | The default depth sends one bounded inference request per checked client, which may use provider quota.[](source:readme-check)[](source:experience-readiness) |
-| step-session | aigw check --depth client | Runs a real session in each enabled client.[](source:readme-depths) When it names no client and every client passes, it writes the verified snapshot that `aigw config rollback` restores first.[](source:verify-snapshot)[](source:rollback-snapshot) |
+| step-session | aigw check --depth client | Runs a real session in each enabled client, started without the variables of a parent agent session.[](source:readme-depths)[](source:check-parent-session) When it names no client and every client passes, it writes the verified snapshot that `aigw config rollback` restores first.[](source:verify-snapshot)[](source:rollback-snapshot) |
 
 | Depth or state | Meaning                                                                                                |
 | -------------- | ------------------------------------------------------------------------------------------------------ |
@@ -232,7 +236,7 @@ AIGW's output answers three questions: what is selected, whether it is ready, an
 | invalid        | Configuration or owned state is unsafe to use.                                                         |
 | unavailable    | A required external capability is missing.                                                             |
 
-A check to one depth runs every depth before it.[](source:check-depths) Setup, synchronization, inspection and verification all report in these states, and the depth, not a state, says how much a check proved.[](source:readiness)
+A check to one depth runs every depth before it.[](source:check-depths) On Windows, `aigw check` compares environment variable names without regard to letter case, so a lower-case `anthropic_auth_token` neither reaches a checked client nor escapes the `local` depth.[](source:check-names) Setup, synchronization, inspection and verification all report in these states, and the depth, not a state, says how much a check proved.[](source:readiness)
 
 ## What happens to a provider's models over time? {#p-catalog}
 
@@ -259,7 +263,7 @@ Qualification is separate evidence: explicit protocol and real-client evidence f
 | step-store | Configuration store | Owns `aigw.toml`, its lock, its backup and its verified snapshot, and keeps the exact file it wrote, for a guarded rollback.[](source:store-owner)[](source:store-commit) | parts-map | parts-store |
 | step-seam | Adapter seam | One contract for every client: discover, converge, plan, apply, inspect, verify and withdraw.[](source:seam) | parts-map | parts-seam |
 | step-codex | Codex | A bounded region of `~/.codex/config.toml`, and its model catalog. | parts-map | parts-codex |
-| step-claude-code | Claude Code | `~/.claude/settings.json`: endpoint, model preference and credential helper. | parts-map | parts-claude-code |
+| step-claude-code | Claude Code | `~/.claude/settings.json`: endpoint, model preference and credential helper. The first `aigw setup` after an upgrade from 0.6.1 accepts settings in which you changed or removed the `model` that 0.6.1 wrote. It keeps your choice while the provider and endpoint stay the same.[](source:setup-model-kept) | parts-map | parts-claude-code |
 | step-claude-desktop | Claude Desktop | Its separate third-party inference library. | parts-map | parts-claude-desktop |
 | step-hermes | Hermes | Its provider catalog, protocol and model. | parts-map | parts-hermes |
 
@@ -303,7 +307,7 @@ AIGW answers one question of four, and leaves the others to the products built f
 
 ## How did AIGW get here? {#p-history}
 
-AIGW released v0.1.0 on 19 September 2026 and v0.7.0, the version this page describes, on 12 November 2026.[](source:changelog-010)[](source:changelog-070) The timeline shows thirteen releases that changed what AIGW does for its users, and the last panel lists what is still open.
+AIGW released v0.1.0 on 19 September 2026 and v0.7.1, the version this page describes, on 12 November 2026.[](source:changelog-010)[](source:changelog-071) The timeline shows fourteen releases that changed what AIGW does for its users, and the last panel lists what is still open.
 
 @diagram timeline id=history source=history.timeline.json title="How AIGW got here"
 
