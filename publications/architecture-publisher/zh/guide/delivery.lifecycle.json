@@ -38,7 +38,7 @@
       "id": "life-accepted",
       "type": "decision",
       "label": "已验收的构建",
-      "sublabel": "一位具名审阅人",
+      "sublabel": "一位具名审阅者",
       "sources": [
         {
           "path": "src/delivery.mjs",
@@ -146,8 +146,8 @@
       "title": "验收记录什么",
       "items": [
         "清单和题跋页的 SHA-256。",
-        "审阅人、UTC 时间、模型 id 和一段可选备注。",
-        "审阅人签名时，签名密钥的指纹。"
+        "审阅者、UTC 时间、模型 id 和一段可选备注。",
+        "审阅者签名时，签名密钥的指纹。"
       ]
     },
     {

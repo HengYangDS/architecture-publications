@@ -407,3 +407,25 @@ test("custody refuses corrupt identity, escaping paths and unsupported storage",
     }
   });
 });
+
+test("a work's Chinese text names roles, not kinds of holder", async () => {
+  const { readdir, readFile } = await import("node:fs/promises");
+  const presumes = /人员|审阅人/u;
+  const found = [];
+  const works = path.join(root, "publications");
+  for (const work of await readdir(works, { withFileTypes: true })) {
+    if (!work.isDirectory()) continue;
+    const files = [path.join(works, work.name, "concepts.md")];
+    const chinese = path.join(works, work.name, "zh");
+    for (const entry of await readdir(chinese, { withFileTypes: true, recursive: true }).catch(
+      () => [],
+    ))
+      if (entry.isFile()) files.push(path.join(entry.parentPath, entry.name));
+    for (const file of files) {
+      const text = await readFile(file, "utf8").catch(() => "");
+      for (const [index, line] of text.split("\n").entries())
+        if (presumes.test(line)) found.push(`${path.relative(root, file)}:${index + 1}`);
+    }
+  }
+  assert.deepEqual(found, []);
+});

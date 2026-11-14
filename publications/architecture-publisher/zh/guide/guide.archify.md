@@ -1,6 +1,6 @@
 # Architecture Publisher 如何把架构模型变成图册和页面？ {#guide}
 
-`archpub` 读取一个模型，按固定的提交绑定组件认领的文件，再规划视图。每个视图都布局在同一套网格上，编排成一幅图版；图册由 Typst 排版，另交付一个 Archify 页面。[](source:contract-processing)清单把每个产物绑定到各自的输入；交付物要先由一位具名审阅人验收，才能出版。[](source:contract-product)[](source:contract-acceptance)
+`archpub` 读取一个模型，按固定的提交绑定组件认领的文件，再规划视图。每个视图都布局在同一套网格上，编排成一幅图版；图册由 Typst 排版，另交付一个 Archify 页面。[](source:contract-processing)清单把每个产物绑定到各自的输入；交付物要先由一位具名审阅者验收，才能出版。[](source:contract-product)[](source:contract-acceptance)
 
 - [模型是含义的唯一来源](block:p-model)：出版工具绝不从代码推断架构。[](source:model-meaning)[](source:contract-meaning)
 - [对 Git 只读不写](block:p-files)：每个文件都取自固定的提交，检出始终不变。[](source:model-repo)
@@ -230,7 +230,7 @@
 | step-ed-compose | 编排每个视图 | 图版逐一尝试每种字号档、折行、居中方式和层级标签列，从中先取交叉最少的，再取布线缺陷最少的。[](source:plates-compositions)[](source:ops-plate) | edition-flow | ed-compose |
 | step-ed-fits | 正文区内能布局？ | 所有编排都无法把视图布局在正文区内时，就以 `plate_unfittable` 拒绝；文字绝不缩小。[](source:plates-admit)[](source:contract-plate-floor)画条带时，只要有视图在 360 px 这一档布局不下，全册就改用更短的条带重新规划。[](source:strip-lengths) | edition-flow | ed-fits |
 | step-ed-width | 选定宽度 | 图宽在正文区的 100%、80%、65% 中取连线不变差的最窄一档。有概述的视图要为说明栏让出五分之一；这样连线变差时，图保持全宽，概述排在图上方。[](source:plates-width)[](source:ops-reading) | edition-flow | ed-width |
-| step-ed-gates | 度量四道门槛 | 度量图版的最大空白矩形、空白带、空洞和重心。未通过的门槛只记录，供审阅人查看，不拒绝。[](source:plates-gates)[](source:ops-gates) | edition-flow | ed-gates |
+| step-ed-gates | 度量四道门槛 | 度量图版的最大空白矩形、空白带、空洞和重心。未通过的门槛只记录，供审阅者查看，不拒绝。[](source:plates-gates)[](source:ops-gates) | edition-flow | ed-gates |
 | step-ed-typeset | 一遍排版 | 版式类把扉页、目录、总览和每幅图版排入一个 PDF，符合 PDF/A-3a 与 PDF/UA-1。[](source:edition-typeset)[](source:ops-edition) | edition-flow | ed-typeset |
 | step-ed-text | 文字与度量一致？ | Typst 排出的文字串比引擎度量的宽，或标题超出所在行，都会被拒绝。图上方的概述若有一行被 Typst 排得宽过 32 em，也会被拒绝。[](source:ops-edition-text)说明栏高过正文区时只放概述，连概述也放不下才拒绝。[](source:house-reading) | edition-flow | ed-text |
 | step-ed-images | PDF 与各页图像 | Typst 把总览页和每幅图版页按各宽度渲染为 PNG；构建未指定其他宽度时为 2400 px。[](source:edition-images)[](source:ops-edition-text) | edition-flow | ed-images |
@@ -291,7 +291,7 @@
 
 交付物包含图册 `<model id>.pdf`、各页图像、页面 `<model id>.html` 和 `manifest.json`。[](source:ops-delivery)清单不含主机路径或用户名，图册的日期取自固定的提交。在同一平台上，相同的模型与版本能重建每个字节。[](source:ops-manifest)[](source:contract-bytes)
 
-验收时，再在旁边写入 `acceptance.json` 和 `colophon.pdf`；审阅人签名时，还有 `acceptance.sig`。这三个文件都不进清单，产物也一概不变。[](source:ops-delivery)[](source:ops-accept)
+验收时，再在旁边写入 `acceptance.json` 和 `colophon.pdf`；审阅者签名时，还有 `acceptance.sig`。这三个文件都不进清单，产物也一概不变。[](source:ops-delivery)[](source:ops-accept)
 
 @diagram erd id=manifest-erd source=manifest.erd.json
 
@@ -308,7 +308,7 @@
 
 ## 谁来验收交付物，又怎样出版？ {#p-accept}
 
-构建只能说明交付物来自它的输入。验收要由一位具名审阅人完成，测试和检查都不能代替。[](source:contract-acceptance)验收记录的是谁、在何时、验收了哪些字节，并不证明架构正确。[](source:ops-acceptance-scope)
+构建只能说明交付物来自它的输入。验收要由一位具名审阅者完成，测试和检查都不能代替。[](source:contract-acceptance)验收记录的是谁、在何时、验收了哪些字节，并不证明架构正确。[](source:ops-acceptance-scope)
 
 @diagram lifecycle id=delivery-life source=delivery.lifecycle.json
 
@@ -320,15 +320,15 @@
 | step-life-conflict | publish_conflict | 同一版本下若是不同的交付物，就拒绝；若完全相同，则什么也不改变。[](source:ops-publish) | delivery-life | life-conflict |
 
 @facts
-| 验收记录 | `acceptance.json` 是一份 in-toto Statement，主体是 `manifest.json` 和 `colophon.pdf`，各以 SHA-256 指明。谓词写明审阅人、UTC 时间和模型。[](source:ops-statement)[](source:delivery-statement) |
-| 题跋页 | `colophon.pdf` 只有一页，开本和语言都随图册。朱砂色的圆形印记上有验收二字、日期和审阅人姓名，姓名也可另定。旁边的签条列出验收记录的各项内容。[](source:ops-colophon)[](source:colophon-page) |
+| 验收记录 | `acceptance.json` 是一份 in-toto Statement，主体是 `manifest.json` 和 `colophon.pdf`，各以 SHA-256 指明。谓词写明审阅者、UTC 时间和模型。[](source:ops-statement)[](source:delivery-statement) |
+| 题跋页 | `colophon.pdf` 只有一页，开本和语言都随图册。朱砂色的圆形印记上有验收二字、日期和审阅者姓名，姓名也可另定。旁边的签条列出验收记录的各项内容。[](source:ops-colophon)[](source:colophon-page) |
 | 签名 | 可选。`archpub accept --sign` 用 ssh-keygen 对验收记录的原始字节签名，写入 `acceptance.sig`；记录里写明密钥指纹。[](source:ops-sign)[](source:delivery-sign) |
-| `archpub verify` | 检查每个产物、验收记录和题跋页。记录写明了签名者，就必须有签名文件；没有写明，就不能有。加上 `--allowed-signers`，还会核验签名确属这位审阅人。[](source:ops-verify)[](source:delivery-check) |
+| `archpub verify` | 检查每个产物、验收记录和题跋页。记录写明了签名者，就必须有签名文件；没有写明，就不能有。加上 `--allowed-signers`，还会核验签名确属这位审阅者。[](source:ops-verify)[](source:delivery-check) |
 | 旧版验收记录 | `verify` 和 `publish` 遇到旧版本写下的记录，会以 `acceptance_version_unsupported` 拒绝。删掉它，对未改动的交付物重新验收即可。[](source:ops-earlier-records) |
 
 ## Architecture Publisher 怎样走到今天？ {#p-history}
 
-Architecture Publisher 的变更日志始于 2026 年 9 月 18 日的 0.1.0-alpha.0。[](source:changelog-first)10 月 30 日发布的 0.4.0 让它成为通用的模型到媒介出版工具。[](source:changelog-040)下图从那里开始，列出到 0.13.1 为止的十一个版本；除最后一个外，每个版本都改变了作者或审阅人看到的东西。
+Architecture Publisher 的变更日志始于 2026 年 9 月 18 日的 0.1.0-alpha.0。[](source:changelog-first)10 月 30 日发布的 0.4.0 让它成为通用的模型到媒介出版工具。[](source:changelog-040)下图从那里开始，列出到 0.13.1 为止的十一个版本；除最后一个外，每个版本都改变了作者或审阅者看到的东西。
 
 @diagram timeline id=history source=history.timeline.json title="Architecture Publisher 怎样走到今天"
 

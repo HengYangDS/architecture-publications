@@ -127,7 +127,7 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 | step-ctx-control | 客户端控制面 | 负责凭据、提供商选择和客户端配置，并把客户端指向回环 URL，每个提供商一个。[](source:readme-boundary)[](source:readme-routes) | context-map | ctx-control |
 | step-ctx-proxy | OpenAI Responses Proxy | 只在 127.0.0.1 上监听，自身不持有任何凭据；客户端的 Authorization 请求头随单个请求发往上游。[](source:threat-boundaries)[](source:threat-assets) | context-map | ctx-proxy |
 | step-ctx-providers | 提供商端点 | 清单列出 DMXAPI、UCloud 和 AIHubMix；安装时还可另加一个显式指定的上游。[](source:code-manifest)[](source:readme-upstream) | context-map | ctx-providers |
-| step-ctx-operator | 运维人员 | 安装已签名的发布资产，信任锚经另一条可信渠道提供。[](source:readme-install) | context-map | ctx-operator |
+| step-ctx-operator | 运维者 | 安装已签名的发布资产，信任锚经另一条可信渠道提供。[](source:readme-install) | context-map | ctx-operator |
 | step-ctx-service | 系统服务管理器 | 让看门狗保持运行：macOS 上是 launchd，Linux 上是 systemd 用户管理器，Windows 上是任务计划程序。[](source:readme-macos)[](source:readme-linux) | context-map | ctx-service |
 
 | 责任方       | 权威状态                                              |
@@ -282,7 +282,7 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 
 ## 这个代理怎样走到今天？ {#p-history}
 
-代理在 2026 年 7 月发布 1.0.0，11 月发布 5.1.10，其间两次改名。[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-5110)下面列出其中十二个版本，它们改变了客户端或运维人员遇到的行为。
+代理在 2026 年 7 月发布 1.0.0，11 月发布 5.1.10，其间两次改名。[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-5110)下面列出其中十二个版本，它们改变了客户端或运维者遇到的行为。
 
 @diagram timeline id=history source=history.timeline.json title="这个代理怎样走到今天"
 
