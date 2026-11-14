@@ -429,6 +429,7 @@ test("the question table holds entries with a unique id, a lens, the roles that 
     await writeFile(file, JSON.stringify(copy));
     await assert.rejects(verifyQuestionTable(file), message);
   }
+});
 
 test("a work's Chinese text names roles, not kinds of holder", async () => {
   const { readdir, readFile } = await import("node:fs/promises");
