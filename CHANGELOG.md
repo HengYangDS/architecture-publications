@@ -20,7 +20,7 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 ### Changed
 
-- The repository's checks run on ETHOS 0.2.0-beta.9.
+- The repository's checks run on ETHOS 0.2.0-beta.10.
 - OpenAI Responses Proxy is pinned at v5.1.10, Architecture Publisher at
   v0.13.1, Film Kit at v0.21.2, ETHOS at v0.2.0-beta.9 and AIGW at v0.7.0.
   Building the works needs Architecture Publisher 0.10.2 or later. The
