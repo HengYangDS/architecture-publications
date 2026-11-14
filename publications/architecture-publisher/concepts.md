@@ -29,7 +29,7 @@ owner-approved shared renderings.
 | panel                                                       | 面板                                             | `src/map/explainer.mjs`                                                          |
 | draft                                                       | 草稿                                             | `src/map/guide.mjs`                                                              |
 | author                                                      | 作者                                             | `src/model/load.mjs`, `src/overview/house.typ`                                   |
-| reviewer                                                    | 审阅人                                           | `src/delivery.mjs`                                                               |
+| reviewer                                                    | 审阅者                                           | `src/delivery.mjs`                                                               |
 | acceptance, accept                                          | 验收 (approved)                                  | `src/delivery.mjs`                                                               |
 | publish, publication                                        | 出版                                             | `src/delivery.mjs`                                                               |
 | publication root                                            | 出版根目录                                       | `src/delivery.mjs`, `src/cli/run.mjs`                                            |

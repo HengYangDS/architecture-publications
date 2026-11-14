@@ -757,7 +757,7 @@
       "tiers": [
         {
           "id": "people",
-          "label": "People",
+          "label": "Roles",
           "members": ["author", "reviewer"]
         },
         {

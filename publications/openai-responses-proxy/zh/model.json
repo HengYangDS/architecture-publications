@@ -433,7 +433,7 @@
       "label": "发布版本准入",
       "kind": "gate",
       "details": {
-        "验签": "用 ssh-keygen 对照运维人员的信任锚验证 SHA256SUMS.sig",
+        "验签": "用 ssh-keygen 对照运维者的信任锚验证 SHA256SUMS.sig",
         "准入": "单个平台归档包，内部每个成员都须与清单相符"
       },
       "files": ["src/openai_responses_proxy/lifecycle/artifact.py"]

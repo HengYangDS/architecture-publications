@@ -3,10 +3,10 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([Architecture Publisher], [含义、证据、形式与验收，各归一方], [archpub 依据显式模型画出任何仓库的架构，把交付物的每个字节绑定到输入，只出版具名审阅人验收过的内容。], read-from: [读取 71 个文件，各附 SHA-256。], claim-x: 270pt)
+#masthead([Architecture Publisher], [含义、证据、形式与验收，各归一方], [archpub 依据显式模型画出任何仓库的架构，把交付物的每个字节绑定到输入，只出版具名审阅者验收过的内容。], read-from: [读取 71 个文件，各附 SHA-256。], claim-x: 270pt)
 
 // ── Band 1: four owners side by side; one build passes through them ───────
-#let cols = ((48pt, [作者], [决定含义]), (346pt, [仓库], [存放证据]), (636pt, [出版工具], [赋予形式]), (1196pt, [审阅人], [验收并出版]))
+#let cols = ((48pt, [作者], [决定含义]), (346pt, [仓库], [存放证据]), (636pt, [出版工具], [赋予形式]), (1196pt, [审阅者], [验收并出版]))
 #let yb = 262pt
 #let ybind = 176pt
 #let xbind = 1100pt

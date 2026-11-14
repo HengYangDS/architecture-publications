@@ -33,7 +33,7 @@
       "id": "ctx-operator",
       "type": "external",
       "icon": "person",
-      "label": "运维人员",
+      "label": "运维者",
       "sublabel": "已签名资产、信任锚",
       "pos": [270, 40],
       "size": [180, 64],
