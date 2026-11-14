@@ -1,0 +1,153 @@
+{
+  "holder": "codex",
+  "plates": {
+    "plate-01": [
+      {
+        "class": "colour-only",
+        "where": "c: Blue solid arrows converge on 已安装的 ETHOS; other arrows use the same stroke and arrowhead in grey."
+      },
+      {
+        "class": "blank-area",
+        "where": "d: The band between the lower relationship labels and 已安装的 ETHOS spans the figure width and contains only lines."
+      }
+    ],
+    "plate-02": [
+      {
+        "class": "key-off-line",
+        "where": "d: The blue sample for 指向任务地图 sits below its label like an underline."
+      },
+      {
+        "class": "colour-only",
+        "where": "c: Blue solid arrows into 任务地图 have the same line style as the grey relationship arrows."
+      }
+    ],
+    "plate-03": [
+      {
+        "class": "blank-area",
+        "where": "b: A large empty rectangle inside the boundary, to the right of archpub and above 讲解页."
+      }
+    ],
+    "plate-04": [
+      {
+        "class": "key-off-line",
+        "where": "d: The blue key sample beside 指向 Git 改动引擎 lies beneath the label's middle."
+      },
+      {
+        "class": "colour-only",
+        "where": "c: Solid blue arrows into Git 改动引擎 differ from the grey arrows by colour alone."
+      }
+    ],
+    "plate-05": [
+      {
+        "class": "blank-area",
+        "where": "d: The lower-right rectangle beneath 提交与签名 and to the right of TransitionPlan is empty."
+      }
+    ],
+    "plate-06": [
+      {
+        "class": "blank-area",
+        "where": "b: Large empty upper-right rectangle inside the system frame, right of archpub and above 物料."
+      }
+    ],
+    "plate-07": [
+      {
+        "class": "blank-area",
+        "where": "d: Large empty lower-right rectangle below 提交与签名, beside TransitionPlan."
+      }
+    ],
+    "plate-08": [
+      {
+        "class": "key-off-line",
+        "where": "d: The blue line sample for 指向物料 sits below the middle of its label."
+      },
+      {
+        "class": "lone-character",
+        "where": "c: The 字体 detail has 致 alone on its final line."
+      },
+      {
+        "class": "colour-only",
+        "where": "d: Blue solid arrows converge on 物料 with the same stroke and arrowhead style as the grey arrows."
+      },
+      {
+        "class": "blank-area",
+        "where": "c: Large empty rectangle below 阅读规划 along the inside left edge of the system frame."
+      }
+    ],
+    "plate-09": [
+      {
+        "class": "open-boundary",
+        "where": "b: The data-department-work-guidelines frame has no right side; its top and bottom stop before the prose column."
+      },
+      {
+        "class": "colour-only",
+        "where": "c: Solid blue arrows into OpenSpec 工作空间 differ from other relationship arrows only in colour."
+      }
+    ],
+    "plate-10": [
+      {
+        "class": "blank-area",
+        "where": "d: Large empty lower-right rectangle below 证明核验记录 and 核验记录集."
+      }
+    ],
+    "plate-11": [
+      {
+        "class": "colour-only",
+        "where": "c: The blue arrows converging on Git 改动引擎 use the same solid stroke and arrowheads as the grey arrows."
+      }
+    ],
+    "plate-12": [
+      {
+        "class": "blank-area",
+        "where": "d: Large empty lower-right rectangle inside ethos, below and to the right of 文档注册表."
+      }
+    ],
+    "plate-13": [
+      {
+        "class": "blank-area",
+        "where": "b: Large empty upper-right rectangle within the frame, right of archpub and LikeC4 导入器."
+      }
+    ],
+    "plate-14": [
+      {
+        "class": "colour-only",
+        "where": "d: The blue solid arrows into 物料 share the grey arrows' stroke and arrowhead style."
+      },
+      {
+        "class": "blank-area",
+        "where": "c: Large empty rectangle down the inside left edge of the frame, below 阅读规划 and left of 字体."
+      }
+    ],
+    "plate-15": [
+      {
+        "class": "key-off-line",
+        "where": "d: The blue sample beside 指向已安装的 ETHOS lies below its label's middle."
+      },
+      {
+        "class": "colour-only",
+        "where": "c: Blue solid arrows converge on 已安装的 ETHOS with the same stroke and arrowheads as other arrows."
+      },
+      {
+        "class": "blank-area",
+        "where": "d: The band between the lower relationship labels and 已安装的 ETHOS spans the figure width and contains only lines."
+      }
+    ],
+    "plate-16": [
+      {
+        "class": "key-off-line",
+        "where": "d: The blue sample beside 指向 OpenSpec 工作空间 lies below the label's middle."
+      },
+      {
+        "class": "lone-character",
+        "where": "c: The OpenSpec 工作空间 detail ends with 更 alone on its final line."
+      },
+      {
+        "class": "open-boundary",
+        "where": "b: The data-department-work-guidelines dashed frame lacks its right side."
+      },
+      {
+        "class": "colour-only",
+        "where": "c: Blue solid arrows converge on OpenSpec 工作空间 with the same stroke and arrowheads as other arrows."
+      }
+    ]
+  }
+}
