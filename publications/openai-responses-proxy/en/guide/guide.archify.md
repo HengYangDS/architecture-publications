@@ -7,7 +7,7 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 - [An upgrade keeps admitting turns](block:p-handoff): the new process inherits the listening socket, and the old one finishes what it accepted.[](source:readme-handoff)
 - [Every installation step is journaled](block:p-install), so `recover` finishes or undoes an interrupted one.[](source:arch-completion)
 
-@answer scope="OpenAI Responses Proxy v5.1.10 · commit a36a33c · its source and its own documents"
+@answer scope="OpenAI Responses Proxy v5.1.12 · commit 8f589e5 · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What the proxy is" path="README.md" lines=3:7
 @source readme-portable title="No conversation storage is edited" path="README.md" lines=12:13
@@ -55,8 +55,13 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 @source code-transport-error title="Transport failures" path="src/openai_responses_proxy/relay/exchange.py" lines=441:489
 @source code-outcome title="A failure after a complete send" path="src/openai_responses_proxy/relay/upstream.py" lines=409:422
 @source code-reused title="A failed send on a reused connection" path="src/openai_responses_proxy/relay/upstream.py" lines=346:387
-@source code-reopen title="Only a pre-content failure is reopened" path="src/openai_responses_proxy/relay/sse.py" lines=272:279
-@source code-hold title="Events held before content" path="src/openai_responses_proxy/relay/sse.py" lines=127:167
+@source code-reopen title="Only a pre-content failure is reopened" path="src/openai_responses_proxy/relay/sse.py" lines=281:288
+@source code-hold title="Events held before content" path="src/openai_responses_proxy/relay/sse.py" lines=131:174
+@source code-stream-terminals title="The events that end a stream" path="src/openai_responses_proxy/relay/sse.py" lines=35:36
+@source code-stream-end title="The end of a committed stream" path="src/openai_responses_proxy/relay/sse.py" lines=329:333
+@source code-stream-class title="The failure class of a failed stream" path="src/openai_responses_proxy/relay/sse.py" lines=340:354
+@source code-stream-log title="The log line for a stream's ending" path="src/openai_responses_proxy/relay/sse.py" lines=355:375
+@source code-diagnostic title="Codes and event types named in diagnostics" path="src/openai_responses_proxy/protocol/response.py" lines=93:113
 @source code-disposition title="Which statuses are retried" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=56:92
 @source code-compact title="Pair-safe compaction" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=105:156
 @source code-input-variant title="The input-variant contract" path="src/openai_responses_proxy/protocol/recovery/input.py" lines=90:100
@@ -96,15 +101,17 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 @source code-watchdog title="The watchdog loop" path="src/openai_responses_proxy/lifecycle/supervision/watchdog.py" lines=103:138
 @source code-activate-carrier title="Each role loads its carrier" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=152:159
 @source code-status-next title="One next command per state" path="src/openai_responses_proxy/cli/outcome.py" lines=37:43
-@source code-lock title="One lifecycle writer" path="src/openai_responses_proxy/cli/application.py" lines=96:115
+@source code-lock title="One lifecycle writer" path="src/openai_responses_proxy/cli/application.py" lines=67:86
+@source code-options title="What the port and deadline options accept" path="src/openai_responses_proxy/cli/options.py" lines=32:73
 @source readme-port title="The default port" path="README.md" lines=89:97
 @source readme-budgets title="Limits a fresh installation may choose" path="README.md" lines=371:389
 @source code-defaults title="Runtime defaults" path="src/openai_responses_proxy/runtime/config.py" lines=70:86
 @source code-platforms title="Release platforms" path="src/openai_responses_proxy/product_identity.py" lines=13:18
-@source changelog-100 title="The 1.0.0 release" path="CHANGELOG.md" lines=1911:1917
-@source changelog-202 title="Renamed in 2.0.2" path="CHANGELOG.md" lines=1306:1316
-@source changelog-500 title="Renamed in 5.0.0" path="CHANGELOG.md" lines=406:413
-@source changelog-5110 title="The 5.1.10 release" path="CHANGELOG.md" lines=11:18
+@source changelog-100 title="The 1.0.0 release" path="CHANGELOG.md" lines=1967:1973
+@source changelog-202 title="Renamed in 2.0.2" path="CHANGELOG.md" lines=1362:1372
+@source changelog-500 title="Renamed in 5.0.0" path="CHANGELOG.md" lines=462:469
+@source changelog-5111 title="The 5.1.11 release" path="CHANGELOG.md" lines=33:46
+@source changelog-5112 title="The 5.1.12 release" path="CHANGELOG.md" lines=11:31
 
 ## Who sends traffic through the proxy, and what does it leave to others? {#p-context}
 
@@ -119,6 +126,8 @@ The proxy owns Responses normalization, replay portability, bounded recovery and
 | Release platforms | macOS arm64, Linux x86_64, Windows x86_64 |
 
 The listener binds 127.0.0.1 only and does not authenticate requests.[](source:threat-boundaries) Use `--port` only when 8792 conflicts with another local service.[](source:readme-port) The other values are the runtime's defaults, and each platform has its own native release asset.[](source:code-defaults)[](source:readme-deadline)[](source:code-platforms) A fresh installation can choose other body, event and catalog limits, and an upgrade keeps the persisted values.[](source:readme-budgets)
+
+`--port` takes a whole number from 1 to 65535 written in decimal digits. A fraction, a base prefix or a plus sign is a usage error.[](source:code-options)[](source:changelog-5111)
 
 @diagram architecture id=context-map source=context.architecture.json
 
@@ -204,19 +213,22 @@ A provider that received a complete request may already be working on it. Sendin
 
 Each upstream error has one bounded answer, and a cooldown holds back only the provider that caused it.[](source:dr3-decision)[](source:arch-recovery)
 
-| Upstream answer                     | What the proxy does                                                                                                       |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `429`                               | Relays it once, then cools that provider for its Retry-After, at most 300 s[](source:code-http-error)                     |
-| `503` after bounded retries         | Relays the original error, then briefly cools that provider[](source:code-disposition)[](source:code-http-error)          |
-| DMXAPI `477 empty_response`         | Sends the same projected bytes once more[](source:code-dmx)                                                               |
-| `response_failed`                   | Strictly shrinking, pair-safe retries, then at most one dialogue-only attempt[](source:code-compact)                      |
-| Invalid `input` union               | One smaller current-dialogue attempt, then stops[](source:code-input-variant)                                             |
-| Input too long or media over budget | One attempt without older history, if the current input allows, then stops[](source:code-capacity)[](source:code-compact) |
-| `invalid_encrypted_content`         | Relays the refusal without replacing the task[](source:arch-agent)                                                        |
+| Upstream answer                       | What the proxy does                                                                                                                                                      |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `429`                                 | Relays it once, then cools that provider for its Retry-After, at most 300 s[](source:code-http-error)                                                                    |
+| `503` after bounded retries           | Relays the original error, then briefly cools that provider[](source:code-disposition)[](source:code-http-error)                                                         |
+| DMXAPI `477 empty_response`           | Sends the same projected bytes once more[](source:code-dmx)                                                                                                              |
+| `response_failed`                     | Strictly shrinking, pair-safe retries, then at most one dialogue-only attempt[](source:code-compact)                                                                     |
+| Invalid `input` union                 | One smaller current-dialogue attempt, then stops[](source:code-input-variant)                                                                                            |
+| Input too long or media over budget   | One attempt without older history, if the current input allows, then stops[](source:code-capacity)[](source:code-compact)                                                |
+| `invalid_encrypted_content`           | Relays the refusal without replacing the task[](source:arch-agent)                                                                                                       |
+| A top-level `error` event in a stream | Relays the event and the end of the response, and nothing the upstream sends after it[](source:code-stream-terminals)[](source:code-stream-end)[](source:changelog-5112) |
 
 ## How does a signed release become the serving generation? {#p-install}
 
 Installation never downloads dependencies or reads provider credentials.[](source:readme-install-tx) First, ssh-keygen must find exactly one principal for SHA256SUMS.sig, and the archive and its platform manifest must match the signed sums.[](source:code-signature)[](source:code-artifact) Only then does a transaction commit the bundle, and it proves the listener before it finishes.[](source:arch-commit)
+
+`--timeout-seconds` gives a cold native executable more than the default 30 seconds. A value above 3600 is a usage error.[](source:readme-install-tx)[](source:code-options)[](source:changelog-5111)
 
 @diagram lifecycle id=tx-life source=transaction.lifecycle.json
 
@@ -282,7 +294,7 @@ These are the macOS defaults; Linux follows XDG directories and Windows uses LOC
 
 ## How did the proxy get here? {#p-history}
 
-The proxy went from 1.0.0 in July 2026 to 5.1.10 in November, and changed its name twice on the way.[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-5110) Below are twelve of its releases that changed what a client or an operator meets.
+The proxy went from 1.0.0 in July 2026 to 5.1.12 in November, and changed its name twice on the way.[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-5112) Below are fourteen of its releases that changed what a client or an operator meets.
 
 @diagram timeline id=history source=history.timeline.json title="How the proxy got here"
 
@@ -313,6 +325,10 @@ The watchdog starts the listener when its port is closed, and waits while a tran
 | `not_installed`     | No owned service, listener, command, payload or transaction exists          | `install --help` |
 
 Each result names at most one next command.[](source:code-status-next)[](source:readme-status)
+
+`status --json` also reports reliability counters and classified failures, all secret-free.[](source:readme-evidence) A stream that the upstream ended with a top-level `error` event is the failure class `stream_error`.[](source:code-stream-class)[](source:changelog-5112)
+
+The log names each stream's ending, never an event's message. A stream that ended with an `error` event gets `terminal=error` and the event's code. A stream that ended without a terminal event gets `last=` and the type of the last accepted event.[](source:code-stream-log)[](source:code-diagnostic)
 
 @callout level=note title="Accepted local risks"
 | Every residual risk the threat model keeps needs another process of the same user. One example: `recover` reads /healthz without the process check that `status` performs.[](source:threat-residual) |

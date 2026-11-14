@@ -1,7 +1,7 @@
 # OpenAI Responses Proxy: term renderings
 
 The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `openai-responses-proxy` at v5.1.10 (`a36a33c`) that defines or uses the term. Commands, fields,
+names the file of `openai-responses-proxy` at v5.1.12 (`8f589e5`) that defines or uses the term. Commands, fields,
 status values, HTTP status codes and file names stay in Latin type.
 
 | English                                                                     | 中文                                                                             | Source                                                                |
@@ -157,3 +157,8 @@ status values, HTTP status codes and file names stay in Latin type.
 | predecessor (handed-off listener)                                           | 旧监听器                                                                         | `src/openai_responses_proxy/lifecycle/deployment/handoff.py`          |
 | lingering (systemd)                                                         | lingering（systemd 策略，不译）                                                  | `README.md`                                                           |
 | threat model, trust boundary, residual risk                                 | 威胁模型，信任边界，残余风险                                                     | `docs/architecture/threat-model.md`                                   |
+| top-level `error` event (stream)                                            | 顶层 `error` 事件                                                                | `src/openai_responses_proxy/relay/sse.py`                             |
+| terminal event (stream)                                                     | 终态事件                                                                         | `src/openai_responses_proxy/relay/sse.py`                             |
+| code (an error event's)                                                     | 错误码                                                                           | `src/openai_responses_proxy/protocol/response.py`                     |
+| usage error                                                                 | 用法错误                                                                         | `src/openai_responses_proxy/cli/application.py`                       |
+| decimal digits (a port's); non-decimal                                      | 十进制数字；不是十进制写法                                                       | `src/openai_responses_proxy/cli/options.py`                           |

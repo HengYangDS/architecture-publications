@@ -7,7 +7,7 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 - [升级期间继续放行新轮次](block:p-handoff)：新进程继承监听套接字，旧进程做完已接受的轮次。[](source:readme-handoff)
 - [每个安装步骤都记入事务日志](block:p-install)，因此 `recover` 能完成或撤销中断的安装。[](source:arch-completion)
 
-@answer scope="OpenAI Responses Proxy v5.1.10 · 提交 a36a33c · 源代码与项目自有文档"
+@answer scope="OpenAI Responses Proxy v5.1.12 · 提交 8f589e5 · 源代码与项目自有文档"
 @meta locale=zh-CN style=editorial
 @source readme-what title="代理是什么" path="README.md" lines=3:7
 @source readme-portable title="不改动会话存储" path="README.md" lines=12:13
@@ -55,8 +55,13 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 @source code-transport-error title="传输失败" path="src/openai_responses_proxy/relay/exchange.py" lines=441:489
 @source code-outcome title="完整发出之后的失败" path="src/openai_responses_proxy/relay/upstream.py" lines=409:422
 @source code-reused title="复用连接上的发送失败" path="src/openai_responses_proxy/relay/upstream.py" lines=346:387
-@source code-reopen title="只有内容之前的失败才重新发起" path="src/openai_responses_proxy/relay/sse.py" lines=272:279
-@source code-hold title="内容之前暂存的事件" path="src/openai_responses_proxy/relay/sse.py" lines=127:167
+@source code-reopen title="只有内容之前的失败才重新发起" path="src/openai_responses_proxy/relay/sse.py" lines=281:288
+@source code-hold title="内容之前暂存的事件" path="src/openai_responses_proxy/relay/sse.py" lines=131:174
+@source code-stream-terminals title="结束一条流的事件" path="src/openai_responses_proxy/relay/sse.py" lines=35:36
+@source code-stream-end title="已提交的流怎样结束" path="src/openai_responses_proxy/relay/sse.py" lines=329:333
+@source code-stream-class title="失败的流归入的失败类别" path="src/openai_responses_proxy/relay/sse.py" lines=340:354
+@source code-stream-log title="记录流怎样结束的日志行" path="src/openai_responses_proxy/relay/sse.py" lines=355:375
+@source code-diagnostic title="诊断信息里的代码与事件类型" path="src/openai_responses_proxy/protocol/response.py" lines=93:113
 @source code-disposition title="哪些状态码会重试" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=56:92
 @source code-compact title="不拆配对的压缩" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=105:156
 @source code-input-variant title="input 变体的契约" path="src/openai_responses_proxy/protocol/recovery/input.py" lines=90:100
@@ -96,15 +101,17 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 @source code-watchdog title="看门狗循环" path="src/openai_responses_proxy/lifecycle/supervision/watchdog.py" lines=103:138
 @source code-activate-carrier title="每个角色加载自己的运行配置" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=152:159
 @source code-status-next title="每种状态一条下一步命令" path="src/openai_responses_proxy/cli/outcome.py" lines=37:43
-@source code-lock title="唯一的生命周期写入者" path="src/openai_responses_proxy/cli/application.py" lines=96:115
+@source code-lock title="唯一的生命周期写入者" path="src/openai_responses_proxy/cli/application.py" lines=67:86
+@source code-options title="端口与时限选项接受的取值" path="src/openai_responses_proxy/cli/options.py" lines=32:73
 @source readme-port title="默认端口" path="README.md" lines=89:97
 @source readme-budgets title="全新安装可另选的上限" path="README.md" lines=371:389
 @source code-defaults title="运行时默认值" path="src/openai_responses_proxy/runtime/config.py" lines=70:86
 @source code-platforms title="发布平台" path="src/openai_responses_proxy/product_identity.py" lines=13:18
-@source changelog-100 title="1.0.0 的发布" path="CHANGELOG.md" lines=1911:1917
-@source changelog-202 title="2.0.2 改名" path="CHANGELOG.md" lines=1306:1316
-@source changelog-500 title="5.0.0 改名" path="CHANGELOG.md" lines=406:413
-@source changelog-5110 title="5.1.10 的发布" path="CHANGELOG.md" lines=11:18
+@source changelog-100 title="1.0.0 的发布" path="CHANGELOG.md" lines=1967:1973
+@source changelog-202 title="2.0.2 改名" path="CHANGELOG.md" lines=1362:1372
+@source changelog-500 title="5.0.0 改名" path="CHANGELOG.md" lines=462:469
+@source changelog-5111 title="5.1.11 的发布" path="CHANGELOG.md" lines=33:46
+@source changelog-5112 title="5.1.12 的发布" path="CHANGELOG.md" lines=11:31
 
 ## 谁通过代理发送流量，代理又把哪些事留给别人？ {#p-context}
 
@@ -119,6 +126,8 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 | 发布平台 | macOS arm64、Linux x86_64、Windows x86_64 |
 
 监听器只绑定 127.0.0.1，不对请求做身份验证。[](source:threat-boundaries)只有 8792 与本机其他服务冲突时，才用 `--port` 另选端口。[](source:readme-port)其余数值都是运行时默认值，每个平台各有自己的原生发布资产。[](source:code-defaults)[](source:readme-deadline)[](source:code-platforms)全新安装可以另选请求体、事件和模型目录的上限，升级则沿用已持久保存的值。[](source:readme-budgets)
+
+`--port` 只接受 1 到 65535 之间、用十进制数字写成的整数。带小数、进制前缀或加号，都算用法错误。[](source:code-options)[](source:changelog-5111)
 
 @diagram architecture id=context-map source=context.architecture.json
 
@@ -204,19 +213,22 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 
 每种上游错误只有一种应对，而且有限度；冷却只限制引发错误的那家提供商。[](source:dr3-decision)[](source:arch-recovery)
 
-| 上游应答                    | 代理的做法                                                                                      |
-| --------------------------- | ----------------------------------------------------------------------------------------------- |
-| `429`                       | 转发一次，再按 Retry-After 冷却这家提供商，至多 300 秒[](source:code-http-error)                |
-| 限次重试后的 `503`          | 转发原始错误，再短暂冷却这家提供商[](source:code-disposition)[](source:code-http-error)         |
-| DMXAPI `477 empty_response` | 把投影后的同一份字节再发一次[](source:code-dmx)                                                 |
-| `response_failed`           | 严格缩小、不拆配对地重试，之后至多再试一次只含对话的请求[](source:code-compact)                 |
-| 无效的 `input` 联合类型     | 改用更小的当前对话尝试一次，然后停止[](source:code-input-variant)                               |
-| 输入超长或媒体超预算        | 当前输入允许时，去掉较早的历史再试一次，然后停止[](source:code-capacity)[](source:code-compact) |
-| `invalid_encrypted_content` | 转发这次拒绝，不替换任务[](source:arch-agent)                                                   |
+| 上游应答                    | 代理的做法                                                                                                                                |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `429`                       | 转发一次，再按 Retry-After 冷却这家提供商，至多 300 秒[](source:code-http-error)                                                          |
+| 限次重试后的 `503`          | 转发原始错误，再短暂冷却这家提供商[](source:code-disposition)[](source:code-http-error)                                                   |
+| DMXAPI `477 empty_response` | 把投影后的同一份字节再发一次[](source:code-dmx)                                                                                           |
+| `response_failed`           | 严格缩小、不拆配对地重试，之后至多再试一次只含对话的请求[](source:code-compact)                                                           |
+| 无效的 `input` 联合类型     | 改用更小的当前对话尝试一次，然后停止[](source:code-input-variant)                                                                         |
+| 输入超长或媒体超预算        | 当前输入允许时，去掉较早的历史再试一次，然后停止[](source:code-capacity)[](source:code-compact)                                           |
+| `invalid_encrypted_content` | 转发这次拒绝，不替换任务[](source:arch-agent)                                                                                             |
+| 流中的顶层 `error` 事件     | 转发该事件和响应的结尾，上游在它之后发来的内容不再转发[](source:code-stream-terminals)[](source:code-stream-end)[](source:changelog-5112) |
 
 ## 已签名的发布版本如何成为正在服务的一代？ {#p-install}
 
 安装绝不下载依赖，也不读取提供商凭据。[](source:readme-install-tx) 首先，ssh-keygen 必须为 SHA256SUMS.sig 恰好找到一个主体，归档包及其平台清单也必须与已签名的校验和相符。[](source:code-signature)[](source:code-artifact) 这之后事务才提交这个包，并在完成前证明监听器无误。[](source:arch-commit)
+
+原生可执行文件冷启动若超过默认的 30 秒，可用 `--timeout-seconds` 放宽。超过 3600 的值算用法错误。[](source:readme-install-tx)[](source:code-options)[](source:changelog-5111)
 
 @diagram lifecycle id=tx-life source=transaction.lifecycle.json
 
@@ -282,7 +294,7 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 
 ## 这个代理怎样走到今天？ {#p-history}
 
-代理在 2026 年 7 月发布 1.0.0，11 月发布 5.1.10，其间两次改名。[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-5110)下面列出其中十二个版本，它们改变了客户端或运维者遇到的行为。
+代理在 2026 年 7 月发布 1.0.0，11 月发布 5.1.12，其间两次改名。[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-5112)下面列出其中十四个版本，它们改变了客户端或运维者遇到的行为。
 
 @diagram timeline id=history source=history.timeline.json title="这个代理怎样走到今天"
 
@@ -313,6 +325,10 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 | `not_installed`     | 不存在自有的服务、监听器、命令、载荷或事务         | `install --help` |
 
 每个结果至多给出一条下一步命令。[](source:code-status-next)[](source:readme-status)
+
+`status --json` 还报告可靠性计数器和已归类的失败，都不含机密。[](source:readme-evidence)上游以顶层 `error` 事件结束的流，失败类别是 `stream_error`。[](source:code-stream-class)[](source:changelog-5112)
+
+日志写明每条流怎样结束，不含事件的消息文本。流若以 `error` 事件结束，日志记 `terminal=error` 和该事件的错误码。流若没有终态事件就结束，日志记 `last=` 和最后接受的事件类型。[](source:code-stream-log)[](source:code-diagnostic)
 
 @callout level=note title="已接受的本地风险"
 | 威胁模型保留的每项残余风险，都要求存在同一用户的另一个进程。例如，`recover` 读取 /healthz 时，不做 `status` 所做的进程检查。[](source:threat-residual) |

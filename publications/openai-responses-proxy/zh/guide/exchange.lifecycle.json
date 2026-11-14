@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
       "provider": "github",
-      "revision": "a36a33cf43ac518682d94da41b799a2a6649f988"
+      "revision": "8f589e5f416117c01a8ef9d4716eca7da0edd291"
     }
   },
   "mainPath": ["ex-sending", "ex-sent", "ex-held", "ex-committed"],
@@ -50,8 +50,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/relay/sse.py",
-          "line": 127,
-          "end_line": 167,
+          "line": 131,
+          "end_line": 174,
           "label": "暂存的事件"
         }
       ]
@@ -64,8 +64,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/relay/sse.py",
-          "line": 320,
-          "end_line": 324,
+          "line": 329,
+          "end_line": 333,
           "label": "终止符"
         }
       ]
