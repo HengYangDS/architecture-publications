@@ -13,5 +13,7 @@ room holding only the repository at the bank's pin, before any item was shown to
 Both holders ran as `claude-opus-5-5`. Every citation of both pages names a file that exists at the pin with at
 least the cited lines (50 and 49 citations checked by script); no one judged whether the lines support the
 statements. Two earlier attempts wrote no page: the first had no budget and was cut off after 25 minutes, the
-second gave its page as an answer of which only the end was kept. The pages are as the holders gave them, but for
-the formatter's spacing.
+second gave its page as an answer of which only the end was kept. Subjects of the fourth arm were shown the pages as
+commit 57b2e04 holds them (SHA-256 `64c0c8b3…48a2baac` for ETHOS and `9a5dba4a…bf40b9a4` for AIGW CLI): the holders'
+words with the formatter's spacing. A later commit set the cited paths as code, which the prose check asks of a
+path, and changed no word.

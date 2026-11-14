@@ -26,7 +26,7 @@
   `service.py` are blocked module names (rules/module-layout.md 46-49).
 - Python ceilings are 80,000 product, 105,000 test and 10,000 tool line-equivalents, with `line_width` 100
   (.config/checks/format-selection/policy.toml 7-12).
-- Each code file is limited to 512 ELOC (docs/decisions/dr-0010-source-budget-non-compensation.md 59-60).
+- Each code file is limited to 512 ELOC (`docs/decisions/dr-0010-source-budget-non-compensation.md` 59-60).
 - Combined Python line-and-branch coverage is at least 95 percent over the declared product surface, and debt
   fails (docs/governance/product-design-contract.md 480-483).
 - `openspec/changes/archive/` is an immutable record root and archived OpenSpec YAML has mutation policy
@@ -37,7 +37,7 @@
   unless it passes, and an undelivered result exits 3 (docs/reference/command-plane.md 59-61).
 - The product version lives only in `VERSION`; no lock records it (docs/guides/release-and-publication.md 19).
 - Once a release identity is accepted, changed released semantics require a greater version
-  (openspec/specs/distribution/spec.md 250-254).
+  (`openspec/specs/distribution/spec.md` 250-254).
 
 ## Processes
 
@@ -61,7 +61,7 @@
 - A settled Change archives with `ethos lane archive-change --change <id> --expect-head <head>`, whose guarded
   continuation proves the archived head; if that proof fails, `--compensate` returns it to the pre-archive head
   (docs/reference/command-plane.md 464-470).
-- A Change's tasks never mark its own landing, archive or Lane retirement complete (openspec/config.yaml 39-41).
+- A Change's tasks never mark its own landing, archive or Lane retirement complete (`openspec/config.yaml` 39-41).
 - A release Change moves `VERSION` and curates `CHANGELOG.md`, then archives, proves the archived head, lands,
   publishes `dev` then `main`, tags with `ethos land --release … --tag`, and dispatches hosted `ETHOS CI`
   (docs/guides/release-and-publication.md 19-23).
@@ -87,23 +87,23 @@
 - Conflicts go through Model Promotion of the smallest affected boundary, never an exception, alias, fallback,
   shim or parallel truth (docs/governance/product-design-contract.md 195-202).
 - DR-0006 keeps local proof and independent assurance as separate planes, rejecting same-principal signatures,
-  mandatory hosted verification and a bundled daemon (docs/decisions/dr-0006-proof-trust-boundary.md 39-56).
+  mandatory hosted verification and a bundled daemon (`docs/decisions/dr-0006-proof-trust-boundary.md` 39-56).
 - DR-0010 makes source budgets non-compensating and lets a ceiling rise only by one reviewed 5,000-ELOC step,
   rejecting one aggregate budget, raw LOC, a private metric runtime and threshold-driven splits
-  (docs/decisions/dr-0010-source-budget-non-compensation.md 47-71).
+  (`docs/decisions/dr-0010-source-budget-non-compensation.md` 47-71).
 - DR-0012 imposes one repository paradigm with no per-repository exceptions, rejecting per-repository
   conventions, a cloned tree, concern-named config and unenforced documentation
-  (docs/decisions/dr-0012-repository-paradigm.md 40-65).
+  (`docs/decisions/dr-0012-repository-paradigm.md` 40-65).
 - DR-0017 gives each obligation one owner, rejecting repository-kind profiles, code-similarity sinking, starter
   templates and an exemption letting ETHOS judge itself by its own committed policy
-  (docs/decisions/dr-0017-one-obligation-one-owner.md 45-69).
+  (`docs/decisions/dr-0017-one-obligation-one-owner.md` 45-69).
 - DR-0022 makes builds immutable from 0.3.0 with `beta`, `rc` and `stable` as evidence-gated channel pointers,
-  after a hosted macOS outage stalled the line (docs/decisions/dr-0022-release-channels-0-3-0.md 27-51).
+  after a hosted macOS outage stalled the line (`docs/decisions/dr-0022-release-channels-0-3-0.md` 27-51).
 - DR-0018 judges a historical artifact by the attestation made when it was produced, never re-judging it under
   a later runtime's policy (docs/decisions/README.md 44).
 - Decision records named `dr-<four-digit-id>-<semantic-topic>.md` never reuse numbers and keep rationale, not
   executable authority; Git keeps the bytes of non-current records (docs/decisions/README.md 11-25).
 - Before archive, a design's durable cross-Change rulings move to the Product Design Contract, the terminal plan
-  or a decision record (openspec/config.yaml 76-78).
+  or a decision record (`openspec/config.yaml` 76-78).
 - Repeated late failures move to the earliest enforceable boundary, and a policy is strengthened in one owner
   rather than duplicated across surfaces (rules/README.md 46-55).

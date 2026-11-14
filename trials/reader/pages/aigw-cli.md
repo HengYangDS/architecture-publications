@@ -3,13 +3,13 @@
 - Never alter Codex JSONL, SQLite, archived conversations, model metadata or a local proxy deployment to make a
   configuration test pass (AGENTS.md 43-45).
 - Accounts, Routes, recommendations and Client Bindings form the configuration SSOT
-  (docs/decisions/dr-0004-account-route-client-binding-authority.md 32-33).
+  (`docs/decisions/dr-0004-account-route-client-binding-authority.md` 32-33).
 - Normal runtime accepts only the current schema; the preceding schema is readable only by the explicit
-  configuration migration command (docs/decisions/dr-0004-account-route-client-binding-authority.md 43-45).
+  configuration migration command (`docs/decisions/dr-0004-account-route-client-binding-authority.md` 43-45).
 - Account Tokens never appear in public configuration, logs, arguments, manifests or backups
   (docs/governance/adapter-admission.md 137-139).
 - Each installation selects one Account Token backend; explicit `keyring`, `file` and read-only `env` selections
-  never fall through to another backend (docs/decisions/dr-0011-single-portable-token-backend.md 25-34).
+  never fall through to another backend (`docs/decisions/dr-0011-single-portable-token-backend.md` 25-34).
 - Every multi-file mutation validates the desired state, captures preimages, prepares all writes first, checks
   each preimage and compensates only unchanged owned postimages (docs/architecture/security-model.md 177-185).
 - `aigw sync --dry-run --json` is credential-free planning: no lock, session edit, client restart or projection
@@ -58,7 +58,7 @@
 - One OpenSpec Change owns intent and tasks; finish implementation, archive through OpenSpec before stable
   tagging, then re-qualify the final signed source (docs/governance/change-and-release-policy.md 143-152).
 - Reviews into `dev`/`main` and every `dev`/`main` push get complete source verification; release tags add
-  signed-source and native-platform checks (docs/decisions/dr-0010-lifecycle-scoped-ci-evidence.md 31-37).
+  signed-source and native-platform checks (`docs/decisions/dr-0010-lifecycle-scoped-ci-evidence.md` 31-37).
 - `mise run release` requires clean source and `AIGW_RELEASE_SIGNING_KEY`; verify `checksums.txt.sig` with
   `ssh-keygen -Y verify`, then `go run ./tools/release validate-artifacts` (CONTRIBUTING.md 408-433).
 - Before tagging, `go run ./tools/release accept-native --candidate --clients` admits the signed candidate
@@ -80,26 +80,26 @@
   never-reused sequences and fixed sections (docs/decisions/README.md 11-30).
 - DR-0001 separates configuration control from transport, rejecting a mandatory all-in-one gateway, a client
   switcher as canonical store and provider-specific code per compatible endpoint
-  (docs/decisions/dr-0001-control-plane-data-plane-boundary.md 24-44).
+  (`docs/decisions/dr-0001-control-plane-data-plane-boundary.md` 24-44).
 - DR-0004 chose Account, Model, Route and Client Binding, rejecting client identity in every Route and separate
-  Route and Adapter selections (docs/decisions/dr-0004-account-route-client-binding-authority.md 23-52).
+  Route and Adapter selections (`docs/decisions/dr-0004-account-route-client-binding-authority.md` 23-52).
 - DR-0005 requires one explicit Adapter admission with real evidence per client, rejecting admission by protocol
   compatibility, generic discovery or provider support
-  (docs/decisions/dr-0005-admitted-client-adapter-boundary.md 36-71).
+  (`docs/decisions/dr-0005-admitted-client-adapter-boundary.md` 36-71).
 - DR-0006 prepares every target before writing and compensates only matching postimages, rejecting sequential
-  best-effort writes and unconditional rollback (docs/decisions/dr-0006-transactional-client-projection.md 21-37).
+  best-effort writes and unconditional rollback (`docs/decisions/dr-0006-transactional-client-projection.md` 21-37).
 - DR-0003 renames an Account in two phases, copy then delete, because deleting old slots at once risks lost
-  access (docs/decisions/dr-0003-account-rename-credential-migration.md 29-57).
+  access (`docs/decisions/dr-0003-account-rename-credential-migration.md` 29-57).
 - DR-0007 makes local Git the sole product-object authority, signed once and published unchanged, rejecting
   Forge identity replay and parity via qualified tags, commit maps or tree comparison
-  (docs/decisions/dr-0007-local-first-independent-forge-release.md 25-50).
+  (`docs/decisions/dr-0007-local-first-independent-forge-release.md` 25-50).
 - DR-0009 forbids shims, re-exports, alias-only packages, forwarding facades and silent legacy readers, so old
-  shapes are removed directly (docs/decisions/dr-0009-forward-only-current-product-semantics.md 24-31).
+  shapes are removed directly (`docs/decisions/dr-0009-forward-only-current-product-semantics.md` 24-31).
 - DR-0010 has hosted release jobs verify rather than construct: one approved host signs one matrix, keeping
-  private signing keys off runners (docs/decisions/dr-0010-lifecycle-scoped-ci-evidence.md 51-56).
+  private signing keys off runners (`docs/decisions/dr-0010-lifecycle-scoped-ci-evidence.md` 51-56).
 - DR-0011 selects one Token backend per installation, rejecting searching both stores, an independent host-local
   helper (rolled back), silent migration and package-manager credential paths
-  (docs/decisions/dr-0011-single-portable-token-backend.md 43-53).
+  (`docs/decisions/dr-0011-single-portable-token-backend.md` 43-53).
 - Lint limits were calibrated on three platforms, keeping Cyclop 25 over trials of 20 and 15; reopen only for a
   concrete escaped risk or semantic redesign (docs/governance/change-and-release-policy.md 453-471).
 - Renovate is the single proposal policy, as Dependabot cannot cover the mise graph; no Pants, Dagger, Nix or CEL
