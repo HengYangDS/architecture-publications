@@ -7,7 +7,7 @@ ETHOS 准入改动只看证据：OpenSpec 正式变更说明意图，当场观�
 - [每次改动都要经过编译和判定，当场放行，再用精确的 compare-and-swap 执行](block:p-plan)。[](source:invariants)
 - [每种证据只证明自己那个层面](block:p-evidence)，所以本地证明不是防伪保证。[](source:planes)[](source:proof-boundary)
 
-@answer scope="ETHOS v0.2.0-beta.9 · 提交 9997840 · 它的源码和文档 · 证明耗时实测于 2026-11-08，所用版本为 v0.2.0-beta.6"
+@answer scope="ETHOS v0.2.0-beta.10 · 提交 b10254f · 它的源码和文档 · 证明耗时实测于 2026-11-08，所用版本为 v0.2.0-beta.6"
 @meta locale=zh-CN style=editorial
 @source kernel title="内核" path="README.md" lines=100:107
 @source native title="哪些保持原生" path="README.md" lines=26:29
@@ -30,11 +30,11 @@ ETHOS 准入改动只看证据：OpenSpec 正式变更说明意图，当场观�
 @source non-authorizing title="只是输入，不是决定权" path="docs/governance/product-design-contract.md" lines=532:537
 @source invariants title="不变量" path="docs/governance/product-design-contract.md" lines=586:602
 @source axioms title="工程公理" path="system/axioms.md" lines=15:31
-@source service title="唯一的应用服务" path="docs/plans/terminal-governance-product-design.md" lines=402:405
-@source recovery title="从仓库证据恢复" path="docs/plans/terminal-governance-product-design.md" lines=420:422
-@source resume title="另一个 Agent 接手" path="docs/plans/terminal-governance-product-design.md" lines=170:174
-@source route title="余下的路线" path="docs/plans/terminal-governance-product-design.md" lines=155:159
-@source acceptance title="按任务验收" path="docs/plans/terminal-governance-product-design.md" lines=424:428
+@source service title="唯一的应用服务" path="docs/plans/terminal-governance-product-design.md" lines=403:406
+@source recovery title="从仓库证据恢复" path="docs/plans/terminal-governance-product-design.md" lines=421:423
+@source resume title="另一个 Agent 接手" path="docs/plans/terminal-governance-product-design.md" lines=171:175
+@source route title="余下的路线" path="docs/plans/terminal-governance-product-design.md" lines=156:160
+@source acceptance title="按任务验收" path="docs/plans/terminal-governance-product-design.md" lines=425:429
 @source mcp-authority title="标签和先前的检查都不授权" path="docs/architecture/mcp-server.md" lines=28:31
 @source mcp-open title="MCP 符合性仍待鉴定" path="docs/architecture/mcp-server.md" lines=33:40
 @source standards title="外部标准经适配器接入" path="docs/architecture/protocol-contracts.md" lines=18:22
@@ -65,6 +65,7 @@ ETHOS 准入改动只看证据：OpenSpec 正式变更说明意图，当场观�
 @source proof-gates title="内置门禁与仓库自有门禁" path="docs/reference/command-plane.md" lines=438:442
 @source load-limit title="先就绪，再看主机负载" path="docs/reference/command-plane.md" lines=449:449
 @source standard-proof title="冻结源码上的完整证明" path="docs/reference/command-plane.md" lines=444:447
+@source blank-lines title="各种格式的空行" path="docs/reference/configuration.md" lines=178:192
 @source gates-floor title="内置的证明集" path="system/gates.toml" lines=5:7
 @source preflight title="测试之前的就绪层" path="src/ethos/adapters/gates/runner.py" lines=295:327
 @source ready-set title="数量有限且互相兼容的就绪集" path="src/ethos/adapters/gates/runner.py" lines=330:355
@@ -73,6 +74,11 @@ ETHOS 准入改动只看证据：OpenSpec 正式变更说明意图，当场观�
 @source paradigm-context title="DR-0012：发现的漂移" path="docs/decisions/dr-0012-repository-paradigm.md" lines=21:34
 @source paradigm title="DR-0012：范式规定什么" path="docs/decisions/dr-0012-repository-paradigm.md" lines=45:58
 @source paradigm-gap title="DR-0012：缺口阻止什么" path="docs/decisions/dr-0012-repository-paradigm.md" lines=69:69
+@source paradigm-preview title="范式修复的预览命令" path="src/ethos/repository/paradigm/repair.py" lines=58:59
+@source paradigm-next title="范式报告给出的下一步" path="src/ethos/repository/paradigm/repair.py" lines=123:128
+@source list-rule title="Markdown 列表规则" path="src/ethos/repository/paradigm/markdown_spacing.py" lines=1:9
+@source text-layout title="规范文本的版式" path="src/ethos/repository/paradigm/text_layout.py" lines=1:6
+@source package-docstring title="包标记文件的文档字符串" path="src/ethos/repository/paradigm/packages.py" lines=1:5
 @source commitment title="编译 Commitment" path="src/ethos/adapters/openspec/commitment.py" lines=46:58
 @source commitment-class title="Commitment" path="src/ethos/contracts/semantic.py" lines=199:204
 @source facts-class title="Facts" path="src/ethos/contracts/semantic.py" lines=400:409
@@ -82,7 +88,10 @@ ETHOS 准入改动只看证据：OpenSpec 正式变更说明意图，当场观�
 @source plan-inputs title="PlanInputs" path="src/ethos/contracts/plan.py" lines=91:98
 @source prewrite title="写前准入守卫" path="src/ethos/adapters/admission/prewrite.py" lines=117:149
 @source lane title="开始一条工作通道" path="src/ethos/adapters/mutation/lane_lifecycle/start.py" lines=345:355
+@source lane-status title="查看通道状态" path="src/ethos/application/lane/lifecycle.py" lines=44:46
+@source worktree-record title="通道状态中的一个工作区" path="src/ethos/adapters/repo/status/workspace.py" lines=394:409
 @source hook title="唯一的钩子入口" path="src/ethos/adapters/repo/hook/protocol.py" lines=21:34
+@source staged-text title="pre-commit 放行的版式规则" path="src/ethos/adapters/repo/hook/staged_text.py" lines=1:6
 @source proof title="一个 HEAD 的证明" path="src/ethos/adapters/mutation/proof.py" lines=417:422
 @source landing title="落地到候选分支" path="src/ethos/adapters/mutation/landing.py" lines=57:70
 @source push title="向一个平台精确推送" path="src/ethos/adapters/mutation/publication/execution.py" lines=45:56
@@ -91,8 +100,8 @@ ETHOS 准入改动只看证据：OpenSpec 正式变更说明意图，当场观�
 @source python-range title="支持的 Python 版本" path="pyproject.toml" lines=1:6
 @source branch-roles title="分支角色" path="src/ethos/contracts/paradigm/paradigm.toml" lines=50:57
 @source parameters title="单个文件的上限与门禁时限" path="src/ethos/contracts/paradigm/paradigm.toml" lines=94:129
-@source changelog-first title="第一条记录：0.1.0-alpha.1" path="CHANGELOG.md" lines=2202:2208
-@source changelog-pinned title="本作品锁定的 0.2.0-beta.9" path="CHANGELOG.md" lines=15:27
+@source changelog-first title="第一条记录：0.1.0-alpha.1" path="CHANGELOG.md" lines=2301:2307
+@source changelog-pinned title="本作品锁定的 0.2.0-beta.10" path="CHANGELOG.md" lines=15:23
 
 ## 谁在使用 ETHOS，它又负责什么？ {#p-context}
 
@@ -172,7 +181,7 @@ ETHOS 准入改动只看证据：OpenSpec 正式变更说明意图，当场观�
 
 ## 一条通道怎样走完全程，出了问题又怎样恢复？ {#p-lane}
 
-有了通道，人和 Agent 可以同时改动同一个仓库。看得到别的通道，不等于可以往里写；最后由快进式落地裁决。[](source:visibility)[](source:coordination)
+有了通道，人和 Agent 可以同时改动同一个仓库。看得到别的通道，不等于可以往里写；最后由快进式落地裁决。[](source:visibility)[](source:coordination)`ethos lane status --json` 报告通道拓扑和他人的通道。[](source:lane-status)它的 `worktrees` 逐项列出各工作区：角色、是否被锁定、Git 能否清理，后两项各附 Git 给出的原因。[](source:worktree-record)
 
 @diagram lifecycle id=lane-life source=lane.lifecycle.json title="工作通道：从开始到退役"
 
@@ -284,7 +293,11 @@ xychart-beta horizontal
 @facts
 | 所有仓库共有 | 根目录入口、按工具分组的配置、绑定、提交、分支与发布约定、文档元数据、格式化工具、工具链动词、编排、CI 和命名[](source:paradigm) |
 | 各仓库自留 | 产品与领域结构、测试、文档主题和平台形态[](source:paradigm) |
-| 某个仓库漂移时 | 缺口会阻止 prove、land 和 publish，写前准入也会拒绝该路径。[](source:paradigm-gap) |
+| 某个仓库漂移时 | 缺口会阻止 prove、land 和 publish，写前准入也会拒绝该路径。[](source:paradigm-gap)如果 `ethos lane repair-paradigm` 写得出修复，范式报告的下一步就是这项修复的预览 `ethos lane repair-paradigm --json`。[](source:paradigm-next)[](source:paradigm-preview)需要判断的缺口仍给出自己的修复办法。[](source:paradigm-next) |
+| 空行 | 每种格式的空行都由一个归属方决定。`ethos lane format` 检查并修复空行，`pre-commit` 拒绝暂存区里违反规则的 Markdown 文件和规范文本文件。[](source:blank-lines)[](source:staged-text) |
+| Markdown 列表 | Prettier 之后再应用一条列表规则。[](source:blank-lines)条目里各块之间隔了空行的，条目后面空一行；其余条目后面直接接下一条。[](source:list-rule) |
+| 没有格式化工具负责的文本 | INI 和 `.cfg` 文件、Vale 词表、`LICENSE`、`VERSION`、Git 与编辑器的点文件，还有 CI 供应的 `Dockerfile`，都按仓库规范文本排版。[](source:blank-lines)规范文本开头和结尾没有空行，连续空行至多一行，末尾只有一个换行。[](source:blank-lines)[](source:text-layout) |
+| 包标记文件 | 每个 `__init__.py` 都以文档字符串开头，写明这个包的用途。用途只有作者知道，所以这个缺口只报告、不自动修复；`pre-commit` 拒绝暂存区里没有文档字符串的标记文件。[](source:package-docstring)[](source:staged-text) |
 
 ## ETHOS 按哪些原则构建？ {#p-principles}
 
@@ -305,7 +318,7 @@ xychart-beta horizontal
 
 ## ETHOS 怎样走到今天？ {#p-history}
 
-变更日志第一条是 2026 年 6 月 30 日的 0.1.0-alpha.1；本作品锁定 0.2.0-beta.9，它发布于 11 月 12 日。[](source:changelog-first)[](source:changelog-pinned)下面列出其间十五个版本，图中按预发布名标注，它们改变了 ETHOS 为受治理的仓库所做的事。
+变更日志第一条是 2026 年 6 月 30 日的 0.1.0-alpha.1；本作品锁定 0.2.0-beta.10，它发布于 11 月 14 日。[](source:changelog-first)[](source:changelog-pinned)下面列出其间十六个版本，图中按预发布名标注，它们改变了 ETHOS 为受治理的仓库所做的事。
 
 @diagram timeline id=history source=history.timeline.json title="ETHOS 怎样走到今天"
 

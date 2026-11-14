@@ -7,17 +7,18 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 - [录音只有完整收尾才能进入音轨](block:p-takes)，除非影片为它的衔接声明了尾音淡出。[](source:abrupt)
 - [画面只有通过门禁才会渲染](block:p-picture)，而且门禁针对的必须是当前的画面合成、时间线、样式表、字体和引擎版本。[](source:render-gate)
 
-@answer scope="Film Kit v0.21.2 · 提交 3824247 · 源码及项目自带文档"
+@answer scope="Film Kit v0.21.3 · 提交 d79dbb5 · 源码及项目自带文档"
 @meta locale=zh-CN style=editorial
 @source readme-what title="Film Kit 做什么" path="README.md" lines=3:3
 @source spec-rate title="帧率" path="src/filmkit/specification.py" lines=25:30
 @source spec-sound title="采样率与节目响度" path="src/filmkit/specification.py" lines=33:47
 @source sample-declaration title="示例影片的声明" path="examples/sample-film/content/film.toml" lines=6:22
-@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=348:352
-@source changelog-019 title="0.19.0 的改动" path="CHANGELOG.md" lines=61:76
-@source changelog-020 title="0.20.0 的改动" path="CHANGELOG.md" lines=44:60
-@source changelog-0211 title="0.21.1 的改动" path="CHANGELOG.md" lines=13:19
-@source changelog-0212 title="0.21.2 的发布" path="CHANGELOG.md" lines=7:11
+@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=361:365
+@source changelog-019 title="0.19.0 的改动" path="CHANGELOG.md" lines=74:89
+@source changelog-020 title="0.20.0 的改动" path="CHANGELOG.md" lines=57:73
+@source changelog-0211 title="0.21.1 的改动" path="CHANGELOG.md" lines=26:32
+@source changelog-0212 title="0.21.2 的发布" path="CHANGELOG.md" lines=20:24
+@source changelog-0213 title="0.21.3 的发布" path="CHANGELOG.md" lines=7:18
 @source readme-engine title="引擎不带任何影片的内容" path="README.md" lines=5:5
 @source readme-requirements title="运行要求" path="README.md" lines=9:12
 @source readme-layout title="影片的目录结构" path="README.md" lines=18:26
@@ -31,7 +32,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @source readme-endings title="完整收尾" path="README.md" lines=219:221
 @source readme-dev title="开发" path="README.md" lines=243:243
 @source agents-contract title="引擎契约" path="AGENTS.md" lines=10:16
-@source changelog-pin title="影片保留原有的锁定版本" path="CHANGELOG.md" lines=248:248
+@source changelog-pin title="影片保留原有的锁定版本" path="CHANGELOG.md" lines=261:261
 @source film-root title="查找影片" path="src/filmkit/repository.py" lines=28:50
 @source film-load title="检查声明" path="src/filmkit/film.py" lines=386:401
 @source edition-places title="语言版写到哪里" path="src/filmkit/production.py" lines=138:154
@@ -283,7 +284,9 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 
 ## Film Kit 怎样走到今天？ {#p-history}
 
-Film Kit 在 2026 年 10 月 30 日发布 v0.1.0，11 月 13 日发布 v0.21.2。[](source:changelog-010)[](source:changelog-0212)时间线列出其中改变影片做法的十四个版本。最后两个事件是 v0.21.0 之后的补丁版本，只更新了仓库工具链和锁定的依赖包。[](source:changelog-0211)[](source:changelog-0212)仓库里没有带日期的路线图，还没做的事列在本页最后。
+Film Kit 在 2026 年 10 月 30 日发布 v0.1.0，11 月 14 日发布 v0.21.3。[](source:changelog-010)[](source:changelog-0213)时间线列出其中改变影片做法的十四个版本。最后两个事件是补丁版本 v0.21.1 和 v0.21.2，只更新了仓库工具链和锁定的依赖包。[](source:changelog-0211)[](source:changelog-0212)v0.21.3 也是如此，没有列入时间线。[](source:changelog-0213)
+
+仓库里没有带日期的路线图，还没做的事列在本页最后。
 
 @diagram timeline id=history source=history.timeline.json title="Film Kit 怎样走到今天"
 

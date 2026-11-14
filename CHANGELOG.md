@@ -14,6 +14,10 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 - `trials/`, the rules and records of the trials that Architecture Publisher's roadmap opens with: the
   reviewer's procedure and seeded checks with the record of the first run, the reader experiment's protocol and
   item bank, and the definitions of the comparison of lines on screen.
+- The records of those trials, each with its data, and one page on what they decided: the reader experiment (a
+  work's model and guide text beside its repository raise a reader's recall from 0.450 to 0.652; one hand-written
+  page of constraints does not), the reviewer's check on defects of form (no holder passes by eye), the comparison
+  of lines on screen with a first figure-reading check, and the author's timing, whose protocol is added.
 - A summary on every view of every work, in English and in Chinese, set beside
   its figure in the print edition. The input check refuses a view without one.
 - Each work's page shows how its system got here: a timeline of the releases
@@ -29,13 +33,19 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   its English work `Roles`, and the Responses proxy's Chinese work 「运维者」. A test refuses 「人员」 and
   「审阅人」 in a work's Chinese files and term table.
 - The repository's checks run on ETHOS 0.2.0-beta.10.
+- The repository's tools run on Node 26.13.1, a security release, and its format check on Prettier
+  3.10.1.
 - OpenAI Responses Proxy is pinned at v5.1.12, Architecture Publisher at
-  v0.13.1, Film Kit at v0.21.2, ETHOS at v0.2.0-beta.9 and AIGW at v0.7.1.
+  v0.14.0, Film Kit at v0.21.3, ETHOS at v0.2.0-beta.10 and AIGW at v0.7.1.
   Building the works needs Architecture Publisher 0.10.2 or later. The
   Architecture Publisher work lists the `skill` command, describes strips,
   palettes, age bands and the sealed acceptance of an edition, and claims
   `src/style.mjs`. The Film Kit work claims the engine's own draft and picture
   repair, its Spotlight readback and the label matches of its picture gate.
+  At v0.14.0 the Architecture Publisher work describes details set as a justified paragraph in a language written
+  without spaces between words, the house faces measured with their pair kerning, and a key set by its baseline. At
+  v0.2.0-beta.10 the ETHOS work describes the blank-line owner of every format, the Markdown list rule, package
+  markers, and the repair preview a refusal names as its next action.
   At v5.1.12 the Responses proxy work describes how a stream that ends with a top-level `error` event is ended and
   reported, and what `--port` and `--timeout-seconds` refuse. At v0.7.1 the AIGW work describes a client check that
   starts each client without a parent agent session's variables.

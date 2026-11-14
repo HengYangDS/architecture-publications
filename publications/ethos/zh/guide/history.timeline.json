@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/ethos.git",
       "provider": "github",
-      "revision": "999784081fa3de9a97879ac17862f425b8120437"
+      "revision": "b10254f871435813dbf7e609ee535f397f8ef7ad"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -43,8 +43,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1975,
-          "end_line": 1983,
+          "line": 2074,
+          "end_line": 2082,
           "label": "0.2.0-alpha.5"
         }
       ]
@@ -58,8 +58,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1887,
-          "end_line": 1900,
+          "line": 1986,
+          "end_line": 1999,
           "label": "0.2.0-alpha.6"
         }
       ]
@@ -73,20 +73,20 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1735,
-          "end_line": 1739,
+          "line": 1834,
+          "end_line": 1838,
           "label": "0.2.0-alpha.8"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 1789,
+          "line": 1888,
+          "end_line": 1893,
+          "label": "0.2.0-alpha.8"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 1792,
           "end_line": 1794,
-          "label": "0.2.0-alpha.8"
-        },
-        {
-          "path": "CHANGELOG.md",
-          "line": 1693,
-          "end_line": 1695,
           "label": "0.2.0-alpha.10"
         }
       ]
@@ -101,8 +101,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1476,
-          "end_line": 1487,
+          "line": 1575,
+          "end_line": 1586,
           "label": "0.2.0-alpha.18"
         }
       ]
@@ -116,8 +116,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1427,
-          "end_line": 1430,
+          "line": 1526,
+          "end_line": 1529,
           "label": "0.2.0-alpha.19"
         }
       ]
@@ -131,8 +131,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1287,
-          "end_line": 1293,
+          "line": 1386,
+          "end_line": 1392,
           "label": "0.2.0-alpha.22"
         }
       ]
@@ -147,8 +147,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1165,
-          "end_line": 1174,
+          "line": 1264,
+          "end_line": 1273,
           "label": "0.2.0-alpha.26"
         }
       ]
@@ -162,8 +162,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1107,
-          "end_line": 1116,
+          "line": 1206,
+          "end_line": 1215,
           "label": "0.2.0-alpha.27"
         }
       ]
@@ -177,8 +177,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 940,
-          "end_line": 947,
+          "line": 1039,
+          "end_line": 1046,
           "label": "0.2.0-alpha.29"
         }
       ]
@@ -192,8 +192,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 808,
-          "end_line": 830,
+          "line": 907,
+          "end_line": 929,
           "label": "0.2.0-beta.2"
         }
       ]
@@ -208,8 +208,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 708,
-          "end_line": 723,
+          "line": 807,
+          "end_line": 822,
           "label": "0.2.0-beta.3"
         }
       ]
@@ -224,14 +224,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 495,
-          "end_line": 504,
+          "line": 594,
+          "end_line": 603,
           "label": "0.2.0-beta.6"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 522,
-          "end_line": 527,
+          "line": 621,
+          "end_line": 626,
           "label": "0.2.0-beta.6"
         }
       ]
@@ -246,14 +246,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 212,
-          "end_line": 226,
+          "line": 311,
+          "end_line": 325,
           "label": "0.2.0-beta.7"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 487,
-          "end_line": 489,
+          "line": 586,
+          "end_line": 588,
           "label": "0.2.0-beta.7"
         }
       ]
@@ -267,8 +267,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 92,
-          "end_line": 94,
+          "line": 191,
+          "end_line": 193,
           "label": "0.2.0-beta.8"
         }
       ]
@@ -283,15 +283,43 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 35,
-          "end_line": 40,
+          "line": 134,
+          "end_line": 139,
           "label": "0.2.0-beta.9"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 26,
-          "end_line": 27,
+          "line": 125,
+          "end_line": 126,
           "label": "0.2.0-beta.9"
+        }
+      ]
+    },
+    {
+      "id": "beta-10",
+      "at": "2026-11-14T08:04:44+08:00",
+      "lane": "paradigm",
+      "kind": "change",
+      "title": "beta.10 空行规则与包文档字符串",
+      "detail": "Markdown 列表遵守同一条空行规则，没有格式化工具负责的文本按一种规范版式排版，两者都由 ethos lane format 修复。仓库自撰的每个包标记文件都以文档字符串开头，写明这个包的用途。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 36,
+          "end_line": 42,
+          "label": "0.2.0-beta.10"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 43,
+          "end_line": 49,
+          "label": "0.2.0-beta.10"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 50,
+          "end_line": 53,
+          "label": "0.2.0-beta.10"
         }
       ]
     }

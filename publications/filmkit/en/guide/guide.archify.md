@@ -7,17 +7,18 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 - [A take reaches the soundtrack only if it ends whole](block:p-takes), or if the film declares a release for its join.[](source:abrupt)
 - [The picture renders only after its gate passes](block:p-picture) for the current composition, timeline, stylesheet, fonts and engine version.[](source:render-gate)
 
-@answer scope="Film Kit v0.21.2 · commit 3824247 · its source and its own documents"
+@answer scope="Film Kit v0.21.3 · commit d79dbb5 · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What Film Kit does" path="README.md" lines=3:3
 @source spec-rate title="Frame rate" path="src/filmkit/specification.py" lines=25:30
 @source spec-sound title="Sample rate and program level" path="src/filmkit/specification.py" lines=33:47
 @source sample-declaration title="The sample film's declaration" path="examples/sample-film/content/film.toml" lines=6:22
-@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=348:352
-@source changelog-019 title="The 0.19.0 changes" path="CHANGELOG.md" lines=61:76
-@source changelog-020 title="The 0.20.0 changes" path="CHANGELOG.md" lines=44:60
-@source changelog-0211 title="The 0.21.1 changes" path="CHANGELOG.md" lines=13:19
-@source changelog-0212 title="The 0.21.2 release" path="CHANGELOG.md" lines=7:11
+@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=361:365
+@source changelog-019 title="The 0.19.0 changes" path="CHANGELOG.md" lines=74:89
+@source changelog-020 title="The 0.20.0 changes" path="CHANGELOG.md" lines=57:73
+@source changelog-0211 title="The 0.21.1 changes" path="CHANGELOG.md" lines=26:32
+@source changelog-0212 title="The 0.21.2 release" path="CHANGELOG.md" lines=20:24
+@source changelog-0213 title="The 0.21.3 release" path="CHANGELOG.md" lines=7:18
 @source readme-engine title="The engine carries no film's content" path="README.md" lines=5:5
 @source readme-requirements title="Requirements" path="README.md" lines=9:12
 @source readme-layout title="A film's layout" path="README.md" lines=18:26
@@ -31,7 +32,7 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 @source readme-endings title="Whole endings" path="README.md" lines=219:221
 @source readme-dev title="Development" path="README.md" lines=243:243
 @source agents-contract title="The engine contract" path="AGENTS.md" lines=10:16
-@source changelog-pin title="A film keeps its pin" path="CHANGELOG.md" lines=248:248
+@source changelog-pin title="A film keeps its pin" path="CHANGELOG.md" lines=261:261
 @source film-root title="Finding the film" path="src/filmkit/repository.py" lines=28:50
 @source film-load title="Checking the declaration" path="src/filmkit/film.py" lines=386:401
 @source edition-places title="Where an edition writes" path="src/filmkit/production.py" lines=138:154
@@ -283,7 +284,9 @@ Delivery fills the film's Documents folder with exactly 25 members, then reads t
 
 ## How did Film Kit get here? {#p-history}
 
-Film Kit released v0.1.0 on 30 October 2026 and v0.21.2 on 13 November.[](source:changelog-010)[](source:changelog-0212) The timeline shows the fourteen releases that changed how a film is made. Its last two events are the patch releases after v0.21.0, which moved only the repository's tools and pinned packages.[](source:changelog-0211)[](source:changelog-0212) The repository keeps no dated roadmap; what is still open is listed last on this page.
+Film Kit released v0.1.0 on 30 October 2026 and v0.21.3 on 14 November.[](source:changelog-010)[](source:changelog-0213) The timeline shows the fourteen releases that changed how a film is made. Its last two events are the patch releases v0.21.1 and v0.21.2, which moved only the repository's tools and pinned packages.[](source:changelog-0211)[](source:changelog-0212) The v0.21.3 release did the same and is not on the timeline.[](source:changelog-0213)
+
+The repository keeps no dated roadmap; what is still open is listed last on this page.
 
 @diagram timeline id=history source=history.timeline.json title="How Film Kit got here"
 

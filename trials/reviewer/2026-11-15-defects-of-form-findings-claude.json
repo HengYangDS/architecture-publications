@@ -1,0 +1,128 @@
+{
+  "holder": "claude",
+  "plates": {
+    "plate-01": [
+      {
+        "class": "colour-only",
+        "where": "c: the lines that run into the hub 已安装的 ETHOS at the foot (from 贡献指南, 工具供应, 检查输入, 文档质量 and 生成的流水线) are drawn like the grey lines in weight and style and are set apart only by their dark blue colour"
+      }
+    ],
+    "plate-02": [
+      {
+        "class": "key-off-line",
+        "where": "d: key line at the foot, the dark sample line before 指向任务地图 sits low at the label's baseline like an underline instead of at the label's middle"
+      },
+      {
+        "class": "colour-only",
+        "where": "c: the lines into the hub 任务地图 (引向 from 仓库入口, and the 一张任务地图 and 从这里读起 arrows from above) are the same weight and style as the grey lines and differ only by their dark blue colour"
+      }
+    ],
+    "plate-03": [
+      {
+        "class": "blank-area",
+        "where": "b: top right of the figure, right of 审阅人 and 交付物构建器 and above 讲解页, inside and above the dashed frame's upper right corner; an empty block of about 460 x 620 px, roughly a sixth of the figure"
+      }
+    ],
+    "plate-04": [
+      {
+        "class": "key-off-line",
+        "where": "d: key line at the foot, the dark sample line before 指向 Git 改动引擎 sits at the label's baseline like an underline instead of at the label's middle"
+      },
+      {
+        "class": "colour-only",
+        "where": "c: the lines into the hub Git 改动引擎 (创建引用、工作区, 放行改动 and 用 CAS 移动引用) are the same weight and style as the grey lines and differ only by their dark blue colour"
+      }
+    ],
+    "plate-05": [
+      {
+        "class": "key-off-line",
+        "where": "c: key line at the foot; the 提交前 7 日内 / 90 日内 / 更早 swatches, the 100 KB bar and the tick sample sit low against their labels, aligned to the text's foot instead of centred on the label's middle"
+      }
+    ],
+    "plate-06": [
+      {
+        "class": "key-off-line",
+        "where": "c: key line at the foot; the 提交前 7 日内 / 90 日内 swatches, the 50 KB bar and the tick sample sit below their labels' middle, aligned to the text's foot"
+      },
+      {
+        "class": "blank-area",
+        "where": "c: an empty column left of the dashed boundary under 作者, running from its detail down to the foot of the figure (a second large empty block is in b, inside the boundary to the right of archpub and above 物料)"
+      }
+    ],
+    "plate-07": [],
+    "plate-08": [
+      {
+        "class": "key-off-line",
+        "where": "d: key line; the dark-blue sample line for 指向物料 sits at the foot of its label like an underline, well below the label's middle (the swatches in c also sit slightly low)"
+      },
+      {
+        "class": "lone-character",
+        "where": "a: the 图版编排器 detail ends with 方 alone on its last line (also c: the 字体 detail ends with 致 alone on its last line)"
+      },
+      {
+        "class": "colour-only",
+        "where": "c: the four lines into the hub 物料 (加载字体, 加载图标 and the two 用版式字体排版) differ from the other lines only by their dark-blue colour, with the same weight, solid style and arrowheads"
+      }
+    ],
+    "plate-09": [
+      {
+        "class": "open-boundary",
+        "where": "b: right end of the dashed data-department-work-guidelines frame, right of 核验 and ETHOS 配置档. The top and bottom dashed edges stop near x≈1870 and no right side joins them (the bottom edge's cut end shows in d)."
+      }
+    ],
+    "plate-10": [
+      {
+        "class": "blank-area",
+        "where": "a: large empty block left of the ethos frame, under the prose and above 原生工具 (about x 145–540, y 315–990 on the full plate; it carries on into the top of c). A smaller empty area sits inside the frame at bottom right in d, below 证明核验记录 and 核验记录集."
+      }
+    ],
+    "plate-11": [
+      {
+        "class": "colour-only",
+        "where": "c: hub Git 改动引擎. The lines into it (创建引用、工作区, 放行改动 and 用 CAS 移动引用) differ from the grey lines only by their dark blue colour: same weight, same style and same arrowheads (they start in a)."
+      }
+    ],
+    "plate-12": [
+      {
+        "class": "key-off-line",
+        "where": "c: key line at the foot. The sample marks, especially the tick sample before 每道刻痕 and also the colour swatches and the 100 KB bar, sit a few px below the middle of their labels. The key labels sit higher than on the other plates."
+      },
+      {
+        "class": "blank-area",
+        "where": "d: bottom-right of the ethos frame. Below 文档注册表 and 核验记录集 and right of 发布身份, a large empty block runs from about x 1070 to 1940 and y 900 to 1220 on the full plate."
+      }
+    ],
+    "plate-13": [
+      {
+        "class": "blank-area",
+        "where": "b: inside the architecture-publisher boundary at the top right, a large empty block right of archpub and LikeC4 导入器 and above 物料, about a sixth of the figure; there is a second empty column of about the same size under 作者 at the left (tile c)"
+      }
+    ],
+    "plate-14": [
+      {
+        "class": "colour-only",
+        "where": "c: the four lines into the hub 物料 (加载字体, 加载图标 and the two 用版式字体排版 lines) differ from the grey lines only by their dark blue colour, with the same weight and style; the key calls them 深色连线"
+      }
+    ],
+    "plate-15": [
+      {
+        "class": "key-off-line",
+        "where": "d: in the key line, the dark line sample for 指向已安装的 ETHOS sits low at the foot of its label, like an underline, not at the label's middle"
+      }
+    ],
+    "plate-16": [
+      {
+        "class": "open-boundary",
+        "where": "b: the dashed data-department-work-guidelines boundary has no right side; its top and bottom dashed lines stop to the right of 核验 and ETHOS 配置档 with no corner or vertical side (bottom end in tile d)"
+      },
+      {
+        "class": "lone-character",
+        "where": "c: the detail of OpenSpec 工作空间, whose last line holds the single character 更"
+      },
+      {
+        "class": "key-off-line",
+        "where": "d: in the key line, the dark line sample for 指向 OpenSpec 工作空间 sits low at the foot of its label, like an underline, not at the label's middle"
+      }
+    ]
+  }
+}

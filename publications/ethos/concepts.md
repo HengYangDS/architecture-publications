@@ -1,7 +1,7 @@
 # ETHOS: term renderings
 
 The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `ethos` at v0.2.0-beta.9 (`9997840`) that defines or uses the term; "film" is the owner-approved
+names the file of `ethos` at v0.2.0-beta.10 (`b10254f`) that defines or uses the term; "film" is the owner-approved
 Chinese narration, `content/narration.md` of `ethos-film` at v1.0.1 (`c33e60f`). Product names, command names and
 their options, verdict values (`pass`, `block`, `unknown`), file and ref names, and the kernel names Commitment, Facts
 and TransitionPlan stay in Latin type.
@@ -117,6 +117,9 @@ and TransitionPlan stay in Latin type.
 | audit / finding                               | 审计 / 发现                                | `src/ethos/repository/audit.py`                                                                          |
 | references (between carriers)                 | 引用关系                                   | `src/ethos/repository/policy/references/`                                                                |
 | docstring                                     | 文档字符串                                 | `src/ethos/repository/policy/`                                                                           |
+| package marker                                | 包标记文件                                 | `src/ethos/repository/paradigm/packages.py`                                                              |
+| canonical text                                | 规范文本                                   | `src/ethos/repository/paradigm/text_layout.py`                                                           |
+| prune (a worktree)                            | 清理                                       | `src/ethos/adapters/repo/worktree_list.py`                                                               |
 | artifact                                      | 产物                                       | `src/ethos/contracts/artifacts/`                                                                         |
 | adoption / adopt / adopter                    | 接入 / 接入仓库                            | `src/ethos/repository/adoption/`; film                                                                   |
 | form (a repository)                           | 建立                                       | `src/ethos/adapters/repo/adoption.py`                                                                    |
