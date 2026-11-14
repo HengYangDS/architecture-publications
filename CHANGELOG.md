@@ -29,13 +29,16 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   its English work `Roles`, and the Responses proxy's Chinese work 「运维者」. A test refuses 「人员」 and
   「审阅人」 in a work's Chinese files and term table.
 - The repository's checks run on ETHOS 0.2.0-beta.10.
-- OpenAI Responses Proxy is pinned at v5.1.10, Architecture Publisher at
-  v0.13.1, Film Kit at v0.21.2, ETHOS at v0.2.0-beta.9 and AIGW at v0.7.0.
+- OpenAI Responses Proxy is pinned at v5.1.12, Architecture Publisher at
+  v0.13.1, Film Kit at v0.21.2, ETHOS at v0.2.0-beta.9 and AIGW at v0.7.1.
   Building the works needs Architecture Publisher 0.10.2 or later. The
   Architecture Publisher work lists the `skill` command, describes strips,
   palettes, age bands and the sealed acceptance of an edition, and claims
   `src/style.mjs`. The Film Kit work claims the engine's own draft and picture
   repair, its Spotlight readback and the label matches of its picture gate.
+  At v5.1.12 the Responses proxy work describes how a stream that ends with a top-level `error` event is ended and
+  reported, and what `--port` and `--timeout-seconds` refuse. At v0.7.1 the AIGW work describes a client check that
+  starts each client without a parent agent session's variables.
 - The ETHOS work claims the application layer and the operation catalog. The
   AIGW work uses the client's new vocabulary: it no longer has a renaming
   component, and its catalog, readiness, configuration and rollout panels follow
