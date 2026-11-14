@@ -29,6 +29,8 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   its English work `Roles`, and the Responses proxy's Chinese work 「运维者」. A test refuses 「人员」 and
   「审阅人」 in a work's Chinese files and term table.
 - The repository's checks run on ETHOS 0.2.0-beta.10.
+- The repository's tools run on Node 26.13.1, a security release, and its format check on Prettier
+  3.10.1.
 - OpenAI Responses Proxy is pinned at v5.1.10, Architecture Publisher at
   v0.13.1, Film Kit at v0.21.2, ETHOS at v0.2.0-beta.9 and AIGW at v0.7.0.
   Building the works needs Architecture Publisher 0.10.2 or later. The

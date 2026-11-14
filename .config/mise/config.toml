@@ -17,7 +17,7 @@ description = "Apply the formatters"
 run = "npm run fix"
 
 [tools]
-node = "26.13.0"
+node = "26.13.1"
 
 # The ETHOS release declaration as published with v0.2.0-beta.10.
 [tools."http:ethos"]
