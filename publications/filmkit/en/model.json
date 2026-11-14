@@ -6,7 +6,7 @@
   "title": "Film Kit",
   "question": "How does Film Kit rebuild a film's two editions from its tracked sources, and what holds each step to its inputs?",
   "summary": "Film Kit narrates each edition thought by thought with a pinned local voice model, assembles one soundtrack at one program level, times the captions, gates and renders the picture, and packages four films, a UHD master and a 1080p film each with captions and without. Each step records the SHA-256 of what it read, and a later step refuses a record bound to other bytes.",
-  "scope": "The Film Kit engine as released at v0.21.3: the src/filmkit package, with its Python modules, Node tools and watch list, and the pyproject.toml and VERSION that package it.",
+  "scope": "The Film Kit engine as released at v0.22.2: the src/filmkit package, with its Python modules, Node tools and watch list, and the pyproject.toml and VERSION that package it.",
   "limits": [
     "Each component cites every file the rules attribute to it; a relation cites the modules that make its call or run its process.",
     "Relations are calls and process calls in the source, not runtime order, and not every call is drawn: reads of the film record and the spoken units, which most modules make, and the calls that verification and review make across the build are named in component details.",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "filmkit",
     "url": "https://github.com/HengYangDS/filmkit.git",
-    "revision": "d79dbb58277d8045bfc718ed33df20287e657f5b",
+    "revision": "6baca043b57f3188fff8629070f03ed8f0d81c92",
     "browse": "https://github.com/HengYangDS/filmkit/blob/{revision}/{path}"
   },
   "coverage": {
@@ -146,7 +146,7 @@
       "kind": "command",
       "details": {
         "runs": "one production action for one edition",
-        "actions": "select, assemble, refresh-captions, stage-picture, check-picture, preflight, render-picture, validate-picture, compare-pictures, package-metadata, package-film"
+        "actions": "select, assemble, refresh-captions, check-sound, stage-picture, check-picture, preflight, render-picture, validate-picture, compare-pictures, package-metadata, package-film"
       },
       "files": ["src/filmkit/produce.py", "src/filmkit/preflight.py"]
     },
@@ -272,7 +272,8 @@
       "details": {
         "assembles": "the selected takes with designed pauses at one program level",
         "refuses": "a take that ends abruptly without a declared release, an unmarked pause above its limit, and a declared term said unlike its reference",
-        "writes": "the soundtrack, the timeline and the assembly receipt"
+        "writes": "the soundtrack, the timeline, the assembly receipt and the sound gate's record",
+        "judges": "the assembled soundtrack by the review's measures, and refuses a segment under the film's clarity floor, an abrupt or cut ending and a stopped phrase"
       },
       "files": ["src/filmkit/soundtrack/"]
     },
@@ -282,6 +283,7 @@
       "kind": "step",
       "details": {
         "times": "one-line cues on the exact aligned words, never across a thought",
+        "typesets": "each cue's text, with typographic quotation marks; the narration and aligned words stay as written",
         "writes": "SRT, VTT, the transcript, the chapters and their metadata"
       },
       "files": ["src/filmkit/captions/"]
@@ -359,7 +361,7 @@
         "renders": "both pictures, with captions and without, with HyperFrames only after a passing gate record",
         "validates": "each rendered picture's frames, size and cadence",
         "scans": "a rendered film for speech over a still picture",
-        "compares": "each edition's two pictures, which may differ only by their captions, at every frame before packaging"
+        "compares": "each edition's two pictures at every frame before packaging: they may differ only by their captions, and their edge slivers must stay within the bound"
       },
       "files": [
         "src/filmkit/picture/__init__.py",
@@ -367,6 +369,7 @@
         "src/filmkit/picture/still_scan.py",
         "src/filmkit/picture/equivalence.py",
         "src/filmkit/picture/faults.py",
+        "src/filmkit/picture/slivers.py",
         "src/filmkit/picture/draft.py",
         "src/filmkit/picture/repair.py"
       ]
@@ -396,6 +399,7 @@
       "details": {
         "verifies": "sources, narration custody, both renders and their equivalence, both packages, every decoded film and the review",
         "reads back": "the keywords and authors Spotlight imports from each film, where the host has mdimport",
+        "refuses": "a caption cue whose text is not typeset",
         "writes": "nothing; it reads and decodes"
       },
       "files": ["src/filmkit/delivery/verification.py", "src/filmkit/delivery/spotlight.py"]
@@ -427,6 +431,7 @@
       "details": {
         "prepares": "an independent review round: set-aside, player binding, prompts and records",
         "measures": "rate, pauses, endings, levels, voice clarity, recognition and the picture records",
+        "reads": "a segment's voice clarity over the whole soundtrack's kept frames whose centres lie in it, as the reviewers do",
         "judges": "each thought's ending by the criterion the assembly uses"
       },
       "files": ["src/filmkit/review/"]
@@ -446,7 +451,7 @@
       "kind": "contract",
       "details": {
         "packages": "src/filmkit as one wheel, its Node tools included",
-        "version": "0.21.3, from VERSION",
+        "version": "0.22.2, from VERSION",
         "depends": "mlx-audio 0.6.4, NumPy, Pillow, Pydantic, pypinyin and snowballstemmer"
       },
       "files": ["pyproject.toml", "VERSION"]
@@ -473,7 +478,7 @@
       "label": "Renderer and browser",
       "kind": "tool",
       "details": {
-        "renderer": "HyperFrames 0.9.9 with GSAP, from the film's npm packages",
+        "renderer": "HyperFrames 0.9.46 with GSAP, from the film's npm packages",
         "browser": "Chrome Headless Shell 152.0.7977.30"
       }
     },
@@ -541,7 +546,7 @@
       "id": "production-command-soundtrack",
       "from": "production-command",
       "to": "soundtrack",
-      "label": "assembles",
+      "label": "assembles, checks the sound",
       "files": ["src/filmkit/produce.py"]
     },
     {

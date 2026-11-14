@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "d79dbb58277d8045bfc718ed33df20287e657f5b"
+      "revision": "6baca043b57f3188fff8629070f03ed8f0d81c92"
     }
   },
   "components": [
@@ -88,8 +88,8 @@
       "sources": [
         {
           "path": "src/filmkit/produce.py",
-          "line": 77,
-          "end_line": 114,
+          "line": 81,
+          "end_line": 119,
           "label": "Actions"
         }
       ]

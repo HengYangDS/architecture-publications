@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "d79dbb58277d8045bfc718ed33df20287e657f5b"
+      "revision": "6baca043b57f3188fff8629070f03ed8f0d81c92"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 361,
-          "end_line": 370,
+          "line": 416,
+          "end_line": 425,
           "label": "0.1.0"
         }
       ]
@@ -57,8 +57,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 322,
-          "end_line": 332,
+          "line": 377,
+          "end_line": 387,
           "label": "0.3.0"
         }
       ]
@@ -73,8 +73,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 281,
-          "end_line": 290,
+          "line": 336,
+          "end_line": 345,
           "label": "0.6.0"
         }
       ]
@@ -88,8 +88,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 248,
-          "end_line": 259,
+          "line": 303,
+          "end_line": 314,
           "label": "0.8.0"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 222,
-          "end_line": 226,
+          "line": 277,
+          "end_line": 281,
           "label": "0.9.0"
         }
       ]
@@ -118,8 +118,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 202,
-          "end_line": 210,
+          "line": 257,
+          "end_line": 265,
           "label": "0.10.0"
         }
       ]
@@ -134,8 +134,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 156,
-          "end_line": 170,
+          "line": 211,
+          "end_line": 225,
           "label": "0.12.0"
         }
       ]
@@ -150,8 +150,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 140,
-          "end_line": 152,
+          "line": 195,
+          "end_line": 207,
           "label": "0.13.0"
         }
       ]
@@ -165,8 +165,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 122,
-          "end_line": 131,
+          "line": 177,
+          "end_line": 186,
           "label": "0.14.0"
         }
       ]
@@ -180,8 +180,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 100,
-          "end_line": 108,
+          "line": 155,
+          "end_line": 163,
           "label": "0.17.0"
         }
       ]
@@ -196,8 +196,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 90,
-          "end_line": 98,
+          "line": 145,
+          "end_line": 153,
           "label": "0.18.0"
         }
       ]
@@ -212,8 +212,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 74,
-          "end_line": 89,
+          "line": 129,
+          "end_line": 144,
           "label": "0.19.0"
         }
       ]
@@ -227,8 +227,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 57,
-          "end_line": 73,
+          "line": 112,
+          "end_line": 128,
           "label": "0.20.0"
         }
       ]
@@ -243,8 +243,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 34,
-          "end_line": 55,
+          "line": 89,
+          "end_line": 110,
           "label": "0.21.0"
         }
       ]
@@ -258,8 +258,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 26,
-          "end_line": 32,
+          "line": 81,
+          "end_line": 87,
           "label": "0.21.1"
         }
       ]
@@ -273,9 +273,40 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 20,
-          "end_line": 24,
+          "line": 75,
+          "end_line": 79,
           "label": "0.21.2"
+        }
+      ]
+    },
+    {
+      "id": "v220",
+      "at": "2026-11-15T02:21:41+08:00",
+      "lane": "narration",
+      "kind": "alert",
+      "title": "v0.22.0 画面之前先判定声音",
+      "detail": "check-sound 在制作画面之前，用评审自己的测量方法判定一个语言版拼好的音轨。段落的嗓音清晰度改按评审的测法测量，字幕条只保存排印后的文本。compare-pictures 逐帧测量两份画面的边缘细条。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 40,
+          "end_line": 60,
+          "label": "0.22.0"
+        }
+      ]
+    },
+    {
+      "id": "v222",
+      "at": "2026-11-15T04:30:22+08:00",
+      "lane": "narration",
+      "title": "v0.22.2 收尾在听得到的位置判定",
+      "detail": "戛然而止的收尾，改在听者听到嗓音结束的地方判定；录音或音轨从哪里开始，结果都一样。声音落下后若再次升起并渐渐消失，那是除阻之前的闭塞，判定的是除阻。7,611 条录音里，有两条的判定结果变了。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 7,
+          "end_line": 13,
+          "label": "0.22.2"
         }
       ]
     }
