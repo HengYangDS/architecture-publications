@@ -7,38 +7,41 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 - [录音只有完整收尾才能进入音轨](block:p-takes)，除非影片为它的衔接声明了尾音淡出。[](source:abrupt)
 - [画面只有通过门禁才会渲染](block:p-picture)，而且门禁针对的必须是当前的画面合成、时间线、样式表、字体和引擎版本。[](source:render-gate)
 
-@answer scope="Film Kit v0.21.3 · 提交 d79dbb5 · 源码及项目自带文档"
+@answer scope="Film Kit v0.22.2 · 提交 6baca04 · 源码及项目自带文档"
 @meta locale=zh-CN style=editorial
 @source readme-what title="Film Kit 做什么" path="README.md" lines=3:3
 @source spec-rate title="帧率" path="src/filmkit/specification.py" lines=25:30
 @source spec-sound title="采样率与节目响度" path="src/filmkit/specification.py" lines=33:47
 @source sample-declaration title="示例影片的声明" path="examples/sample-film/content/film.toml" lines=6:22
-@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=361:365
-@source changelog-019 title="0.19.0 的改动" path="CHANGELOG.md" lines=74:89
-@source changelog-020 title="0.20.0 的改动" path="CHANGELOG.md" lines=57:73
-@source changelog-0211 title="0.21.1 的改动" path="CHANGELOG.md" lines=26:32
-@source changelog-0212 title="0.21.2 的发布" path="CHANGELOG.md" lines=20:24
-@source changelog-0213 title="0.21.3 的发布" path="CHANGELOG.md" lines=7:18
+@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=416:420
+@source changelog-019 title="0.19.0 的改动" path="CHANGELOG.md" lines=129:144
+@source changelog-020 title="0.20.0 的改动" path="CHANGELOG.md" lines=112:128
+@source changelog-0211 title="0.21.1 的改动" path="CHANGELOG.md" lines=81:87
+@source changelog-0212 title="0.21.2 的发布" path="CHANGELOG.md" lines=75:79
+@source changelog-0213 title="0.21.3 的发布" path="CHANGELOG.md" lines=62:73
+@source changelog-0220 title="0.22.0 的改动" path="CHANGELOG.md" lines=40:60
+@source changelog-0221 title="0.22.1 的发布" path="CHANGELOG.md" lines=15:38
+@source changelog-0222 title="0.22.2 的修复" path="CHANGELOG.md" lines=7:13
 @source readme-engine title="引擎不带任何影片的内容" path="README.md" lines=5:5
 @source readme-requirements title="运行要求" path="README.md" lines=9:12
 @source readme-layout title="影片的目录结构" path="README.md" lines=18:26
-@source readme-words title="概念与读音" path="README.md" lines=66:69
-@source readme-neither title="两项检查都不声明的影片" path="README.md" lines=73:73
-@source readme-gate title="画面门禁" path="README.md" lines=91:91
-@source readme-metrics title="用影片的字体测量文字" path="README.md" lines=93:93
-@source readme-balance title="每一帧的平衡" path="README.md" lines=95:95
-@source readme-install title="在影片中安装引擎" path="README.md" lines=183:193
-@source readme-commands title="命令" path="README.md" lines=199:215
-@source readme-endings title="完整收尾" path="README.md" lines=219:221
-@source readme-dev title="开发" path="README.md" lines=243:243
+@source readme-words title="概念与读音" path="README.md" lines=67:70
+@source readme-neither title="两项检查都不声明的影片" path="README.md" lines=74:74
+@source readme-gate title="画面门禁" path="README.md" lines=92:92
+@source readme-metrics title="用影片的字体测量文字" path="README.md" lines=94:94
+@source readme-balance title="每一帧的平衡" path="README.md" lines=96:96
+@source readme-install title="在影片中安装引擎" path="README.md" lines=188:198
+@source readme-commands title="命令" path="README.md" lines=204:220
+@source readme-endings title="完整收尾" path="README.md" lines=224:226
+@source readme-dev title="开发" path="README.md" lines=248:248
 @source agents-contract title="引擎契约" path="AGENTS.md" lines=10:16
-@source changelog-pin title="影片保留原有的锁定版本" path="CHANGELOG.md" lines=261:261
+@source changelog-pin title="影片保留原有的锁定版本" path="CHANGELOG.md" lines=316:316
 @source film-root title="查找影片" path="src/filmkit/repository.py" lines=28:50
-@source film-load title="检查声明" path="src/filmkit/film.py" lines=386:401
+@source film-load title="检查声明" path="src/filmkit/film.py" lines=393:408
 @source edition-places title="语言版写到哪里" path="src/filmkit/production.py" lines=138:154
 @source renditions title="四部交付成片" path="src/filmkit/production.py" lines=63:74
 @source program-level title="统一的节目响度" path="src/filmkit/specification.py" lines=45:47
-@source produce-actions title="制作动作" path="src/filmkit/produce.py" lines=77:114
+@source produce-actions title="制作动作" path="src/filmkit/produce.py" lines=81:119
 @source narrate-gate title="语音合成之前的检查" path="src/filmkit/narration/narrate.py" lines=111:121
 @source narrate-steps title="语音合成、对齐、转写" path="src/filmkit/narration/narrate.py" lines=54:108
 @source concepts-doc title="概念检查" path="src/filmkit/concepts.py" lines=1:15
@@ -48,7 +51,8 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @source synthesis-reuse title="复用或拒绝录音文件" path="src/filmkit/narration/synthesis.py" lines=197:225
 @source one-model title="唯一运行语音合成模型的模块" path="src/filmkit/narration/group_generation.py" lines=1:4
 @source thought-joins title="意群的请求、回执与衔接" path="src/filmkit/narration/thought_groups.py" lines=1:10
-@source take-ending title="录音的收尾" path="src/filmkit/narration/take_edges.py" lines=159:186
+@source take-ending title="录音的收尾" path="src/filmkit/narration/take_edges.py" lines=186:213
+@source take-fall title="戛然而止的收尾" path="src/filmkit/narration/take_edges.py" lines=15:24
 @source retakes-doc title="绑定确切文本的重录" path="src/filmkit/narration/retakes.py" lines=1:9
 @source run-on-doc title="连读录音" path="src/filmkit/narration/run_on.py" lines=1:8
 @source audition-propose title="推荐的录音" path="src/filmkit/narration/audition.py" lines=86:112
@@ -61,17 +65,18 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @source abrupt title="拒绝收尾突兀的录音" path="src/filmkit/soundtrack/assembly.py" lines=156:176
 @source program-gain title="用一次增益达到节目响度" path="src/filmkit/soundtrack/assembly.py" lines=511:532
 @source releases title="声明的尾音淡出" path="src/filmkit/soundtrack/policy.py" lines=159:170
-@source captions-doc title="字幕定时" path="src/filmkit/captions/timing.py" lines=1:8
-@source gate-doc title="画面门禁" path="src/filmkit/picture/gates.py" lines=1:37
-@source frame-gates title="来自评审的规则" path="src/filmkit/picture/gates.py" lines=56:57
-@source gate-check title="check-picture" path="src/filmkit/picture/gates.py" lines=370:442
+@source sound-gate title="声音门禁" path="src/filmkit/soundtrack/gates.py" lines=1:13
+@source captions-doc title="字幕定时" path="src/filmkit/captions/timing.py" lines=1:10
+@source gate-doc title="画面门禁" path="src/filmkit/picture/gates.py" lines=1:39
+@source frame-gates title="来自评审的规则" path="src/filmkit/picture/gates.py" lines=58:59
+@source gate-check title="check-picture" path="src/filmkit/picture/gates.py" lines=395:467
 @source candidate-inputs title="预置绑定的输入" path="src/filmkit/picture/rendering.py" lines=123:153
 @source require-renderer title="唯一的渲染器版本" path="src/filmkit/picture/rendering.py" lines=209:219
 @source stage title="画面的预置" path="src/filmkit/picture/rendering.py" lines=253:303
 @source render-gate title="渲染须有通过的门禁" path="src/filmkit/picture/rendering.py" lines=489:516
 @source render title="渲染画面" path="src/filmkit/picture/rendering.py" lines=585:642
 @source validate title="校验画面" path="src/filmkit/picture/rendering.py" lines=656:666
-@source equivalence-doc title="只在字幕上不同" path="src/filmkit/picture/equivalence.py" lines=1:33
+@source equivalence-doc title="只在字幕上不同" path="src/filmkit/picture/equivalence.py" lines=1:36
 @source tools-doc title="Node 工具运行器" path="src/filmkit/tools.py" lines=1:17
 @source headless-doc title="无头运行的画面合成" path="src/filmkit/picture/headless-composition.mjs" lines=1:13
 @source package-doc title="打包" path="src/filmkit/delivery/packaging.py" lines=1:31
@@ -80,14 +85,16 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @source package-inputs title="成片包绑定什么" path="src/filmkit/delivery/packaging.py" lines=272:284
 @source player-doc title="播放器页面" path="src/filmkit/delivery/player.py" lines=1:5
 @source verification-doc title="核验" path="src/filmkit/delivery/verification.py" lines=1:14
-@source verify-spotlight title="读回 Spotlight 导入的内容" path="src/filmkit/delivery/verification.py" lines=310:340
-@source verify-review title="能通过核验的评审" path="src/filmkit/delivery/verification.py" lines=343:406
-@source verification-qualify title="一个语言版的检查" path="src/filmkit/delivery/verification.py" lines=409:439
-@source reproduction-doc title="复现" path="src/filmkit/delivery/reproduction.py" lines=1:24
+@source verify-captions title="字幕保持排印" path="src/filmkit/delivery/verification.py" lines=68:83
+@source verify-spotlight title="读回 Spotlight 导入的内容" path="src/filmkit/delivery/verification.py" lines=312:342
+@source verify-review title="能通过核验的评审" path="src/filmkit/delivery/verification.py" lines=345:408
+@source verification-qualify title="一个语言版的检查" path="src/filmkit/delivery/verification.py" lines=411:441
+@source reproduction-doc title="复现" path="src/filmkit/delivery/reproduction.py" lines=1:26
 @source documents-doc title="交付到 Documents 文件夹" path="src/filmkit/delivery/documents_folder.py" lines=1:27
 @source round-doc title="一轮评审" path="src/filmkit/review/round.py" lines=1:11
 @source human-listening title="人工试听单独进行" path="src/filmkit/review/round.py" lines=49:53
 @source measurement-doc title="评审测量" path="src/filmkit/review/measurement.py" lines=1:22
+@source clarity-doc title="嗓音清晰度" path="src/filmkit/review/clarity.py" lines=1:21
 
 ## Film Kit 读取什么，又把什么留给影片？ {#p-context}
 
@@ -110,7 +117,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 | step-ctx-engine | Film Kit 引擎 | 每个动作只做一个语言版，语言版由参数指定。开工之前先检查声明。渲染之前，`preflight` 报告所有过期或缺失的输入。[](source:produce-actions)[](source:film-load) | context-map | ctx-engine |
 | step-ctx-supply | 供应步骤 | 只有这一步会联网。浏览器构建和每个模型快照，都按锁定的摘要检查。[](source:supply-doc) | context-map | ctx-supply |
 | step-ctx-models | 语音模型 | 语音合成模型负责朗读，强制对齐器为词定时，识别器负责转写，全部运行于 MLX。[](source:snapshots) | context-map | ctx-models |
-| step-ctx-browser | HyperFrames、Chrome | 渲染器由影片的 npm 包安装，版本只能是 HyperFrames 0.9.9，其他版本引擎一律拒绝。[](source:require-renderer) | context-map | ctx-browser |
+| step-ctx-browser | HyperFrames、Chrome | 渲染器由影片的 npm 包安装，版本只能是 HyperFrames 0.9.46，其他版本引擎一律拒绝。[](source:require-renderer) | context-map | ctx-browser |
 | step-ctx-build | 构建文件夹 | 每个语言版的媒体和记录都写在影片的 `build/` 下，这个文件夹不纳入版本管理。[](source:edition-places) | context-map | ctx-build |
 | step-ctx-documents | Documents 文件夹 | 交付用 rsync 同步 25 个交付项，再按各自源文件的 SHA-256 逐一检查。[](source:documents-doc) | context-map | ctx-documents |
 
@@ -148,10 +155,10 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 | step-route-narrate | 朗读每个意群 | 每个意群都由模型一次读完，得到一条录音，种子或重录取自配音设定。请求仍然一致的录音文件直接复用。[](source:synthesis-reuse) | route-flow | route-narrate |
 | step-route-align | 对齐、转写 | 锁定版本的对齐器为每个词定时。转写结果只作读音的替代指标，不作认证。[](source:narrate-steps)[](source:transcription-doc) | route-flow | route-align |
 | step-route-select | 选定录音 | `produce select` 把每份录音文件及其对齐结果，绑定到当前的脚本、配音设定和旁白参考录音。若录音文件违反影片的停顿上限，或声明术语读得与参照处不同，就拒绝这份录音文件。[](source:selection)[](source:speech-refusals) | route-flow | route-select |
-| step-route-assemble | 拼接音轨 | 拼接步骤设计停顿，调平每个意群和章节，再用一次增益达到节目响度。若排好的音轨里有超出影片上限的无标点停顿，或声明术语读得与参照处不同，拼接步骤就拒绝这条音轨。[](source:assembly-doc)[](source:program-gain) | route-flow | route-assemble |
+| step-route-assemble | 拼接音轨 | 拼接步骤设计停顿，调平每个意群和章节，再用一次增益达到节目响度。若排好的音轨里有超出影片上限的无标点停顿，或声明术语读得与参照处不同，拼接步骤就拒绝这条音轨。[](source:assembly-doc)[](source:program-gain)随后 `produce check-sound` 检查拼好的音轨。段落清晰度低于影片声明的下限、收尾突兀或被截断、短语戛然而止，都会被拒绝。[](source:sound-gate) | route-flow | route-assemble |
 | step-route-gate | 检查画面 | `check-picture` 审查每一帧、每个标签的同步和动效，然后写出门禁记录。[](source:gate-doc) | route-flow | route-gate |
 | step-route-render | 预置、渲染 | 带字幕和无字幕的画面各预置成一份文档；有了通过的门禁记录，才由 HyperFrames 渲染。[](source:stage)[](source:render-gate)[](source:render) | route-flow | route-render |
-| step-route-compare | 比对两份画面 | 两份画面只能在字幕上不同：画面合成在每条字幕处和每半秒比对，解码后的帧则比对字幕带以外的区域。随后逐帧扫描两份画面，找出只持续一帧的故障。[](source:equivalence-doc) | route-flow | route-compare |
+| step-route-compare | 比对两份画面 | 两份画面只能在字幕上不同：画面合成在每条字幕处和每半秒比对，解码后的帧则比对字幕带以外的区域。随后逐帧扫描两份画面，找出只持续一帧的故障。同一次扫描还测量边缘细条：每帧最密集的一块里，相差超过 40 级的采样有多少。超出界限的帧会被拒绝。[](source:equivalence-doc) | route-flow | route-compare |
 | step-route-package | 打包成片 | FFmpeg 把每部成片的画面（带字幕或无字幕）与音轨和章节封装在一起；每部成片都先检查，再链接到位。[](source:package-doc)[](source:package-film) | route-flow | route-package |
 | step-route-verify | 核验每个输入 | 核验器只读取和解码，检查范围包括来源、旁白、两份画面及二者的等效性、两个包、解码后的全部四部成片和评审。主机上有 `mdimport` 时，还读回 Spotlight 从每部成片导入的关键词和作者。[](source:verification-doc)[](source:verify-spotlight) | route-flow | route-verify |
 
@@ -177,7 +184,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 
 @steps id=take-steps
 | step-take-narrated | 已朗读 | 意群的请求写明它的文本、朗读文本和种子。只有一个模块运行语音合成模型；每条录音与下一条之间，只靠补入的静音衔接。[](source:synthesis-plan)[](source:one-model)[](source:thought-joins) | take-life | take-narrated |
-| step-take-judged | 已判定 | 录音最后 30 ms 安静，且最后一个音节渐渐消失而非戛然而止，才算自然收尾。[](source:take-ending) | take-life | take-judged |
+| step-take-judged | 已判定 | 录音最后 30 ms 安静，且最后一个音节渐渐消失而非戛然而止，才算自然收尾。[](source:take-ending)最后一个响亮音节落到静音有多快，以及落下之前的浊音程度，都取 1 ms 帧网格上各相位的中位数。声音落下后若再次升起并渐渐消失，那是塞音除阻之前的闭塞，除阻才算收尾。[](source:take-fall) | take-life | take-judged |
 | step-take-abrupt | 收尾突兀 | 拼接步骤列出每个收尾突兀的意群，并拒绝这个语言版。[](source:abrupt) | take-life | take-abrupt |
 | step-take-auditioned | 已试音 | 试音换其他种子朗读，或者连读到下一个意群，再在静音处剪开。合格的录音里，推荐差异单元最少的一条。绑定的重录保存自身文本和朗读文本的 SHA-256。[](source:audition-propose)[](source:run-on-doc)[](source:retakes-doc) | take-life | take-auditioned |
 | step-take-released | 尾音淡出 | 影片可以为某一处衔接声明不超过 0.3 s 的尾音淡出，拼接步骤让这段尾音渐隐进静音。[](source:releases) | take-life | take-released |
@@ -247,11 +254,11 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 | step-part-narrate | 旁白命令 | 先做字词检查，再以独立进程依次运行语音合成、对齐和转写。[](source:narrate-steps) | parts-map | part-narrate |
 | step-part-produce | 制作命令 | 调用负责该动作的模块；遇到拒绝时，报告动作名称和原因。[](source:produce-actions) | parts-map | part-produce |
 | step-part-takes | 意群录音 | 每个意群的请求、回执和衔接，都按每份保留的记录重新检查。[](source:thought-joins) | parts-map | part-takes |
-| step-part-sound | 音轨拼接 | 写出音轨、带字幕的时间线和拼接回执。[](source:assembly-doc) | parts-map | part-sound |
+| step-part-sound | 音轨拼接 | 写出音轨、带字幕的时间线和拼接回执。[](source:assembly-doc)每个字幕条的文本是对应短语的排印稿，直引号已换成弯引号。[](source:captions-doc)声音门禁按评审的测法读取段落清晰度。整条音轨的保留帧里，只取中心落在该段落内的帧。[](source:sound-gate)[](source:clarity-doc) | parts-map | part-sound |
 | step-part-gate | 画面门禁 | 写出门禁记录；只要还剩一个门禁问题，就拒绝。[](source:gate-doc) | parts-map | part-gate |
 | step-part-render | 画面渲染 | 预置、渲染并校验每份超高清画面（带字幕和无字幕各一份），并证明二者只在字幕上不同。[](source:render)[](source:equivalence-doc) | parts-map | part-render |
 | step-part-package | 打包 | 派生观看包，写出全部四部成片，每部都先检查再链接到位。每部成片和每个页面都写明影片的版本号。[](source:package-doc) | parts-map | part-package |
-| step-part-verify | 核验 | 重新读取每份记录，解码全部四部成片；不写任何文件。[](source:verification-doc) | parts-map | part-verify |
+| step-part-verify | 核验 | 重新读取每份记录，解码全部四部成片；不写任何文件。[](source:verification-doc)字幕条的文本若没有排印好，就拒绝。[](source:verify-captions) | parts-map | part-verify |
 
 ## 交付的语言版包含什么，又怎样验收？ {#p-delivery}
 
@@ -284,9 +291,9 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 
 ## Film Kit 怎样走到今天？ {#p-history}
 
-Film Kit 在 2026 年 10 月 30 日发布 v0.1.0，11 月 14 日发布 v0.21.3。[](source:changelog-010)[](source:changelog-0213)时间线列出其中改变影片做法的十四个版本。最后两个事件是补丁版本 v0.21.1 和 v0.21.2，只更新了仓库工具链和锁定的依赖包。[](source:changelog-0211)[](source:changelog-0212)v0.21.3 也是如此，没有列入时间线。[](source:changelog-0213)
+Film Kit 在 2026 年 10 月 30 日发布 v0.1.0，11 月 15 日发布 v0.22.2。[](source:changelog-010)[](source:changelog-0222)时间线列出其中改变影片做法的十六个版本，最新的是 v0.22.0 和 v0.22.2。[](source:changelog-0220)[](source:changelog-0222)时间线上还有补丁版本 v0.21.1 和 v0.21.2，它们只更新了仓库工具链和锁定的依赖包。[](source:changelog-0211)[](source:changelog-0212)v0.21.3 也是如此，没有列入时间线。[](source:changelog-0213)
 
-仓库里没有带日期的路线图，还没做的事列在本页最后。
+v0.22.1 把渲染器换成 HyperFrames 0.9.46，样例影片的十二部成片解码后各帧不变，也没有列入时间线。[](source:changelog-0221)仓库里没有带日期的路线图，还没做的事列在本页最后。
 
 @diagram timeline id=history source=history.timeline.json title="Film Kit 怎样走到今天"
 
@@ -302,4 +309,4 @@ Film Kit 在 2026 年 10 月 30 日发布 v0.1.0，11 月 14 日发布 v0.21.3�
 | 录音收尾       | 有防护 {good:拒绝}              | 在 mlx-audio 发布带上游修复的版本之前，由试音保持录音完整收尾，拼接步骤拒绝收尾突兀的录音。[](source:readme-endings)[](source:abrupt)                                            |
 | 文字宽度       | 实测 {good:影片自己的字体}      | 审查用影片自己的字体测量宽度；文字高度仍用估算值。[](source:readme-metrics)                                                                                                      |
 | 静止时偏离中心 | 一律拒绝 {good:不论后续}        | 偏离中心超过 50 px、持续不少于 2 s 的静止状态，门禁一律拒绝。不论画面随后在它之上继续扩展，还是停在本阶段之内，或被阶段切换、下一个场景取代，都不例外。[](source:readme-balance) |
-| 新的渲染器     | 锁定版本 {caution:由影片决定}   | 影片继续锁定现有的 `filmkit` 版本，直到用新的发布版本制作、评审并验收一个语言版。[](source:changelog-pin)                                                                        |
+| 新的渲染器     | 锁定版本 {caution:由影片决定}   | 影片继续锁定现有的 `filmkit` 版本，直到用新的发布版本制作、评审并验收一个语言版。[](source:changelog-pin)[](source:changelog-0221)                                               |

@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([Film Kit], [Each edition rebuilt from the film's own sources], [A local engine: Film Kit narrates, assembles, captions, gates, renders and packages each edition of a narrated explainer film, and every step records the SHA-256 of what it read.], read-from: [Read from 119 files, each cited by its SHA-256.], claim-x: 124pt)
+#masthead([Film Kit], [Each edition rebuilt from the film's own sources], [A local engine: Film Kit narrates, assembles, captions, gates, renders and packages each edition of a narrated explainer film, and every step records the SHA-256 of what it read.], read-from: [Read from 123 files, each cited by its SHA-256.], claim-x: 124pt)
 
 // ── Band 1: one edition's route, from the declaration to a compared rebuild ──
 #let ys = 250pt
@@ -17,7 +17,7 @@
 #head(1390pt, 132pt, [Rebuild])
 #tx(48pt, 152pt, "film.toml and the files it names", w: 110pt, fill: soft)
 #tx(170pt, 152pt, "filmkit.narration.narrate", w: 240pt, fill: soft)
-#tx(420pt, 152pt, "produce select, assemble, refresh-captions", w: 230pt, fill: soft)
+#tx(420pt, 152pt, "produce select, assemble, refresh-captions, check-sound", w: 230pt, fill: soft)
 #tx(660pt, 152pt, "stage, check, render and validate the picture", w: 230pt, fill: soft)
 #tx(900pt, 152pt, "package-metadata, package-film", w: 120pt, fill: soft)
 #tx(1030pt, 152pt, "review.round, delivery.verification, documents_folder", w: 350pt, fill: soft)

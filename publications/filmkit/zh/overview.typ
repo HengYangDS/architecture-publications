@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([Film Kit], [每个语言版都从影片自己的源文件重建], [Film Kit 是本地运行的引擎：带旁白的讲解影片，每个语言版的朗读、拼接、字幕、门禁、渲染和打包都由它完成，每一步都记下所读内容的 SHA-256。], read-from: [依据 119 个文件写成，每个文件都按 SHA-256 引用。], claim-x: 124pt)
+#masthead([Film Kit], [每个语言版都从影片自己的源文件重建], [Film Kit 是本地运行的引擎：带旁白的讲解影片，每个语言版的朗读、拼接、字幕、门禁、渲染和打包都由它完成，每一步都记下所读内容的 SHA-256。], read-from: [依据 123 个文件写成，每个文件都按 SHA-256 引用。], claim-x: 124pt)
 
 // ── Band 1: one edition's route, from the declaration to a compared rebuild ──
 #let ys = 250pt
@@ -17,7 +17,7 @@
 #head(1390pt, 132pt, [重建])
 #tx(48pt, 152pt, [film.toml #box[及其指定的文件]], w: 110pt, fill: soft)
 #tx(170pt, 152pt, "filmkit.narration.narrate", w: 240pt, fill: soft)
-#tx(420pt, 152pt, "produce select, assemble, refresh-captions", w: 230pt, fill: soft)
+#tx(420pt, 152pt, "produce select, assemble, refresh-captions, check-sound", w: 230pt, fill: soft)
 #tx(660pt, 152pt, "预置、检查、渲染并校验画面", w: 230pt, fill: soft)
 #tx(900pt, 152pt, "package-metadata, package-film", w: 120pt, fill: soft)
 #tx(1030pt, 152pt, "review.round, delivery.verification, documents_folder", w: 350pt, fill: soft)

@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "e63cd12f91b7bb8bb5e1605742bd4aefe92e6a35"
+      "revision": "ed8b2fed94ef569f0f2d7fdfd2ec3259c65e37e2"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,8 +42,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1020,
-          "end_line": 1040,
+          "line": 1058,
+          "end_line": 1066,
+          "label": "0.1.0"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 1146,
+          "end_line": 1147,
           "label": "0.1.0"
         }
       ]
@@ -58,8 +64,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 934,
-          "end_line": 958,
+          "line": 972,
+          "end_line": 996,
           "label": "0.2.0"
         }
       ]
@@ -74,8 +80,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 906,
-          "end_line": 932,
+          "line": 944,
+          "end_line": 970,
           "label": "0.3.0"
         }
       ]
@@ -89,8 +95,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 685,
-          "end_line": 711,
+          "line": 723,
+          "end_line": 749,
           "label": "0.4.1"
         }
       ]
@@ -104,8 +110,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 621,
-          "end_line": 631,
+          "line": 659,
+          "end_line": 669,
           "label": "0.4.5"
         }
       ]
@@ -120,8 +126,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 605,
-          "end_line": 619,
+          "line": 643,
+          "end_line": 657,
           "label": "0.4.6"
         }
       ]
@@ -135,8 +141,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 594,
-          "end_line": 603,
+          "line": 632,
+          "end_line": 641,
           "label": "0.4.7"
         }
       ]
@@ -150,8 +156,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 572,
-          "end_line": 582,
+          "line": 610,
+          "end_line": 620,
           "label": "0.4.9"
         }
       ]
@@ -166,8 +172,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 453,
-          "end_line": 478,
+          "line": 491,
+          "end_line": 516,
           "label": "0.4.16"
         }
       ]
@@ -181,8 +187,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 422,
-          "end_line": 451,
+          "line": 460,
+          "end_line": 489,
           "label": "0.4.17"
         }
       ]
@@ -197,8 +203,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 305,
-          "end_line": 346,
+          "line": 343,
+          "end_line": 384,
           "label": "0.5.0"
         }
       ]
@@ -212,8 +218,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 275,
-          "end_line": 283,
+          "line": 313,
+          "end_line": 321,
           "label": "0.6.1"
         }
       ]
@@ -228,8 +234,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 53,
-          "end_line": 274,
+          "line": 91,
+          "end_line": 312,
           "label": "0.7.0"
         }
       ]
@@ -243,9 +249,24 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 14,
-          "end_line": 52,
+          "line": 52,
+          "end_line": 90,
           "label": "0.7.1"
+        }
+      ]
+    },
+    {
+      "id": "v072",
+      "at": "2026-11-15T01:25:08+08:00",
+      "lane": "commands",
+      "title": "v0.7.2 客户端报出警告时该怎么办",
+      "detail": "Codex 或 Claude Code 自己报出警告或错误时，aigw check <client> --depth client 会说明该怎么办。它会指出客户端称为已弃用的配置键；加上 --verbose，还会附上客户端自己的输出，其中不含提供商令牌。aigw check 的 JSON 文档升到 schema_version 4。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 14,
+          "end_line": 50,
+          "label": "0.7.2"
         }
       ]
     }

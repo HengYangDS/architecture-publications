@@ -1,7 +1,7 @@
 # Film Kit: term renderings
 
 The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `filmkit` at v0.21.3 (`d79dbb5`) that defines or uses the term. Film Kit's own Chinese words come
+names the file of `filmkit` at v0.22.2 (`6baca04`) that defines or uses the term. Film Kit's own Chinese words come
 from its player (`src/filmkit/delivery/player.py`) and its sample film (`examples/sample-film/`); the owner-approved
 film editions are cited as `ethos-film` at v1.0.1 (`c33e60f`) or `ddwg-film`, the repository
 `data-department-work-guidelines-film` at v1.2.0 (`f286c43`), with their file. An edition is one language version of
@@ -46,6 +46,8 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | ends naturally; ends whole                     | 自然收尾；完整收尾                   | `src/filmkit/narration/take_edges.py`; `README.md`                                                             |
 | abrupt                                         | 收尾突兀                             | `src/filmkit/soundtrack/assembly.py`                                                                           |
 | release (declared, at a join)                  | 尾音淡出                             | `src/filmkit/soundtrack/policy.py`                                                                             |
+| phrase; stops; cut (while voiced)              | 短语；戛然而止；截断                 | `src/filmkit/soundtrack/gates.py`; `src/filmkit/narration/take_edges.py`                                       |
+| fall; voicing; closure, release (of a stop)    | 落下；浊音程度；闭塞、除阻           | `src/filmkit/narration/take_edges.py`                                                                          |
 | join (thought join)                            | 衔接                                 | `src/filmkit/narration/thought_groups.py`; `src/filmkit/soundtrack/policy.py`                                  |
 | request fingerprint                            | 请求指纹                             | `src/filmkit/narration/synthesis.py`                                                                           |
 | receipt (narration, render, assembly)          | 回执（旁白回执、渲染回执、拼接回执） | `src/filmkit/narration/receipts.py`; `src/filmkit/picture/rendering.py`                                        |
@@ -74,9 +76,12 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | assemble; assembly                             | 拼接                                 | `examples/sample-film/content/narration.md` (拼成); `src/filmkit/soundtrack/assembly.py`                       |
 | soundtrack                                     | 音轨                                 | `examples/sample-film/content/narration.md`; `src/filmkit/soundtrack/assembly.py`                              |
 | program level; gain                            | 节目响度；增益                       | `src/filmkit/specification.py`; `src/filmkit/soundtrack/assembly.py`                                           |
+| sound gate; clarity floor                      | 声音门禁；清晰度下限                 | `src/filmkit/soundtrack/gates.py`                                                                              |
+| voice clarity; kept frames                     | 嗓音清晰度；保留帧                   | `src/filmkit/review/clarity.py`                                                                                |
 | timeline                                       | 时间线                               | `src/filmkit/picture/rendering.py`                                                                             |
 | caption                                        | 字幕                                 | `src/filmkit/delivery/player.py` (字幕)                                                                        |
 | cue                                            | 字幕条                               | `src/filmkit/captions/timing.py`                                                                               |
+| typeset (a cue's text); typographic quotes     | 排印；弯引号                         | `src/filmkit/captions/timing.py`                                                                               |
 | subtitles (SRT, VTT files)                     | 字幕文件                             | `src/filmkit/delivery/packaging.py`                                                                            |
 | transcript                                     | 讲稿                                 | `src/filmkit/delivery/player.py` (讲稿, 完整讲稿)                                                              |
 | chapters; chapter track                        | 章节；章节轨                         | `src/filmkit/delivery/player.py`; `src/filmkit/delivery/track_language.py`                                     |
@@ -96,6 +101,7 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | still picture; still scan                      | 静止画面；扫描                       | `src/filmkit/picture/still_scan.py`                                                                            |
 | equivalence (captions only differ)             | 等效性                               | `src/filmkit/picture/equivalence.py`                                                                           |
 | one-frame fault; every frame                   | 单帧故障；逐帧                       | `src/filmkit/picture/faults.py`                                                                                |
+| edge sliver; bound; levels apart               | 边缘细条；界限；相差的级数           | `src/filmkit/picture/slivers.py`                                                                               |
 | version (a film's, from its `VERSION`)         | 版本号                               | `src/filmkit/delivery/packaging.py`                                                                            |
 | headless; canvas stand-in                      | 无头；canvas 替身                    | `src/filmkit/picture/headless-composition.mjs`; `src/filmkit/picture/metrics.py`                               |
 | advance widths; faces, fonts                   | 步进宽度；字体                       | `src/filmkit/picture/metrics.py`                                                                               |
