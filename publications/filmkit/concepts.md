@@ -1,7 +1,7 @@
 # Film Kit: term renderings
 
 The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `filmkit` at v0.22.2 (`6baca04`) that defines or uses the term. Film Kit's own Chinese words come
+names the file of `filmkit` at v0.22.3 (`e70a437`) that defines or uses the term. Film Kit's own Chinese words come
 from its player (`src/filmkit/delivery/player.py`) and its sample film (`examples/sample-film/`); the owner-approved
 film editions are cited as `ethos-film` at v1.0.1 (`c33e60f`) or `ddwg-film`, the repository
 `data-department-work-guidelines-film` at v1.2.0 (`f286c43`), with their file. An edition is one language version of
@@ -76,6 +76,8 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | assemble; assembly                             | 拼接                                 | `examples/sample-film/content/narration.md` (拼成); `src/filmkit/soundtrack/assembly.py`                       |
 | soundtrack                                     | 音轨                                 | `examples/sample-film/content/narration.md`; `src/filmkit/soundtrack/assembly.py`                              |
 | program level; gain                            | 节目响度；增益                       | `src/filmkit/specification.py`; `src/filmkit/soundtrack/assembly.py`                                           |
+| level (thought, segment, chapter); tolerance   | 调平；容差                           | `src/filmkit/soundtrack/level.py`; `src/filmkit/soundtrack/policy.py`                                          |
+| static gain; median loudness; peak             | 静态增益；响度中位数；峰值           | `src/filmkit/soundtrack/level.py`                                                                              |
 | sound gate; clarity floor                      | 声音门禁；清晰度下限                 | `src/filmkit/soundtrack/gates.py`                                                                              |
 | voice clarity; kept frames                     | 嗓音清晰度；保留帧                   | `src/filmkit/review/clarity.py`                                                                                |
 | timeline                                       | 时间线                               | `src/filmkit/picture/rendering.py`                                                                             |

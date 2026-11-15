@@ -7,35 +7,37 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 - [A take reaches the soundtrack only if it ends whole](block:p-takes), or if the film declares a release for its join.[](source:abrupt)
 - [The picture renders only after its gate passes](block:p-picture) for the current composition, timeline, stylesheet, fonts and engine version.[](source:render-gate)
 
-@answer scope="Film Kit v0.22.2 · commit 6baca04 · its source and its own documents"
+@answer scope="Film Kit v0.22.3 · commit e70a437 · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What Film Kit does" path="README.md" lines=3:3
 @source spec-rate title="Frame rate" path="src/filmkit/specification.py" lines=25:30
 @source spec-sound title="Sample rate and program level" path="src/filmkit/specification.py" lines=33:47
 @source sample-declaration title="The sample film's declaration" path="examples/sample-film/content/film.toml" lines=6:22
-@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=416:420
-@source changelog-019 title="The 0.19.0 changes" path="CHANGELOG.md" lines=129:144
-@source changelog-020 title="The 0.20.0 changes" path="CHANGELOG.md" lines=112:128
-@source changelog-0211 title="The 0.21.1 changes" path="CHANGELOG.md" lines=81:87
-@source changelog-0212 title="The 0.21.2 release" path="CHANGELOG.md" lines=75:79
-@source changelog-0213 title="The 0.21.3 release" path="CHANGELOG.md" lines=62:73
-@source changelog-0220 title="The 0.22.0 changes" path="CHANGELOG.md" lines=40:60
-@source changelog-0221 title="The 0.22.1 release" path="CHANGELOG.md" lines=15:38
-@source changelog-0222 title="The 0.22.2 fixes" path="CHANGELOG.md" lines=7:13
+@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=422:426
+@source changelog-019 title="The 0.19.0 changes" path="CHANGELOG.md" lines=135:150
+@source changelog-020 title="The 0.20.0 changes" path="CHANGELOG.md" lines=118:134
+@source changelog-0211 title="The 0.21.1 changes" path="CHANGELOG.md" lines=87:93
+@source changelog-0212 title="The 0.21.2 release" path="CHANGELOG.md" lines=81:85
+@source changelog-0213 title="The 0.21.3 release" path="CHANGELOG.md" lines=68:79
+@source changelog-0220 title="The 0.22.0 changes" path="CHANGELOG.md" lines=46:66
+@source changelog-0221 title="The 0.22.1 release" path="CHANGELOG.md" lines=21:44
+@source changelog-0222 title="The 0.22.2 fixes" path="CHANGELOG.md" lines=13:19
+@source changelog-0223 title="The 0.22.3 addition" path="CHANGELOG.md" lines=7:11
 @source readme-engine title="The engine carries no film's content" path="README.md" lines=5:5
 @source readme-requirements title="Requirements" path="README.md" lines=9:12
 @source readme-layout title="A film's layout" path="README.md" lines=18:26
-@source readme-words title="Concepts and readings" path="README.md" lines=67:70
-@source readme-neither title="A film without either check" path="README.md" lines=74:74
-@source readme-gate title="The picture gate" path="README.md" lines=92:92
-@source readme-metrics title="Text measured with the film's fonts" path="README.md" lines=94:94
-@source readme-balance title="Balance in every frame" path="README.md" lines=96:96
-@source readme-install title="Installing the engine in a film" path="README.md" lines=188:198
-@source readme-commands title="Commands" path="README.md" lines=204:220
-@source readme-endings title="Whole endings" path="README.md" lines=224:226
-@source readme-dev title="Development" path="README.md" lines=248:248
+@source readme-levels title="Level tolerances" path="README.md" lines=53:53
+@source readme-words title="Concepts and readings" path="README.md" lines=69:72
+@source readme-neither title="A film without either check" path="README.md" lines=76:76
+@source readme-gate title="The picture gate" path="README.md" lines=94:94
+@source readme-metrics title="Text measured with the film's fonts" path="README.md" lines=96:96
+@source readme-balance title="Balance in every frame" path="README.md" lines=98:98
+@source readme-install title="Installing the engine in a film" path="README.md" lines=190:200
+@source readme-commands title="Commands" path="README.md" lines=206:222
+@source readme-endings title="Whole endings" path="README.md" lines=226:228
+@source readme-dev title="Development" path="README.md" lines=250:250
 @source agents-contract title="The engine contract" path="AGENTS.md" lines=10:16
-@source changelog-pin title="A film keeps its pin" path="CHANGELOG.md" lines=316:316
+@source changelog-pin title="A film keeps its pin" path="CHANGELOG.md" lines=322:322
 @source film-root title="Finding the film" path="src/filmkit/repository.py" lines=28:50
 @source film-load title="Checking the declaration" path="src/filmkit/film.py" lines=393:408
 @source edition-places title="Where an edition writes" path="src/filmkit/production.py" lines=138:154
@@ -62,8 +64,11 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 @source snapshots title="The pinned speech models" path="src/filmkit/narration/snapshots.py" lines=58:86
 @source supply-doc title="The supply" path="src/filmkit/supply.py" lines=1:7
 @source assembly-doc title="The assembly" path="src/filmkit/soundtrack/assembly.py" lines=1:10
-@source abrupt title="Abrupt takes refused" path="src/filmkit/soundtrack/assembly.py" lines=156:176
-@source program-gain title="One gain to the program level" path="src/filmkit/soundtrack/assembly.py" lines=511:532
+@source abrupt title="Abrupt takes refused" path="src/filmkit/soundtrack/assembly.py" lines=157:177
+@source program-gain title="One gain to the program level" path="src/filmkit/soundtrack/assembly.py" lines=492:513
+@source segment-level title="A segment leveled within its chapter" path="src/filmkit/soundtrack/level.py" lines=171:199
+@source clip-levels title="Segments leveled before chapters" path="src/filmkit/soundtrack/assembly.py" lines=573:592
+@source assembly-record title="A segment's receipt record" path="src/filmkit/soundtrack/assembly.py" lines=421:441
 @source releases title="Declared releases" path="src/filmkit/soundtrack/policy.py" lines=159:170
 @source sound-gate title="The sound gate" path="src/filmkit/soundtrack/gates.py" lines=1:13
 @source captions-doc title="Caption timing" path="src/filmkit/captions/timing.py" lines=1:10
@@ -155,7 +160,7 @@ Each command runs at the film's root, and each production action names its editi
 | step-route-narrate | Narrate each thought | Each thought is a native take from the cast's seed or retake. A recording whose request still matches is reused.[](source:synthesis-reuse) | route-flow | route-narrate |
 | step-route-align | Align, transcribe | The pinned aligner times each word. The transcript is a proxy for pronunciation, not a certification.[](source:narrate-steps)[](source:transcription-doc) | route-flow | route-align |
 | step-route-select | Select the takes | `produce select` binds each recording and its alignment to the current script, cast and narrator reference. It refuses a recording that breaks the film's pause limits or says a declared term unlike its reference.[](source:selection)[](source:speech-refusals) | route-flow | route-select |
-| step-route-assemble | Assemble the sound | The assembly designs the pauses, levels each thought and chapter, and reaches the program level with one gain. It refuses the laid-out soundtrack for an unmarked pause above the film's limit or a declared term said unlike its reference.[](source:assembly-doc)[](source:program-gain) `produce check-sound` then judges the assembled soundtrack, and refuses a segment under the film's clarity floor, an abrupt or cut ending and a stopped phrase.[](source:sound-gate) | route-flow | route-assemble |
+| step-route-assemble | Assemble the sound | The assembly designs the pauses, levels each thought, segment and chapter, and reaches the program level with one gain. It refuses the laid-out soundtrack for an unmarked pause above the film's limit or a declared term said unlike its reference.[](source:assembly-doc)[](source:clip-levels)[](source:program-gain) `produce check-sound` then judges the assembled soundtrack, and refuses a segment under the film's clarity floor, an abrupt or cut ending and a stopped phrase.[](source:sound-gate) | route-flow | route-assemble |
 | step-route-gate | Check the picture | `check-picture` audits every frame, each label's sync and the motion, then writes the gate record.[](source:gate-doc) | route-flow | route-gate |
 | step-route-render | Stage, render | The captioned and the uncaptioned picture are each staged as one document and rendered by HyperFrames, only after a passing gate record.[](source:stage)[](source:render-gate)[](source:render) | route-flow | route-render |
 | step-route-compare | Compare the pictures | The two pictures may differ only by their captions, in the composition at every caption and every half second, and in the decoded frames outside the captions' band. Every frame of both is then scanned for a fault that lasts one frame. The same scan measures the edge slivers: the samples more than 40 levels apart in each frame's densest block. A frame beyond the bound is refused.[](source:equivalence-doc) | route-flow | route-compare |
@@ -189,7 +194,7 @@ The assembly refuses a thought whose take ends inside its last syllable.[](sourc
 | step-take-auditioned | Auditioned | An audition narrates other seeds, or reads on into the next thought and cuts in the quiet. It proposes the qualified take with the fewest differing units. The bound retake keeps the SHA-256 of its text and speech.[](source:audition-propose)[](source:run-on-doc)[](source:retakes-doc) | take-life | take-auditioned |
 | step-take-released | Released | A film may declare a release of up to 0.3 s for one join, and the assembly fades that tail into the silence.[](source:releases) | take-life | take-released |
 | step-take-selected | Selected | Selection binds each recording and its alignment to the current script, cast and narrator reference.[](source:selection) | take-life | take-selected |
-| step-take-assembled | Assembled | The soundtrack plays at -16.5 LUFS integrated, under a true-peak ceiling of -1 dBTP.[](source:program-level)[](source:program-gain) | take-life | take-assembled |
+| step-take-assembled | Assembled | A script's `voice_performance` may declare `segment_level_tolerance_db`, from 0.1 to 3.0.[](source:readme-levels) The assembly then brings each segment whose leveled thoughts' median loudness stands farther than that from its chapter's median to the tolerance's edge.[](source:segment-level) It does so before it levels the chapters, by one static gain of at most 2 dB that keeps the segment's peak below -1 dBFS.[](source:clip-levels)[](source:segment-level) The soundtrack plays at -16.5 LUFS integrated, under a true-peak ceiling of -1 dBTP.[](source:program-level)[](source:program-gain) | take-life | take-assembled |
 
 @callout level=note title="Why a take can end inside a syllable"
 | With mlx-audio 0.6.4, each frame whose first codebook id is 0 removes 80 ms from the end of an in-context take.[](source:readme-endings) The fix is proposed upstream as `Blaizzy/mlx-audio#1116`. |
@@ -202,7 +207,7 @@ A record names the SHA-256 of the files its step read, and the step that reads t
 
 @steps id=records-steps
 | step-rec-selection | narration-selected.json | Binds the script and the cast, and each recording by its waveform's SHA-256.[](source:selection) | records-erd | rec-selection |
-| step-rec-assembly | audio-assembly.json | Binds the script and the soundtrack it wrote, with the designed pauses and the program level.[](source:assembly-doc) | records-erd | rec-assembly |
+| step-rec-assembly | audio-assembly.json | Binds the script and the soundtrack it wrote, with the designed pauses and the program level.[](source:assembly-doc) It records each segment's gain as `segment_gain_db`.[](source:assembly-record) | records-erd | rec-assembly |
 | step-rec-stage | stage.json | Binds the script, timeline, assembly, soundtrack and source manifest, and each staged member.[](source:candidate-inputs)[](source:stage) | records-erd | rec-stage |
 | step-rec-gates | picture-gates.json | Binds the composition, timeline, stylesheet, fonts and engine version that the audits ran on.[](source:gate-check) | records-erd | rec-gates |
 | step-rec-package | film-package.json | Binds both pictures and their equivalence record, the soundtrack, cover, script, chapters and the film's `VERSION`, and each film's own SHA-256.[](source:package-inputs)[](source:package-film) | records-erd | rec-package |
@@ -291,7 +296,7 @@ Delivery fills the film's Documents folder with exactly 25 members, then reads t
 
 ## How did Film Kit get here? {#p-history}
 
-Film Kit released v0.1.0 on 30 October 2026 and v0.22.2 on 15 November.[](source:changelog-010)[](source:changelog-0222) The timeline shows the sixteen releases that changed how a film is made, v0.22.0 and v0.22.2 the latest.[](source:changelog-0220)[](source:changelog-0222) It also shows the patch releases v0.21.1 and v0.21.2, which moved only the repository's tools and pinned packages.[](source:changelog-0211)[](source:changelog-0212) The v0.21.3 release did the same and is not on the timeline.[](source:changelog-0213)
+Film Kit released v0.1.0 on 30 October 2026 and v0.22.3 on 15 November.[](source:changelog-010)[](source:changelog-0223) The timeline shows the seventeen releases that changed how a film is made, v0.22.0, v0.22.2 and v0.22.3 the latest.[](source:changelog-0220)[](source:changelog-0222)[](source:changelog-0223) It also shows the patch releases v0.21.1 and v0.21.2, which moved only the repository's tools and pinned packages.[](source:changelog-0211)[](source:changelog-0212) The v0.21.3 release did the same and is not on the timeline.[](source:changelog-0213)
 
 The v0.22.1 release moved the renderer to HyperFrames 0.9.46, and the sample film's twelve films decode to the same frames.[](source:changelog-0221) It is not on the timeline either. The repository keeps no dated roadmap; what is still open is listed last on this page.
 

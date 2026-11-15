@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "6baca043b57f3188fff8629070f03ed8f0d81c92"
+      "revision": "e70a437aec0938b7a1f5309797514335b0fbeaf9"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 416,
-          "end_line": 425,
+          "line": 422,
+          "end_line": 431,
           "label": "0.1.0"
         }
       ]
@@ -57,8 +57,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 377,
-          "end_line": 387,
+          "line": 383,
+          "end_line": 393,
           "label": "0.3.0"
         }
       ]
@@ -73,8 +73,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 336,
-          "end_line": 345,
+          "line": 342,
+          "end_line": 351,
           "label": "0.6.0"
         }
       ]
@@ -88,8 +88,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 303,
-          "end_line": 314,
+          "line": 309,
+          "end_line": 320,
           "label": "0.8.0"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 277,
-          "end_line": 281,
+          "line": 283,
+          "end_line": 287,
           "label": "0.9.0"
         }
       ]
@@ -118,8 +118,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 257,
-          "end_line": 265,
+          "line": 263,
+          "end_line": 271,
           "label": "0.10.0"
         }
       ]
@@ -134,8 +134,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 211,
-          "end_line": 225,
+          "line": 217,
+          "end_line": 231,
           "label": "0.12.0"
         }
       ]
@@ -150,8 +150,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 195,
-          "end_line": 207,
+          "line": 201,
+          "end_line": 213,
           "label": "0.13.0"
         }
       ]
@@ -165,8 +165,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 177,
-          "end_line": 186,
+          "line": 183,
+          "end_line": 192,
           "label": "0.14.0"
         }
       ]
@@ -180,8 +180,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 155,
-          "end_line": 163,
+          "line": 161,
+          "end_line": 169,
           "label": "0.17.0"
         }
       ]
@@ -196,8 +196,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 145,
-          "end_line": 153,
+          "line": 151,
+          "end_line": 159,
           "label": "0.18.0"
         }
       ]
@@ -212,8 +212,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 129,
-          "end_line": 144,
+          "line": 135,
+          "end_line": 150,
           "label": "0.19.0"
         }
       ]
@@ -227,8 +227,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 112,
-          "end_line": 128,
+          "line": 118,
+          "end_line": 134,
           "label": "0.20.0"
         }
       ]
@@ -243,8 +243,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 89,
-          "end_line": 110,
+          "line": 95,
+          "end_line": 116,
           "label": "0.21.0"
         }
       ]
@@ -258,8 +258,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 81,
-          "end_line": 87,
+          "line": 87,
+          "end_line": 93,
           "label": "0.21.1"
         }
       ]
@@ -273,8 +273,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 75,
-          "end_line": 79,
+          "line": 81,
+          "end_line": 85,
           "label": "0.21.2"
         }
       ]
@@ -289,8 +289,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 40,
-          "end_line": 60,
+          "line": 46,
+          "end_line": 66,
           "label": "0.22.0"
         }
       ]
@@ -304,9 +304,24 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 7,
-          "end_line": 13,
+          "line": 13,
+          "end_line": 19,
           "label": "0.22.2"
+        }
+      ]
+    },
+    {
+      "id": "v223",
+      "at": "2026-11-15T09:30:41+08:00",
+      "lane": "narration",
+      "title": "v0.22.3 段落在所在章节内调平",
+      "detail": "脚本可以声明 segment_level_tolerance_db，取值 0.1 到 3.0。段落的响度中位数与所在章节相差超过容差时，拼接步骤先用一次不超过 2 dB 的静态增益把它调到容差边缘，再调平各章节。未声明的影片，拼出的音轨和时间线与 0.22.2 相同。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 7,
+          "end_line": 11,
+          "label": "0.22.3"
         }
       ]
     }

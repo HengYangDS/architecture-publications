@@ -4,7 +4,7 @@
 
 ## 2. Film Kit
 
-- [ ] 2.1 Re-pin Film Kit at v0.22.3 in both languages from the re-pin worklist: move the 41 shifted citations, reread the 3 touched ones and the 2 listed components and 5 relations, describe the levelling of each segment within its chapter, add the release to the history, and name the pin in the README, term table and scope. Done when `archpub check --repo` with `--against v0.22.3` lists every citation the same and nothing refused or uncovered, for both models.
+- [x] 2.1 Re-pin Film Kit at v0.22.3 in both languages from the re-pin worklist: move the 41 shifted citations, reread the 3 touched ones and the 2 listed components and 5 relations, describe the levelling of each segment within its chapter, add the release to the history, and name the pin in the README, term table and scope. Done when `archpub check --repo` with `--against v0.22.3` lists every citation the same and nothing refused or uncovered, for both models. Both models report 142 citations the same and nothing refused or uncovered at v0.22.3 (`archpub check --repo --against v0.22.3`, 2026-11-15); the scope holds 124 files.
 
 ## 3. Record
 
