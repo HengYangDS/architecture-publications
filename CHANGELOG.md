@@ -36,7 +36,7 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 - The repository's tools run on Node 26.13.1, a security release, and its format check on Prettier
   3.10.1.
 - OpenAI Responses Proxy is pinned at v6.0.0, Architecture Publisher at
-  v0.14.0, Film Kit at v0.22.3, ETHOS at v0.2.0-beta.10 and AIGW at v0.7.2.
+  v0.14.0, Film Kit at v0.22.3, ETHOS at v0.2.0-beta.10 and AIGW at v0.8.0.
   Building the works needs Architecture Publisher 0.10.2 or later. The
   Architecture Publisher work lists the `skill` command, describes strips,
   palettes, age bands and the sealed acceptance of an edition, and claims
@@ -56,6 +56,10 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   reload replace a listener only by handoff, a runtime without both handoff capabilities is refused, and the history
   records the release that removed the drain. At v0.22.3 the Film Kit work describes the levelling of each segment
   within its chapter.
+  At v0.8.0 the AIGW work says that AIGW no longer takes over or migrates a Keychain item that 0.3.5 or earlier
+  stored, that a program rollback moves no credential and is refused on a Homebrew installation, and that an empty
+  Token counts as a missing one; its commands, not its entry, reach program updates, and its history ends at the
+  release.
 - The ETHOS work claims the application layer and the operation catalog. The
   AIGW work uses the client's new vocabulary: it no longer has a renaming
   component, and its catalog, readiness, configuration and rollout panels follow
