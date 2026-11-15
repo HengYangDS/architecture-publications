@@ -6,7 +6,7 @@
   "title": "OpenAI Responses Proxy",
   "question": "OpenAI Responses Proxy 如何让一轮 Codex Responses 对话能在第三方提供商之间迁移？又如何安装自己的监听器，并让它持续运行？",
   "summary": "回环监听器按一套封闭语法重建每个 Responses 请求，并设 store=false；请求发往路径所指的提供商，全程受同一个总时限约束，只有失败类别允许时才重试。已签名的发布版本由一个记入日志的事务完成安装，成为不可变的一代；升级时，监听套接字交给新进程；监听器一旦停止，系统服务管理器托管的看门狗就会重启它。",
-  "scope": "v5.1.12 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
+  "scope": "v6.0.0 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
   "limits": [
     "每个组件负责其声明中列出的文件；关系所引用的，是导入或调用另一组件的文件。",
     "关系代表承载行为的导入、对调用方交来的另一组件对象的调用，或进程调用；仅为异常类、类型、共用辅助函数或产品名称而做的导入，图中不画。",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "openai-responses-proxy",
     "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
-    "revision": "8f589e5f416117c01a8ef9d4716eca7da0edd291",
+    "revision": "0b2299d5dc60b0805510dd02803b6765521e773f",
     "browse": "https://github.com/HengYangDS/openai-responses-proxy/blob/{revision}/{path}"
   },
   "coverage": {
@@ -198,7 +198,7 @@
       "kind": "endpoint",
       "details": {
         "监听": "127.0.0.1 的 8792 端口，安装时可另选",
-        "路径": "/healthz、/control/drain、/control/handoff，以及 /<provider>/v1/responses 和 models",
+        "路径": "/healthz、/control/handoff，以及 /<provider>/v1/responses 和 models",
         "启动条件": "载荷的摘要已由它自己验证"
       },
       "files": [
@@ -212,8 +212,8 @@
       "kind": "gate",
       "details": {
         "请求体": "只读一个，按长度定界，限时 30 秒、限长 64 MiB",
-        "排空": "暂停 Responses 准入，租约期有上限",
-        "控制": "排空和交接只接受回环客户端的请求，Host 须为回环地址，且不带 Origin"
+        "计数": "运行中的处理器和已放行的 Responses 请求；交接之后，旧监听器等它们结束",
+        "控制": "交接只接受回环客户端的请求，Host 须为回环地址，且不带 Origin"
       },
       "files": ["src/openai_responses_proxy/relay/admission.py"]
     },
@@ -384,6 +384,7 @@
       "details": {
         "保存": "runtime-config.json 放在每一代旁边，升级时沿用其中的上限",
         "校验": "端口、超时，以及请求体、流和模型目录的上限",
+        "拒绝": "缺少请求体、流或模型目录上限的运行配置，5.0.6 及更早版本写下的就是这样",
         "提供": "大小受限的日志、回环传输和干净的子进程环境"
       },
       "files": [
@@ -489,7 +490,9 @@
       "label": "部署",
       "kind": "coordinator",
       "details": {
-        "方式": "交接，准入全程开放；较旧的运行时则排空后替换",
+        "方式": "替换运行中的监听器只走交接，准入全程开放",
+        "拒绝": "未同时声明两项交接能力的运行时，此时尚未做任何改动",
+        "回滚": "后继进程越过 COMMIT 之前失败的交接；先由 /healthz 确认旧监听器与捕获时一致、仍在服务",
         "身份": "事务完结前，先证明后继进程的身份"
       },
       "files": [
@@ -550,7 +553,7 @@
       "id": "listener-request-admission",
       "from": "listener",
       "to": "request-admission",
-      "label": "统计处理器、排空",
+      "label": "统计处理器、核对控制者",
       "files": [
         "src/openai_responses_proxy/serving/control.py",
         "src/openai_responses_proxy/serving/entrypoint.py",
@@ -849,7 +852,7 @@
       "id": "deployment-listener",
       "from": "deployment",
       "to": "listener",
-      "label": "排空、读取 /healthz",
+      "label": "读取 /healthz",
       "files": ["src/openai_responses_proxy/lifecycle/deployment/handoff.py"]
     },
     {
@@ -977,7 +980,7 @@
       "id": "handoff",
       "title": "换新监听器，一轮也不丢",
       "question": "升级和重载如何把监听套接字移到新进程？",
-      "summary": "监听器交接把监听套接字交给后继进程，期间准入一直开放；较旧的运行时则由部署排空后替换。事务完结之前，部署先证明后继进程的身份。",
+      "summary": "监听器交接把监听套接字交给后继进程，期间准入一直开放；替换监听器没有别的方式。运行时若未同时声明两项交接能力，部署就拒绝；事务完结之前，部署先证明后继进程的身份。",
       "members": [
         "deployment",
         "listener",

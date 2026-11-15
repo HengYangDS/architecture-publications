@@ -7,7 +7,7 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 - [An upgrade keeps admitting turns](block:p-handoff): the new process inherits the listening socket, and the old one finishes what it accepted.[](source:readme-handoff)
 - [Every installation step is journaled](block:p-install), so `recover` finishes or undoes an interrupted one.[](source:arch-completion)
 
-@answer scope="OpenAI Responses Proxy v5.1.12 · commit 8f589e5 · its source and its own documents"
+@answer scope="OpenAI Responses Proxy v6.0.0 · commit 0b2299d · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What the proxy is" path="README.md" lines=3:7
 @source readme-portable title="No conversation storage is edited" path="README.md" lines=12:13
@@ -18,16 +18,16 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 @source readme-install-tx title="Installation as a transaction" path="README.md" lines=99:107
 @source readme-routes title="Provider routes" path="README.md" lines=120:130
 @source readme-upstream title="One explicit upstream" path="README.md" lines=132:144
-@source readme-status title="What status reports" path="README.md" lines=214:230
-@source readme-purge title="Purging exact files" path="README.md" lines=246:252
-@source readme-generations title="Generations and the selector" path="README.md" lines=254:261
-@source readme-handoff title="Admission-preserving handoff" path="README.md" lines=266:273
-@source readme-compat title="Compatibility behavior" path="README.md" lines=281:300
-@source readme-deadline title="One exchange deadline" path="README.md" lines=302:321
-@source readme-ucloud title="Plaintext delegation on UCloud" path="README.md" lines=323:331
-@source readme-request title="Request boundary" path="README.md" lines=335:360
-@source readme-body title="Body admission" path="README.md" lines=362:369
-@source readme-evidence title="Runtime evidence" path="README.md" lines=393:402
+@source readme-status title="What status reports" path="README.md" lines=185:201
+@source readme-purge title="Purging exact files" path="README.md" lines=217:223
+@source readme-generations title="Generations and the selector" path="README.md" lines=225:232
+@source readme-handoff title="Admission-preserving handoff" path="README.md" lines=237:244
+@source readme-compat title="Compatibility behavior" path="README.md" lines=252:271
+@source readme-deadline title="One exchange deadline" path="README.md" lines=273:292
+@source readme-ucloud title="Plaintext delegation on UCloud" path="README.md" lines=294:302
+@source readme-request title="Request boundary" path="README.md" lines=306:331
+@source readme-body title="Body admission" path="README.md" lines=333:340
+@source readme-evidence title="Runtime evidence" path="README.md" lines=362:372
 @source arch-authority title="Who owns which state" path="docs/architecture/authority-and-runtime-boundary.md" lines=40:50
 @source arch-projection title="What the projection removes" path="docs/architecture/authority-and-runtime-boundary.md" lines=226:239
 @source arch-agent title="Encrypted agent messages" path="docs/architecture/authority-and-runtime-boundary.md" lines=248:257
@@ -45,11 +45,11 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 @source dr2-consequence title="DR-0002: continuity from replayed dialogue" path="docs/decisions/dr-0002-provider-portable-stateless-replay.md" lines=68:77
 @source dr3-decision title="DR-0003: recovery scoped by provider" path="docs/decisions/dr-0003-provider-scoped-recovery-and-backpressure.md" lines=22:35
 @source dr6-resend title="DR-0006: a sent request is not sent again" path="docs/decisions/dr-0006-semantic-fit-before-framework-adoption.md" lines=200:228
-@source code-route title="Route dispatch" path="src/openai_responses_proxy/serving/server.py" lines=134:148
-@source code-body title="Reading one framed body" path="src/openai_responses_proxy/relay/responses.py" lines=151:169
-@source code-project title="Projection and delegation" path="src/openai_responses_proxy/relay/responses.py" lines=275:314
-@source code-gate title="Cooldown, then admission" path="src/openai_responses_proxy/relay/responses.py" lines=339:356
-@source code-cooldown title="Provider cooldowns" path="src/openai_responses_proxy/relay/responses.py" lines=63:111
+@source code-route title="Route dispatch" path="src/openai_responses_proxy/serving/server.py" lines=134:146
+@source code-body title="Reading one framed body" path="src/openai_responses_proxy/relay/responses.py" lines=126:144
+@source code-project title="Projection and delegation" path="src/openai_responses_proxy/relay/responses.py" lines=250:289
+@source code-gate title="Cooldown, then admission" path="src/openai_responses_proxy/relay/responses.py" lines=314:332
+@source code-cooldown title="Provider cooldowns" path="src/openai_responses_proxy/relay/responses.py" lines=40:86
 @source code-deadline title="One exchange, one deadline" path="src/openai_responses_proxy/relay/exchange.py" lines=122:152
 @source code-http-error title="Classified upstream errors" path="src/openai_responses_proxy/relay/exchange.py" lines=369:438
 @source code-transport-error title="Transport failures" path="src/openai_responses_proxy/relay/exchange.py" lines=441:489
@@ -79,39 +79,44 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 @source code-rollback title="Rolling back" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=255:271
 @source code-recover title="Recovering from the journal" path="src/openai_responses_proxy/lifecycle/transaction/recovery.py" lines=25:109
 @source code-close title="Closing an unwritten transaction" path="src/openai_responses_proxy/lifecycle/transaction/recovery.py" lines=112:119
-@source code-strategy title="Handoff or replacement" path="src/openai_responses_proxy/lifecycle/deployment/strategy.py" lines=80:86
-@source code-lease title="The predecessor's lease" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=73:79
-@source code-request title="Requesting the handoff" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=284:344
-@source code-finalized title="Proof of a finalized successor" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=394:407
-@source code-disk-match title="Only the selected payload" path="src/openai_responses_proxy/serving/control.py" lines=114:127
+@source code-strategy title="Both handoff capabilities" path="src/openai_responses_proxy/lifecycle/deployment/strategy.py" lines=49:59
+@source code-incompatible title="An incompatible runtime is refused" path="src/openai_responses_proxy/lifecycle/deployment/apply.py" lines=110:113
+@source code-lease title="The predecessor's lease" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=81:87
+@source code-request title="Requesting the handoff" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=223:283
+@source code-finalized title="Proof of a finalized successor" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=338:351
+@source code-failed-handoff title="A failed handoff is rolled back" path="src/openai_responses_proxy/lifecycle/deployment/apply.py" lines=268:286
+@source code-predecessor title="Proof that the predecessor still serves" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=202:220
+@source code-disk-match title="Only the selected payload" path="src/openai_responses_proxy/serving/control.py" lines=120:133
 @source code-spawn title="Passing the socket" path="src/openai_responses_proxy/serving/handoff/protocol.py" lines=235:284
 @source code-prepare title="Preparing a successor" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=252:306
 @source code-commit title="Crossing COMMIT" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=317:353
-@source code-old-finishes title="The old listener finishes" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=382:413
-@source code-child title="The successor's side" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=465:523
-@source code-local title="Control from a local controller only" path="src/openai_responses_proxy/relay/admission.py" lines=162:172
+@source code-old-finishes title="The old listener finishes" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=380:411
+@source code-child title="The successor's side" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=463:521
+@source code-local title="Control from a local controller only" path="src/openai_responses_proxy/relay/admission.py" lines=96:106
 @source code-selector title="Reading the selector" path="src/openai_responses_proxy/serving/identity.py" lines=111:134
 @source code-journal-paths title="The journal beside the data root" path="src/openai_responses_proxy/lifecycle/records.py" lines=26:38
 @source code-command-path title="The command path" path="src/openai_responses_proxy/lifecycle/command.py" lines=37:51
-@source code-plist title="The launch agent" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=126:139
-@source code-domains title="GUI or Background domain" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=67:88
+@source code-plist title="The launch agent" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=124:137
+@source code-domains title="GUI or Background domain" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=65:86
 @source code-unit title="The systemd user unit" path="src/openai_responses_proxy/lifecycle/supervision/linux.py" lines=19:33
 @source code-task title="The scheduled task" path="src/openai_responses_proxy/lifecycle/supervision/windows.py" lines=47:87
 @source code-roots title="Data and state roots" path="src/openai_responses_proxy/runtime/config.py" lines=160:189
 @source code-watchdog title="The watchdog loop" path="src/openai_responses_proxy/lifecycle/supervision/watchdog.py" lines=103:138
-@source code-activate-carrier title="Each role loads its carrier" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=152:159
+@source code-activate-carrier title="Each role loads its carrier" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=148:155
+@source code-carrier-schema title="A carrier must hold every field" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=158:169
 @source code-status-next title="One next command per state" path="src/openai_responses_proxy/cli/outcome.py" lines=37:43
 @source code-lock title="One lifecycle writer" path="src/openai_responses_proxy/cli/application.py" lines=67:86
 @source code-options title="What the port and deadline options accept" path="src/openai_responses_proxy/cli/options.py" lines=32:73
 @source readme-port title="The default port" path="README.md" lines=89:97
-@source readme-budgets title="Limits a fresh installation may choose" path="README.md" lines=371:389
+@source readme-budgets title="Limits a fresh installation may choose" path="README.md" lines=342:358
 @source code-defaults title="Runtime defaults" path="src/openai_responses_proxy/runtime/config.py" lines=70:86
 @source code-platforms title="Release platforms" path="src/openai_responses_proxy/product_identity.py" lines=13:18
-@source changelog-100 title="The 1.0.0 release" path="CHANGELOG.md" lines=1967:1973
-@source changelog-202 title="Renamed in 2.0.2" path="CHANGELOG.md" lines=1362:1372
-@source changelog-500 title="Renamed in 5.0.0" path="CHANGELOG.md" lines=462:469
-@source changelog-5111 title="The 5.1.11 release" path="CHANGELOG.md" lines=33:46
-@source changelog-5112 title="The 5.1.12 release" path="CHANGELOG.md" lines=11:31
+@source changelog-100 title="The 1.0.0 release" path="CHANGELOG.md" lines=2023:2029
+@source changelog-202 title="Renamed in 2.0.2" path="CHANGELOG.md" lines=1418:1428
+@source changelog-500 title="Renamed in 5.0.0" path="CHANGELOG.md" lines=518:525
+@source changelog-5111 title="The 5.1.11 release" path="CHANGELOG.md" lines=89:102
+@source changelog-5112 title="The 5.1.12 release" path="CHANGELOG.md" lines=67:87
+@source changelog-600 title="The 6.0.0 release" path="CHANGELOG.md" lines=11:65
 
 ## Who sends traffic through the proxy, and what does it leave to others? {#p-context}
 
@@ -178,7 +183,7 @@ Only `POST /<provider>/v1/responses` and `GET /<provider>/v1/models` are admitte
 | step-turn-route | Loopback listener | Resolves the provider from the path and rejects encoded, dotted or unrelated paths before any upstream I/O.[](source:readme-request)[](source:code-route) | turn-flow | turn-listener | | turn-client-to-turn-listener-1,turn-listener-to-turn-relay-1 |
 | step-turn-body | Responses relay | Reads one ASCII Content-Length body within 30 s and 64 MiB; a slower or larger body gets 408 or 413.[](source:readme-body)[](source:code-body) | turn-flow | turn-relay | | turn-listener-to-turn-relay-1 |
 | step-turn-project | Replay projection | Rebuilds the body in the portable grammar, then selects plaintext delegation when the route asks for it.[](source:code-project) | turn-flow | turn-projection | | turn-relay-to-turn-projection-1,turn-projection-to-turn-relay-1 |
-| step-turn-gate | Responses relay | A cooling provider answers 429 or 503 with Retry-After; a draining listener answers 503. Otherwise the turn takes one admission slot.[](source:code-cooldown)[](source:code-gate) | turn-flow | turn-relay | | turn-relay-to-turn-exchange-1 |
+| step-turn-gate | Responses relay | A cooling provider answers 429 or 503 with Retry-After. Otherwise the turn is admitted and counted as one active Response.[](source:code-cooldown)[](source:code-gate) | turn-flow | turn-relay | | turn-relay-to-turn-exchange-1 |
 | step-turn-send | Upstream exchange | One deadline, 900 s by default, bounds headers, retries, reads and every write to the client.[](source:readme-deadline)[](source:code-deadline) | turn-flow | turn-exchange | | turn-exchange-to-turn-provider-1,turn-provider-to-turn-exchange-1,turn-exchange-to-turn-relay-1 |
 | step-turn-deliver | Response delivery | Validates each event before writing it, and holds events that come before any content.[](source:code-hold)[](source:arch-live) | turn-flow | turn-delivery | | turn-relay-to-turn-delivery-1,turn-delivery-to-turn-client-1 |
 
@@ -241,9 +246,12 @@ Installation never downloads dependencies or reads provider credentials.[](sourc
 | step-tx-rolled-back | Rolled back | The prior selection and command link return, and only the candidate's recorded files are deleted.[](source:code-rollback)[](source:arch-deletion) | tx-life | tx-rolled-back |
 | step-tx-closed | Closed | A transaction that wrote nothing is closed without any other effect.[](source:code-close) | tx-life | tx-closed |
 
+@callout level=warning title="An installation from 5.0.6 or earlier is refused"
+| A runtime configuration without the body, catalog and SSE limits is refused, and so is a payload manifest without its receipt digest. On macOS a launch agent without the Aqua and Background session pair is refused too. Each fails with its reason and changes nothing. Remove such an installation with the release that wrote it, then install this one.[](source:code-carrier-schema)[](source:changelog-600) |
+
 ## How does an upgrade replace the listener without dropping a turn? {#p-handoff}
 
-Upgrade and reload use one handoff. The running listener passes its listening socket to a successor, so new turns are admitted throughout.[](source:readme-handoff)
+Upgrade, rollback and reload use one handoff, and no other transition exists. The running listener passes its listening socket to a successor, so new turns are admitted throughout.[](source:readme-handoff)
 
 @sequence id=handoff-flow title="Handing the socket to a successor"
 | actor ho-deploy | Deployment | backend | source:code-request |
@@ -274,8 +282,10 @@ Upgrade and reload use one handoff. The running listener passes its listening so
 | step-ho-finish | Running listener | Accepted turns finish on the old process until they end or reach the upstream timeout, at most 900 s.[](source:code-old-finishes)[](source:code-lease) | handoff-flow | ho-old | | ho-client-to-ho-new-1,ho-old-to-ho-client-1 |
 | step-ho-prove | Deployment | Finalizes only when the old process has exited and the successor reports the finalized identity.[](source:code-finalized)[](source:code-request) | handoff-flow | ho-deploy | | ho-deploy-to-ho-new-1,ho-new-to-ho-deploy-1 |
 
-@callout level=warning title="An older runtime is drained instead"
-| A runtime without the admission-preserving capability is replaced after a drain. Until the successor serves, new turns get a retryable 503.[](source:code-strategy)[](source:readme-handoff) |
+A handoff that fails before its successor commits is rolled back. Deployment first reads from /healthz that the predecessor serves as captured, accepts requests and has begun no handoff. When health cannot prove that, an upgrade or a rollback keeps its transaction open for `recover`.[](source:code-failed-handoff)[](source:code-predecessor)[](source:changelog-600)
+
+@callout level=warning title="A runtime without both handoff capabilities is refused"
+| `install`, `rollback` and `reload` refuse a runtime that does not advertise both handoff capabilities, before any change. Every release from 5.0.0 on advertises both. Remove an older runtime with its own release, then install this one.[](source:code-strategy)[](source:code-incompatible)[](source:readme-handoff)[](source:changelog-600) |
 
 ## What does an installation write, and where? {#p-disk}
 
@@ -294,7 +304,7 @@ These are the macOS defaults; Linux follows XDG directories and Windows uses LOC
 
 ## How did the proxy get here? {#p-history}
 
-The proxy went from 1.0.0 in July 2026 to 5.1.12 in November, and changed its name twice on the way.[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-5112) Below are fourteen of its releases that changed what a client or an operator meets.
+The proxy went from 1.0.0 in July 2026 to 6.0.0 in November, and changed its name twice on the way.[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-600) Below are fifteen of its releases that changed what a client or an operator meets.
 
 @diagram timeline id=history source=history.timeline.json title="How the proxy got here"
 

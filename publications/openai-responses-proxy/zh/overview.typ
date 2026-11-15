@@ -103,7 +103,7 @@
 #ring(1496pt, yk, r: 6pt, w: 2.4pt)
 #txc(1490pt, yk - 14pt, 100pt, [FINALIZE], weight: "semibold")
 #txc(1484pt, yk + 24pt, 130pt, [旧监听器把轮次做完，\ 至多 900 秒], fill: soft)
-#tx(824pt, 724pt, [不具备此能力的运行时改为排空：后继进程开始服务之前，新轮次会得到可重试的 503。], w: 728pt, fill: soft)
+#tx(824pt, 724pt, [升级、回滚和重载都走这条路径。运行时若未同时声明两项交接能力，命令在改动之前就拒绝。], w: 728pt, fill: soft)
 
 // ── Band 3: what keeps it running, the commands, and what others own ───────
 #hrule(756pt)

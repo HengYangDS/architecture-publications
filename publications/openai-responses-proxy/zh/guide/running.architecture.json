@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
       "provider": "github",
-      "revision": "8f589e5f416117c01a8ef9d4716eca7da0edd291"
+      "revision": "0b2299d5dc60b0805510dd02803b6765521e773f"
     }
   },
   "components": [
@@ -23,8 +23,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/control.py",
-          "line": 37,
-          "end_line": 53,
+          "line": 38,
+          "end_line": 60,
           "label": "读取健康状态"
         }
       ]
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/supervision/macos.py",
-          "line": 126,
-          "end_line": 139,
+          "line": 124,
+          "end_line": 137,
           "label": "launchd Agent"
         }
       ]
@@ -87,8 +87,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/serving/entrypoint.py",
-          "line": 172,
-          "end_line": 204,
+          "line": 171,
+          "end_line": 203,
           "label": "运行"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/runtime_spec.py",
-          "line": 152,
-          "end_line": 159,
+          "line": 148,
+          "end_line": 155,
           "label": "激活"
         }
       ]

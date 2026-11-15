@@ -103,7 +103,7 @@
 #ring(1496pt, yk, r: 6pt, w: 2.4pt)
 #txc(1490pt, yk - 14pt, 100pt, [Finalize], weight: "semibold")
 #txc(1486pt, yk + 24pt, 120pt, [the old one finishes its turns, at most 900 s], fill: soft)
-#tx(824pt, 724pt, [A runtime without this capability is drained instead: new turns get a retryable 503 until the successor serves.], w: 728pt, fill: soft)
+#tx(824pt, 724pt, [Upgrade, rollback and reload all take this path. A runtime that does not advertise both handoff capabilities is refused before any change.], w: 728pt, fill: soft)
 
 // ── Band 3: what keeps it running, the commands, and what others own ───────
 #hrule(756pt)
