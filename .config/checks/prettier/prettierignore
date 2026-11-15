@@ -4,3 +4,7 @@
 ../../../.serena/
 # npm writes its lock file.
 ../../../package-lock.json
+# Rules registered before a review read a work are kept byte for byte: their SHA-256 are the registered ones.
+../../../trials/reviewer/2026-11-15-existing-works-protocol.md
+../../../trials/reviewer/2026-11-15-existing-works-task-guide.md
+../../../trials/reviewer/2026-11-15-existing-works-task-model.md
