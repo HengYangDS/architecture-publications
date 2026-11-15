@@ -35,8 +35,8 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 - The repository's checks run on ETHOS 0.2.0-beta.10.
 - The repository's tools run on Node 26.13.1, a security release, and its format check on Prettier
   3.10.1.
-- OpenAI Responses Proxy is pinned at v5.1.12, Architecture Publisher at
-  v0.14.0, Film Kit at v0.22.2, ETHOS at v0.2.0-beta.10 and AIGW at v0.7.2.
+- OpenAI Responses Proxy is pinned at v6.0.0, Architecture Publisher at
+  v0.14.0, Film Kit at v0.22.3, ETHOS at v0.2.0-beta.10 and AIGW at v0.7.2.
   Building the works needs Architecture Publisher 0.10.2 or later. The
   Architecture Publisher work lists the `skill` command, describes strips,
   palettes, age bands and the sealed acceptance of an edition, and claims
@@ -52,6 +52,10 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   At v0.22.2 the Film Kit work describes the check of an assembled soundtrack before its picture, a caption cue's
   typeset text and the edge slivers the picture comparison measures, and claims the edge-sliver module. At v0.7.2
   the AIGW work describes what a client check says of a client's own warning or error.
+  At v6.0.0 the Responses proxy work no longer describes a drain as something the proxy does: upgrade, rollback and
+  reload replace a listener only by handoff, a runtime without both handoff capabilities is refused, and the history
+  records the release that removed the drain. At v0.22.3 the Film Kit work describes the levelling of each segment
+  within its chapter.
 - The ETHOS work claims the application layer and the operation catalog. The
   AIGW work uses the client's new vocabulary: it no longer has a renaming
   component, and its catalog, readiness, configuration and rollout panels follow

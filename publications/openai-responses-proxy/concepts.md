@@ -1,7 +1,7 @@
 # OpenAI Responses Proxy: term renderings
 
 The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `openai-responses-proxy` at v5.1.12 (`8f589e5`) that defines or uses the term. Commands, fields,
+names the file of `openai-responses-proxy` at v6.0.0 (`0b2299d`) that defines or uses the term. Commands, fields,
 status values, HTTP status codes and file names stay in Latin type.
 
 | English                                                                     | 中文                                                                             | Source                                                                |
@@ -32,8 +32,8 @@ status values, HTTP status codes and file names stay in Latin type.
 | listening socket                                                            | 监听套接字                                                                       | `src/openai_responses_proxy/serving/handoff/protocol.py`              |
 | admission, admit                                                            | 准入；作动词时写放行                                                             | `src/openai_responses_proxy/relay/admission.py`                       |
 | gate (response gate)                                                        | 闸门                                                                             | `src/openai_responses_proxy/relay/admission.py`                       |
-| drain                                                                       | 排空                                                                             | `src/openai_responses_proxy/relay/admission.py`                       |
-| lease                                                                       | 租约                                                                             | `src/openai_responses_proxy/relay/admission.py`                       |
+| drain (removed in 6.0.0; history only)                                      | 排空                                                                             | `CHANGELOG.md`                                                        |
+| lease                                                                       | 租约                                                                             | `src/openai_responses_proxy/lifecycle/deployment/handoff.py`          |
 | handler                                                                     | 处理器                                                                           | `src/openai_responses_proxy/relay/admission.py`                       |
 | body                                                                        | 请求体                                                                           | `src/openai_responses_proxy/relay/responses.py`                       |
 | relay                                                                       | 转发                                                                             | `src/openai_responses_proxy/relay/responses.py`                       |
@@ -162,3 +162,6 @@ status values, HTTP status codes and file names stay in Latin type.
 | code (an error event's)                                                     | 错误码                                                                           | `src/openai_responses_proxy/protocol/response.py`                     |
 | usage error                                                                 | 用法错误                                                                         | `src/openai_responses_proxy/cli/application.py`                       |
 | decimal digits (a port's); non-decimal                                      | 十进制数字；不是十进制写法                                                       | `src/openai_responses_proxy/cli/options.py`                           |
+| advertise (a handoff capability)                                            | 声明                                                                             | `README.md`                                                           |
+| captured (the predecessor, when a transition begins)                        | 捕获                                                                             | `src/openai_responses_proxy/lifecycle/deployment/handoff.py`          |
+| session type (launchd)                                                      | 会话类型                                                                         | `src/openai_responses_proxy/lifecycle/supervision/macos.py`           |

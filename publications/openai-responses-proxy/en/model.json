@@ -6,7 +6,7 @@
   "title": "OpenAI Responses Proxy",
   "question": "How does OpenAI Responses Proxy make a Codex Responses turn portable across third-party providers, and how does it install and keep its own listener running?",
   "summary": "A loopback listener rebuilds each Responses request in one closed grammar with store=false, sends it to the provider its path names within one total deadline, and retries only what the failure class allows. A signed release installs through one journaled transaction as an immutable generation; an upgrade hands the listening socket to the new process, and a watchdog under the native service manager restarts a stopped listener.",
-  "scope": "The OpenAI Responses Proxy product as released at v5.1.12: the openai_responses_proxy package with its provider manifest, pyproject.toml and VERSION.",
+  "scope": "The OpenAI Responses Proxy product as released at v6.0.0: the openai_responses_proxy package with its provider manifest, pyproject.toml and VERSION.",
   "limits": [
     "Each component owns the files its claims name; a relation cites the files that import or call the other component.",
     "A relation stands for an import, a call on an object of the other component that the caller hands over, or a process call that carries behaviour; imports used only for an exception class, a type, a shared helper or the product's names are not drawn.",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "openai-responses-proxy",
     "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
-    "revision": "8f589e5f416117c01a8ef9d4716eca7da0edd291",
+    "revision": "0b2299d5dc60b0805510dd02803b6765521e773f",
     "browse": "https://github.com/HengYangDS/openai-responses-proxy/blob/{revision}/{path}"
   },
   "coverage": {
@@ -198,7 +198,7 @@
       "kind": "endpoint",
       "details": {
         "binds": "127.0.0.1 on port 8792 unless installed otherwise",
-        "serves": "/healthz, /control/drain, /control/handoff and /<provider>/v1/responses and models",
+        "serves": "/healthz, /control/handoff and /<provider>/v1/responses and models",
         "starts": "only from a payload whose digests it has verified"
       },
       "files": [
@@ -212,8 +212,8 @@
       "kind": "gate",
       "details": {
         "reads": "one length-framed body within 30 s and 64 MiB",
-        "drains": "Responses admission for a bounded lease",
-        "controls": "drain and handoff only from a loopback client with a loopback Host and no Origin"
+        "counts": "the running handlers and the admitted Responses, which an old listener waits on after a handoff",
+        "controls": "handoff only from a loopback client with a loopback Host and no Origin"
       },
       "files": ["src/openai_responses_proxy/relay/admission.py"]
     },
@@ -384,6 +384,7 @@
       "details": {
         "keeps": "runtime-config.json beside each generation; an upgrade keeps its limits",
         "validates": "port, timeouts and body, stream and catalog limits",
+        "refuses": "a carrier without a body, stream or catalog limit, as 5.0.6 or earlier wrote it",
         "provides": "bounded logs, the loopback transport and clean child environments"
       },
       "files": [
@@ -489,7 +490,9 @@
       "label": "Deployment",
       "kind": "coordinator",
       "details": {
-        "chooses": "a handoff that keeps admission open, or a drained replacement of an older runtime",
+        "replaces": "a running listener only by handoff, which keeps admission open",
+        "refuses": "a runtime that does not advertise both handoff capabilities, before any change",
+        "rolls back": "a handoff that failed before its successor committed, once /healthz shows the predecessor serving as captured",
         "proves": "the successor's identity before the transaction finalizes"
       },
       "files": [
@@ -550,7 +553,7 @@
       "id": "listener-request-admission",
       "from": "listener",
       "to": "request-admission",
-      "label": "counts handlers, drains",
+      "label": "counts handlers, checks controllers",
       "files": [
         "src/openai_responses_proxy/serving/control.py",
         "src/openai_responses_proxy/serving/entrypoint.py",
@@ -849,7 +852,7 @@
       "id": "deployment-listener",
       "from": "deployment",
       "to": "listener",
-      "label": "drains, reads /healthz",
+      "label": "reads /healthz",
       "files": ["src/openai_responses_proxy/lifecycle/deployment/handoff.py"]
     },
     {
@@ -977,7 +980,7 @@
       "id": "handoff",
       "title": "A new listener without a dropped turn",
       "question": "How do an upgrade and a reload move the listening socket to a new process?",
-      "summary": "Listener handoff passes the listening socket to a successor process while admission stays open; deployment drains and replaces an older runtime. It proves the successor's identity before the transaction finalizes.",
+      "summary": "Listener handoff passes the listening socket to a successor process while admission stays open, and no other transition exists. Deployment refuses a runtime without both handoff capabilities, and proves the successor's identity before the transaction finalizes.",
       "members": [
         "deployment",
         "listener",
