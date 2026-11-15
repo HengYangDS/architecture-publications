@@ -7,7 +7,7 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 - [No client file holds a Token](block:p-token): a helper reads it from one selected store when the client asks.[](source:helper-projection)
 - [Each check proves one more thing](block:p-ready), and synchronized client files are not an answered request.[](source:experience-readiness)
 
-@answer scope="AIGW v0.7.2 · commit ed8b2fe · its source and its own documents"
+@answer scope="AIGW v0.8.0 · commit dbcded1 · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What AIGW is" path="README.md" lines=3:6
 @source readme-install title="Install" path="README.md" lines=30:42
@@ -18,12 +18,12 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 @source readme-sync title="What sync changes" path="README.md" lines=168:174
 @source readme-credentials title="Credential storage" path="README.md" lines=176:181
 @source readme-depths title="The four check depths" path="README.md" lines=208:215
-@source readme-model title="The product model" path="README.md" lines=257:268
-@source readme-adapters title="Supported clients" path="README.md" lines=270:276
-@source readme-boundaries title="Boundaries" path="README.md" lines=284:296
-@source readme-rollback title="Program rollback" path="README.md" lines=324:329
-@source readme-uninstall title="Uninstall" path="README.md" lines=356:361
-@source readme-update-trust title="Signed updates" path="README.md" lines=367:374
+@source readme-model title="The product model" path="README.md" lines=256:267
+@source readme-adapters title="Supported clients" path="README.md" lines=269:275
+@source readme-boundaries title="Boundaries" path="README.md" lines=283:295
+@source readme-rollback title="Program rollback" path="README.md" lines=323:328
+@source readme-uninstall title="Uninstall" path="README.md" lines=352:357
+@source readme-update-trust title="Signed updates" path="README.md" lines=363:370
 @source readme-check title="Checking without inference" path="README.md" lines=24:26
 @source concepts title="Three nouns" path="docs/concepts/product-concepts.md" lines=11:14
 @source provider-concept title="Provider" path="docs/concepts/product-concepts.md" lines=46:61
@@ -53,20 +53,20 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 @source transaction title="The synchronization transaction" path="internal/app/synchronization/transaction.go" lines=41:54
 @source preflight title="The preflight" path="internal/app/synchronization/transaction.go" lines=56:71
 @source commit-order title="Entry point, configuration, then client files" path="internal/app/synchronization/transaction.go" lines=75:97
-@source transaction-boundary title="The transaction boundary" path="docs/architecture/security-model.md" lines=180:194
+@source transaction-boundary title="The transaction boundary" path="docs/architecture/security-model.md" lines=198:212
 @source restore title="The guarded restore" path="internal/platform/files.go" lines=197:211
 @source store-commit title="Committing the configuration" path="internal/store/store.go" lines=79:82
 @source store-owner title="What the store owns" path="internal/store/store.go" lines=1:3
 @source store-lock title="The mutation lock" path="internal/store/store.go" lines=181:200
 @source seam title="The adapter contract" path="internal/adapter/registry.go" lines=93:106
 @source entrypoint title="The credential entrypoint" path="docs/architecture/security-model.md" lines=72:80
-@source credential title="The credential protocol" path="docs/architecture/security-model.md" lines=119:127
+@source credential title="The credential protocol" path="docs/architecture/security-model.md" lines=137:145
 @source token-storage title="Where Tokens live" path="docs/architecture/security-model.md" lines=13:16
 @source token-store title="Reading the selected store" path="docs/architecture/security-model.md" lines=38:44
 @source helper-projection title="Claude Desktop's client files" path="internal/adapter/claudedesktop/adapter.go" lines=231:245
 @source check-depths title="The ladder of check depths" path="internal/cli/check/depth.go" lines=15:34
 @source verify-snapshot title="When a check writes the verified snapshot" path="internal/cli/check/snapshot.go" lines=20:32
-@source rollback-snapshot title="What config rollback restores" path="internal/cli/config/rollback.go" lines=84:94
+@source rollback-snapshot title="What config rollback restores" path="internal/cli/config/rollback.go" lines=101:111
 @source decision title="DR-0006: one guarded transaction" path="docs/decisions/dr-0006-transactional-client-projection.md" lines=15:30
 @source rejected title="DR-0006: rejected alternatives" path="docs/decisions/dr-0006-transactional-client-projection.md" lines=32:37
 @source revisit title="DR-0006: when to revisit" path="docs/decisions/dr-0006-transactional-client-projection.md" lines=45:48
@@ -74,17 +74,21 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 @source readme-for title="The clients aigw takes" path="README.md" lines=164:164
 @source readme-environment title="Environment Tokens" path="README.md" lines=183:185
 @source manifest-provider title="A provider in the team file" path="manifests/team.toml" lines=1:18
-@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=1058:1066
-@source changelog-072 title="The 0.7.2 release" path="CHANGELOG.md" lines=14:50
-@source setup-model-kept title="A model preference kept at the first setup" path="CHANGELOG.md" lines=56:60
-@source team-labels title="The labels a team file replaces" path="CHANGELOG.md" lines=61:63
-@source check-parent-session title="A client check inside an agent session" path="CHANGELOG.md" lines=64:68
-@source check-names title="Environment variable names on Windows" path="CHANGELOG.md" lines=70:72
-@source check-client-report title="A client's own warning or error" path="CHANGELOG.md" lines=18:29
-@source check-codex-memory title="Codex's memory work in a client check" path="CHANGELOG.md" lines=30:31
-@source redaction-forms title="The credential forms that redaction covers" path="CHANGELOG.md" lines=32:36
-@source check-schema title="The JSON document of aigw check" path="CHANGELOG.md" lines=40:44
-@source team-lines title="The newest model of every line" path="CHANGELOG.md" lines=45:47
+@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=1125:1133
+@source changelog-080 title="The 0.8.0 release" path="CHANGELOG.md" lines=14:79
+@source setup-model-kept title="A model preference kept at the first setup" path="CHANGELOG.md" lines=123:127
+@source team-labels title="The labels a team file replaces" path="CHANGELOG.md" lines=128:130
+@source check-parent-session title="A client check inside an agent session" path="CHANGELOG.md" lines=131:135
+@source check-names title="Environment variable names on Windows" path="CHANGELOG.md" lines=137:139
+@source check-client-report title="A client's own warning or error" path="CHANGELOG.md" lines=85:96
+@source check-codex-memory title="Codex's memory work in a client check" path="CHANGELOG.md" lines=97:98
+@source redaction-forms title="The credential forms that redaction covers" path="CHANGELOG.md" lines=99:103
+@source check-schema title="The JSON document of aigw check" path="CHANGELOG.md" lines=107:111
+@source team-lines title="The newest model of every line" path="CHANGELOG.md" lines=112:114
+@source keychain-foreign title="A Keychain item that another program stored" path="CHANGELOG.md" lines=18:43
+@source rollback-credentials title="A program rollback moves no credential" path="CHANGELOG.md" lines=50:54
+@source keychain-migration title="No command migrates a Keychain item" path="CHANGELOG.md" lines=55:61
+@source token-empty title="A stored Token that is empty" path="CHANGELOG.md" lines=68:75
 
 ## Who uses AIGW, and what does it touch? {#p-context}
 
@@ -219,6 +223,10 @@ A client's files name the credential helper and a fingerprint of the client, pro
 | step-read | Token store | With the platform credential service, each read runs in a subprocess with a five-second deadline. An unavailable store fails closed, and no other store is tried.[](source:token-store) | token-flow | token-store | | token-helper-to-token-store-1,token-store-to-token-helper-1 |
 | step-call | Provider endpoint | The client sends its own request; AIGW is not on the request path.[](source:boundary) | token-flow | token-endpoint | | token-client-to-token-endpoint-1,token-endpoint-to-token-client-1 |
 
+On macOS, AIGW does not take over a Keychain item that 0.3.5 or earlier stored, and no command migrates one.[](source:keychain-foreign)[](source:keychain-migration) macOS refuses AIGW the read of such an item, and AIGW does not replace an item that it cannot read. A command that needs the credential, such as `aigw use` or `aigw client enable`, ends there. It says that another program stored the item and names the fix: have the credential at hand, delete the item, then store it again.[](source:keychain-foreign)
+
+`aigw sync` and `aigw config rollback` complete, and so does `aigw setup --from` for a provider that it does not name. They leave the client of such a provider waiting, with its files unchanged, as they do for a missing Token. `aigw check --depth local` and `aigw status` report such an item instead of counting it as a stored Token.[](source:keychain-foreign) A stored Token that is empty also counts as a missing Token where a client's files are written.[](source:token-empty)
+
 ## How much does each check prove? {#p-ready}
 
 AIGW's output answers three questions: what is selected, whether it is ready, and the next safe action.[](source:experience-questions)
@@ -229,17 +237,17 @@ AIGW's output answers three questions: what is selected, whether it is ready, an
 | step-inference | aigw check | The default depth sends one bounded inference request per checked client, which may use provider quota.[](source:readme-check)[](source:experience-readiness) |
 | step-session | aigw check --depth client | Runs a real session in each enabled client, started without the variables of a parent agent session.[](source:readme-depths)[](source:check-parent-session) When it names no client and every client passes, it writes the verified snapshot that `aigw config rollback` restores first.[](source:verify-snapshot)[](source:rollback-snapshot) A client-depth check of Codex does not start Codex's memory work, which sends requests for another model than the one being checked.[](source:check-codex-memory) |
 
-| Depth or state | Meaning                                                                                                |
-| -------------- | ------------------------------------------------------------------------------------------------------ |
-| `local`        | The configuration, the Token's presence, the client files and the environment pass, without a request. |
-| `endpoint`     | The provider answers one authenticated request that names no model.                                    |
-| `model`        | The selected model answers one bounded inference request. This is the default depth.                   |
-| `client`       | A real client session completes.                                                                       |
-| configured     | Local prerequisites pass, whatever a check proved beyond them.                                         |
-| deferred       | A credential or client files were postponed on purpose.                                                |
-| degraded       | The client stays configured but has a recoverable problem.                                             |
-| invalid        | Configuration or owned state is unsafe to use.                                                         |
-| unavailable    | A required external capability is missing.                                                             |
+| Depth or state | Meaning                                                                                                                                                                                                                                                                                                     |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `local`        | The configuration, the Token's presence, the client files and the environment pass, without a request. A stored Token that is empty counts as missing.[](source:token-empty) A Keychain item that another program stored is reported instead of being counted as a stored Token.[](source:keychain-foreign) |
+| `endpoint`     | The provider answers one authenticated request that names no model.                                                                                                                                                                                                                                         |
+| `model`        | The selected model answers one bounded inference request. This is the default depth.                                                                                                                                                                                                                        |
+| `client`       | A real client session completes.                                                                                                                                                                                                                                                                            |
+| configured     | Local prerequisites pass, whatever a check proved beyond them.                                                                                                                                                                                                                                              |
+| deferred       | A credential or client files were postponed on purpose.                                                                                                                                                                                                                                                     |
+| degraded       | The client stays configured but has a recoverable problem.                                                                                                                                                                                                                                                  |
+| invalid        | Configuration or owned state is unsafe to use.                                                                                                                                                                                                                                                              |
+| unavailable    | A required external capability is missing.                                                                                                                                                                                                                                                                  |
 
 A check to one depth runs every depth before it.[](source:check-depths) On Windows, `aigw check` compares environment variable names without regard to letter case, so a lower-case `anthropic_auth_token` neither reaches a checked client nor escapes the `local` depth.[](source:check-names) Setup, synchronization, inspection and verification all report in these states, and the depth, not a state, says how much a check proved.[](source:readiness)
 
@@ -313,12 +321,12 @@ AIGW answers one question of four, and leaves the others to the products built f
 | Install | A signed, notarized Homebrew cask, or portable archives for Darwin, Linux and Windows on AMD64 and ARM64, which `aigw self install` installs.[](source:readme-install) |
 | Update | A portable update checks `checksums.txt.sig` against the release key built into AIGW before hashing, extracting or running anything.[](source:readme-update-trust) |
 | Peers | Updates read the GitHub release, and GitLab joins only when two environment variables name it. A release is never assembled from both.[](source:readme-update-trust) |
-| Roll back | `aigw self rollback` first gives the kept program a copy of the configuration, and changes nothing if that program cannot read it. No release before 0.7.0 reads `aigw.toml`.[](source:readme-rollback) |
+| Roll back | `aigw self rollback` first gives the kept program a copy of the configuration, and changes nothing if that program cannot read it. No release before 0.7.0 reads `aigw.toml`.[](source:readme-rollback) A rollback moves no credential: on macOS, a signed release reads the Keychain items of another signed release. On a Homebrew installation the command is refused like the other program commands, and Homebrew installs the earlier release.[](source:rollback-credentials) |
 | Uninstall | `aigw self uninstall` removes AIGW's settings from the client files; providers, models, client selections, Tokens and your own client state remain.[](source:readme-uninstall) |
 
 ## How did AIGW get here? {#p-history}
 
-AIGW released v0.1.0 on 19 September 2026 and v0.7.2, the version this page describes, on 14 November 2026.[](source:changelog-010)[](source:changelog-072) The timeline shows fifteen releases that changed what AIGW does for its users, and the last panel lists what is still open.
+AIGW released v0.1.0 on 19 September 2026 and v0.8.0, the version this page describes, on 15 November 2026.[](source:changelog-010)[](source:changelog-080) The timeline shows sixteen releases that changed what AIGW does for its users, and the last panel lists what is still open.
 
 @diagram timeline id=history source=history.timeline.json title="How AIGW got here"
 

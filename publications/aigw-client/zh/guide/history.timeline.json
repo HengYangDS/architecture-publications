@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "ed8b2fed94ef569f0f2d7fdfd2ec3259c65e37e2"
+      "revision": "dbcded17777a43a9c207f6ac55f966c4094af413"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,14 +42,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1058,
-          "end_line": 1066,
+          "line": 1125,
+          "end_line": 1133,
           "label": "0.1.0"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 1146,
-          "end_line": 1147,
+          "line": 1213,
+          "end_line": 1214,
           "label": "0.1.0"
         }
       ]
@@ -64,8 +64,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 972,
-          "end_line": 996,
+          "line": 1039,
+          "end_line": 1063,
           "label": "0.2.0"
         }
       ]
@@ -80,8 +80,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 944,
-          "end_line": 970,
+          "line": 1011,
+          "end_line": 1037,
           "label": "0.3.0"
         }
       ]
@@ -95,8 +95,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 723,
-          "end_line": 749,
+          "line": 790,
+          "end_line": 816,
           "label": "0.4.1"
         }
       ]
@@ -110,8 +110,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 659,
-          "end_line": 669,
+          "line": 726,
+          "end_line": 736,
           "label": "0.4.5"
         }
       ]
@@ -126,8 +126,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 643,
-          "end_line": 657,
+          "line": 710,
+          "end_line": 724,
           "label": "0.4.6"
         }
       ]
@@ -141,8 +141,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 632,
-          "end_line": 641,
+          "line": 699,
+          "end_line": 708,
           "label": "0.4.7"
         }
       ]
@@ -156,8 +156,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 610,
-          "end_line": 620,
+          "line": 677,
+          "end_line": 687,
           "label": "0.4.9"
         }
       ]
@@ -172,8 +172,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 491,
-          "end_line": 516,
+          "line": 558,
+          "end_line": 583,
           "label": "0.4.16"
         }
       ]
@@ -187,8 +187,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 460,
-          "end_line": 489,
+          "line": 527,
+          "end_line": 556,
           "label": "0.4.17"
         }
       ]
@@ -203,8 +203,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 343,
-          "end_line": 384,
+          "line": 410,
+          "end_line": 451,
           "label": "0.5.0"
         }
       ]
@@ -218,8 +218,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 313,
-          "end_line": 321,
+          "line": 380,
+          "end_line": 388,
           "label": "0.6.1"
         }
       ]
@@ -234,8 +234,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 91,
-          "end_line": 312,
+          "line": 158,
+          "end_line": 379,
           "label": "0.7.0"
         }
       ]
@@ -249,8 +249,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 52,
-          "end_line": 90,
+          "line": 119,
+          "end_line": 157,
           "label": "0.7.1"
         }
       ]
@@ -264,9 +264,25 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 14,
-          "end_line": 50,
+          "line": 81,
+          "end_line": 117,
           "label": "0.7.2"
+        }
+      ]
+    },
+    {
+      "id": "v080",
+      "at": "2026-11-15T22:14:04+08:00",
+      "lane": "trust",
+      "kind": "change",
+      "title": "v0.8.0 不再接管钥匙串条目",
+      "detail": "不兼容变更：在 macOS 上，AIGW 不再接管 0.3.5 及更早版本存入的钥匙串条目。需要这份凭据的命令就此结束，并给出修复办法；aigw sync 让该提供商的客户端继续等待。aigw self rollback 不移动任何凭据，用 Homebrew 安装的 AIGW 会拒绝这条命令。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 14,
+          "end_line": 79,
+          "label": "0.8.0"
         }
       ]
     }

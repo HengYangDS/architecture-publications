@@ -58,6 +58,17 @@ Forty-five cited files are modified and four are deleted: `internal/cli/self/cus
    - Chosen because: a user who rolls back, or who holds a Keychain item from 0.3.5 or earlier, meets different
      behaviour.
    - Applies to: `guide/history.timeline.json` and the guide's prose on where the timeline ends.
+5. The relation from the program's entry to program updates goes, and the one from the commands to program
+   updates is drawn.
+   - Rests on: the imports at both pins. At v0.7.2 `cmd/aigw/main.go` asked `internal/program` whether the
+     executable is the installed program, for the credential role that 0.8.0 removes, and at v0.8.0 it no longer
+     imports that package. `internal/cli/app.go` and five files of `internal/cli/self/` import and call it at both
+     pins, and the work had not drawn that.
+   - Considered: removing the entry's relation only; keeping it.
+   - Chosen because: a relation stands for an import or a call at the pin. The entry's is gone, and without the
+     commands' the view of the program would show a part that nothing reaches, which is not what the source does.
+   - Applies to: `relations` of both models, the view `program`, and the relation counts of the README and the
+     overviews.
 
 ## Risks / Trade-offs
 

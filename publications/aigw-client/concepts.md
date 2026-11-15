@@ -1,7 +1,7 @@
 # AIGW Client Projection: term renderings
 
 The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `aigw-cli` at v0.7.2 (`ed8b2fe`) that defines or uses the term; the repository defines no Chinese
+names the file of `aigw-cli` at v0.8.0 (`dbcded1`) that defines or uses the term; the repository defines no Chinese
 renderings of its own, and its glossary is `docs/concepts/product-concepts.md`. Command names, flags, paths, package
 names, `aigw check` depths and readiness JSON values stay in Latin type.
 
@@ -114,6 +114,10 @@ names, `aigw check` depths and readiness JSON values stay in Latin type.
 | credential form                                                                     | 凭据形式                                                 | `CHANGELOG.md`                                                                              |
 | memory work (Codex)                                                                 | 记忆任务                                                 | `CHANGELOG.md`                                                                              |
 | line (of a vendor's models)                                                         | 产品线                                                   | `CHANGELOG.md`                                                                              |
+| Keychain item (macOS)                                                               | 钥匙串条目                                               | `CHANGELOG.md`                                                                              |
+| take over; migrate (a Keychain item)                                                | 接管；迁移                                               | `CHANGELOG.md`                                                                              |
+| Homebrew installation                                                               | 用 Homebrew 安装的 AIGW                                  | `CHANGELOG.md`                                                                              |
+| waiting (a client, for its Token)                                                   | 等待                                                     | `CHANGELOG.md`                                                                              |
 | gateway; proxy                                                                      | 网关；代理                                               | `docs/research/provider-tooling-assessment.md`                                              |
 | configuration control; request execution; session continuity; organizational access | 配置控制；请求执行；会话连续性；组织访问                 | `docs/research/provider-tooling-assessment.md`                                              |
 | value hypothesis                                                                    | 价值假设                                                 | `docs/research/provider-tooling-assessment.md`                                              |

@@ -7,7 +7,7 @@ AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-wha
 - [客户端文件里没有令牌](block:p-token)：客户端请求时，由凭据助手从选定的那个存储读取令牌。[](source:helper-projection)
 - [每一级检查多证明一件事](block:p-ready)，而客户端文件已同步，不等于请求已得到应答。[](source:experience-readiness)
 
-@answer scope="AIGW v0.7.2 · 提交 ed8b2fe · 源代码及自带文档"
+@answer scope="AIGW v0.8.0 · 提交 dbcded1 · 源代码及自带文档"
 @meta locale=zh-CN style=editorial
 @source readme-what title="AIGW 是什么" path="README.md" lines=3:6
 @source readme-install title="安装" path="README.md" lines=30:42
@@ -18,12 +18,12 @@ AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-wha
 @source readme-sync title="sync 改变什么" path="README.md" lines=168:174
 @source readme-credentials title="凭据存储" path="README.md" lines=176:181
 @source readme-depths title="check 的四级深度" path="README.md" lines=208:215
-@source readme-model title="产品模型" path="README.md" lines=257:268
-@source readme-adapters title="受支持的客户端" path="README.md" lines=270:276
-@source readme-boundaries title="边界" path="README.md" lines=284:296
-@source readme-rollback title="程序回滚" path="README.md" lines=324:329
-@source readme-uninstall title="卸载" path="README.md" lines=356:361
-@source readme-update-trust title="已签名的更新" path="README.md" lines=367:374
+@source readme-model title="产品模型" path="README.md" lines=256:267
+@source readme-adapters title="受支持的客户端" path="README.md" lines=269:275
+@source readme-boundaries title="边界" path="README.md" lines=283:295
+@source readme-rollback title="程序回滚" path="README.md" lines=323:328
+@source readme-uninstall title="卸载" path="README.md" lines=352:357
+@source readme-update-trust title="已签名的更新" path="README.md" lines=363:370
 @source readme-check title="不做推理的检查" path="README.md" lines=24:26
 @source concepts title="三个名词" path="docs/concepts/product-concepts.md" lines=11:14
 @source provider-concept title="提供商" path="docs/concepts/product-concepts.md" lines=46:61
@@ -53,20 +53,20 @@ AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-wha
 @source transaction title="同步事务" path="internal/app/synchronization/transaction.go" lines=41:54
 @source preflight title="预检" path="internal/app/synchronization/transaction.go" lines=56:71
 @source commit-order title="先入口，再配置，最后写入客户端文件" path="internal/app/synchronization/transaction.go" lines=75:97
-@source transaction-boundary title="事务边界" path="docs/architecture/security-model.md" lines=180:194
+@source transaction-boundary title="事务边界" path="docs/architecture/security-model.md" lines=198:212
 @source restore title="受保护的恢复" path="internal/platform/files.go" lines=197:211
 @source store-commit title="提交配置" path="internal/store/store.go" lines=79:82
 @source store-owner title="存储管什么" path="internal/store/store.go" lines=1:3
 @source store-lock title="修改锁" path="internal/store/store.go" lines=181:200
 @source seam title="适配器契约" path="internal/adapter/registry.go" lines=93:106
 @source entrypoint title="凭据入口" path="docs/architecture/security-model.md" lines=72:80
-@source credential title="凭据协议" path="docs/architecture/security-model.md" lines=119:127
+@source credential title="凭据协议" path="docs/architecture/security-model.md" lines=137:145
 @source token-storage title="令牌存放在哪里" path="docs/architecture/security-model.md" lines=13:16
 @source token-store title="读取选定的存储" path="docs/architecture/security-model.md" lines=38:44
 @source helper-projection title="Claude Desktop 的客户端文件" path="internal/adapter/claudedesktop/adapter.go" lines=231:245
 @source check-depths title="检查深度的阶梯" path="internal/cli/check/depth.go" lines=15:34
 @source verify-snapshot title="检查何时写入已验证快照" path="internal/cli/check/snapshot.go" lines=20:32
-@source rollback-snapshot title="config rollback 恢复什么" path="internal/cli/config/rollback.go" lines=84:94
+@source rollback-snapshot title="config rollback 恢复什么" path="internal/cli/config/rollback.go" lines=101:111
 @source decision title="DR-0006：一次受保护的事务" path="docs/decisions/dr-0006-transactional-client-projection.md" lines=15:30
 @source rejected title="DR-0006：被否决的方案" path="docs/decisions/dr-0006-transactional-client-projection.md" lines=32:37
 @source revisit title="DR-0006：何时重新审视" path="docs/decisions/dr-0006-transactional-client-projection.md" lines=45:48
@@ -74,17 +74,21 @@ AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-wha
 @source readme-for title="aigw 接受的客户端" path="README.md" lines=164:164
 @source readme-environment title="环境变量中的令牌" path="README.md" lines=183:185
 @source manifest-provider title="团队文件里的一个提供商" path="manifests/team.toml" lines=1:18
-@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=1058:1066
-@source changelog-072 title="0.7.2 的发布" path="CHANGELOG.md" lines=14:50
-@source setup-model-kept title="首次 setup 保留的模型偏好" path="CHANGELOG.md" lines=56:60
-@source team-labels title="团队文件替换的 label" path="CHANGELOG.md" lines=61:63
-@source check-parent-session title="在智能体会话里检查客户端" path="CHANGELOG.md" lines=64:68
-@source check-names title="Windows 上的环境变量名" path="CHANGELOG.md" lines=70:72
-@source check-client-report title="客户端自己报出的警告或错误" path="CHANGELOG.md" lines=18:29
-@source check-codex-memory title="检查客户端时 Codex 的记忆任务" path="CHANGELOG.md" lines=30:31
-@source redaction-forms title="脱敏覆盖的凭据形式" path="CHANGELOG.md" lines=32:36
-@source check-schema title="aigw check 的 JSON 文档" path="CHANGELOG.md" lines=40:44
-@source team-lines title="每条产品线的最新模型" path="CHANGELOG.md" lines=45:47
+@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=1125:1133
+@source changelog-080 title="0.8.0 的发布" path="CHANGELOG.md" lines=14:79
+@source setup-model-kept title="首次 setup 保留的模型偏好" path="CHANGELOG.md" lines=123:127
+@source team-labels title="团队文件替换的 label" path="CHANGELOG.md" lines=128:130
+@source check-parent-session title="在智能体会话里检查客户端" path="CHANGELOG.md" lines=131:135
+@source check-names title="Windows 上的环境变量名" path="CHANGELOG.md" lines=137:139
+@source check-client-report title="客户端自己报出的警告或错误" path="CHANGELOG.md" lines=85:96
+@source check-codex-memory title="检查客户端时 Codex 的记忆任务" path="CHANGELOG.md" lines=97:98
+@source redaction-forms title="脱敏覆盖的凭据形式" path="CHANGELOG.md" lines=99:103
+@source check-schema title="aigw check 的 JSON 文档" path="CHANGELOG.md" lines=107:111
+@source team-lines title="每条产品线的最新模型" path="CHANGELOG.md" lines=112:114
+@source keychain-foreign title="另一个程序存入的钥匙串条目" path="CHANGELOG.md" lines=18:43
+@source rollback-credentials title="程序回滚不移动凭据" path="CHANGELOG.md" lines=50:54
+@source keychain-migration title="没有命令迁移钥匙串条目" path="CHANGELOG.md" lines=55:61
+@source token-empty title="已存入但为空的令牌" path="CHANGELOG.md" lines=68:75
 
 ## 谁使用 AIGW，它又牵涉到什么？ {#p-context}
 
@@ -219,6 +223,10 @@ AIGW 的价值假设是：团队成员只要持有任一受支持提供商凭据
 | step-read | 令牌存储 | 使用平台凭据服务时，每次读取都在子进程中运行，时限 5 秒。存储不可用时直接拒绝，不会改试其他存储。[](source:token-store) | token-flow | token-store | | token-helper-to-token-store-1,token-store-to-token-helper-1 |
 | step-call | 提供商端点 | 客户端自行发送请求；AIGW 不在请求路径上。[](source:boundary) | token-flow | token-endpoint | | token-client-to-token-endpoint-1,token-endpoint-to-token-client-1 |
 
+在 macOS 上，0.3.5 及更早版本存入的钥匙串条目，AIGW 不接管，也没有命令会迁移这类条目。[](source:keychain-foreign)[](source:keychain-migration)macOS 不让 AIGW 读取这类条目；读不了的条目，AIGW 也不替换。需要这份凭据的命令，例如 `aigw use` 或 `aigw client enable`，就此结束。它会说明条目是另一个程序存入的，并给出修复办法：先备好凭据，删除该条目，再重新存入。[](source:keychain-foreign)
+
+`aigw sync` 和 `aigw config rollback` 照常完成；`aigw setup --from` 没有指定这个提供商时，也照常完成。这类提供商的客户端继续等待，文件保持不变，和缺少令牌时一样。`aigw check --depth local` 和 `aigw status` 会报告这类条目，不把它算作已存入的令牌。[](source:keychain-foreign)写入客户端文件时，已存入但为空的令牌也按缺少令牌处理。[](source:token-empty)
+
 ## 每一级检查能证明多少？ {#p-ready}
 
 AIGW 的输出回答三个问题：选中了什么，是否就绪，下一步做什么才安全。[](source:experience-questions)
@@ -229,17 +237,17 @@ AIGW 的输出回答三个问题：选中了什么，是否就绪，下一步做
 | step-inference | aigw check | 默认深度：为每个受检查的客户端发一次有上限的推理请求，可能消耗提供商配额。[](source:readme-check)[](source:experience-readiness) |
 | step-session | aigw check --depth client | 在每个已启用的客户端里真实运行一次会话，启动客户端时不带父级智能体会话的环境变量。[](source:readme-depths)[](source:check-parent-session)不指定客户端且全部通过时，写入已验证快照，`aigw config rollback` 优先恢复的就是它。[](source:verify-snapshot)[](source:rollback-snapshot)在 `client` 深度检查 Codex 时，不启动 Codex 的记忆任务；这项任务会向受检查模型以外的另一个模型发请求。[](source:check-codex-memory) |
 
-| 深度或状态 | 含义                                                           |
-| ---------- | -------------------------------------------------------------- |
-| `local`    | 配置、令牌是否存在、客户端文件和运行环境都通过检查，不发请求。 |
-| `endpoint` | 提供商应答了一次不指定模型的认证请求。                         |
-| `model`    | 所选模型应答了一次有上限的推理请求。这是默认深度。             |
-| `client`   | 一次真实的客户端会话顺利完成。                                 |
-| 已配置     | 本地前提条件满足，不论检查在此之外证明了多少。                 |
-| 已推迟     | 凭据或客户端文件有意推迟。                                     |
-| 降级       | 客户端仍在配置中，但有可恢复的问题。                           |
-| 无效       | 配置或自有状态不能安全使用。                                   |
-| 不可用     | 缺少一项必需的外部能力。                                       |
+| 深度或状态 | 含义                                                                                                                                                                                                          |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `local`    | 配置、令牌是否存在、客户端文件和运行环境都通过检查，不发请求。已存入但为空的令牌按缺少令牌处理。[](source:token-empty)另一个程序存入的钥匙串条目会被报告出来，不算作已存入的令牌。[](source:keychain-foreign) |
+| `endpoint` | 提供商应答了一次不指定模型的认证请求。                                                                                                                                                                        |
+| `model`    | 所选模型应答了一次有上限的推理请求。这是默认深度。                                                                                                                                                            |
+| `client`   | 一次真实的客户端会话顺利完成。                                                                                                                                                                                |
+| 已配置     | 本地前提条件满足，不论检查在此之外证明了多少。                                                                                                                                                                |
+| 已推迟     | 凭据或客户端文件有意推迟。                                                                                                                                                                                    |
+| 降级       | 客户端仍在配置中，但有可恢复的问题。                                                                                                                                                                          |
+| 无效       | 配置或自有状态不能安全使用。                                                                                                                                                                                  |
+| 不可用     | 缺少一项必需的外部能力。                                                                                                                                                                                      |
 
 检查到哪一级，都会先跑完它之前的每一级。[](source:check-depths) 在 Windows 上，`aigw check` 比较环境变量名时不区分大小写，小写的 `anthropic_auth_token` 既到不了受检查的客户端，也逃不过 `local` 深度。[](source:check-names) 设置、同步、检视和验证，都用这些状态报告；证明了多少，看的是检查深度，而不是状态。[](source:readiness)
 
@@ -313,12 +321,12 @@ AIGW 脱敏时，覆盖 `Authorization` 头直到行尾的内容、cookie 头，
 | 安装 | 已签名、经公证的 Homebrew cask，或面向 Darwin、Linux 和 Windows（AMD64 与 ARM64）的便携归档包，由 `aigw self install` 安装。[](source:readme-install) |
 | 更新 | 便携更新在计算哈希、解压或运行任何内容之前，先用 AIGW 内置的发布密钥验证 `checksums.txt.sig`。[](source:readme-update-trust) |
 | 代码托管平台 | 更新读取 GitHub 上的发布版本；只有两个环境变量指明 GitLab 时，它才加入。一个发布版本绝不由两者拼合而成。[](source:readme-update-trust) |
-| 回滚 | `aigw self rollback` 先把一份配置副本交给保留的前一版本；它读不了，就什么都不改变。0.7.0 之前的版本都读不了 `aigw.toml`。[](source:readme-rollback) |
+| 回滚 | `aigw self rollback` 先把一份配置副本交给保留的前一版本；它读不了，就什么都不改变。0.7.0 之前的版本都读不了 `aigw.toml`。[](source:readme-rollback)回滚不移动任何凭据：在 macOS 上，一个已签名的发布版本能读取另一个已签名版本存入的钥匙串条目。在用 Homebrew 安装的 AIGW 上，这条命令和其他程序命令一样被拒绝，较早的版本由 Homebrew 安装。[](source:rollback-credentials) |
 | 卸载 | `aigw self uninstall` 从客户端文件中移除 AIGW 的设置；提供商、模型、客户端选择、令牌和你自己的客户端状态都会保留。[](source:readme-uninstall) |
 
 ## AIGW 怎样走到今天？ {#p-history}
 
-AIGW 于 2026 年 9 月 19 日发布 v0.1.0，11 月 14 日发布本页所述的 v0.7.2。[](source:changelog-010)[](source:changelog-072)下图选出十五个版本，每个都改变了 AIGW 为用户做的事；仍待解决的事项列在本页最后。
+AIGW 于 2026 年 9 月 19 日发布 v0.1.0，11 月 15 日发布本页所述的 v0.8.0。[](source:changelog-010)[](source:changelog-080)下图选出十六个版本，每个都改变了 AIGW 为用户做的事；仍待解决的事项列在本页最后。
 
 @diagram timeline id=history source=history.timeline.json title="AIGW 怎样走到今天"
 

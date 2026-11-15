@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([AIGW], [一份审阅过的配置，写入每个客户端], [本地控制面：AIGW 让每个客户端选用一个模型，只往客户端文件里写自己的设置；它只在执行命令或读取凭据时运行，请求绝不经过它。], read-from: [内容取自 245 个文件，每个文件都标明 SHA-256。], claim-x: 124pt)
+#masthead([AIGW], [一份审阅过的配置，写入每个客户端], [本地控制面：AIGW 让每个客户端选用一个模型，只往客户端文件里写自己的设置；它只在执行命令或读取凭据时运行，请求绝不经过它。], read-from: [内容取自 241 个文件，每个文件都标明 SHA-256。], claim-x: 124pt)
 
 // ── Band 1: the configuration, its projection into each client, the clients' own traffic ──
 #head(48pt, 132pt, [控制面 · AIGW])

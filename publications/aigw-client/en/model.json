@@ -6,7 +6,7 @@
   "title": "AIGW Client Projection",
   "question": "How does AIGW turn one reviewed configuration into guarded client files in every admitted client?",
   "summary": "AIGW keeps providers, models and client selections in one locked configuration, aigw.toml, and its Tokens in one selected store. It writes AIGW's settings into each client's files through one adapter seam, as a guarded, compensated transaction. It never carries a request.",
-  "scope": "The AIGW program as released at v0.7.2: its production Go packages, the command entry point, the team file and go.mod.",
+  "scope": "The AIGW program as released at v0.8.0: its production Go packages, the command entry point, the team file and go.mod.",
   "limits": [
     "Each component cites every production file the rules attribute to it; a relation cites the files of the packages that import the other component.",
     "Tests, their inputs and the repository's tools, CI and documentation are outside the scope."
@@ -14,7 +14,7 @@
   "repository": {
     "name": "aigw-cli",
     "url": "https://github.com/HengYangDS/aigw-cli.git",
-    "revision": "ed8b2fed94ef569f0f2d7fdfd2ec3259c65e37e2",
+    "revision": "dbcded17777a43a9c207f6ac55f966c4094af413",
     "browse": "https://github.com/HengYangDS/aigw-cli/blob/{revision}/{path}"
   },
   "coverage": {
@@ -292,13 +292,6 @@
       "files": ["cmd/aigw/main.go"]
     },
     {
-      "id": "program-entry-program-updates",
-      "from": "program-entry",
-      "to": "program-updates",
-      "label": "installs, updates",
-      "files": ["cmd/aigw/main.go"]
-    },
-    {
       "id": "commands-use-cases",
       "from": "commands",
       "to": "use-cases",
@@ -347,13 +340,6 @@
         "internal/cli/provider/rotate.go",
         "internal/cli/provider/token.go",
         "internal/cli/provider/undo.go",
-        "internal/cli/self/custody.go",
-        "internal/cli/self/install.go",
-        "internal/cli/self/rollback.go",
-        "internal/cli/self/self.go",
-        "internal/cli/self/status.go",
-        "internal/cli/self/uninstall.go",
-        "internal/cli/self/update.go",
         "internal/cli/setup/guided.go",
         "internal/cli/setup/setup.go",
         "internal/cli/setup/team.go",
@@ -399,6 +385,8 @@
         "internal/cli/check/report.go",
         "internal/cli/check/snapshot.go",
         "internal/cli/check/unused.go",
+        "internal/cli/config/config.go",
+        "internal/cli/config/rollback.go",
         "internal/cli/provider/add.go",
         "internal/cli/provider/balance.go",
         "internal/cli/provider/credentials.go",
@@ -475,7 +463,6 @@
         "internal/cli/provider/rotate.go",
         "internal/cli/provider/token.go",
         "internal/cli/provider/undo.go",
-        "internal/cli/self/custody.go",
         "internal/cli/self/install.go",
         "internal/cli/self/rollback.go",
         "internal/cli/self/self.go",
@@ -503,6 +490,21 @@
       "to": "credential-helper",
       "label": "registers",
       "files": ["internal/cli/app.go"]
+    },
+    {
+      "id": "commands-program-updates",
+      "from": "commands",
+      "to": "program-updates",
+      "label": "installs, updates, rolls back",
+      "files": [
+        "internal/cli/app.go",
+        "internal/cli/self/install.go",
+        "internal/cli/self/rollback.go",
+        "internal/cli/self/self.go",
+        "internal/cli/self/status.go",
+        "internal/cli/self/uninstall.go",
+        "internal/cli/self/update.go"
+      ]
     },
     {
       "id": "credential-helper-credentials",
@@ -891,7 +893,6 @@
         "internal/secret/native/keychain_darwin_nocgo.go",
         "internal/secret/native/keychain_list_darwin.go",
         "internal/secret/native/listing.go",
-        "internal/secret/native/migration_darwin.go",
         "internal/secret/native/provider.go",
         "internal/secret/native/provider_darwin.go",
         "internal/secret/native/provider_keyring.go",
@@ -899,8 +900,6 @@
         "internal/secret/native/provider_other.go",
         "internal/secret/native/provider_windows.go",
         "internal/secret/native/subprocess.go",
-        "internal/secret/predecessor_darwin.go",
-        "internal/secret/predecessor_other.go",
         "internal/secret/program.go",
         "internal/secret/recovery.go",
         "internal/secret/replacement.go",
