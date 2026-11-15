@@ -8,4 +8,4 @@
 
 ## 3. Record
 
-- [ ] 3.1 Record both re-pins under `Unreleased` in `CHANGELOG.md`. Done when `mise run check` passes.
+- [x] 3.1 Record both re-pins under `Unreleased` in `CHANGELOG.md`. Done when `mise run check` passes.
