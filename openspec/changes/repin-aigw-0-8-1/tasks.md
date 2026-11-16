@@ -4,4 +4,4 @@
 
 ## 2. Record
 
-- [ ] 2.1 Record the re-pin under `Unreleased` in `CHANGELOG.md`. Done when `mise run check` passes.
+- [x] 2.1 Record the re-pin under `Unreleased` in `CHANGELOG.md`. Done when `mise run check` passes. Recorded under Changed; the lane's check passed at `d67f0c5`.
