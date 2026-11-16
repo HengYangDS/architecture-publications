@@ -35,7 +35,7 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 - The repository's checks run on ETHOS 0.2.0-beta.10.
 - The repository's tools run on Node 26.13.1, a security release, and its format check on Prettier
   3.10.1.
-- OpenAI Responses Proxy is pinned at v6.0.0, Architecture Publisher at
+- OpenAI Responses Proxy is pinned at v6.0.1, Architecture Publisher at
   v0.14.0, Film Kit at v0.22.3, ETHOS at v0.2.0-beta.10 and AIGW at v0.8.0.
   Building the works needs Architecture Publisher 0.10.2 or later. The
   Architecture Publisher work lists the `skill` command, describes strips,
@@ -60,6 +60,8 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   stored, that a program rollback moves no credential and is refused on a Homebrew installation, and that an empty
   Token counts as a missing one; its commands, not its entry, reach program updates, and its history ends at the
   release.
+  At v6.0.1 the Responses proxy work says that the log names how every admitted response ended, a JSON response's
+  among them, and its history ends at the release.
 - The ETHOS work claims the application layer and the operation catalog. The
   AIGW work uses the client's new vocabulary: it no longer has a renaming
   component, and its catalog, readiness, configuration and rollout panels follow
