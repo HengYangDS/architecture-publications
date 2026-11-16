@@ -6,7 +6,7 @@
   "title": "AIGW 统一客户端配置",
   "question": "AIGW 怎样把一份审阅过的配置，受保护地写入每个已准入客户端的文件？",
   "summary": "AIGW 把提供商、模型和客户端选择放在一份加锁的配置 aigw.toml 里，令牌放在选定的一个存储里。写入客户端文件时，它走统一的适配器接口，只改写其中归自己管的设置；整个写入是一次受保护的事务，中途出错会补偿。请求绝不经过 AIGW。",
-  "scope": "v0.8.0 发布版本的 AIGW 程序：生产代码的 Go 包、命令入口、团队文件和 go.mod。",
+  "scope": "v0.8.1 发布版本的 AIGW 程序：生产代码的 Go 包、命令入口、团队文件和 go.mod。",
   "limits": [
     "每个组件都列出规则划给它的全部生产代码文件；每条关系列出的，是导入另一方组件的那些包里的文件。",
     "测试及其输入，以及仓库的工具、CI 和文档，都不在范围之内。"
@@ -14,7 +14,7 @@
   "repository": {
     "name": "aigw-cli",
     "url": "https://github.com/HengYangDS/aigw-cli.git",
-    "revision": "dbcded17777a43a9c207f6ac55f966c4094af413",
+    "revision": "d5a2f98fe480d358f68d1f301c4021dac8b816ce",
     "browse": "https://github.com/HengYangDS/aigw-cli/blob/{revision}/{path}"
   },
   "coverage": {
@@ -250,7 +250,8 @@
       "label": "凭据存储",
       "kind": "authority",
       "details": {
-        "管理": "提供商令牌，放在选定的一个后端，可以是原生密钥环、DPAPI 或属主专用文件"
+        "管理": "提供商令牌，放在选定的一个后端，可以是原生密钥环、DPAPI 或属主专用文件",
+        "查询": "每条命令对提供商令牌和余额凭据各只查询一次；命令自己存入或移除这份凭据之后，才会再查"
       },
       "files": ["internal/secret/"]
     },

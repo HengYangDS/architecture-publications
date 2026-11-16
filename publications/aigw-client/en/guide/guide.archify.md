@@ -7,7 +7,7 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 - [No client file holds a Token](block:p-token): a helper reads it from one selected store when the client asks.[](source:helper-projection)
 - [Each check proves one more thing](block:p-ready), and synchronized client files are not an answered request.[](source:experience-readiness)
 
-@answer scope="AIGW v0.8.0 · commit dbcded1 · its source and its own documents"
+@answer scope="AIGW v0.8.1 · commit d5a2f98 · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What AIGW is" path="README.md" lines=3:6
 @source readme-install title="Install" path="README.md" lines=30:42
@@ -74,21 +74,21 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 @source readme-for title="The clients aigw takes" path="README.md" lines=164:164
 @source readme-environment title="Environment Tokens" path="README.md" lines=183:185
 @source manifest-provider title="A provider in the team file" path="manifests/team.toml" lines=1:18
-@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=1125:1133
-@source changelog-080 title="The 0.8.0 release" path="CHANGELOG.md" lines=14:79
-@source setup-model-kept title="A model preference kept at the first setup" path="CHANGELOG.md" lines=123:127
-@source team-labels title="The labels a team file replaces" path="CHANGELOG.md" lines=128:130
-@source check-parent-session title="A client check inside an agent session" path="CHANGELOG.md" lines=131:135
-@source check-names title="Environment variable names on Windows" path="CHANGELOG.md" lines=137:139
-@source check-client-report title="A client's own warning or error" path="CHANGELOG.md" lines=85:96
-@source check-codex-memory title="Codex's memory work in a client check" path="CHANGELOG.md" lines=97:98
-@source redaction-forms title="The credential forms that redaction covers" path="CHANGELOG.md" lines=99:103
-@source check-schema title="The JSON document of aigw check" path="CHANGELOG.md" lines=107:111
-@source team-lines title="The newest model of every line" path="CHANGELOG.md" lines=112:114
-@source keychain-foreign title="A Keychain item that another program stored" path="CHANGELOG.md" lines=18:43
-@source rollback-credentials title="A program rollback moves no credential" path="CHANGELOG.md" lines=50:54
-@source keychain-migration title="No command migrates a Keychain item" path="CHANGELOG.md" lines=55:61
-@source token-empty title="A stored Token that is empty" path="CHANGELOG.md" lines=68:75
+@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=1147:1155
+@source changelog-081 title="The 0.8.1 release" path="CHANGELOG.md" lines=14:34
+@source setup-model-kept title="A model preference kept at the first setup" path="CHANGELOG.md" lines=145:149
+@source team-labels title="The labels a team file replaces" path="CHANGELOG.md" lines=150:152
+@source check-parent-session title="A client check inside an agent session" path="CHANGELOG.md" lines=153:157
+@source check-names title="Environment variable names on Windows" path="CHANGELOG.md" lines=159:161
+@source check-client-report title="A client's own warning or error" path="CHANGELOG.md" lines=107:118
+@source check-codex-memory title="Codex's memory work in a client check" path="CHANGELOG.md" lines=119:120
+@source redaction-forms title="The credential forms that redaction covers" path="CHANGELOG.md" lines=121:125
+@source check-schema title="The JSON document of aigw check" path="CHANGELOG.md" lines=129:133
+@source team-lines title="The newest model of every line" path="CHANGELOG.md" lines=134:136
+@source keychain-foreign title="A Keychain item that another program stored" path="CHANGELOG.md" lines=40:65
+@source rollback-credentials title="A program rollback moves no credential" path="CHANGELOG.md" lines=72:76
+@source keychain-migration title="No command migrates a Keychain item" path="CHANGELOG.md" lines=77:83
+@source token-empty title="A stored Token that is empty" path="CHANGELOG.md" lines=90:97
 
 ## Who uses AIGW, and what does it touch? {#p-context}
 
@@ -326,7 +326,7 @@ AIGW answers one question of four, and leaves the others to the products built f
 
 ## How did AIGW get here? {#p-history}
 
-AIGW released v0.1.0 on 19 September 2026 and v0.8.0, the version this page describes, on 15 November 2026.[](source:changelog-010)[](source:changelog-080) The timeline shows sixteen releases that changed what AIGW does for its users, and the last panel lists what is still open.
+AIGW released v0.1.0 on 19 September 2026 and v0.8.1, the version this page describes, on 16 November 2026.[](source:changelog-010)[](source:changelog-081) The timeline shows seventeen releases that changed what AIGW does for its users, and the last panel lists what is still open.
 
 @diagram timeline id=history source=history.timeline.json title="How AIGW got here"
 

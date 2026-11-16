@@ -2,7 +2,7 @@
 
 [`en/model.json`](en/model.json) is an Architecture Model of how AIGW turns one
 reviewed configuration into guarded client files in every admitted client. It
-pins `aigw-cli` at v0.8.0 (`dbcded17777a43a9c207f6ac55f966c4094af413`), and its
+pins `aigw-cli` at v0.8.1 (`d5a2f98fe480d358f68d1f301c4021dac8b816ce`), and its
 components own all 241 production files of its coverage scope: `cmd/`,
 `internal/`, the team file and `go.mod`. Twenty-one components, forty relations
 and six views show the configuration and its owners, the admitted clients and
@@ -21,7 +21,7 @@ rollback and where a client's Token comes from. It ends with how much each
 check proves, what happens to a provider's models over time, the parts that
 keep the clients in step, why one guarded transaction, what AIGW leaves to
 others, how it is released and what is still open. Each claim cites a line
-range at v0.8.0, and the diagrams the draft names sit beside it.
+range at v0.8.1, and the diagrams the draft names sit beside it.
 
 Each component claims the directories and files its path rules name, and each
 production file goes to its most specific claim. A relation is kept only when

@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "dbcded17777a43a9c207f6ac55f966c4094af413"
+      "revision": "d5a2f98fe480d358f68d1f301c4021dac8b816ce"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,14 +42,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1125,
-          "end_line": 1133,
+          "line": 1147,
+          "end_line": 1155,
           "label": "0.1.0"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 1213,
-          "end_line": 1214,
+          "line": 1235,
+          "end_line": 1236,
           "label": "0.1.0"
         }
       ]
@@ -64,8 +64,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1039,
-          "end_line": 1063,
+          "line": 1061,
+          "end_line": 1085,
           "label": "0.2.0"
         }
       ]
@@ -80,8 +80,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1011,
-          "end_line": 1037,
+          "line": 1033,
+          "end_line": 1059,
           "label": "0.3.0"
         }
       ]
@@ -95,8 +95,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 790,
-          "end_line": 816,
+          "line": 812,
+          "end_line": 838,
           "label": "0.4.1"
         }
       ]
@@ -110,8 +110,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 726,
-          "end_line": 736,
+          "line": 748,
+          "end_line": 758,
           "label": "0.4.5"
         }
       ]
@@ -126,8 +126,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 710,
-          "end_line": 724,
+          "line": 732,
+          "end_line": 746,
           "label": "0.4.6"
         }
       ]
@@ -141,8 +141,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 699,
-          "end_line": 708,
+          "line": 721,
+          "end_line": 730,
           "label": "0.4.7"
         }
       ]
@@ -156,8 +156,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 677,
-          "end_line": 687,
+          "line": 699,
+          "end_line": 709,
           "label": "0.4.9"
         }
       ]
@@ -172,8 +172,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 558,
-          "end_line": 583,
+          "line": 580,
+          "end_line": 605,
           "label": "0.4.16"
         }
       ]
@@ -187,8 +187,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 527,
-          "end_line": 556,
+          "line": 549,
+          "end_line": 578,
           "label": "0.4.17"
         }
       ]
@@ -203,8 +203,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 410,
-          "end_line": 451,
+          "line": 432,
+          "end_line": 473,
           "label": "0.5.0"
         }
       ]
@@ -218,8 +218,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 380,
-          "end_line": 388,
+          "line": 402,
+          "end_line": 410,
           "label": "0.6.1"
         }
       ]
@@ -234,8 +234,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 158,
-          "end_line": 379,
+          "line": 180,
+          "end_line": 401,
           "label": "0.7.0"
         }
       ]
@@ -249,8 +249,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 119,
-          "end_line": 157,
+          "line": 141,
+          "end_line": 179,
           "label": "0.7.1"
         }
       ]
@@ -264,8 +264,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 81,
-          "end_line": 117,
+          "line": 103,
+          "end_line": 139,
           "label": "0.7.2"
         }
       ]
@@ -280,9 +280,24 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 14,
-          "end_line": 79,
+          "line": 36,
+          "end_line": 101,
           "label": "0.8.0"
+        }
+      ]
+    },
+    {
+      "id": "v081",
+      "at": "2026-11-16T22:22:29+08:00",
+      "lane": "trust",
+      "title": "v0.8.1 use 说明令牌没有保留",
+      "detail": "aigw use 存入你输入的令牌后，如果选择失败，会说明这个令牌没有保留；使用 AIGW 默认选定的凭据后端时也是如此。每条命令向凭据存储查询提供商令牌和余额凭据，各只查一次；命令自己存入或移除这份凭据之后，才会再查。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 14,
+          "end_line": 34,
+          "label": "0.8.1"
         }
       ]
     }

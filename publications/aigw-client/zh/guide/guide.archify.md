@@ -7,7 +7,7 @@ AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-wha
 - [客户端文件里没有令牌](block:p-token)：客户端请求时，由凭据助手从选定的那个存储读取令牌。[](source:helper-projection)
 - [每一级检查多证明一件事](block:p-ready)，而客户端文件已同步，不等于请求已得到应答。[](source:experience-readiness)
 
-@answer scope="AIGW v0.8.0 · 提交 dbcded1 · 源代码及自带文档"
+@answer scope="AIGW v0.8.1 · 提交 d5a2f98 · 源代码及自带文档"
 @meta locale=zh-CN style=editorial
 @source readme-what title="AIGW 是什么" path="README.md" lines=3:6
 @source readme-install title="安装" path="README.md" lines=30:42
@@ -74,21 +74,21 @@ AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-wha
 @source readme-for title="aigw 接受的客户端" path="README.md" lines=164:164
 @source readme-environment title="环境变量中的令牌" path="README.md" lines=183:185
 @source manifest-provider title="团队文件里的一个提供商" path="manifests/team.toml" lines=1:18
-@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=1125:1133
-@source changelog-080 title="0.8.0 的发布" path="CHANGELOG.md" lines=14:79
-@source setup-model-kept title="首次 setup 保留的模型偏好" path="CHANGELOG.md" lines=123:127
-@source team-labels title="团队文件替换的 label" path="CHANGELOG.md" lines=128:130
-@source check-parent-session title="在智能体会话里检查客户端" path="CHANGELOG.md" lines=131:135
-@source check-names title="Windows 上的环境变量名" path="CHANGELOG.md" lines=137:139
-@source check-client-report title="客户端自己报出的警告或错误" path="CHANGELOG.md" lines=85:96
-@source check-codex-memory title="检查客户端时 Codex 的记忆任务" path="CHANGELOG.md" lines=97:98
-@source redaction-forms title="脱敏覆盖的凭据形式" path="CHANGELOG.md" lines=99:103
-@source check-schema title="aigw check 的 JSON 文档" path="CHANGELOG.md" lines=107:111
-@source team-lines title="每条产品线的最新模型" path="CHANGELOG.md" lines=112:114
-@source keychain-foreign title="另一个程序存入的钥匙串条目" path="CHANGELOG.md" lines=18:43
-@source rollback-credentials title="程序回滚不移动凭据" path="CHANGELOG.md" lines=50:54
-@source keychain-migration title="没有命令迁移钥匙串条目" path="CHANGELOG.md" lines=55:61
-@source token-empty title="已存入但为空的令牌" path="CHANGELOG.md" lines=68:75
+@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=1147:1155
+@source changelog-081 title="0.8.1 的发布" path="CHANGELOG.md" lines=14:34
+@source setup-model-kept title="首次 setup 保留的模型偏好" path="CHANGELOG.md" lines=145:149
+@source team-labels title="团队文件替换的 label" path="CHANGELOG.md" lines=150:152
+@source check-parent-session title="在智能体会话里检查客户端" path="CHANGELOG.md" lines=153:157
+@source check-names title="Windows 上的环境变量名" path="CHANGELOG.md" lines=159:161
+@source check-client-report title="客户端自己报出的警告或错误" path="CHANGELOG.md" lines=107:118
+@source check-codex-memory title="检查客户端时 Codex 的记忆任务" path="CHANGELOG.md" lines=119:120
+@source redaction-forms title="脱敏覆盖的凭据形式" path="CHANGELOG.md" lines=121:125
+@source check-schema title="aigw check 的 JSON 文档" path="CHANGELOG.md" lines=129:133
+@source team-lines title="每条产品线的最新模型" path="CHANGELOG.md" lines=134:136
+@source keychain-foreign title="另一个程序存入的钥匙串条目" path="CHANGELOG.md" lines=40:65
+@source rollback-credentials title="程序回滚不移动凭据" path="CHANGELOG.md" lines=72:76
+@source keychain-migration title="没有命令迁移钥匙串条目" path="CHANGELOG.md" lines=77:83
+@source token-empty title="已存入但为空的令牌" path="CHANGELOG.md" lines=90:97
 
 ## 谁使用 AIGW，它又牵涉到什么？ {#p-context}
 
@@ -326,7 +326,7 @@ AIGW 脱敏时，覆盖 `Authorization` 头直到行尾的内容、cookie 头，
 
 ## AIGW 怎样走到今天？ {#p-history}
 
-AIGW 于 2026 年 9 月 19 日发布 v0.1.0，11 月 15 日发布本页所述的 v0.8.0。[](source:changelog-010)[](source:changelog-080)下图选出十六个版本，每个都改变了 AIGW 为用户做的事；仍待解决的事项列在本页最后。
+AIGW 于 2026 年 9 月 19 日发布 v0.1.0，11 月 16 日发布本页所述的 v0.8.1。[](source:changelog-010)[](source:changelog-081)下图选出十七个版本，每个都改变了 AIGW 为用户做的事；仍待解决的事项列在本页最后。
 
 @diagram timeline id=history source=history.timeline.json title="AIGW 怎样走到今天"
 
