@@ -6,7 +6,7 @@
   "title": "OpenAI Responses Proxy",
   "question": "How does OpenAI Responses Proxy make a Codex Responses turn portable across third-party providers, and how does it install and keep its own listener running?",
   "summary": "A loopback listener rebuilds each Responses request in one closed grammar with store=false, sends it to the provider its path names within one total deadline, and retries only what the failure class allows. A signed release installs through one journaled transaction as an immutable generation; an upgrade hands the listening socket to the new process, and a watchdog under the native service manager restarts a stopped listener.",
-  "scope": "The OpenAI Responses Proxy product as released at v6.0.0: the openai_responses_proxy package with its provider manifest, pyproject.toml and VERSION.",
+  "scope": "The OpenAI Responses Proxy product as released at v6.0.1: the openai_responses_proxy package with its provider manifest, pyproject.toml and VERSION.",
   "limits": [
     "Each component owns the files its claims name; a relation cites the files that import or call the other component.",
     "A relation stands for an import, a call on an object of the other component that the caller hands over, or a process call that carries behaviour; imports used only for an exception class, a type, a shared helper or the product's names are not drawn.",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "openai-responses-proxy",
     "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
-    "revision": "0b2299d5dc60b0805510dd02803b6765521e773f",
+    "revision": "6c4ff8bb30217bae495ba66aa63791e31bf4f9b6",
     "browse": "https://github.com/HengYangDS/openai-responses-proxy/blob/{revision}/{path}"
   },
   "coverage": {
@@ -305,7 +305,7 @@
         "validates": "a terminal JSON body, or each SSE event before it is written",
         "holds": "events before content, so a pre-content response.failed can be reopened",
         "ends": "a stream at a terminal event or a top-level error event; nothing after it is forwarded",
-        "reports": "each stream's ending to telemetry and the log, an error event as stream_error with its code"
+        "reports": "the ending of each stream and JSON response to telemetry and the log, an error event as stream_error with its code"
       },
       "files": [
         "src/openai_responses_proxy/relay/sse.py",

@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
       "provider": "github",
-      "revision": "0b2299d5dc60b0805510dd02803b6765521e773f"
+      "revision": "6c4ff8bb30217bae495ba66aa63791e31bf4f9b6"
     }
   },
   "components": [

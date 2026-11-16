@@ -7,7 +7,7 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 - [升级期间继续放行新轮次](block:p-handoff)：新进程继承监听套接字，旧进程做完已接受的轮次。[](source:readme-handoff)
 - [每个安装步骤都记入事务日志](block:p-install)，因此 `recover` 能完成或撤销中断的安装。[](source:arch-completion)
 
-@answer scope="OpenAI Responses Proxy v6.0.0 · 提交 0b2299d · 源代码与项目自有文档"
+@answer scope="OpenAI Responses Proxy v6.0.1 · 提交 6c4ff8b · 源代码与项目自有文档"
 @meta locale=zh-CN style=editorial
 @source readme-what title="代理是什么" path="README.md" lines=3:7
 @source readme-portable title="不改动会话存储" path="README.md" lines=12:13
@@ -45,22 +45,23 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 @source dr2-consequence title="DR-0002：连续性来自重放的对话" path="docs/decisions/dr-0002-provider-portable-stateless-replay.md" lines=68:77
 @source dr3-decision title="DR-0003：以提供商为界的恢复" path="docs/decisions/dr-0003-provider-scoped-recovery-and-backpressure.md" lines=22:35
 @source dr6-resend title="DR-0006：已发出的请求不再发送" path="docs/decisions/dr-0006-semantic-fit-before-framework-adoption.md" lines=200:228
-@source code-route title="路由分派" path="src/openai_responses_proxy/serving/server.py" lines=134:146
+@source code-route title="路由分派" path="src/openai_responses_proxy/serving/server.py" lines=159:171
 @source code-body title="按长度读取单个请求体" path="src/openai_responses_proxy/relay/responses.py" lines=126:144
 @source code-project title="投影与委派" path="src/openai_responses_proxy/relay/responses.py" lines=250:289
-@source code-gate title="先冷却，再准入" path="src/openai_responses_proxy/relay/responses.py" lines=314:332
+@source code-gate title="先冷却，再准入" path="src/openai_responses_proxy/relay/responses.py" lines=314:340
 @source code-cooldown title="提供商冷却" path="src/openai_responses_proxy/relay/responses.py" lines=40:86
 @source code-deadline title="一次交互，一个时限" path="src/openai_responses_proxy/relay/exchange.py" lines=122:152
 @source code-http-error title="已归类的上游错误" path="src/openai_responses_proxy/relay/exchange.py" lines=369:438
-@source code-transport-error title="传输失败" path="src/openai_responses_proxy/relay/exchange.py" lines=441:489
+@source code-transport-error title="传输失败" path="src/openai_responses_proxy/relay/exchange.py" lines=441:478
 @source code-outcome title="完整发出之后的失败" path="src/openai_responses_proxy/relay/upstream.py" lines=409:422
 @source code-reused title="复用连接上的发送失败" path="src/openai_responses_proxy/relay/upstream.py" lines=346:387
-@source code-reopen title="只有内容之前的失败才重新发起" path="src/openai_responses_proxy/relay/sse.py" lines=281:288
+@source code-reopen title="只有内容之前的失败才重新发起" path="src/openai_responses_proxy/relay/sse.py" lines=287:294
 @source code-hold title="内容之前暂存的事件" path="src/openai_responses_proxy/relay/sse.py" lines=131:174
 @source code-stream-terminals title="结束一条流的事件" path="src/openai_responses_proxy/relay/sse.py" lines=35:36
-@source code-stream-end title="已提交的流怎样结束" path="src/openai_responses_proxy/relay/sse.py" lines=329:333
-@source code-stream-class title="失败的流归入的失败类别" path="src/openai_responses_proxy/relay/sse.py" lines=340:354
-@source code-stream-log title="记录流怎样结束的日志行" path="src/openai_responses_proxy/relay/sse.py" lines=355:375
+@source code-stream-end title="已提交的流怎样结束" path="src/openai_responses_proxy/relay/sse.py" lines=335:339
+@source code-stream-class title="失败的流归入的失败类别" path="src/openai_responses_proxy/relay/sse.py" lines=346:360
+@source code-stream-log title="记录流怎样结束的日志行" path="src/openai_responses_proxy/relay/sse.py" lines=364:384
+@source code-json-terminal title="JSON 响应投递后的日志行" path="src/openai_responses_proxy/relay/downstream.py" lines=466:469
 @source code-diagnostic title="诊断信息里的代码与事件类型" path="src/openai_responses_proxy/protocol/response.py" lines=93:113
 @source code-disposition title="哪些状态码会重试" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=56:92
 @source code-compact title="不拆配对的压缩" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=105:156
@@ -111,12 +112,13 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 @source readme-budgets title="全新安装可另选的上限" path="README.md" lines=342:358
 @source code-defaults title="运行时默认值" path="src/openai_responses_proxy/runtime/config.py" lines=70:86
 @source code-platforms title="发布平台" path="src/openai_responses_proxy/product_identity.py" lines=13:18
-@source changelog-100 title="1.0.0 的发布" path="CHANGELOG.md" lines=2023:2029
-@source changelog-202 title="2.0.2 改名" path="CHANGELOG.md" lines=1418:1428
-@source changelog-500 title="5.0.0 改名" path="CHANGELOG.md" lines=518:525
-@source changelog-5111 title="5.1.11 的发布" path="CHANGELOG.md" lines=89:102
-@source changelog-5112 title="5.1.12 的发布" path="CHANGELOG.md" lines=67:87
-@source changelog-600 title="6.0.0 的发布" path="CHANGELOG.md" lines=11:65
+@source changelog-100 title="1.0.0 的发布" path="CHANGELOG.md" lines=2063:2069
+@source changelog-202 title="2.0.2 改名" path="CHANGELOG.md" lines=1458:1468
+@source changelog-500 title="5.0.0 改名" path="CHANGELOG.md" lines=558:565
+@source changelog-5111 title="5.1.11 的发布" path="CHANGELOG.md" lines=129:142
+@source changelog-5112 title="5.1.12 的发布" path="CHANGELOG.md" lines=107:127
+@source changelog-600 title="6.0.0 的发布" path="CHANGELOG.md" lines=51:105
+@source changelog-601 title="6.0.1 的发布" path="CHANGELOG.md" lines=11:49
 
 ## 谁通过代理发送流量，代理又把哪些事留给别人？ {#p-context}
 
@@ -304,7 +306,7 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 
 ## 这个代理怎样走到今天？ {#p-history}
 
-代理在 2026 年 7 月发布 1.0.0，11 月发布 6.0.0，其间两次改名。[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-600)下面列出其中十五个版本，它们改变了客户端或运维者遇到的行为。
+代理在 2026 年 7 月发布 1.0.0，11 月发布 6.0.1，其间两次改名。[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-601)下面列出其中十六个版本，它们改变了客户端或运维者遇到的行为。
 
 @diagram timeline id=history source=history.timeline.json title="这个代理怎样走到今天"
 
@@ -338,7 +340,7 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 
 `status --json` 还报告可靠性计数器和已归类的失败，都不含机密。[](source:readme-evidence)上游以顶层 `error` 事件结束的流，失败类别是 `stream_error`。[](source:code-stream-class)[](source:changelog-5112)
 
-日志写明每条流怎样结束，不含事件的消息文本。流若以 `error` 事件结束，日志记 `terminal=error` 和该事件的错误码。流若没有终态事件就结束，日志记 `last=` 和最后接受的事件类型。[](source:code-stream-log)[](source:code-diagnostic)
+日志写明每个已放行的响应怎样结束，不含事件的消息文本。[](source:code-gate)[](source:changelog-601)流若以 `error` 事件结束，日志记 `terminal=error` 和该事件的错误码。流若没有终态事件就结束，日志记 `last=` 和最后接受的事件类型。[](source:code-stream-log)[](source:code-diagnostic)JSON 响应投递之后，日志记 `json_terminal` 和该响应的 `status`。[](source:code-json-terminal)
 
 @callout level=note title="已接受的本地风险"
 | 威胁模型保留的每项残余风险，都要求存在同一用户的另一个进程。例如，`recover` 读取 /healthz 时，不做 `status` 所做的进程检查。[](source:threat-residual) |

@@ -6,7 +6,7 @@
   "title": "OpenAI Responses Proxy",
   "question": "OpenAI Responses Proxy 如何让一轮 Codex Responses 对话能在第三方提供商之间迁移？又如何安装自己的监听器，并让它持续运行？",
   "summary": "回环监听器按一套封闭语法重建每个 Responses 请求，并设 store=false；请求发往路径所指的提供商，全程受同一个总时限约束，只有失败类别允许时才重试。已签名的发布版本由一个记入日志的事务完成安装，成为不可变的一代；升级时，监听套接字交给新进程；监听器一旦停止，系统服务管理器托管的看门狗就会重启它。",
-  "scope": "v6.0.0 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
+  "scope": "v6.0.1 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
   "limits": [
     "每个组件负责其声明中列出的文件；关系所引用的，是导入或调用另一组件的文件。",
     "关系代表承载行为的导入、对调用方交来的另一组件对象的调用，或进程调用；仅为异常类、类型、共用辅助函数或产品名称而做的导入，图中不画。",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "openai-responses-proxy",
     "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
-    "revision": "0b2299d5dc60b0805510dd02803b6765521e773f",
+    "revision": "6c4ff8bb30217bae495ba66aa63791e31bf4f9b6",
     "browse": "https://github.com/HengYangDS/openai-responses-proxy/blob/{revision}/{path}"
   },
   "coverage": {
@@ -305,7 +305,7 @@
         "校验": "终态 JSON 响应体；SSE 事件则逐个校验后才写出",
         "暂存": "内容出现之前的事件；此时遇到 response.failed 还能重新发起",
         "结束": "遇到终态事件或顶层 error 事件就结束这条流，之后的内容不再转发",
-        "报告": "每条流怎样结束，记入遥测和日志；error 事件记为 stream_error，并带事件的错误码"
+        "报告": "每条流和每个 JSON 响应怎样结束，记入遥测和日志；error 事件记为 stream_error，并带事件的错误码"
       },
       "files": [
         "src/openai_responses_proxy/relay/sse.py",

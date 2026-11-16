@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
       "provider": "github",
-      "revision": "0b2299d5dc60b0805510dd02803b6765521e773f"
+      "revision": "6c4ff8bb30217bae495ba66aa63791e31bf4f9b6"
     }
   },
   "mainPath": ["ex-sending", "ex-sent", "ex-held", "ex-committed"],
@@ -64,8 +64,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/relay/sse.py",
-          "line": 329,
-          "end_line": 333,
+          "line": 335,
+          "end_line": 339,
           "label": "Terminator"
         }
       ]
@@ -78,8 +78,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/relay/downstream.py",
-          "line": 403,
-          "end_line": 423,
+          "line": 419,
+          "end_line": 439,
           "label": "Outcome unknown"
         }
       ]
@@ -92,8 +92,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/relay/downstream.py",
-          "line": 388,
-          "end_line": 400,
+          "line": 404,
+          "end_line": 416,
           "label": "Deadline"
         }
       ]

@@ -7,7 +7,7 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 - [An upgrade keeps admitting turns](block:p-handoff): the new process inherits the listening socket, and the old one finishes what it accepted.[](source:readme-handoff)
 - [Every installation step is journaled](block:p-install), so `recover` finishes or undoes an interrupted one.[](source:arch-completion)
 
-@answer scope="OpenAI Responses Proxy v6.0.0 · commit 0b2299d · its source and its own documents"
+@answer scope="OpenAI Responses Proxy v6.0.1 · commit 6c4ff8b · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What the proxy is" path="README.md" lines=3:7
 @source readme-portable title="No conversation storage is edited" path="README.md" lines=12:13
@@ -45,22 +45,23 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 @source dr2-consequence title="DR-0002: continuity from replayed dialogue" path="docs/decisions/dr-0002-provider-portable-stateless-replay.md" lines=68:77
 @source dr3-decision title="DR-0003: recovery scoped by provider" path="docs/decisions/dr-0003-provider-scoped-recovery-and-backpressure.md" lines=22:35
 @source dr6-resend title="DR-0006: a sent request is not sent again" path="docs/decisions/dr-0006-semantic-fit-before-framework-adoption.md" lines=200:228
-@source code-route title="Route dispatch" path="src/openai_responses_proxy/serving/server.py" lines=134:146
+@source code-route title="Route dispatch" path="src/openai_responses_proxy/serving/server.py" lines=159:171
 @source code-body title="Reading one framed body" path="src/openai_responses_proxy/relay/responses.py" lines=126:144
 @source code-project title="Projection and delegation" path="src/openai_responses_proxy/relay/responses.py" lines=250:289
-@source code-gate title="Cooldown, then admission" path="src/openai_responses_proxy/relay/responses.py" lines=314:332
+@source code-gate title="Cooldown, then admission" path="src/openai_responses_proxy/relay/responses.py" lines=314:340
 @source code-cooldown title="Provider cooldowns" path="src/openai_responses_proxy/relay/responses.py" lines=40:86
 @source code-deadline title="One exchange, one deadline" path="src/openai_responses_proxy/relay/exchange.py" lines=122:152
 @source code-http-error title="Classified upstream errors" path="src/openai_responses_proxy/relay/exchange.py" lines=369:438
-@source code-transport-error title="Transport failures" path="src/openai_responses_proxy/relay/exchange.py" lines=441:489
+@source code-transport-error title="Transport failures" path="src/openai_responses_proxy/relay/exchange.py" lines=441:478
 @source code-outcome title="A failure after a complete send" path="src/openai_responses_proxy/relay/upstream.py" lines=409:422
 @source code-reused title="A failed send on a reused connection" path="src/openai_responses_proxy/relay/upstream.py" lines=346:387
-@source code-reopen title="Only a pre-content failure is reopened" path="src/openai_responses_proxy/relay/sse.py" lines=281:288
+@source code-reopen title="Only a pre-content failure is reopened" path="src/openai_responses_proxy/relay/sse.py" lines=287:294
 @source code-hold title="Events held before content" path="src/openai_responses_proxy/relay/sse.py" lines=131:174
 @source code-stream-terminals title="The events that end a stream" path="src/openai_responses_proxy/relay/sse.py" lines=35:36
-@source code-stream-end title="The end of a committed stream" path="src/openai_responses_proxy/relay/sse.py" lines=329:333
-@source code-stream-class title="The failure class of a failed stream" path="src/openai_responses_proxy/relay/sse.py" lines=340:354
-@source code-stream-log title="The log line for a stream's ending" path="src/openai_responses_proxy/relay/sse.py" lines=355:375
+@source code-stream-end title="The end of a committed stream" path="src/openai_responses_proxy/relay/sse.py" lines=335:339
+@source code-stream-class title="The failure class of a failed stream" path="src/openai_responses_proxy/relay/sse.py" lines=346:360
+@source code-stream-log title="The log line for a stream's ending" path="src/openai_responses_proxy/relay/sse.py" lines=364:384
+@source code-json-terminal title="The log line for a delivered JSON response" path="src/openai_responses_proxy/relay/downstream.py" lines=466:469
 @source code-diagnostic title="Codes and event types named in diagnostics" path="src/openai_responses_proxy/protocol/response.py" lines=93:113
 @source code-disposition title="Which statuses are retried" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=56:92
 @source code-compact title="Pair-safe compaction" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=105:156
@@ -111,12 +112,13 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 @source readme-budgets title="Limits a fresh installation may choose" path="README.md" lines=342:358
 @source code-defaults title="Runtime defaults" path="src/openai_responses_proxy/runtime/config.py" lines=70:86
 @source code-platforms title="Release platforms" path="src/openai_responses_proxy/product_identity.py" lines=13:18
-@source changelog-100 title="The 1.0.0 release" path="CHANGELOG.md" lines=2023:2029
-@source changelog-202 title="Renamed in 2.0.2" path="CHANGELOG.md" lines=1418:1428
-@source changelog-500 title="Renamed in 5.0.0" path="CHANGELOG.md" lines=518:525
-@source changelog-5111 title="The 5.1.11 release" path="CHANGELOG.md" lines=89:102
-@source changelog-5112 title="The 5.1.12 release" path="CHANGELOG.md" lines=67:87
-@source changelog-600 title="The 6.0.0 release" path="CHANGELOG.md" lines=11:65
+@source changelog-100 title="The 1.0.0 release" path="CHANGELOG.md" lines=2063:2069
+@source changelog-202 title="Renamed in 2.0.2" path="CHANGELOG.md" lines=1458:1468
+@source changelog-500 title="Renamed in 5.0.0" path="CHANGELOG.md" lines=558:565
+@source changelog-5111 title="The 5.1.11 release" path="CHANGELOG.md" lines=129:142
+@source changelog-5112 title="The 5.1.12 release" path="CHANGELOG.md" lines=107:127
+@source changelog-600 title="The 6.0.0 release" path="CHANGELOG.md" lines=51:105
+@source changelog-601 title="The 6.0.1 release" path="CHANGELOG.md" lines=11:49
 
 ## Who sends traffic through the proxy, and what does it leave to others? {#p-context}
 
@@ -304,7 +306,7 @@ These are the macOS defaults; Linux follows XDG directories and Windows uses LOC
 
 ## How did the proxy get here? {#p-history}
 
-The proxy went from 1.0.0 in July 2026 to 6.0.0 in November, and changed its name twice on the way.[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-600) Below are fifteen of its releases that changed what a client or an operator meets.
+The proxy went from 1.0.0 in July 2026 to 6.0.1 in November, and changed its name twice on the way.[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-601) Below are sixteen of its releases that changed what a client or an operator meets.
 
 @diagram timeline id=history source=history.timeline.json title="How the proxy got here"
 
@@ -338,7 +340,7 @@ Each result names at most one next command.[](source:code-status-next)[](source:
 
 `status --json` also reports reliability counters and classified failures, all secret-free.[](source:readme-evidence) A stream that the upstream ended with a top-level `error` event is the failure class `stream_error`.[](source:code-stream-class)[](source:changelog-5112)
 
-The log names each stream's ending, never an event's message. A stream that ended with an `error` event gets `terminal=error` and the event's code. A stream that ended without a terminal event gets `last=` and the type of the last accepted event.[](source:code-stream-log)[](source:code-diagnostic)
+The log names how every admitted response ended, never an event's message.[](source:code-gate)[](source:changelog-601) A stream that ended with an `error` event gets `terminal=error` and the event's code. A stream that ended without a terminal event gets `last=` and the type of the last accepted event.[](source:code-stream-log)[](source:code-diagnostic) A delivered JSON response gets `json_terminal` and the response's `status`.[](source:code-json-terminal)
 
 @callout level=note title="Accepted local risks"
 | Every residual risk the threat model keeps needs another process of the same user. One example: `recover` reads /healthz without the process check that `status` performs.[](source:threat-residual) |
