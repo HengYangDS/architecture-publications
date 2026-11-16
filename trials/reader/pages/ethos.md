@@ -26,7 +26,7 @@
   `service.py` are blocked module names (rules/module-layout.md 46-49).
 - Python ceilings are 80,000 product, 105,000 test and 10,000 tool line-equivalents, with `line_width` 100
   (.config/checks/format-selection/policy.toml 7-12).
-- Each code file is limited to 512 ELOC (`docs/decisions/dr-0010-source-budget-non-compensation.md` 59-60).
+- Each code file is limited to 500 lines (`docs/decisions/dr-0019-layout-invariant-source-budget.md` 45-46).
 - Combined Python line-and-branch coverage is at least 95 percent over the declared product surface, and debt
   fails (docs/governance/product-design-contract.md 480-483).
 - `openspec/changes/archive/` is an immutable record root and archived OpenSpec YAML has mutation policy

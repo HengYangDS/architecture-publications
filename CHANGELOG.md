@@ -77,6 +77,12 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   each language is built from its own directory:
   `archpub build publications/<work>/<language>/model.json`.
 
+### Fixed
+
+- The page of constraints that the reader experiment gave its readers for ETHOS states the per-file ceiling as 500
+  lines, from the decision record that corrects it, where it said 512 from a stale one. The experiment's record
+  quotes the line as the readers had it; no item asked for the ceiling and no score changes.
+
 ## [0.1.0] - 2026-11-09
 
 ### Added
