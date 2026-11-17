@@ -23,10 +23,8 @@ repository's source was read for the thing the word names.
 
 **Non-Goals:**
 
-- The Chinese overview compositions (`zh/overview.typ`). Their words are placed by coordinates, so a corrected
-  sentence of another length does not fit its place. They are replaced by statements in the models when the
-  publisher draws the overview from the model, and the corrected statements are kept for that.
-- The Chinese guides (`zh/guide/`). No reader has read them against their English yet.
+- The Chinese guides (`zh/guide/`), which the page in a browser is built from. No reader has read them against
+  their English yet, and they hold the old renderings (ETHOS's guide says 证明 61 times). They are the next Change.
 - A change of any English text, and a rule or a check of wording in this repository.
 
 ## Decisions
@@ -44,9 +42,14 @@ repository's source was read for the thing the word names.
    citations, and in every string the same numbers, identifiers and Latin words.
    - Rests on: an editor of wording can change a number or an identifier without meaning to.
    - Considered: review by eye.
-5. Leave the overview compositions and the guides to their own changes.
-   - Rests on: the non-goals above. Until then a Chinese edition's overview page and guide speak the old words
-     beside plates that speak the new ones; no edition is delivered in that state.
+5. Carry the corrected sentences into the overview compositions, and leave the guides to the next Change.
+   - Rests on: a composition places its sentences by coordinates and stays the overview until the publisher draws
+     that page from the model. Each corrected sentence replaces the old one where the composition places it, with
+     the composition's own line breaks; a longer one keeps its place by a break or a wider column. The publisher's
+     check of each composition passes (no text over another, none outside the page), and every changed region was
+     looked at for a text over a line and for a bad break.
+   - Considered: waiting for the statements; the overview page would speak the old words beside plates that speak
+     the new ones for as long as that takes. Until the guides follow, a Chinese delivery's page in a browser does.
 
 ## Risks / Trade-offs
 

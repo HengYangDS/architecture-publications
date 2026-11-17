@@ -24,27 +24,27 @@
 #ring(xa, 336pt, r: 5pt, w: 2pt)
 #tx(xa - 8pt, yr - 16pt, [提供商], weight: "semibold")
 #tx(xr - 8pt, yr - 16pt, [模型], weight: "semibold")
-#tx(xb - 8pt, yr - 16pt, [客户端选择], weight: "semibold")
+#tx(xb - 8pt, yr - 16pt, [客户端的模型选择], weight: "semibold")
 #tx(xa + 12pt, yr + 26pt, [你持有其令牌的服务：每种协议一个端点，绝不含凭据], w: 176pt, fill: soft)
-#tx(xr + 12pt, yr + 26pt, [提供商提供的模型，名为 provider/model，并列出可用协议], w: 176pt, fill: soft)
+#tx(xr + 12pt, yr + 26pt, [提供商提供的模型，名为 provider/model，#box[并列出可用协议]], w: 176pt, fill: soft)
 #tx(xb + 12pt, yr + 26pt, [某个已准入客户端选用的模型], w: 104pt, fill: soft)
 #tx(xa + 86pt, yr - 6pt, [提供], fill: mid, style: "italic")
 #tx(xr + 76pt, yr - 6pt, [被选用], fill: mid, style: "italic")
 #tx(xr + 14pt, 341pt, [模型家族], weight: "semibold")
-#tx(xr + 14pt, 359pt, [可选：它属于哪一个规范的模型], fill: soft)
+#tx(xr + 14pt, 359pt, [可选：标明它对应哪个规范模型], fill: soft)
 #tx(xa + 14pt, 341pt, [令牌], weight: "semibold")
-#tx(xa + 14pt, 359pt, [放在选定的一个存储里：密钥环、DPAPI 或属主专用文件], w: 190pt, fill: soft)
+#tx(xa + 14pt, 359pt, [放在选定的一个存储里：密钥环、DPAPI 或仅属主可读写的文件], w: 190pt, fill: soft)
 
 // The projection: one guarded transaction into each admitted client's own region.
 #let rows = (200pt, 262pt, 324pt, 386pt)
 #seg((xb + 6pt, yr), (xbus, yr), w: 4pt, c: green)
 #seg((xbus, rows.first()), (xbus, rows.last()), w: 4pt, c: green)
 #for y in rows { seg((xbus, y), (852pt, y), w: 2.2pt, c: green) }
-#tx(xbus + 14pt, 186pt, [规划 · 应用 · 检查，一次受保护的事务], fill: green, style: "italic")
+#tx(xbus + 14pt, 186pt, [规划 · 应用 · 检查，一次带防护的事务], fill: green, style: "italic")
 #let clients = (
   ([Codex], [\~/.codex/config.toml], [对话、模型元数据和 Desktop 图形界面仍归 Codex]),
   ([Claude Code], [\~/.claude/settings.json], [会话和运行时行为仍归 Claude Code]),
-  ([Claude Desktop], [Claude-3p/configLibrary], [它自己的库；其余都归应用本身]),
+  ([Claude Desktop], [Claude-3p/configLibrary], [它自己的配置库；其余都归应用本身]),
   ([Hermes], [\~/.hermes/config.yaml], [除 AIGW 自己的提供商和模型外，其余都归 Hermes]),
 )
 #for (k, (name, target, keeps)) in clients.enumerate() {
@@ -64,7 +64,7 @@
 // The credential read: on demand, by the client, matched to its projection.
 #seg((xa, 344pt), (xa, 420pt), (846pt, 420pt), (846pt, rows.last() + 8pt), w: 1.5pt, c: ochre, dash: (4pt, 3pt))
 #place(top + left, polygon(fill: ochre, (846pt, rows.last() + 6pt), (842.5pt, rows.last() + 12pt), (849.5pt, rows.last() + 12pt)))
-#tx(170pt, 414pt, [每个客户端通过 aigw credential 按需读取自己的令牌，令牌与该客户端的客户端文件对应], fill: ochre, style: "italic")
+#tx(170pt, 414pt, [每个客户端通过 aigw credential 按需读取自己的令牌，令牌与该客户端的文件对应], fill: ochre, style: "italic")
 
 // Band 1 foot: what the operator does, and the one vocabulary every surface reports.
 #hrule(448pt, x1: 776pt)
@@ -72,27 +72,27 @@
 #dl(48pt, 472pt, 104pt, 728pt, (
   ([setup], [首次设置：一个提供商、一个已安装的客户端和它的一个模型]),
   ([use], [让一个客户端选用一个 provider/model]),
-  ([sync], [让每个已启用客户端的文件与配置一致；\-\-dry-run 只显示计划，不读取任何机密]),
+  ([sync], [让每个已启用客户端的文件与配置一致；\-\-dry-run 只显示计划，不读取任何凭据]),
   ([check], [按 \-\-depth 检查到 local、endpoint、model 或 client 一级；model 和 client 可能消耗配额]),
   ([provider rotate], [替换一个提供商的令牌]),
   ([config rollback], [恢复配置和客户端文件，不恢复程序]),
 ))
 #dl(824pt, 472pt, 132pt, 728pt, (
-  ([已配置], [本地前提条件满足；检查到哪一级，就多证明到哪一级]),
-  ([local · endpoint], [不发请求的检查 · 一次不指定模型的认证请求]),
-  ([model · client], [一次有限的推理请求 · 一次真实的客户端会话]),
-  ([已推迟], [凭据或客户端文件有意推迟]),
+  ([已配置], [本地前提条件满足；检查得越深，证明的就越多]),
+  ([local · endpoint], [不发请求的检查 · 一次带认证、不指定模型的请求]),
+  ([model · client], [一次有时限的推理请求 · 一次真实的客户端会话]),
+  ([已推迟], [有意暂缓提供凭据或写入客户端文件]),
   ([降级], [配置仍在，但有可恢复的问题]),
   ([无效 · 不可用], [不能安全使用 · 缺少一项必需的能力]),
 ))
 
 // ── Band 2: the transaction every projection is, and who owns what ─────────
-#head(48pt, 614pt, [每次改写客户端文件都是一次受保护的事务])
+#head(48pt, 614pt, [每次改写客户端文件都是一次带防护的事务])
 #let yk = 682pt
 #seg((106pt, yk), (744pt, yk), w: 1.7pt, c: green)
 #let steps = (
   (106pt, [发现], [每个已准入客户端及其原生路径], "ring", 104pt),
-  (248pt, [规划], [写入之前就已完整，且不含机密], "tick", 130pt),
+  (248pt, [规划], [写入之前就已完整，且不含凭据], "tick", 130pt),
   (390pt, [准备], [记下每个目标写入前后的确切状态], "tick", 104pt),
   (520pt, [提交], none, "ring", 0pt),
 )
@@ -107,15 +107,15 @@
 #tx(560pt, yk - 6pt, [全部已提交], fill: green, style: "italic")
 #seg((520pt, yk + 6pt), (520pt, 740pt), (536pt, 740pt), w: 1.5pt, c: ochre, dash: (4pt, 3pt))
 #ring(543pt, 740pt, r: 4.5pt, w: 1.7pt, c: ochre)
-#tx(556pt, 736pt, [逆序补偿，且只在文件仍是本次写入时才做；内容一旦变化即拒绝，绝不覆盖后来者的写入。], w: 220pt, fill: ochre)
+#tx(556pt, 736pt, [逆序补偿，且只在文件仍是本次写入的内容时才补偿；内容一旦变化即拒绝，绝不覆盖后来者的写入。], w: 220pt, fill: ochre)
 
 #head(824pt, 614pt, [什么归谁])
 #let owners = (
   ([AIGW 配置], [提供商、模型、推荐和每个客户端的选择]),
   ([选定的令牌存储], [提供商令牌；存储由 AIGW 选择]),
-  ([客户端适配器], [AIGW 在一个已准入客户端文件中的设置]),
+  ([客户端适配器], [AIGW 在某个已准入客户端的文件中的设置]),
   ([客户端本身], [对话、记忆、工具和图形界面状态]),
-  ([端点产品], [流量规范化、重试和服务生命周期]),
+  ([端点背后的服务], [流量规范化、重试和服务生命周期]),
   ([本地 Git 与代码托管平台], [已签名的提交和标签；托管、CI 与发布记录]),
 )
 #hrule(634pt, x0: 824pt)
@@ -131,9 +131,9 @@
   ([self update], [只更新或回滚便携程序]),
   ([self uninstall], [先移除 AIGW 在客户端文件中的设置，再移除程序]),
 ))
-#head(560pt, 812pt, [不含机密的团队文件])
+#head(560pt, 812pt, [不含凭据的团队文件])
 #dl(560pt, 836pt, 108pt, 470pt, (
-  ([setup \-\-from], [应用一个团队文件；它列出的模型以它为准]),
+  ([setup \-\-from], [应用一个团队文件；模型以团队文件所列为准]),
   ([\-\-dry-run], [预览一个团队文件，不写入任何东西]),
 ))
 #head(1072pt, 812pt, [变更提供商])

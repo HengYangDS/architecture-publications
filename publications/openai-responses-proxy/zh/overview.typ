@@ -19,7 +19,7 @@
   (410pt, [请求体], [单个 Content-Length，\ 限 30 秒、64 MiB], "tick"),
   (560pt, [投影], [store=false，\ 去除提供商绑定], "tick"),
   (710pt, [委派], [仅在选用它的 \ 路由上可读], "tick"),
-  (860pt, [闸门], [冷却中的提供商 \ 立即应答], "tick"),
+  (860pt, [闸门], [提供商在冷却中 \ 则立即应答], "tick"),
   (1010pt, [交互], [单一时限，默认 900 秒], "ring"),
   (1160pt, [传输], [不跟随重定向；\ 已发出的请求绝不重发], "tick"),
 )
@@ -56,21 +56,21 @@
 #dl(824pt, 414pt, 150pt, 728pt, (
   ([429], [转发一次；仅该提供商按 Retry-After 冷却，至多 300 秒]),
   ([重试后的 503], [转发；该提供商短暂冷却，直到下一次探测]),
-  ([DMXAPI 477], [精确匹配的 empty\_response：同样的字节再发一次]),
+  ([DMXAPI 477], [完全匹配的 empty\_response：同样的字节再发一次]),
   ([response\_failed], [逐步缩小、不拆配对地重试，最后再试一次只含对话的请求]),
-  ([输入过长], [改发一次更小的历史投影，保留本轮输入和图片]),
+  ([输入超长], [删减历史后改发一次更小的请求，保留本轮输入和图片]),
   ([发出后断连], [502 upstream\_outcome\_unknown；由客户端决定]),
-  ([时限], [提交前返回 504；提交后关闭流，绝不重放]),
+  ([时限], [响应提交前返回 504；提交后关闭流，绝不重放]),
 ))
 
 // ── Band 2: one transaction per release, one handoff per new listener ──────
 #hrule(530pt)
-#head(48pt, 558pt, [每次发布都是一个事务，全程记入日志])
+#head(48pt, 558pt, [每次发布都是一个事务，全程写入事务日志])
 #let yk = 630pt
 #seg((112pt, yk), (712pt, yk), w: 1.7pt, c: green)
 #let steps = (
   (112pt, "已准入", [用 ssh-keygen \ 验证签名], "ring", 118pt),
-  (262pt, "已准备", [每个文件及摘要 \ 都已记入日志], "tick", 118pt),
+  (262pt, "已准备", [每个文件及摘要 \ 都已写入事务日志], "tick", 118pt),
   (412pt, "已落盘", [新的一代，已预热], "tick", 118pt),
   (562pt, "已激活", none, "tick", 0pt),
 )
@@ -93,7 +93,7 @@
   (896pt, "PREPARE", [后继进程 \ 从选定的一代启动], "ring"),
   (1046pt, "READY", [继承套接字，回显身份], "tick"),
   (1196pt, "COMMIT", [旧监听器不再接受连接], "tick"),
-  (1346pt, "SERVING", [在 /healthz 上证明健康], "tick"),
+  (1346pt, "SERVING", [经 /healthz 确认健康], "tick"),
 )
 #for (x, name, note, kind) in phases {
   if kind == "ring" { ring(x, yk, r: 5pt, w: 2pt) } else { tick(x, yk, h: 12pt, w: 2pt) }
@@ -102,7 +102,7 @@
 }
 #ring(1496pt, yk, r: 6pt, w: 2.4pt)
 #txc(1490pt, yk - 14pt, 100pt, [FINALIZE], weight: "semibold")
-#txc(1484pt, yk + 24pt, 130pt, [旧监听器把轮次做完，\ 至多 900 秒], fill: soft)
+#txc(1484pt, yk + 24pt, 130pt, [旧监听器处理完手上的 \ 各轮对话，至多 900 秒], fill: soft)
 #tx(824pt, 724pt, [升级、回滚和重载都走这条路径。运行时若未同时声明两项交接能力，命令在改动之前就拒绝。], w: 728pt, fill: soft)
 
 // ── Band 3: what keeps it running, the commands, and what others own ───────

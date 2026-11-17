@@ -50,11 +50,11 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | fall; voicing; closure, release (of a stop)    | 落下；浊音程度；闭塞、除阻           | `src/filmkit/narration/take_edges.py`                                                                          |
 | join (thought join)                            | 衔接                                 | `src/filmkit/narration/thought_groups.py`; `src/filmkit/soundtrack/policy.py`                                  |
 | request fingerprint                            | 请求指纹                             | `src/filmkit/narration/synthesis.py`                                                                           |
-| receipt (narration, render, assembly)          | 回执（旁白回执、渲染回执、拼接回执） | `src/filmkit/narration/receipts.py`; `src/filmkit/picture/rendering.py`                                        |
+| receipt (narration, render, assembly)          | 记录（旁白记录、渲染记录、拼接记录） | `src/filmkit/narration/receipts.py`; `src/filmkit/picture/rendering.py`                                        |
 | record                                         | 记录                                 | `src/filmkit/picture/gates.py`                                                                                 |
 | spoken text                                    | 朗读文本                             | `src/filmkit/narration/pronunciation.py`                                                                       |
 | spoken units                                   | 朗读单元                             | `src/filmkit/narration/spoken_units.py`                                                                        |
-| punctuation roles; thought spans               | 标点角色；意群跨度                   | `src/filmkit/narration/spoken_units.py`                                                                        |
+| punctuation roles; thought spans               | 标点的作用；意群跨度                 | `src/filmkit/narration/spoken_units.py`                                                                        |
 | contract                                       | 契约                                 | `ddwg-film` `content/concepts.toml` (contract)                                                                 |
 | pronunciation contract                         | 读音契约                             | `src/filmkit/narration/pronunciation.py`                                                                       |
 | concept contract; concept                      | 概念契约；概念                       | `src/filmkit/concepts.py`                                                                                      |
@@ -68,18 +68,18 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | word checks                                    | 字词检查                             | `src/filmkit/narration/narrate.py`                                                                             |
 | dry run                                        | 试运行                               | `src/filmkit/narration/narrate.py`                                                                             |
 | align; alignment; forced aligner               | 对齐；对齐结果；强制对齐器           | `src/filmkit/narration/alignment.py`                                                                           |
-| transcribe; recognizer; recognition proxy      | 转写；识别器；识别的替代指标         | `src/filmkit/narration/transcription.py`                                                                       |
+| transcribe; recognizer; recognition proxy      | 转写；识别器；仅供参考的识别结果     | `src/filmkit/narration/transcription.py`                                                                       |
 | select; selection                              | 选定；选定结果                       | `src/filmkit/narration/selection.py`                                                                           |
 | heard pause; unmarked pause; pause limit       | 听得到的停顿；无标点停顿；停顿上限   | `src/filmkit/narration/flow.py`                                                                                |
 | word boundary; steps between thoughts          | 词边界；意群之间的变化幅度           | `src/filmkit/narration/flow.py`                                                                                |
-| designed pauses                                | 设计停顿                             | `src/filmkit/soundtrack/policy.py`                                                                             |
+| designed pauses                                | 设计好的停顿                         | `src/filmkit/soundtrack/policy.py`                                                                             |
 | assemble; assembly                             | 拼接                                 | `examples/sample-film/content/narration.md` (拼成); `src/filmkit/soundtrack/assembly.py`                       |
 | soundtrack                                     | 音轨                                 | `examples/sample-film/content/narration.md`; `src/filmkit/soundtrack/assembly.py`                              |
 | program level; gain                            | 节目响度；增益                       | `src/filmkit/specification.py`; `src/filmkit/soundtrack/assembly.py`                                           |
-| level (thought, segment, chapter); tolerance   | 调平；容差                           | `src/filmkit/soundtrack/level.py`; `src/filmkit/soundtrack/policy.py`                                          |
+| level (thought, segment, chapter); tolerance   | 响度匹配；容差                       | `src/filmkit/soundtrack/level.py`; `src/filmkit/soundtrack/policy.py`                                          |
 | static gain; median loudness; peak             | 静态增益；响度中位数；峰值           | `src/filmkit/soundtrack/level.py`                                                                              |
 | sound gate; clarity floor                      | 声音门禁；清晰度下限                 | `src/filmkit/soundtrack/gates.py`                                                                              |
-| voice clarity; kept frames                     | 嗓音清晰度；保留帧                   | `src/filmkit/review/clarity.py`                                                                                |
+| voice clarity; kept frames                     | 人声清晰度；保留帧                   | `src/filmkit/review/clarity.py`                                                                                |
 | timeline                                       | 时间线                               | `src/filmkit/picture/rendering.py`                                                                             |
 | caption                                        | 字幕                                 | `src/filmkit/delivery/player.py` (字幕)                                                                        |
 | cue                                            | 字幕条                               | `src/filmkit/captions/timing.py`                                                                               |
@@ -93,11 +93,11 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | picture                                        | 画面                                 | `src/filmkit/picture/gates.py`; `ethos-film` `content/film-script.json` (画面)                                 |
 | composition (picture composition)              | 画面合成                             | `examples/sample-film/picture/film.js` (画面合成); `README.md`                                                 |
 | gate; gate record                              | 门禁；门禁记录                       | `src/filmkit/picture/gates.py`                                                                                 |
-| audit; frame, sync, motion audit               | 审查；逐帧、同步、动效审查           | `src/filmkit/picture/gates.py`; `src/filmkit/picture/sync_audit.py`                                            |
+| audit; frame, sync, motion audit               | 检测；逐帧、同步、动效检测           | `src/filmkit/picture/gates.py`; `src/filmkit/picture/sync_audit.py`                                            |
 | ghosts, stalls, pops, jumps, dash snaps        | 残影、停滞、突现、跳变、虚线突变     | `src/filmkit/picture/motion-audit.mjs`                                                                         |
 | label; mark; at rest; contrast                 | 标签；标记；静止；对比度             | `src/filmkit/picture/sync_audit.py`; `src/filmkit/picture/text_trace.py`                                       |
 | piece (of a mark); appearance (of a label)     | 片段；出现                           | `src/filmkit/picture/motion-audit/pieces.mjs`; `src/filmkit/picture/sync_audit.py`                             |
-| stage (verb, noun); staged picture             | 预置；预置画面                       | `src/filmkit/picture/rendering.py`                                                                             |
+| stage (verb, noun); staged picture             | 组装；组装好的画面                   | `src/filmkit/picture/rendering.py`                                                                             |
 | render; renderer                               | 渲染；渲染器                         | `src/filmkit/picture/rendering.py`; `examples/sample-film/content/narration.md`                                |
 | validate                                       | 校验                                 | `src/filmkit/picture/rendering.py`                                                                             |
 | still picture; still scan                      | 静止画面；扫描                       | `src/filmkit/picture/still_scan.py`                                                                            |
@@ -107,7 +107,7 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | version (a film's, from its `VERSION`)         | 版本号                               | `src/filmkit/delivery/packaging.py`                                                                            |
 | headless; canvas stand-in                      | 无头；canvas 替身                    | `src/filmkit/picture/headless-composition.mjs`; `src/filmkit/picture/metrics.py`                               |
 | advance widths; faces, fonts                   | 步进宽度；字体                       | `src/filmkit/picture/metrics.py`                                                                               |
-| whole turn; ink                                | 整圈弧线；墨迹                       | `src/filmkit/picture/whole-turns.mjs`; `src/filmkit/picture/gates.py`                                          |
+| whole turn; ink                                | 整圈弧线；可见像素                   | `src/filmkit/picture/whole-turns.mjs`; `src/filmkit/picture/gates.py`                                          |
 | stylesheet                                     | 样式表                               | `src/filmkit/picture/gates.py`                                                                                 |
 | Node tool runner; tool cache                   | Node 工具运行器；工具缓存            | `src/filmkit/tools.py`                                                                                         |
 | package (verb); packaging                      | 打包                                 | `src/filmkit/delivery/packaging.py`; `examples/sample-film/content/narration.md`                               |
@@ -115,7 +115,7 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | release metadata, release tags                 | 发布元数据标签                       | `src/filmkit/delivery/packaging.py`                                                                            |
 | published release                              | 已发布版本                           | `src/filmkit/delivery/reproduction.py`; brief (release → 发布版本)                                             |
 | verify; verification                           | 核验                                 | `src/filmkit/delivery/verification.py`; `ddwg-film` `content/concepts.toml` (verification)                     |
-| narration custody                              | 旁白保管链                           | `src/filmkit/delivery/verification.py`                                                                         |
+| narration custody                              | 旁白溯源链                           | `src/filmkit/delivery/verification.py`                                                                         |
 | reproduction                                   | 复现                                 | `src/filmkit/delivery/reproduction.py`                                                                         |
 | deliver; delivery                              | 交付                                 | `src/filmkit/delivery/documents_folder.py`                                                                     |
 | delivery members; read back                    | 交付项；读回                         | `src/filmkit/delivery/documents_folder.py`                                                                     |
@@ -125,9 +125,9 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | review policy; review floors; dimensions       | 评审规则；评审下限；维度             | `README.md`; `src/filmkit/delivery/verification.py`                                                            |
 | prompts                                        | 提示词                               | `src/filmkit/review/prompts.py`                                                                                |
 | set-aside                                      | 封存                                 | `src/filmkit/review/round.py`                                                                                  |
-| supply; digests; snapshot                      | 供应；摘要；快照                     | `src/filmkit/supply.py`; `src/filmkit/narration/snapshots.py`                                                  |
-| browser build                                  | 浏览器构建                           | `src/filmkit/supply.py`                                                                                        |
-| media probe; frame cadence                     | 媒体探测；帧节奏                     | `src/filmkit/media.py`                                                                                         |
+| supply; digests; snapshot                      | 下载安装；摘要；快照                 | `src/filmkit/supply.py`; `src/filmkit/narration/snapshots.py`                                                  |
+| browser build                                  | 指定构建版本的浏览器                 | `src/filmkit/supply.py`                                                                                        |
+| media probe; frame cadence                     | 媒体探测；帧间隔                     | `src/filmkit/media.py`                                                                                         |
 | host tools                                     | 主机工具                             | `README.md`                                                                                                    |
 | production command; production action          | 制作命令；制作动作                   | `src/filmkit/produce.py`                                                                                       |
 | narration command                              | 旁白命令                             | `src/filmkit/narration/narrate.py`                                                                             |
@@ -148,7 +148,7 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | caption band                                   | 字幕带                               | `src/filmkit/picture/equivalence.py`                                                                           |
 | finding; gated finding                         | 问题；门禁问题                       | `src/filmkit/picture/gates.py`                                                                                 |
 | off-centre                                     | 偏离中心                             | `README.md`                                                                                                    |
-| stage (of a scene); stage cut                  | 阶段；阶段切换                       | `README.md`; distinct from 预置 (staging the picture)                                                          |
+| stage (of a scene); stage cut                  | 阶段；阶段切换                       | `README.md`; distinct from 组装 (staging the picture)                                                          |
 | still state (off centre)                       | 静止状态                             | `README.md`                                                                                                    |
 | verifier                                       | 核验器                               | `src/filmkit/delivery/verification.py`                                                                         |
 | keywords; authors (as Spotlight imports them)  | 关键词；作者                         | `src/filmkit/delivery/spotlight.py`                                                                            |

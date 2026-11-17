@@ -5,11 +5,11 @@
   "locale": "zh-CN",
   "title": "Film Kit",
   "question": "Film Kit 怎样用受版本管理的源文件，重建一部影片的两个语言版？又靠什么保证每一步用的都是该用的输入？",
-  "summary": "Film Kit 用锁定版本的本地语音合成模型逐个意群朗读每个语言版，按统一的节目响度拼成一条音轨，给字幕定时，画面先过门禁再渲染，最后打包出四部成片：超高清母版和 1080p 观看版，各有带字幕和无字幕两种。每一步都记下所读内容的 SHA-256，记录绑定的字节一旦对不上，后面的步骤就拒绝它。",
+  "summary": "Film Kit 用锁定版本的本地语音合成模型逐个意群朗读每个语言版，按统一的节目响度拼成一条音轨，给字幕打时间轴，画面先过门禁再渲染，最后打包出四部成片：超高清母版和 1080p 观看版，各有带字幕和无字幕两种。每一步都记下所读内容的 SHA-256，记录绑定的字节一旦对不上，后面的步骤就拒绝它。",
   "scope": "v0.22.3 发布时的 Film Kit 引擎：src/filmkit 包，包括 Python 模块、Node 工具和关注列表，以及用来打包它的 pyproject.toml 和 VERSION。",
   "limits": [
-    "每个组件都引用规则划归给它的全部文件，每条关系引用发起调用或运行进程的模块。",
-    "关系表示源码里的调用和进程调用，不表示运行顺序，也没有把每次调用都画出来：读取影片记录和朗读单元的调用多数模块都有，核验和评审的调用遍及整个构建，这些都写在组件详情里。",
+    "每个组件列出规则划归给它的全部文件，每条关系列出发起调用或启动进程的模块。",
+    "关系表示源码里的函数调用和子进程调用，不表示运行顺序，也没有把每次调用都画出来：读取影片记录和朗读单元的调用多数模块都有，核验和评审的调用遍及整个构建，这些都写在组件详情里。",
     "测试、样例影片、OpenSpec 规格与正式变更、文档，以及仓库的工具链和 CI，都不在范围内。"
   ],
   "repository": {
@@ -22,71 +22,71 @@
     "exclude": [
       {
         "path": "tests/",
-        "reason": "The engine's Python and Node tests."
+        "reason": "引擎的 Python 和 Node 测试。"
       },
       {
         "path": "examples/",
-        "reason": "The sample film that the tests load and the local acceptance builds; its text is written for the tests and is no film's source."
+        "reason": "测试要加载、本地验收要构建的样例影片；它的文字是为测试写的，不是任何影片的源文件。"
       },
       {
         "path": "openspec/",
-        "reason": "The engine's OpenSpec specifications and archived Changes: its accepted requirements and change history."
+        "reason": "引擎的 OpenSpec 规格和已归档的正式变更：已接受的需求和变更历史。"
       },
       {
         "path": "*.md",
-        "reason": "The README, the agent entry, the contributing guide and the change log; the guide cites them at the same revision."
+        "reason": "README、智能体入口、贡献指南和变更日志；导读引用的是同一提交上的这些文件。"
       },
       {
         "path": "LICENSE",
-        "reason": "The MIT licence."
+        "reason": "MIT 许可证。"
       },
       {
         "path": "NOTICE",
-        "reason": "The copyright notice and the licences of the sample film's assets and of the software and models a build installs."
+        "reason": "版权声明，以及样例影片的素材、构建时安装的软件和模型的许可证。"
       },
       {
         "path": "uv.lock",
-        "reason": "The development lock; a film locks filmkit and its dependencies in its own project."
+        "reason": "开发用的锁文件；影片在自己的项目里锁定 filmkit 及其依赖。"
       },
       {
         "path": "package.json",
-        "reason": "The npm packages that the tests and the sample film use; a film declares its own."
+        "reason": "测试和样例影片用到的 npm 包；影片要用的包由影片自己声明。"
       },
       {
         "path": "package-lock.json",
-        "reason": "The lock of those npm packages."
+        "reason": "这些 npm 包的锁文件。"
       },
       {
         "path": ".config/",
-        "reason": "Tool configuration: the Mise tasks and lock, linters, formatters and the CI projection."
+        "reason": "工具配置：Mise 的任务和锁文件、代码检查和格式化工具的配置，以及生成 CI 配置用的定义。"
       },
       {
         "path": ".ethos/",
-        "reason": "The repository's ETHOS binding and release peers."
+        "reason": "仓库的 ETHOS 绑定，以及它发布到哪些平台。"
       },
       {
         "path": "system/",
-        "reason": "The proof sets that ETHOS and hosted CI run for this repository."
+        "reason": "ETHOS 和托管 CI 为本仓库运行的各组核验。"
       },
       {
         "path": ".github/",
-        "reason": "The GitHub Actions workflow."
+        "reason": "GitHub Actions 工作流。"
       },
       {
         "path": ".gitlab-ci.yml",
-        "reason": "The GitLab CI pipeline."
+        "reason": "GitLab CI 流水线。"
       },
       {
         "path": ".editorconfig",
-        "reason": "Editor settings."
+        "reason": "编辑器设置。"
       },
       {
         "path": ".gitattributes",
-        "reason": "Git attributes."
+        "reason": "Git 属性。"
       },
       {
         "path": ".gitignore",
-        "reason": "Git ignore rules."
+        "reason": "Git 忽略规则。"
       }
     ]
   },
@@ -184,9 +184,9 @@
       "label": "字词检查",
       "kind": "check",
       "details": {
-        "概念": "每个段落都用认可的说法讲到声明的概念，不能出现反例",
+        "概念": "每个段落都用认可的说法讲到它声明的概念，不能出现反例",
         "读音": "关注列表里的每个汉字都有声明的读音，每个名称都有读法",
-        "术语": "每个声明的拉丁字母术语，交给旁白时拼写统一，读音与人工听过确认无误的那一处一致"
+        "术语": "每个声明的拉丁字母术语，送去朗读时拼写统一，读音与人工听过确认无误的那一处一致"
       },
       "files": [
         "src/filmkit/concepts.py",
@@ -200,7 +200,7 @@
       "label": "意群录音",
       "kind": "narration",
       "details": {
-        "朗读": "用锁定版本的语音合成模型把每个意群一次读完，种子或重录取自配音设定",
+        "朗读": "用锁定版本的语音合成模型把每个意群一次读完，种子或重录来自配音设定",
         "朗读文本": "按影片的读音契约，为每个意群推导出来",
         "复用": "请求指纹和录音文件都还对得上的录音",
         "判定": "录音是否自然收尾"
@@ -222,7 +222,7 @@
       "kind": "narration",
       "details": {
         "试音": "给一个意群换其他种子朗读，并推荐一条自然收尾的录音",
-        "绑定": "把选中的种子绑定到这个意群的确切文本和朗读文本",
+        "绑定": "把选中的种子绑定到这个意群的原文和朗读文本",
         "修改": "原地修改意群，每条重录跟着自己的文本移动"
       },
       "files": ["src/filmkit/narration/audition.py", "src/filmkit/narration/script_edits.py"]
@@ -233,8 +233,8 @@
       "kind": "narration",
       "details": {
         "对齐": "用锁定版本的强制对齐器，把每份录音文件对齐到它对应的那段文本",
-        "转写": "转写每份录音文件，结果只作识别的替代指标，不算认证",
-        "选定": "选出绑定当前脚本和配音设定的录音文件及对齐结果，不得超出影片的停顿上限，也不得违反声明术语"
+        "转写": "转写每份录音文件，识别结果仅供参考，不能证明读得正确",
+        "选定": "选出绑定当前脚本和配音设定的录音文件及对齐结果，不得超出影片的停顿上限，已声明术语的读音也须与参照处一致"
       },
       "files": [
         "src/filmkit/narration/alignment.py",
@@ -247,10 +247,10 @@
     },
     {
       "id": "supply",
-      "label": "供应",
+      "label": "下载安装",
       "kind": "adapter",
       "details": {
-        "安装": "锁定版本的浏览器构建和三个语音模型，每一项都按摘要检查",
+        "安装": "锁定版本的浏览器和三个语音模型，每一项都按摘要检查",
         "网络": "只有这一步会联网"
       },
       "files": ["src/filmkit/supply.py", "src/filmkit/narration/snapshots.py"]
@@ -260,7 +260,7 @@
       "label": "朗读单元",
       "kind": "contract",
       "details": {
-        "定义": "朗读单元、标点角色、衔接和意群跨度，声音、字幕和审查共用这一套",
+        "定义": "朗读单元、标点的作用、衔接和意群跨度，声音、字幕和检测共用这一套",
         "测量": "每个词边界上听得到的停顿（选定和拼接都为它设上限），以及意群之间的变化幅度（供人工试听）"
       },
       "files": ["src/filmkit/narration/spoken_units.py", "src/filmkit/narration/flow.py"]
@@ -270,11 +270,11 @@
       "label": "音轨拼接",
       "kind": "step",
       "details": {
-        "拼接": "选定的录音加上设计停顿，按统一的节目响度拼成音轨",
-        "拒绝": "收尾突兀又没有声明尾音淡出的录音、超出上限的无标点停顿，以及读音与参照处不符的声明术语",
-        "产物": "音轨、时间线、拼接回执和声音门禁的记录",
+        "拼接": "选定的录音加上设计好的停顿，按统一的节目响度拼成音轨",
+        "拒绝": "收尾突兀又没有声明尾音淡出的录音、超出上限的无标点停顿，以及读音与参照处不符的已声明术语",
+        "产物": "音轨、时间线、拼接记录和声音门禁的记录",
         "判定": "用评审的测量方法检查拼好的音轨；段落清晰度低于影片声明的下限、收尾突兀或被截断、短语戛然而止，都拒绝",
-        "调平": "按脚本声明的容差，各用一次静态增益：意群调平到所在段落，段落调平到所在章节，章节调平到全片"
+        "响度匹配": "按脚本声明的容差，各用一次静态增益：意群的响度向所在段落看齐，段落向所在章节看齐，章节向全片看齐"
       },
       "files": ["src/filmkit/soundtrack/"]
     },
@@ -283,7 +283,7 @@
       "label": "字幕",
       "kind": "step",
       "details": {
-        "定时": "单行字幕条，卡准对齐好的词，绝不跨意群",
+        "打时间轴": "单行字幕条，卡准对齐好的词，绝不跨意群",
         "排印": "每个字幕条的文本都换用弯引号；旁白和对齐好的词保持原样",
         "产物": "SRT、VTT、讲稿、章节及章节元数据"
       },
@@ -294,7 +294,7 @@
       "label": "画面门禁",
       "kind": "check",
       "details": {
-        "审查": "每隔 1/30 s 查一帧，标签与词句是否同步，片头标题和每段文字的对比度，以及 30 fps 下的动效",
+        "检测": "每隔 1/30 s 查一帧，标签与词句是否同步，片头标题的显示、每段文字的对比度，以及 30 fps 下的动效",
         "绑定": "在门禁记录里绑定画面合成、时间线、样式表、字体和引擎版本"
       },
       "files": [
@@ -316,11 +316,11 @@
     },
     {
       "id": "picture-audits",
-      "label": "画面审查",
+      "label": "画面检测",
       "kind": "check",
       "details": {
         "运行": "用 canvas 替身无头运行影片的画面合成",
-        "测量": "版面、易读性、平衡、排版、标签与文字轨迹，以及动效",
+        "测量": "版面、易读性、平衡、排版、标签与文字的绘制记录，以及动效",
         "比对": "每个无字幕帧的绘制内容，与带字幕帧去掉字幕绘制后的内容"
       },
       "files": [
@@ -339,9 +339,9 @@
       "label": "浏览器检查",
       "kind": "check",
       "details": {
-        "检查": "预置画面的几何、交付的播放器，环境为 Chrome Headless Shell",
-        "封面": "每个语言版的封面都从预置画面绘制",
-        "弧线": "把逐帧审查找到的每段整圈弧线画一遍，找出浏览器画不出墨迹的弧"
+        "检查": "对组装好的画面做几何检查，并检查交付的播放器，环境为 Chrome Headless Shell",
+        "封面": "每个语言版的封面都从组装好的画面绘制",
+        "弧线": "把逐帧检测找到的每段整圈弧线画一遍，找出浏览器画出来没有可见像素的弧"
       },
       "files": [
         "src/filmkit/picture/geometry-check.mjs",
@@ -358,11 +358,11 @@
       "label": "画面渲染",
       "kind": "step",
       "details": {
-        "预置": "把画面合成、时间线和字体预置成一份渲染器文档，绑定在 stage.json 中",
+        "组装": "把画面合成、时间线和字体组装成一份渲染器文档，绑定在 stage.json 中",
         "渲染": "带字幕和无字幕两份画面，门禁记录通过后才交给 HyperFrames",
-        "校验": "每份渲染画面的帧、尺寸和帧节奏",
+        "校验": "每份渲染画面的帧、尺寸和帧间隔",
         "扫描": "渲染出的影片里画面静止时仍在说话之处",
-        "比对": "打包前逐帧比对每个语言版的两份画面：只能在字幕上不同，边缘细条也不能超出界限"
+        "比对": "打包前逐帧比对每个语言版的两份画面：只能在字幕上不同，边缘细条也不能超出限值"
       },
       "files": [
         "src/filmkit/picture/__init__.py",
@@ -398,7 +398,7 @@
       "label": "核验",
       "kind": "check",
       "details": {
-        "核验": "来源、旁白保管链、两份渲染及二者的等效性、两个包、解码后的每部成片和评审",
+        "核验": "来源、旁白溯源链、两份渲染画面及二者的等效性、两个包、解码后的每部成片和评审",
         "读回": "Spotlight 从每部成片导入的关键词和作者；主机上有 mdimport 才读",
         "拒绝": "文本没有排印好的字幕条",
         "写入": "不写文件，只读取和解码"
@@ -431,8 +431,8 @@
       "kind": "check",
       "details": {
         "准备": "一轮独立评审，含封存、播放器绑定、提示词和记录",
-        "测量": "语速、停顿、收尾、响度、嗓音清晰度、识别结果和画面记录",
-        "读取": "各段落的嗓音清晰度：在整条音轨的保留帧里，只取中心落在该段落内的帧，与评审的测法一致",
+        "测量": "语速、停顿、收尾、响度、人声清晰度、识别结果和画面记录",
+        "读取": "各段落的人声清晰度：在整条音轨的保留帧里，只取中心落在该段落内的帧，与评审的测法一致",
         "判定": "每个意群的收尾，标准与拼接步骤相同"
       },
       "files": ["src/filmkit/review/"]
@@ -442,7 +442,7 @@
       "label": "媒体探测",
       "kind": "adapter",
       "details": {
-        "读取": "流、帧节奏、完整解码结果和响度，用 FFprobe 和 FFmpeg"
+        "读取": "流、帧间隔、完整解码结果和响度，用 FFprobe 和 FFmpeg"
       },
       "files": ["src/filmkit/media.py"]
     },
@@ -568,7 +568,7 @@
       "id": "production-command-picture-rendering",
       "from": "production-command",
       "to": "picture-rendering",
-      "label": "预置、渲染、比对",
+      "label": "组装、渲染、比对",
       "files": ["src/filmkit/produce.py", "src/filmkit/preflight.py"]
     },
     {
@@ -663,7 +663,7 @@
       "id": "supply-renderer",
       "from": "supply",
       "to": "renderer",
-      "label": "安装浏览器构建",
+      "label": "安装锁定版本的浏览器",
       "files": ["src/filmkit/supply.py"]
     },
     {
@@ -684,7 +684,7 @@
       "id": "soundtrack-captions",
       "from": "soundtrack",
       "to": "captions",
-      "label": "为字幕定时",
+      "label": "为字幕打时间轴",
       "files": ["src/filmkit/soundtrack/assembly.py"]
     },
     {
@@ -729,7 +729,7 @@
       "id": "picture-gate-tool-runner",
       "from": "picture-gate",
       "to": "tool-runner",
-      "label": "运行审查",
+      "label": "运行检测",
       "files": ["src/filmkit/picture/gates.py"]
     },
     {
@@ -750,7 +750,7 @@
       "id": "tool-runner-picture-audits",
       "from": "tool-runner",
       "to": "picture-audits",
-      "label": "运行逐帧、动效审查",
+      "label": "运行逐帧、动效检测",
       "files": ["src/filmkit/tools.py"]
     },
     {
@@ -764,7 +764,7 @@
       "id": "tool-runner-picture-rendering",
       "from": "tool-runner",
       "to": "picture-rendering",
-      "label": "要求指定渲染器",
+      "label": "需要渲染器",
       "files": ["src/filmkit/tools.py", "src/filmkit/picture/metrics.py"]
     },
     {
@@ -906,7 +906,7 @@
       "id": "overview",
       "title": "从影片源文件到交付成片",
       "question": "一个语言版从脚本到四部交付成片，要靠哪些命令？",
-      "summary": "旁白命令为意群录音运行语音合成。制作命令拼接音轨、刷新字幕、检查画面，门禁记录通过后才渲染画面，最后打包出四部成片。",
+      "summary": "旁白命令为“意群录音”运行语音合成。制作命令拼接音轨、刷新字幕、检查画面，门禁记录通过后才渲染画面，最后打包出四部成片。",
       "members": [
         "narration-command",
         "thought-takes",
@@ -922,7 +922,7 @@
       "id": "film",
       "title": "引擎从影片读取什么",
       "question": "引擎要从正在构建的影片里读取什么？朗读之前哪些条件必须成立？",
-      "summary": "影片与语言版读取影片仓库里的声明，开工前先检查一遍。旁白命令先做字词检查，查概念、读音和术语；不合格的，在任何语音模型加载之前就拒绝。",
+      "summary": "“影片与语言版”读取影片仓库里的声明，开工前先检查一遍。旁白命令先做字词检查，查概念、读音和术语；不合格的，在任何语音模型加载之前就拒绝。",
       "members": [
         "film-repository",
         "film-and-editions",
@@ -936,9 +936,9 @@
     },
     {
       "id": "narration",
-      "title": "旁白与供应",
-      "question": "每个意群怎样朗读、试音和对齐？供应步骤先安装什么？",
-      "summary": "意群录音按配音设定里的种子或重录朗读每个意群，试音则换其他种子再读；对齐与选定把每份录音对齐到它的文本。供应负责安装浏览器构建和三个语音模型。",
+      "title": "旁白与下载安装",
+      "question": "每个意群怎样朗读、试音和对齐？下载安装这一步先装好什么？",
+      "summary": "“意群录音”按配音设定里的种子或重录朗读每个意群，试音则换其他种子再读；“对齐与选定”把每份录音对齐到它的文本。“下载安装”负责装好锁定版本的浏览器和三个语音模型。",
       "members": [
         "narration-command",
         "thought-takes",
@@ -953,7 +953,7 @@
       "id": "sound",
       "title": "声音与字幕出自同一次拼接",
       "question": "选定的录音怎样变成一条音轨、一份时间线和上面的字幕？",
-      "summary": "音轨拼接把选定的录音配上设计好的停顿，按统一的节目响度写出音轨和时间线，收尾突兀的录音一律拒绝。字幕按对齐好的词定时，一条字幕绝不跨两个意群。",
+      "summary": "“音轨拼接”把选定的录音配上设计好的停顿，按统一的节目响度写出音轨和时间线，收尾突兀的录音一律拒绝。“字幕”按对齐好的词打时间轴，一条字幕绝不跨两个意群。",
       "members": [
         "production-command",
         "alignment",
@@ -968,8 +968,8 @@
     {
       "id": "picture",
       "title": "画面的门禁与渲染",
-      "question": "渲染之前，画面靠什么审查？又靠什么渲染？",
-      "summary": "画面门禁交给 Node 工具运行器做逐帧和动效审查，并在门禁记录里绑定画面合成、字体和引擎版本。门禁记录通过后，画面渲染才用 HyperFrames 渲染。",
+      "question": "渲染之前，画面靠什么检测？又靠什么渲染？",
+      "summary": "“画面门禁”交给 Node 工具运行器做逐帧和动效检测，并在门禁记录里绑定画面合成、字体和引擎版本。门禁记录通过后，“画面渲染”才交给 HyperFrames。",
       "members": [
         "picture-gate",
         "tool-runner",
@@ -986,7 +986,7 @@
       "id": "acceptance",
       "title": "打包、核验、交付与评审",
       "question": "成片怎样打包、核验、交付、评审和复现？",
-      "summary": "打包编码出四部成片；核验只读取和解码；交付送出 25 个交付项并逐一读回。评审为独立评审人准备提示词；复现把重新构建的结果与已发布版本比对。",
+      "summary": "“打包”编码出四部成片；“核验”只读取和解码；“交付”送出 25 个交付项并逐一读回。“评审”为独立评审人准备提示词；“复现”把重建结果与已发布版本比对。",
       "members": [
         "packaging",
         "verification",

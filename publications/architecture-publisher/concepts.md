@@ -39,8 +39,8 @@ owner-approved shared renderings.
 | package manifest                                            | 包清单                                           | `package.json`                                                                   |
 | supply, vendored supply                                     | 物料, 随附物料                                   | `src/supply.mjs`                                                                 |
 | supply manifest                                             | 物料清单                                         | `src/supply.mjs`                                                                 |
-| in custody                                                  | 保管中                                           | this work's `overview.typ` only; the repository says "verify" (`src/supply.mjs`) |
-| digest                                                      | 摘要                                             | `src/build.mjs`                                                                  |
+| in custody                                                  | 随附物料及版本 (the block title)                 | this work's `overview.typ` only; the repository says "verify" (`src/supply.mjs`) |
+| digest                                                      | 哈希摘要                                         | `src/build.mjs`                                                                  |
 | artifact                                                    | 产物                                             | `src/build.mjs`, `src/delivery.mjs`                                              |
 | stage (kind of component)                                   | 阶段                                             | this work's `model.json` kinds                                                   |
 | stage (verb: write before renaming)                         | 暂存                                             | `src/build.mjs`, `src/edition/typeset.mjs`                                       |
@@ -51,13 +51,13 @@ owner-approved shared renderings.
 | migration, migrate                                          | 迁移                                             | `src/importers/model.mjs`                                                        |
 | loader, load                                                | 加载器, 加载                                     | `src/model/load.mjs`                                                             |
 | version (model format)                                      | 第 N 版                                          | `src/importers/model.mjs`                                                        |
-| source catalog                                              | 来源目录                                         | `src/importers/model.mjs`                                                        |
+| source catalog                                              | 来源清单                                         | `src/importers/model.mjs`                                                        |
 | workspace (LikeC4)                                          | 工作空间                                         | `src/importers/likec4.mjs`                                                       |
 | sandboxed worker                                            | 沙箱工作进程                                     | `src/importers/likec4.mjs`                                                       |
 | child, child process                                        | 子进程                                           | `src/environment.mjs`                                                            |
-| allowlisted environment                                     | 白名单环境                                       | `src/environment.mjs`                                                            |
+| allowlisted environment                                     | 白名单内的环境变量                               | `src/environment.mjs`                                                            |
 | permission model (Node)                                     | 权限模型                                         | `src/importers/likec4.mjs`                                                       |
-| claim (a component's path claim)                            | 认领                                             | `src/sources/bind.mjs`, `src/model/schema.json`                                  |
+| claim (a component's path claim)                            | 认领 (verb); 认领规则 (noun)                     | `src/sources/bind.mjs`, `src/model/schema.json`                                  |
 | path rule                                                   | 路径规则                                         | `src/model/schema.json` (claim patterns); the phrase is this work's              |
 | owner (of a file)                                           | 所属组件                                         | `src/sources/bind.mjs`                                                           |
 | owner (of meaning, evidence, form, acceptance)              | 归属方 (各归一方)                                | composition (`overview.typ`)                                                     |
@@ -67,14 +67,14 @@ owner-approved shared renderings.
 | coverage                                                    | 覆盖                                             | `src/sources/coverage.mjs`                                                       |
 | bind, binding                                               | 绑定                                             | `src/sources/bind.mjs`                                                           |
 | pin, pinned revision                                        | 固定, 固定的提交                                 | `src/build.mjs`, `src/map/guide.mjs`                                             |
-| re-pin                                                      | 重新固定                                         | `src/sources/worklist.mjs`                                                       |
-| worklist                                                    | 工作清单                                         | `src/sources/worklist.mjs`                                                       |
+| re-pin                                                      | 更换固定的提交                                   | `src/sources/worklist.mjs`                                                       |
+| worklist                                                    | 待办清单 (re-pin worklist: 更换提交的待办清单)   | `src/sources/worklist.mjs`                                                       |
 | revision                                                    | 提交 (as commit; the foot says 提交)             | `src/edition/words.mjs` (foot)                                                   |
 | repository                                                  | 仓库 (approved)                                  | `src/edition/words.mjs`                                                          |
 | commit                                                      | 提交 (approved)                                  | `src/sources/worklist.mjs`                                                       |
-| checkout                                                    | 检出 (approved)                                  | `src/build.mjs`, `src/map/guide.mjs`                                             |
+| checkout                                                    | 检出目录                                         | `src/build.mjs`, `src/map/guide.mjs`                                             |
 | clone                                                       | 克隆                                             | `src/map/guide.mjs`                                                              |
-| fetch                                                       | 拉取                                             | `src/sources/git.mjs`                                                            |
+| fetch                                                       | 抓取                                             | `src/sources/git.mjs`                                                            |
 | diff                                                        | 比较                                             | `src/sources/worklist.mjs`                                                       |
 | glob                                                        | glob (kept)                                      | `src/sources/scope.mjs`                                                          |
 | cite, citation                                              | 引用                                             | `src/build.mjs`, `src/sources/worklist.mjs`                                      |
@@ -107,7 +107,7 @@ owner-approved shared renderings.
 | medium, media                                               | 媒介                                             | `src/kinds.mjs`                                                                  |
 | compose, composition, composer                              | 编排, 编排器                                     | `src/poster/compose/plates.mjs`, `src/overview/lint.mjs`                         |
 | body (the edition's)                                        | 正文区                                           | `src/overview/house.typ`                                                         |
-| balance gate                                                | 平衡门槛                                         | `src/poster/compose/gates.mjs`                                                   |
+| balance gate                                                | 平衡检查                                         | `src/poster/compose/gates.mjs`                                                   |
 | typeface, face                                              | 字体                                             | `src/poster/text.mjs`                                                            |
 | house class                                                 | 版式类                                           | `src/overview/house.typ`                                                         |
 | house faces                                                 | 版式字体                                         | `src/overview/glyphs.mjs`                                                        |
@@ -116,7 +116,7 @@ owner-approved shared renderings.
 | record (the edition's)                                      | 图册记录                                         | `src/edition/record.mjs`                                                         |
 | render                                                      | 渲染                                             | `src/edition/typeset.mjs`                                                        |
 | break lines                                                 | 断行                                             | `src/breaks.mjs`                                                                 |
-| lint (of a composition)                                     | 代码规范                                         | `src/overview/lint.mjs`                                                          |
+| lint (of a composition)                                     | 版式规则检查                                     | `src/overview/lint.mjs`                                                          |
 | text box                                                    | 文本框                                           | `src/overview/checks.mjs`                                                        |
 | glyph                                                       | 字形                                             | `src/overview/glyphs.mjs`                                                        |
 | kind                                                        | 类型                                             | `src/kinds.mjs`                                                                  |
@@ -127,7 +127,7 @@ owner-approved shared renderings.
 | delivery store                                              | 交付物存储                                       | this work's `model.json` kinds; root in `src/delivery.mjs`                       |
 | OpenSpec change                                             | OpenSpec 正式变更 (approved)                     | `openspec/` (outside the scope)                                                  |
 | work (a publication)                                        | 作品                                             | this work's `guide/guide.archify.md`                                             |
-| summary (a view's)                                          | 概述 (摘要 is digest)                            | `docs/reference/model.md` (Views)                                                |
+| summary (a view's)                                          | 概述 (哈希摘要 is digest)                        | `docs/reference/model.md` (Views)                                                |
 | reading (a plate's: summary and where each component lives) | 说明栏                                           | `docs/reference/operations.md`, `src/poster/compose/plates.mjs`                  |
 | summary above its figure, full width                        | 图上方的概述, 全宽                               | `docs/reference/operations.md`, `src/poster/compose/plates.mjs`                  |
 | type step                                                   | 字号档                                           | `docs/reference/operations.md`, `README.md`                                      |
@@ -143,7 +143,7 @@ owner-approved shared renderings.
 | reject (a layout)                                           | 拒绝 (as in `model.json`: measure 拒绝 任何重叠) | `docs/reference/operations.md`                                                   |
 | centring, tier-label column                                 | 居中, 层级标签列                                 | `docs/reference/operations.md`                                                   |
 | blank rectangle, blank band, hole, centre of mass           | 空白矩形, 空白带, 空洞, 重心                     | `src/poster/compose/gates.mjs`                                                   |
-| missed gate                                                 | 未通过的门槛                                     | `src/poster/compose/gates.mjs`; this work's `model.json` (plates)                |
+| missed gate                                                 | 未通过的检查                                     | `src/poster/compose/gates.mjs`; this work's `model.json` (plates)                |
 | text run                                                    | 文字串                                           | `docs/reference/operations.md`                                                   |
 | title page, contents                                        | 扉页, 目录                                       | `docs/reference/operations.md`; 目录 from `src/edition/words.mjs`                |
 | page images                                                 | 各页图像                                         | `docs/reference/operations.md`, `src/edition/typeset.mjs`                        |
@@ -176,7 +176,7 @@ owner-approved shared renderings.
 | acceptance slip, slip                                       | 签条                                             | `src/edition/colophon.typ`                                                       |
 | acceptance mark, round mark                                 | 印记, 圆形印记                                   | `src/edition/colophon.typ`; the rendering is this work's                         |
 | cinnabar                                                    | 朱砂色                                           | `src/edition/colophon.typ`                                                       |
-| in-toto Statement; subject, predicate                       | in-toto Statement (kept); 主体, 谓词             | `src/delivery.mjs`                                                               |
+| in-toto Statement; subject, predicate                       | in-toto Statement (kept); 对象, 谓词             | `src/delivery.mjs`                                                               |
 | sign, signature, signer                                     | 签名, 签名者                                     | `src/delivery.mjs`                                                               |
 | signing key, fingerprint                                    | 签名密钥, 指纹                                   | `src/edition/words.mjs`, `src/delivery.mjs`                                      |
 | key (a plate's)                                             | 图例                                             | `docs/reference/operations.md`, `src/overview/house.typ`                         |

@@ -5,11 +5,11 @@
   "locale": "zh-CN",
   "title": "OpenAI Responses Proxy",
   "question": "OpenAI Responses Proxy 如何让一轮 Codex Responses 对话能在第三方提供商之间迁移？又如何安装自己的监听器，并让它持续运行？",
-  "summary": "回环监听器按一套封闭语法重建每个 Responses 请求，并设 store=false；请求发往路径所指的提供商，全程受同一个总时限约束，只有失败类别允许时才重试。已签名的发布版本由一个记入日志的事务完成安装，成为不可变的一代；升级时，监听套接字交给新进程；监听器一旦停止，系统服务管理器托管的看门狗就会重启它。",
+  "summary": "回环监听器按一套只认已知结构的封闭语法重建每个 Responses 请求，并设 store=false；请求发往路径所指的提供商，全程受同一个总时限约束，只有失败类别允许时才重试。已签名的发布版本由一个事务完成安装，全程写入事务日志，成为不可变的一代；升级时，监听套接字交给新进程；监听器一旦停止，系统服务管理器托管的看门狗就会重启它。",
   "scope": "v6.0.1 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
   "limits": [
     "每个组件负责其声明中列出的文件；关系所引用的，是导入或调用另一组件的文件。",
-    "关系代表承载行为的导入、对调用方交来的另一组件对象的调用，或进程调用；仅为异常类、类型、共用辅助函数或产品名称而做的导入，图中不画。",
+    "关系代表承载行为的导入、进程调用，或对另一组件对象的调用（对象由调用方传入）；仅为异常类、类型、共用辅助函数或产品名称而做的导入，图中不画。",
     "测试、仓库工具、OpenSpec 规范及其正式变更历史、文档和 CI 都不在范围内，各自注明了排除理由。"
   ],
   "repository": {
@@ -22,79 +22,79 @@
     "exclude": [
       {
         "path": "openspec/",
-        "reason": "OpenSpec: the current capability specifications and the archive of every change. They state and record the requirements that the code in scope implements."
+        "reason": "OpenSpec：现行的能力规范和所有正式变更的归档，写明并记录了范围内的代码要实现的需求。"
       },
       {
         "path": "tests/",
-        "reason": "Tests of the package and of the repository tools; they verify the product rather than form it."
+        "reason": "软件包和仓库工具的测试；测试用来验证产品，不是产品的组成部分。"
       },
       {
         "path": "tools/",
-        "reason": "Repository-only operations: CI projection, quality and performance checks, native release construction, signing and Forge publication. The installed product never imports them."
+        "reason": "只在仓库里用的操作：生成 CI 配置、质量和性能检查、构建原生发布包、签名，以及发布到代码托管平台。安装后的产品从不导入它们。"
       },
       {
         "path": ".config/",
-        "reason": "Configuration of the checks, the CI graph, the runners and the locked toolchain."
+        "reason": "检查、CI 流程、运行器和锁定版本的工具链的配置。"
       },
       {
         "path": "docs/",
-        "reason": "The repository's documents on architecture, decisions, evidence, governance and Forge operations; the guide cites them at their lines."
+        "reason": "仓库里讲架构、决策、证据、治理和代码托管平台操作的文档；导读按行号引用它们。"
       },
       {
         "path": ".ethos/",
-        "reason": "The repository's ETHOS profile, workspace and release peers."
+        "reason": "仓库的 ETHOS 治理配置和工作空间设置，以及它发布到哪些平台。"
       },
       {
         "path": ".github/",
-        "reason": "GitHub Actions workflows for branch admission and verification."
+        "reason": "用于分支准入和验证的 GitHub Actions 工作流。"
       },
       {
         "path": ".gitlab-ci.yml",
-        "reason": "The GitLab CI pipeline."
+        "reason": "GitLab CI 流水线。"
       },
       {
         "path": "noxfile.py",
-        "reason": "Nox sessions that run the checks and build release candidates."
+        "reason": "运行检查、构建候选发布版本的 Nox 会话。"
       },
       {
         "path": "uv.lock",
-        "reason": "The resolved lock of the development and release environments; pyproject.toml, in scope, declares the five runtime dependencies."
+        "reason": "开发和发布环境解析后的锁文件；五个运行时依赖由范围内的 pyproject.toml 声明。"
       },
       {
         "path": "package*.json",
-        "reason": "The Node development tools, OpenSpec and Prettier, with their lock."
+        "reason": "Node 开发工具 OpenSpec 和 Prettier，以及它们的锁文件。"
       },
       {
         "path": "README.md",
-        "reason": "The product's own account of installation, operation, compatibility and the request boundary; the guide cites it at its lines."
+        "reason": "产品自己对安装、运行、兼容性和请求边界的说明；导读按行号引用它。"
       },
       {
         "path": "CHANGELOG.md",
-        "reason": "The release history."
+        "reason": "发布历史。"
       },
       {
         "path": "CONTRIBUTING.md",
-        "reason": "The development, verification and release workflow."
+        "reason": "开发、验证和发布的流程。"
       },
       {
         "path": "AGENTS.md",
-        "reason": "Entry points and the authority order for agents working in the repository."
+        "reason": "在仓库里工作的智能体的入口，以及各份规则的优先顺序。"
       },
       {
         "path": "LICENSE",
-        "reason": "The MIT licence, which the release archive carries beside the executable; it states terms, not structure."
+        "reason": "MIT 许可证，发布包里与可执行文件放在一起；它讲的是条款，不是结构。"
       },
       {
         "path": ".editorconfig",
-        "reason": "Editor settings of the checkout."
+        "reason": "检出目录的编辑器设置。"
       },
       {
         "path": ".gitattributes",
-        "reason": "Git attributes of the checkout."
+        "reason": "检出目录的 Git 属性。"
       },
       {
         "path": ".gitignore",
-        "reason": "Paths Git leaves untracked."
+        "reason": "Git 不跟踪的路径。"
       }
     ]
   },
@@ -188,7 +188,7 @@
       "label": "Responses 客户端",
       "kind": "client",
       "details": {
-        "例如": "走合格路由的 Codex、Hermes 或 Responses SDK",
+        "例如": "Codex、Hermes 或 Responses SDK，走已验证兼容的路由",
         "负责": "会话、工具状态和每个会话的模型选择"
       }
     },
@@ -237,7 +237,7 @@
       "details": {
         "发送": "store=false，不带 response、conversation 或缓存绑定",
         "保留": "可移植的对话，以及完整的工具调用与输出配对",
-        "拒绝": "未知或不安全的结构，此时尚无任何上游 I/O"
+        "拒绝": "未知或不安全的结构，在任何上游 I/O 之前"
       },
       "files": [
         "src/openai_responses_proxy/protocol/replay/projection.py",
@@ -262,7 +262,7 @@
       "details": {
         "派生": "由投影后的请求得出严格更小、不拆配对的请求",
         "保留": "最新一轮用户输入和本轮控制项",
-        "识别": "输入超长或媒体超预算的精确拒绝；这类请求只缩小后重试一次"
+        "识别": "与输入超长或媒体超预算完全匹配的拒绝；遇到这类拒绝，只缩小后重试一次"
       },
       "files": [
         "src/openai_responses_proxy/protocol/recovery/execution.py",
@@ -302,7 +302,7 @@
       "label": "响应投递",
       "kind": "relay",
       "details": {
-        "校验": "终态 JSON 响应体；SSE 事件则逐个校验后才写出",
+        "校验": "最终的 JSON 响应体；SSE 事件则逐个校验后才写出",
         "暂存": "内容出现之前的事件；此时遇到 response.failed 还能重新发起",
         "结束": "遇到终态事件或顶层 error 事件就结束这条流，之后的内容不再转发",
         "报告": "每条流和每个 JSON 响应怎样结束，记入遥测和日志；error 事件记为 stream_error，并带事件的错误码"
@@ -318,7 +318,7 @@
       "label": "遥测与日志",
       "kind": "observer",
       "details": {
-        "统计": "计数器、失败类别和上次失败，都不含机密",
+        "统计": "计数器、失败类别和上次失败，都不含凭据",
         "日志": "每行长度受限，不含提示词、令牌、请求头或请求体"
       },
       "files": [
@@ -345,7 +345,7 @@
       "label": "提供商端点",
       "kind": "provider",
       "details": {
-        "已准入": "DMXAPI、UCloud 和 AIHubMix，或一个显式指定的上游",
+        "已接入": "DMXAPI、UCloud 和 AIHubMix，或一个显式指定的上游",
         "负责": "模型执行、配额和可用性"
       }
     },
@@ -384,7 +384,7 @@
       "details": {
         "保存": "runtime-config.json 放在每一代旁边，升级时沿用其中的上限",
         "校验": "端口、超时，以及请求体、流和模型目录的上限",
-        "拒绝": "缺少请求体、流或模型目录上限的运行配置，5.0.6 及更早版本写下的就是这样",
+        "拒绝": "缺少请求体、流或模型目录上限的运行配置，即 5.0.6 及更早版本写出的那种",
         "提供": "大小受限的日志、回环传输和干净的子进程环境"
       },
       "files": [
@@ -401,7 +401,7 @@
       "details": {
         "命令": "install、status、doctor、reload、rollback、recover、uninstall",
         "角色": "私有的监听器、看门狗、交接子进程和预热模式",
-        "输出": "给人看的页面或格式稳定的 JSON，并附一条下一步命令",
+        "输出": "供人阅读的文本或格式稳定的 JSON，并附一条下一步命令",
         "拒绝": "不是十进制写法或超出范围的 --port，以及超过 3600 的 --timeout-seconds",
         "名称": "命令、服务和环境变量前缀，版本号，以及每个公开错误"
       },
@@ -437,7 +437,7 @@
       "label": "发布版本准入",
       "kind": "gate",
       "details": {
-        "验签": "用 ssh-keygen 对照运维者的信任锚验证 SHA256SUMS.sig",
+        "验签": "用 ssh-keygen 对照运维方的信任锚验证 SHA256SUMS.sig",
         "准入": "单个平台归档包，内部每个成员都须与清单相符"
       },
       "files": ["src/openai_responses_proxy/lifecycle/artifact.py"]
@@ -447,7 +447,7 @@
       "label": "载荷事务",
       "kind": "state",
       "details": {
-        "日志记录": "已准备、已落盘、已激活，最后是已完结或已回滚",
+        "事务日志": "已准备、已落盘、已激活，最后是已完结或已回滚",
         "恢复": "依据事务日志和运行中的监听器，恢复中断的事务"
       },
       "files": [
@@ -462,8 +462,8 @@
       "kind": "state",
       "details": {
         "落盘": "把通过准入的字节写成新的一代，并预热它的可执行文件",
-        "链接": "用户命令指向选中的最新发布版本",
-        "删除": "只删已记录的确切文件；未知内容保留"
+        "链接": "用户命令指向选定的最新发布版本",
+        "删除": "只删记录在案的那些文件；未知内容保留"
       },
       "files": [
         "src/openai_responses_proxy/lifecycle/candidate.py",
@@ -491,9 +491,9 @@
       "kind": "coordinator",
       "details": {
         "方式": "替换运行中的监听器只走交接，准入全程开放",
-        "拒绝": "未同时声明两项交接能力的运行时，此时尚未做任何改动",
-        "回滚": "后继进程越过 COMMIT 之前失败的交接；先由 /healthz 确认旧监听器与捕获时一致、仍在服务",
-        "身份": "事务完结前，先证明后继进程的身份"
+        "拒绝": "未同时声明两项交接能力的运行时，在做任何改动之前",
+        "回滚": "在后继进程 COMMIT 之前就失败的交接；先由 /healthz 确认旧监听器仍在服务，且与交接开始时记下的一致",
+        "身份": "事务完结前，先核实后继进程的身份"
       },
       "files": [
         "src/openai_responses_proxy/lifecycle/deployment/apply.py",
@@ -506,7 +506,7 @@
       "kind": "supervisor",
       "details": {
         "注册": "launchd Agent、systemd 用户单元或计划任务之一",
-        "停止": "只停可执行文件和私有角色都经它证明的进程"
+        "停止": "只停可执行文件和私有角色都经它核实的进程"
       },
       "files": [
         "src/openai_responses_proxy/lifecycle/supervision/native_service.py",
@@ -519,7 +519,7 @@
       "kind": "supervisor",
       "details": {
         "检查": "监听端口，每 15 秒一次",
-        "启动": "端口关闭时启动监听器；有事务未结且尚未激活时等待"
+        "启动": "端口关闭时启动监听器；有事务仍在进行、尚未激活时等待"
       },
       "files": ["src/openai_responses_proxy/lifecycle/supervision/watchdog.py"]
     },
@@ -539,21 +539,21 @@
       "id": "client-listener",
       "from": "client",
       "to": "listener",
-      "label": "发送 Responses 轮次",
+      "label": "发送每轮 Responses 请求",
       "files": ["src/openai_responses_proxy/serving/server.py"]
     },
     {
       "id": "listener-responses-relay",
       "from": "listener",
       "to": "responses-relay",
-      "label": "转发提供商路由",
+      "label": "转发提供商路由上的请求",
       "files": ["src/openai_responses_proxy/serving/server.py"]
     },
     {
       "id": "listener-request-admission",
       "from": "listener",
       "to": "request-admission",
-      "label": "统计处理器、核对控制者",
+      "label": "统计处理器数、核对控制请求方",
       "files": [
         "src/openai_responses_proxy/serving/control.py",
         "src/openai_responses_proxy/serving/entrypoint.py",
@@ -564,7 +564,7 @@
       "id": "listener-listener-handoff",
       "from": "listener",
       "to": "listener-handoff",
-      "label": "交接套接字",
+      "label": "移交监听套接字",
       "files": [
         "src/openai_responses_proxy/serving/control.py",
         "src/openai_responses_proxy/serving/entrypoint.py"
@@ -581,7 +581,7 @@
       "id": "responses-relay-request-admission",
       "from": "responses-relay",
       "to": "request-admission",
-      "label": "逐个放行 response",
+      "label": "逐个放行 Responses 请求",
       "files": ["src/openai_responses_proxy/relay/responses.py"]
     },
     {
@@ -651,7 +651,7 @@
       "id": "upstream-exchange-telemetry",
       "from": "upstream-exchange",
       "to": "telemetry",
-      "label": "归类结果",
+      "label": "给结果归类",
       "files": ["src/openai_responses_proxy/relay/exchange.py"]
     },
     {
@@ -692,7 +692,7 @@
       "id": "response-delivery-telemetry",
       "from": "response-delivery",
       "to": "telemetry",
-      "label": "统计流结果",
+      "label": "统计每条流的结果",
       "files": [
         "src/openai_responses_proxy/relay/downstream.py",
         "src/openai_responses_proxy/relay/sse.py"
@@ -779,7 +779,7 @@
       "id": "payload-transaction-release-admission",
       "from": "payload-transaction",
       "to": "release-admission",
-      "label": "认领已验证的字节",
+      "label": "取用已验证的字节",
       "files": ["src/openai_responses_proxy/lifecycle/transaction/execution.py"]
     },
     {
@@ -798,7 +798,7 @@
       "id": "payload-transaction-generation-selector",
       "from": "payload-transaction",
       "to": "generation-selector",
-      "label": "选定、还原、裁剪",
+      "label": "选定、还原、清理旧代",
       "files": [
         "src/openai_responses_proxy/lifecycle/transaction/completion.py",
         "src/openai_responses_proxy/lifecycle/transaction/execution.py",
@@ -869,7 +869,7 @@
       "id": "deployment-runtime-identity",
       "from": "deployment",
       "to": "runtime-identity",
-      "label": "证明后继进程",
+      "label": "核实后继进程",
       "files": [
         "src/openai_responses_proxy/lifecycle/deployment/apply.py",
         "src/openai_responses_proxy/lifecycle/deployment/handoff.py"
@@ -917,7 +917,7 @@
       "id": "request-path",
       "title": "一轮 Responses 对话：从客户端到提供商",
       "question": "一轮 Responses 对话，从客户端到提供商要经过哪些部分？",
-      "summary": "回环监听器把每一轮对话交给 Responses 转发，由它重建请求体并放行这一轮。上游交互经上游传输把请求发给提供商，响应投递再返回 JSON 或 SSE。",
+      "summary": "回环监听器把每一轮对话交给 Responses 转发环节，由它重建请求体并放行。上游交互经上游传输把请求发给提供商，响应投递再返回 JSON 或 SSE。",
       "members": [
         "client",
         "listener",
@@ -948,7 +948,7 @@
     {
       "id": "failures",
       "title": "失败按提供商隔离",
-      "question": "上游失败如何重试、冷却和报告，而不耽误其他提供商？",
+      "question": "上游失败后如何重试、冷却出问题的提供商并报告，而不耽误其他提供商？",
       "summary": "上游交互只在失败类别允许时重试；遇到 429 或重试耗尽的 503，只冷却出问题的那个提供商。遥测统计失败类别；上游传输绝不把完整发出的请求再发一次。",
       "members": [
         "upstream-exchange",
@@ -964,7 +964,7 @@
       "id": "install",
       "title": "一次安装，一个事务",
       "question": "已签名的发布资产如何成为选定的一代？哪些可以回滚？",
-      "summary": "发布版本准入先验证 SHA256SUMS.sig；记入日志的载荷事务把通过准入的字节落盘，成为新的一代。事务要么完结，要么回滚；代选择器至多保留一个前代。",
+      "summary": "发布版本准入先验证 SHA256SUMS.sig；载荷事务把通过准入的字节落盘，成为新的一代，全程写入事务日志。事务要么完结，要么回滚；代选择器至多保留一个前代。",
       "members": [
         "command-line",
         "lifecycle-commands",
@@ -980,7 +980,7 @@
       "id": "handoff",
       "title": "换新监听器，一轮也不丢",
       "question": "升级和重载如何把监听套接字移到新进程？",
-      "summary": "监听器交接把监听套接字交给后继进程，期间准入一直开放；替换监听器没有别的方式。运行时若未同时声明两项交接能力，部署就拒绝；事务完结之前，部署先证明后继进程的身份。",
+      "summary": "监听器交接把监听套接字交给后继进程，期间准入一直开放；替换监听器没有别的方式。运行时若未同时声明两项交接能力，部署就拒绝；事务完结之前，部署先核实后继进程的身份。",
       "members": [
         "deployment",
         "listener",
@@ -995,7 +995,7 @@
       "id": "supervision",
       "title": "由操作系统保持运行",
       "question": "谁启动监听器并让它持续运行？",
-      "summary": "生命周期命令注册系统服务监管，卸载时移除它；系统服务监管注册看门狗，由系统服务管理器启动它，并在它停止时重启。看门狗发现端口关闭就启动监听器，但有事务未结且尚未激活时会等待。",
+      "summary": "生命周期命令注册系统服务监管，卸载时移除它；系统服务监管注册看门狗，由系统服务管理器启动它，并在它停止时重启。看门狗发现端口关闭就启动监听器，但有事务仍在进行、尚未激活时会等待。",
       "members": [
         "lifecycle-commands",
         "native-supervision",

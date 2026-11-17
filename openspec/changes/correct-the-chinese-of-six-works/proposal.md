@@ -18,6 +18,8 @@ word before the text was written, and every page copied it.
 - The renderings the readers questioned and the owner decided on 2026-11-18 are applied: ETHOS's Attestation is
   存证 and its proof 核验, as the ETHOS film's concept table has them; its authority is 授权; an obligation is 义务;
   `.ethos/profile.toml` is 治理配置; a checkout, as a thing, is 检出目录; Film Kit's supply step is 下载安装.
+- Each work's Chinese overview composition says the corrected sentences where it places them, with its own line
+  breaks: 90 lines in six files.
 - No id, file, citation, number, identifier or English text changes, and no model's structure.
 
 ## Capabilities
@@ -33,5 +35,6 @@ language's model.
 
 ## Impact
 
-`publications/<work>/concepts.md` and `publications/<work>/zh/model.json` of the six works; `CHANGELOG.md`. The
-Chinese overview compositions and guides keep their words: see the design.
+`publications/<work>/concepts.md`, `publications/<work>/zh/model.json` and `publications/<work>/zh/overview.typ` of
+the six works; `CHANGELOG.md`. The Chinese guides, and with them the page in a browser, keep their words: see the
+design.

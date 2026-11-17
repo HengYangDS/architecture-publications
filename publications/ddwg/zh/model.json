@@ -4,12 +4,12 @@
   "id": "ddwg",
   "locale": "zh-CN",
   "title": "数据部门工作指南",
-  "question": "数据部门工作指南怎样把读者引到管这项任务的那条规则？指南要改，又怎样提出、检查和发布？",
-  "summary": "一张任务地图把每个工作问题引到章程统领的七个主题之一。六份 OpenSpec 能力规格写明指南和它的维护要做到什么。每项改动都要由已安装的 ETHOS 准入和证明，签名的版本再分别发到各个代码托管平台。",
-  "scope": "v8.0.0 发布时的指南：各个入口、任务地图、七个主题、决策记录、维护文档、OpenSpec 工作空间和其中的六份能力规格，以及维护这一切的 ETHOS、工具、检查和 CI 配置。",
+  "question": "数据部门工作指南怎样把读者引到某项工作适用的规则？指南要改，又怎样提出、检查和发布？",
+  "summary": "一张任务地图把每个工作问题引到章程统领的七个主题之一。六份 OpenSpec 能力规格写明指南及其维护须满足的要求。每项改动都要由已安装的 ETHOS 准入和核验，已签名的版本再分别发到各个代码托管平台。",
+  "scope": "v8.0.0 发布时的指南：各个入口、任务地图、七个主题、决策记录、维护文档、OpenSpec 工作空间和其中的六份能力规格，以及维护这一切的 ETHOS 配置、工具配置、检查配置和 CI 配置。",
   "limits": [
-    "一条关系记录的，是一处链接、一条写明的路径或一项需求。一个组件靠它把读者引到另一个组件，把职责交给对方，约束对方，或者生成、安装、运行对方。每条关系都引用写下这一指向的文件。",
-    "七个主题之间的链接，指回入口、任务地图或治理页面的链接，以及别的文档已经给出的指引，都列在注释里，不画出来。",
+    "一条关系记录的，是一处链接、一条写明的路径或一项需求。一个组件靠它把读者引到另一个组件，把职责交给对方，约束对方，或者生成、安装、运行对方。每条关系都注明这处链接、路径或需求出自哪些文件。",
+    "七个主题之间的链接，指回入口、任务地图或治理页面的链接，以及别的文档已经给出的指引，都列在附注里，不画出来。",
     "已归档的正式变更历史不在范围内。这里讲文档和检查本身，不讲部门实际用得怎样。"
   ],
   "repository": {
@@ -22,7 +22,7 @@
     "exclude": [
       {
         "path": "openspec/changes/archive/",
-        "reason": "Completed Changes are kept as history; the repository treats them as historical inputs, not current rules or proof."
+        "reason": "已完成的正式变更作为历史保留；仓库把它们当作历史输入，不当作现行规则或核验结果。"
       }
     ]
   },
@@ -85,7 +85,7 @@
       "icon": "tag"
     },
     "input": {
-      "label": "原生输入",
+      "label": "原生配置",
       "category": "backend",
       "icon": "sliders-horizontal"
     },
@@ -111,7 +111,7 @@
       "label": "成员和智能体",
       "kind": "reader",
       "details": {
-        "阅读指南": "无需安装软件"
+        "阅读": "无需安装软件"
       }
     },
     {
@@ -139,7 +139,7 @@
       "kind": "map",
       "details": {
         "指路": "把每个工作问题引到负责它的章节",
-        "优先": "紧急故障或越界的路线"
+        "优先": "处理紧急故障或越界事件的路线"
       },
       "files": ["docs/README.md"]
     },
@@ -166,7 +166,7 @@
       "label": "执行与交付",
       "kind": "topic",
       "details": {
-        "负责": "前提条件、完成条件、工作状态的叫法"
+        "负责": "前提条件、完成条件、有名称的工作状态"
       },
       "files": ["docs/deliver.md"]
     },
@@ -229,7 +229,7 @@
       "label": "配置地图",
       "kind": "map",
       "details": {
-        "指明": "每项检查背后的原生输入"
+        "指明": "每项检查背后的原生配置"
       },
       "files": ["docs/governance/configuration.md"]
     },
@@ -247,7 +247,7 @@
       "label": "OpenSpec 工作空间",
       "kind": "workspace",
       "details": {
-        "存放": "每项实质改动，都作为一项正式变更",
+        "存放": "每项实质改动对应的一项正式变更",
         "索引": "六份能力规格"
       },
       "files": ["openspec/"]
@@ -257,7 +257,7 @@
       "label": "指南查找",
       "kind": "spec",
       "details": {
-        "关注": "找到合适的指南"
+        "关注点": "找到合适的指南"
       },
       "files": ["openspec/specs/guidance-discovery/"]
     },
@@ -266,7 +266,7 @@
       "label": "工作实践",
       "kind": "spec",
       "details": {
-        "关注": "把指南用到实际工作中"
+        "关注点": "把指南用到实际工作中"
       },
       "files": ["openspec/specs/work-practice/"]
     },
@@ -275,7 +275,7 @@
       "label": "文档质量",
       "kind": "spec",
       "details": {
-        "关注": "维护可读的源文件"
+        "关注点": "维护可读的源文件"
       },
       "files": ["openspec/specs/quality/"]
     },
@@ -284,7 +284,7 @@
       "label": "核验",
       "kind": "spec",
       "details": {
-        "关注": "拿出检查过的结果"
+        "关注点": "拿出检查过的结果"
       },
       "files": ["openspec/specs/verification/"]
     },
@@ -293,7 +293,7 @@
       "label": "仓库治理",
       "kind": "spec",
       "details": {
-        "关注": "变更或验收源文件"
+        "关注点": "变更或验收源文件"
       },
       "files": ["openspec/specs/repository-governance/"]
     },
@@ -302,22 +302,22 @@
       "label": "发布",
       "kind": "spec",
       "details": {
-        "关注": "发布或撤下资产"
+        "关注点": "发布或撤下发布文件"
       },
       "files": ["openspec/specs/publication/"]
     },
     {
       "id": "ethos-profile",
-      "label": "ETHOS 配置档",
+      "label": "ETHOS 治理配置",
       "kind": "declaration",
       "details": {
-        "声明": "七份规范来源，所有路径都算实质路径，本身不设门禁"
+        "声明": "七份规范来源，任何路径的改动都算实质改动，本身不设门禁"
       },
       "files": [".ethos/profile.toml"]
     },
     {
       "id": "release-declaration",
-      "label": "发布声明",
+      "label": "发布配置",
       "kind": "declaration",
       "details": {
         "绑定": "GitLab 和 GitHub 两个平台、受保护的 v* 标签、已验收内容的镜像"
@@ -336,7 +336,7 @@
     },
     {
       "id": "tool-supply",
-      "label": "工具供应",
+      "label": "工具安装",
       "kind": "input",
       "details": {
         "版本": "Mise 和锁文件把 ETHOS 固定在 0.2.0-alpha.25"
@@ -345,10 +345,10 @@
     },
     {
       "id": "check-inputs",
-      "label": "检查输入",
+      "label": "检查配置",
       "kind": "input",
       "details": {
-        "存放": "Prettier、Taplo、Vale 和 Lychee 的策略，Git 文本与忽略规则"
+        "存放": "Prettier、Taplo、Vale 和 Lychee 的配置，以及 Git 的文本属性和忽略规则"
       },
       "files": [".config/checks/", ".editorconfig", ".gitattributes", ".gitignore"]
     },
@@ -366,7 +366,7 @@
       "label": "生成的流水线",
       "kind": "projection",
       "details": {
-        "作业": "在 Linux、macOS 和 Windows 上跑完整的 ETHOS 检查图"
+        "作业": "在 Linux、macOS 和 Windows 上跑 ETHOS 的全套检查"
       },
       "files": [".github/", ".gitlab-ci.yml"]
     },
@@ -375,7 +375,7 @@
       "label": "已安装的 ETHOS",
       "kind": "tool",
       "details": {
-        "负责": "准入、检查、证明、验收和发布"
+        "负责": "准入、检查、核验、验收和发布"
       }
     },
     {
@@ -383,7 +383,7 @@
       "label": "GitLab 和 GitHub",
       "kind": "peer",
       "details": {
-        "各有": "自己的 Git 引用、CI 作业和发布版本"
+        "各有": "自己的 Git 引用、CI 作业和发行版"
       }
     }
   ],
@@ -462,7 +462,7 @@
       "id": "task-map-data",
       "from": "task-map",
       "to": "data",
-      "label": "证明适合、变更数据",
+      "label": "证明数据适合用途、变更数据",
       "files": ["docs/README.md"]
     },
     {
@@ -571,7 +571,7 @@
       "id": "governance-configuration-map",
       "from": "governance",
       "to": "configuration-map",
-      "label": "原生输入",
+      "label": "原生配置",
       "files": ["docs/governance/README.md"]
     },
     {
@@ -585,7 +585,7 @@
       "id": "governance-openspec-workspace",
       "from": "governance",
       "to": "openspec-workspace",
-      "label": "变更权限",
+      "label": "以正式变更为准",
       "files": ["docs/governance/README.md"]
     },
     {
@@ -634,14 +634,14 @@
       "id": "contributing-forges",
       "from": "contributing",
       "to": "forges",
-      "label": "创建发布版本",
+      "label": "创建发行版",
       "files": ["CONTRIBUTING.md"]
     },
     {
       "id": "configuration-map-check-inputs",
       "from": "configuration-map",
       "to": "check-inputs",
-      "label": "检查策略",
+      "label": "检查配置",
       "files": ["docs/governance/configuration.md"]
     },
     {
@@ -704,7 +704,7 @@
       "id": "spec-work-practice-data",
       "from": "spec-work-practice",
       "to": "data",
-      "label": "数据角色、使用",
+      "label": "数据角色、用途",
       "files": ["openspec/specs/work-practice/spec.md"]
     },
     {
@@ -732,21 +732,21 @@
       "id": "spec-quality-check-inputs",
       "from": "spec-quality",
       "to": "check-inputs",
-      "label": "原生策略",
+      "label": "原生配置",
       "files": ["openspec/specs/quality/spec.md"]
     },
     {
       "id": "spec-quality-ethos",
       "from": "spec-quality",
       "to": "ethos",
-      "label": "已安装的检查",
+      "label": "内置检查",
       "files": ["openspec/specs/quality/spec.md"]
     },
     {
       "id": "spec-verification-ethos-profile",
       "from": "spec-verification",
       "to": "ethos-profile",
-      "label": "不设证明门禁",
+      "label": "不设核验门禁",
       "files": ["openspec/specs/verification/spec.md"]
     },
     {
@@ -767,7 +767,7 @@
       "id": "spec-repository-governance-openspec-workspace",
       "from": "spec-repository-governance",
       "to": "openspec-workspace",
-      "label": "意图归它管",
+      "label": "意图以工作空间为准",
       "files": ["openspec/specs/repository-governance/spec.md"]
     },
     {
@@ -781,7 +781,7 @@
       "id": "spec-repository-governance-forges",
       "from": "spec-repository-governance",
       "to": "forges",
-      "label": "同一签名提交图",
+      "label": "同一张已签名的提交图",
       "files": ["openspec/specs/repository-governance/spec.md"]
     },
     {
@@ -809,7 +809,7 @@
       "id": "ethos-profile-openspec-workspace",
       "from": "ethos-profile",
       "to": "openspec-workspace",
-      "label": "路径都走正式变更",
+      "label": "改任何路径都走正式变更",
       "files": [".ethos/profile.toml"]
     },
     {
@@ -865,7 +865,7 @@
       "id": "pipelines-ethos",
       "from": "pipelines",
       "to": "ethos",
-      "label": "完整检查图",
+      "label": "全套检查",
       "files": [".github/workflows/ci.yml", ".gitlab-ci.yml"]
     },
     {
@@ -881,7 +881,7 @@
       "id": "overview",
       "title": "一部章程，七个主题",
       "question": "任务地图怎样把工作问题引到对应规则所在的那个主题？",
-      "summary": "任务地图把每个工作问题引到负责它的章节，紧急故障或越界的路线排在最前。依据和风险方面的问题引到章程，有四个主题引用章程的风险分级。",
+      "summary": "任务地图把每个工作问题引到负责它的章节，处理紧急故障或越界事件的路线排在最前。依据和风险方面的问题引到章程，有四个主题引用章程的风险分级。",
       "members": [
         "agent-entry",
         "task-map",
@@ -898,7 +898,7 @@
       "id": "readers",
       "title": "读者从哪里读起",
       "question": "成员、智能体和维护者各从哪里读起？每个入口又通向哪里？",
-      "summary": "成员先读仓库入口，由它进入任务地图，维护者则被引到贡献指南。智能体从智能体入口读起，再到任务地图；要改动仓库，先读仓库变更与发布。",
+      "summary": "成员先读仓库入口，由它进入任务地图，维护者则被引到贡献指南。智能体从智能体入口读起，再到任务地图；要改动仓库，先读《仓库变更与发布》。",
       "members": [
         "members",
         "repository-entry",
@@ -914,7 +914,7 @@
       "id": "practice",
       "title": "工作实践对各主题的要求",
       "question": "工作实践这项能力给每个主题规定了哪些职责？各主题共用哪些规则？",
-      "summary": "工作实践给章程之下的六个主题规定职责，比如要求分析与决策界定问题、留下记录。其中四个主题共用章程的风险分级，实践与演进还引用了章程的底线。",
+      "summary": "工作实践给章程之下的六个主题规定职责，比如要求“分析与决策”主题界定问题、留下记录。其中四个主题共用章程的风险分级，“实践与演进”主题引用的则是章程的底线。",
       "members": [
         "spec-work-practice",
         "decision-records",
@@ -931,7 +931,7 @@
       "id": "change",
       "title": "一项改动的提出与准入",
       "question": "指南的改动怎样提出、记录和准入？",
-      "summary": "每项实质改动都在 OpenSpec 工作空间里作为一项正式变更存放，由 ETHOS 校验和规划。ETHOS 配置档要求所有路径的改动都走正式变更，并把仓库绑定到已安装的 ETHOS，准入由它负责。",
+      "summary": "OpenSpec 工作空间为每项实质改动存放一项对应的正式变更，由 ETHOS 校验和规划。ETHOS 治理配置要求所有路径的改动都走正式变更，并把仓库绑定到已安装的 ETHOS，由后者负责准入。",
       "members": [
         "governance",
         "contributing",
@@ -947,8 +947,8 @@
     {
       "id": "checks",
       "title": "检查读什么",
-      "question": "已安装的检查在本地和 CI 里读哪些原生输入？",
-      "summary": "配置地图指出每项检查读取的原生输入：检查输入配置已安装的 ETHOS，工具供应负责安装它。在 CI 里，由 CI 参数生成流水线，流水线安装锁定版本的 ETHOS，再运行完整的检查图。",
+      "question": "ETHOS 的检查在本地和 CI 里读哪些原生配置？",
+      "summary": "配置地图指出每项检查读取的原生配置：ETHOS 的各项检查按“检查配置”运行，它本身由“工具安装”负责安装。在 CI 里，由 CI 参数生成流水线，流水线安装锁定版本的 ETHOS，再运行全套检查。",
       "members": [
         "configuration-map",
         "check-inputs",
@@ -965,7 +965,7 @@
       "id": "release",
       "title": "一个版本，两个平台",
       "question": "一个版本怎样定版，又怎样发布到 GitLab 和 GitHub？",
-      "summary": "按贡献指南准备版本、定版，再在每个平台创建发布版本。发布声明绑定 GitLab 和 GitHub 两个平台以及受保护的 v* 标签；签名的版本分别发到每个平台。",
+      "summary": "按贡献指南准备版本、定版，再在每个平台创建发行版。发布配置绑定 GitLab 和 GitHub 两个平台以及受保护的 v* 标签；已签名的版本分别发到每个平台。",
       "members": [
         "governance",
         "contributing",

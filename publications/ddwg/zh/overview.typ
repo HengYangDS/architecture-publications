@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([DDWG], [从工作问题，到规则所在的那一个主题], [成员和智能体不用安装任何软件就能读这份指南；维护者修改指南，要走一项 OpenSpec 正式变更，由已安装的 ETHOS 准入、证明并发布。], read-from: [依据 48 个文件写成，每个文件都按 SHA-256 引用。], claim-x: 124pt)
+#masthead([DDWG], [从工作问题，到规则所在的那一个主题], [成员和智能体不用安装任何软件就能读这份指南；维护者修改指南，要走一项 OpenSpec 正式变更，由已安装的 ETHOS 准入、核验并发布。], read-from: [依据 48 个文件写成，每个文件都按 SHA-256 引用。], claim-x: 124pt)
 
 // ── Band 1: two entries, one task map, seven topics under the charter ──────
 #head(48pt, 132pt, [两个入口，一张任务地图])
@@ -32,12 +32,12 @@
 #seg((xbus, rows.first()), (xbus, rows.last()), w: 4pt, c: green)
 #let topics = (
   ("charter", [两种依据、四条底线，以及每个主题都要用的风险分级]),
-  ("decide", [界定决策、诊断故障、让方案可以比较]),
+  ("decide", [界定决策问题、诊断故障、让方案可以比较]),
   ("data", [证明数据资产适合用途；变更共享或生产数据]),
   ("deliver", [动手前核对承诺；凭证据收尾]),
   ("communicate", [理清汇报、决策文档或上报的结构]),
   ("human-agent", [委托有边界的任务；检查智能体的实际输出]),
-  ("evolve", [紧急情况与例外；辅导；准入或撤下一项实践]),
+  ("evolve", [紧急情况与例外；辅导；一项实践的准入或废止]),
 )
 #for (k, (id, duty)) in topics.enumerate() {
   let y = rows.at(k)
@@ -49,7 +49,7 @@
 #tx(1300pt, 176pt, [一条规则，只归一处], weight: "semibold")
 #tx(1300pt, 196pt, [每项义务只在一处维护。#box[导航、范例、决策记录和治理页面]#box[都链接过去，不另写一遍。]], w: 252pt, fill: soft)
 #tx(1300pt, 316pt, [紧急优先], weight: "semibold")
-#tx(1300pt, 336pt, [紧急故障或越界的路线，#box[排在所有常规路线之前。]], w: 252pt, fill: soft)
+#tx(1300pt, 336pt, [处理紧急故障或越界事件的路线，#box[排在所有常规路线之前。]], w: 252pt, fill: soft)
 
 // Band 1 foot: what the charter holds every topic to.
 #hrule(456pt, x1: 776pt)
@@ -64,8 +64,8 @@
 #tx(824pt, 482pt, [形式随风险而定], weight: "semibold")
 #dl(824pt, 504pt, 112pt, 728pt, (
   ([L0 轻量], [局部、可逆：一次讲清结论、依据和做法]),
-  ([L1 标准], [跨角色、方案相互竞争或有重大不确定：留一份可评审的记录]),
-  ([L2 高风险], [生产、资金、敏感数据、覆盖：授权、回滚、评审]),
+  ([L1 标准], [跨角色、方案相互竞争或存在重大不确定性：留一份可评审的记录]),
+  ([L2 高风险], [生产环境、资金、敏感数据、覆盖写入：授权、回滚、评审]),
   ([评审], [看实际的事实和证据，不看作者或智能体自己怎么说]),
 ))
 
@@ -74,11 +74,11 @@
 #let yk = 664pt
 #seg((104pt, yk), (744pt, yk), w: 1.7pt, c: green)
 #let steps = (
-  (104pt, [正式变更], [提案、设计、#box[增量、tasks.md]], "ring"),
+  (104pt, [正式变更], [提案、设计、#box[规格增量、tasks.md]], "ring"),
   (210pt, [工作通道], [#box[归属与租约]#box[由 ETHOS 管理]], "tick"),
-  (316pt, [写前准入], [确切路径，#box[写入前一刻]], "tick"),
+  (316pt, [写前准入], [具体到路径，#box[写入前一刻]], "tick"),
   (422pt, [提交], [可信的 SSH 签名], "tick"),
-  (528pt, [证明], none, "ring"),
+  (528pt, [核验], none, "ring"),
   (634pt, [已验收], [dev 快进前移], "tick"),
 )
 #for (x, name, note, kind) in steps {
@@ -88,21 +88,21 @@
 }
 #ring(744pt, yk, r: 6pt, w: 2.4pt)
 #txc(744pt, yk - 14pt, 70pt, [归档], weight: "semibold")
-#txc(744pt, yk + 24pt, 96pt, [新的提交，#box[重新证明]], fill: soft)
+#txc(744pt, yk + 24pt, 96pt, [新的提交，#box[重新核验]], fill: soft)
 #tx(548pt, yk - 6pt, [通过], fill: green, style: "italic")
 #seg((528pt, yk + 6pt), (528pt, 736pt), (548pt, 736pt), w: 1.5pt, c: ochre, dash: (4pt, 3pt))
 #ring(555pt, 736pt, r: 4.5pt, w: 1.7pt, c: ochre)
-#tx(568pt, 740pt, [阻断或未知：什么都不前移，#box[也不能用直接推送绕过它]], w: 200pt, fill: ochre)
-#tx(48pt, 740pt, [证明就是在确切的 HEAD 上执行完整的主机检查图。], w: 440pt, fill: soft)
+#tx(568pt, 740pt, [阻断或未知：分支不前移，#box[也不能用直接推送绕过核验]], w: 200pt, fill: ochre)
+#tx(48pt, 740pt, [核验就是针对该 HEAD 提交，在主机上运行全套检查。], w: 440pt, fill: soft)
 
 #head(824pt, 604pt, [谁负责什么])
 #hrule(624pt, x0: 824pt)
 #let owners = (
-  ([OpenSpec 正式变更], [实质意图、需求、设计，以及 tasks.md 里的进度]),
-  ([已安装的 ETHOS], [改动归属、租约、准入、证明、验收和发布]),
+  ([OpenSpec 正式变更], [实质改动的意图、需求、设计，以及 tasks.md 里的进度]),
+  ([已安装的 ETHOS], [改动归属、租约、准入、核验、验收和发布]),
   ([治理页面], [权限、验收、发布和撤下的边界]),
-  ([贡献指南], [编辑、核验、准备 ETHOS 和发布时用的确切命令]),
-  ([配置地图], [每项检查背后的原生输入]),
+  ([贡献指南], [编辑、核验、准备 ETHOS 和发布时用的具体命令]),
+  ([配置地图], [每项检查背后的原生配置]),
   ([决策记录], [长期决策的理由和被否决的备选方案，不记任务或日志]),
 )
 #for (k, (who, what)) in owners.enumerate() {
@@ -115,17 +115,17 @@
 #head(48pt, 800pt, [版本])
 #dl(48pt, 824pt, 84pt, 460pt, (
   ([VERSION], [8.0.0，唯一的发布标识；变更日志跟着它走]),
-  ([标签], [签名的 vX.Y.Z，与 VERSION 和对应的变更日志条目一致]),
+  ([标签], [已签名的 vX.Y.Z，与 VERSION 和对应的变更日志条目一致]),
 ))
 #head(560pt, 800pt, [两个平台，各自独立])
 #dl(560pt, 824pt, 72pt, 470pt, (
-  ([GitLab], [组织的发布平台]),
+  ([GitLab], [组织自己的发布平台]),
   ([GitHub], [独立的仓库、CI/CD 和分发]),
 ))
-#head(1072pt, 800pt, [通过证明不了什么])
+#head(1072pt, 800pt, [通过了也说明不了的事])
 #dl(1072pt, 824pt, 96pt, 480pt, (
   ([检查], [含义、阅读顺序或团队采用]),
-  ([本地证明], [已交付到任一平台]),
+  ([本地核验], [已交付到任一平台]),
 ))
 
 // ── Imprint ─────────────────────────────────────────────────────────────

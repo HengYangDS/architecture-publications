@@ -29,6 +29,11 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 ### Changed
 
+- The Chinese of the six works is corrected after readings by readers other than its writer. Each term table renders
+  a term by the thing it names in its work, and each Chinese model and overview composition follows its table: a
+  secret is 凭据, 令牌 or 密钥 by what it is, a fetch 抓取, a checkout as a thing 检出目录; ETHOS's Attestation is
+  存证, its proof 核验 and its profile 治理配置. The reasons of excluded paths that three Chinese models gave in
+  English are Chinese. The Chinese guides, and the pages built from them, are not yet corrected.
 - The works name roles, not kinds of holder: Architecture Publisher's Chinese work says 「角色」 and 「审阅者」,
   its English work `Roles`, and the Responses proxy's Chinese work 「运维者」. A test refuses 「人员」 and
   「审阅人」 in a work's Chinese files and term table.

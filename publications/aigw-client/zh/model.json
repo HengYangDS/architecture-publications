@@ -4,8 +4,8 @@
   "id": "aigw-client",
   "locale": "zh-CN",
   "title": "AIGW 统一客户端配置",
-  "question": "AIGW 怎样把一份审阅过的配置，受保护地写入每个已准入客户端的文件？",
-  "summary": "AIGW 把提供商、模型和客户端选择放在一份加锁的配置 aigw.toml 里，令牌放在选定的一个存储里。写入客户端文件时，它走统一的适配器接口，只改写其中归自己管的设置；整个写入是一次受保护的事务，中途出错会补偿。请求绝不经过 AIGW。",
+  "question": "AIGW 怎样把一份审阅过的配置，带防护地写入每个已准入客户端的文件？",
+  "summary": "AIGW 把提供商、模型和客户端的模型选择放在一份加锁的配置 aigw.toml 里，令牌放在选定的一个存储里。写入客户端文件时，它走统一的适配器接口，只改写其中归自己管的设置；整个写入是一次带防护的事务，中途出错会补偿。请求绝不经过 AIGW。",
   "scope": "v0.8.1 发布版本的 AIGW 程序：生产代码的 Go 包、命令入口、团队文件和 go.mod。",
   "limits": [
     "每个组件都列出规则划给它的全部生产代码文件；每条关系列出的，是导入另一方组件的那些包里的文件。",
@@ -22,11 +22,11 @@
     "exclude": [
       {
         "path": "**/*_test.go",
-        "reason": "Go keeps each package's tests beside its code; they are not its architecture."
+        "reason": "Go 把每个包的测试放在代码旁边；测试不属于架构。"
       },
       {
         "path": "cmd/aigw/testdata/",
-        "reason": "Inputs of the command tests."
+        "reason": "命令测试的输入。"
       }
     ]
   },
@@ -34,7 +34,7 @@
   "guide": "guide/guide.archify.md",
   "kinds": {
     "interface": {
-      "label": "接口",
+      "label": "交互层",
       "category": "frontend",
       "icon": "square-terminal"
     },
@@ -100,7 +100,7 @@
       "kind": "interface",
       "details": {
         "命令": "aigw credential",
-        "输出": "客户端需要时，把它自己的令牌写到标准输出；诊断信息绝不写到这里"
+        "输出": "客户端需要时，把该客户端自己的令牌写到标准输出；诊断信息绝不写到这里"
       },
       "files": ["internal/cli/credential/"]
     },
@@ -136,8 +136,8 @@
       "label": "同步",
       "kind": "coordinator",
       "details": {
-        "职责": "收敛客户端选择及其客户端文件",
-        "事务": "提交一次配置变更，出错时受保护地补偿"
+        "职责": "让客户端文件与客户端的模型选择保持一致",
+        "事务": "提交一次配置变更，出错时有条件地补偿"
       },
       "files": ["internal/app/synchronization/"]
     },
@@ -195,7 +195,7 @@
       "label": "发现",
       "kind": "observer",
       "details": {
-        "观测": "主机上的客户端和路径，只看不采纳"
+        "观测": "主机上的客户端和路径，只看不接管"
       },
       "files": ["internal/adapter/discovery/"]
     },
@@ -204,7 +204,7 @@
       "label": "Codex",
       "kind": "client",
       "details": {
-        "写入": "~/.codex/config.toml 中归 AIGW 管的一块，以及模型目录"
+        "写入": "~/.codex/config.toml 中归 AIGW 管的一块，以及模型清单"
       },
       "files": ["internal/adapter/codex/"]
     },
@@ -222,7 +222,7 @@
       "label": "Claude Desktop",
       "kind": "client",
       "details": {
-        "写入": "单独的第三方推理库"
+        "写入": "单独的第三方推理配置库"
       },
       "files": ["internal/adapter/claudedesktop/"]
     },
@@ -231,7 +231,7 @@
       "label": "Hermes",
       "kind": "client",
       "details": {
-        "写入": "提供商目录、协议和模型"
+        "写入": "提供商清单、协议和模型"
       },
       "files": ["internal/adapter/hermes/"]
     },
@@ -250,7 +250,7 @@
       "label": "凭据存储",
       "kind": "authority",
       "details": {
-        "管理": "提供商令牌，放在选定的一个后端，可以是原生密钥环、DPAPI 或属主专用文件",
+        "管理": "提供商令牌，放在选定的一个后端，可以是原生密钥环、DPAPI 或仅属主可读写的文件",
         "查询": "每条命令对提供商令牌和余额凭据各只查询一次；命令自己存入或移除这份凭据之后，才会再查"
       },
       "files": ["internal/secret/"]
@@ -270,7 +270,7 @@
       "label": "领域",
       "kind": "authority",
       "details": {
-        "管理": "提供商、模型、模型家族、推荐、客户端选择和团队文件",
+        "管理": "提供商、模型、模型家族、推荐、客户端的模型选择和团队文件",
         "依赖": "只用标准库"
       },
       "files": ["internal/domain/", "manifests/", "go.mod"]
@@ -280,7 +280,7 @@
       "label": "平台",
       "kind": "boundary",
       "details": {
-        "管理": "AIGW 自己的路径、受保护的文件写入和回滚、受限的子进程"
+        "管理": "AIGW 自己的路径、带防护的文件写入和回滚、受限的子进程"
       },
       "files": ["internal/platform/"]
     }
@@ -297,7 +297,7 @@
       "id": "program-entry-client-admission",
       "from": "program-entry",
       "to": "client-admission",
-      "label": "准入客户端",
+      "label": "确定准入的客户端",
       "files": ["cmd/aigw/main.go"]
     },
     {
@@ -622,7 +622,7 @@
       "id": "synchronization-credentials",
       "from": "synchronization",
       "to": "credentials",
-      "label": "检查读取程序",
+      "label": "检查凭据读取程序",
       "files": [
         "internal/app/synchronization/preview.go",
         "internal/app/synchronization/selection.go",
@@ -750,7 +750,7 @@
       "id": "codex-platform",
       "from": "codex",
       "to": "platform",
-      "label": "受保护写入",
+      "label": "带防护写入",
       "files": [
         "internal/adapter/codex/adapter.go",
         "internal/adapter/codex/adapter_selection.go",
@@ -778,7 +778,7 @@
       "id": "claude-code-platform",
       "from": "claude-code",
       "to": "platform",
-      "label": "受保护写入",
+      "label": "带防护写入",
       "files": [
         "internal/adapter/claude/adapter.go",
         "internal/adapter/claude/adapter_verify.go",
@@ -794,7 +794,7 @@
       "id": "claude-desktop-platform",
       "from": "claude-desktop",
       "to": "platform",
-      "label": "受保护写入",
+      "label": "带防护写入",
       "files": [
         "internal/adapter/claudedesktop/adapter.go",
         "internal/adapter/claudedesktop/configuration.go",
@@ -807,7 +807,7 @@
       "id": "hermes-platform",
       "from": "hermes",
       "to": "platform",
-      "label": "受保护写入",
+      "label": "带防护写入",
       "files": [
         "internal/adapter/hermes/adapter.go",
         "internal/adapter/hermes/adapter_verification_unix.go",
@@ -882,7 +882,7 @@
       "id": "credentials-platform",
       "from": "credentials",
       "to": "platform",
-      "label": "属主专用文件",
+      "label": "仅属主可读写的文件",
       "files": [
         "internal/secret/command.go",
         "internal/secret/command_unix.go",
@@ -979,8 +979,8 @@
     {
       "id": "overview",
       "title": "一份审阅过的配置，写入每个客户端",
-      "question": "一份审阅过的配置，怎样受保护地写入每个已准入客户端的文件？",
-      "summary": "同步通过适配器接口规划并应用改动，每个客户端适配器都实现这个接口，结果保存到配置存储。每次同步提交一次配置变更，中途出错会受保护地补偿。",
+      "question": "一份审阅过的配置，怎样带防护地写入每个已准入客户端的文件？",
+      "summary": "同步组件通过适配器接口规划并应用改动，每个客户端适配器都实现这个接口，结果保存到配置存储。每次同步提交一次配置变更，中途出错会有条件地补偿。",
       "members": [
         "commands",
         "use-cases",
@@ -997,7 +997,7 @@
       "id": "authority",
       "title": "哪些状态归谁",
       "question": "配置、令牌和主机路径各归谁管，又有谁会读取？",
-      "summary": "aigw.toml 归配置存储管，由一把锁保护；提供商令牌归凭据存储管；AIGW 自己的路径归平台管。凭据助手读取一个令牌，以及它所服务的提供商和客户端。",
+      "summary": "aigw.toml 归配置存储管，由一把锁保护；提供商令牌归凭据存储管；AIGW 自己的路径归平台组件管。凭据助手读取一个令牌，以及与之对应的提供商和客户端。",
       "members": [
         "commands",
         "credential-helper",
@@ -1010,9 +1010,9 @@
     },
     {
       "id": "adapters",
-      "title": "已准入的客户端和统一接口",
-      "question": "客户端适配器怎样准入，怎样遵守同一份契约，又怎样确保只做受保护的写入？",
-      "summary": "程序负责准入客户端：客户端准入按准入顺序列出内置适配器。每个适配器都实现适配器接口、遵守同一份契约，并通过平台做受保护的写入。",
+      "title": "已准入的客户端和适配器接口",
+      "question": "客户端适配器怎样准入，怎样遵守同一份契约，又怎样确保只做带防护的写入？",
+      "summary": "准入哪些客户端由程序确定：客户端准入组件按准入顺序列出内置适配器。每个适配器都实现适配器接口、遵守同一份契约，并通过平台组件做带防护的写入。",
       "members": [
         "program-entry",
         "client-admission",
@@ -1029,7 +1029,7 @@
       "id": "readiness",
       "title": "命令能报告什么",
       "question": "命令如何决定报告什么、下一步做什么？",
-      "summary": "激活划定已启用客户端的范围；就绪状态从诊断读取健康情况，给出“已配置”“降级”这类状态；aigw check 检查到哪一级，就证明到哪一级。用例返回的值由终端呈现为给人看的文字或 JSON。",
+      "summary": "激活组件划定已启用客户端的范围；就绪状态组件从诊断组件读取健康状况，给出“已配置”“降级”这类状态；aigw check 检查到哪一级，就证明到哪一级。用例返回的值由终端渲染成给人读的文字或 JSON。",
       "members": [
         "commands",
         "use-cases",
@@ -1044,8 +1044,8 @@
     {
       "id": "program",
       "title": "程序本身",
-      "question": "程序怎样启动，怎样准入客户端，又怎样替换自己？",
-      "summary": "程序启动各条命令；哪些客户端可用，由客户端准入决定。程序更新从两个代码托管平台解析已签名的发布版本，通过平台安装便携程序，并保留前一个版本。",
+      "question": "程序怎样启动，怎样确定准入哪些客户端，又怎样替换自己？",
+      "summary": "程序启动各条命令；哪些客户端可用，由客户端准入组件决定。程序更新组件从两个代码托管平台解析已签名的发布版本，再通过平台组件安装便携程序，并保留前一个版本。",
       "members": [
         "program-entry",
         "commands",
@@ -1061,7 +1061,7 @@
       "id": "projection",
       "title": "一次同步：从规划到补偿",
       "question": "一次同步里，读取、规划、写入和补偿各在哪里完成？",
-      "summary": "同步先经发现观察现状，再对照领域校验，然后通过适配器接口规划并应用，最后保存到配置存储。受保护的文件写入及其回滚都归平台管。",
+      "summary": "同步组件先通过发现组件观测现状，再按领域规则校验，然后通过适配器接口规划并应用，最后保存到配置存储。带防护的文件写入及其回滚都归平台组件管。",
       "members": [
         "synchronization",
         "discovery",
