@@ -378,7 +378,7 @@ Architecture Publisher 的变更日志始于 2026 年 9 月 18 日的 0.1.0-alph
 被拒绝项是栅格化器（已删除）的认领规则，以及这次发布删掉的四个关系文件。新文件中有三个组成了图册自己的组件，版式设计令牌则并入版式类。
 
 @callout level=warning title="Archify 只检查区间是否存在"
-| 更换固定的提交后，偏移的引用会指向别的文字。要把它移到新区间，并重读每个被触及的引用。[](source:model-shifted) |
+| 更换固定的提交后，引用一旦偏移，就会指向其他文字。要把它移到新区间，并重读每个被触及的引用。[](source:model-shifted) |
 
 - [ ] 修改 `repository.revision` 之前，先运行 `archpub check --against <commit>`。[](source:model-repin)
 - [ ] 为每个新增未覆盖文件加上认领规则，并复查每个文件有变化的关系。[](source:model-repin)

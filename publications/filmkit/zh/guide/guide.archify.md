@@ -158,7 +158,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @steps id=route-steps
 | step-route-words | 检查字词 | 旁白命令先做概念检查和读音检查，试运行也不例外；任何一项不通过，就停止。[](source:narrate-gate) | route-flow | route-words |
 | step-route-narrate | 朗读每个意群 | 每个意群都由模型一次读完，得到一条录音，种子或重录取自配音设定。请求仍然一致的录音文件直接复用。[](source:synthesis-reuse) | route-flow | route-narrate |
-| step-route-align | 对齐、转写 | 锁定版本的对齐器标出每个词的起止时间。转写结果仅供参考，不能证明读音正确。[](source:narrate-steps)[](source:transcription-doc) | route-flow | route-align |
+| step-route-align | 对齐、转写 | 锁定版本的对齐器标出每个词的起止时间。转写结果只是读音的旁证，不能证明读音正确。[](source:narrate-steps)[](source:transcription-doc) | route-flow | route-align |
 | step-route-select | 选定录音 | `produce select` 把每份录音文件及其对齐结果，绑定到当前的脚本、配音设定和旁白参考录音。若录音文件超出影片的停顿上限，或已声明术语读得与参照处不同，就拒绝这份录音文件。[](source:selection)[](source:speech-refusals) | route-flow | route-select |
 | step-route-assemble | 拼接音轨 | 拼接步骤设计停顿，匹配每个意群、段落和章节的响度，并用一次增益达到节目响度。若排好的音轨里有超出影片上限的无标点停顿，或已声明术语读得与参照处不同，拼接步骤就拒绝这条音轨。[](source:assembly-doc)[](source:clip-levels)[](source:program-gain)随后 `produce check-sound` 检查拼好的音轨。段落清晰度低于影片声明的下限、收尾突兀或被截断、短语戛然而止，都会被拒绝。[](source:sound-gate) | route-flow | route-assemble |
 | step-route-gate | 检查画面 | `check-picture` 检测每一帧、每个标签的同步和动效，然后写出门禁记录。[](source:gate-doc) | route-flow | route-gate |
@@ -242,9 +242,9 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @steps id=picture-steps
 | step-pic-stage | 画面渲染 | `stage-picture` 把时间线、脚本和样式内联进一份文档，并在 `stage.json` 中记下它的输入。[](source:stage) | picture-flow | pic-render | | pic-command-to-pic-render-1 |
 | step-pic-gate | 画面门禁 | `check-picture` 用工具运行器执行逐帧检测和动效检测，再对它们的绘制记录执行同步检测。[](source:gate-check)[](source:tools-doc) | picture-flow | pic-gate | | pic-command-to-pic-gate-1,pic-gate-to-pic-tools-1,pic-tools-to-pic-gate-1 |
-| step-pic-record | 门禁记录 | 绑定检测所依据的输入，并列出每个门禁问题。已声明的标题在片头显示的时间太短算一个，静止文字的对比度低于 4.5:1 也算一个。只要有一个门禁问题，就拒绝渲染。[](source:gate-doc) | picture-flow | pic-record | | pic-gate-to-pic-record-1 |
+| step-pic-record | 门禁记录 | 绑定检测所依据的输入，并列出每个门禁问题。已声明的标题在片头显示时间太短算一个，静止文字的对比度低于 4.5:1 也算一个。只要有一个门禁问题，就拒绝渲染。[](source:gate-doc) | picture-flow | pic-record | | pic-gate-to-pic-record-1 |
 | step-pic-render | HyperFrames | `render-picture` 找不到当前输入的通过记录就拒绝。否则渲染带字幕画面那份组装好的完整超高清文档；加上 `--uncaptioned` 时，渲染无字幕画面的那一份。[](source:render-gate)[](source:render) | picture-flow | pic-hyperframes | | pic-render-to-pic-record-1,pic-record-to-pic-render-1,pic-render-to-pic-hyperframes-1,pic-hyperframes-to-pic-render-1 |
-| step-pic-validate | 制作命令 | `validate-picture` 把画面绑定到它的渲染记录和组装好的文档，并检查每一帧是否落在 60 fps 的网格上。[](source:validate) | picture-flow | pic-command | | pic-command-to-pic-render-3 |
+| step-pic-validate | 制作命令 | `validate-picture` 把画面绑定到渲染记录和组装好的文档，并检查每一帧是否落在 60 fps 的网格上。[](source:validate) | picture-flow | pic-command | | pic-command-to-pic-render-3 |
 
 @callout level=note title="可测量的规则，不是审美"
 | 门禁拒绝的每一项逐帧问题，都由 DDWG 评审转成了交付影片必须遵守的规则。[](source:frame-gates)审美仍由评审判断。[](source:verification-doc) |
