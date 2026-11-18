@@ -7,50 +7,54 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 - [A take reaches the soundtrack only if it ends whole](block:p-takes), or if the film declares a release for its join.[](source:abrupt)
 - [The picture renders only after its gate passes](block:p-picture) for the current composition, timeline, stylesheet, fonts and engine version.[](source:render-gate)
 
-@answer scope="Film Kit v0.22.3 · commit e70a437 · its source and its own documents"
+@answer scope="Film Kit v0.23.1 · commit 7b2308c · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What Film Kit does" path="README.md" lines=3:3
 @source spec-rate title="Frame rate" path="src/filmkit/specification.py" lines=25:30
 @source spec-sound title="Sample rate and program level" path="src/filmkit/specification.py" lines=33:47
-@source sample-declaration title="The sample film's declaration" path="examples/sample-film/content/film.toml" lines=6:22
-@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=422:426
-@source changelog-019 title="The 0.19.0 changes" path="CHANGELOG.md" lines=135:150
-@source changelog-020 title="The 0.20.0 changes" path="CHANGELOG.md" lines=118:134
-@source changelog-0211 title="The 0.21.1 changes" path="CHANGELOG.md" lines=87:93
-@source changelog-0212 title="The 0.21.2 release" path="CHANGELOG.md" lines=81:85
-@source changelog-0213 title="The 0.21.3 release" path="CHANGELOG.md" lines=68:79
-@source changelog-0220 title="The 0.22.0 changes" path="CHANGELOG.md" lines=46:66
-@source changelog-0221 title="The 0.22.1 release" path="CHANGELOG.md" lines=21:44
-@source changelog-0222 title="The 0.22.2 fixes" path="CHANGELOG.md" lines=13:19
-@source changelog-0223 title="The 0.22.3 addition" path="CHANGELOG.md" lines=7:11
+@source sample-declaration title="The sample film's declaration" path="examples/sample-film/content/film.toml" lines=6:23
+@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=482:486
+@source changelog-019 title="The 0.19.0 changes" path="CHANGELOG.md" lines=195:210
+@source changelog-020 title="The 0.20.0 changes" path="CHANGELOG.md" lines=178:194
+@source changelog-0211 title="The 0.21.1 changes" path="CHANGELOG.md" lines=147:153
+@source changelog-0212 title="The 0.21.2 release" path="CHANGELOG.md" lines=141:145
+@source changelog-0213 title="The 0.21.3 release" path="CHANGELOG.md" lines=128:139
+@source changelog-0220 title="The 0.22.0 changes" path="CHANGELOG.md" lines=106:126
+@source changelog-0221 title="The 0.22.1 release" path="CHANGELOG.md" lines=81:104
+@source changelog-0222 title="The 0.22.2 fixes" path="CHANGELOG.md" lines=73:79
+@source changelog-0223 title="The 0.22.3 addition" path="CHANGELOG.md" lines=67:71
+@source changelog-0230 title="The 0.23.0 changes" path="CHANGELOG.md" lines=15:65
+@source changelog-0231 title="The 0.23.1 release" path="CHANGELOG.md" lines=7:13
 @source readme-engine title="The engine carries no film's content" path="README.md" lines=5:5
 @source readme-requirements title="Requirements" path="README.md" lines=9:12
 @source readme-layout title="A film's layout" path="README.md" lines=18:26
-@source readme-levels title="Level tolerances" path="README.md" lines=53:53
-@source readme-words title="Concepts and readings" path="README.md" lines=69:72
-@source readme-neither title="A film without either check" path="README.md" lines=76:76
-@source readme-gate title="The picture gate" path="README.md" lines=94:94
-@source readme-metrics title="Text measured with the film's fonts" path="README.md" lines=96:96
-@source readme-balance title="Balance in every frame" path="README.md" lines=98:98
-@source readme-install title="Installing the engine in a film" path="README.md" lines=190:200
-@source readme-commands title="Commands" path="README.md" lines=206:222
-@source readme-endings title="Whole endings" path="README.md" lines=226:228
-@source readme-dev title="Development" path="README.md" lines=250:250
+@source readme-levels title="Level tolerances" path="README.md" lines=56:56
+@source readme-words title="Concepts and readings" path="README.md" lines=72:75
+@source readme-neither title="A film without either check" path="README.md" lines=79:79
+@source readme-gate title="The picture gate" path="README.md" lines=97:97
+@source readme-metrics title="Text measured with the film's fonts" path="README.md" lines=99:99
+@source readme-balance title="Balance in every frame" path="README.md" lines=101:101
+@source readme-install title="Installing the engine in a film" path="README.md" lines=235:245
+@source readme-commands title="Commands" path="README.md" lines=251:268
+@source readme-endings title="Whole endings" path="README.md" lines=272:274
+@source readme-dev title="Development" path="README.md" lines=298:298
 @source agents-contract title="The engine contract" path="AGENTS.md" lines=10:16
-@source changelog-pin title="A film keeps its pin" path="CHANGELOG.md" lines=322:322
+@source changelog-pin title="A film keeps its pin" path="CHANGELOG.md" lines=382:382
 @source film-root title="Finding the film" path="src/filmkit/repository.py" lines=28:50
-@source film-load title="Checking the declaration" path="src/filmkit/film.py" lines=393:408
-@source edition-places title="Where an edition writes" path="src/filmkit/production.py" lines=138:154
-@source renditions title="The four delivered films" path="src/filmkit/production.py" lines=63:74
+@source film-load title="Checking the declaration" path="src/filmkit/film.py" lines=515:537
+@source edition-places title="Where an edition writes" path="src/filmkit/production.py" lines=163:179
+@source renditions title="The four delivered films" path="src/filmkit/production.py" lines=87:99
 @source program-level title="One program level" path="src/filmkit/specification.py" lines=45:47
-@source produce-actions title="The production actions" path="src/filmkit/produce.py" lines=81:119
-@source narrate-gate title="Checks before synthesis" path="src/filmkit/narration/narrate.py" lines=111:121
-@source narrate-steps title="Synthesis, alignment, transcription" path="src/filmkit/narration/narrate.py" lines=54:108
+@source produce-actions title="The production actions" path="src/filmkit/produce.py" lines=106:146
+@source preflight-doc title="What preflight asks for" path="src/filmkit/preflight.py" lines=1:40
+@source narrate-gate title="Checks before synthesis" path="src/filmkit/narration/narrate.py" lines=120:130
+@source narrate-steps title="Synthesis, alignment, transcription" path="src/filmkit/narration/narrate.py" lines=63:117
 @source concepts-doc title="The concept check" path="src/filmkit/concepts.py" lines=1:15
 @source readings-doc title="The readings check" path="src/filmkit/narration/readings.py" lines=1:27
 @source watch-list title="The watched characters" path="src/filmkit/narration/watched-characters.toml" lines=1:14
-@source synthesis-plan title="Each segment's job" path="src/filmkit/narration/synthesis.py" lines=176:194
-@source synthesis-reuse title="Reuse or refuse a recording" path="src/filmkit/narration/synthesis.py" lines=197:225
+@source synthesis-plan title="Each segment's job" path="src/filmkit/narration/synthesis.py" lines=256:274
+@source synthesis-reuse title="Reuse or refuse a recording" path="src/filmkit/narration/synthesis.py" lines=277:305
+@source narration-processes title="A narration's processes" path="src/filmkit/narration/processes.py" lines=1:21
 @source one-model title="The only module that runs the voice model" path="src/filmkit/narration/group_generation.py" lines=1:4
 @source thought-joins title="Thought requests, receipts and joins" path="src/filmkit/narration/thought_groups.py" lines=1:10
 @source take-ending title="A take's ending" path="src/filmkit/narration/take_edges.py" lines=186:213
@@ -58,7 +62,7 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 @source retakes-doc title="Retakes bound to exact text" path="src/filmkit/narration/retakes.py" lines=1:9
 @source run-on-doc title="Run-on takes" path="src/filmkit/narration/run_on.py" lines=1:8
 @source audition-propose title="The proposed take" path="src/filmkit/narration/audition.py" lines=86:112
-@source transcription-doc title="Transcription as a proxy" path="src/filmkit/narration/transcription.py" lines=1:10
+@source transcription-doc title="Transcription as a proxy" path="src/filmkit/narration/transcription.py" lines=1:17
 @source selection title="Selecting the recordings" path="src/filmkit/narration/selection.py" lines=73:108
 @source speech-refusals title="Pause limits and declared terms" path="src/filmkit/narration/selection.py" lines=111:130
 @source snapshots title="The pinned speech models" path="src/filmkit/narration/snapshots.py" lines=58:86
@@ -72,30 +76,36 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 @source releases title="Declared releases" path="src/filmkit/soundtrack/policy.py" lines=159:170
 @source sound-gate title="The sound gate" path="src/filmkit/soundtrack/gates.py" lines=1:13
 @source captions-doc title="Caption timing" path="src/filmkit/captions/timing.py" lines=1:10
-@source gate-doc title="The picture gate" path="src/filmkit/picture/gates.py" lines=1:39
-@source frame-gates title="Rules from the reviews" path="src/filmkit/picture/gates.py" lines=58:59
-@source gate-check title="check-picture" path="src/filmkit/picture/gates.py" lines=395:467
-@source candidate-inputs title="The inputs a stage binds" path="src/filmkit/picture/rendering.py" lines=123:153
-@source require-renderer title="One renderer version" path="src/filmkit/picture/rendering.py" lines=209:219
-@source stage title="Staging the picture" path="src/filmkit/picture/rendering.py" lines=253:303
-@source render-gate title="A render needs a passing gate" path="src/filmkit/picture/rendering.py" lines=489:516
-@source render title="Rendering the picture" path="src/filmkit/picture/rendering.py" lines=585:642
-@source validate title="Validating the picture" path="src/filmkit/picture/rendering.py" lines=656:666
-@source equivalence-doc title="Only the captions differ" path="src/filmkit/picture/equivalence.py" lines=1:36
-@source tools-doc title="The Node tool runner" path="src/filmkit/tools.py" lines=1:17
+@source gate-doc title="The picture gate" path="src/filmkit/picture/gates.py" lines=1:42
+@source frame-gates title="Rules from the reviews" path="src/filmkit/picture/gates.py" lines=65:66
+@source gate-check title="check-picture" path="src/filmkit/picture/gates.py" lines=418:498
+@source detail-gates-doc title="Detail findings and exceptions" path="src/filmkit/picture/detail_gates.py" lines=1:16
+@source candidate-inputs title="The inputs a stage binds" path="src/filmkit/picture/rendering.py" lines=137:167
+@source require-renderer title="One renderer version" path="src/filmkit/picture/rendering.py" lines=232:238
+@source stage title="Staging the picture" path="src/filmkit/picture/rendering.py" lines=272:322
+@source render-gate title="A render needs a passing gate" path="src/filmkit/picture/rendering.py" lines=499:526
+@source render title="Rendering the picture" path="src/filmkit/picture/rendering.py" lines=621:678
+@source validate title="Validating the picture" path="src/filmkit/picture/rendering.py" lines=697:711
+@source equivalence-doc title="Only the captions differ" path="src/filmkit/picture/equivalence.py" lines=1:40
+@source derivation-doc title="A derived uncaptioned picture" path="src/filmkit/picture/derivation.py" lines=1:47
+@source derivation-way title="Derived or rendered" path="src/filmkit/picture/derivation.py" lines=128:145
+@source qualification-doc title="Qualifying the renderer" path="src/filmkit/picture/qualification.py" lines=1:34
+@source tools-doc title="The Node tool runner" path="src/filmkit/tools.py" lines=1:26
+@source durations-doc title="Duration records" path="src/filmkit/durations.py" lines=1:36
 @source headless-doc title="The composition, run headlessly" path="src/filmkit/picture/headless-composition.mjs" lines=1:13
+@source detail-audit-doc title="The detail audit" path="src/filmkit/picture/detail-audit.mjs" lines=1:16
 @source package-doc title="Packaging" path="src/filmkit/delivery/packaging.py" lines=1:31
-@source delivered-check title="Checking a finished film" path="src/filmkit/delivery/packaging.py" lines=541:584
-@source package-film title="Packaging every film" path="src/filmkit/delivery/packaging.py" lines=619:654
-@source package-inputs title="What the film package binds" path="src/filmkit/delivery/packaging.py" lines=272:284
+@source delivered-check title="Checking a finished film" path="src/filmkit/delivery/packaging.py" lines=547:591
+@source package-film title="Packaging every film" path="src/filmkit/delivery/packaging.py" lines=628:663
+@source package-inputs title="What the film package binds" path="src/filmkit/delivery/packaging.py" lines=275:287
 @source player-doc title="The player page" path="src/filmkit/delivery/player.py" lines=1:5
-@source verification-doc title="Verification" path="src/filmkit/delivery/verification.py" lines=1:14
-@source verify-captions title="Captions stay typeset" path="src/filmkit/delivery/verification.py" lines=68:83
-@source verify-spotlight title="Spotlight's import, read back" path="src/filmkit/delivery/verification.py" lines=312:342
-@source verify-review title="The review it accepts" path="src/filmkit/delivery/verification.py" lines=345:408
-@source verification-qualify title="One edition's checks" path="src/filmkit/delivery/verification.py" lines=411:441
-@source reproduction-doc title="Reproduction" path="src/filmkit/delivery/reproduction.py" lines=1:26
-@source documents-doc title="Delivery to the Documents folder" path="src/filmkit/delivery/documents_folder.py" lines=1:27
+@source verification-doc title="Verification" path="src/filmkit/delivery/verification.py" lines=1:18
+@source verify-captions title="Captions stay typeset" path="src/filmkit/delivery/verification.py" lines=79:94
+@source verify-spotlight title="Spotlight's import, read back" path="src/filmkit/delivery/verification.py" lines=341:371
+@source verify-review title="The review it accepts" path="src/filmkit/delivery/verification.py" lines=374:437
+@source verification-qualify title="One edition's checks" path="src/filmkit/delivery/verification.py" lines=460:495
+@source reproduction-doc title="Reproduction" path="src/filmkit/delivery/reproduction.py" lines=1:27
+@source documents-doc title="Delivery to the film's delivery folder" path="src/filmkit/delivery/folder.py" lines=1:45
 @source round-doc title="A review round" path="src/filmkit/review/round.py" lines=1:11
 @source human-listening title="Human listening stays separate" path="src/filmkit/review/round.py" lines=49:53
 @source measurement-doc title="Review measurements" path="src/filmkit/review/measurement.py" lines=1:22
@@ -119,12 +129,12 @@ The engine fixes these specifications, and a film uses them as they are.[](sourc
 
 @steps id=context-steps
 | step-ctx-film | Film repository | The declaration with the player's colours, each edition's script, cast and narration, and the picture's template, script and style.[](source:readme-layout) | context-map | ctx-film |
-| step-ctx-engine | Film Kit engine | Each action produces one edition, which it takes as an argument; the declaration is checked before any work. `preflight` reports every stale or missing input before a render.[](source:produce-actions)[](source:film-load) | context-map | ctx-engine |
+| step-ctx-engine | Film Kit engine | Each action produces one edition, which it takes as an argument; the declaration is checked before any work.[](source:produce-actions)[](source:film-load) `preflight` reports every stale or missing input before a render, the sound gate's record and the geometry record among them. It asks for the draft's still scan only of a film that declares drafts, and writes the edition's readiness receipt.[](source:preflight-doc) | context-map | ctx-engine |
 | step-ctx-supply | Supply step | The only step that reaches the network. It checks the browser build and each model snapshot against pinned digests.[](source:supply-doc) | context-map | ctx-supply |
 | step-ctx-models | Speech models | A voice model narrates, a forced aligner times the words and a recognizer transcribes them, all on MLX.[](source:snapshots) | context-map | ctx-models |
-| step-ctx-browser | HyperFrames, Chrome | The film's npm packages install the renderer, and the engine refuses any version but HyperFrames 0.9.46.[](source:require-renderer) | context-map | ctx-browser |
+| step-ctx-browser | HyperFrames, Chrome | The film's npm packages install the renderer, and the engine refuses any version but HyperFrames 0.9.64.[](source:require-renderer) | context-map | ctx-browser |
 | step-ctx-build | Build folder | Each edition's media and records go below the film's ignored `build/`.[](source:edition-places) | context-map | ctx-build |
-| step-ctx-documents | Documents folder | Delivery syncs the 25 members with rsync, then checks each against its source's SHA-256.[](source:documents-doc) | context-map | ctx-documents |
+| step-ctx-documents | Delivery folder | Delivery syncs the 25 members with rsync, then checks each against its source's SHA-256. The engine names no folder of a host: the film declares the folder's name under the key `delivery_folder`.[](source:documents-doc) | context-map | ctx-documents |
 
 ## What happens to one edition, from script to delivered films? {#p-route}
 
@@ -158,12 +168,12 @@ Each command runs at the film's root, and each production action names its editi
 @steps id=route-steps
 | step-route-words | Check the words | Narration runs the concept and readings checks first, even in a dry run, and stops on either.[](source:narrate-gate) | route-flow | route-words |
 | step-route-narrate | Narrate each thought | Each thought is a native take from the cast's seed or retake. A recording whose request still matches is reused.[](source:synthesis-reuse) | route-flow | route-narrate |
-| step-route-align | Align, transcribe | The pinned aligner times each word. The transcript is a proxy for pronunciation, not a certification.[](source:narrate-steps)[](source:transcription-doc) | route-flow | route-align |
+| step-route-align | Align, transcribe | The pinned aligner times each word. The transcript is a proxy for pronunciation, not a certification.[](source:narrate-steps)[](source:transcription-doc) Each recording's transcript is cached under its waveform, the language and the recognizer's identity.[](source:transcription-doc) | route-flow | route-align |
 | step-route-select | Select the takes | `produce select` binds each recording and its alignment to the current script, cast and narrator reference. It refuses a recording that breaks the film's pause limits or says a declared term unlike its reference.[](source:selection)[](source:speech-refusals) | route-flow | route-select |
 | step-route-assemble | Assemble the sound | The assembly designs the pauses, levels each thought, segment and chapter, and reaches the program level with one gain. It refuses the laid-out soundtrack for an unmarked pause above the film's limit or a declared term said unlike its reference.[](source:assembly-doc)[](source:clip-levels)[](source:program-gain) `produce check-sound` then judges the assembled soundtrack, and refuses a segment under the film's clarity floor, an abrupt or cut ending and a stopped phrase.[](source:sound-gate) | route-flow | route-assemble |
-| step-route-gate | Check the picture | `check-picture` audits every frame, each label's sync and the motion, then writes the gate record.[](source:gate-doc) | route-flow | route-gate |
-| step-route-render | Stage, render | The captioned and the uncaptioned picture are each staged as one document and rendered by HyperFrames, only after a passing gate record.[](source:stage)[](source:render-gate)[](source:render) | route-flow | route-render |
-| step-route-compare | Compare the pictures | The two pictures may differ only by their captions, in the composition at every caption and every half second, and in the decoded frames outside the captions' band. Every frame of both is then scanned for a fault that lasts one frame. The same scan measures the edge slivers: the samples more than 40 levels apart in each frame's densest block. A frame beyond the bound is refused.[](source:equivalence-doc) | route-flow | route-compare |
+| step-route-gate | Check the picture | `check-picture` audits every frame, each label's sync, the motion and the detail of single lines, strokes and names, then writes the gate record.[](source:gate-doc)[](source:detail-gates-doc) | route-flow | route-gate |
+| step-route-render | Stage, render | The captioned and the uncaptioned picture are each staged as one document, and HyperFrames renders the captioned one only after a passing gate record.[](source:stage)[](source:render-gate)[](source:render) A film that declares software capture derives the uncaptioned picture from the captioned one: one x264 encode paints the caption band's rows in the ground. Otherwise HyperFrames renders the uncaptioned stage too, as it does with `--native`.[](source:derivation-doc) A derived pair is compared by the derivation's receipt, and no picture is decoded.[](source:equivalence-doc) | route-flow | route-render |
+| step-route-compare | Compare the pictures | A rendered pair may differ only by its captions, in the composition at every caption and every half second, and in the decoded frames outside the captions' band. Every frame of both is then scanned for a fault that lasts one frame. The same scan measures the edge slivers: the samples more than 40 levels apart in each frame's densest block. A frame beyond the bound is refused.[](source:equivalence-doc) | route-flow | route-compare |
 | step-route-package | Package the films | FFmpeg muxes each film's picture, with captions or without, with the soundtrack and chapters; each film is checked before it is linked into place.[](source:package-doc)[](source:package-film) | route-flow | route-package |
 | step-route-verify | Verify every input | The verifier reads and decodes. It checks the sources, narration, both pictures and their equivalence, packages, all four decoded films and the review. Where the host has `mdimport`, it also reads back the keywords and authors Spotlight imports from each film.[](source:verification-doc)[](source:verify-spotlight) | route-flow | route-verify |
 
@@ -197,7 +207,7 @@ The assembly refuses a thought whose take ends inside its last syllable.[](sourc
 | step-take-assembled | Assembled | A script's `voice_performance` may declare `segment_level_tolerance_db`, from 0.1 to 3.0.[](source:readme-levels) The assembly then brings each segment whose leveled thoughts' median loudness stands farther than that from its chapter's median to the tolerance's edge.[](source:segment-level) It does so before it levels the chapters, by one static gain of at most 2 dB that keeps the segment's peak below -1 dBFS.[](source:clip-levels)[](source:segment-level) The soundtrack plays at -16.5 LUFS integrated, under a true-peak ceiling of -1 dBTP.[](source:program-level)[](source:program-gain) | take-life | take-assembled |
 
 @callout level=note title="Why a take can end inside a syllable"
-| With mlx-audio 0.6.4, each frame whose first codebook id is 0 removes 80 ms from the end of an in-context take.[](source:readme-endings) The fix is proposed upstream as `Blaizzy/mlx-audio#1116`. |
+| With mlx-audio up to 0.6.4, each frame whose first codebook id is 0 removes 80 ms from the end of an in-context take.[](source:readme-endings) mlx-audio 0.6.5 carries the repair, `Blaizzy/mlx-audio#1116`, and the engine pins 0.6.6. A film that holds an earlier mlx-audio in its own lock still meets the fault.[](source:readme-endings) |
 
 ## What does each record bind? {#p-records}
 
@@ -212,9 +222,12 @@ A record names the SHA-256 of the files its step read, and the step that reads t
 | step-rec-gates | picture-gates.json | Binds the composition, timeline, stylesheet, fonts and engine version that the audits ran on.[](source:gate-check) | records-erd | rec-gates |
 | step-rec-package | film-package.json | Binds both pictures and their equivalence record, the soundtrack, cover, script, chapters and the film's `VERSION`, and each film's own SHA-256.[](source:package-inputs)[](source:package-film) | records-erd | rec-package |
 
+@callout level=note title="A duration record binds nothing"
+| Every production action and every narration writes a duration record when it ends: the command, its seconds and each phase's seconds.[](source:durations-doc)[](source:changelog-0230) No record binds it. `python -m filmkit.durations` prints each edition's records, the sum of its build and the time of the build.[](source:durations-doc) |
+
 ## What must pass before the picture renders? {#p-picture}
 
-The frame audit and the motion audit run the film's own composition headlessly, on a canvas stand-in.[](source:headless-doc)
+The frame, motion and detail audits run the film's own composition headlessly, on a canvas stand-in.[](source:headless-doc)[](source:detail-audit-doc)
 
 @sequence id=picture-flow title="From stage to a validated picture"
 | actor pic-command | Production command | frontend | source:produce-actions |
@@ -227,7 +240,7 @@ The frame audit and the motion audit run the film's own composition headlessly, 
 | pic-command | pic-render | stage-picture |
 | phase | Gate |
 | pic-command | pic-gate | check-picture |
-| pic-gate | pic-tools | frame and motion audits |
+| pic-gate | pic-tools | frame, motion, detail audits |
 | pic-tools | pic-gate | reports and traces | return |
 | pic-gate | pic-record | pass or refuse |
 | phase | Render |
@@ -241,10 +254,10 @@ The frame audit and the motion audit run the film's own composition headlessly, 
 
 @steps id=picture-steps
 | step-pic-stage | Picture rendering | `stage-picture` inlines the timeline, script and style into one document, and records its inputs in `stage.json`.[](source:stage) | picture-flow | pic-render | | pic-command-to-pic-render-1 |
-| step-pic-gate | Picture gate | `check-picture` runs the frame and motion audits through the tool runner, then the sync audit on their traces.[](source:gate-check)[](source:tools-doc) | picture-flow | pic-gate | | pic-command-to-pic-gate-1,pic-gate-to-pic-tools-1,pic-tools-to-pic-gate-1 |
-| step-pic-record | Gate record | It binds what the audits ran on and lists every gated finding. An opening that shows the declared title too briefly is one, and so is a text at rest below 4.5:1. One gated finding refuses the render.[](source:gate-doc) | picture-flow | pic-record | | pic-gate-to-pic-record-1 |
-| step-pic-render | HyperFrames | `render-picture` refuses without a passing record for the current inputs, then renders the complete UHD stage of the captioned picture, or with `--uncaptioned` of the uncaptioned one.[](source:render-gate)[](source:render) | picture-flow | pic-hyperframes | | pic-render-to-pic-record-1,pic-record-to-pic-render-1,pic-render-to-pic-hyperframes-1,pic-hyperframes-to-pic-render-1 |
-| step-pic-validate | Production command | `validate-picture` binds the picture to its receipt and stage, and checks each frame's place on the 60 fps grid.[](source:validate) | picture-flow | pic-command | | pic-command-to-pic-render-3 |
+| step-pic-gate | Picture gate | `check-picture` runs the frame, motion and detail audits through the tool runner at the same time, then the sync audit on the frame audit's traces.[](source:gate-check)[](source:tools-doc) | picture-flow | pic-gate | | pic-command-to-pic-gate-1,pic-gate-to-pic-tools-1,pic-tools-to-pic-gate-1 |
+| step-pic-record | Gate record | It binds what the audits ran on and lists every gated finding. An opening that shows the declared title too briefly is one, and so is a text at rest below 4.5:1. One gated finding refuses the render.[](source:gate-doc) A film keeps a finding of the detail audit, or a run far off centre, by declaring an exception with its reason, which the record lists.[](source:detail-gates-doc) | picture-flow | pic-record | | pic-gate-to-pic-record-1 |
+| step-pic-render | HyperFrames | `render-picture` refuses without a passing record for the current inputs, then renders the complete UHD stage of the captioned picture.[](source:render-gate)[](source:render) With `--uncaptioned` it derives the uncaptioned picture for a film of software capture whose captioned picture the pinned browser build drew. Otherwise, or with `--native`, it renders that picture's own stage.[](source:derivation-doc)[](source:derivation-way) | picture-flow | pic-hyperframes | | pic-render-to-pic-record-1,pic-record-to-pic-render-1,pic-render-to-pic-hyperframes-1,pic-hyperframes-to-pic-render-1 |
+| step-pic-validate | Production command | `validate-picture` binds the picture to its receipt and stage, and checks each frame's place on the 60 fps grid. It binds a derived uncaptioned picture to its derivation's receipt.[](source:validate) | picture-flow | pic-command | | pic-command-to-pic-render-3 |
 
 @callout level=note title="Measured rules, not taste"
 | Each frame finding that the gate refuses is a rule the DDWG reviews turned into one a delivered film keeps.[](source:frame-gates) Taste stays with the review.[](source:verification-doc) |
@@ -258,19 +271,19 @@ Each arrow points from a part to a part it calls.
 @steps id=parts-steps
 | step-part-narrate | Narration command | Runs the word checks, then synthesis, alignment and transcription as separate processes.[](source:narrate-steps) | parts-map | part-narrate |
 | step-part-produce | Production command | Calls the owner of one action and reports its refusal as the action's name and reason.[](source:produce-actions) | parts-map | part-produce |
-| step-part-takes | Thought takes | Requests, receipts and joins of each thought, checked again from every retained record.[](source:thought-joins) | parts-map | part-takes |
+| step-part-takes | Thought takes | Requests, receipts and joins of each thought, checked again from every retained record.[](source:thought-joins) A narration divides the segments it has to generate among processes of the voice model, one for every 16 GB of host memory, up to three.[](source:narration-processes) | parts-map | part-takes |
 | step-part-sound | Soundtrack assembly | Writes the soundtrack, the timeline with its captions, and the assembly receipt.[](source:assembly-doc) A caption cue's text is the typeset copy of its phrase, with typographic quotation marks.[](source:captions-doc) Its sound gate reads a segment's clarity as the reviewers do, over the whole soundtrack's kept frames whose centres lie in the segment.[](source:sound-gate)[](source:clarity-doc) | parts-map | part-sound |
 | step-part-gate | Picture gate | Writes the gate record and refuses while one gated finding remains.[](source:gate-doc) | parts-map | part-gate |
-| step-part-render | Picture rendering | Stages, renders and validates each UHD picture, with captions and without, and proves they differ only by their captions.[](source:render)[](source:equivalence-doc) | parts-map | part-render |
+| step-part-render | Picture rendering | Stages and renders the captioned UHD picture, renders or derives the uncaptioned one, validates both and proves they differ only by their captions.[](source:render)[](source:equivalence-doc) `qualify-renderer` renders the captioned stage a second time and compares the two renders with no row left out.[](source:qualification-doc) | parts-map | part-render |
 | step-part-package | Packaging | Derives the viewing package and writes all four films, each checked before it is linked into place. Each film and page names the film's version.[](source:package-doc) | parts-map | part-package |
-| step-part-verify | Verification | Reads every record again and decodes all four films; it writes nothing.[](source:verification-doc) It refuses a caption cue whose text is not typeset.[](source:verify-captions) | parts-map | part-verify |
+| step-part-verify | Verification | Reads every record again and decodes all four films; the one file it writes is each edition's duration record.[](source:verification-doc) It refuses a caption cue whose text is not typeset.[](source:verify-captions) | parts-map | part-verify |
 
 ## What does a delivered edition hold, and how is it accepted? {#p-delivery}
 
-Delivery fills the film's Documents folder with exactly 25 members, then reads them back.[](source:documents-doc)
+Delivery fills the film's delivery folder with exactly 25 members, then reads them back.[](source:documents-doc)
 
 @tree id=delivery-tree title="The 25 delivery members"
-| dl-root | Documents folder | - |
+| dl-root | Delivery folder | - |
 | dl-entry | Language entry page | dl-root |
 | dl-edition | zh and en, each | dl-root |
 | dl-uhd | UHD masters | dl-edition |
@@ -282,9 +295,9 @@ Delivery fills the film's Documents folder with exactly 25 members, then reads t
 | dl-player | Player page | dl-edition |
 
 @steps id=delivery-steps
-| step-dl-root | Documents folder | Before rsync changes anything, a real browser reads the entry page and both players back, playing all four films of each. rsync then copies each member whose bytes differ, and keeps every replaced entry as a rollback copy.[](source:documents-doc) | delivery-tree | dl-root |
-| step-dl-uhd | UHD masters | One with the captions the picture draws and one without, each copying its own rendered picture's stream. All four films carry the same soundtrack, chapters, cover and release tags.[](source:renditions)[](source:package-doc) | delivery-tree | dl-uhd |
-| step-dl-hd | 1080p viewing films | Each re-encodes its own picture through VideoToolbox and averages each 2×2 block of pixels between decode and encode. Each holds a keyframe every 2 s, and the two films of a size are made alike from their own pictures.[](source:renditions) | delivery-tree | dl-hd |
+| step-dl-root | Delivery folder | The folder is the one `--destination` names, else the film's declared name below `FILMKIT_DELIVERY_ROOT`, else that name below the user's videos folder. A delivery refuses a destination it must not fill, such as the film's root or a folder inside it. Before rsync changes anything, a real browser reads the entry page and both players back, playing all four films of each. rsync then copies each member whose bytes differ, and keeps every replaced entry as a rollback copy.[](source:documents-doc) | delivery-tree | dl-root |
+| step-dl-uhd | UHD masters | One with the captions the picture draws and one without, each copying its own picture's stream. All four films carry the same soundtrack, chapters, cover and release tags.[](source:renditions)[](source:package-doc) | delivery-tree | dl-uhd |
+| step-dl-hd | 1080p viewing films | Each is decoded in software, averaged over each 2×2 block of pixels and encoded by x264, with a keyframe forced every 2 s. The two films of a size are made alike, each from its own picture. For a derived pair, the 1080p uncaptioned film instead reads the captioned picture and paints the caption band as the derivation did.[](source:renditions) No finished film may hold B-frames.[](source:delivered-check) | delivery-tree | dl-hd |
 | step-dl-player | Player page | The engine renders it; a film declares only each edition's summary and the player's five colours.[](source:player-doc) | delivery-tree | dl-player |
 | step-dl-chapters | Chapters, JSON and FFmetadata | Every track of each film carries the edition's language; packaging writes the chapter track's language in place.[](source:delivered-check)[](source:package-doc) | delivery-tree | dl-chapters |
 
@@ -296,7 +309,7 @@ Delivery fills the film's Documents folder with exactly 25 members, then reads t
 
 ## How did Film Kit get here? {#p-history}
 
-Film Kit released v0.1.0 on 30 October 2026 and v0.22.3 on 15 November.[](source:changelog-010)[](source:changelog-0223) The timeline shows the seventeen releases that changed how a film is made, v0.22.0, v0.22.2 and v0.22.3 the latest.[](source:changelog-0220)[](source:changelog-0222)[](source:changelog-0223) It also shows the patch releases v0.21.1 and v0.21.2, which moved only the repository's tools and pinned packages.[](source:changelog-0211)[](source:changelog-0212) The v0.21.3 release did the same and is not on the timeline.[](source:changelog-0213)
+Film Kit released v0.1.0 on 30 October 2026 and v0.23.1 on 18 November.[](source:changelog-010)[](source:changelog-0231) The timeline shows the nineteen releases that changed how a film is made, v0.22.3, v0.23.0 and v0.23.1 the latest.[](source:changelog-0223)[](source:changelog-0230)[](source:changelog-0231) It also shows the patch releases v0.21.1 and v0.21.2, which moved only the repository's tools and pinned packages.[](source:changelog-0211)[](source:changelog-0212) The v0.21.3 release did the same and is not on the timeline.[](source:changelog-0213)
 
 The v0.22.1 release moved the renderer to HyperFrames 0.9.46, and the sample film's twelve films decode to the same frames.[](source:changelog-0221) It is not on the timeline either. The repository keeps no dated roadmap; what is still open is listed last on this page.
 
@@ -306,12 +319,12 @@ The v0.22.1 release moved the renderer to HyperFrames 0.9.46, and the sample fil
 
 An engine change keeps every film's output bytes unless its release says otherwise.[](source:agents-contract)
 
-| Area                    | State                                | What that means                                                                                                                                                                                                                                |
-| ----------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Platform                | Apple silicon {caution:One platform} | The speech models run on MLX, and the 1080p films are encoded with VideoToolbox.[](source:readme-requirements)                                                                                                                                 |
-| Sample film             | Local acceptance {caution:Not in CI} | Its build needs the speech models and the browser build, so hosted CI runs only the portable proof.[](source:readme-dev)                                                                                                                       |
-| Human listening         | Separate {caution:Not scored}        | A review scores audio from automated evidence; listening is a later acceptance.[](source:human-listening)                                                                                                                                      |
-| Take endings            | Guarded {good:Refused}               | Auditions keep endings whole until a mlx-audio release carries the upstream fix, and the assembly refuses an abrupt take.[](source:readme-endings)[](source:abrupt)                                                                            |
-| Text widths             | Measured {good:The film's fonts}     | Audits measure widths with the film's own faces; a text's height keeps an estimate.[](source:readme-metrics)                                                                                                                                   |
-| Still off-centre states | Refused {good:Whatever follows}      | The gate refuses every still state that stands more than 50 px off centre for 2 s or more. That holds whether the picture then grows from it, it ends within its stage, or a stage cut or the next scene replaces it.[](source:readme-balance) |
-| A new renderer          | Pinned {caution:The film decides}    | A film keeps its `filmkit` pin until it produces, reviews and accepts an edition on the new release.[](source:changelog-pin)[](source:changelog-0221)                                                                                          |
+| Area                    | State                                | What that means                                                                                                                                                                                                                                              |
+| ----------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Platform                | Apple silicon {caution:One platform} | The speech models run on MLX, so the engine needs an Apple-silicon Mac.[](source:readme-requirements)                                                                                                                                                        |
+| Sample film             | Local acceptance {caution:Not in CI} | Its build needs the speech models and the browser build, so hosted CI runs only the portable proof.[](source:readme-dev)                                                                                                                                     |
+| Human listening         | Separate {caution:Not scored}        | A review scores audio from automated evidence; listening is a later acceptance.[](source:human-listening)                                                                                                                                                    |
+| Take endings            | Guarded {good:Refused}               | mlx-audio 0.6.5 carries the upstream repair, and the engine pins 0.6.6. A take can still end inside its last syllable for another reason, so auditions keep endings whole and the assembly refuses an abrupt take.[](source:readme-endings)[](source:abrupt) |
+| Text widths             | Measured {good:The film's fonts}     | Audits measure widths with the film's own faces; a text's height keeps an estimate.[](source:readme-metrics)                                                                                                                                                 |
+| Still off-centre states | Refused {good:Whatever follows}      | The gate refuses every still state that stands more than 50 px off centre for 2 s or more. That holds whether the picture then grows from it, it ends within its stage, or a stage cut or the next scene replaces it.[](source:readme-balance)               |
+| A new renderer          | Pinned {caution:The film decides}    | A film keeps its `filmkit` pin until it produces, reviews and accepts an edition on the new release.[](source:changelog-pin)[](source:changelog-0221)                                                                                                        |

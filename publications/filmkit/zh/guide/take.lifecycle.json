@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "e70a437aec0938b7a1f5309797514335b0fbeaf9"
+      "revision": "7b2308c470eb1bac8c60461110ac98863c4bdf93"
     }
   },
   "mainPath": ["take-narrated", "take-judged", "take-selected", "take-assembled"],
@@ -22,8 +22,8 @@
       "sources": [
         {
           "path": "src/filmkit/narration/synthesis.py",
-          "line": 176,
-          "end_line": 194,
+          "line": 256,
+          "end_line": 274,
           "label": "Plan"
         },
         {

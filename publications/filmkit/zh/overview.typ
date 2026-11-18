@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([Film Kit], [每个语言版都从影片自己的源文件重建], [Film Kit 是本地运行的引擎：带旁白的讲解影片，每个语言版的朗读、音轨拼接、字幕生成、门禁检查、渲染和打包都由它完成，每一步都记下所读内容的 SHA-256。], read-from: [依据 124 个文件写成，每个文件都按 SHA-256 引用。], claim-x: 124pt)
+#masthead([Film Kit], [每个语言版都从影片自己的源文件重建], [Film Kit 是本地运行的引擎：带旁白的讲解影片，每个语言版的朗读、音轨拼接、字幕生成、门禁检查、渲染和打包都由它完成，每一步都记下所读内容的 SHA-256。], read-from: [依据 138 个文件写成，每个文件都按 SHA-256 引用。], claim-x: 124pt)
 
 // ── Band 1: one edition's route, from the declaration to a compared rebuild ──
 #let ys = 250pt
@@ -20,7 +20,7 @@
 #tx(420pt, 152pt, "produce select, assemble, refresh-captions, check-sound", w: 230pt, fill: soft)
 #tx(660pt, 152pt, "组装、检查、渲染并校验画面", w: 230pt, fill: soft)
 #tx(900pt, 152pt, "package-metadata, package-film", w: 120pt, fill: soft)
-#tx(1030pt, 152pt, "review.round, delivery.verification, documents_folder", w: 350pt, fill: soft)
+#tx(1030pt, 152pt, "review.round, delivery.verification, delivery.folder", w: 350pt, fill: soft)
 #tx(1390pt, 152pt, "delivery.reproduction", w: 162pt, fill: soft)
 
 // The trunk carries what both editions share; zh and en take every step between.
@@ -30,7 +30,7 @@
 #seg((262pt, ys), (282pt, ys + tr), (980pt, ys + tr), (1000pt, ys), w: 2.2pt, c: green)
 #tx(266pt, 218pt, "zh", fill: mid, style: "italic")
 #tx(266pt, 292pt, "en", fill: mid, style: "italic")
-#let trunk = ((96pt, "声明", "content/film.toml", "ring"), (206pt, "检查字词", "出现位置清单", "tick"), (1070pt, "评审", "production-review", "tick"), (1190pt, "核验", "不写任何文件", "tick"), (1310pt, "交付", "delivery-readback", "ring"), (1440pt, "比对", "report.json", "ring"))
+#let trunk = ((96pt, "声明", "content/film.toml", "ring"), (206pt, "检查字词", "出现位置清单", "tick"), (1070pt, "评审", "production-review", "tick"), (1190pt, "核验", "只写耗时记录", "tick"), (1310pt, "交付", "delivery-readback", "ring"), (1440pt, "比对", "report.json", "ring"))
 #let lanes = ((340pt, "朗读", "旁白记录", "ring"), (460pt, "选定", "narration-selected", "tick"), (580pt, "拼接", "时间线、音轨", "ring"), (700pt, "检查画面", "picture-gates", "tick"), (820pt, "渲染", "渲染记录", "ring"), (940pt, "打包", "film-package", "ring"))
 #for (x, name, record, kind) in trunk {
   if kind == "ring" { ring(x, ys, r: 6pt, w: 2.4pt) } else { tick(x, ys, h: 15pt) }
@@ -105,7 +105,7 @@
   tx(824pt, 554pt + k * 18pt, what, weight: "semibold")
   tx(1000pt, 554pt + k * 18pt, binds, fill: soft)
 }
-#tx(824pt, 696pt, [核验重新读取每份记录并解码每部成片，不写任何文件。复现则把重建结果与已发布版本逐帧比对。], w: 728pt, fill: soft)
+#tx(824pt, 696pt, [核验重新读取每份记录并解码每部成片，只写一份耗时记录。复现则把重建结果与已发布版本逐帧比对。], w: 728pt, fill: soft)
 
 // ── Band 3: what the film holds, what is supplied, what is delivered ───────
 #hrule(744pt)

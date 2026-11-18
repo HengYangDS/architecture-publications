@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "e70a437aec0938b7a1f5309797514335b0fbeaf9"
+      "revision": "7b2308c470eb1bac8c60461110ac98863c4bdf93"
     }
   },
   "layout": {
@@ -67,8 +67,8 @@
       "sources": [
         {
           "path": "src/filmkit/production.py",
-          "line": 116,
-          "end_line": 118,
+          "line": 141,
+          "end_line": 143,
           "label": "Script"
         }
       ]
@@ -159,8 +159,8 @@
       "sources": [
         {
           "path": "src/filmkit/picture/rendering.py",
-          "line": 285,
-          "end_line": 301,
+          "line": 304,
+          "end_line": 320,
           "label": "Stage"
         }
       ]
@@ -205,8 +205,8 @@
       "sources": [
         {
           "path": "src/filmkit/delivery/packaging.py",
-          "line": 272,
-          "end_line": 314,
+          "line": 275,
+          "end_line": 317,
           "label": "Package"
         }
       ],
@@ -240,8 +240,8 @@
       "sources": [
         {
           "path": "src/filmkit/picture/gates.py",
-          "line": 449,
-          "end_line": 459,
+          "line": 480,
+          "end_line": 490,
           "label": "Record"
         }
       ]

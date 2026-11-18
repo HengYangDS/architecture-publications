@@ -3,7 +3,7 @@
 #show: overview
 
 // ── Masthead ───────────────────────────────────────────────────────────────
-#masthead([Film Kit], [Each edition rebuilt from the film's own sources], [A local engine: Film Kit narrates, assembles, captions, gates, renders and packages each edition of a narrated explainer film, and every step records the SHA-256 of what it read.], read-from: [Read from 124 files, each cited by its SHA-256.], claim-x: 124pt)
+#masthead([Film Kit], [Each edition rebuilt from the film's own sources], [A local engine: Film Kit narrates, assembles, captions, gates, renders and packages each edition of a narrated explainer film, and every step records the SHA-256 of what it read.], read-from: [Read from 138 files, each cited by its SHA-256.], claim-x: 124pt)
 
 // ── Band 1: one edition's route, from the declaration to a compared rebuild ──
 #let ys = 250pt
@@ -20,7 +20,7 @@
 #tx(420pt, 152pt, "produce select, assemble, refresh-captions, check-sound", w: 230pt, fill: soft)
 #tx(660pt, 152pt, "stage, check, render and validate the picture", w: 230pt, fill: soft)
 #tx(900pt, 152pt, "package-metadata, package-film", w: 120pt, fill: soft)
-#tx(1030pt, 152pt, "review.round, delivery.verification, documents_folder", w: 350pt, fill: soft)
+#tx(1030pt, 152pt, "review.round, delivery.verification, delivery.folder", w: 350pt, fill: soft)
 #tx(1390pt, 152pt, "delivery.reproduction", w: 162pt, fill: soft)
 
 // The trunk carries what both editions share; zh and en take every step between.
@@ -30,7 +30,7 @@
 #seg((262pt, ys), (282pt, ys + tr), (980pt, ys + tr), (1000pt, ys), w: 2.2pt, c: green)
 #tx(266pt, 218pt, "zh", fill: mid, style: "italic")
 #tx(266pt, 292pt, "en", fill: mid, style: "italic")
-#let trunk = ((96pt, "Declare", "content/film.toml", "ring"), (206pt, "Check words", "occurrence plans", "tick"), (1070pt, "Review", "production-review", "tick"), (1190pt, "Verify", "writes nothing", "tick"), (1310pt, "Deliver", "delivery-readback", "ring"), (1440pt, "Compare", "report.json", "ring"))
+#let trunk = ((96pt, "Declare", "content/film.toml", "ring"), (206pt, "Check words", "occurrence plans", "tick"), (1070pt, "Review", "production-review", "tick"), (1190pt, "Verify", "duration record", "tick"), (1310pt, "Deliver", "delivery-readback", "ring"), (1440pt, "Compare", "report.json", "ring"))
 #let lanes = ((340pt, "Narrate", "narration receipt", "ring"), (460pt, "Select", "narration-selected", "tick"), (580pt, "Assemble", "timeline, soundtrack", "ring"), (700pt, "Check picture", "picture-gates", "tick"), (820pt, "Render", "render receipt", "ring"), (940pt, "Package", "film-package", "ring"))
 #for (x, name, record, kind) in trunk {
   if kind == "ring" { ring(x, ys, r: 6pt, w: 2.4pt) } else { tick(x, ys, h: 15pt) }
@@ -105,7 +105,7 @@
   tx(824pt, 554pt + k * 18pt, what, weight: "semibold")
   tx(1000pt, 554pt + k * 18pt, binds, fill: soft)
 }
-#tx(824pt, 696pt, [Verification reads each record again and decodes every film, writing nothing. Reproduction compares a rebuild with the published release, frame by frame.], w: 728pt, fill: soft)
+#tx(824pt, 696pt, [Verification reads each record again and decodes every film, writing only its duration record. Reproduction compares a rebuild with the published release, frame by frame.], w: 728pt, fill: soft)
 
 // ── Band 3: what the film holds, what is supplied, what is delivered ───────
 #hrule(744pt)

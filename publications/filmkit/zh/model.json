@@ -6,7 +6,7 @@
   "title": "Film Kit",
   "question": "Film Kit 怎样用受版本管理的源文件，重建一部影片的两个语言版？又靠什么保证每一步用的都是该用的输入？",
   "summary": "Film Kit 用锁定版本的本地语音合成模型逐个意群朗读每个语言版，按统一的节目响度拼成一条音轨，给字幕打时间轴，画面先过门禁再渲染，最后打包出四部成片：超高清母版和 1080p 观看版，各有带字幕和无字幕两种。每一步都记下所读内容的 SHA-256，记录绑定的字节一旦对不上，后面的步骤就拒绝它。",
-  "scope": "v0.22.3 发布时的 Film Kit 引擎：src/filmkit 包，包括 Python 模块、Node 工具和关注列表，以及用来打包它的 pyproject.toml 和 VERSION。",
+  "scope": "v0.23.1 发布时的 Film Kit 引擎：src/filmkit 包，包括 Python 模块、Node 工具和关注列表，以及用来打包它的 pyproject.toml 和 VERSION。",
   "limits": [
     "每个组件列出规则划归给它的全部文件，每条关系列出发起调用或启动进程的模块。",
     "关系表示源码里的函数调用和子进程调用，不表示运行顺序，也没有把每次调用都画出来：读取影片记录和朗读单元的调用多数模块都有，核验和评审的调用遍及整个构建，这些都写在组件详情里。",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "filmkit",
     "url": "https://github.com/HengYangDS/filmkit.git",
-    "revision": "e70a437aec0938b7a1f5309797514335b0fbeaf9",
+    "revision": "7b2308c470eb1bac8c60461110ac98863c4bdf93",
     "browse": "https://github.com/HengYangDS/filmkit/blob/{revision}/{path}"
   },
   "coverage": {
@@ -146,7 +146,8 @@
       "kind": "command",
       "details": {
         "每次运行": "为一个语言版执行一个制作动作",
-        "动作": "select, assemble, refresh-captions, check-sound, stage-picture, check-picture, preflight, render-picture, validate-picture, compare-pictures, package-metadata, package-film"
+        "动作": "select, assemble, refresh-captions, check-sound, stage-picture, check-picture, preflight, render-picture, validate-picture, qualify-renderer, compare-pictures, package-metadata, package-film",
+        "preflight": "渲染之前报告所有已失效或缺失的输入，包括声音门禁记录和几何检查记录，并写出该语言版的就绪记录"
       },
       "files": ["src/filmkit/produce.py", "src/filmkit/preflight.py"]
     },
@@ -201,6 +202,7 @@
       "kind": "narration",
       "details": {
         "朗读": "用锁定版本的语音合成模型把每个意群一次读完，种子或重录来自配音设定",
+        "分配": "把需要生成的段落分给语音合成模型的进程，主机每 16 GB 内存开一个，最多三个",
         "朗读文本": "按影片的读音契约，为每个意群推导出来",
         "复用": "请求指纹和录音文件都还对得上的录音",
         "判定": "录音是否自然收尾"
@@ -208,6 +210,7 @@
       "files": [
         "src/filmkit/narration/pronunciation.py",
         "src/filmkit/narration/synthesis.py",
+        "src/filmkit/narration/processes.py",
         "src/filmkit/narration/group_generation.py",
         "src/filmkit/narration/voice_model.py",
         "src/filmkit/narration/thought_groups.py",
@@ -233,7 +236,7 @@
       "kind": "narration",
       "details": {
         "对齐": "用锁定版本的强制对齐器，把每份录音文件对齐到它对应的那段文本",
-        "转写": "转写每份录音文件，识别结果仅供参考，不能证明读得正确",
+        "转写": "转写每份录音文件，识别结果只作旁证，不能证明读得正确；转写结果按波形、语言和识别器标识缓存",
         "选定": "选出绑定当前脚本和配音设定的录音文件及对齐结果，不得超出影片的停顿上限，已声明术语的读音也须与参照处一致"
       },
       "files": [
@@ -250,7 +253,7 @@
       "label": "下载安装",
       "kind": "adapter",
       "details": {
-        "安装": "锁定版本的浏览器和三个语音模型，每一项都按摘要检查",
+        "安装": "指定构建版本的浏览器和三个语音模型，每一项都按摘要检查",
         "网络": "只有这一步会联网"
       },
       "files": ["src/filmkit/supply.py", "src/filmkit/narration/snapshots.py"]
@@ -294,11 +297,13 @@
       "label": "画面门禁",
       "kind": "check",
       "details": {
-        "检测": "每隔 1/30 s 查一帧，标签与词句是否同步，片头标题的显示、每段文字的对比度，以及 30 fps 下的动效",
+        "检测": "每隔 1/30 s 查一帧，标签与词句是否同步，片头标题的显示、每段文字的对比度，30 fps 下的动效，以及 60 fps 下的单条线、逐步画出的线条和名称",
+        "保留": "细节检测发现的问题和大幅偏离中心的时段，凡影片声明为例外的，连同理由记录下来",
         "绑定": "在门禁记录里绑定画面合成、时间线、样式表、字体和引擎版本"
       },
       "files": [
         "src/filmkit/picture/gates.py",
+        "src/filmkit/picture/detail_gates.py",
         "src/filmkit/picture/sync_audit.py",
         "src/filmkit/picture/text_trace.py",
         "src/filmkit/picture/label_matches.py"
@@ -320,18 +325,22 @@
       "kind": "check",
       "details": {
         "运行": "用 canvas 替身无头运行影片的画面合成",
-        "测量": "版面、易读性、平衡、排版、标签与文字的绘制记录，以及动效",
-        "比对": "每个无字幕帧的绘制内容，与带字幕帧去掉字幕绘制后的内容"
+        "测量": "版面、易读性、平衡、排版、标签与文字的绘制记录、动效，以及单条线、逐步画出的线条和名称的细节",
+        "比对": "每个无字幕帧的绘制内容，与带字幕帧去掉字幕绘制后的内容",
+        "证明": "派生无字幕画面时要涂成底色的那些像素行里，只有字幕的绘制内容，没有别的"
       },
       "files": [
         "src/filmkit/picture/frame-audit.mjs",
         "src/filmkit/picture/frame-audit/",
         "src/filmkit/picture/motion-audit.mjs",
         "src/filmkit/picture/motion-audit/",
+        "src/filmkit/picture/detail-audit.mjs",
+        "src/filmkit/picture/detail-audit/",
         "src/filmkit/picture/headless-composition.mjs",
         "src/filmkit/picture/seat-marks.mjs",
         "src/filmkit/picture/rules/",
-        "src/filmkit/picture/caption-equivalence.mjs"
+        "src/filmkit/picture/caption-equivalence.mjs",
+        "src/filmkit/picture/band-audit.mjs"
       ]
     },
     {
@@ -359,10 +368,12 @@
       "kind": "step",
       "details": {
         "组装": "把画面合成、时间线和字体组装成一份渲染器文档，绑定在 stage.json 中",
-        "渲染": "带字幕和无字幕两份画面，门禁记录通过后才交给 HyperFrames",
-        "校验": "每份渲染画面的帧、尺寸和帧间隔",
+        "渲染": "带字幕画面，以及不靠派生得到的无字幕画面；门禁记录通过后才交给 HyperFrames",
+        "派生": "影片声明软件捕获、且带字幕画面由指定构建版本的浏览器绘制时，无字幕画面由带字幕画面派生：用 x264 重新编码一次，把字幕带所在的行涂成底色",
+        "校验": "每份渲染画面的帧、尺寸和帧间隔；派生的画面则对照它的派生记录",
+        "鉴定": "渲染器：把组装好的带字幕画面再渲染一次，与第一次的结果比对，每一行像素都参与比对",
         "扫描": "渲染出的影片里画面静止时仍在说话之处",
-        "比对": "打包前逐帧比对每个语言版的两份画面：只能在字幕上不同，边缘细条也不能超出限值"
+        "比对": "打包前比对每个语言版的两份画面：都由渲染得到时逐帧比对，只能在字幕上不同，边缘细条也不能超出限值；无字幕画面由派生得到时，依据派生记录比对，不解码画面"
       },
       "files": [
         "src/filmkit/picture/__init__.py",
@@ -372,7 +383,11 @@
         "src/filmkit/picture/faults.py",
         "src/filmkit/picture/slivers.py",
         "src/filmkit/picture/draft.py",
-        "src/filmkit/picture/repair.py"
+        "src/filmkit/picture/repair.py",
+        "src/filmkit/picture/derivation.py",
+        "src/filmkit/picture/ground.py",
+        "src/filmkit/picture/qualification.py",
+        "src/filmkit/picture/browser.py"
       ]
     },
     {
@@ -380,7 +395,7 @@
       "label": "打包",
       "kind": "step",
       "details": {
-        "成片": "四部，超高清母版和 1080p 观看版各有带字幕和无字幕两种，都附封面、发布元数据标签和章节；1080p 观看版每 2 s 一个关键帧",
+        "成片": "四部，超高清母版和 1080p 观看版各有带字幕和无字幕两种，都附封面、发布元数据标签和章节；1080p 观看版用 x264 软件编码，每 2 s 一个关键帧；任何成片都不含 B 帧",
         "观看包": "派生出封面、字幕文件、讲稿、章节和播放器，播放器由引擎渲染",
         "章节轨": "原地写入语言",
         "版本号": "取自影片的 VERSION，写进每部成片和两个页面"
@@ -398,10 +413,10 @@
       "label": "核验",
       "kind": "check",
       "details": {
-        "核验": "来源、旁白溯源链、两份渲染画面及二者的等效性、两个包、解码后的每部成片和评审",
+        "核验": "来源、旁白溯源链、两份画面及二者的等效性、两个包、解码后的每部成片和评审",
         "读回": "Spotlight 从每部成片导入的关键词和作者；主机上有 mdimport 才读",
         "拒绝": "文本没有排印好的字幕条",
-        "写入": "不写文件，只读取和解码"
+        "写入": "只为每个语言版写一份这次运行的耗时记录，加 --read-only 时什么也不写；此外只读取和解码"
       },
       "files": ["src/filmkit/delivery/verification.py", "src/filmkit/delivery/spotlight.py"]
     },
@@ -419,11 +434,13 @@
       "label": "交付",
       "kind": "step",
       "details": {
-        "交付": "把 25 个交付项送到影片的 Documents 文件夹，再读回",
+        "交付": "把 25 个交付项送到影片的交付文件夹，再读回",
+        "目的地": "--destination 指定的文件夹；没有指定，就取影片声明的 delivery_folder，放在 FILMKIT_DELIVERY_ROOT 指定的根目录下；没有这个设置，就放在用户的视频文件夹下",
+        "拒绝": "不该用作交付文件夹的目的地，例如影片根目录；在读回或改动任何内容之前就拒绝",
         "提供": "本地评审媒体，支持按字节范围读取",
         "读回": "rsync 改动任何内容之前，先用真实浏览器读一遍入口页和两个播放器"
       },
-      "files": ["src/filmkit/delivery/documents_folder.py", "src/filmkit/delivery/media_server.py"]
+      "files": ["src/filmkit/delivery/folder.py", "src/filmkit/delivery/media_server.py"]
     },
     {
       "id": "review",
@@ -447,13 +464,35 @@
       "files": ["src/filmkit/media.py"]
     },
     {
+      "id": "child-processes",
+      "label": "子进程",
+      "kind": "adapter",
+      "details": {
+        "结束": "命令被要求结束时，结束它启动的子进程，不让任何一个比命令活得更久",
+        "接受": "中断、SIGTERM 或挂断，只在命令正运行着渲染器、旁白的各个进程或 narrate 的某一步时才接受",
+        "退出": "只输出一行，说明是哪种请求，并返回 shell 预期的状态码"
+      },
+      "files": ["src/filmkit/child_processes.py"]
+    },
+    {
+      "id": "duration-records",
+      "label": "耗时记录",
+      "kind": "contract",
+      "details": {
+        "记录": "每条命令在一个语言版上花了多久：何时开始、用了多少秒、是否完成，以及各环节的秒数",
+        "绑定": "不绑定任何内容，也没有别的记录绑定它",
+        "打印": "用 python -m filmkit.durations 打印每个语言版的各条记录、各命令秒数之和，以及构建用时"
+      },
+      "files": ["src/filmkit/durations.py"]
+    },
+    {
       "id": "engine-package",
       "label": "引擎包",
       "kind": "contract",
       "details": {
         "打包": "把 src/filmkit 打成一个 wheel，Node 工具也打在里面",
-        "版本": "0.22.3，取自 VERSION",
-        "依赖": "mlx-audio 0.6.4、NumPy、Pillow、Pydantic、pypinyin 和 snowballstemmer"
+        "版本": "0.23.1，取自 VERSION",
+        "依赖": "mlx-audio 0.6.6、NumPy、Pillow、Pydantic、pypinyin 和 snowballstemmer"
       },
       "files": ["pyproject.toml", "VERSION"]
     },
@@ -471,7 +510,7 @@
       "kind": "tool",
       "details": {
         "模型": "Qwen3-TTS 1.7B、Qwen3-ASR 0.6B 和 Qwen3-ForcedAligner 0.6B",
-        "运行时": "MLX 上的 mlx-audio 0.6.4"
+        "运行时": "MLX 上的 mlx-audio 0.6.6"
       }
     },
     {
@@ -479,7 +518,7 @@
       "label": "渲染器与浏览器",
       "kind": "tool",
       "details": {
-        "渲染器": "HyperFrames 0.9.46 与 GSAP，来自影片的 npm 包",
+        "渲染器": "HyperFrames 0.9.64 与 GSAP，来自影片的 npm 包",
         "浏览器": "Chrome Headless Shell 152.0.7977.30"
       }
     },
@@ -488,7 +527,7 @@
       "label": "主机工具",
       "kind": "tool",
       "details": {
-        "工具": "带 VideoToolbox 的 FFmpeg、ExifTool 和 rsync 3，来自 Homebrew"
+        "工具": "带 libx264 的 FFmpeg、ExifTool 和 rsync 3，来自 Homebrew"
       }
     },
     {
@@ -663,7 +702,7 @@
       "id": "supply-renderer",
       "from": "supply",
       "to": "renderer",
-      "label": "安装锁定版本的浏览器",
+      "label": "安装指定构建版本的浏览器",
       "files": ["src/filmkit/supply.py"]
     },
     {
@@ -750,7 +789,7 @@
       "id": "tool-runner-picture-audits",
       "from": "tool-runner",
       "to": "picture-audits",
-      "label": "运行逐帧、动效检测",
+      "label": "运行逐帧、动效、细节检测",
       "files": ["src/filmkit/tools.py"]
     },
     {
@@ -884,14 +923,14 @@
       "from": "delivery",
       "to": "packaging",
       "label": "读取交付项",
-      "files": ["src/filmkit/delivery/documents_folder.py"]
+      "files": ["src/filmkit/delivery/folder.py"]
     },
     {
       "id": "delivery-host-tools",
       "from": "delivery",
       "to": "host-tools",
       "label": "rsync、shasum",
-      "files": ["src/filmkit/delivery/documents_folder.py"]
+      "files": ["src/filmkit/delivery/folder.py"]
     },
     {
       "id": "review-reviewer",
@@ -899,6 +938,83 @@
       "to": "reviewer",
       "label": "写提示词",
       "files": ["src/filmkit/review/round.py", "src/filmkit/review/prompts.py"]
+    },
+    {
+      "id": "production-command-duration-records",
+      "from": "production-command",
+      "to": "duration-records",
+      "label": "记录每个动作的耗时",
+      "files": ["src/filmkit/produce.py"]
+    },
+    {
+      "id": "narration-command-duration-records",
+      "from": "narration-command",
+      "to": "duration-records",
+      "label": "记录每次旁白运行的耗时",
+      "files": ["src/filmkit/narration/narrate.py"]
+    },
+    {
+      "id": "tool-runner-duration-records",
+      "from": "tool-runner",
+      "to": "duration-records",
+      "label": "记录两项构建检查的耗时",
+      "files": ["src/filmkit/tools.py"]
+    },
+    {
+      "id": "verification-duration-records",
+      "from": "verification",
+      "to": "duration-records",
+      "label": "记录本次核验的耗时",
+      "files": ["src/filmkit/delivery/verification.py"]
+    },
+    {
+      "id": "reproduction-duration-records",
+      "from": "reproduction",
+      "to": "duration-records",
+      "label": "记录本次比对的耗时",
+      "files": ["src/filmkit/delivery/reproduction.py"]
+    },
+    {
+      "id": "duration-records-film-and-editions",
+      "from": "duration-records",
+      "to": "film-and-editions",
+      "label": "按语言版存放记录",
+      "files": ["src/filmkit/durations.py"]
+    },
+    {
+      "id": "production-command-child-processes",
+      "from": "production-command",
+      "to": "child-processes",
+      "label": "按请求结束",
+      "files": ["src/filmkit/produce.py"]
+    },
+    {
+      "id": "narration-command-child-processes",
+      "from": "narration-command",
+      "to": "child-processes",
+      "label": "运行并结束每一步",
+      "files": ["src/filmkit/narration/narrate.py"]
+    },
+    {
+      "id": "thought-takes-child-processes",
+      "from": "thought-takes",
+      "to": "child-processes",
+      "label": "结束旁白的各个进程",
+      "files": ["src/filmkit/narration/processes.py", "src/filmkit/narration/synthesis.py"]
+    },
+    {
+      "id": "picture-rendering-child-processes",
+      "from": "picture-rendering",
+      "to": "child-processes",
+      "label": "结束渲染器",
+      "files": ["src/filmkit/picture/rendering.py"]
+    },
+    {
+      "id": "tool-runner-child-processes",
+      "from": "tool-runner",
+      "to": "child-processes",
+      "label": "停止工具",
+      "files": ["src/filmkit/tools.py"]
     }
   ],
   "views": [
@@ -906,7 +1022,7 @@
       "id": "overview",
       "title": "从影片源文件到交付成片",
       "question": "一个语言版从脚本到四部交付成片，要靠哪些命令？",
-      "summary": "旁白命令为“意群录音”运行语音合成。制作命令拼接音轨、刷新字幕、检查画面，门禁记录通过后才渲染画面，最后打包出四部成片。",
+      "summary": "旁白命令为“意群录音”运行语音合成。制作命令拼接音轨、刷新字幕、检查画面，门禁记录通过后才渲染画面，最后打包出四部成片。两条命令结束时都写一份耗时记录。",
       "members": [
         "narration-command",
         "thought-takes",
@@ -915,7 +1031,8 @@
         "captions",
         "picture-gate",
         "picture-rendering",
-        "packaging"
+        "packaging",
+        "duration-records"
       ]
     },
     {
@@ -938,12 +1055,13 @@
       "id": "narration",
       "title": "旁白与下载安装",
       "question": "每个意群怎样朗读、试音和对齐？下载安装这一步先装好什么？",
-      "summary": "“意群录音”按配音设定里的种子或重录朗读每个意群，试音则换其他种子再读；“对齐与选定”把每份录音对齐到它的文本。“下载安装”负责装好锁定版本的浏览器和三个语音模型。",
+      "summary": "“意群录音”按配音设定里的种子或重录朗读每个意群，试音则换其他种子再读；“对齐与选定”把每份录音对齐到它的文本。“下载安装”负责装好指定构建版本的浏览器和三个语音模型。旁白命令被要求结束时，旁白的各个进程也随之结束。",
       "members": [
         "narration-command",
         "thought-takes",
         "alignment",
         "auditions",
+        "child-processes",
         "supply",
         "speech-models",
         "renderer"
@@ -969,7 +1087,7 @@
       "id": "picture",
       "title": "画面的门禁与渲染",
       "question": "渲染之前，画面靠什么检测？又靠什么渲染？",
-      "summary": "“画面门禁”交给 Node 工具运行器做逐帧和动效检测，并在门禁记录里绑定画面合成、字体和引擎版本。门禁记录通过后，“画面渲染”才交给 HyperFrames。",
+      "summary": "“画面门禁”交给 Node 工具运行器做逐帧、动效和细节检测，并在门禁记录里绑定画面合成、字体和引擎版本。门禁记录通过后，“画面渲染”才交给 HyperFrames。",
       "members": [
         "picture-gate",
         "tool-runner",
@@ -986,7 +1104,7 @@
       "id": "acceptance",
       "title": "打包、核验、交付与评审",
       "question": "成片怎样打包、核验、交付、评审和复现？",
-      "summary": "“打包”编码出四部成片；“核验”只读取和解码；“交付”送出 25 个交付项并逐一读回。“评审”为独立评审人准备提示词；“复现”把重建结果与已发布版本比对。",
+      "summary": "“打包”编码出四部成片；“核验”读取并解码；“交付”送出 25 个交付项并逐一读回。“评审”为独立评审人准备提示词；“复现”把重建结果与已发布版本比对。",
       "members": [
         "packaging",
         "verification",
