@@ -1,7 +1,7 @@
 # OpenAI Responses Proxy: term renderings
 
 The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `openai-responses-proxy` at v6.0.1 (`6c4ff8b`) that defines or uses the term. Commands, fields,
+names the file of `openai-responses-proxy` at v6.0.3 (`6d1b384`) that defines or uses the term. Commands, fields,
 status values, HTTP status codes and file names stay in Latin type.
 
 | English                                                                     | 中文                                                                             | Source                                                                |

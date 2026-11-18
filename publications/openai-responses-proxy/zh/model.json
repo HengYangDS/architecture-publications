@@ -6,7 +6,7 @@
   "title": "OpenAI Responses Proxy",
   "question": "OpenAI Responses Proxy 如何让一轮 Codex Responses 对话能在第三方提供商之间迁移？又如何安装自己的监听器，并让它持续运行？",
   "summary": "回环监听器按一套只认已知结构的封闭语法重建每个 Responses 请求，并设 store=false；请求发往路径所指的提供商，全程受同一个总时限约束，只有失败类别允许时才重试。已签名的发布版本由一个事务完成安装，全程写入事务日志，成为不可变的一代；升级时，监听套接字交给新进程；监听器一旦停止，系统服务管理器托管的看门狗就会重启它。",
-  "scope": "v6.0.1 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
+  "scope": "v6.0.3 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
   "limits": [
     "每个组件负责其声明中列出的文件；关系所引用的，是导入或调用另一组件的文件。",
     "关系代表承载行为的导入、进程调用，或对另一组件对象的调用（对象由调用方传入）；仅为异常类、类型、共用辅助函数或产品名称而做的导入，图中不画。",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "openai-responses-proxy",
     "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
-    "revision": "6c4ff8bb30217bae495ba66aa63791e31bf4f9b6",
+    "revision": "6d1b384f9037454b667ef26ec366d8fcfec1e81c",
     "browse": "https://github.com/HengYangDS/openai-responses-proxy/blob/{revision}/{path}"
   },
   "coverage": {
@@ -355,7 +355,8 @@
       "kind": "coordinator",
       "details": {
         "移交": "监听套接字，交给后继进程",
-        "步骤": "PREPARE、READY、COMMIT、SERVING、FINALIZE，或中止并恢复服务"
+        "步骤": "PREPARE、READY、COMMIT、SERVING、FINALIZE，或中止并恢复服务",
+        "开始": "接受连接后，只在请求自带的超时之内开始交接；逾时的请求以 HTTP 408 拒绝"
       },
       "files": [
         "src/openai_responses_proxy/serving/handoff/transaction.py",
@@ -421,8 +422,9 @@
       "label": "生命周期命令",
       "kind": "coordinator",
       "details": {
-        "读取": "载荷、服务、监听器及现有事务的状态",
+        "读取": "选定的一代的载荷，以及服务、监听器和现有事务的状态",
         "变更": "install、reload、rollback、recover 和 uninstall，持锁逐一执行",
+        "卸载": "先读取各代载荷；generations/ 目录无效时，在移除服务之前就拒绝",
         "工具来源": "ssh-keygen 和系统服务管理器的工具只取自固定的系统目录，不查 PATH"
       },
       "files": [
@@ -448,7 +450,7 @@
       "kind": "state",
       "details": {
         "事务日志": "已准备、已落盘、已激活，最后是已完结或已回滚",
-        "恢复": "依据事务日志和运行中的监听器，恢复中断的事务"
+        "恢复": "依据事务日志和运行中的监听器，恢复中断的事务；交接请求可能尚未处理时，先等 121 秒"
       },
       "files": [
         "src/openai_responses_proxy/lifecycle/transaction/execution.py",
@@ -477,7 +479,7 @@
       "label": "代选择器",
       "kind": "state",
       "details": {
-        "选定": "当前的不可变代，以及至多一个前代",
+        "选定": "当前的不可变代，以及至多一个前代；已安装的载荷只经它指明的代读取",
         "退役": "其余各代，按记录下的字节移除"
       },
       "files": [
@@ -492,7 +494,8 @@
       "details": {
         "方式": "替换运行中的监听器只走交接，准入全程开放",
         "拒绝": "未同时声明两项交接能力的运行时，在做任何改动之前",
-        "回滚": "在后继进程 COMMIT 之前就失败的交接；先由 /healthz 确认旧监听器仍在服务，且与交接开始时记下的一致",
+        "回滚": "在后继进程 COMMIT 之前就失败的交接；先由 /healthz 确认旧监听器仍在服务、与交接开始时记下的一致，并有证据表明这次请求的交接不会再开始",
+        "等待": "请求没等到监听器的应答就结束时，等满请求自带的超时再加一秒，之后才还原",
         "身份": "事务完结前，先核实后继进程的身份"
       },
       "files": [
@@ -506,7 +509,7 @@
       "kind": "supervisor",
       "details": {
         "注册": "launchd Agent、systemd 用户单元或计划任务之一",
-        "停止": "只停可执行文件和私有角色都经它核实的进程"
+        "停止": "只停可执行文件和私有角色都经它核实的进程；卸载时，在 Linux 和 Windows 上结束 generations/ 中每一代的看门狗"
       },
       "files": [
         "src/openai_responses_proxy/lifecycle/supervision/native_service.py",

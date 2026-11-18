@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
       "provider": "github",
-      "revision": "6c4ff8bb30217bae495ba66aa63791e31bf4f9b6"
+      "revision": "6d1b384f9037454b667ef26ec366d8fcfec1e81c"
     }
   },
   "layout": {
@@ -90,8 +90,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/generation.py",
-          "line": 132,
-          "end_line": 155,
+          "line": 140,
+          "end_line": 163,
           "label": "选定"
         }
       ]
@@ -174,8 +174,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/supervision/macos.py",
-          "line": 48,
-          "end_line": 50,
+          "line": 49,
+          "end_line": 51,
           "label": "plist 路径"
         }
       ]

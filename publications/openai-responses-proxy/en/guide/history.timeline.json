@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
       "provider": "github",
-      "revision": "6c4ff8bb30217bae495ba66aa63791e31bf4f9b6"
+      "revision": "6d1b384f9037454b667ef26ec366d8fcfec1e81c"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 2063,
-          "end_line": 2069,
+          "line": 2146,
+          "end_line": 2152,
           "label": "1.0.0"
         }
       ]
@@ -57,8 +57,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1935,
-          "end_line": 1980,
+          "line": 2018,
+          "end_line": 2063,
           "label": "1.0.12"
         }
       ]
@@ -72,8 +72,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1552,
-          "end_line": 1563,
+          "line": 1635,
+          "end_line": 1646,
           "label": "1.0.43"
         }
       ]
@@ -88,8 +88,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1458,
-          "end_line": 1524,
+          "line": 1541,
+          "end_line": 1607,
           "label": "2.0.2"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 692,
-          "end_line": 699,
+          "line": 775,
+          "end_line": 782,
           "label": "3.1.16"
         }
       ]
@@ -119,8 +119,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 659,
-          "end_line": 682,
+          "line": 742,
+          "end_line": 765,
           "label": "4.0.0"
         }
       ]
@@ -135,8 +135,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 558,
-          "end_line": 575,
+          "line": 641,
+          "end_line": 658,
           "label": "5.0.0"
         }
       ]
@@ -151,8 +151,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 495,
-          "end_line": 531,
+          "line": 578,
+          "end_line": 614,
           "label": "5.0.3"
         }
       ]
@@ -167,8 +167,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 332,
-          "end_line": 438,
+          "line": 415,
+          "end_line": 521,
           "label": "5.1.0"
         }
       ]
@@ -183,8 +183,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 286,
-          "end_line": 308,
+          "line": 369,
+          "end_line": 391,
           "label": "5.1.3"
         }
       ]
@@ -199,8 +199,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 231,
-          "end_line": 254,
+          "line": 314,
+          "end_line": 337,
           "label": "5.1.7"
         }
       ]
@@ -214,8 +214,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 163,
-          "end_line": 184,
+          "line": 246,
+          "end_line": 267,
           "label": "5.1.10"
         }
       ]
@@ -229,8 +229,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 129,
-          "end_line": 161,
+          "line": 212,
+          "end_line": 244,
           "label": "5.1.11"
         }
       ]
@@ -244,8 +244,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 107,
-          "end_line": 127,
+          "line": 190,
+          "end_line": 210,
           "label": "5.1.12"
         }
       ]
@@ -260,8 +260,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 51,
-          "end_line": 105,
+          "line": 134,
+          "end_line": 188,
           "label": "6.0.0"
         }
       ]
@@ -275,9 +275,39 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 11,
-          "end_line": 49,
+          "line": 94,
+          "end_line": 132,
           "label": "6.0.1"
+        }
+      ]
+    },
+    {
+      "id": "v602",
+      "at": "2026-11-17T10:05:00+08:00",
+      "lane": "lifecycle",
+      "title": "v6.0.2 An unanswered handoff request is waited out",
+      "detail": "A handoff request that ended without the listener's answer had been rolled back at once, while the listener could still begin the handoff. An upgrade or a rollback now waits for the request's timeout and one second, 31 seconds by default, and restores only if no handoff has begun. A listener refuses a request that it would begin after that timeout, with HTTP 408. recover waits 121 seconds before it restores an interrupted upgrade or rollback whose previous release still serves.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 41,
+          "end_line": 92,
+          "label": "6.0.2"
+        }
+      ]
+    },
+    {
+      "id": "v603",
+      "at": "2026-11-17T23:00:42+08:00",
+      "lane": "lifecycle",
+      "title": "v6.0.3 An installation is read only through its selected generation",
+      "detail": "An installed payload is read only through the generation the selector names, and payload files at the data root's own level are not the product's. Without a selected generation, status reports that no payload generation is selected, where it had reported an unavailable manifest. uninstall reads the payload generations before it removes the native service, so an invalid generations/ directory is refused before anything is removed. uninstall --purge of a data root without a generation that the product owns fails and preserves its content.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 11,
+          "end_line": 39,
+          "label": "6.0.3"
         }
       ]
     }

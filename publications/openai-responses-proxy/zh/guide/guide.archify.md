@@ -7,7 +7,7 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 - [升级期间继续放行每轮请求](block:p-handoff)：新进程继承监听套接字，旧进程做完已接受的请求。[](source:readme-handoff)
 - [每个安装步骤都记入事务日志](block:p-install)，因此 `recover` 能完成或撤销中断的安装。[](source:arch-completion)
 
-@answer scope="OpenAI Responses Proxy v6.0.1 · 提交 6c4ff8b · 源代码与项目自有文档"
+@answer scope="OpenAI Responses Proxy v6.0.3 · 提交 6d1b384 · 源代码与项目自有文档"
 @meta locale=zh-CN style=editorial
 @source readme-what title="代理是什么" path="README.md" lines=3:7
 @source readme-portable title="不改动会话存储" path="README.md" lines=12:13
@@ -45,7 +45,7 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 @source dr2-consequence title="DR-0002：连续性来自重放的对话" path="docs/decisions/dr-0002-provider-portable-stateless-replay.md" lines=68:77
 @source dr3-decision title="DR-0003：以提供商为界的恢复" path="docs/decisions/dr-0003-provider-scoped-recovery-and-backpressure.md" lines=22:35
 @source dr6-resend title="DR-0006：已发出的请求不再发送" path="docs/decisions/dr-0006-semantic-fit-before-framework-adoption.md" lines=200:228
-@source code-route title="路由分派" path="src/openai_responses_proxy/serving/server.py" lines=159:171
+@source code-route title="路由分派" path="src/openai_responses_proxy/serving/server.py" lines=176:193
 @source code-body title="按长度读取单个请求体" path="src/openai_responses_proxy/relay/responses.py" lines=126:144
 @source code-project title="投影与委派" path="src/openai_responses_proxy/relay/responses.py" lines=250:289
 @source code-gate title="先冷却，再准入" path="src/openai_responses_proxy/relay/responses.py" lines=314:340
@@ -72,39 +72,49 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 @source code-plaintext title="选用明文委派" path="src/openai_responses_proxy/protocol/agent_delivery.py" lines=111:129
 @source code-signature title="验证签名" path="src/openai_responses_proxy/lifecycle/artifact.py" lines=295:333
 @source code-artifact title="归档包的准入" path="src/openai_responses_proxy/lifecycle/artifact.py" lines=223:292
-@source code-begin title="开始事务" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=391:468
-@source code-downgrade title="拒绝降级与重装" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=414:419
-@source code-materialize title="候选落盘" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=139:199
-@source code-activate title="激活候选" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=201:236
+@source code-begin title="开始事务" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=393:470
+@source code-downgrade title="拒绝降级与重装" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=416:421
+@source code-materialize title="候选落盘" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=140:201
+@source code-activate title="激活候选" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=203:238
 @source code-finalize title="完结安装" path="src/openai_responses_proxy/lifecycle/transaction/completion.py" lines=44:65
-@source code-rollback title="回滚" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=255:271
-@source code-recover title="依据事务日志恢复" path="src/openai_responses_proxy/lifecycle/transaction/recovery.py" lines=25:109
-@source code-close title="关闭未写入的事务" path="src/openai_responses_proxy/lifecycle/transaction/recovery.py" lines=112:119
+@source code-rollback title="回滚" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=257:273
+@source code-recover title="依据事务日志恢复" path="src/openai_responses_proxy/lifecycle/transaction/recovery.py" lines=25:157
+@source code-close title="关闭未写入的事务" path="src/openai_responses_proxy/lifecycle/transaction/recovery.py" lines=160:167
+@source code-recover-wait title="还原之前的等待" path="src/openai_responses_proxy/lifecycle/control.py" lines=442:488
 @source code-strategy title="两项交接能力" path="src/openai_responses_proxy/lifecycle/deployment/strategy.py" lines=49:59
-@source code-incompatible title="拒绝不兼容的运行时" path="src/openai_responses_proxy/lifecycle/deployment/apply.py" lines=110:113
-@source code-lease title="旧监听器的租约" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=81:87
-@source code-request title="请求交接" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=223:283
-@source code-finalized title="证明后继进程已完结" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=338:351
-@source code-failed-handoff title="交接失败后回滚" path="src/openai_responses_proxy/lifecycle/deployment/apply.py" lines=268:286
-@source code-predecessor title="证明旧监听器仍在服务" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=202:220
-@source code-disk-match title="只认选定的载荷" path="src/openai_responses_proxy/serving/control.py" lines=120:133
+@source code-incompatible title="拒绝不兼容的运行时" path="src/openai_responses_proxy/lifecycle/deployment/apply.py" lines=117:120
+@source code-lease title="旧监听器的租约" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=125:133
+@source code-request title="请求交接" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=395:490
+@source code-finalized title="证明后继进程已完结" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=561:574
+@source code-failed-handoff title="交接失败后回滚" path="src/openai_responses_proxy/lifecycle/deployment/apply.py" lines=278:296
+@source code-predecessor title="证明旧监听器仍在服务" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=375:392
+@source code-wait-at-rest title="请求没有应答时的等待" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=250:277
+@source code-resolve title="为失败的请求判定结果" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=493:558
+@source code-disk-match title="只认选定的载荷" path="src/openai_responses_proxy/serving/control.py" lines=137:150
+@source code-expired title="拒绝过期的交接请求" path="src/openai_responses_proxy/serving/control.py" lines=76:82
 @source code-spawn title="传递套接字" path="src/openai_responses_proxy/serving/handoff/protocol.py" lines=235:284
-@source code-prepare title="准备后继进程" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=252:306
-@source code-commit title="越过 COMMIT" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=317:353
-@source code-old-finishes title="旧监听器收尾" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=380:411
-@source code-child title="后继进程一侧" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=463:521
+@source code-prepare title="准备后继进程" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=256:324
+@source code-commit title="越过 COMMIT" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=335:371
+@source code-old-finishes title="旧监听器收尾" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=398:429
+@source code-child title="后继进程一侧" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=481:539
 @source code-local title="只接受本地发来的控制请求" path="src/openai_responses_proxy/relay/admission.py" lines=96:106
-@source code-selector title="读取选择器" path="src/openai_responses_proxy/serving/identity.py" lines=111:134
+@source code-selector title="读取选择器" path="src/openai_responses_proxy/serving/identity.py" lines=112:135
+@source code-selected title="选定的一代" path="src/openai_responses_proxy/lifecycle/generation.py" lines=75:80
+@source code-no-selection title="未选定任何一代时的 status" path="src/openai_responses_proxy/lifecycle/control.py" lines=240:247
 @source code-journal-paths title="数据根目录旁的事务日志" path="src/openai_responses_proxy/lifecycle/records.py" lines=26:38
 @source code-command-path title="命令路径" path="src/openai_responses_proxy/lifecycle/command.py" lines=37:51
-@source code-plist title="launchd Agent" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=124:137
-@source code-domains title="GUI 登录域或 Background 域" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=65:86
-@source code-unit title="systemd 用户单元" path="src/openai_responses_proxy/lifecycle/supervision/linux.py" lines=19:33
-@source code-task title="计划任务" path="src/openai_responses_proxy/lifecycle/supervision/windows.py" lines=47:87
+@source code-uninstall title="卸载的先后顺序" path="src/openai_responses_proxy/lifecycle/uninstall.py" lines=129:139
+@source code-purge title="清除以自有的代为前提" path="src/openai_responses_proxy/lifecycle/transaction/completion.py" lines=228:241
+@source code-watchdogs-linux title="Linux 上结束每一代的看门狗" path="src/openai_responses_proxy/lifecycle/supervision/linux.py" lines=197:207
+@source code-watchdogs-windows title="Windows 上结束每一代的看门狗" path="src/openai_responses_proxy/lifecycle/supervision/windows.py" lines=254:261
+@source code-plist title="launchd Agent" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=125:138
+@source code-domains title="GUI 登录域或 Background 域" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=66:87
+@source code-unit title="systemd 用户单元" path="src/openai_responses_proxy/lifecycle/supervision/linux.py" lines=21:35
+@source code-task title="计划任务" path="src/openai_responses_proxy/lifecycle/supervision/windows.py" lines=49:89
 @source code-roots title="数据根目录与状态根目录" path="src/openai_responses_proxy/runtime/config.py" lines=160:189
-@source code-watchdog title="看门狗循环" path="src/openai_responses_proxy/lifecycle/supervision/watchdog.py" lines=103:138
-@source code-activate-carrier title="每个角色加载自己的运行配置" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=148:155
-@source code-carrier-schema title="运行配置必须字段齐全" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=158:169
+@source code-watchdog title="看门狗循环" path="src/openai_responses_proxy/lifecycle/supervision/watchdog.py" lines=104:142
+@source code-activate-carrier title="每个角色加载自己的运行配置" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=153:160
+@source code-carrier-schema title="运行配置必须字段齐全" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=163:174
 @source code-status-next title="每种状态一条下一步命令" path="src/openai_responses_proxy/cli/outcome.py" lines=37:43
 @source code-lock title="唯一的生命周期写入者" path="src/openai_responses_proxy/cli/application.py" lines=67:86
 @source code-options title="端口与时限选项接受的取值" path="src/openai_responses_proxy/cli/options.py" lines=32:73
@@ -112,13 +122,15 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 @source readme-budgets title="全新安装可另选的上限" path="README.md" lines=342:358
 @source code-defaults title="运行时默认值" path="src/openai_responses_proxy/runtime/config.py" lines=70:86
 @source code-platforms title="发布平台" path="src/openai_responses_proxy/product_identity.py" lines=13:18
-@source changelog-100 title="1.0.0 版" path="CHANGELOG.md" lines=2063:2069
-@source changelog-202 title="2.0.2 改名" path="CHANGELOG.md" lines=1458:1468
-@source changelog-500 title="5.0.0 改名" path="CHANGELOG.md" lines=558:565
-@source changelog-5111 title="5.1.11 版" path="CHANGELOG.md" lines=129:142
-@source changelog-5112 title="5.1.12 版" path="CHANGELOG.md" lines=107:127
-@source changelog-600 title="6.0.0 版" path="CHANGELOG.md" lines=51:105
-@source changelog-601 title="6.0.1 版" path="CHANGELOG.md" lines=11:49
+@source changelog-100 title="1.0.0 版" path="CHANGELOG.md" lines=2146:2152
+@source changelog-202 title="2.0.2 改名" path="CHANGELOG.md" lines=1541:1551
+@source changelog-500 title="5.0.0 改名" path="CHANGELOG.md" lines=641:648
+@source changelog-5111 title="5.1.11 版" path="CHANGELOG.md" lines=212:225
+@source changelog-5112 title="5.1.12 版" path="CHANGELOG.md" lines=190:210
+@source changelog-600 title="6.0.0 版" path="CHANGELOG.md" lines=134:188
+@source changelog-601 title="6.0.1 版" path="CHANGELOG.md" lines=94:132
+@source changelog-602 title="6.0.2 版" path="CHANGELOG.md" lines=41:92
+@source changelog-603 title="6.0.3 版" path="CHANGELOG.md" lines=11:39
 
 ## 谁通过代理发送流量，代理又把哪些事留给别人？ {#p-context}
 
@@ -244,7 +256,7 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 | step-tx-materialized | 已落盘 | 候选写成新的不可变代，按自身清单验证，并预热它自己的可执行文件。[](source:code-materialize) | tx-life | tx-materialized |
 | step-tx-activated | 已激活 | 选择器经一次原子写入，把候选定为当前代，把原来的一代定为前代；命令链接随之切换。[](source:code-activate)[](source:readme-generations) | tx-life | tx-activated |
 | step-tx-finalized | 已完结 | 只有监听器报告了候选的身份，事务才算完结。更早的各代随后按记录下的字节移除。[](source:code-finalize)[](source:arch-selector) | tx-life | tx-finalized |
-| step-tx-recovery | 需要恢复 | 事务日志保留；`recover` 读取运行中监听器的身份，据此完成或还原。[](source:code-recover)[](source:arch-completion) | tx-life | tx-recovery |
+| step-tx-recovery | 需要恢复 | 事务日志保留；`recover` 读取运行中监听器的身份，据此完成或还原。已激活的升级或回滚，若此前的发布版本仍在服务，`recover` 先等 121 秒，再读一次健康状态，然后才还原。[](source:code-recover)[](source:code-recover-wait)[](source:arch-completion)[](source:changelog-602) | tx-life | tx-recovery |
 | step-tx-rolled-back | 已回滚 | 先前的选择和命令链接恢复原样，只删除候选中已记录的文件。[](source:code-rollback)[](source:arch-deletion) | tx-life | tx-rolled-back |
 | step-tx-closed | 已关闭 | 未写入任何内容的事务直接关闭，不产生其他影响。[](source:code-close) | tx-life | tx-closed |
 
@@ -278,13 +290,15 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 | ho-new | ho-deploy | 已完结的身份 | return |
 
 @steps id=handoff-steps
-| step-ho-request | 部署 | 以 POST 发送发布版本和各项摘要。请求若与磁盘上选定的载荷不符，监听器即拒绝。[](source:code-disk-match)[](source:code-local) | handoff-flow | ho-deploy | | ho-deploy-to-ho-old-1,ho-old-to-ho-deploy-1 |
+| step-ho-request | 部署 | 以 POST 发送发布版本和各项摘要。请求若与磁盘上选定的载荷不符，监听器即拒绝。监听器接受连接后，只在请求自带的超时之内开始交接；逾时的请求以 HTTP 408 拒绝。[](source:code-disk-match)[](source:code-local)[](source:code-prepare)[](source:code-expired) | handoff-flow | ho-deploy | | ho-deploy-to-ho-old-1,ho-old-to-ho-deploy-1 |
 | step-ho-prepare | 后继进程 | 从选定的一代启动，继承套接字，并在服务之前回显身份。[](source:code-spawn)[](source:code-prepare) | handoff-flow | ho-new | | ho-old-to-ho-new-1,ho-new-to-ho-old-1 |
 | step-ho-commit | 运行中的监听器 | 到 COMMIT 时，它停止接受连接；后继进程开始服务，并在 FINALIZE 之前通过 /healthz 证明自己的身份。[](source:code-commit)[](source:code-child) | handoff-flow | ho-old | | ho-old-to-ho-new-2,ho-new-to-ho-old-2,ho-old-to-ho-new-3,ho-new-to-ho-old-3 |
 | step-ho-finish | 运行中的监听器 | 已接受的各轮请求留在旧进程上，直到结束或达到上游超时，至多 900 秒。[](source:code-old-finishes)[](source:code-lease) | handoff-flow | ho-old | | ho-client-to-ho-new-1,ho-old-to-ho-client-1 |
 | step-ho-prove | 部署 | 只有旧进程已退出，且后继进程报告已完结的身份，部署才完结。[](source:code-finalized)[](source:code-request) | handoff-flow | ho-deploy | | ho-deploy-to-ho-new-1,ho-new-to-ho-deploy-1 |
 
-交接若在后继进程越过 COMMIT 之前失败，就会回滚。回滚之前，部署先从 /healthz 读到：旧监听器与交接开始时记下的一致，仍在接受请求，也没有交接在进行。健康信息若证明不了这一点，升级或回滚的事务就不结束，留给 `recover` 处理。[](source:code-failed-handoff)[](source:code-predecessor)[](source:changelog-600)
+交接若在后继进程越过 COMMIT 之前失败，就会回滚。回滚之前，部署先从 /healthz 读到：旧监听器与交接开始时记下的一致，仍在接受请求，也没有交接在进行。部署还要有证据表明，这次请求的交接不会再开始。这些若得不到证明，升级或回滚的事务就不结束，留给 `recover` 处理。[](source:code-failed-handoff)[](source:code-predecessor)[](source:changelog-600)[](source:changelog-602)
+
+请求若没等到监听器应答就结束，部署不立即回滚，因为监听器仍可能开始交接。部署第一次读到监听器没有交接在进行，就从这时起等满请求自带的超时再加一秒，默认共 31 秒。届时仍没有交接，升级或回滚才还原此前的发布版本。这期间开始的交接，部署一直跟到结束。[](source:code-wait-at-rest)[](source:code-resolve)[](source:changelog-602)
 
 @callout level=warning title="未同时声明两项交接能力的运行时会被拒绝"
 | 运行时若没有同时声明两项交接能力，`install`、`rollback` 和 `reload` 在做任何改动之前就拒绝。5.0.0 起的每个发布版本都声明了这两项能力。更旧的运行时要先用它自己的版本卸载，再安装本版本。[](source:code-strategy)[](source:code-incompatible)[](source:readme-handoff)[](source:changelog-600) |
@@ -296,17 +310,19 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 @diagram tree id=disk-tree source=disk.tree.json
 
 @steps id=disk-steps
-| step-dk-selector | payload-selection.json | 当前代及其唯一前代的权威来源，仅此一份；监听器和生命周期命令都读取它。[](source:code-selector) | disk-tree | dk-selector |
+| step-dk-selector | payload-selection.json | 当前代及其唯一前代的权威来源，仅此一份；监听器和生命周期命令都读取它。已安装的载荷只经它指明的那一代读取。数据根目录这一层的载荷文件不属于本产品。[](source:code-selector)[](source:code-selected)[](source:changelog-603) | disk-tree | dk-selector |
 | step-dk-generations | generations/ | 每次安装写入一个新目录；升级成功后，恰好保留一个前代。[](source:readme-generations) | disk-tree | dk-generations |
 | step-dk-transaction | 事务日志 | 只在事务尚未结束时存在，位于数据根目录旁，处在它可能删除的文件之外。[](source:code-journal-paths) | disk-tree | dk-transaction |
 | step-dk-command | 命令链接 | 一个符号链接（Windows 上是启动器），指向选定的最新发布版本，因此服务回滚不会让命令降级。[](source:code-command-path)[](source:readme-generations) | disk-tree | dk-command |
 | step-dk-agent | launchd Agent | 以看门狗角色运行可执行文件，并设置 RunAtLoad 和 KeepAlive。[](source:code-plist) | disk-tree | dk-agent |
 
-`uninstall --purge` 先记下每个载荷文件的路径和摘要，再只删除记下的这些文件。未知内容保留，并会报告。[](source:readme-purge)
+`uninstall` 先读取各代载荷，再移除注册到系统的服务。因此 `generations/` 目录若无效，它在移除任何东西之前就拒绝。在 Linux 和 Windows 上，它还结束该目录中每一代的看门狗。[](source:code-uninstall)[](source:code-watchdogs-linux)[](source:code-watchdogs-windows)[](source:changelog-603)
+
+`uninstall --purge` 先记下每个载荷文件的路径和摘要，再只删除记下的这些文件。未知内容保留，并会报告。[](source:readme-purge)数据根目录中若没有本产品自有的代，清除就失败，目录里的内容原样保留。[](source:code-purge)[](source:changelog-603)
 
 ## 这个代理怎样走到今天？ {#p-history}
 
-代理在 2026 年 7 月发布 1.0.0，11 月发布 6.0.1，其间两次改名。[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-601)下面列出其中十六个版本，它们改变了客户端或运维方遇到的行为。
+代理在 2026 年 7 月发布 1.0.0，11 月发布 6.0.3，其间两次改名。[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-603)下面列出其中十八个版本，它们改变了客户端或运维方遇到的行为。
 
 @diagram timeline id=history source=history.timeline.json title="这个代理怎样走到今天"
 
@@ -336,7 +352,7 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 | `invalid`           | 安装留下的证据无法验证                             | `status --json`  |
 | `not_installed`     | 不存在自有的服务、监听器、命令、载荷或事务         | `install --help` |
 
-每个结果至多给出一条下一步命令。[](source:code-status-next)[](source:readme-status)
+每个结果至多给出一条下一步命令。[](source:code-status-next)[](source:readme-status)未选定任何一代时，`status` 报告 `payload_integrity` 的 `ok` 为 false，`detail` 为 `no payload generation is selected`。[](source:code-no-selection)[](source:changelog-603)
 
 `status --json` 还报告可靠性计数器和已归类的失败，都不含凭据。[](source:readme-evidence)上游以顶层 `error` 事件结束的流，失败类别是 `stream_error`。[](source:code-stream-class)[](source:changelog-5112)
 

@@ -6,7 +6,7 @@
   "title": "OpenAI Responses Proxy",
   "question": "How does OpenAI Responses Proxy make a Codex Responses turn portable across third-party providers, and how does it install and keep its own listener running?",
   "summary": "A loopback listener rebuilds each Responses request in one closed grammar with store=false, sends it to the provider its path names within one total deadline, and retries only what the failure class allows. A signed release installs through one journaled transaction as an immutable generation; an upgrade hands the listening socket to the new process, and a watchdog under the native service manager restarts a stopped listener.",
-  "scope": "The OpenAI Responses Proxy product as released at v6.0.1: the openai_responses_proxy package with its provider manifest, pyproject.toml and VERSION.",
+  "scope": "The OpenAI Responses Proxy product as released at v6.0.3: the openai_responses_proxy package with its provider manifest, pyproject.toml and VERSION.",
   "limits": [
     "Each component owns the files its claims name; a relation cites the files that import or call the other component.",
     "A relation stands for an import, a call on an object of the other component that the caller hands over, or a process call that carries behaviour; imports used only for an exception class, a type, a shared helper or the product's names are not drawn.",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "openai-responses-proxy",
     "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
-    "revision": "6c4ff8bb30217bae495ba66aa63791e31bf4f9b6",
+    "revision": "6d1b384f9037454b667ef26ec366d8fcfec1e81c",
     "browse": "https://github.com/HengYangDS/openai-responses-proxy/blob/{revision}/{path}"
   },
   "coverage": {
@@ -355,7 +355,8 @@
       "kind": "coordinator",
       "details": {
         "passes": "the listening socket to a successor process",
-        "steps": "PREPARE, READY, COMMIT, SERVING, FINALIZE, or abort and resume"
+        "steps": "PREPARE, READY, COMMIT, SERVING, FINALIZE, or abort and resume",
+        "begins": "only within the request's timeout of accepting its connection; a later request gets HTTP 408"
       },
       "files": [
         "src/openai_responses_proxy/serving/handoff/transaction.py",
@@ -421,8 +422,9 @@
       "label": "Lifecycle commands",
       "kind": "coordinator",
       "details": {
-        "reads": "status from the payload, the service, the listener and any transaction",
+        "reads": "status from the selected generation's payload, the service, the listener and any transaction",
         "changes": "install, reload, rollback, recover and uninstall, one at a time under a lock",
+        "uninstalls": "after it has read the payload generations; an invalid generations/ directory is refused before the service is removed",
         "resolves": "ssh-keygen and the service-manager tools from fixed system directories, never PATH"
       },
       "files": [
@@ -448,7 +450,7 @@
       "kind": "state",
       "details": {
         "journals": "prepared, materialized, activated, then finalized or rolled back",
-        "recovers": "an interrupted transaction from its journal and the running listener"
+        "recovers": "an interrupted transaction from its journal and the running listener, after a wait of 121 s where a handoff request may still be pending"
       },
       "files": [
         "src/openai_responses_proxy/lifecycle/transaction/execution.py",
@@ -477,7 +479,7 @@
       "label": "Generation selector",
       "kind": "state",
       "details": {
-        "selects": "the active immutable generation and at most one predecessor",
+        "selects": "the active immutable generation and at most one predecessor; an installed payload is read only through a generation it names",
         "retires": "every other generation by its recorded bytes"
       },
       "files": [
@@ -492,7 +494,8 @@
       "details": {
         "replaces": "a running listener only by handoff, which keeps admission open",
         "refuses": "a runtime that does not advertise both handoff capabilities, before any change",
-        "rolls back": "a handoff that failed before its successor committed, once /healthz shows the predecessor serving as captured",
+        "rolls back": "a handoff that failed before its successor committed, once /healthz shows the predecessor serving as captured and evidence shows that no handoff of the request is to come",
+        "waits out": "a request that ended without the listener's answer, for its timeout and one second, before it restores",
         "proves": "the successor's identity before the transaction finalizes"
       },
       "files": [
@@ -506,7 +509,7 @@
       "kind": "supervisor",
       "details": {
         "registers": "a launchd agent, a systemd user unit or a scheduled task",
-        "stops": "only processes whose executable and private role it proves"
+        "stops": "only processes whose executable and private role it proves; at uninstall, on Linux and Windows, the watchdogs of every generation in generations/"
       },
       "files": [
         "src/openai_responses_proxy/lifecycle/supervision/native_service.py",
