@@ -45,8 +45,8 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 - The repository's checks run on ETHOS 0.2.0-beta.10.
 - The repository's tools run on Node 26.13.1, a security release, and its format check on Prettier
   3.10.1.
-- OpenAI Responses Proxy is pinned at v6.0.1, Architecture Publisher at
-  v0.14.0, Film Kit at v0.22.3, ETHOS at v0.2.0-beta.10 and AIGW at v0.8.1.
+- OpenAI Responses Proxy is pinned at v6.0.3, Architecture Publisher at
+  v0.14.0, Film Kit at v0.23.1, ETHOS at v0.2.0-beta.10 and AIGW at v0.8.1.
   Building the works needs Architecture Publisher 0.10.2 or later. The
   Architecture Publisher work lists the `skill` command, describes strips,
   palettes, age bands and the sealed acceptance of an edition, and claims
@@ -75,6 +75,13 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   At v0.8.1 the AIGW work says that a command asks the credential store once about a provider's Token and once
   about its balance credentials, and again only after it stores or removes that credential; its history ends at
   0.8.1, whose `aigw use` says that an entered Token was not kept when its selection fails.
+  At v6.0.3 the Responses proxy work says that a handoff request that ends without the listener's answer is waited
+  out before the previous release is restored, that an installed payload is read only through the generation the
+  selector names, and that `uninstall` reads the payload generations before it removes the native service; its
+  history ends at the release. At v0.23.1 the Film Kit work describes the detail audit, an uncaptioned picture
+  derived from the captioned one and the qualification of the renderer for it, the records `preflight` asks for
+  and its readiness receipt, the duration records, a narration's processes and the delivery folder a film names;
+  it claims the fifteen files new in its scope, two of them as new parts, and its history ends at the release.
 - The ETHOS work claims the application layer and the operation catalog. The
   AIGW work uses the client's new vocabulary: it no longer has a renaming
   component, and its catalog, readiness, configuration and rollout panels follow
