@@ -46,7 +46,7 @@
       "lane": "plan-lane-admit",
       "col": 0,
       "type": "external",
-      "label": "正式变更、事实、核验记录",
+      "label": "正式变更、事实、存证",
       "sources": [
         {
           "path": "docs/architecture/transition-plan.md",
@@ -106,13 +106,13 @@
       "lane": "plan-lane-admit",
       "col": 4,
       "type": "database",
-      "label": "观察并写下核验记录",
+      "label": "观察并留下存证",
       "sources": [
         {
           "path": "docs/architecture/transition-plan.md",
           "line": 49,
           "end_line": 50,
-          "label": "写下核验记录"
+          "label": "留下存证"
         }
       ]
     },

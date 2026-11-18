@@ -128,7 +128,7 @@
       "id": "run-waits",
       "from": "run-watchdog",
       "to": "run-journal",
-      "label": "未结时等待",
+      "label": "尚未结束时等待",
       "variant": "dashed"
     },
     {

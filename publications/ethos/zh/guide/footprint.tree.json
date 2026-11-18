@@ -14,7 +14,7 @@
     },
     {
       "id": "fp-checkout",
-      "label": "你的检出（受版本管理）",
+      "label": "你的检出目录（受版本管理）",
       "parent": "fp-root"
     },
     {

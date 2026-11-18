@@ -157,7 +157,7 @@ owner-approved shared renderings.
 | temporary clone                                             | 临时克隆                                         | `src/map/guide.mjs`                                                              |
 | tracked file; Git object store                              | 已跟踪文件; Git 对象库                           | `src/sources/scope.mjs`, `src/sources/git.mjs`                                   |
 | house rule                                                  | 版式规则                                         | `src/overview/lint.mjs`                                                          |
-| lock (the edition's, as a lockfile)                         | 锁                                               | `docs/reference/model.md`                                                        |
+| lock (the edition's, as a lockfile)                         | 锁文件                                           | `docs/reference/model.md`                                                        |
 | shifted, moved, touched, gone (a cited range)               | 偏移, 移动, 触及, 消失                           | `src/sources/worklist.mjs`                                                       |
 | rasterizer (deleted at this pin)                            | 栅格化器                                         | this work's `guide/guide.archify.md`                                             |
 | details, status (of a component)                            | 详情, 状态                                       | `docs/reference/operations.md`                                                   |

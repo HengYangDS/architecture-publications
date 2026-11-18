@@ -59,7 +59,7 @@
     {
       "id": "ex-committed",
       "type": "success",
-      "label": "已提交",
+      "label": "响应已提交",
       "sublabel": "事件已投递",
       "sources": [
         {

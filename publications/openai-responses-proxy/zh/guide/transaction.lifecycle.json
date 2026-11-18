@@ -60,7 +60,7 @@
       "id": "tx-finalized",
       "type": "success",
       "label": "已完结",
-      "sublabel": "监听器已证明",
+      "sublabel": "监听器已核实",
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/transaction/completion.py",
@@ -130,7 +130,7 @@
       "id": "tx-t-finalize",
       "from": "tx-activated",
       "to": "tx-finalized",
-      "label": "证明"
+      "label": "核实"
     },
     {
       "id": "tx-t-close",
@@ -157,7 +157,7 @@
       "id": "tx-t-recover-forward",
       "from": "tx-recovery",
       "to": "tx-finalized",
-      "label": "服务",
+      "label": "已在服务",
       "variant": "dashed"
     },
     {

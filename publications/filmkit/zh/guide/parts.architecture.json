@@ -65,7 +65,7 @@
       "id": "part-sound",
       "type": "backend",
       "label": "音轨拼接",
-      "sublabel": "停顿、调平、字幕",
+      "sublabel": "停顿、响度匹配、字幕",
       "pos": [280, 190],
       "size": [180, 64],
       "sources": [
@@ -81,7 +81,7 @@
       "id": "part-gate",
       "type": "security",
       "label": "画面门禁",
-      "sublabel": "审查、门禁记录",
+      "sublabel": "检测、门禁记录",
       "pos": [520, 190],
       "size": [180, 64],
       "sources": [
@@ -97,7 +97,7 @@
       "id": "part-render",
       "type": "backend",
       "label": "画面渲染",
-      "sublabel": "预置、渲染、校验",
+      "sublabel": "组装、渲染、校验",
       "pos": [520, 340],
       "size": [180, 64],
       "sources": [

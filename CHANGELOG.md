@@ -33,7 +33,12 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   a term by the thing it names in its work, and each Chinese model and overview composition follows its table: a
   secret is 凭据, 令牌 or 密钥 by what it is, a fetch 抓取, a checkout as a thing 检出目录; ETHOS's Attestation is
   存证, its proof 核验 and its profile 治理配置. The reasons of excluded paths that three Chinese models gave in
-  English are Chinese. The Chinese guides, and the pages built from them, are not yet corrected.
+  English are Chinese.
+- The six Chinese guides, which a work's page in a browser is built from, follow the corrected term tables and
+  Chinese models, in the article and in the labels of its figures. A reader other than the writer read each guide
+  against its English, and a second reader confirmed every change. DDWG's release declaration is 发布配置, Film
+  Kit's bound 限值 and Architecture Publisher's lock 锁文件 in their term tables too, and OpenAI Responses Proxy's
+  table no longer repeats two rows.
 - The works name roles, not kinds of holder: Architecture Publisher's Chinese work says 「角色」 and 「审阅者」,
   its English work `Roles`, and the Responses proxy's Chinese work 「运维者」. A test refuses 「人员」 and
   「审阅人」 in a work's Chinese files and term table.

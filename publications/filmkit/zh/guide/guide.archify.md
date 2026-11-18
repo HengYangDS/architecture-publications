@@ -3,7 +3,7 @@
 Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-what)先用锁定版本的本地语音合成模型朗读每份脚本，再为每个语言版拼接音轨、加字幕、渲染画面并打包。[](source:readme-what)每一步都记下所读内容的 SHA-256。记录绑定的字节一旦对不上，后面的步骤就拒绝它。[](source:candidate-inputs)[](source:render-gate)
 
 - [引擎不存放任何影片的内容](block:p-context)：脚本、配音设定、页面和画面合成都留在影片仓库里。[](source:readme-engine)
-- [任何语音模型加载之前，先检查字词](block:p-words)；拒绝时列出每一项失败。[](source:narrate-gate)
+- [任何语音模型加载之前，先检查字词](block:p-words)；拒绝时列出每一个失败项。[](source:narrate-gate)
 - [录音只有完整收尾才能进入音轨](block:p-takes)，除非影片为它的衔接声明了尾音淡出。[](source:abrupt)
 - [画面只有通过门禁才会渲染](block:p-picture)，而且门禁针对的必须是当前的画面合成、时间线、样式表、字体和引擎版本。[](source:render-gate)
 
@@ -12,7 +12,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @source readme-what title="Film Kit 做什么" path="README.md" lines=3:3
 @source spec-rate title="帧率" path="src/filmkit/specification.py" lines=25:30
 @source spec-sound title="采样率与节目响度" path="src/filmkit/specification.py" lines=33:47
-@source sample-declaration title="示例影片的声明" path="examples/sample-film/content/film.toml" lines=6:22
+@source sample-declaration title="样例影片的声明" path="examples/sample-film/content/film.toml" lines=6:22
 @source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=422:426
 @source changelog-019 title="0.19.0 的改动" path="CHANGELOG.md" lines=135:150
 @source changelog-020 title="0.20.0 的改动" path="CHANGELOG.md" lines=118:134
@@ -26,7 +26,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @source readme-engine title="引擎不带任何影片的内容" path="README.md" lines=5:5
 @source readme-requirements title="运行要求" path="README.md" lines=9:12
 @source readme-layout title="影片的目录结构" path="README.md" lines=18:26
-@source readme-levels title="调平的容差" path="README.md" lines=53:53
+@source readme-levels title="响度匹配的容差" path="README.md" lines=53:53
 @source readme-words title="概念与读音" path="README.md" lines=69:72
 @source readme-neither title="两项检查都不声明的影片" path="README.md" lines=76:76
 @source readme-gate title="画面门禁" path="README.md" lines=94:94
@@ -52,32 +52,32 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @source synthesis-plan title="每个段落的任务" path="src/filmkit/narration/synthesis.py" lines=176:194
 @source synthesis-reuse title="复用或拒绝录音文件" path="src/filmkit/narration/synthesis.py" lines=197:225
 @source one-model title="唯一运行语音合成模型的模块" path="src/filmkit/narration/group_generation.py" lines=1:4
-@source thought-joins title="意群的请求、回执与衔接" path="src/filmkit/narration/thought_groups.py" lines=1:10
+@source thought-joins title="意群的请求、旁白记录与衔接" path="src/filmkit/narration/thought_groups.py" lines=1:10
 @source take-ending title="录音的收尾" path="src/filmkit/narration/take_edges.py" lines=186:213
 @source take-fall title="戛然而止的收尾" path="src/filmkit/narration/take_edges.py" lines=15:24
 @source retakes-doc title="绑定确切文本的重录" path="src/filmkit/narration/retakes.py" lines=1:9
 @source run-on-doc title="连读录音" path="src/filmkit/narration/run_on.py" lines=1:8
 @source audition-propose title="推荐的录音" path="src/filmkit/narration/audition.py" lines=86:112
-@source transcription-doc title="转写只作替代指标" path="src/filmkit/narration/transcription.py" lines=1:10
+@source transcription-doc title="转写结果仅供参考" path="src/filmkit/narration/transcription.py" lines=1:10
 @source selection title="选定录音文件" path="src/filmkit/narration/selection.py" lines=73:108
 @source speech-refusals title="停顿上限与声明的术语" path="src/filmkit/narration/selection.py" lines=111:130
 @source snapshots title="锁定版本的语音模型" path="src/filmkit/narration/snapshots.py" lines=58:86
-@source supply-doc title="供应" path="src/filmkit/supply.py" lines=1:7
+@source supply-doc title="下载安装" path="src/filmkit/supply.py" lines=1:7
 @source assembly-doc title="拼接" path="src/filmkit/soundtrack/assembly.py" lines=1:10
 @source abrupt title="拒绝收尾突兀的录音" path="src/filmkit/soundtrack/assembly.py" lines=157:177
 @source program-gain title="用一次增益达到节目响度" path="src/filmkit/soundtrack/assembly.py" lines=492:513
-@source segment-level title="段落在所在章节内调平" path="src/filmkit/soundtrack/level.py" lines=171:199
-@source clip-levels title="先调平段落，再调平章节" path="src/filmkit/soundtrack/assembly.py" lines=573:592
-@source assembly-record title="段落的回执记录" path="src/filmkit/soundtrack/assembly.py" lines=421:441
+@source segment-level title="段落响度向所在章节看齐" path="src/filmkit/soundtrack/level.py" lines=171:199
+@source clip-levels title="先匹配段落响度，再匹配章节响度" path="src/filmkit/soundtrack/assembly.py" lines=573:592
+@source assembly-record title="拼接记录里的段落条目" path="src/filmkit/soundtrack/assembly.py" lines=421:441
 @source releases title="声明的尾音淡出" path="src/filmkit/soundtrack/policy.py" lines=159:170
 @source sound-gate title="声音门禁" path="src/filmkit/soundtrack/gates.py" lines=1:13
-@source captions-doc title="字幕定时" path="src/filmkit/captions/timing.py" lines=1:10
+@source captions-doc title="字幕的起止时间" path="src/filmkit/captions/timing.py" lines=1:10
 @source gate-doc title="画面门禁" path="src/filmkit/picture/gates.py" lines=1:39
 @source frame-gates title="来自评审的规则" path="src/filmkit/picture/gates.py" lines=58:59
 @source gate-check title="check-picture" path="src/filmkit/picture/gates.py" lines=395:467
-@source candidate-inputs title="预置绑定的输入" path="src/filmkit/picture/rendering.py" lines=123:153
+@source candidate-inputs title="组装时绑定的输入" path="src/filmkit/picture/rendering.py" lines=123:153
 @source require-renderer title="唯一的渲染器版本" path="src/filmkit/picture/rendering.py" lines=209:219
-@source stage title="画面的预置" path="src/filmkit/picture/rendering.py" lines=253:303
+@source stage title="画面的组装" path="src/filmkit/picture/rendering.py" lines=253:303
 @source render-gate title="渲染须有通过的门禁" path="src/filmkit/picture/rendering.py" lines=489:516
 @source render title="渲染画面" path="src/filmkit/picture/rendering.py" lines=585:642
 @source validate title="校验画面" path="src/filmkit/picture/rendering.py" lines=656:666
@@ -90,7 +90,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @source package-inputs title="成片包绑定什么" path="src/filmkit/delivery/packaging.py" lines=272:284
 @source player-doc title="播放器页面" path="src/filmkit/delivery/player.py" lines=1:5
 @source verification-doc title="核验" path="src/filmkit/delivery/verification.py" lines=1:14
-@source verify-captions title="字幕保持排印" path="src/filmkit/delivery/verification.py" lines=68:83
+@source verify-captions title="字幕文本须排印好" path="src/filmkit/delivery/verification.py" lines=68:83
 @source verify-spotlight title="读回 Spotlight 导入的内容" path="src/filmkit/delivery/verification.py" lines=312:342
 @source verify-review title="能通过核验的评审" path="src/filmkit/delivery/verification.py" lines=345:408
 @source verification-qualify title="一个语言版的检查" path="src/filmkit/delivery/verification.py" lines=411:441
@@ -99,7 +99,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @source round-doc title="一轮评审" path="src/filmkit/review/round.py" lines=1:11
 @source human-listening title="人工试听单独进行" path="src/filmkit/review/round.py" lines=49:53
 @source measurement-doc title="评审测量" path="src/filmkit/review/measurement.py" lines=1:22
-@source clarity-doc title="嗓音清晰度" path="src/filmkit/review/clarity.py" lines=1:21
+@source clarity-doc title="人声清晰度" path="src/filmkit/review/clarity.py" lines=1:21
 
 ## Film Kit 读取什么，又把什么留给影片？ {#p-context}
 
@@ -111,7 +111,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 | 节目响度 | -16.5 LUFS，真峰值不超过 -1 dBTP |
 | 每个语言版的成片 | 4 部：超高清母版和 1080p 观看版，各有带字幕和无字幕两种 |
 
-这些规格由引擎固定，影片只能照用。[](source:spec-rate)[](source:spec-sound)[](source:renditions)其余的都由影片在 `content/film.toml` 里声明，下面是仓库自带样片的声明。[](source:sample-declaration)
+这些规格由引擎固定，影片只能照用。[](source:spec-rate)[](source:spec-sound)[](source:renditions)其余的都由影片在 `content/film.toml` 里声明，下面是仓库自带样例影片的声明。[](source:sample-declaration)
 
 @code id=declaration source=sample-declaration language=toml
 
@@ -120,15 +120,15 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @steps id=context-steps
 | step-ctx-film | 影片仓库 | 声明（含播放器配色），每个语言版的脚本、配音设定和旁白，以及画面的模板、脚本和样式。[](source:readme-layout) | context-map | ctx-film |
 | step-ctx-engine | Film Kit 引擎 | 每个动作只做一个语言版，语言版由参数指定。开工之前先检查声明。渲染之前，`preflight` 报告所有过期或缺失的输入。[](source:produce-actions)[](source:film-load) | context-map | ctx-engine |
-| step-ctx-supply | 供应步骤 | 只有这一步会联网。浏览器构建和每个模型快照，都按锁定的摘要检查。[](source:supply-doc) | context-map | ctx-supply |
-| step-ctx-models | 语音模型 | 语音合成模型负责朗读，强制对齐器为词定时，识别器负责转写，全部运行于 MLX。[](source:snapshots) | context-map | ctx-models |
+| step-ctx-supply | 下载安装步骤 | 只有这一步会联网。指定构建版本的浏览器和每个模型快照，都按锁定的摘要检查。[](source:supply-doc) | context-map | ctx-supply |
+| step-ctx-models | 语音模型 | 语音合成模型负责朗读，强制对齐器标出每个词的时间，识别器负责转写，全部运行于 MLX。[](source:snapshots) | context-map | ctx-models |
 | step-ctx-browser | HyperFrames、Chrome | 渲染器由影片的 npm 包安装，版本只能是 HyperFrames 0.9.46，其他版本引擎一律拒绝。[](source:require-renderer) | context-map | ctx-browser |
 | step-ctx-build | 构建文件夹 | 每个语言版的媒体和记录都写在影片的 `build/` 下，这个文件夹不纳入版本管理。[](source:edition-places) | context-map | ctx-build |
-| step-ctx-documents | Documents 文件夹 | 交付用 rsync 同步 25 个交付项，再按各自源文件的 SHA-256 逐一检查。[](source:documents-doc) | context-map | ctx-documents |
+| step-ctx-documents | Documents 文件夹 | 交付步骤用 rsync 同步 25 个交付项，再按各自源文件的 SHA-256 逐一检查。[](source:documents-doc) | context-map | ctx-documents |
 
 ## 一个语言版从脚本到交付成片，要经过哪些步骤？ {#p-route}
 
-每条命令都在影片根目录运行，每个制作动作用 `--language zh|en` 指定语言版。[](source:readme-commands)
+每条命令都在影片根目录运行，每个制作动作都用 `--language zh|en` 指定语言版。[](source:readme-commands)
 
 @workflow id=route-flow title="一个语言版，从脚本到交付成片"
 | lane narration | 旁白 |
@@ -141,7 +141,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 | route-select | 选定录音 | security | sound | source:selection |
 | route-assemble | 拼接音轨 | backend | sound | source:assembly-doc |
 | route-gate | 检查画面 | security | picture | source:gate-check |
-| route-render | 预置、渲染 | backend | picture | source:render |
+| route-render | 组装、渲染 | backend | picture | source:render |
 | route-compare | 比对两份画面 | security | picture | source:equivalence-doc |
 | route-package | 打包成片 | backend | delivery | source:package-film |
 | route-verify | 核验每个输入 | security | delivery | source:verification-qualify |
@@ -156,30 +156,30 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 | route-package > route-verify | |
 
 @steps id=route-steps
-| step-route-words | 检查字词 | 旁白先做概念检查和读音检查，试运行也不例外；任何一项不通过，就停止。[](source:narrate-gate) | route-flow | route-words |
+| step-route-words | 检查字词 | 旁白命令先做概念检查和读音检查，试运行也不例外；任何一项不通过，就停止。[](source:narrate-gate) | route-flow | route-words |
 | step-route-narrate | 朗读每个意群 | 每个意群都由模型一次读完，得到一条录音，种子或重录取自配音设定。请求仍然一致的录音文件直接复用。[](source:synthesis-reuse) | route-flow | route-narrate |
-| step-route-align | 对齐、转写 | 锁定版本的对齐器为每个词定时。转写结果只作读音的替代指标，不作认证。[](source:narrate-steps)[](source:transcription-doc) | route-flow | route-align |
-| step-route-select | 选定录音 | `produce select` 把每份录音文件及其对齐结果，绑定到当前的脚本、配音设定和旁白参考录音。若录音文件违反影片的停顿上限，或声明术语读得与参照处不同，就拒绝这份录音文件。[](source:selection)[](source:speech-refusals) | route-flow | route-select |
-| step-route-assemble | 拼接音轨 | 拼接步骤设计停顿，调平每个意群、段落和章节，再用一次增益达到节目响度。若排好的音轨里有超出影片上限的无标点停顿，或声明术语读得与参照处不同，拼接步骤就拒绝这条音轨。[](source:assembly-doc)[](source:clip-levels)[](source:program-gain)随后 `produce check-sound` 检查拼好的音轨。段落清晰度低于影片声明的下限、收尾突兀或被截断、短语戛然而止，都会被拒绝。[](source:sound-gate) | route-flow | route-assemble |
-| step-route-gate | 检查画面 | `check-picture` 审查每一帧、每个标签的同步和动效，然后写出门禁记录。[](source:gate-doc) | route-flow | route-gate |
-| step-route-render | 预置、渲染 | 带字幕和无字幕的画面各预置成一份文档；有了通过的门禁记录，才由 HyperFrames 渲染。[](source:stage)[](source:render-gate)[](source:render) | route-flow | route-render |
-| step-route-compare | 比对两份画面 | 两份画面只能在字幕上不同：画面合成在每条字幕处和每半秒比对，解码后的帧则比对字幕带以外的区域。随后逐帧扫描两份画面，找出只持续一帧的故障。同一次扫描还测量边缘细条：每帧最密集的一块里，相差超过 40 级的采样有多少。超出界限的帧会被拒绝。[](source:equivalence-doc) | route-flow | route-compare |
+| step-route-align | 对齐、转写 | 锁定版本的对齐器标出每个词的起止时间。转写结果仅供参考，不能证明读音正确。[](source:narrate-steps)[](source:transcription-doc) | route-flow | route-align |
+| step-route-select | 选定录音 | `produce select` 把每份录音文件及其对齐结果，绑定到当前的脚本、配音设定和旁白参考录音。若录音文件超出影片的停顿上限，或已声明术语读得与参照处不同，就拒绝这份录音文件。[](source:selection)[](source:speech-refusals) | route-flow | route-select |
+| step-route-assemble | 拼接音轨 | 拼接步骤设计停顿，匹配每个意群、段落和章节的响度，并用一次增益达到节目响度。若排好的音轨里有超出影片上限的无标点停顿，或已声明术语读得与参照处不同，拼接步骤就拒绝这条音轨。[](source:assembly-doc)[](source:clip-levels)[](source:program-gain)随后 `produce check-sound` 检查拼好的音轨。段落清晰度低于影片声明的下限、收尾突兀或被截断、短语戛然而止，都会被拒绝。[](source:sound-gate) | route-flow | route-assemble |
+| step-route-gate | 检查画面 | `check-picture` 检测每一帧、每个标签的同步和动效，然后写出门禁记录。[](source:gate-doc) | route-flow | route-gate |
+| step-route-render | 组装、渲染 | 带字幕和无字幕的画面各组装成一份文档；有了通过的门禁记录，才由 HyperFrames 渲染。[](source:stage)[](source:render-gate)[](source:render) | route-flow | route-render |
+| step-route-compare | 比对两份画面 | 两份画面只能在字幕上不同：画面合成在每条字幕处、每隔半秒各比对一次，解码后的帧则比对字幕带以外的区域。随后逐帧扫描两份画面，找出只持续一帧的故障。同一次扫描还测量边缘细条：每帧最密集的一块里，相差超过 40 级的采样有多少。超出限值的帧会被拒绝。[](source:equivalence-doc) | route-flow | route-compare |
 | step-route-package | 打包成片 | FFmpeg 把每部成片的画面（带字幕或无字幕）与音轨和章节封装在一起；每部成片都先检查，再链接到位。[](source:package-doc)[](source:package-film) | route-flow | route-package |
 | step-route-verify | 核验每个输入 | 核验器只读取和解码，检查范围包括来源、旁白、两份画面及二者的等效性、两个包、解码后的全部四部成片和评审。主机上有 `mdimport` 时，还读回 Spotlight 从每部成片导入的关键词和作者。[](source:verification-doc)[](source:verify-spotlight) | route-flow | route-verify |
 
 ## 开始朗读之前，要检查什么？ {#p-words}
 
-影片可以让自己的字词在朗读开始之前就接受检查。[](source:readme-words)
+影片可以要求在朗读开始之前，先检查它的字词。[](source:readme-words)
 
 @facts
 | 概念 | 每个段落声明的概念在两个语言版中相同，都要用认可的说法讲到。旁白、标题、字幕术语、发布文案、播放器摘要和画面源文件里，都不能出现反例。[](source:concepts-doc) |
-| 引文 | 本地有源仓库的克隆时，每条概念引文都必须能在锁定提交的对应文档里找到。[](source:concepts-doc) |
+| 引文 | 本地有来源仓库的克隆时，每条概念引文都必须能在锁定提交的对应文档里找到。[](source:concepts-doc) |
 | 读音 | 关注列表中每个汉字都必须落在声明过的词里，这个词的读音必须是字典读音。字典按上下文读成别的音时，这个词要记下原因。[](source:readings-doc)[](source:watch-list) |
 | 名称 | 中文旁白里的每个拉丁字母单词，和每个至少含两个大写字母的英文单词，都要声明读法。[](source:readings-doc) |
 | 术语 | 每种语言的文本规范化，都必须让每个声明的拉丁字母术语只有一种读法。凡是说到该术语的语言版，都必须包含它的参照处。[](source:readings-doc) |
 
-@callout level=note title="一次拒绝，列出全部失败"
-| 旁白在任何语音模型加载之前就停止，拒绝时一次列出所有失败。[](source:narrate-gate)两项检查都没声明的影片，照旧朗读。[](source:readme-neither) |
+@callout level=note title="一次拒绝，列出全部失败项"
+| 旁白命令在任何语音模型加载之前就停止，拒绝时一次列出所有失败项。[](source:narrate-gate)两项检查都没声明的影片，照旧朗读。[](source:readme-neither) |
 
 ## 一个意群的录音怎样进入音轨？ {#p-takes}
 
@@ -194,57 +194,57 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 | step-take-auditioned | 已试音 | 试音换其他种子朗读，或者连读到下一个意群，再在静音处剪开。合格的录音里，推荐差异单元最少的一条。绑定的重录保存自身文本和朗读文本的 SHA-256。[](source:audition-propose)[](source:run-on-doc)[](source:retakes-doc) | take-life | take-auditioned |
 | step-take-released | 尾音淡出 | 影片可以为某一处衔接声明不超过 0.3 s 的尾音淡出，拼接步骤让这段尾音渐隐进静音。[](source:releases) | take-life | take-released |
 | step-take-selected | 已选定 | 选定步骤把每份录音文件及其对齐结果，绑定到当前的脚本、配音设定和旁白参考录音。[](source:selection) | take-life | take-selected |
-| step-take-assembled | 已拼接 | 脚本的 `voice_performance` 可以声明 `segment_level_tolerance_db`，取值 0.1 到 3.0。[](source:readme-levels)段落内各意群调平后的响度中位数，与所在章节的中位数相差超过容差时，拼接步骤把该段落调到容差边缘。[](source:segment-level)这一步排在调平章节之前，只用一次不超过 2 dB 的静态增益，并让段落峰值低于 -1 dBFS。[](source:clip-levels)[](source:segment-level)音轨的综合响度为 -16.5 LUFS，真峰值上限为 -1 dBTP。[](source:program-level)[](source:program-gain) | take-life | take-assembled |
+| step-take-assembled | 已拼接 | 脚本的 `voice_performance` 可以声明 `segment_level_tolerance_db`，取值 0.1 到 3.0。[](source:readme-levels)段落内各意群响度匹配后的中位数，若与所在章节的中位数相差超过容差，拼接步骤就把该段落调到容差边缘。[](source:segment-level)这一步排在章节的响度匹配之前，只用一次不超过 2 dB 的静态增益，并让段落峰值低于 -1 dBFS。[](source:clip-levels)[](source:segment-level)音轨的综合响度为 -16.5 LUFS，真峰值上限为 -1 dBTP。[](source:program-level)[](source:program-gain) | take-life | take-assembled |
 
 @callout level=note title="录音为何会在音节中途结束"
 | 在 mlx-audio 0.6.4 中，首个码本 id 为 0 的每一帧，都会让带参考上下文的录音结尾少掉 80 ms。[](source:readme-endings)修复已向上游提出，即 `Blaizzy/mlx-audio#1116`。 |
 
 ## 每份记录绑定什么？ {#p-records}
 
-每份记录写明这一步所读文件的 SHA-256，读取这份记录的步骤遇到其他字节就拒绝。[](source:candidate-inputs)[](source:render-gate)
+每份记录写明这一步所读文件的 SHA-256；读取这份记录的步骤发现字节对不上，就拒绝。[](source:candidate-inputs)[](source:render-gate)
 
 @diagram erd id=records-erd source=records.erd.json title="每份记录绑定什么"
 
 @steps id=records-steps
 | step-rec-selection | narration-selected.json | 绑定脚本和配音设定，并按波形的 SHA-256 绑定每份录音文件。[](source:selection) | records-erd | rec-selection |
-| step-rec-assembly | audio-assembly.json | 绑定脚本和它写出的音轨，以及设计停顿和节目响度。[](source:assembly-doc)它把每个段落的增益记为 `segment_gain_db`。[](source:assembly-record) | records-erd | rec-assembly |
-| step-rec-stage | stage.json | 绑定脚本、时间线、拼接回执、音轨和来源清单，以及每个预置文件。[](source:candidate-inputs)[](source:stage) | records-erd | rec-stage |
-| step-rec-gates | picture-gates.json | 绑定审查所依据的画面合成、时间线、样式表、字体和引擎版本。[](source:gate-check) | records-erd | rec-gates |
+| step-rec-assembly | audio-assembly.json | 绑定脚本和它写出的音轨，以及设计好的停顿和节目响度。[](source:assembly-doc)它把每个段落的增益记为 `segment_gain_db`。[](source:assembly-record) | records-erd | rec-assembly |
+| step-rec-stage | stage.json | 绑定脚本、时间线、拼接记录、音轨和来源清单，以及组装出的每个文件。[](source:candidate-inputs)[](source:stage) | records-erd | rec-stage |
+| step-rec-gates | picture-gates.json | 绑定检测所依据的画面合成、时间线、样式表、字体和引擎版本。[](source:gate-check) | records-erd | rec-gates |
 | step-rec-package | film-package.json | 绑定两份画面及其等效性记录、音轨、封面、脚本、章节和影片的 `VERSION`，以及每部成片自身的 SHA-256。[](source:package-inputs)[](source:package-film) | records-erd | rec-package |
 
 ## 画面渲染之前，必须通过什么？ {#p-picture}
 
-逐帧审查和动效审查在 canvas 替身上，无头运行影片自己的画面合成。[](source:headless-doc)
+逐帧检测和动效检测用 canvas 替身，无头运行影片自己的画面合成。[](source:headless-doc)
 
-@sequence id=picture-flow title="从预置到校验通过的画面"
+@sequence id=picture-flow title="从组装到校验通过的画面"
 | actor pic-command | 制作命令 | frontend | source:produce-actions |
 | actor pic-gate | 画面门禁 | security | source:gate-check |
 | actor pic-tools | Node 工具运行器 | backend | source:tools-doc |
 | actor pic-record | 门禁记录 | database | source:gate-doc |
 | actor pic-render | 画面渲染 | backend | source:render |
 | actor pic-hyperframes | HyperFrames | external | source:require-renderer |
-| phase | 预置 |
+| phase | 组装 |
 | pic-command | pic-render | stage-picture |
 | phase | 门禁 |
 | pic-command | pic-gate | check-picture |
-| pic-gate | pic-tools | 逐帧与动效审查 |
-| pic-tools | pic-gate | 报告与轨迹 | return |
+| pic-gate | pic-tools | 逐帧与动效检测 |
+| pic-tools | pic-gate | 报告与绘制记录 | return |
 | pic-gate | pic-record | 通过或拒绝 |
 | phase | 渲染 |
 | pic-command | pic-render | render-picture |
 | pic-render | pic-record | 读取记录 |
-| pic-record | pic-render | 最新且通过 | return |
-| pic-render | pic-hyperframes | 渲染预置文档 | emphasis |
+| pic-record | pic-render | 对应当前输入且通过 | return |
+| pic-render | pic-hyperframes | 渲染组装好的文档 | emphasis |
 | pic-hyperframes | pic-render | 画面 | return |
 | phase | 校验 |
 | pic-command | pic-render | validate-picture |
 
 @steps id=picture-steps
 | step-pic-stage | 画面渲染 | `stage-picture` 把时间线、脚本和样式内联进一份文档，并在 `stage.json` 中记下它的输入。[](source:stage) | picture-flow | pic-render | | pic-command-to-pic-render-1 |
-| step-pic-gate | 画面门禁 | `check-picture` 用工具运行器执行逐帧审查和动效审查，再对它们的轨迹执行同步审查。[](source:gate-check)[](source:tools-doc) | picture-flow | pic-gate | | pic-command-to-pic-gate-1,pic-gate-to-pic-tools-1,pic-tools-to-pic-gate-1 |
-| step-pic-record | 门禁记录 | 绑定审查所依据的输入，并列出每个门禁问题。片头声明的标题显示时间太短算一个，静止文字的对比度低于 4.5:1 也算一个。只要有一个门禁问题，就拒绝渲染。[](source:gate-doc) | picture-flow | pic-record | | pic-gate-to-pic-record-1 |
-| step-pic-render | HyperFrames | `render-picture` 找不到当前输入的通过记录就拒绝。否则渲染带字幕画面的完整超高清预置文档；加上 `--uncaptioned` 时，渲染无字幕画面的那一份。[](source:render-gate)[](source:render) | picture-flow | pic-hyperframes | | pic-render-to-pic-record-1,pic-record-to-pic-render-1,pic-render-to-pic-hyperframes-1,pic-hyperframes-to-pic-render-1 |
-| step-pic-validate | 制作命令 | `validate-picture` 把画面绑定到它的回执和预置文档，并检查每一帧是否落在 60 fps 的网格上。[](source:validate) | picture-flow | pic-command | | pic-command-to-pic-render-3 |
+| step-pic-gate | 画面门禁 | `check-picture` 用工具运行器执行逐帧检测和动效检测，再对它们的绘制记录执行同步检测。[](source:gate-check)[](source:tools-doc) | picture-flow | pic-gate | | pic-command-to-pic-gate-1,pic-gate-to-pic-tools-1,pic-tools-to-pic-gate-1 |
+| step-pic-record | 门禁记录 | 绑定检测所依据的输入，并列出每个门禁问题。已声明的标题在片头显示的时间太短算一个，静止文字的对比度低于 4.5:1 也算一个。只要有一个门禁问题，就拒绝渲染。[](source:gate-doc) | picture-flow | pic-record | | pic-gate-to-pic-record-1 |
+| step-pic-render | HyperFrames | `render-picture` 找不到当前输入的通过记录就拒绝。否则渲染带字幕画面那份组装好的完整超高清文档；加上 `--uncaptioned` 时，渲染无字幕画面的那一份。[](source:render-gate)[](source:render) | picture-flow | pic-hyperframes | | pic-render-to-pic-record-1,pic-record-to-pic-render-1,pic-render-to-pic-hyperframes-1,pic-hyperframes-to-pic-render-1 |
+| step-pic-validate | 制作命令 | `validate-picture` 把画面绑定到它的渲染记录和组装好的文档，并检查每一帧是否落在 60 fps 的网格上。[](source:validate) | picture-flow | pic-command | | pic-command-to-pic-render-3 |
 
 @callout level=note title="可测量的规则，不是审美"
 | 门禁拒绝的每一项逐帧问题，都由 DDWG 评审转成了交付影片必须遵守的规则。[](source:frame-gates)审美仍由评审判断。[](source:verification-doc) |
@@ -258,20 +258,20 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @steps id=parts-steps
 | step-part-narrate | 旁白命令 | 先做字词检查，再以独立进程依次运行语音合成、对齐和转写。[](source:narrate-steps) | parts-map | part-narrate |
 | step-part-produce | 制作命令 | 调用负责该动作的模块；遇到拒绝时，报告动作名称和原因。[](source:produce-actions) | parts-map | part-produce |
-| step-part-takes | 意群录音 | 每个意群的请求、回执和衔接，都按每份保留的记录重新检查。[](source:thought-joins) | parts-map | part-takes |
-| step-part-sound | 音轨拼接 | 写出音轨、带字幕的时间线和拼接回执。[](source:assembly-doc)每个字幕条的文本是对应短语的排印稿，直引号已换成弯引号。[](source:captions-doc)声音门禁按评审的测法读取段落清晰度。整条音轨的保留帧里，只取中心落在该段落内的帧。[](source:sound-gate)[](source:clarity-doc) | parts-map | part-sound |
+| step-part-takes | 意群录音 | 每个意群的请求、旁白记录和衔接，都对照留存的每份记录重新检查。[](source:thought-joins) | parts-map | part-takes |
+| step-part-sound | 音轨拼接 | 写出音轨、带字幕的时间线和拼接记录。[](source:assembly-doc)每个字幕条的文本是对应短语的排印稿，直引号已换成弯引号。[](source:captions-doc)声音门禁按评审的测法读取段落清晰度。整条音轨的保留帧里，只取中心落在该段落内的帧。[](source:sound-gate)[](source:clarity-doc) | parts-map | part-sound |
 | step-part-gate | 画面门禁 | 写出门禁记录；只要还剩一个门禁问题，就拒绝。[](source:gate-doc) | parts-map | part-gate |
-| step-part-render | 画面渲染 | 预置、渲染并校验每份超高清画面（带字幕和无字幕各一份），并证明二者只在字幕上不同。[](source:render)[](source:equivalence-doc) | parts-map | part-render |
+| step-part-render | 画面渲染 | 组装、渲染并校验每份超高清画面（带字幕和无字幕各一份），并证明二者只在字幕上不同。[](source:render)[](source:equivalence-doc) | parts-map | part-render |
 | step-part-package | 打包 | 派生观看包，写出全部四部成片，每部都先检查再链接到位。每部成片和每个页面都写明影片的版本号。[](source:package-doc) | parts-map | part-package |
 | step-part-verify | 核验 | 重新读取每份记录，解码全部四部成片；不写任何文件。[](source:verification-doc)字幕条的文本若没有排印好，就拒绝。[](source:verify-captions) | parts-map | part-verify |
 
 ## 交付的语言版包含什么，又怎样验收？ {#p-delivery}
 
-交付把恰好 25 个交付项放进影片的 Documents 文件夹，再把它们读回。[](source:documents-doc)
+交付步骤把恰好 25 个交付项放进影片的 Documents 文件夹，再把它们读回。[](source:documents-doc)
 
 @tree id=delivery-tree title="25 个交付项"
 | dl-root | Documents 文件夹 | - |
-| dl-entry | 语言选择页 | dl-root |
+| dl-entry | 入口页（选择语言） | dl-root |
 | dl-edition | zh 和 en 各一套 | dl-root |
 | dl-uhd | 超高清母版 | dl-edition |
 | dl-hd | 1080p 观看版 | dl-edition |
@@ -296,9 +296,9 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 
 ## Film Kit 怎样走到今天？ {#p-history}
 
-Film Kit 在 2026 年 10 月 30 日发布 v0.1.0，11 月 15 日发布 v0.22.3。[](source:changelog-010)[](source:changelog-0223)时间线列出其中改变影片做法的十七个版本，最新的是 v0.22.0、v0.22.2 和 v0.22.3。[](source:changelog-0220)[](source:changelog-0222)[](source:changelog-0223)时间线上还有补丁版本 v0.21.1 和 v0.21.2，它们只更新了仓库工具链和锁定的依赖包。[](source:changelog-0211)[](source:changelog-0212)v0.21.3 也是如此，没有列入时间线。[](source:changelog-0213)
+Film Kit 在 2026 年 10 月 30 日发布 v0.1.0，11 月 15 日发布 v0.22.3。[](source:changelog-010)[](source:changelog-0223)时间线列出其中改变影片制作方式的十七个版本，最新的是 v0.22.0、v0.22.2 和 v0.22.3。[](source:changelog-0220)[](source:changelog-0222)[](source:changelog-0223)时间线上还有补丁版本 v0.21.1 和 v0.21.2，它们只更新了仓库工具链和锁定的依赖包。[](source:changelog-0211)[](source:changelog-0212)v0.21.3 也是如此，没有列入时间线。[](source:changelog-0213)
 
-v0.22.1 把渲染器换成 HyperFrames 0.9.46，样例影片的十二部成片解码后各帧不变，也没有列入时间线。[](source:changelog-0221)仓库里没有带日期的路线图，还没做的事列在本页最后。
+v0.22.1 把渲染器换成 HyperFrames 0.9.46，样例影片的十二部成片解码后各帧不变。[](source:changelog-0221)这个版本也没有列入时间线。仓库里没有带日期的路线图，还没做的事列在本页最后。
 
 @diagram timeline id=history source=history.timeline.json title="Film Kit 怎样走到今天"
 
@@ -308,10 +308,10 @@ v0.22.1 把渲染器换成 HyperFrames 0.9.46，样例影片的十二部成片�
 
 | 方面           | 状态                            | 含义                                                                                                                                                                             |
 | -------------- | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 平台           | Apple 芯片 {caution:仅一个平台} | 语音模型运行于 MLX，1080p 成片用 VideoToolbox 编码。[](source:readme-requirements)                                                                                               |
-| 样例影片       | 本地验收 {caution:不在 CI 中}   | 构建它需要语音模型和浏览器构建，所以托管 CI 只运行可移植的证明。[](source:readme-dev)                                                                                            |
+| 平台           | Apple 芯片 {caution:仅一个平台} | 语音模型运行于 MLX，1080p 观看版用 VideoToolbox 编码。[](source:readme-requirements)                                                                                             |
+| 样例影片       | 本地验收 {caution:不在 CI 中}   | 构建它需要语音模型和指定构建版本的浏览器，所以托管 CI 只运行可移植的证明。[](source:readme-dev)                                                                                  |
 | 人工试听       | 单独进行 {caution:不计分}       | 评审依据自动化证据为音频打分；人工试听是之后的验收。[](source:human-listening)                                                                                                   |
-| 录音收尾       | 有防护 {good:拒绝}              | 在 mlx-audio 发布带上游修复的版本之前，由试音保持录音完整收尾，拼接步骤拒绝收尾突兀的录音。[](source:readme-endings)[](source:abrupt)                                            |
-| 文字宽度       | 实测 {good:影片自己的字体}      | 审查用影片自己的字体测量宽度；文字高度仍用估算值。[](source:readme-metrics)                                                                                                      |
+| 录音收尾       | 有防护 {good:拒绝}              | 在 mlx-audio 发布带上游修复的版本之前，靠试音保证录音完整收尾，拼接步骤拒绝收尾突兀的录音。[](source:readme-endings)[](source:abrupt)                                            |
+| 文字宽度       | 实测 {good:影片自己的字体}      | 检测时用影片自己的字体测量文字宽度；文字高度仍用估算值。[](source:readme-metrics)                                                                                                |
 | 静止时偏离中心 | 一律拒绝 {good:不论后续}        | 偏离中心超过 50 px、持续不少于 2 s 的静止状态，门禁一律拒绝。不论画面随后在它之上继续扩展，还是停在本阶段之内，或被阶段切换、下一个场景取代，都不例外。[](source:readme-balance) |
 | 新的渲染器     | 锁定版本 {caution:由影片决定}   | 影片继续锁定现有的 `filmkit` 版本，直到用新的发布版本制作、评审并验收一个语言版。[](source:changelog-pin)[](source:changelog-0221)                                               |

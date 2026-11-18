@@ -14,7 +14,7 @@
     "legend": {
       "entries": {
         "security": {
-          "label": "问题"
+          "label": "判断"
         },
         "backend": {
           "label": "出版工具步骤"

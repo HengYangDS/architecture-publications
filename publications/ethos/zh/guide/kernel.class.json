@@ -3,7 +3,7 @@
   "diagram_type": "class",
   "meta": {
     "title": "一次转换绑定了什么",
-    "subtitle": "计划绑定各项输入的摘要；只有核验记录会持久保存。",
+    "subtitle": "计划绑定各项输入的摘要；只有存证会持久保存。",
     "output": "kernel.html",
     "quality_profile": "showcase",
     "locale": "zh-CN",

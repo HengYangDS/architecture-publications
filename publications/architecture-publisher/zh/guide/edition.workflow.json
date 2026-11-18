@@ -84,7 +84,7 @@
       "lane": "ed-lane-plate",
       "col": 1,
       "type": "security",
-      "label": "正文区内能布局？",
+      "label": "正文区内放得下？",
       "sources": [
         {
           "path": "src/poster/compose/plates.mjs",
@@ -114,7 +114,7 @@
       "lane": "ed-lane-plate",
       "col": 3,
       "type": "backend",
-      "label": "度量四道门槛",
+      "label": "做四项平衡检查",
       "sources": [
         {
           "path": "src/poster/compose/gates.mjs",

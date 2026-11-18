@@ -140,7 +140,7 @@
       "id": "ho-e-claim",
       "from": "ho-data",
       "to": "ho-deliver",
-      "label": "完成说法收尾"
+      "label": "给完成说法收尾"
     },
     {
       "id": "ho-e-report",

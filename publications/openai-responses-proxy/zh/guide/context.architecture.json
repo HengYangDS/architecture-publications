@@ -33,7 +33,7 @@
       "id": "ctx-operator",
       "type": "external",
       "icon": "person",
-      "label": "运维者",
+      "label": "运维方",
       "sublabel": "已签名资产、信任锚",
       "pos": [270, 40],
       "size": [180, 64],
@@ -129,7 +129,7 @@
       "id": "ctx-turns",
       "from": "ctx-client",
       "to": "ctx-proxy",
-      "label": "Responses 轮次",
+      "label": "每轮 Responses 请求",
       "variant": "emphasis"
     },
     {

@@ -103,7 +103,7 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | still picture; still scan                      | 静止画面；扫描                       | `src/filmkit/picture/still_scan.py`                                                                            |
 | equivalence (captions only differ)             | 等效性                               | `src/filmkit/picture/equivalence.py`                                                                           |
 | one-frame fault; every frame                   | 单帧故障；逐帧                       | `src/filmkit/picture/faults.py`                                                                                |
-| edge sliver; bound; levels apart               | 边缘细条；界限；相差的级数           | `src/filmkit/picture/slivers.py`                                                                               |
+| edge sliver; bound; levels apart               | 边缘细条；限值；相差的级数           | `src/filmkit/picture/slivers.py`                                                                               |
 | version (a film's, from its `VERSION`)         | 版本号                               | `src/filmkit/delivery/packaging.py`                                                                            |
 | headless; canvas stand-in                      | 无头；canvas 替身                    | `src/filmkit/picture/headless-composition.mjs`; `src/filmkit/picture/metrics.py`                               |
 | advance widths; faces, fonts                   | 步进宽度；字体                       | `src/filmkit/picture/metrics.py`                                                                               |

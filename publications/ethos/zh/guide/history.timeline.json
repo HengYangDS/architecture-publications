@@ -21,7 +21,7 @@
     },
     {
       "id": "proof",
-      "label": "证明与门禁"
+      "label": "核验与门禁"
     },
     {
       "id": "lanes",
@@ -38,8 +38,8 @@
       "at": "2026-10-21T20:14:27+08:00",
       "lane": "proof",
       "kind": "change",
-      "title": "alpha.5 证明先等主机",
-      "detail": "完整证明要等仓库的证明名额空出、主机负载回到上限以内，才开始运行门禁。声明原生输出改用通用格式，仓库自有的测试也能为 ETHOS 不检查的语言提供证据。",
+      "title": "alpha.5 核验先等主机",
+      "detail": "完整核验要等仓库的核验名额空出、主机负载回到上限以内，才开始运行门禁。声明过的原生输出改用不依赖具体工具的格式，仓库自有的测试因此也能为 ETHOS 不检查的语言提供证据。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -54,7 +54,7 @@
       "at": "2026-10-22T06:04:20+08:00",
       "lane": "paradigm",
       "title": "alpha.6 行尾与许可证",
-      "detail": "范式按每个文件实际生效的 Git 属性判断行尾。仓库若纳入了许可证，范式还要核对三点：文本符合锁定的 SPDX 模板，README.md 链接到它，包元数据写明同一个许可证标识。",
+      "detail": "对每个受版本管理的文件，范式按它实际生效的 Git 属性判断行尾是否合规。仓库若纳入了许可证，范式还要核对三点：文本符合锁定的 SPDX 模板，README.md 链接到它，包元数据写明同一个许可证标识。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -69,7 +69,7 @@
       "at": "2026-10-24T01:01:54+08:00",
       "lane": "host",
       "title": "alpha.8 主机存储不再越积越多",
-      "detail": "每个仓库都在自己选定的安装上记下自己；没有使用方、也没有进程在用的安装，由 hook install 让它退役。ethos hook retire-supply 预览此前固定下来的安装。这些改动由 v0.2.0-alpha.10 首次发布。",
+      "detail": "每个仓库都在自己选定的安装目录里登记；没有使用方、也没有进程在用的安装目录，由 hook install 让它退役。ethos hook retire-supply 预览此前固定下来的安装目录。这些更新由 v0.2.0-alpha.10 首次发布。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -96,8 +96,8 @@
       "at": "2026-10-29T04:32:53+08:00",
       "lane": "lanes",
       "kind": "change",
-      "title": "alpha.18 每项正式变更只证明一次",
-      "detail": "归档后的头提交只证明一次，落地要凭这份证明。证明失败时，archive-change --compensate 把归档精确退回到归档前的头提交。ethos prove 不再接受 --execution-root。",
+      "title": "alpha.18 每项正式变更只核验一次",
+      "detail": "归档后的头提交只核验一次，落地要凭这次核验的结果。核验失败时，archive-change --compensate 把归档精确退回到归档前的头提交。ethos prove 不再接受 --execution-root。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -111,8 +111,8 @@
       "id": "alpha-19",
       "at": "2026-10-29T16:17:26+08:00",
       "lane": "proof",
-      "title": "alpha.19 所有仓库同一套责任",
-      "detail": "内置的 system/gates.toml 只放每个仓库都要履行的责任。ETHOS 也按这些责任判断自己的源码树，自有门禁另行声明；仓库的责任不再取决于注册表路径或历史。",
+      "title": "alpha.19 所有仓库同一套义务",
+      "detail": "内置的 system/gates.toml 只放每个仓库都要履行的义务。ETHOS 也按这些义务判断自己的源码树是否达标，自有门禁另行声明，仓库的义务因此不再取决于注册表路径或历史。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -127,7 +127,7 @@
       "at": "2026-10-31T12:44:39+08:00",
       "lane": "paradigm",
       "title": "alpha.22 单个文件上限 500 行",
-      "detail": "每个受版本管理的 Python 文件最多 500 个有效行，每份自撰的 Markdown 文档最多 500 个非空行。仓库可以调低上限；写明理由时，最多可调高到 1000。",
+      "detail": "每个受版本管理的 Python 文件最多 500 个有效行，每份自己编写的 Markdown 文档最多 500 个非空行。仓库可以调低上限；写明理由时，最多可调高到 1000。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -173,7 +173,7 @@
       "at": "2026-11-04T12:37:33+08:00",
       "lane": "host",
       "title": "alpha.29 发布要走一遍接入流程",
-      "detail": "每次发布运行都为要发布的归档包和 wheel 生成 GitHub 制品证明。它还在 macOS 和 Linux 上鉴定这个预发布版本：从零安装，经过完整证明、升级与回滚，直到卸载。",
+      "detail": "每次发布运行都为要发布的归档包和 wheel 生成 GitHub 制品证明。它还在 macOS 和 Linux 上鉴定这个预发布版本：从零安装，经过完整核验、升级与回滚，直到卸载。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -188,7 +188,7 @@
       "at": "2026-11-05T13:45:12+08:00",
       "lane": "host",
       "title": "beta.2 首个 beta，每台主机一个队列",
-      "detail": "ethos host run 让繁重的本地命令经同一个主机队列准入，完整证明也占用同一个主机名额。负载准入改为等到连续两个 1 分钟样本都不超过上限。",
+      "detail": "ethos host run 让繁重的本地命令经同一个主机队列放行，完整核验也占用同一个主机名额。负载准入改为等到连续两个 1 分钟样本都不超过上限。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -204,7 +204,7 @@
       "lane": "lanes",
       "kind": "change",
       "title": "beta.3 超时与缺失改报 unknown",
-      "detail": "门禁超时、命令缺失、前置条件状态未知，现在都报 unknown，不再报 block。工作通道的持有者可以用原生命令查看和续订租约。",
+      "detail": "门禁超时、命令缺失、前置条件状态未知，现在都报 unknown，不再报 block。工作通道的持有者可以用原生命令查看租约、为租约续期。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -263,7 +263,7 @@
       "at": "2026-11-12T04:05:55+08:00",
       "lane": "paradigm",
       "title": "beta.8 社区健康文件",
-      "detail": "受治理的仓库可以在根目录、CONTRIBUTING.md 旁边保留 GitHub 在那里读取的 Markdown 社区健康文件：ACCESSIBILITY.md、CODE_OF_CONDUCT.md、SECURITY.md 和 SUPPORT.md。",
+      "detail": "受治理的仓库可以在根目录保留 GitHub 会读取的 Markdown 社区健康文件，与 CONTRIBUTING.md 并列：ACCESSIBILITY.md、CODE_OF_CONDUCT.md、SECURITY.md 和 SUPPORT.md。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -279,7 +279,7 @@
       "lane": "paradigm",
       "kind": "change",
       "title": "beta.9 OpenSpec 2.0 与教程文档",
-      "detail": "内置的 OpenSpec CLI 升级到 2.0.0；OpenSpec 装进 .agents/skills/ 并记为自有的技能，从此交由 OpenSpec 管理。文档注册表接受 role: tutorial，即 Diátaxis 中面向学习的教程页。",
+      "detail": "内置的 OpenSpec CLI 升级到 2.0.0；凡是 OpenSpec 装进 .agents/skills/ 并记在自己名下的技能，从此交由 OpenSpec 管理。文档注册表接受 role: tutorial，即 Diátaxis 中面向学习的教程页。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -301,7 +301,7 @@
       "lane": "paradigm",
       "kind": "change",
       "title": "beta.10 空行规则与包文档字符串",
-      "detail": "Markdown 列表遵守同一条空行规则，没有格式化工具负责的文本按一种规范版式排版，两者都由 ethos lane format 修复。仓库自撰的每个包标记文件都以文档字符串开头，写明这个包的用途。",
+      "detail": "Markdown 列表遵守同一条空行规则，没有格式化工具负责的文本按一种规范版式排版，两者都由 ethos lane format 修复。仓库自己编写的每个包标记文件都以文档字符串开头，写明这个包的用途。",
       "sources": [
         {
           "path": "CHANGELOG.md",

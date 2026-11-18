@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "tree",
   "meta": {
-    "title": "重新固定工作清单列出什么",
+    "title": "更换提交的待办清单列出什么",
     "output": "worklist.html",
     "quality_profile": "showcase",
     "locale": "zh-CN",
@@ -18,7 +18,7 @@
   "nodes": [
     {
       "id": "wl-root",
-      "label": "重新固定工作清单",
+      "label": "更换提交的待办清单",
       "sublabel": "固定到更晚的提交",
       "sources": [
         {
@@ -96,7 +96,7 @@
     },
     {
       "id": "wl-claim",
-      "label": "无文件的认领",
+      "label": "认领规则匹配不到文件",
       "parent": "wl-refused"
     },
     {

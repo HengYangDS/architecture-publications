@@ -73,7 +73,7 @@
       "lane": "ov-lane-typeset",
       "col": 2,
       "type": "backend",
-      "label": "暂存并检查代码规范",
+      "label": "暂存并检查版式规则",
       "sources": [
         {
           "path": "src/overview/typeset.mjs",

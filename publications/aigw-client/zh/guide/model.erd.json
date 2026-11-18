@@ -20,7 +20,7 @@
   "entities": [
     {
       "id": "erd-selection",
-      "label": "客户端选择",
+      "label": "客户端的模型选择",
       "tag": "aigw.toml",
       "row": 0,
       "col": 0,

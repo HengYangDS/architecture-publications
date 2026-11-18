@@ -68,7 +68,7 @@
       "at": "2026-07-31T03:49:14+08:00",
       "lane": "requests",
       "title": "v1.0.43 同一套可移植语法",
-      "detail": "每个 Responses 重放请求都重建为能在提供商之间迁移的语法，不改动 Codex 会话存储。DMXAPI、UCloud/Azure 和 AIHubMix 各得到一条固定且隔离的回环路由。",
+      "detail": "每个 Responses 重放请求都按能在提供商之间迁移的语法重建，不改动 Codex 会话存储。DMXAPI、UCloud/Azure 和 AIHubMix 各得到一条固定且隔离的回环路由。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -84,7 +84,7 @@
       "lane": "product",
       "kind": "change",
       "title": "v2.0.2 改名 Codex Responses Proxy，按提供商清单路由",
-      "detail": "产品由专为 DMX 而做的 Codex DMX Proxy 改名而来，通过提供商清单服务普通 Responses 端点。每个请求都须指明 /<provider>/v1 命名空间；安装和移除不再读取或改写 Codex、AIGW 配置。",
+      "detail": "产品由专为 DMX 而做的 Codex DMX Proxy 改名而来，凭提供商清单对接普通 Responses 端点。每个请求都须指明 /<provider>/v1 命名空间；安装和移除不再读取或改写 Codex、AIGW 配置。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -131,7 +131,7 @@
       "lane": "product",
       "kind": "change",
       "title": "v5.0.0 OpenAI Responses Proxy",
-      "detail": "产品、命令、原生服务和发布资产都改用新名称，现有安装须先卸载再全新安装。安装时可用 --upstream-base-url 选定一个普通 Responses 上游。",
+      "detail": "产品、命令、系统服务和发布资产都改用新名称，现有安装须先卸载再全新安装。安装时可用 --upstream-base-url 选定一个普通 Responses 上游。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -146,7 +146,7 @@
       "at": "2026-10-12T19:44:37+08:00",
       "lane": "lifecycle",
       "kind": "alert",
-      "title": "v5.0.3 macOS 重启后恢复看门狗",
+      "title": "v5.0.3 macOS 重启后看门狗再次运行",
       "detail": "有 GUI 登录时，安装把看门狗注册到该登录的域，launchd 每次 GUI 登录都会重新加载它。5.0.1 和 5.0.2 留下的仅限 Background 域的注册会被迁移。",
       "sources": [
         {
@@ -210,7 +210,7 @@
       "at": "2026-11-09T06:38:03+08:00",
       "lane": "recovery",
       "title": "v5.1.10 输入超长与媒体超预算",
-      "detail": "上游以输入超长或媒体超预算拒绝时，若当前输入允许，就带更少的历史再试一次。当前的用户图片、工具图片、指令和工具依赖都保留。",
+      "detail": "上游以输入超长或媒体超预算拒绝时，若当前输入允许，就带更少的历史再试一次。当前的用户图像、工具图像、指令和工具依赖都保留。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -256,7 +256,7 @@
       "lane": "lifecycle",
       "kind": "change",
       "title": "v6.0.0 替换监听器只走交接",
-      "detail": "排空控制被移除：两条控制路由、503 proxy_draining 响应，以及相关的计数器、失败类别和健康字段都不再存在。升级、回滚和重载替换运行中的监听器，只走交接；运行时若未同时声明两项交接能力，命令在改动之前就拒绝。5.0.6 及更早版本写下的安装不再按默认值读取，而是被拒绝。",
+      "detail": "排空控制被移除：两条控制路由、503 proxy_draining 响应，以及相关的计数器、失败类别和健康字段都不再存在。升级、回滚和重载替换运行中的监听器，只走交接；运行时若未同时声明两项交接能力，命令在改动之前就拒绝。5.0.6 及更早版本留下的安装不再按默认值读取，而是被拒绝。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -271,7 +271,7 @@
       "at": "2026-11-16T11:42:37+08:00",
       "lane": "recovery",
       "title": "v6.0.1 日志写明每个已放行的响应怎样结束",
-      "detail": "每个已放行的响应怎样结束，日志都会写明。写出响应时若遇到客户端关闭连接，日志只记一次，代理随即结束该连接。此前，向客户端写上游错误或本地失败超时后，代理会在同一连接上再写一个 504 upstream_deadline_exceeded，status 也把它报告为上次失败。现在超时之后不再写出任何内容。流的处理器遇到没有单独命名的失败时，此前连接保持打开，响应体没有结束；现在代理结束该连接。",
+      "detail": "每个已放行的响应怎样结束，日志都会写明。写出响应时若遇到客户端关闭连接，日志只记一次，代理随即结束该连接。此前，向客户端写上游错误或本地失败时若超时，代理会在同一连接上再写一个 504 upstream_deadline_exceeded，status 也把它报告为上次失败。现在超时之后不再写出任何内容。流的处理器遇到没有单独命名的失败时，此前连接保持打开，响应体没有结束；现在代理结束该连接。",
       "sources": [
         {
           "path": "CHANGELOG.md",

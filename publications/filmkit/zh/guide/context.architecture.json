@@ -65,7 +65,7 @@
     {
       "id": "ctx-supply",
       "type": "cloud",
-      "label": "供应步骤",
+      "label": "下载安装步骤",
       "sublabel": "唯一联网的步骤",
       "pos": [760, 40],
       "size": [180, 64],
@@ -194,7 +194,7 @@
       "id": "ctx-renders",
       "from": "ctx-engine",
       "to": "ctx-browser",
-      "label": "渲染、审查",
+      "label": "渲染、检测",
       "variant": "emphasis"
     },
     {

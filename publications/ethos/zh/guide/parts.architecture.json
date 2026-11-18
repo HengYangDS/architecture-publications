@@ -48,7 +48,7 @@
     {
       "id": "part-proof",
       "type": "database",
-      "label": "证明核验记录",
+      "label": "核验存证",
       "sublabel": "精确到一个 HEAD",
       "pos": [520, 40],
       "size": [180, 68],
@@ -57,7 +57,7 @@
           "path": "src/ethos/adapters/mutation/proof.py",
           "line": 417,
           "end_line": 422,
-          "label": "证明"
+          "label": "核验"
         }
       ]
     },
@@ -159,7 +159,7 @@
       "id": "edge-landing-requires",
       "from": "part-landing",
       "to": "part-proof",
-      "label": "要求",
+      "label": "需要",
       "variant": "emphasis"
     },
     {
@@ -178,13 +178,13 @@
       "id": "edge-activates",
       "from": "part-lane",
       "to": "part-hooks",
-      "label": "激活"
+      "label": "启用"
     },
     {
       "id": "edge-publication-requires",
       "from": "part-publication",
       "to": "part-proof",
-      "label": "要求"
+      "label": "需要"
     }
   ]
 }

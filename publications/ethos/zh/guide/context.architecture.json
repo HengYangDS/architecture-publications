@@ -82,7 +82,7 @@
       "id": "ctx-kernel",
       "type": "security",
       "label": "信任内核",
-      "sublabel": "编译、准入、写下核验记录",
+      "sublabel": "编译、放行、留下存证",
       "pos": [470, 150],
       "size": [170, 64],
       "sources": [
@@ -201,7 +201,7 @@
       "id": "ctx-projects",
       "from": "ctx-ci",
       "to": "ctx-kernel",
-      "label": "同样的证明"
+      "label": "同样的核验"
     },
     {
       "id": "ctx-adapts",

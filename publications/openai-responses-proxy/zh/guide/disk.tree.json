@@ -99,7 +99,7 @@
     {
       "id": "dk-transaction",
       "label": "事务日志",
-      "sublabel": "位于数据根目录旁，仅在事务未结时存在",
+      "sublabel": "位于数据根目录旁，仅在事务尚未结束时存在",
       "parent": "dk-root",
       "sources": [
         {

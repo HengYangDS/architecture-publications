@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "waterfall",
   "meta": {
-    "title": "一次完整证明，逐个门禁",
+    "title": "一次完整核验，逐个门禁",
     "subtitle": "实测：2026-11-08 用 ETHOS v0.2.0-beta.6 对 architecture-publisher 的 df08239 运行 ethos prove --full --execute；单位为秒，从第一个门禁开始时起算。",
     "output": "proof.html",
     "evidence": "measured",

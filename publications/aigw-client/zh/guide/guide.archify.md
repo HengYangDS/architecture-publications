@@ -1,10 +1,10 @@
 # AIGW 怎样让团队的每个 AI 客户端，都和同一份审阅过的配置保持一致？ {#guide}
 
-AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-what) 审阅过的提供商、模型和客户端选择，都放在一个加锁的文件 `aigw.toml` 里。[](source:store-owner) 写入时，它对每个受支持客户端只改写自己的那部分设置，全程是一次受保护的事务。[](source:transaction) 请求绝不经过 AIGW：每个客户端按需读取自己的令牌，自己调用端点。[](source:boundary)
+AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-what) 审阅过的提供商、模型，以及客户端的模型选择，都放在一个加锁的文件 `aigw.toml` 里。[](source:store-owner) 写入时，它对每个受支持客户端只改写自己的那部分设置，全程是一次带防护的事务。[](source:transaction) 请求绝不经过 AIGW：每个客户端按需读取自己的令牌，自己调用端点。[](source:boundary)
 
 - [它控制的是配置，不是流量](block:p-owners)：请求执行、会话连续性和团队访问，仍由客户端和网关负责。[](source:research-boundary)[](source:research-restraint)
 - [同步失败时，只恢复它自己写过的文件](block:p-race)，其他写入者后来的修改不会丢失。[](source:restore)
-- [客户端文件里没有令牌](block:p-token)：客户端请求时，由凭据助手从选定的那个存储读取令牌。[](source:helper-projection)
+- [客户端文件里没有令牌](block:p-token)：客户端需要时，由凭据助手从选定的那个存储读取令牌。[](source:helper-projection)
 - [每一级检查多证明一件事](block:p-ready)，而客户端文件已同步，不等于请求已得到应答。[](source:experience-readiness)
 
 @answer scope="AIGW v0.8.1 · 提交 d5a2f98 · 源代码及自带文档"
@@ -29,14 +29,14 @@ AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-wha
 @source provider-concept title="提供商" path="docs/concepts/product-concepts.md" lines=46:61
 @source model-concept title="模型" path="docs/concepts/product-concepts.md" lines=63:80
 @source family-concept title="模型家族" path="docs/concepts/product-concepts.md" lines=82:86
-@source selection-concept title="客户端选择" path="docs/concepts/product-concepts.md" lines=88:107
+@source selection-concept title="客户端的模型选择" path="docs/concepts/product-concepts.md" lines=88:107
 @source client-files-concept title="客户端文件" path="docs/concepts/product-concepts.md" lines=109:121
-@source catalog-states title="提供商目录的生命周期" path="docs/concepts/product-concepts.md" lines=149:162
+@source catalog-states title="提供商清单的生命周期" path="docs/concepts/product-concepts.md" lines=149:162
 @source catalog-qualify title="鉴定与移除" path="docs/concepts/product-concepts.md" lines=164:170
 @source provider-struct title="配置中的提供商" path="internal/domain/model.go" lines=78:85
 @source family-struct title="配置中的模型家族" path="internal/domain/model.go" lines=87:92
 @source model-struct title="配置中的模型" path="internal/domain/model.go" lines=94:105
-@source selection-struct title="配置中某个客户端的选择" path="internal/domain/clients.go" lines=236:254
+@source selection-struct title="配置中某个客户端的模型选择" path="internal/domain/clients.go" lines=236:254
 @source research-responsibilities title="四种职责" path="docs/research/provider-tooling-assessment.md" lines=48:57
 @source research-boundary title="更窄的边界" path="docs/research/provider-tooling-assessment.md" lines=204:207
 @source research-restraint title="不做又一个工作台" path="docs/research/provider-tooling-assessment.md" lines=211:219
@@ -48,13 +48,13 @@ AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-wha
 @source acceptance-windows title="Windows 上的 Hermes" path="docs/operations/real-client-acceptance.md" lines=39:41
 @source rollout-intro title="团队推行" path="docs/guides/team-rollout.md" lines=11:13
 @source rollout-maintainer title="维护者的步骤" path="docs/guides/team-rollout.md" lines=15:29
-@source boundary title="权威来源与投影边界" path="docs/architecture/authority-and-projection-boundary.md" lines=38:41
+@source boundary title="权威来源与统一配置的边界" path="docs/architecture/authority-and-projection-boundary.md" lines=38:41
 @source owners title="哪些状态归谁" path="docs/architecture/authority-and-projection-boundary.md" lines=48:59
 @source transaction title="同步事务" path="internal/app/synchronization/transaction.go" lines=41:54
 @source preflight title="预检" path="internal/app/synchronization/transaction.go" lines=56:71
 @source commit-order title="先入口，再配置，最后写入客户端文件" path="internal/app/synchronization/transaction.go" lines=75:97
 @source transaction-boundary title="事务边界" path="docs/architecture/security-model.md" lines=198:212
-@source restore title="受保护的恢复" path="internal/platform/files.go" lines=197:211
+@source restore title="带防护的恢复" path="internal/platform/files.go" lines=197:211
 @source store-commit title="提交配置" path="internal/store/store.go" lines=79:82
 @source store-owner title="存储管什么" path="internal/store/store.go" lines=1:3
 @source store-lock title="修改锁" path="internal/store/store.go" lines=181:200
@@ -67,7 +67,7 @@ AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-wha
 @source check-depths title="检查深度的阶梯" path="internal/cli/check/depth.go" lines=15:34
 @source verify-snapshot title="检查何时写入已验证快照" path="internal/cli/check/snapshot.go" lines=20:32
 @source rollback-snapshot title="config rollback 恢复什么" path="internal/cli/config/rollback.go" lines=101:111
-@source decision title="DR-0006：一次受保护的事务" path="docs/decisions/dr-0006-transactional-client-projection.md" lines=15:30
+@source decision title="DR-0006：一次带防护的事务" path="docs/decisions/dr-0006-transactional-client-projection.md" lines=15:30
 @source rejected title="DR-0006：被否决的方案" path="docs/decisions/dr-0006-transactional-client-projection.md" lines=32:37
 @source revisit title="DR-0006：何时重新审视" path="docs/decisions/dr-0006-transactional-client-projection.md" lines=45:48
 @source readiness title="就绪状态" path="internal/app/readiness/state.go" lines=1:27
@@ -82,7 +82,7 @@ AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-wha
 @source check-names title="Windows 上的环境变量名" path="CHANGELOG.md" lines=159:161
 @source check-client-report title="客户端自己报出的警告或错误" path="CHANGELOG.md" lines=107:118
 @source check-codex-memory title="检查客户端时 Codex 的记忆任务" path="CHANGELOG.md" lines=119:120
-@source redaction-forms title="脱敏覆盖的凭据形式" path="CHANGELOG.md" lines=121:125
+@source redaction-forms title="脱敏涵盖的凭据形式" path="CHANGELOG.md" lines=121:125
 @source check-schema title="aigw check 的 JSON 文档" path="CHANGELOG.md" lines=129:133
 @source team-lines title="每条产品线的最新模型" path="CHANGELOG.md" lines=134:136
 @source keychain-foreign title="另一个程序存入的钥匙串条目" path="CHANGELOG.md" lines=40:65
@@ -92,14 +92,14 @@ AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-wha
 
 ## 谁使用 AIGW，它又牵涉到什么？ {#p-context}
 
-AIGW 的价值假设是：团队成员只要持有任一受支持提供商凭据，就能得到可用的客户端配置，看得懂，也能安全地撤回。[](source:research-value)
+AIGW 的价值假设是：团队成员只要持有任一受支持提供商的凭据，就能得到可用的客户端配置，看得懂，也能安全地撤回。[](source:research-value)
 
 @facts
 | 客户端 | `<client>` 可取 `claude`、`claude-desktop`、`codex` 和 `hermes` |
 | 令牌存储 | 平台凭据服务可用时就用它，否则用唯一的本地后备存储；用 `AIGW_SECRET_BACKEND` 显式选定 `keyring`、`file` 或 `env` 时，出错即拒绝 |
 | 环境变量中的令牌 | 只读，取自 `AIGW_TOKEN_<PROVIDER>`；客户端进程必须继承同一环境 |
 
-这些取值由 AIGW 固定。[](source:readme-for)[](source:readme-credentials)[](source:readme-environment)团队编订一份团队文件，只收录审阅过的提供商端点和已鉴定的模型，不含令牌。[](source:rollout-maintainer)AIGW 自带一份团队文件，其中 Claude、GPT 和 Gemini 的每条产品线都保留最新模型。[](source:team-lines)下面是仓库自带 `manifests/team.toml` 的开头：文件版本，以及一个提供商和它的两个模型。[](source:manifest-provider)
+这些取值由 AIGW 固定。[](source:readme-for)[](source:readme-credentials)[](source:readme-environment)团队编订一份团队文件，只收录审阅过的提供商端点和通过鉴定的模型，不含令牌。[](source:rollout-maintainer)AIGW 自带一份团队文件，其中 Claude、GPT 和 Gemini 的每条产品线都保留最新模型。[](source:team-lines)下面是仓库自带 `manifests/team.toml` 的开头：文件版本，以及一个提供商和它的两个模型。[](source:manifest-provider)
 
 @code id=provider source=manifest-provider language=toml
 
@@ -109,7 +109,7 @@ AIGW 的价值假设是：团队成员只要持有任一受支持提供商凭据
 | step-ctx-maintainer | 团队维护者 | 编订一份审阅过、不含令牌的团队文件，按标签或提交发布，不从会变动的分支发布。[](source:rollout-maintainer) | context-map | ctx-maintainer |
 | step-ctx-member | 团队成员 | 应用这份团队文件，只连接自己持有令牌的那个提供商。[](source:readme-team) | context-map | ctx-member |
 | step-ctx-control | AIGW 控制面 | 保管提供商、它们的令牌和模型，让每个客户端指向一个模型；不转发请求，不运行网关，对话状态也不归它管。[](source:readme-what) | context-map | ctx-control |
-| step-ctx-clients | 受支持的客户端 | Codex、Claude Code、Claude Desktop 和 Hermes；AIGW 只把自己的设置写进它们的文件。要列入发布支持，必须先取得完整的原生证据。[](source:readme-what)[](source:readme-adapters) | context-map | ctx-clients |
+| step-ctx-clients | 受支持的客户端 | Codex、Claude Code、Claude Desktop 和 Hermes；AIGW 只把自己的设置写进它们的文件。发布版本要支持某个客户端，必须先取得完整的原生证据。[](source:readme-what)[](source:readme-adapters) | context-map | ctx-clients |
 | step-ctx-store | 令牌存储 | 平台凭据服务、本地后备存储，或只读的环境变量；一旦显式选定，出错即拒绝。[](source:readme-credentials) | context-map | ctx-store |
 | step-ctx-endpoints | 提供商端点 | 直连的 URL，或独立运营的兼容端点；AIGW 保存这一选择，但绝不运营该服务。[](source:readme-boundaries) | context-map | ctx-endpoints |
 
@@ -120,10 +120,10 @@ AIGW 的价值假设是：团队成员只要持有任一受支持提供商凭据
 @diagram workflow id=rollout-flow source=rollout.workflow.json
 
 @steps id=rollout-steps
-| step-curate | 编订团队文件 | 只收录审阅过的提供商端点和已鉴定的模型；令牌、个人路径、身份和发布凭据一概不收。[](source:rollout-maintainer) | rollout-flow | rollout-curate |
+| step-curate | 编订团队文件 | 只收录审阅过的提供商端点和通过鉴定的模型；令牌、个人路径、身份和发布凭据一概不收。[](source:rollout-maintainer) | rollout-flow | rollout-curate |
 | step-publish | 按标签发布 | 从发布标签或不可变的提交发布，让每位成员拿到同一份文件。[](source:rollout-maintainer) | rollout-flow | rollout-publish |
-| step-install | 安装 AIGW | 在 macOS 上用已签名、经公证的 Homebrew cask，或用适用于 macOS、Linux 和 Windows 的便携归档包，由 `aigw self install` 安装。[](source:readme-install) | rollout-flow | rollout-install |
-| step-import | 应用团队文件 | 应用时，既不需要备齐每个提供商的令牌，也不需要已装好客户端。[](source:readme-team)预览、结果和 `--json` 都会列出文件替换的每个 `label`，涵盖提供商、模型家族和模型，新旧取值并列。[](source:team-labels) | rollout-flow | rollout-import |
+| step-install | 安装 AIGW | 在 macOS 上用已签名、经公证的 Homebrew cask，或用面向 macOS、Linux 和 Windows 的便携归档包，由 `aigw self install` 安装。[](source:readme-install) | rollout-flow | rollout-install |
+| step-import | 应用团队文件 | 应用时，既不需要备齐每个提供商的令牌，也不需要先装好客户端。[](source:readme-team)预览、结果和 `--json` 都会列出文件替换的每个 `label`，涵盖提供商、模型家族和模型，新旧取值并列。[](source:team-labels) | rollout-flow | rollout-import |
 | step-connect | 连接一个提供商 | 只指定你持有令牌的提供商；其余提供商仍然可用，但不会成为前提。[](source:readme-connect)[](source:readme-activate) | rollout-flow | rollout-connect |
 | step-check | 同步并检查 | 凡是模型、认证和客户端文件都可用的已启用客户端，`aigw sync` 都会更新，但绝不会创建缺失的客户端。[](source:readme-sync) | rollout-flow | rollout-check |
 
@@ -138,7 +138,7 @@ AIGW 的价值假设是：团队成员只要持有任一受支持提供商凭据
 @diagram erd id=model-erd source=model.erd.json
 
 @steps id=model-steps
-| step-selection | 客户端选择 | 一个客户端的模型、是否启用、协议和认证方式；没有全局默认值，不继承，也不跨客户端回退。[](source:selection-concept)[](source:selection-struct) | model-erd | erd-selection |
+| step-selection | 客户端的模型选择 | 一个客户端的模型、是否启用、协议和认证方式；没有全局默认值，不继承，也不跨客户端回退。[](source:selection-concept)[](source:selection-struct) | model-erd | erd-selection |
 | step-model | 模型 | 某个提供商提供的模型，名为 `provider/model`；`/` 之后是提供商自己的模型 ID，逐字节照录。模型还声明 AIGW 可以在哪些协议上使用它。[](source:model-concept)[](source:model-struct) | model-erd | erd-model |
 | step-family | 模型家族 | 可选：说明提供商的某个模型是哪个规范模型，便于比较不同变体和不同提供商。[](source:family-concept)[](source:family-struct) | model-erd | erd-family |
 | step-provider | 提供商 | 你持有其令牌的服务：每个协议一个端点；认证需要时，再加一个令牌槽位。配置和团队文件绝不包含令牌。[](source:provider-concept)[](source:provider-struct) | model-erd | erd-provider |
@@ -148,7 +148,7 @@ AIGW 的价值假设是：团队成员只要持有任一受支持提供商凭据
 
 ## 一次同步中发生了什么？ {#p-sync}
 
-@sequence id=sync-flow title="一次同步，就是一次受保护的事务"
+@sequence id=sync-flow title="一次同步，就是一次带防护的事务"
 | actor sync-operator | 操作者 | external |
 | actor sync-engine | 同步器 | backend | source:transaction |
 | actor sync-store | 配置存储 | database | source:store-commit |
@@ -165,7 +165,7 @@ AIGW 的价值假设是：团队成员只要持有任一受支持提供商凭据
 | sync-engine | sync-files | 写入每个客户端的文件 | emphasis |
 | sync-engine | sync-helper | 确认副本 |
 | phase | 失败时 |
-| sync-engine | sync-files | 文件仍是本次写入时才恢复 |
+| sync-engine | sync-files | 文件内容仍是本次写入的才恢复 |
 | sync-engine | sync-store | 恢复配置 |
 | phase | 报告 |
 | sync-engine | sync-operator | 结果 | return |
@@ -234,18 +234,18 @@ AIGW 的输出回答三个问题：选中了什么，是否就绪，下一步做
 @steps id=ready-steps
 | step-status | aigw status | 报告每个客户端的模型，以及它的客户端文件是否就绪；不读取令牌，也不运行客户端。[](source:experience-readiness) |
 | step-endpoint | aigw check --depth endpoint | 检查每个端点，只发一次不指定模型的请求。[](source:readme-check)[](source:readme-depths) |
-| step-inference | aigw check | 默认深度：为每个受检查的客户端发一次有上限的推理请求，可能消耗提供商配额。[](source:readme-check)[](source:experience-readiness) |
+| step-inference | aigw check | 默认深度：为每个受检查的客户端发一次有时限的推理请求，可能消耗提供商配额。[](source:readme-check)[](source:experience-readiness) |
 | step-session | aigw check --depth client | 在每个已启用的客户端里真实运行一次会话，启动客户端时不带父级智能体会话的环境变量。[](source:readme-depths)[](source:check-parent-session)不指定客户端且全部通过时，写入已验证快照，`aigw config rollback` 优先恢复的就是它。[](source:verify-snapshot)[](source:rollback-snapshot)在 `client` 深度检查 Codex 时，不启动 Codex 的记忆任务；这项任务会向受检查模型以外的另一个模型发请求。[](source:check-codex-memory) |
 
 | 深度或状态 | 含义                                                                                                                                                                                                          |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `local`    | 配置、令牌是否存在、客户端文件和运行环境都通过检查，不发请求。已存入但为空的令牌按缺少令牌处理。[](source:token-empty)另一个程序存入的钥匙串条目会被报告出来，不算作已存入的令牌。[](source:keychain-foreign) |
-| `endpoint` | 提供商应答了一次不指定模型的认证请求。                                                                                                                                                                        |
-| `model`    | 所选模型应答了一次有上限的推理请求。这是默认深度。                                                                                                                                                            |
+| `local`    | 配置、客户端文件和运行环境都通过检查，令牌也已存入，不发请求。已存入但为空的令牌按缺少令牌处理。[](source:token-empty)另一个程序存入的钥匙串条目会被报告出来，不算作已存入的令牌。[](source:keychain-foreign) |
+| `endpoint` | 提供商应答了一次带认证、不指定模型的请求。                                                                                                                                                                    |
+| `model`    | 所选模型应答了一次有时限的推理请求。这是默认深度。                                                                                                                                                            |
 | `client`   | 一次真实的客户端会话顺利完成。                                                                                                                                                                                |
 | 已配置     | 本地前提条件满足，不论检查在此之外证明了多少。                                                                                                                                                                |
-| 已推迟     | 凭据或客户端文件有意推迟。                                                                                                                                                                                    |
-| 降级       | 客户端仍在配置中，但有可恢复的问题。                                                                                                                                                                          |
+| 已推迟     | 凭据或客户端文件是有意推迟的。                                                                                                                                                                                |
+| 降级       | 客户端仍算已配置，但有可恢复的问题。                                                                                                                                                                          |
 | 无效       | 配置或自有状态不能安全使用。                                                                                                                                                                                  |
 | 不可用     | 缺少一项必需的外部能力。                                                                                                                                                                                      |
 
@@ -255,19 +255,19 @@ Codex 或 Claude Code 自己报出警告或错误时，`aigw check <client> --de
 
 对其他报告，加上 `--verbose` 后，AIGW 的输出之后会附上客户端自己的输出，最多四行。这些行里没有提供商令牌，也没有已知形式的凭据。客户端自行认证或经外部凭据助手认证时，不显示这些行，修复办法是直接运行客户端本身。[](source:check-client-report)
 
-AIGW 脱敏时，覆盖 `Authorization` 头直到行尾的内容、cookie 头，以及 URL 里的用户名，带不带密码都一样。它还覆盖名为 `key`、`sig` 或 `signature` 的查询参数，以及 `sk-` 之后至少还有 20 个字符的裸密钥。[](source:redaction-forms)`aigw check` 的 JSON 文档 `schema_version` 为 4，新增 `clients[].failure.client_report`：会话失败时客户端自己的输出，只在加 `--verbose` 时出现。这类失败的下一步是 `next_detail` 里的一段文字，没有 `next_action`。[](source:check-schema)
+AIGW 的脱敏涵盖 `Authorization` 头直到行尾的内容、cookie 头，以及 URL 里的用户名，带不带密码都一样。它还涵盖名为 `key`、`sig` 或 `signature` 的查询参数，以及 `sk-` 之后至少还有 20 个字符的裸密钥。[](source:redaction-forms)`aigw check` 的 JSON 文档 `schema_version` 为 4，新增 `clients[].failure.client_report`：会话失败时客户端自己的输出，只在加 `--verbose` 时出现。这类失败的下一步是 `next_detail` 里的一段文字，没有 `next_action`。[](source:check-schema)
 
 ## 提供商的模型会经历哪些状态？ {#p-catalog}
 
-提供商目录是观测结果，不是配置。`aigw model search` 读取这些目录；模型出现在目录里，既不证明能推理，也不证明具备任何能力。[](source:catalog-states)
+提供商清单是观测结果，不是配置。`aigw model search` 读取这些清单；模型出现在清单里，既不证明能推理，也不证明具备任何能力。[](source:catalog-states)
 
 @diagram lifecycle id=catalog-life source=catalog.lifecycle.json
 
 @steps id=catalog-steps
 | step-available | 可添加 | 提供商列出了这个模型，但还没有添加。[](source:catalog-states) | catalog-life | cat-available |
-| step-added | 已添加 | 模型在配置里，提供商也列出了它。`aigw use` 会添加目录里列出的模型；加上 `--unlisted`，也能添加未列出的模型。[](source:catalog-states)[](source:readme-use) | catalog-life | cat-added |
+| step-added | 已添加 | 模型在配置里，提供商也列出了它。`aigw use` 会添加清单里列出的模型；加上 `--unlisted`，也能添加未列出的模型。[](source:catalog-states)[](source:readme-use) | catalog-life | cat-added |
 | step-missing | 缺失 | 模型在配置里，但提供商已不再列出它。AIGW 报告它需要重新鉴定，但绝不会自行重命名、弃用或移除它。[](source:catalog-states)[](source:catalog-qualify) | catalog-life | cat-missing |
-| step-deprecated | 已弃用 | 团队文件把模型标为弃用。它保留现有的选择，但不再推荐。[](source:catalog-states) | catalog-life | cat-deprecated |
+| step-deprecated | 已弃用 | 团队文件把模型标为弃用。已有的选择照旧保留，但不再推荐这个模型。[](source:catalog-states) | catalog-life | cat-deprecated |
 
 鉴定是另一项证据：对指定能力，要有明确的协议证据和真实客户端证据。Chat Completions 成功，并不能让 Responses 通过鉴定。等到没有客户端选用某个模型，才能用 `aigw model remove` 移除它。[](source:catalog-qualify)
 
@@ -279,14 +279,14 @@ AIGW 脱敏时，覆盖 `Authorization` 头直到行尾的内容、cookie 头，
 
 @steps id=parts-steps
 | step-synchronization | 同步 | 规划每个客户端文件的写入，提交配置，再写入客户端文件，整个过程是一次事务。[](source:preflight)[](source:commit-order) | parts-map | parts-sync |
-| step-store | 配置存储 | 管理 `aigw.toml`、它的锁、备份和已验证快照，并保留自己写入的确切文件，供受保护的回滚使用。[](source:store-owner)[](source:store-commit) | parts-map | parts-store |
+| step-store | 配置存储 | 管理 `aigw.toml`、它的锁、备份和已验证快照，并保留自己写入的确切文件，供带防护的回滚使用。[](source:store-owner)[](source:store-commit) | parts-map | parts-store |
 | step-seam | 适配器接口 | 所有客户端共用一份契约：发现、收敛、规划、应用、检视、验证和撤回。[](source:seam) | parts-map | parts-seam |
-| step-codex | Codex | `~/.codex/config.toml` 中归 AIGW 管的一块，以及模型目录。 | parts-map | parts-codex |
-| step-claude-code | Claude Code | `~/.claude/settings.json`：端点、模型偏好和凭据助手。从 0.6.1 升级后首次运行 `aigw setup` 时，0.6.1 写入的 `model` 即使被你改过或删掉，这份设置也会被接受。只要提供商和端点没有变，你的选择就会保留。[](source:setup-model-kept) | parts-map | parts-claude-code |
-| step-claude-desktop | Claude Desktop | 单独的第三方推理库。 | parts-map | parts-claude-desktop |
-| step-hermes | Hermes | Hermes 的提供商目录、协议和模型。 | parts-map | parts-hermes |
+| step-codex | Codex | `~/.codex/config.toml` 中归 AIGW 管的一块，以及模型清单。 | parts-map | parts-codex |
+| step-claude-code | Claude Code | `~/.claude/settings.json`：端点、模型偏好和凭据助手。从 0.6.1 升级后首次运行 `aigw setup` 时，即使你改过或删掉了 0.6.1 写入的 `model`，它也接受这份设置。只要提供商和端点没有变，你的选择就会保留。[](source:setup-model-kept) | parts-map | parts-claude-code |
+| step-claude-desktop | Claude Desktop | 单独的第三方推理配置库。 | parts-map | parts-claude-desktop |
+| step-hermes | Hermes | Hermes 的提供商清单、协议和模型。 | parts-map | parts-hermes |
 
-## 为什么要用一次受保护的事务？ {#p-decision}
+## 为什么要用一次带防护的事务？ {#p-decision}
 
 一次变更可能涉及多个客户端。DR-0006 权衡了写入它们的三种方式。[](source:decision)[](source:rejected)
 
@@ -294,7 +294,7 @@ AIGW 脱敏时，覆盖 `Authorization` 头直到行尾的内容、cookie 头，
 | ---------------- | ------------------------------ | ---------------- |
 | 逐个尽力写入     | 客户端看到一部分新状态。       | 否决 {bad:否决}  |
 | 无条件回滚       | 后来者写入的字节可能被覆盖。   | 否决 {bad:否决}  |
-| 一次受保护的事务 | 只有自己的写入仍在时，才恢复。 | 采用 {good:采用} |
+| 一次带防护的事务 | 只有自己的写入仍在时，才恢复。 | 采用 {good:采用} |
 
 决策记录写明了一种需要重新审视的情形：所有客户端文件都改由同一个更强的原子存储承载，并提供同等保护。[](source:revisit)
 
@@ -311,18 +311,18 @@ AIGW 脱敏时，覆盖 `Authorization` 头直到行尾的内容、cookie 头，
 
 @facts
 | Codex | 对话、JSONL、SQLite、模型元数据和 Desktop 图形界面状态[](source:owners) |
-| Claude Code | 会话和无关的设置[](source:readme-boundaries) |
+| Claude Code | 会话，以及与 AIGW 无关的设置[](source:readme-boundaries) |
 | 兼容端点 | 运营归它们自己；AIGW 绝不安装、启动、停止或诊断它们[](source:readme-boundaries) |
-| 新客户端 | 每个都需要单独的适配器准入；提供商支持某个协议，并不等于准入了客户端[](source:adapter-admission) |
+| 新客户端 | 每个都需要单独的适配器准入；提供商支持某个协议，并不等于客户端获得准入[](source:adapter-admission) |
 
 ## AIGW 如何安装、更新和回滚？ {#p-release}
 
 @facts
 | 安装 | 已签名、经公证的 Homebrew cask，或面向 Darwin、Linux 和 Windows（AMD64 与 ARM64）的便携归档包，由 `aigw self install` 安装。[](source:readme-install) |
-| 更新 | 便携更新在计算哈希、解压或运行任何内容之前，先用 AIGW 内置的发布密钥验证 `checksums.txt.sig`。[](source:readme-update-trust) |
-| 代码托管平台 | 更新读取 GitHub 上的发布版本；只有两个环境变量指明 GitLab 时，它才加入。一个发布版本绝不由两者拼合而成。[](source:readme-update-trust) |
-| 回滚 | `aigw self rollback` 先把一份配置副本交给保留的前一版本；它读不了，就什么都不改变。0.7.0 之前的版本都读不了 `aigw.toml`。[](source:readme-rollback)回滚不移动任何凭据：在 macOS 上，一个已签名的发布版本能读取另一个已签名版本存入的钥匙串条目。在用 Homebrew 安装的 AIGW 上，这条命令和其他程序命令一样被拒绝，较早的版本由 Homebrew 安装。[](source:rollback-credentials) |
-| 卸载 | `aigw self uninstall` 从客户端文件中移除 AIGW 的设置；提供商、模型、客户端选择、令牌和你自己的客户端状态都会保留。[](source:readme-uninstall) |
+| 更新 | 便携程序更新时，在计算哈希、解压或运行任何内容之前，先用 AIGW 内置的发布密钥验证 `checksums.txt.sig`。[](source:readme-update-trust) |
+| 代码托管平台 | 更新读取 GitHub 上的发布版本；要有两个环境变量指明 GitLab，它才加入。一个发布版本绝不由两者拼合而成。[](source:readme-update-trust) |
+| 回滚 | `aigw self rollback` 先把一份配置副本交给保留的前一版本；它读不了，就什么都不改变。0.7.0 之前的版本都读不了 `aigw.toml`。[](source:readme-rollback)回滚不移动任何凭据：在 macOS 上，一个已签名的发布版本能读取另一个已签名版本存入的钥匙串条目。对用 Homebrew 安装的 AIGW，这条命令和其他程序命令一样被拒绝，较早的版本由 Homebrew 安装。[](source:rollback-credentials) |
+| 卸载 | `aigw self uninstall` 从客户端文件中移除 AIGW 的设置；提供商、模型、客户端的模型选择、令牌和你自己的客户端状态都会保留。[](source:readme-uninstall) |
 
 ## AIGW 怎样走到今天？ {#p-history}
 
@@ -332,11 +332,11 @@ AIGW 于 2026 年 9 月 19 日发布 v0.1.0，11 月 16 日发布本页所述的
 
 ## 哪些已经交付，哪些仍待解决？ {#p-maturity}
 
-发布支持只覆盖已取得完整原生证据的客户端。[](source:readme-adapters)
+发布版本只支持已取得完整原生证据的客户端。[](source:readme-adapters)
 
 | 范围                         | 状态                              | 含义                                                                                                                        |
 | ---------------------------- | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | Codex、Claude Code 和 Hermes | 已验收 {good:真实客户端}          | 发布流程以已发布的前一版本为基线，让每个真实客户端依次升级、回滚、再升级；缺少客户端即判失败。[](source:acceptance-journey) |
-| Claude Desktop               | 单独 {good:自有证据}              | Desktop 需要单独鉴定；CLI 证据不能替代它。[](source:acceptance-journey)                                                     |
+| Claude Desktop               | 单独鉴定 {good:自己的证据}        | Desktop 需要单独鉴定；CLI 证据不能替代它。[](source:acceptance-journey)                                                     |
 | Windows 上的 Hermes          | 未验证 {caution:待定}             | 在原生启动器可以隔离之前，验证流程拒绝启动 Hermes。[](source:acceptance-windows)                                            |
 | 文件防护                     | 尽力而为 {caution:是防护，不是锁} | 能保住检测到的较新写入，但不是跨进程的 compare-and-swap。[](source:transaction-boundary)                                    |

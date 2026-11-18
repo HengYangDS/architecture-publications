@@ -37,7 +37,7 @@
       "id": "v010",
       "at": "2026-09-19T20:41:58+08:00",
       "lane": "trust",
-      "title": "v0.1.0 签名的 macOS 发布与 Homebrew cask",
+      "title": "v0.1.0 已签名的 macOS 发布版本与 Homebrew cask",
       "detail": "macOS 发布版本采用 Developer ID 签名并经公证。Homebrew cask 依据发布归档包清单生成，安装时不配置任何客户端；此后程序的更新和移除都交给 Homebrew。",
       "sources": [
         {
@@ -90,7 +90,7 @@
       "id": "v041",
       "at": "2026-10-14T12:26:59+08:00",
       "lane": "trust",
-      "title": "v0.4.1 签名更新与私有凭据副本",
+      "title": "v0.4.1 已签名的更新",
       "detail": "在线更新先用内置的 SSH 发布密钥验证校验和清单，再解压或运行下载的程序。客户端通过按 SHA-256 寻址的 aigw 私有副本读取令牌；包管理器替换 CLI 时，这份副本照常应答。",
       "sources": [
         {
@@ -106,7 +106,7 @@
       "at": "2026-10-19T12:34:09+08:00",
       "lane": "catalog",
       "title": "v0.4.5 UCloud 上的 Claude Desktop 工具搜索",
-      "detail": "团队清单为 UCloud 的 Claude Opus 5.5、Sonnet 5.5 和 Haiku 5.5 路由声明 tool_search。使用这些路由时，Desktop 配置会按需加载 MCP 工具模式。",
+      "detail": "团队文件为 UCloud 的 Claude Opus 5.5、Sonnet 5.5 和 Haiku 5.5 路由声明 tool_search。使用这些路由时，Desktop 配置会按需加载 MCP 工具的 schema。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -122,7 +122,7 @@
       "lane": "trust",
       "kind": "alert",
       "title": "v0.4.6 旧版助手又能读到令牌",
-      "detail": "某条路由声明 tool_search 后，AIGW 0.4.3 及更早版本的凭据助手就读不到令牌。下次同步会把这类能力移进 config.capabilities.toml，凭据助手从不读取这个文件。回滚后，旧程序会在下次同步时关闭 Claude Desktop 的工具搜索。",
+      "detail": "此前，某条路由声明 tool_search 后，AIGW 0.4.3 及更早版本的凭据助手就不返回令牌。下次同步会把这类能力移进 config.capabilities.toml，凭据助手从不读取这个文件。回滚后，旧程序会在下次同步时关闭 Claude Desktop 的工具搜索。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -199,7 +199,7 @@
       "lane": "commands",
       "kind": "change",
       "title": "v0.5.0 统一的命令行契约",
-      "detail": "每份 JSON 文档都以 schema_version 和 ok 开头；--json 覆盖所有报告结果的命令，--dry-run 覆盖所有会写入的命令。status、check、sync 等文档升到 schema_version 2，脚本只需改一次。",
+      "detail": "每份 JSON 文档都以 schema_version 和 ok 开头；--json 适用于所有报告结果的命令，--dry-run 适用于所有会写入的命令。status、check、sync 等文档升到 schema_version 2，脚本只需改一次。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -245,7 +245,7 @@
       "at": "2026-11-13T01:25:13+08:00",
       "lane": "commands",
       "title": "v0.7.1 在智能体会话里检查客户端",
-      "detail": "aigw check --depth client 启动每个客户端时不带父级智能体会话的环境变量，在 Claude Code、Claude Desktop 或 Hermes 里运行的检查，验证的是 AIGW 写入的文件。升级后首次运行 aigw setup，会保留你对 model 的选择；aigw setup --from 会列出团队文件替换的每个 label。",
+      "detail": "aigw check --depth client 启动每个客户端时不带父级智能体会话的环境变量；因此在 Claude Code、Claude Desktop 或 Hermes 里运行检查，验证的也是 AIGW 写入的文件。升级后首次运行 aigw setup，会保留你对 model 的选择；aigw setup --from 会列出团队文件替换的每个 label。",
       "sources": [
         {
           "path": "CHANGELOG.md",

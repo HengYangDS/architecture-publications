@@ -101,7 +101,7 @@ used in this work.
 | gate; proof gate                                                              | 门禁；核验门禁                                       | `.ethos/profile.toml`                                                             |
 | ETHOS profile                                                                 | ETHOS 治理配置                                       | `.ethos/profile.toml`                                                             |
 | normative source                                                              | 规范来源                                             | `.ethos/profile.toml`                                                             |
-| declaration; release declaration                                              | 声明；发布声明                                       | `.ethos/release.toml`; `docs/governance/README.md`                                |
+| declaration; release declaration                                              | 声明；发布配置                                       | `.ethos/release.toml`; `docs/governance/README.md`                                |
 | peer; publication peer                                                        | 平台；发布平台                                       | `.ethos/release.toml`                                                             |
 | Forge peer                                                                    | 代码托管平台                                         | `.ethos/release.toml`                                                             |
 | accepted mirror                                                               | 已验收内容的镜像                                     | `.ethos/release.toml`; `docs/governance/README.md`                                |

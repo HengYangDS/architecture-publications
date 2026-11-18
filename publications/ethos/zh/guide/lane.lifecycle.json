@@ -32,7 +32,7 @@
       "id": "lane-writing",
       "type": "active",
       "label": "写入中",
-      "sublabel": "已准入的路径",
+      "sublabel": "已放行的路径",
       "sources": [
         {
           "path": "src/ethos/adapters/admission/prewrite.py",
@@ -45,14 +45,14 @@
     {
       "id": "lane-proven",
       "type": "decision",
-      "label": "头提交已证明",
+      "label": "头提交已核验",
       "sublabel": "精确到一个头提交",
       "sources": [
         {
           "path": "src/ethos/adapters/mutation/proof.py",
           "line": 417,
           "end_line": 422,
-          "label": "证明"
+          "label": "核验"
         },
         {
           "path": "docs/architecture/runner-and-mutation.md",
@@ -105,7 +105,7 @@
     {
       "id": "lane-refused",
       "type": "failure",
-      "label": "证明被拒",
+      "label": "核验未通过",
       "sublabel": "未获准入",
       "sources": [
         {
@@ -142,7 +142,7 @@
       "id": "lane-t-prove",
       "from": "lane-writing",
       "to": "lane-proven",
-      "label": "证明"
+      "label": "核验"
     },
     {
       "id": "lane-t-accept",
@@ -207,7 +207,7 @@
       "title": "通道怎样恢复",
       "items": [
         "基线过时：把通道重放到候选分支上。",
-        "证明被拒：退回归档前的头提交。",
+        "核验未通过：退回归档前的头提交。",
         "通道无主：重新获取、转移或退役。"
       ]
     }

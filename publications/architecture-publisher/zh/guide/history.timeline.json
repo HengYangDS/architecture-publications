@@ -5,7 +5,7 @@
     "title": "Architecture Publisher 怎样走到今天",
     "output": "history.html",
     "quality_profile": "showcase",
-    "locale": "zh",
+    "locale": "zh-CN",
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
@@ -35,7 +35,7 @@
       "lane": "model",
       "kind": "change",
       "title": "0.4.0 一个模型，海报与页面",
-      "detail": "由人或 Agent 编写、或从 LikeC4 导入的一个架构模型，产出海报、一个交互页面和一份清单。网格优先的布局从不画出重叠。",
+      "detail": "一个架构模型，由人或智能体编写，或从 LikeC4 导入，产出海报、一个交互页面和一份清单。网格优先的布局绝不画出重叠。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -51,7 +51,7 @@
       "lane": "layout",
       "kind": "change",
       "title": "0.6.0 标签避开别的连线",
-      "detail": "关系标签离另一条关系的转折不足 48 px 时，会被读成那条连线的标签，所以通道把它当作布线缺陷避开。",
+      "detail": "关系标签离另一条关系连线的弯折处不足 48 px 时，会被读成那条连线的标签，所以通道把它当作布线缺陷避开。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -67,7 +67,7 @@
       "lane": "model",
       "kind": "change",
       "title": "0.8.0 组件认领自己的文件",
-      "detail": "第 2 版模型：每个组件认领它拥有的路径，构建在固定的提交上解析它们。模型可以指定导读和总览，check --against 给出重新固定的工作清单。",
+      "detail": "第 2 版模型：每个组件认领它拥有的路径，构建在固定的提交上解析它们。模型可以指定导读和总览，check --against 给出更换提交的待办清单。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -81,8 +81,8 @@
       "id": "v090",
       "at": "2026-11-06T05:16:32+08:00",
       "lane": "edition",
-      "title": "0.9.0 每个平台一个归档",
-      "detail": "每次发布为 ARM64 上的 Linux、macOS 和 Windows 各提供一个 archpub 归档，自带 Node.js 和 Typst，只需要 Git。mise 以 http:archpub 安装它。",
+      "title": "0.9.0 每个平台一个归档包",
+      "detail": "每次发布为 ARM64 上的 Linux、macOS 和 Windows 各提供一个 archpub 归档包，自带 Node.js 和 Typst，只需要 Git。mise 以 http:archpub 安装它。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -134,7 +134,7 @@
       "at": "2026-11-09T15:07:46+08:00",
       "lane": "layout",
       "title": "0.10.2 只排概述，不再拒绝",
-      "detail": "概述和路径合起来高过正文区时，图版只排概述；0.10.1 在这种情况下会拒绝整本图册。文字仍然从不缩小。",
+      "detail": "概述和路径合起来高过正文区时，图版只排概述；0.10.1 在这种情况下会拒绝整本图册。文字照旧绝不缩小。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -149,7 +149,7 @@
       "at": "2026-11-11T00:01:13+08:00",
       "lane": "layout",
       "title": "0.11.0 概述置于全宽图上方",
-      "detail": "在正文区 80% 宽度下连线变差的图保持全宽，概述排在它上方。六部已出版作品中，原先省略概述的 21 幅图版有 16 幅改为这样排出概述。",
+      "detail": "在正文区 80% 宽度下布线变差的图保持全宽，概述排在它上方。六部已出版作品中，原先省略概述的 21 幅图版有 16 幅改为这样排出概述。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -164,7 +164,7 @@
       "at": "2026-11-12T14:40:48+08:00",
       "lane": "edition",
       "title": "0.12.0 上手更容易",
-      "detail": "每个命令都能用 --help 说明自己，智能体技能随包发布，归档覆盖 x86-64 上的 Linux 和 Windows，图册中的说明一律两端对齐。",
+      "detail": "每个命令都带 --help 说明，智能体技能随包发布，归档包覆盖 x86-64 上的 Linux 和 Windows，图册中的说明栏一律两端对齐。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -180,7 +180,7 @@
       "lane": "layout",
       "kind": "change",
       "title": "0.13.0 条带、配色与题跋页",
-      "detail": "每个组件画成与代码量等长的条带，全册同一比例，按固定的新旧三档上色。模型可以选定画法和配色。验收记录改为 in-toto Statement，另排一页题跋页，两者都可用 archpub verify 核验。",
+      "detail": "每个组件画成长度与代码量成正比的条带，全册同一比例，按固定的新旧三档上色。模型可以选定画法和配色。验收记录改为 in-toto Statement，另排一页题跋页，两者都可用 archpub verify 核验。",
       "sources": [
         {
           "path": "CHANGELOG.md",
@@ -194,8 +194,8 @@
       "id": "v0131",
       "at": "2026-11-13T20:39:17+08:00",
       "lane": "edition",
-      "title": "0.13.1 归档改用 Node.js 26.13.1",
-      "detail": "发布归档自带的 Node.js 升到 26.13.1，这是一次安全更新；仓库自身改用 ETHOS 0.2.0-beta.9。出版工具的行为、模型格式和清单都不变。",
+      "title": "0.13.1 归档包改用 Node.js 26.13.1",
+      "detail": "归档包自带的 Node.js 升到 26.13.1，这是一次安全更新；仓库自身改用 ETHOS 0.2.0-beta.9。出版工具的行为、模型格式和清单都不变。",
       "sources": [
         {
           "path": "CHANGELOG.md",
