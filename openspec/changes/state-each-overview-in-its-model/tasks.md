@@ -15,5 +15,5 @@
 
 ## 4. The words about the works
 
-- [ ] 4.1 Make each work's README, the repository's README and `CONTRIBUTING.md` say that the model states the overview and the publisher draws it, with 0.15.0 as the lowest version of the publisher. Done when no file of the repository names `overview.typ` as a part of a work.
-- [ ] 4.2 Record the change under `Unreleased` in `CHANGELOG.md`. Done when `mise run check` passes.
+- [x] 4.1 Make each work's README, the repository's README and `CONTRIBUTING.md` say that the model states the overview and the publisher draws it, with 0.15.0 as the lowest version of the publisher. Done when no file of the repository names `overview.typ` as a part of a work. No README, term table or contributor's guide names `overview.typ` as a part of a work. It is still named by the test of its refusal, by the publisher's work where it says what 0.15.0 retired, and by the dated records under `questions/` and `trials/`, which describe the works as they were read then.
+- [x] 4.2 Record the change under `Unreleased` in `CHANGELOG.md`. Done when `mise run check` passes. `mise run check` passes.

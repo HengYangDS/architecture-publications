@@ -29,6 +29,11 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 ### Changed
 
+- Every work states its overview in its model, in both languages, and the twelve `overview.typ` compositions
+  are gone: Architecture Publisher 0.15.0 draws the overview from the statement and refuses a model that names a
+  composition. The input check holds a work's languages to one shape of statement and refuses a Typst file beside
+  a model. The works' READMEs and term tables, the repository's README and `CONTRIBUTING.md` say so. Film Kit's
+  statement names the detail audit, which its composition lacked.
 - The Chinese of the six works is corrected after readings by readers other than its writer. Each term table renders
   a term by the thing it names in its work, and each Chinese model and overview composition follows its table: a
   secret is 凭据, 令牌 or 密钥 by what it is, a fetch 抓取, a checkout as a thing 检出目录; ETHOS's Attestation is
@@ -46,8 +51,8 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 - The repository's tools run on Node 26.13.1, a security release, and its format check on Prettier
   3.10.1.
 - OpenAI Responses Proxy is pinned at v6.0.3, Architecture Publisher at
-  v0.14.0, Film Kit at v0.23.1, ETHOS at v0.2.0-beta.10 and AIGW at v0.8.1.
-  Building the works needs Architecture Publisher 0.10.2 or later. The
+  v0.15.0, Film Kit at v0.23.1, ETHOS at v0.2.0-beta.10 and AIGW at v0.8.1.
+  Building the works needs Architecture Publisher 0.15.0 or later. The
   Architecture Publisher work lists the `skill` command, describes strips,
   palettes, age bands and the sealed acceptance of an edition, and claims
   `src/style.mjs`. The Film Kit work claims the engine's own draft and picture
@@ -82,6 +87,10 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   derived from the captioned one and the qualification of the renderer for it, the records `preflight` asks for
   and its readiness receipt, the duration records, a narration's processes and the delivery folder a film names;
   it claims the fifteen files new in its scope, two of them as new parts, and its history ends at the release.
+  At v0.15.0 the Architecture Publisher work says that a model states its overview and the publisher draws it, that
+  a delivery holds the model, the pinned edition as data and a reader file, and that `archpub compare` stands beside
+  acceptance; it claims the files new in its scope, `src/facts/` and `src/pinned/` as new parts, names no holder for
+  `publish`, and its history ends at the release.
 - The ETHOS work claims the application layer and the operation catalog. The
   AIGW work uses the client's new vocabulary: it no longer has a renaming
   component, and its catalog, readiness, configuration and rollout panels follow

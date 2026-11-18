@@ -9,8 +9,7 @@ scope: the `src/openai_responses_proxy` package with its provider manifest, `pyp
 to a provider, what leaves the listener, how each failure stays bounded to its provider, one
 install as one transaction, a new listener without a dropped turn, and what keeps it running.
 
-[`en/overview.typ`](en/overview.typ) is the work's overview page, composed with Architecture Publisher's
-house class: the route of one turn and the answer to each upstream failure, the transaction every
+[`en/model.json`](en/model.json) also states the work's overview, which Architecture Publisher draws on one page: the route of one turn and the answer to each upstream failure, the transaction every
 release is and the handoff every new listener is, and what keeps the listener running.
 
 [`en/guide/guide.archify.md`](en/guide/guide.archify.md) is the work's guide, an Archify explainer that
@@ -38,5 +37,4 @@ archpub check publications/openai-responses-proxy/en/model.json --repo <openai-r
 archpub build publications/openai-responses-proxy/en/model.json --repo <openai-responses-proxy checkout> --out build/openai-responses-proxy/en
 ```
 
-Checking and building the work needs Architecture Publisher 0.10.2 or later, which reads model
-version 3, and building the edition needs Typst 0.15.1 on the path.
+Checking and building the work needs Architecture Publisher 0.15.0 or later, which draws the overview a model states, and building the edition needs Typst 0.15.1 on the path.

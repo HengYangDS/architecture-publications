@@ -13,8 +13,7 @@ seven topics under one charter, where readers start, what work practice asks
 of each topic, one change from proposal to admission, what the checks read, and
 an edition on two Forges.
 
-[`en/overview.typ`](en/overview.typ) is the work's overview page, composed with
-Architecture Publisher's house class: the route from two entries through the
+[`en/model.json`](en/model.json) also states the work's overview, which Architecture Publisher draws on one page: the route from two entries through the
 task map to the seven topics, what the charter holds every topic to, the life
 of one change and who owns what, and the edition on its two Forges.
 
@@ -48,6 +47,5 @@ archpub check publications/ddwg/en/model.json --repo <data-department-work-guide
 archpub build publications/ddwg/en/model.json --repo <data-department-work-guidelines checkout> --out build/ddwg/en
 ```
 
-Checking and building the work needs Architecture Publisher 0.10.2 or later,
-which reads model version 3, and building the edition needs Typst 0.15.1 on the
+Checking and building the work needs Architecture Publisher 0.15.0 or later, which draws the overview a model states, and building the edition needs Typst 0.15.1 on the
 path.

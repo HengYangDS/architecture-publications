@@ -9,8 +9,7 @@ and six views show the configuration and its owners, the admitted clients and
 their seam, what a command reports, the program itself and one sync from plan
 to compensation.
 
-[`en/overview.typ`](en/overview.typ) is the work's overview page, composed with
-Architecture Publisher's house class: the control plane projected into each
+[`en/model.json`](en/model.json) also states the work's overview, which Architecture Publisher draws on one page: the control plane projected into each
 client, the transaction every projection is, and who owns what.
 
 [`en/guide/guide.archify.md`](en/guide/guide.archify.md) is the work's guide, an
@@ -39,8 +38,7 @@ archpub check publications/aigw-client/en/model.json --repo <aigw-cli checkout>
 archpub build publications/aigw-client/en/model.json --repo <aigw-cli checkout> --out build/aigw-client/en
 ```
 
-Checking and building the work needs Architecture Publisher 0.10.2 or later,
-which reads model version 3, and building the edition needs Typst 0.15.1 on the
+Checking and building the work needs Architecture Publisher 0.15.0 or later, which draws the overview a model states, and building the edition needs Typst 0.15.1 on the
 path.
 
 [`source.json`](source.json) records the original claim model and edition

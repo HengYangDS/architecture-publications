@@ -1,6 +1,6 @@
 # Data Department Work Guidelines: term renderings
 
-The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
+The renderings this work fixes before translation, used everywhere under `zh/`. Source
 names the file of `data-department-work-guidelines` at v8.0.0 (`b9da15d`) that defines or uses the term, or
 `concepts.toml` for the owner-approved concept contract of the DDWG film, `content/concepts.toml` of
 `data-department-work-guidelines-film` at v1.2.0 (`f286c43`). That contract renders Agent as 智能体 for this work,

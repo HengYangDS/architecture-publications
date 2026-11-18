@@ -1,6 +1,6 @@
 # ETHOS: term renderings
 
-The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
+The renderings this work fixes before translation, used everywhere under `zh/`. Source
 names the file of `ethos` at v0.2.0-beta.10 (`b10254f`) that defines or uses the term; "film" is the owner-approved
 Chinese narration, `content/narration.md` of `ethos-film` at v1.0.1 (`c33e60f`). Product names, command names and
 their options, verdict values (`pass`, `block`, `unknown`), file and ref names, and the kernel names Commitment, Facts
@@ -154,7 +154,7 @@ narration; profile and checkout are his choices of that day.
 | qualify / qualification                       | 鉴定                                                                                 | `docs/architecture/mcp-server.md`                                                                        |
 | reconciler                                    | 协调器                                                                               | `docs/governance/product-design-contract.md`                                                             |
 | digest                                        | 摘要                                                                                 | `src/ethos/contracts/plan.py`                                                                            |
-| owner (of a concern)                          | 归属方                                                                               | `system/axioms.md`; `overview.typ`                                                                       |
+| owner (of a concern)                          | 归属方                                                                               | `system/axioms.md`; the guide                                                                            |
 | concern                                       | 关注点                                                                               | `system/axioms.md`                                                                                       |
 | fail closed                                   | 存疑即阻止                                                                           | `system/axioms.md`                                                                                       |
 | truth (repository truth)                      | 权威事实                                                                             | `docs/architecture/local-state.md`                                                                       |

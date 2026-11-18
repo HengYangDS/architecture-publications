@@ -13,8 +13,7 @@ it may make, publication to every peer, the structure every governed
 repository shares, the runtime every hook runs and the surfaces that reach
 them.
 
-[`en/overview.typ`](en/overview.typ) is the work's overview page, composed with
-Architecture Publisher's house class: the repository's roles above one change,
+[`en/model.json`](en/model.json) also states the work's overview, which Architecture Publisher draws on one page: the repository's roles above one change,
 the TransitionPlan every step is, and the structure every governed repository
 shares.
 
@@ -48,8 +47,7 @@ archpub check publications/ethos/en/model.json --repo <ethos checkout>
 archpub build publications/ethos/en/model.json --repo <ethos checkout> --out build/ethos/en
 ```
 
-Checking and building the work needs Architecture Publisher 0.10.2 or later,
-which reads model version 3, and building the edition needs Typst 0.15.1 on the
+Checking and building the work needs Architecture Publisher 0.15.0 or later, which draws the overview a model states, and building the edition needs Typst 0.15.1 on the
 path.
 
 [`source.json`](source.json) records the design and artwork preserved from

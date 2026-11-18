@@ -27,7 +27,7 @@ diagram checks.
 
 Each work holds each of its languages in a directory of its own, `en/` and
 `zh/`, with the same files: the model in that language, with the work's id and
-revision, and the overview and guide it names. Beside them, `concepts.md` fixes
+revision and its overview, and the guide it names. Beside them, `concepts.md` fixes
 each term's rendering across the languages, beside the file that defines the
 term. Built with `archpub build`, each language's model gives the work's
 edition and page in that language.
@@ -44,10 +44,8 @@ described project.
 Run the publisher with a checkout of the described repository. `check` resolves
 every claim and cited file at the pinned revision without changing the
 checkout; `build` writes a new delivery under the ignored `build/` directory.
-The works are model version 3 and every view carries a summary, which needs
-Architecture Publisher 0.10.2 or later, and the print edition needs Typst
-0.15.1 on the path. A work whose model
-names an overview composition gets it in its edition, after the contents. A work whose model names a guide gets
+Every model states its overview, which needs Architecture Publisher 0.15.0 or later, and the print edition needs Typst
+0.15.1 on the path. The publisher draws the overview a model states on one page of its edition, after the contents. A work whose model names a guide gets
 that guide as its page, with every line range it cites checked at the pinned
 revision.
 
@@ -66,11 +64,10 @@ delivery is published. Deliveries are not committed here.
 `npm test` checks that each work holds only its README, an optional
 `source.json`, its term table when it is written in more than one language,
 and one directory for each language, named by the language of its model's
-locale. Every language directory holds its model and the overview composition
-and guide the model names, the same files as every other, and a model of the
+locale. Every language directory holds its model, which states the overview, and the guide the model names, the same files as every other, and a model of the
 work's id and revision. It checks that each model is in the publisher's format
 with a full revision, claims at least one file and titles and summarises every
-view, and that no two works share a model id. It does not run the publisher or a described
+view, that the languages of a work state one overview in the same shape, and that no two works share a model id. It does not run the publisher or a described
 product; `archpub check --repo` is the full validation.
 
 A `source.json` records originals preserved from a described repository: its

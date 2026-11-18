@@ -1,6 +1,6 @@
 # AIGW Client Projection: term renderings
 
-The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
+The renderings this work fixes before translation, used everywhere under `zh/`. Source
 names the file of `aigw-cli` at v0.8.1 (`d5a2f98`) that defines or uses the term; the repository defines no Chinese
 renderings of its own, and its glossary is `docs/concepts/product-concepts.md`. Command names, flags, paths, package
 names, `aigw check` depths and readiness JSON values stay in Latin type.

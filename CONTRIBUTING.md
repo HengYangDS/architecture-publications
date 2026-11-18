@@ -14,7 +14,7 @@ Each work is a folder under `publications/` with exactly:
   `zh/`. Each holds the same files at the same paths: `model.json`, an Architecture Model in
   Architecture Publisher's format that names its `locale`, pins the described repository to a full
   commit, claims the files that support each component and relation, and titles and summarises every
-  view; and the overview composition and guide that model names.
+  view, and states the work's overview; and the guide that model names.
 - `concepts.md`, when the work is written in more than one language: the table that fixes each
   term's rendering across them, beside the file that defines it.
 - An optional `source.json`, which records originals preserved from the described repository by
