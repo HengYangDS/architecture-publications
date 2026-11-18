@@ -5,8 +5,8 @@
 
 ## 2. The statements
 
-- [ ] 2.1 State the overview in each of the twelve models and remove the twelve `overview.typ` files. Done when `mise run check` passes and each of the twelve models checks `ok` with Architecture Publisher 0.15.0.
-- [ ] 2.2 Name the detail audit in Film Kit's statement in both languages, read by a reader other than the writer. Done when both Film Kit models check `ok`.
+- [x] 2.1 State the overview in each of the twelve models and remove the twelve `overview.typ` files. Done when `mise run check` passes and each of the twelve models checks `ok` with Architecture Publisher 0.15.0. `mise run check` passes, and the released 0.15.0 built each of the twelve models into a delivery (07:43:37).
+- [x] 2.2 Name the detail audit in Film Kit's statement in both languages, read by a reader other than the writer. Done when both Film Kit models check `ok`. Both Film Kit models name the detail audit and build with 0.15.0; the wording was read by a reader other than the writer on 2026-11-18.
 
 ## 3. The Architecture Publisher work
 
