@@ -7,8 +7,8 @@ import path from "node:path";
 const MODEL_FORMAT = "architecture-publisher.model";
 /** What a work holds beside its language directories: its description, custody record and term table. */
 const WORK_FILES = new Set(["README.md", "source.json", "concepts.md"]);
-/** An overview composition the publisher typesets: one Typst file beside the model. */
-const COMPOSITION = /^[^/\\]+\.typ$/;
+/** In an overview's statement, the keys that identify a point or refer to one, to a view or to a part. */
+const REFERENCES = new Set(["id", "from", "to", "at", "after", "view", "part"]);
 /** A guide the publisher delivers as the page: an Archify draft in a directory of its own. */
 const GUIDE = /^(?!\.\.?\/)[^/\\]+\/[^/\\]+\.archify\.md$/;
 const REVISION = /^([0-9a-f]{40}|[0-9a-f]{64})$/;
@@ -92,15 +92,20 @@ async function holdsDraft(directory, draft) {
 }
 
 /**
- * The files a language directory holds: its model, the overview composition the model names and the directory of the
- * guide it names, which may hold regular files only.
+ * The files a language directory holds: its model and the directory of the guide it names, which may hold regular
+ * files only. The overview is stated in the model and is no file: the publisher draws it.
  */
 async function modelFiles(directory, model, language) {
   const { overview, guide } = model;
-  // A model may name its overview composition, which its directory then holds beside it.
+  // A model may state its overview. A file's name there is a composition, which the publisher no longer reads.
   assert.ok(
-    overview === undefined || (typeof overview === "string" && COMPOSITION.test(overview)),
-    `the overview ${overview} is not a Typst file beside the model`,
+    typeof overview !== "string",
+    `the overview ${overview} names a composition, which the publisher retired: state the overview in the model`,
+  );
+  assert.ok(
+    overview === undefined ||
+      (overview !== null && typeof overview === "object" && !Array.isArray(overview)),
+    "the overview is not a statement in the model",
   );
   // A model may name its guide, which its directory then holds in a directory of its own.
   assert.ok(
@@ -108,7 +113,7 @@ async function modelFiles(directory, model, language) {
     `the guide ${guide} is not an Archify draft in a directory of its own`,
   );
   const [guideDirectory, draft] = guide ? guide.split("/") : [];
-  const allowed = new Set(["model.json", ...(overview ? [overview] : [])]);
+  const allowed = new Set(["model.json"]);
   const names = [];
   let guideHeld = false;
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -122,11 +127,47 @@ async function modelFiles(directory, model, language) {
     );
     names.push(entry.name);
   }
-  assert.ok(
-    !overview || names.includes(overview),
-    `${language}: the overview ${overview} is missing`,
-  );
   assert.ok(!guide || guideHeld, `${language}: the guide ${guide} is missing`);
+}
+
+/**
+ * The shape of an overview's statement: the statement with every text emptied and every identifier and reference
+ * kept, so that two languages of one work can be held against each other.
+ * @param {unknown} value
+ * @param {string} [key] the key the value stands under
+ */
+function overviewShape(value, key) {
+  if (Array.isArray(value)) return value.map((member) => overviewShape(member, key));
+  if (value && typeof value === "object")
+    return Object.fromEntries(
+      Object.entries(value).map(([name, member]) => [name, overviewShape(member, name)]),
+    );
+  return typeof value === "string" && !REFERENCES.has(key ?? "") ? "" : value;
+}
+
+/**
+ * Where two shapes first differ, as a path into the statement, or null when they are one shape.
+ * @param {unknown} one @param {unknown} other @param {string} at
+ * @returns {string | null}
+ */
+function firstDifference(one, other, at = "/overview") {
+  if (Array.isArray(one) && Array.isArray(other)) {
+    if (one.length !== other.length) return at;
+    for (const [index, member] of one.entries()) {
+      const found = firstDifference(member, other[index], `${at}/${index}`);
+      if (found) return found;
+    }
+    return null;
+  }
+  if (one && other && typeof one === "object" && typeof other === "object") {
+    for (const name of new Set([...Object.keys(one), ...Object.keys(other)])) {
+      if (!(name in one) || !(name in other)) return `${at}/${name}`;
+      const found = firstDifference(one[name], other[name], `${at}/${name}`);
+      if (found) return found;
+    }
+    return null;
+  }
+  return one === other ? null : at;
 }
 
 /** Every file below a directory, as sorted paths relative to it. */
@@ -185,7 +226,8 @@ async function verifyNaming(directory, model, concepts) {
 
 /**
  * A work: each of its languages in a directory named by that language, every one with the same files and a model of
- * one id and revision, beside its README, an optional custody record and, in more than one language, its term table.
+ * one id and revision that states one overview, beside its README, an optional custody record and, in more than one
+ * language, its term table.
  */
 export async function verifyWork(directory, repositoryRoot) {
   const names = [];
@@ -222,6 +264,12 @@ export async function verifyWork(directory, repositoryRoot) {
     assert.ok(!missing, `${language} lacks ${missing}, which ${first} holds`);
     const extra = files.find((file) => !reference.files.includes(file));
     assert.ok(!extra, `${language} holds ${extra}, which ${first} lacks`);
+    // The languages of a work state one overview: the same blocks, points and references, in other words.
+    const differs = firstDifference(
+      overviewShape(reference.model.overview ?? null),
+      overviewShape(model.overview ?? null),
+    );
+    assert.ok(!differs, `${language} states another overview than ${first} at ${differs}`);
   }
   // The README and the term table are written in English, which sorts first among the languages, so they name the
   // first language's title: the English one whenever the work has it.

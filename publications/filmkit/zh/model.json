@@ -90,7 +90,243 @@
       }
     ]
   },
-  "overview": "overview.typ",
+  "overview": {
+    "claim": "每个语言版都从影片自己的源文件重建",
+    "lead": "Film Kit 是本地运行的引擎：带旁白的讲解影片，每个语言版的朗读、音轨拼接、字幕生成、门禁检查、渲染和打包都由它完成，每一步都记下所读内容的 SHA-256。",
+    "course": {
+      "steps": [
+        {
+          "id": "film",
+          "label": "影片",
+          "note": "film.toml 及其指定的文件",
+          "stations": [
+            {
+              "id": "declare",
+              "label": "声明",
+              "note": "content/film.toml"
+            }
+          ],
+          "view": "film"
+        },
+        {
+          "id": "narration",
+          "label": "旁白",
+          "note": "filmkit.narration.narrate",
+          "stations": [
+            {
+              "id": "check-words",
+              "label": "检查字词",
+              "note": "出现位置清单"
+            },
+            {
+              "id": "narrate",
+              "label": "朗读",
+              "note": "旁白记录"
+            }
+          ],
+          "view": "narration"
+        },
+        {
+          "id": "sound",
+          "label": "声音",
+          "note": "produce select, assemble, refresh-captions, check-sound",
+          "stations": [
+            {
+              "id": "select",
+              "label": "选定",
+              "note": "narration-selected"
+            },
+            {
+              "id": "assemble",
+              "label": "拼接",
+              "note": "时间线、音轨"
+            }
+          ],
+          "view": "sound"
+        },
+        {
+          "id": "picture",
+          "label": "画面",
+          "note": "组装、检查、渲染并校验画面",
+          "stations": [
+            {
+              "id": "check-picture",
+              "label": "检查画面",
+              "note": "picture-gates"
+            },
+            {
+              "id": "render",
+              "label": "渲染",
+              "note": "渲染记录"
+            }
+          ],
+          "view": "picture"
+        },
+        {
+          "id": "packaging",
+          "label": "打包",
+          "note": "package-metadata, package-film",
+          "stations": [
+            {
+              "id": "package",
+              "label": "打包",
+              "note": "film-package"
+            }
+          ]
+        },
+        {
+          "id": "acceptance",
+          "label": "验收",
+          "note": "review.round, delivery.verification, delivery.folder",
+          "stations": [
+            {
+              "id": "review",
+              "label": "评审",
+              "note": "production-review"
+            },
+            {
+              "id": "verify",
+              "label": "核验",
+              "note": "只写耗时记录"
+            },
+            {
+              "id": "deliver",
+              "label": "交付",
+              "note": "delivery-readback"
+            }
+          ],
+          "view": "acceptance"
+        },
+        {
+          "id": "rebuild",
+          "label": "重建",
+          "note": "delivery.reproduction",
+          "stations": [
+            {
+              "id": "compare",
+              "label": "比对",
+              "note": "report.json"
+            }
+          ]
+        }
+      ],
+      "text": "zh 和 en 各自走完从“朗读”到“打包”的每一步。每份记录都绑定这一步所读内容的 SHA-256，绑定的字节对不上，后面的步骤就拒绝这份记录。",
+      "parallel": [
+        {
+          "from": "narrate",
+          "to": "package",
+          "tracks": ["zh", "en"]
+        }
+      ]
+    },
+    "blocks": [
+      {
+        "title": "开始朗读之前",
+        "items": [
+          ["概念", "每个段落都用认可的说法讲到它声明的概念；任何地方都不能出现反例"],
+          ["读音", "关注列表里的每个汉字都有声明的读音，每个名称都有读法"],
+          ["朗读文本", "每份脚本对应一份读音契约，由它推导每个意群的朗读文本"],
+          ["拒绝", "在任何语音模型加载之前就中止，并列出所有未通过的检查项"]
+        ],
+        "view": "film"
+      },
+      {
+        "title": "画面渲染之前",
+        "items": [
+          ["逐帧检测", "每隔 1/30 s 查一帧：版面、易读性、平衡，以及文字是否对齐"],
+          ["同步检测", "每个标签都对照旁白里读到它的词句；再查等待名称出现的标记"],
+          ["文字测量", "第一个词之前，声明的标题要显示 1 s；静止文字的对比度不低于 4.5:1"],
+          ["动效检测", "以每秒 30 帧查残影、停滞、突现、跳变和虚线突变"],
+          ["细节检测", "以每秒 60 帧逐帧查单条线、逐步画出的线条和名称"],
+          ["门禁记录", "绑定画面合成、时间线、样式表、字体和引擎版本"]
+        ],
+        "view": "picture"
+      },
+      {
+        "title": "录音完整收尾，才能进入音轨",
+        "note": "完整收尾的录音，结尾是安静的：最后一个音节渐渐消失，而不是戛然而止。",
+        "stations": [
+          {
+            "id": "seed",
+            "label": "种子",
+            "note": "配音设定的种子，或一条重录"
+          },
+          {
+            "id": "narrate",
+            "label": "朗读",
+            "note": "每个意群一次读完"
+          },
+          {
+            "id": "judge",
+            "label": "判定"
+          },
+          {
+            "id": "select",
+            "label": "选定",
+            "note": "绑定到脚本和配音设定"
+          },
+          {
+            "id": "assemble",
+            "label": "拼接",
+            "note": "设计好的停顿，统一增益"
+          },
+          {
+            "id": "soundtrack",
+            "label": "音轨",
+            "note": "-16.5 LUFS"
+          }
+        ],
+        "pass": {
+          "after": "judge",
+          "label": "自然收尾"
+        },
+        "aside": {
+          "from": "judge",
+          "label": "收尾突兀时，用其他种子试音，或连读到下一个意群、在静音处剪开，再把选中的种子绑定到这个意群的原文和朗读文本。影片若没有为这处衔接声明尾音淡出，拼接步骤就拒绝这条录音。"
+        },
+        "view": "sound"
+      },
+      {
+        "title": "每份记录绑定什么",
+        "items": [
+          ["旁白记录", "每个意群的请求指纹、文本、种子和波形"],
+          ["narration-selected", "脚本、配音设定、每份录音文件和旁白参考录音"],
+          ["audio-assembly", "脚本、音轨、设计好的停顿和节目响度"],
+          ["stage.json", "脚本、时间线、拼接记录、音轨和来源清单"],
+          ["picture-gates", "画面合成、时间线、样式表、字体和引擎版本"],
+          ["渲染记录", "组装好的文档和渲染出的画面"],
+          ["film-package", "两份画面及二者的等效性、音轨、封面、脚本和章节"]
+        ],
+        "text": "核验重新读取每份记录并解码每部成片，只写一份耗时记录。复现则把重建结果与已发布版本逐帧比对。"
+      },
+      {
+        "title": "影片包含",
+        "items": [
+          ["声明", "文件前缀、语言版、字体、播放器配色和评审规则"],
+          ["脚本、配音设定", "每个语言版的文本、意群、种子和重录"],
+          ["画面合成", "画面的模板、代码和样式"]
+        ]
+      },
+      {
+        "title": "一次下载安装，此后不联网",
+        "items": [
+          ["浏览器", "Chrome Headless Shell 152，由 HyperFrames 驱动"],
+          ["语音", "Qwen3 语音合成、识别与对齐模型快照，运行于 MLX"],
+          ["主机", "FFmpeg、ExifTool 和 rsync 3，来自 Homebrew"]
+        ],
+        "view": "narration"
+      },
+      {
+        "title": "每个语言版的交付物",
+        "items": [
+          ["成片", "超高清母版和 1080p 观看版，各有带字幕和无字幕两种"],
+          ["观看包", "封面、SRT、VTT、讲稿、章节和播放器"],
+          ["入口", "一个语言选择页通向两个播放器"]
+        ],
+        "view": "acceptance"
+      }
+    ]
+  },
   "guide": "guide/guide.archify.md",
   "kinds": {
     "command": {

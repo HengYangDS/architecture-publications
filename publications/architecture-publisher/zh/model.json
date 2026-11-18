@@ -21,7 +21,194 @@
   "coverage": {
     "include": ["src/", "package.json", "renderers/*/supply/supply.json", "supplies/*/supply.json"]
   },
-  "overview": "overview.typ",
+  "overview": {
+    "claim": "含义、证据、形式与验收，各归一方",
+    "lead": "archpub 依据显式模型画出任何仓库的架构，把交付物的每个字节绑定到输入，只出版具名审阅者验收过的内容。",
+    "course": {
+      "steps": [
+        {
+          "id": "author",
+          "label": "作者",
+          "note": "决定含义",
+          "text": "组件认领文件，关系引用文件，再加视图、范围、总览和导读；每个问题都附 JSON 路径",
+          "stations": [
+            {
+              "id": "model-json",
+              "label": "model.json"
+            }
+          ],
+          "view": "models"
+        },
+        {
+          "id": "repository",
+          "label": "仓库",
+          "note": "存放证据",
+          "text": "经 Git 读取固定的提交，每个文件按最具体的认领规则归属；不抓取、不弹出交互提示、不改动检出目录",
+          "stations": [
+            {
+              "id": "files",
+              "label": "文件"
+            }
+          ],
+          "view": "files"
+        },
+        {
+          "id": "publisher",
+          "label": "出版工具",
+          "note": "赋予形式",
+          "text": "视图排在同一套列栅格上，连线只走水平或竖直方向；图册由 Typst 用出版工具的专用字体排版",
+          "stations": [
+            {
+              "id": "plan",
+              "label": "规划"
+            },
+            {
+              "id": "lay-out",
+              "label": "布局",
+              "view": "layout"
+            },
+            {
+              "branches": [
+                {
+                  "id": "edition",
+                  "label": "图册",
+                  "note": "每个视图一幅图版",
+                  "view": "edition"
+                },
+                {
+                  "id": "page",
+                  "label": "页面",
+                  "note": "作者的导读，引用区间已核验",
+                  "view": "page"
+                }
+              ]
+            },
+            {
+              "id": "delivery",
+              "label": "交付物",
+              "note": "先暂存到新目录，写完才重命名就位"
+            }
+          ],
+          "view": "overview"
+        },
+        {
+          "id": "reviewer",
+          "label": "审阅者",
+          "note": "验收并核验",
+          "stations": [
+            {
+              "id": "accept",
+              "label": "验收",
+              "note": "acceptance.json 写明谁在何时验收了哪些字节，只写一次"
+            }
+          ]
+        },
+        {
+          "id": "publication-root",
+          "label": "出版根目录",
+          "note": "存放已验收的交付物",
+          "stations": [
+            {
+              "id": "publish",
+              "label": "出版",
+              "note": "root/id/version；只放已验收的交付物，不会覆盖另一份"
+            }
+          ]
+        }
+      ],
+      "lines": [
+        {
+          "from": "delivery",
+          "to": ["model-json", "files"],
+          "label": "manifest.json 按哈希摘要绑定模型、物料和每个产物；已归属和被引用的每个文件，摘要记在数据里"
+        }
+      ],
+      "spurs": [
+        {
+          "at": "model-json",
+          "id": "likec4",
+          "label": "LikeC4 工作空间，或第 1、2 版模型",
+          "note": "导入，或迁移到第 3 版"
+        }
+      ]
+    },
+    "blocks": [
+      {
+        "title": "随附物料及版本",
+        "items": [
+          ["Archify", "3.2.0"],
+          ["opentype.js", "2.0.0"],
+          ["Lucide", "1.73.0"],
+          ["Noto Sans CJK SC", "2.004"],
+          ["Source Serif 4", "4.005"],
+          ["Source Sans 3", "3.052"]
+        ]
+      },
+      {
+        "title": "视图怎样绘出",
+        "items": [
+          ["行", "组件排在同一套列栅格的共用行线上，宽度取文字和条带中较宽者"],
+          ["连线", "只走水平或竖直方向，都在行间的通道里"],
+          ["重叠", "有重叠的布局绝不绘出"],
+          ["拒绝", "任何布局都画不出的视图一律拒绝，绝不缩小"]
+        ],
+        "view": "layout"
+      },
+      {
+        "title": "交付物包含什么",
+        "items": [
+          ["图册", "一个符合 PDF/A-3a 与 PDF/UA-1 的文件；各页另出 PNG，默认宽 2400 px"],
+          ["页面", "一个 HTML 文件：作者的导读，或每个视图一个 Archify 面板"],
+          ["数据", "构建读到的模型；图册的 JSON 数据，记有每个已读文件的哈希摘要；一份读者文件"],
+          ["清单", "模型、物料和每个产物的哈希摘要"],
+          ["验收", "一份 in-toto Statement，写明谁在何时验收了哪些字节，另附验收页"]
+        ]
+      },
+      {
+        "title": "每一步宁可拒绝，也不降级",
+        "items": [
+          ["模型", "model_invalid · model_too_large"],
+          ["文件", "files_unresolved · source_read_failed"],
+          ["布局", "layout_untidy · layout_row_too_wide"],
+          ["图册", "plate_unfittable · edition_text_wider"],
+          ["页面", "page_layout_refused · page_refused"],
+          ["导读", "guide_missing · guide_repository_mismatch"],
+          ["总览", "overview_too_tall · overview_text_overlap"],
+          ["交付物", "delivery_exists · delivery_changed"],
+          ["验收", "acceptance_exists · acceptance_reviewer_missing"],
+          ["出版", "publish_unaccepted · publish_conflict"]
+        ],
+        "text": "每次拒绝都列出全部问题和路径，由调用方改正后重试；绝不背着调用方缩小、猜测或重试。"
+      },
+      {
+        "title": "出版工具可触及的范围",
+        "items": [
+          ["Git", "读取固定的提交，只有检查导读时才克隆；绝不抓取，也不改动检出目录"],
+          ["子进程", "Git、Archify 和 Typst 只带白名单内的环境变量运行"],
+          ["LikeC4", "在 Node 的权限模型下解析，只读取它自己的物料"],
+          ["输出", "一个新的交付物目录，完成后重命名就位"],
+          ["字节", "在同一平台上，相同的模型、文件和版本产出相同的字节"]
+        ],
+        "view": "files"
+      },
+      {
+        "title": "命令",
+        "items": [
+          ["check", "校验、绑定、编排并统计覆盖；--against 列出更换提交后的待办"],
+          ["build", "写出交付物；之后运行 compare、accept、verify 和 publish"],
+          ["import", "从 LikeC4 生成模型；migrate 转换第 1、2 版"]
+        ]
+      },
+      {
+        "title": "跟随模型的语言",
+        "text": "英语、简体与繁体中文、西班牙语或韩语：出版工具自己的用语随模型而定。"
+      },
+      {
+        "title": "它不做什么",
+        "text": "从代码推断架构、判断模型是否属实，或判定一幅图足以出版"
+      }
+    ]
+  },
   "guide": "guide/guide.archify.md",
   "kinds": {
     "author": {

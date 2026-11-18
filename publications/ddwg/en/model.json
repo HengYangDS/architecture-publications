@@ -26,7 +26,214 @@
       }
     ]
   },
-  "overview": "overview.typ",
+  "overview": {
+    "claim": "From a work question to the one topic that owns its rule",
+    "lead": "Members and Agents read these guidelines without installing anything; maintainers change them through one official OpenSpec Change, which installed ETHOS admits, proves and publishes.",
+    "course": {
+      "steps": [
+        {
+          "id": "entries",
+          "label": "Two entries, one task map",
+          "note": "members and Agents read the same guidance",
+          "stations": [
+            {
+              "branches": [
+                {
+                  "part": "repository-entry",
+                  "note": "README.md: the purpose, then the task map and the MIT grant"
+                },
+                {
+                  "part": "agent-entry",
+                  "note": "AGENTS.md: a delegated scope; people keep authorization and acceptance"
+                }
+              ]
+            },
+            {
+              "part": "task-map",
+              "note": "docs/README.md, urgent route first"
+            }
+          ],
+          "view": "readers"
+        },
+        {
+          "id": "topics",
+          "label": "Seven topics, one owner for each rule",
+          "note": "the task map routes each work question to the section that owns it",
+          "stations": [
+            {
+              "branches": [
+                {
+                  "part": "charter",
+                  "note": "two kinds of authority, four hard boundaries, the risk levels every topic applies"
+                },
+                {
+                  "part": "decide",
+                  "note": "frame a decision, diagnose a failure, make options comparable"
+                },
+                {
+                  "part": "data",
+                  "note": "qualify a data asset; change shared or production data"
+                },
+                {
+                  "part": "deliver",
+                  "note": "check the commitment before acting; close the work on evidence"
+                },
+                {
+                  "part": "communicate",
+                  "note": "structure an update, a decision document or an escalation"
+                },
+                {
+                  "part": "human-agent",
+                  "note": "delegate a bounded task; check the Agent's actual output"
+                },
+                {
+                  "part": "evolve",
+                  "note": "emergencies and exceptions; coaching; admitting or retiring a practice"
+                }
+              ]
+            }
+          ],
+          "view": "overview"
+        }
+      ]
+    },
+    "blocks": [
+      {
+        "title": "One owner for each rule",
+        "text": "Each obligation has one editable owner. Navigation, examples, decision records and governance link to it without restating it."
+      },
+      {
+        "title": "Urgent first",
+        "text": "The route for an urgent failure or breach comes before every routine route.",
+        "view": "readers"
+      },
+      {
+        "title": "Four hard boundaries",
+        "items": [
+          [
+            "Tell the truth",
+            "no fabricated, hidden or selected facts; no uncertainty dressed as certainty"
+          ],
+          [
+            "Stay in bounds",
+            "subject, time, competence, permission, data, security, compliance, action"
+          ],
+          [
+            "Name the owner",
+            "an accountable person for each judgment, decision, change and acceptance"
+          ],
+          [
+            "No false completion",
+            "no claim of complete, correct, usable or adopted without matching evidence"
+          ]
+        ],
+        "view": "practice"
+      },
+      {
+        "title": "Form follows risk",
+        "items": [
+          ["L0 light", "local and reversible: conclusion, basis and action in one exchange"],
+          [
+            "L1 standard",
+            "cross-role work, competing options or material uncertainty: a reviewable record"
+          ],
+          [
+            "L2 high risk",
+            "production, funds, sensitive data, overwrite: authorization, rollback, review"
+          ],
+          [
+            "Review",
+            "examines the actual facts and evidence, not the author's or the Agent's account"
+          ]
+        ],
+        "view": "practice"
+      },
+      {
+        "title": "Every change is one official Change",
+        "stations": [
+          {
+            "id": "change",
+            "label": "Change",
+            "note": "proposal, design, deltas, tasks.md"
+          },
+          {
+            "id": "lane",
+            "label": "Lane",
+            "note": "owned and leased by ETHOS"
+          },
+          {
+            "id": "prewrite",
+            "label": "Prewrite",
+            "note": "exact paths, just before writing"
+          },
+          {
+            "id": "commit",
+            "label": "Commit",
+            "note": "a trusted SSH signature"
+          },
+          {
+            "id": "proof",
+            "label": "Proof"
+          },
+          {
+            "id": "accepted",
+            "label": "Accepted",
+            "note": "dev advances by fast-forward"
+          },
+          {
+            "id": "archive",
+            "label": "Archive",
+            "note": "a new commit, proved again"
+          }
+        ],
+        "pass": {
+          "after": "proof",
+          "label": "pass"
+        },
+        "aside": {
+          "from": "proof",
+          "label": "block or unknown: nothing moves, and no raw push goes around it"
+        },
+        "text": "The proof is the full host graph at the exact HEAD.",
+        "view": "change"
+      },
+      {
+        "title": "Who owns what",
+        "items": [
+          ["OpenSpec Change", "material intent, requirements, design and progress in tasks.md"],
+          ["Installed ETHOS", "attribution, lease, admission, proof, acceptance and publication"],
+          ["Governance page", "permission, acceptance, release and retirement boundaries"],
+          ["Contributing", "the exact commands to edit, verify, prepare ETHOS and publish"],
+          ["Configuration map", "the native input behind each check"],
+          ["Decision records", "durable rationale and rejected alternatives, never tasks or logs"]
+        ]
+      },
+      {
+        "title": "The edition",
+        "items": [
+          ["VERSION", "8.0.0, the one release identity; the Changelog follows it"],
+          ["Tag", "a signed vX.Y.Z that matches VERSION and its Changelog entry"]
+        ],
+        "view": "release"
+      },
+      {
+        "title": "Two Forges, each on its own",
+        "items": [
+          ["GitLab", "the organization's publication plane"],
+          ["GitHub", "an independent repository, CI/CD and distribution"]
+        ],
+        "view": "release"
+      },
+      {
+        "title": "What a pass does not prove",
+        "items": [
+          ["Checks", "meaning, reading order or team adoption"],
+          ["Local proof", "delivery to either Forge"]
+        ],
+        "view": "checks"
+      }
+    ]
+  },
   "guide": "guide/guide.archify.md",
   "kinds": {
     "reader": {

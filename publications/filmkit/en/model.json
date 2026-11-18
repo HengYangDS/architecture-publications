@@ -90,7 +90,264 @@
       }
     ]
   },
-  "overview": "overview.typ",
+  "overview": {
+    "claim": "Each edition rebuilt from the film's own sources",
+    "lead": "A local engine: Film Kit narrates, assembles, captions, gates, renders and packages each edition of a narrated explainer film, and every step records the SHA-256 of what it read.",
+    "course": {
+      "steps": [
+        {
+          "label": "The film",
+          "note": "film.toml and the files it names",
+          "stations": [
+            {
+              "label": "Declare",
+              "note": "content/film.toml",
+              "id": "declare"
+            }
+          ],
+          "id": "film",
+          "view": "film"
+        },
+        {
+          "label": "Narration",
+          "note": "filmkit.narration.narrate",
+          "stations": [
+            {
+              "label": "Check words",
+              "note": "occurrence plans",
+              "id": "check-words"
+            },
+            {
+              "label": "Narrate",
+              "note": "narration receipt",
+              "id": "narrate"
+            }
+          ],
+          "id": "narration",
+          "view": "narration"
+        },
+        {
+          "label": "Sound",
+          "note": "produce select, assemble, refresh-captions, check-sound",
+          "stations": [
+            {
+              "label": "Select",
+              "note": "narration-selected",
+              "id": "select"
+            },
+            {
+              "label": "Assemble",
+              "note": "timeline, soundtrack",
+              "id": "assemble"
+            }
+          ],
+          "id": "sound",
+          "view": "sound"
+        },
+        {
+          "label": "Picture",
+          "note": "stage, check, render and validate the picture",
+          "stations": [
+            {
+              "label": "Check picture",
+              "note": "picture-gates",
+              "id": "check-picture"
+            },
+            {
+              "label": "Render",
+              "note": "render receipt",
+              "id": "render"
+            }
+          ],
+          "id": "picture",
+          "view": "picture"
+        },
+        {
+          "label": "Package",
+          "note": "package-metadata, package-film",
+          "stations": [
+            {
+              "label": "Package",
+              "note": "film-package",
+              "id": "package"
+            }
+          ],
+          "id": "packaging"
+        },
+        {
+          "label": "Accept",
+          "note": "review.round, delivery.verification, delivery.folder",
+          "stations": [
+            {
+              "label": "Review",
+              "note": "production-review",
+              "id": "review"
+            },
+            {
+              "label": "Verify",
+              "note": "duration record",
+              "id": "verify"
+            },
+            {
+              "label": "Deliver",
+              "note": "delivery-readback",
+              "id": "deliver"
+            }
+          ],
+          "id": "acceptance",
+          "view": "acceptance"
+        },
+        {
+          "label": "Rebuild",
+          "note": "delivery.reproduction",
+          "stations": [
+            {
+              "label": "Compare",
+              "note": "report.json",
+              "id": "compare"
+            }
+          ],
+          "id": "rebuild"
+        }
+      ],
+      "text": "zh and en take each step from Narrate to Package. Each record binds the SHA-256 of what its step read, and a later step refuses one bound to other bytes.",
+      "parallel": [
+        {
+          "from": "narrate",
+          "to": "package",
+          "tracks": ["zh", "en"]
+        }
+      ]
+    },
+    "blocks": [
+      {
+        "title": "Before anything is narrated",
+        "items": [
+          [
+            "Concepts",
+            "each segment says its declared concepts in approved words; no counterexample appears anywhere"
+          ],
+          [
+            "Readings",
+            "each watched Chinese character has a declared reading, and every name a spoken form"
+          ],
+          ["Spoken text", "one pronunciation contract per script derives what each thought says"],
+          ["Refusal", "narration stops before any speech model loads, and names every failure"]
+        ],
+        "view": "film"
+      },
+      {
+        "title": "Before the picture renders",
+        "items": [
+          [
+            "Frame audit",
+            "every frame at 1/30 s: layout, legibility, balance and how text lines up"
+          ],
+          ["Sync audit", "each label against its spoken words; marks that wait for a name"],
+          [
+            "Text measures",
+            "the declared title for 1 s before the first word; each text at rest at 4.5:1 or more"
+          ],
+          ["Motion audit", "ghosts, stalls, pops, jumps and dash snaps at 30 frames per second"],
+          [
+            "Detail audit",
+            "single lines, strokes and names, through every frame at 60 frames per second"
+          ],
+          ["Gate record", "binds the composition, timeline, stylesheet, fonts and engine version"]
+        ],
+        "view": "picture"
+      },
+      {
+        "title": "A take reaches the soundtrack only if it ends whole",
+        "note": "A whole take is quiet at its end, its last syllable dying away instead of stopping.",
+        "stations": [
+          {
+            "id": "seed",
+            "label": "Seed",
+            "note": "the cast's seed, or a retake"
+          },
+          {
+            "id": "narrate",
+            "label": "Narrate",
+            "note": "one native take per thought"
+          },
+          {
+            "id": "judge",
+            "label": "Judge"
+          },
+          {
+            "id": "select",
+            "label": "Select",
+            "note": "bound to the script and the cast"
+          },
+          {
+            "id": "assemble",
+            "label": "Assemble",
+            "note": "designed pauses, one gain"
+          },
+          {
+            "id": "soundtrack",
+            "label": "Soundtrack",
+            "note": "-16.5 LUFS"
+          }
+        ],
+        "pass": {
+          "after": "judge",
+          "label": "natural"
+        },
+        "aside": {
+          "from": "judge",
+          "label": "Abrupt: audition other seeds, or read on into the next thought and cut in the quiet, then bind the chosen seed to the thought's text and speech. The assembly refuses an abrupt take unless the film declares a release for its join."
+        },
+        "view": "sound"
+      },
+      {
+        "title": "What each record binds",
+        "items": [
+          ["narration receipt", "each thought's request fingerprint, text, seed and waveform"],
+          ["narration-selected", "the script, the cast, each recording and the narrator reference"],
+          [
+            "audio-assembly",
+            "the script, the soundtrack, the designed pauses and the program level"
+          ],
+          ["stage.json", "the script, timeline, assembly, soundtrack and source manifest"],
+          ["picture-gates", "the composition, timeline, stylesheet, fonts and engine version"],
+          ["render receipt", "the staged document and the rendered picture"],
+          [
+            "film-package",
+            "both pictures, their equivalence, the soundtrack, cover, script and chapters"
+          ]
+        ],
+        "text": "Verification reads each record again and decodes every film, writing only its duration record. Reproduction compares a rebuild with the published release, frame by frame."
+      },
+      {
+        "title": "The film holds",
+        "items": [
+          ["declaration", "file prefix, editions, fonts, player colours and review policy"],
+          ["scripts, casts", "each edition's text, thoughts, seeds and retakes"],
+          ["composition", "the picture's template, script and style"]
+        ]
+      },
+      {
+        "title": "Supplied once, then offline",
+        "items": [
+          ["browser", "Chrome Headless Shell 152, which HyperFrames drives"],
+          ["speech", "Qwen3 voice, recognizer and aligner snapshots on MLX"],
+          ["host", "FFmpeg, ExifTool and rsync 3, from Homebrew"]
+        ],
+        "view": "narration"
+      },
+      {
+        "title": "Delivered per edition",
+        "items": [
+          ["films", "a UHD master and a 1080p film, each with captions and without"],
+          ["viewing", "cover, SRT, VTT, transcript, chapters and player"],
+          ["entry", "one language page leads to both players"]
+        ],
+        "view": "acceptance"
+      }
+    ]
+  },
   "guide": "guide/guide.archify.md",
   "kinds": {
     "command": {

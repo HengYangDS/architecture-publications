@@ -21,7 +21,209 @@
   "coverage": {
     "include": ["src/", "package.json", "renderers/*/supply/supply.json", "supplies/*/supply.json"]
   },
-  "overview": "overview.typ",
+  "overview": {
+    "claim": "Meaning, evidence, form and acceptance each have one owner",
+    "lead": "archpub draws any repository's architecture from an explicit model, binds every byte of a delivery to its inputs, and publishes only what a named reviewer accepted.",
+    "course": {
+      "steps": [
+        {
+          "id": "author",
+          "label": "Author",
+          "note": "owns the meaning",
+          "text": "components that claim files, relations that cite them, views, a scope, an overview and a guide; each problem with its JSON path",
+          "stations": [
+            {
+              "id": "model-json",
+              "label": "model.json"
+            }
+          ],
+          "view": "models"
+        },
+        {
+          "id": "repository",
+          "label": "Repository",
+          "note": "holds the evidence",
+          "text": "read through Git at the pinned revision, each file given to its most specific claim; no fetch, no prompt, no change to the checkout",
+          "stations": [
+            {
+              "id": "files",
+              "label": "Files"
+            }
+          ],
+          "view": "files"
+        },
+        {
+          "id": "publisher",
+          "label": "Publisher",
+          "note": "gives it form",
+          "text": "views on one column lattice, wires only horizontal or vertical; the edition set by Typst in the house faces",
+          "stations": [
+            {
+              "id": "plan",
+              "label": "Plan"
+            },
+            {
+              "id": "lay-out",
+              "label": "Lay out",
+              "view": "layout"
+            },
+            {
+              "branches": [
+                {
+                  "id": "edition",
+                  "label": "Edition",
+                  "note": "a plate per view",
+                  "view": "edition"
+                },
+                {
+                  "id": "page",
+                  "label": "Page",
+                  "note": "the author's guide, ranges verified",
+                  "view": "page"
+                }
+              ]
+            },
+            {
+              "id": "delivery",
+              "label": "Delivery",
+              "note": "staged in a new directory, renamed into place only when complete"
+            }
+          ],
+          "view": "overview"
+        },
+        {
+          "id": "reviewer",
+          "label": "Reviewer",
+          "note": "accepts and verifies",
+          "stations": [
+            {
+              "id": "accept",
+              "label": "Accept",
+              "note": "acceptance.json records who accepted which bytes and when, once"
+            }
+          ]
+        },
+        {
+          "id": "publication-root",
+          "label": "Publication root",
+          "note": "holds what was accepted",
+          "stations": [
+            {
+              "id": "publish",
+              "label": "Publish",
+              "note": "root/id/version; only an accepted delivery, never over another"
+            }
+          ]
+        }
+      ],
+      "lines": [
+        {
+          "from": "delivery",
+          "to": ["model-json", "files"],
+          "label": "manifest.json binds the model, the supplies and every artifact by digest; the data binds every owned and cited file"
+        }
+      ],
+      "spurs": [
+        {
+          "at": "model-json",
+          "id": "likec4",
+          "label": "LikeC4, version 1 or 2",
+          "note": "imported, or migrated to version 3"
+        }
+      ]
+    },
+    "blocks": [
+      {
+        "title": "Supplies in custody",
+        "items": [
+          ["Archify", "3.2.0"],
+          ["opentype.js", "2.0.0"],
+          ["Lucide", "1.73.0"],
+          ["Noto Sans CJK SC", "2.004"],
+          ["Source Serif 4", "4.005"],
+          ["Source Sans 3", "3.052"]
+        ]
+      },
+      {
+        "title": "How a view is drawn",
+        "items": [
+          [
+            "Rows",
+            "parts on shared row lines of one column lattice, each as wide as its text or its strip"
+          ],
+          ["Wires", "only horizontal or vertical, in channels between rows"],
+          ["Overlap", "a layout that overlaps is never drawn"],
+          ["Refusal", "a view no layout draws is refused, never shrunk"]
+        ],
+        "view": "layout"
+      },
+      {
+        "title": "What a delivery holds",
+        "items": [
+          [
+            "Edition",
+            "one PDF/A-3a and PDF/UA-1 file; its pages as PNG, 2400 px wide unless asked"
+          ],
+          ["Page", "one HTML file: the author's guide, or one Archify panel per view"],
+          [
+            "Data",
+            "the model as read, the edition as JSON with each read file's digest, and a reader file"
+          ],
+          ["Manifest", "digests of the model, the supplies and every artifact"],
+          [
+            "Acceptance",
+            "an in-toto Statement of who accepted which bytes and when, with a colophon page"
+          ]
+        ]
+      },
+      {
+        "title": "Every step refuses rather than degrades",
+        "items": [
+          ["Model", "model_invalid · model_too_large"],
+          ["Files", "files_unresolved · source_read_failed"],
+          ["Layout", "layout_untidy · layout_row_too_wide"],
+          ["Edition", "plate_unfittable · edition_text_wider"],
+          ["Page", "page_layout_refused · page_refused"],
+          ["Guide", "guide_missing · guide_repository_mismatch"],
+          ["Overview", "overview_too_tall · overview_text_overlap"],
+          ["Delivery", "delivery_exists · delivery_changed"],
+          ["Acceptance", "acceptance_exists · acceptance_reviewer_missing"],
+          ["Publication", "publish_unaccepted · publish_conflict"]
+        ],
+        "text": "Every refusal lists each problem with its path, so the caller corrects and retries; nothing is shrunk, guessed or retried behind the caller's back."
+      },
+      {
+        "title": "What the publisher may touch",
+        "items": [
+          [
+            "Git",
+            "reads at the pinned revision, and clones it only to check a guide; never fetches or changes the checkout"
+          ],
+          ["Children", "Git, Archify and Typst run with an allowlisted environment"],
+          ["LikeC4", "parsed under Node's permission model, reading only its own supply"],
+          ["Output", "one new delivery directory, renamed into place when complete"],
+          ["Bytes", "the same model, files and version give the same bytes on one platform"]
+        ],
+        "view": "files"
+      },
+      {
+        "title": "Commands",
+        "items": [
+          ["check", "validate, bind, compose and count coverage; --against lists the re-pin work"],
+          ["build", "write a delivery; compare, accept, verify and publish follow"],
+          ["import", "write a model from LikeC4; migrate converts versions 1 and 2"]
+        ]
+      },
+      {
+        "title": "In the model's language",
+        "text": "English, Simplified and Traditional Chinese, Spanish or Korean: the publisher's own words follow the model."
+      },
+      {
+        "title": "What it will not do",
+        "text": "infer architecture from code, judge whether a model is true, or decide that a figure is good enough to publish"
+      }
+    ]
+  },
   "guide": "guide/guide.archify.md",
   "kinds": {
     "author": {

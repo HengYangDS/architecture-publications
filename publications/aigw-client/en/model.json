@@ -30,7 +30,216 @@
       }
     ]
   },
-  "overview": "overview.typ",
+  "overview": {
+    "claim": "One reviewed configuration, projected into every client",
+    "lead": "A local control plane: AIGW points each client at one model, writes only its own settings into the client's files, runs only for a command or a credential read, and never carries a request.",
+    "course": {
+      "steps": [
+        {
+          "id": "control",
+          "label": "Control plane · AIGW",
+          "note": "aigw.toml under one lock · Tokens kept apart",
+          "stations": [
+            {
+              "id": "provider",
+              "label": "Provider",
+              "note": "a service you hold a Token for: one endpoint per protocol, never a credential"
+            },
+            {
+              "id": "model",
+              "label": "Model",
+              "note": "what a provider serves, named provider/model, with its protocols"
+            },
+            {
+              "id": "selection",
+              "label": "Client selection",
+              "note": "the model one admitted client uses"
+            }
+          ],
+          "view": "authority"
+        },
+        {
+          "id": "clients",
+          "label": "Data plane · the clients",
+          "note": "each client keeps its own state and calls its endpoint itself",
+          "text": "plan · apply · check, one guarded transaction",
+          "stations": [
+            {
+              "branches": [
+                {
+                  "id": "codex",
+                  "label": "Codex",
+                  "note": "~/.codex/config.toml · conversations, model metadata and the Desktop GUI stay with Codex"
+                },
+                {
+                  "id": "claude-code",
+                  "label": "Claude Code",
+                  "note": "~/.claude/settings.json · sessions and runtime behaviour stay with Claude Code"
+                },
+                {
+                  "id": "claude-desktop",
+                  "label": "Claude Desktop",
+                  "note": "Claude-3p/configLibrary · its own library; everything else stays with the app"
+                },
+                {
+                  "id": "hermes",
+                  "label": "Hermes",
+                  "note": "~/.hermes/config.yaml · everything but AIGW's own providers and model stays with Hermes"
+                }
+              ]
+            }
+          ],
+          "view": "adapters"
+        },
+        {
+          "id": "endpoints",
+          "label": "Endpoints",
+          "note": "providers, or a chosen gateway",
+          "text": "each request goes straight to its endpoint; traffic, retries and service lifecycle belong to them"
+        }
+      ],
+      "lines": [
+        {
+          "from": "tokens",
+          "to": ["codex", "claude-code", "claude-desktop", "hermes"],
+          "label": "each client reads its own Token on demand through aigw credential, matched to its client files"
+        }
+      ],
+      "spurs": [
+        {
+          "at": "provider",
+          "id": "tokens",
+          "label": "Tokens",
+          "note": "one selected store: keyring, DPAPI or an owner-only file"
+        },
+        {
+          "at": "model",
+          "id": "family",
+          "label": "Family",
+          "note": "optional: which canonical model it is"
+        }
+      ],
+      "passes": [
+        {
+          "after": "provider",
+          "label": "serves"
+        },
+        {
+          "after": "model",
+          "label": "selected by"
+        }
+      ]
+    },
+    "blocks": [
+      {
+        "title": "What the operator does",
+        "items": [
+          ["setup", "first-time setup: one provider, one installed client and one of its models"],
+          ["use", "point one client at one provider/model"],
+          [
+            "sync",
+            "make every enabled client's files match; --dry-run shows the plan and reads no secret"
+          ],
+          [
+            "check",
+            "as deep as --depth asks: local, endpoint, model or client; model and client may use quota"
+          ],
+          ["provider rotate", "replace one provider's Token"],
+          ["config rollback", "restore the configuration and the client files, not the program"]
+        ]
+      },
+      {
+        "title": "One vocabulary every surface reports",
+        "items": [
+          [
+            "configured",
+            "local prerequisites pass; the depth of a check says how much more is proven"
+          ],
+          [
+            "local · endpoint",
+            "a check without a request · one authenticated request that names no model"
+          ],
+          ["model · client", "one bounded inference request · a real client session"],
+          ["deferred", "a credential or a client's files postponed on purpose"],
+          ["degraded", "still configured, with a recoverable problem"],
+          ["invalid · unavailable", "unsafe to use · a required capability is missing"]
+        ],
+        "view": "readiness"
+      },
+      {
+        "title": "Every change to client files is one guarded transaction",
+        "stations": [
+          {
+            "id": "discover",
+            "label": "Discover",
+            "note": "each admitted client and its native paths"
+          },
+          {
+            "id": "plan",
+            "label": "Plan",
+            "note": "complete and secret-free before any write"
+          },
+          {
+            "id": "prepare",
+            "label": "Prepare",
+            "note": "every target, with its exact state before and after"
+          },
+          {
+            "id": "commit",
+            "label": "Commit"
+          },
+          {
+            "id": "receipt",
+            "label": "Receipt",
+            "note": "one receipt to compensate"
+          }
+        ],
+        "pass": {
+          "after": "commit",
+          "label": "all committed"
+        },
+        "aside": {
+          "from": "commit",
+          "label": "Compensate in reverse, only while our write still holds; drift fails closed, and a later writer is never overwritten."
+        },
+        "view": "projection"
+      },
+      {
+        "title": "Who owns what",
+        "items": [
+          ["AIGW configuration", "providers, models, recommendations and each client's selection"],
+          ["Selected Token store", "the provider Tokens; AIGW chooses the store"],
+          ["Client adapter", "AIGW's own settings in one admitted client's files"],
+          ["The client", "conversations, memory, tools and GUI state"],
+          ["The endpoint product", "traffic normalization, retries and service lifecycle"],
+          ["Local Git and the Forges", "signed commits and tags; hosting, CI and Release records"]
+        ],
+        "view": "authority"
+      },
+      {
+        "title": "The program itself",
+        "items": [
+          ["self update", "updates or rolls back only a portable program"],
+          ["self uninstall", "removes AIGW's settings from client files, then the program"]
+        ],
+        "view": "program"
+      },
+      {
+        "title": "Team files, without secrets",
+        "items": [
+          ["setup --from", "applies a team file; what it names wins for models"],
+          ["--dry-run", "previews a team file and writes nothing"]
+        ]
+      },
+      {
+        "title": "Changing a provider",
+        "items": [
+          ["provider edit", "changes an endpoint deliberately; no command renames a provider"],
+          ["provider rotate", "replaces a Token in the selected store"]
+        ]
+      }
+    ]
+  },
   "guide": "guide/guide.archify.md",
   "kinds": {
     "interface": {

@@ -215,25 +215,82 @@ test("a work's term table is headed by its title and names its pin", async () =>
   });
 });
 
-test("a work may hold the overview composition its model names", async () => {
+/** An overview's statement: a claim, a course of two steps with a line between them, and one list. */
+const statement = (words) => ({
+  claim: words[0],
+  course: {
+    steps: [
+      { id: "order", label: words[1], view: "orders" },
+      { id: "ship", label: words[2] },
+    ],
+    lines: [{ from: "ship", to: ["order"], label: words[3] }],
+  },
+  blocks: [{ title: words[4], items: [[words[5], words[6]]] }],
+});
+const stated = statement(["Orders", "Order", "Ship", "again", "Terms", "order", "a request"]);
+const statedInChinese = statement(["订单", "下单", "发货", "再来", "术语", "订单", "一项请求"]);
+
+test("a work states its overview in its model, and holds no composition", async () => {
   await withDirectory(async (directory) => {
     const english = path.join(directory, "en");
-    await writeWork(directory, { en: { ...model("shop"), overview: "overview.typ" } });
+    await writeWork(directory, { en: { ...model("shop"), overview: stated } });
+    assert.equal(await verifyWork(directory, directory), "shop");
+    // A composition beside the model is no work file, whether or not the model names it.
+    await writeFile(path.join(english, "overview.typ"), '#import "/archpub/house.typ": *\n');
+    await assert.rejects(verifyWork(directory, directory), /en\/overview\.typ is not a work file/);
+    await writeModel(english, { ...model("shop"), overview: "overview.typ" });
     await assert.rejects(
       verifyWork(directory, directory),
-      /en: the overview overview\.typ is missing/,
+      /the overview overview\.typ names a composition, which the publisher retired/,
     );
-    await writeFile(path.join(english, "overview.typ"), '#import "/archpub/house.typ": *\n');
-    assert.equal(await verifyWork(directory, directory), "shop");
-    await writeModel(english, model("shop"));
-    await assert.rejects(verifyWork(directory, directory), /en\/overview\.typ is not a work file/);
-    for (const overview of ["../overview.typ", "pages/overview.typ", "overview.svg", 3]) {
+    await rm(path.join(english, "overview.typ"));
+    for (const overview of [3, null, ["a claim"]]) {
       await writeModel(english, { ...model("shop"), overview });
       await assert.rejects(
         verifyWork(directory, directory),
-        /is not a Typst file beside the model/,
+        /the overview is not a statement in the model/,
       );
     }
+  });
+});
+
+test("the languages of a work state one overview, in other words", async () => {
+  await withDirectory(async (directory) => {
+    const write = (zh) =>
+      writeWork(directory, {
+        en: { ...model("shop"), overview: stated },
+        zh: { ...chinese, overview: zh },
+      });
+    await writeFile(path.join(directory, "concepts.md"), termTable());
+    await write(statedInChinese);
+    assert.equal(await verifyWork(directory, directory), "shop");
+    // Another identifier, a reference that one language lacks, and a list of another length.
+    const renamed = structuredClone(statedInChinese);
+    renamed.course.steps[1].id = "send";
+    await write(renamed);
+    await assert.rejects(
+      verifyWork(directory, directory),
+      /zh states another overview than en at \/overview\/course\/steps\/1\/id/,
+    );
+    const unlinked = structuredClone(statedInChinese);
+    delete unlinked.course.steps[0].view;
+    await write(unlinked);
+    await assert.rejects(
+      verifyWork(directory, directory),
+      /zh states another overview than en at \/overview\/course\/steps\/0\/view/,
+    );
+    const longer = structuredClone(statedInChinese);
+    longer.blocks[0].items.push(["发货", "一次发货"]);
+    await write(longer);
+    await assert.rejects(
+      verifyWork(directory, directory),
+      /zh states another overview than en at \/overview\/blocks\/0\/items/,
+    );
+    await write(undefined);
+    await assert.rejects(
+      verifyWork(directory, directory),
+      /zh states another overview than en at \/overview/,
+    );
   });
 });
 

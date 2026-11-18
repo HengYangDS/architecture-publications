@@ -20,7 +20,240 @@
   "coverage": {
     "include": ["src/ethos/", "system/", ".ethos/"]
   },
-  "overview": "overview.typ",
+  "overview": {
+    "claim": "意图先编译、再核验，仓库才会改动",
+    "lead": "每一步都把正式意图和当下的事实编译成一份 TransitionPlan。只有 pass 才放行改动，每次改动都是一次精确的 compare-and-swap，存证不构成任何授权。",
+    "course": {
+      "steps": [
+        {
+          "id": "intent",
+          "label": "意图",
+          "note": "openspec/ · 正式变更",
+          "text": "受版本管理的意图只有 OpenSpec 一处；一项正式变更编译成一个 Commitment。",
+          "view": "intent"
+        },
+        {
+          "id": "lanes",
+          "label": "工作通道 · 并行",
+          "note": "work/* · 每条一个工作区、一份租约",
+          "stations": [
+            {
+              "id": "start",
+              "label": "开始",
+              "note": "从候选分支拉出自己的分支"
+            },
+            {
+              "id": "prewrite",
+              "label": "写前准入",
+              "note": "写入前逐条核对受版本管理的路径",
+              "view": "admission"
+            },
+            {
+              "id": "commit",
+              "label": "提交",
+              "note": "由选定运行时的钩子放行",
+              "view": "commits"
+            },
+            {
+              "id": "archive",
+              "label": "归档",
+              "note": "用官方命令归档，生成一次签名提交"
+            },
+            {
+              "id": "proof",
+              "label": "核验",
+              "note": "在指定的 HEAD 上按依赖关系运行各项门禁，结果存放在 Git 目录里",
+              "view": "proof"
+            }
+          ],
+          "view": "lanes"
+        },
+        {
+          "id": "candidate",
+          "label": "候选分支",
+          "note": "candidate/dev · land",
+          "text": "通道逐条落地；基线过时的通道会被拒绝，由 lane refresh-base 重放。",
+          "view": "overview"
+        },
+        {
+          "id": "accepted",
+          "label": "已验收",
+          "note": "dev · 收尾",
+          "text": "候选分支核验通过、完成收尾，dev 才前进。"
+        },
+        {
+          "id": "release",
+          "label": "发布",
+          "note": "main · 签名的 v* 标签",
+          "text": "main 接收已验收 dev 的签名标签，由托管的流水线作业发布。"
+        },
+        {
+          "id": "peers",
+          "label": "平台",
+          "note": "GitLab · GitHub · publish",
+          "text": "每个平台一次原子推送，各留回执；跨平台不作原子性承诺。",
+          "view": "peers"
+        }
+      ],
+      "lines": [
+        {
+          "from": "archive",
+          "to": ["intent"],
+          "label": "归档会更新规格"
+        },
+        {
+          "from": "proof",
+          "to": ["candidate", "accepted", "release"],
+          "label": "精确到提交的核验存证"
+        }
+      ],
+      "parallel": [
+        {
+          "from": "start",
+          "to": "proof",
+          "tracks": 3
+        }
+      ]
+    },
+    "blocks": [
+      {
+        "title": "通道的持有",
+        "items": [
+          [
+            "租约",
+            "持有者、代次和到期时间记在 state.sqlite 中：每条通道只有一个持有者，可续约、恢复或接管"
+          ],
+          ["写入顺序", "目标路径 · 仓库根目录 · 刷新上下文 · status · prewrite · 写入 · 写后审计"],
+          ["交接", "通道打成一个内容寻址的包，在主机之间转移；revoke-source 结束旧租约"],
+          ["退役", "landed、superseded、absorbed-ref、abandon 或 recover，头提交始终要与预期一致"]
+        ],
+        "view": "lanes"
+      },
+      {
+        "title": "哪些情况会拒绝改动",
+        "items": [
+          ["未经授权", "没有 --authorize 和 --expect-head，仓库不会有任何改动"],
+          ["候选分支已分叉", "先用 candidate --refresh-from-accepted 重置，再重放通道"],
+          ["未经核验的归档", "archive-change --compensate 精确退回归档前的头提交"],
+          ["未知或有未提交改动", "只观察，直到某个公开的状态转换能推导出一项安全的改动"]
+        ],
+        "view": "admission"
+      },
+      {
+        "title": "每一步都是一份 TransitionPlan",
+        "stations": [
+          {
+            "id": "input",
+            "label": "输入",
+            "note": "Commitment、Facts 和先前的存证"
+          },
+          {
+            "id": "authority",
+            "label": "权威依据",
+            "note": "已解析，并列出每处矛盾"
+          },
+          {
+            "id": "compile",
+            "label": "编译",
+            "note": "检查、决策和改动"
+          },
+          {
+            "id": "order",
+            "label": "排序",
+            "note": "一个 DAG；输入相同，输出逐字节相同"
+          },
+          {
+            "id": "judge",
+            "label": "判定"
+          },
+          {
+            "id": "effect",
+            "label": "改动",
+            "note": "一次精确的 compare-and-swap"
+          },
+          {
+            "id": "record",
+            "label": "留下存证",
+            "note": "仅作证据"
+          }
+        ],
+        "pass": {
+          "after": "judge",
+          "label": "pass"
+        },
+        "aside": {
+          "from": "judge",
+          "label": "block 或 unknown：不做改动"
+        },
+        "text": "输入都是显式的值，编译时不读环境里的文件、时钟、网络或进程。已放行的改动由适配器执行：适配器须拿到显式的根目录、授权、前置条件和预期状态才能执行，执行后留下存证。",
+        "view": "intent"
+      },
+      {
+        "title": "受治理仓库共有的结构",
+        "text": "ETHOS 自己也守同一条底线。治理配置可以选定用哪些事实、哪些门禁，但决定不了命令的含义。",
+        "lists": [
+          {
+            "title": "声明",
+            "items": [
+              ["profile.toml", "绑定、OpenSpec 路径"],
+              ["范式", "命名、文档、工具链"],
+              ["OpenSpec", "唯一受版本管理的意图"]
+            ]
+          },
+          {
+            "title": "检查",
+            "items": [
+              ["文档", "命名、许可证、链接"],
+              ["文件大小", "统一的单文件上限"],
+              ["流水线", "一个 CI 模型，覆盖每个平台"]
+            ]
+          },
+          {
+            "title": "强制",
+            "items": [
+              ["提交", "信息格式和 SSH 签名"],
+              ["布局", "导入直接指向定义所在的模块"],
+              ["投影", "只用原生生成器"]
+            ]
+          },
+          {
+            "title": "存放在 Git 目录里",
+            "items": [
+              ["state.sqlite", "租约"],
+              ["attestations-set", "持久的存证"],
+              ["runtime/CURRENT", "一个运行时；保留 ROLLBACK"]
+            ]
+          }
+        ],
+        "view": "structure"
+      },
+      {
+        "title": "建立或接入",
+        "items": [
+          ["adopt --create", "用起始模板建立新仓库"],
+          ["adopt", "绑定现有仓库，以它的头提交为准"],
+          ["adopt --evolve-starter", "把起始模板的升级合并进候选分支"]
+        ]
+      },
+      {
+        "title": "入口不同，操作相同",
+        "items": [
+          ["CLI", "status、plan、prove、land、publish、lane、hook 和 host"],
+          ["MCP", "同样的操作，每个服务实例绑定一个仓库根目录"],
+          ["技能", "技能包，按它声明的命令校验"]
+        ],
+        "view": "surfaces"
+      },
+      {
+        "title": "每条通道都明确结束",
+        "items": [
+          ["retire", "landed · superseded · absorbed-ref · abandon · recover"],
+          ["lease", "renew · resume · reacquire · takeover"],
+          ["handoff", "transfer · export · import · revoke-source"]
+        ]
+      }
+    ]
+  },
   "guide": "guide/guide.archify.md",
   "kinds": {
     "surface": {

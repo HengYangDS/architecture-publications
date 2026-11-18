@@ -1,7 +1,7 @@
 ## 1. The input check
 
-- [ ] 1.1 Write the tests of the changed check first: a model that names `overview.typ` fails, and a work whose languages state overviews of different shapes fails with the first place that differs. Done when both fail on the unchanged check.
-- [ ] 1.2 Change `tools/verification/publication-inputs.mjs`: an `overview` is a statement, a Typst file beside a model fails, and a work's languages state one shape. Done when the tests of 1.1 pass.
+- [x] 1.1 Write the tests of the changed check first: a model that names `overview.typ` fails, and a work whose languages state overviews of different shapes fails with the first place that differs. Done when both fail on the unchanged check. Both tests fail on the unchanged check, each for the reason it names.
+- [x] 1.2 Change `tools/verification/publication-inputs.mjs`: an `overview` is a statement, a Typst file beside a model fails, and a work's languages state one shape. Done when the tests of 1.1 pass. The tests of 1.1 pass, with the test of every work.
 
 ## 2. The statements
 

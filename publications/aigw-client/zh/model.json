@@ -30,7 +30,207 @@
       }
     ]
   },
-  "overview": "overview.typ",
+  "overview": {
+    "claim": "一份审阅过的配置，写入每个客户端",
+    "lead": "本地控制面：AIGW 让每个客户端选用一个模型，只往客户端文件里写自己的设置；它只在执行命令或读取凭据时运行，请求绝不经过它。",
+    "course": {
+      "steps": [
+        {
+          "id": "control",
+          "label": "控制面 · AIGW",
+          "note": "aigw.toml 由一把锁保护 · 令牌另行存放",
+          "stations": [
+            {
+              "id": "provider",
+              "label": "提供商",
+              "note": "你持有其令牌的服务：每种协议一个端点，绝不含凭据"
+            },
+            {
+              "id": "model",
+              "label": "模型",
+              "note": "提供商提供的模型，名为 provider/model，并声明自己可用的协议"
+            },
+            {
+              "id": "selection",
+              "label": "客户端的模型选择",
+              "note": "某个已准入客户端选用的模型"
+            }
+          ],
+          "view": "authority"
+        },
+        {
+          "id": "clients",
+          "label": "数据面 · 各客户端",
+          "note": "各客户端保留自己的状态，自己调用自己的端点",
+          "text": "规划 · 应用 · 检查，一次带防护的事务",
+          "stations": [
+            {
+              "branches": [
+                {
+                  "id": "codex",
+                  "label": "Codex",
+                  "note": "~/.codex/config.toml · 对话、模型元数据和 Desktop 图形界面仍归 Codex"
+                },
+                {
+                  "id": "claude-code",
+                  "label": "Claude Code",
+                  "note": "~/.claude/settings.json · 会话和运行时行为仍归 Claude Code"
+                },
+                {
+                  "id": "claude-desktop",
+                  "label": "Claude Desktop",
+                  "note": "Claude-3p/configLibrary · 它自己的配置库；其余都归应用本身"
+                },
+                {
+                  "id": "hermes",
+                  "label": "Hermes",
+                  "note": "~/.hermes/config.yaml · 除 AIGW 自己的提供商和模型外，其余都归 Hermes"
+                }
+              ]
+            }
+          ],
+          "view": "adapters"
+        },
+        {
+          "id": "endpoints",
+          "label": "端点",
+          "note": "提供商，或选定的网关",
+          "text": "每个请求直接发往自己的端点；流量、重试和服务生命周期都归它们"
+        }
+      ],
+      "lines": [
+        {
+          "from": "tokens",
+          "to": ["codex", "claude-code", "claude-desktop", "hermes"],
+          "label": "每个客户端通过 aigw credential 按需读取自己的令牌，令牌与该客户端的文件对应"
+        }
+      ],
+      "spurs": [
+        {
+          "at": "provider",
+          "id": "tokens",
+          "label": "令牌",
+          "note": "放在选定的一个存储里：密钥环、DPAPI 或仅属主可读写的文件"
+        },
+        {
+          "at": "model",
+          "id": "family",
+          "label": "模型家族",
+          "note": "可选：标明它对应哪个规范模型"
+        }
+      ],
+      "passes": [
+        {
+          "after": "provider",
+          "label": "提供"
+        },
+        {
+          "after": "model",
+          "label": "被选用"
+        }
+      ]
+    },
+    "blocks": [
+      {
+        "title": "操作者做什么",
+        "items": [
+          ["setup", "首次设置：一个提供商、一个已安装的客户端和它的一个模型"],
+          ["use", "让一个客户端选用一个 provider/model"],
+          ["sync", "让每个已启用客户端的文件与配置一致；--dry-run 只显示计划，不读取任何凭据"],
+          [
+            "check",
+            "按 --depth 检查到 local、endpoint、model 或 client 一级；model 和 client 可能消耗配额"
+          ],
+          ["provider rotate", "替换一个提供商的令牌"],
+          ["config rollback", "恢复配置和客户端文件，不恢复程序"]
+        ]
+      },
+      {
+        "title": "各处输出共用的同一套状态词",
+        "items": [
+          ["已配置", "本地前提条件满足；检查得越深，证明的就越多"],
+          ["local · endpoint", "不发请求的检查 · 一次带认证、不指定模型的请求"],
+          ["model · client", "一次有时限的推理请求 · 一次真实的客户端会话"],
+          ["已推迟", "有意暂缓提供凭据或写入客户端文件"],
+          ["降级", "配置仍在，但有可恢复的问题"],
+          ["无效 · 不可用", "不能安全使用 · 缺少一项必需的能力"]
+        ],
+        "view": "readiness"
+      },
+      {
+        "title": "每次改写客户端文件都是一次带防护的事务",
+        "stations": [
+          {
+            "id": "discover",
+            "label": "发现",
+            "note": "每个已准入客户端及其原生路径"
+          },
+          {
+            "id": "plan",
+            "label": "规划",
+            "note": "写入之前就已完整，且不含凭据"
+          },
+          {
+            "id": "prepare",
+            "label": "准备",
+            "note": "记下每个目标写入前后的确切状态"
+          },
+          {
+            "id": "commit",
+            "label": "提交"
+          },
+          {
+            "id": "receipt",
+            "label": "回执",
+            "note": "凭一份回执补偿"
+          }
+        ],
+        "pass": {
+          "after": "commit",
+          "label": "全部已提交"
+        },
+        "aside": {
+          "from": "commit",
+          "label": "逆序补偿，且只在文件仍是本次写入的内容时才补偿；内容一旦变化即拒绝，绝不覆盖后来者的写入。"
+        },
+        "view": "projection"
+      },
+      {
+        "title": "什么归谁",
+        "items": [
+          ["AIGW 配置", "提供商、模型、推荐和每个客户端的选择"],
+          ["选定的令牌存储", "提供商令牌；存储由 AIGW 选择"],
+          ["客户端适配器", "AIGW 在某个已准入客户端的文件中的设置"],
+          ["客户端本身", "对话、记忆、工具和图形界面状态"],
+          ["端点背后的服务", "流量规范化、重试和服务生命周期"],
+          ["本地 Git 与代码托管平台", "已签名的提交和标签；托管、CI 与发布记录"]
+        ],
+        "view": "authority"
+      },
+      {
+        "title": "程序本身",
+        "items": [
+          ["self update", "只更新或回滚便携程序"],
+          ["self uninstall", "先移除 AIGW 在客户端文件中的设置，再移除程序"]
+        ],
+        "view": "program"
+      },
+      {
+        "title": "不含凭据的团队文件",
+        "items": [
+          ["setup --from", "应用一个团队文件；模型以团队文件所列为准"],
+          ["--dry-run", "预览一个团队文件，不写入任何东西"]
+        ]
+      },
+      {
+        "title": "变更提供商",
+        "items": [
+          ["provider edit", "有意修改一个端点；没有命令能重命名提供商"],
+          ["provider rotate", "替换选定存储中的一个令牌"]
+        ]
+      }
+    ]
+  },
   "guide": "guide/guide.archify.md",
   "kinds": {
     "interface": {

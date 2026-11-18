@@ -20,7 +20,252 @@
   "coverage": {
     "include": ["src/ethos/", "system/", ".ethos/"]
   },
-  "overview": "overview.typ",
+  "overview": {
+    "claim": "Intent is compiled and proven before the repository moves",
+    "lead": "Each step compiles official intent and fresh facts into one TransitionPlan; only a pass admits an effect, every effect is one exact compare-and-swap, and no Attestation grants authority.",
+    "course": {
+      "steps": [
+        {
+          "id": "intent",
+          "label": "Intent",
+          "note": "openspec/ · Change",
+          "text": "OpenSpec is the only tracked intent; a Change compiles into a Commitment.",
+          "view": "intent"
+        },
+        {
+          "id": "lanes",
+          "label": "Work Lanes · in parallel",
+          "note": "work/* · one worktree and Lease each",
+          "stations": [
+            {
+              "id": "start",
+              "label": "Start",
+              "note": "own branch from the candidate train"
+            },
+            {
+              "id": "prewrite",
+              "label": "Prewrite",
+              "note": "exact tracked paths before a write",
+              "view": "admission"
+            },
+            {
+              "id": "commit",
+              "label": "Commit",
+              "note": "hooks of the selected runtime admit it",
+              "view": "commits"
+            },
+            {
+              "id": "archive",
+              "label": "Archive",
+              "note": "the official archive, one signed commit"
+            },
+            {
+              "id": "proof",
+              "label": "Prove",
+              "note": "the gate graph for the exact HEAD, kept beside Git",
+              "view": "proof"
+            }
+          ],
+          "view": "lanes"
+        },
+        {
+          "id": "candidate",
+          "label": "Candidate",
+          "note": "candidate/dev · land",
+          "text": "Lanes land one at a time; a stale base is refused and replayed by lane refresh-base.",
+          "view": "overview"
+        },
+        {
+          "id": "accepted",
+          "label": "Accepted",
+          "note": "dev · closeout",
+          "text": "dev advances only by the closeout of a proven candidate."
+        },
+        {
+          "id": "release",
+          "label": "Release",
+          "note": "main · signed v* tags",
+          "text": "main takes signed tags of accepted dev; hosted jobs release them."
+        },
+        {
+          "id": "peers",
+          "label": "Peers",
+          "note": "GitLab · GitHub · publish",
+          "text": "One atomic push per peer, each with its receipt; no atomicity is claimed across peers.",
+          "view": "peers"
+        }
+      ],
+      "lines": [
+        {
+          "from": "archive",
+          "to": ["intent"],
+          "label": "the archive updates the specs"
+        },
+        {
+          "from": "proof",
+          "to": ["candidate", "accepted", "release"],
+          "label": "the proof Attestation of the exact commit"
+        }
+      ],
+      "parallel": [
+        {
+          "from": "start",
+          "to": "proof",
+          "tracks": 3
+        }
+      ]
+    },
+    "blocks": [
+      {
+        "title": "How a lane is held",
+        "items": [
+          [
+            "Lease",
+            "holder, generation and expiry in state.sqlite: one owner per lane, renewed, resumed or taken over"
+          ],
+          [
+            "Write order",
+            "target path · repository root · context refresh · status · prewrite · write · post-write audit"
+          ],
+          [
+            "Handoff",
+            "a lane moves between hosts as one content-addressed package; revoke-source ends the old Lease"
+          ],
+          [
+            "Retire",
+            "landed, superseded, absorbed-ref, abandon or recover, always at the expected head"
+          ]
+        ],
+        "view": "lanes"
+      },
+      {
+        "title": "How a move is refused",
+        "items": [
+          ["No authority", "without --authorize and --expect-head nothing moves"],
+          [
+            "Diverged train",
+            "candidate --refresh-from-accepted resets it before the lane is replayed"
+          ],
+          ["Unproven archive", "archive-change --compensate restores the exact pre-archive head"],
+          ["Unknown or dirty", "observe only, until a public transition can derive one safe effect"]
+        ],
+        "view": "admission"
+      },
+      {
+        "title": "Every step is one TransitionPlan",
+        "stations": [
+          {
+            "id": "input",
+            "label": "Inputs",
+            "note": "Commitment, Facts, prior Attestations"
+          },
+          {
+            "id": "authority",
+            "label": "Authority",
+            "note": "resolved, with every contradiction"
+          },
+          {
+            "id": "compile",
+            "label": "Compile",
+            "note": "checks, decisions and effects"
+          },
+          {
+            "id": "order",
+            "label": "Order",
+            "note": "one DAG; equal inputs, equal bytes"
+          },
+          {
+            "id": "judge",
+            "label": "Verdict"
+          },
+          {
+            "id": "effect",
+            "label": "Effect",
+            "note": "one exact compare and swap"
+          },
+          {
+            "id": "record",
+            "label": "Attest",
+            "note": "evidence only"
+          }
+        ],
+        "pass": {
+          "after": "judge",
+          "label": "pass"
+        },
+        "aside": {
+          "from": "judge",
+          "label": "block or unknown: no effect"
+        },
+        "text": "Inputs are explicit values: compilation reads no ambient file, clock, network or process. Only an adapter holding an explicit root, authority, precondition and expected state performs an admitted effect, then attests it.",
+        "view": "intent"
+      },
+      {
+        "title": "Structure every governed repository shares",
+        "text": "ETHOS holds itself to the same floor. A profile chooses facts and gates, never what a command means.",
+        "lists": [
+          {
+            "title": "Declared",
+            "items": [
+              ["profile.toml", "binding, OpenSpec paths"],
+              ["Paradigm", "names, documents, toolchain"],
+              ["OpenSpec", "the only tracked intent"]
+            ]
+          },
+          {
+            "title": "Checked",
+            "items": [
+              ["Documents", "names, licence, links"],
+              ["Size", "one per-file ceiling"],
+              ["Pipelines", "one CI model, every Forge"]
+            ]
+          },
+          {
+            "title": "Enforced",
+            "items": [
+              ["Commits", "grammar and SSH signature"],
+              ["Layout", "imports resolve to owners"],
+              ["Projections", "native producers only"]
+            ]
+          },
+          {
+            "title": "Beside Git",
+            "items": [
+              ["state.sqlite", "the Leases"],
+              ["attestations-set", "the durable Attestations"],
+              ["runtime/CURRENT", "one runtime; ROLLBACK kept"]
+            ]
+          }
+        ],
+        "view": "structure"
+      },
+      {
+        "title": "Formed or adopted",
+        "items": [
+          ["adopt --create", "forms a new repository from a starter"],
+          ["adopt", "binds an existing repository at its head"],
+          ["adopt --evolve-starter", "merges a starter upgrade into a candidate"]
+        ]
+      },
+      {
+        "title": "Reached the same way",
+        "items": [
+          ["CLI", "status, plan, prove, land, publish, lane, hook and host"],
+          ["MCP", "the same operations over a root-bound transport"],
+          ["Skills", "packages checked against the commands they declare"]
+        ],
+        "view": "surfaces"
+      },
+      {
+        "title": "Every lane ends explicitly",
+        "items": [
+          ["retire", "landed · superseded · absorbed-ref · abandon · recover"],
+          ["lease", "renew · resume · reacquire · takeover"],
+          ["handoff", "transfer · export · import · revoke-source"]
+        ]
+      }
+    ]
+  },
   "guide": "guide/guide.archify.md",
   "kinds": {
     "surface": {

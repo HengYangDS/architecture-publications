@@ -98,7 +98,224 @@
       }
     ]
   },
-  "overview": "overview.typ",
+  "overview": {
+    "claim": "Portable requests, transactional releases",
+    "lead": "A loopback data plane for Codex and other Responses clients: each request is rebuilt store-free and sent to the provider its path names, and the proxy installs, hands off and supervises its own listener.",
+    "course": {
+      "steps": [
+        {
+          "id": "route",
+          "label": "The route of one turn",
+          "note": "POST /<provider>/v1/responses and GET /<provider>/v1/models; any other path is refused before upstream I/O",
+          "stations": [
+            {
+              "id": "client",
+              "label": "Client",
+              "note": "Codex, Hermes or a Responses SDK"
+            },
+            {
+              "id": "listener",
+              "label": "Listener",
+              "note": "127.0.0.1:8792, loopback only"
+            },
+            {
+              "id": "body",
+              "label": "Body",
+              "note": "one Content-Length, within 30 s and 64 MiB"
+            },
+            {
+              "id": "projection",
+              "label": "Projection",
+              "note": "store=false, provider bindings removed"
+            },
+            {
+              "id": "delegation",
+              "label": "Delegation",
+              "note": "readable only on a route that selects it"
+            },
+            {
+              "id": "gate",
+              "label": "Gate",
+              "note": "a cooling provider answers at once"
+            },
+            {
+              "id": "exchange",
+              "label": "Exchange",
+              "note": "one deadline, 900 s by default"
+            },
+            {
+              "id": "transport",
+              "label": "Transport",
+              "note": "no redirects; a sent request is never resent"
+            }
+          ],
+          "view": "request-path"
+        },
+        {
+          "id": "providers",
+          "label": "Providers",
+          "note": "one route each, from the manifest",
+          "text": "The manifest names each route's origin and any wire policy.",
+          "stations": [
+            {
+              "branches": [
+                {
+                  "id": "dmxapi",
+                  "label": "dmxapi",
+                  "note": "www.dmxapi.cn"
+                },
+                {
+                  "id": "ucloud",
+                  "label": "ucloud",
+                  "note": "api.modelverse.cn"
+                },
+                {
+                  "id": "aihubmix",
+                  "label": "aihubmix",
+                  "note": "api.inferera.com"
+                },
+                {
+                  "id": "upstream",
+                  "label": "upstream",
+                  "note": "one origin chosen at install"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "lines": [
+        {
+          "from": "transport",
+          "to": ["client"],
+          "label": "Delivery validates each event before writing it, and holds events before content, so a pre-content response.failed can be reopened."
+        }
+      ]
+    },
+    "blocks": [
+      {
+        "title": "What leaves the listener",
+        "items": [
+          [
+            "kept",
+            "dialogue messages, tool calls with their outputs, current-turn controls, encrypted agent messages"
+          ],
+          [
+            "removed",
+            "previous response and conversation bindings, cache keys, reasoning, item references, search calls"
+          ],
+          [
+            "rewritten",
+            "an empty tool output becomes a marker; a later tool result becomes an attributed message"
+          ],
+          ["refused", "unknown types and broken tool pairs, with 400, before any upstream I/O"]
+        ],
+        "view": "portability"
+      },
+      {
+        "title": "Each failure has one bounded answer",
+        "items": [
+          ["429", "relayed once; that provider alone cools for Retry-After, at most 300 s"],
+          ["503 after retries", "relayed; that provider cools briefly before the next probe"],
+          ["DMXAPI 477", "the exact empty_response: the same bytes once more"],
+          ["response_failed", "shrinking, pair-safe retries, then one dialogue-only attempt"],
+          ["input too long", "one smaller historical projection; current input and images kept"],
+          ["lost after sending", "502 upstream_outcome_unknown; the client decides"],
+          ["deadline", "504 before commitment; after it the stream closes, never replayed"]
+        ],
+        "view": "failures"
+      },
+      {
+        "title": "Every release is one journaled transaction",
+        "stations": [
+          {
+            "id": "admitted",
+            "label": "Admitted",
+            "note": "signature verified with ssh-keygen"
+          },
+          {
+            "id": "prepared",
+            "label": "Prepared",
+            "note": "every file and digest journaled"
+          },
+          {
+            "id": "materialized",
+            "label": "Materialized",
+            "note": "a new generation, prewarmed"
+          },
+          {
+            "id": "activated",
+            "label": "Activated"
+          },
+          {
+            "id": "finalized",
+            "label": "Finalized",
+            "note": "the listener proves its identity"
+          }
+        ],
+        "aside": {
+          "from": "activated",
+          "label": "unconfirmed: recover finishes or restores it"
+        },
+        "text": "Activation switches the command link and one selector, which names the active generation and its one predecessor; a rollback is a new transaction back to it.",
+        "view": "install"
+      },
+      {
+        "title": "A new listener without a dropped turn",
+        "stations": [
+          {
+            "id": "prepare",
+            "label": "Prepare",
+            "note": "the successor starts from the selected generation"
+          },
+          {
+            "id": "ready",
+            "label": "Ready",
+            "note": "socket inherited, identity echoed"
+          },
+          {
+            "id": "commit",
+            "label": "Commit",
+            "note": "the old listener stops accepting"
+          },
+          {
+            "id": "serving",
+            "label": "Serving",
+            "note": "health proved on /healthz"
+          },
+          {
+            "id": "finalize",
+            "label": "Finalize",
+            "note": "the old one finishes its turns, at most 900 s"
+          }
+        ],
+        "text": "Upgrade, rollback and reload all take this path. A runtime that does not advertise both handoff capabilities is refused before any change.",
+        "view": "handoff"
+      },
+      {
+        "title": "Kept running",
+        "items": [
+          ["service manager", "launchd, systemd or Task Scheduler keeps it alive"],
+          ["watchdog", "checks the port every 15 s; starts the listener"]
+        ],
+        "view": "supervision"
+      },
+      {
+        "title": "Commands",
+        "items": [
+          ["read", "status and doctor only read, and name the next command, if any"],
+          ["change", "install, reload, rollback, recover and uninstall, one at a time"]
+        ]
+      },
+      {
+        "title": "Owned elsewhere",
+        "items": [
+          ["client", "conversations, tool state and model selection"],
+          ["control plane", "credentials, provider selection and client configuration"]
+        ]
+      }
+    ]
+  },
   "guide": "guide/guide.archify.md",
   "kinds": {
     "client": {
