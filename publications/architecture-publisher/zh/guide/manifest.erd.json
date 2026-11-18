@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "4be4dd77940a5990336e17ae5fc6d884941f27f2"
+      "revision": "7018b0244d6c5d2c9f92f3f0c0d6091a5c48ab95"
     }
   },
   "layout": {
@@ -23,7 +23,7 @@
       "label": "acceptance.json",
       "tag": "acceptance.json",
       "row": 0,
-      "col": 0,
+      "col": 1,
       "attributes": [
         {
           "name": "manifest.json",
@@ -59,8 +59,8 @@
       "sources": [
         {
           "path": "src/delivery.mjs",
-          "line": 150,
-          "end_line": 165,
+          "line": 207,
+          "end_line": 222,
           "label": "Acceptance"
         }
       ]
@@ -71,6 +71,7 @@
       "tag": "manifest.json",
       "row": 1,
       "col": 0,
+      "width": 256,
       "attributes": [
         {
           "name": "digest",
@@ -79,7 +80,7 @@
         },
         {
           "name": "version",
-          "type": "7"
+          "type": "8"
         },
         {
           "name": "publisher",
@@ -87,7 +88,7 @@
         },
         {
           "name": "model",
-          "type": "id, sha256, bytes"
+          "type": "id, file, sha256, bytes"
         },
         {
           "name": "quality",
@@ -95,22 +96,34 @@
         },
         {
           "name": "style",
-          "type": "marks, palette, bands"
+          "type": "palette, bands"
+        },
+        {
+          "name": "sources",
+          "type": "state, count"
+        },
+        {
+          "name": "data",
+          "type": "file, counts"
+        },
+        {
+          "name": "reader",
+          "type": "file, bytes, statements"
         }
       ],
       "sources": [
         {
-          "path": "src/build.mjs",
-          "line": 459,
-          "end_line": 524,
+          "path": "src/manifest.mjs",
+          "line": 89,
+          "end_line": 156,
           "label": "Manifest"
         }
       ]
     },
     {
-      "id": "erd-records",
-      "label": "sources.records[]",
-      "tag": "manifest.json",
+      "id": "erd-evidence",
+      "label": "evidence[]",
+      "tag": "<model id>.json",
       "row": 1,
       "col": 1,
       "attributes": [
@@ -118,6 +131,10 @@
           "name": "path",
           "type": "repository path",
           "key": "pk"
+        },
+        {
+          "name": "state",
+          "type": "verified, unverified"
         },
         {
           "name": "sha256",
@@ -140,16 +157,16 @@
           "type": "relation ids"
         },
         {
-          "name": "state",
-          "type": "verified, unverified"
+          "name": "ranges",
+          "type": "cited lines"
         }
       ],
       "sources": [
         {
-          "path": "src/sources/bind.mjs",
-          "line": 215,
-          "end_line": 227,
-          "label": "Records"
+          "path": "src/pinned/evidence.mjs",
+          "line": 19,
+          "end_line": 72,
+          "label": "Evidence"
         }
       ]
     },
@@ -157,7 +174,7 @@
       "id": "erd-supplies",
       "label": "supplies{}",
       "tag": "manifest.json",
-      "row": 2,
+      "row": 0,
       "col": 0,
       "attributes": [
         {
@@ -172,9 +189,9 @@
       ],
       "sources": [
         {
-          "path": "src/build.mjs",
-          "line": 475,
-          "end_line": 481,
+          "path": "src/manifest.mjs",
+          "line": 106,
+          "end_line": 112,
           "label": "Supplies"
         }
       ]
@@ -184,7 +201,7 @@
       "label": "artifacts[]",
       "tag": "manifest.json",
       "row": 2,
-      "col": 1,
+      "col": 0,
       "attributes": [
         {
           "name": "path",
@@ -203,8 +220,8 @@
       "sources": [
         {
           "path": "src/build.mjs",
-          "line": 371,
-          "end_line": 388,
+          "line": 341,
+          "end_line": 358,
           "label": "digestTree"
         }
       ]
@@ -212,10 +229,10 @@
   ],
   "relationships": [
     {
-      "id": "rel-records",
+      "id": "rel-evidence",
       "from": "erd-manifest",
-      "to": "erd-records",
-      "label": "记录",
+      "to": "erd-evidence",
+      "label": "统计",
       "fromCardinality": "one",
       "toCardinality": "many"
     },

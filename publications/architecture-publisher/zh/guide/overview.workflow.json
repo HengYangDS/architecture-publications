@@ -2,14 +2,14 @@
   "schema_version": 2,
   "diagram_type": "workflow",
   "meta": {
-    "title": "总览如何排版和检查",
+    "title": "总览如何绘制和检查",
     "output": "overview.html",
     "quality_profile": "showcase",
     "locale": "zh-CN",
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "4be4dd77940a5990336e17ae5fc6d884941f27f2"
+      "revision": "7018b0244d6c5d2c9f92f3f0c0d6091a5c48ab95"
     },
     "legend": {
       "entries": {
@@ -36,20 +36,20 @@
       "variant": "exception"
     }
   ],
-  "mainPath": ["ov-composition", "ov-typst", "ov-stage", "ov-boxes", "ov-check", "ov-compile"],
+  "mainPath": ["ov-statement", "ov-typst", "ov-stage", "ov-boxes", "ov-check", "ov-compile"],
   "nodes": [
     {
-      "id": "ov-composition",
+      "id": "ov-statement",
       "lane": "ov-lane-typeset",
       "col": 0,
       "type": "security",
-      "label": "编排存在？",
+      "label": "写明的总览有效？",
       "sources": [
         {
-          "path": "src/build.mjs",
-          "line": 108,
-          "end_line": 127,
-          "label": "Composition"
+          "path": "src/model/overview.mjs",
+          "line": 24,
+          "end_line": 101,
+          "label": "Statement"
         }
       ]
     },
@@ -62,8 +62,8 @@
       "sources": [
         {
           "path": "src/overview/typeset.mjs",
-          "line": 34,
-          "end_line": 50,
+          "line": 36,
+          "end_line": 52,
           "label": "Typst version"
         }
       ]
@@ -73,12 +73,12 @@
       "lane": "ov-lane-typeset",
       "col": 2,
       "type": "backend",
-      "label": "暂存并检查版式规则",
+      "label": "暂存并绘制",
       "sources": [
         {
           "path": "src/overview/typeset.mjs",
-          "line": 86,
-          "end_line": 123,
+          "line": 91,
+          "end_line": 113,
           "label": "Stage"
         }
       ]
@@ -88,12 +88,12 @@
       "lane": "ov-lane-typeset",
       "col": 3,
       "type": "backend",
-      "label": "读取文本框",
+      "label": "读回文本框和线条",
       "sources": [
         {
           "path": "src/overview/typeset.mjs",
-          "line": 192,
-          "end_line": 231,
+          "line": 198,
+          "end_line": 258,
           "label": "Boxes"
         }
       ]
@@ -103,11 +103,11 @@
       "lane": "ov-lane-typeset",
       "col": 4,
       "type": "security",
-      "label": "文字在界内且不相叠？",
+      "label": "文字在界内且无遮挡？",
       "sources": [
         {
           "path": "src/overview/checks.mjs",
-          "line": 22,
+          "line": 3,
           "end_line": 56,
           "label": "Checks"
         }
@@ -121,9 +121,9 @@
       "label": "排入图册",
       "sources": [
         {
-          "path": "docs/reference/operations.md",
-          "line": 347,
-          "end_line": 350,
+          "path": "src/edition/typeset.mjs",
+          "line": 52,
+          "end_line": 65,
           "label": "In the edition"
         }
       ]
@@ -137,8 +137,8 @@
       "sources": [
         {
           "path": "src/overview/typeset.mjs",
-          "line": 144,
-          "end_line": 175,
+          "line": 165,
+          "end_line": 196,
           "label": "Refusals"
         }
       ]
@@ -147,7 +147,7 @@
   "edges": [
     {
       "id": "ov-e-typst",
-      "from": "ov-composition",
+      "from": "ov-statement",
       "to": "ov-typst",
       "role": "main",
       "label": "是"
@@ -180,8 +180,8 @@
       "variant": "emphasis"
     },
     {
-      "id": "ov-e-missing",
-      "from": "ov-composition",
+      "id": "ov-e-invalid",
+      "from": "ov-statement",
       "to": "ov-refused",
       "role": "error",
       "label": "否"
@@ -194,11 +194,11 @@
       "label": "否"
     },
     {
-      "id": "ov-e-lint",
+      "id": "ov-e-tall",
       "from": "ov-stage",
       "to": "ov-refused",
       "role": "error",
-      "label": "违反版式规则"
+      "label": "一页排不下"
     },
     {
       "id": "ov-e-text",
@@ -209,7 +209,7 @@
     }
   ],
   "semanticChecks": {
-    "allowedRoots": ["ov-composition"],
+    "allowedRoots": ["ov-statement"],
     "allowedTerminals": ["ov-compile", "ov-refused"],
     "requiredEdges": [
       {
@@ -217,7 +217,7 @@
         "to": "ov-compile"
       },
       {
-        "from": "ov-composition",
+        "from": "ov-statement",
         "to": "ov-refused"
       }
     ]

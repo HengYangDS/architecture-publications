@@ -10,8 +10,8 @@
 
 ## 3. The Architecture Publisher work
 
-- [ ] 3.1 Re-pin the work at v0.15.0 in both languages from the re-pin worklist: move the shifted citations, reread the touched ones and the listed components and relations, give each file new in scope an owner, make what the work says agree with the release, bring the history to the pin, and name the pin in the README, the term table and the scope. Done when both models verify with `--against v0.15.0`: every citation the same, nothing refused and no file in scope without an owner.
-- [ ] 3.2 Have a reader other than the writer read the Chinese the move added or changed and settle each finding at the source. Done when the findings are settled and both models still verify.
+- [x] 3.1 Re-pin the work at v0.15.0 in both languages from the re-pin worklist: move the shifted citations, reread the touched ones and the listed components and relations, give each file new in scope an owner, make what the work says agree with the release, bring the history to the pin, and name the pin in the README, the term table and the scope. Done when both models verify with `--against v0.15.0`: every citation the same, nothing refused and no file in scope without an owner. Both models verify whole against `v0.15.0` with the released checker: every file in scope owned, every citation the same, nothing refused.
+- [x] 3.2 Have a reader other than the writer read the Chinese the move added or changed and settle each finding at the source. Done when the findings are settled and both models still verify. Three readers' findings and a committee's wording are settled at the source (`repin-10/read/`, `committee-20261119-role/RECORD.md` in the publisher's work directory), and both models verify after them.
 
 ## 4. The words about the works
 

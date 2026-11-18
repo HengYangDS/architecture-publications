@@ -5,8 +5,8 @@
   "locale": "zh-CN",
   "title": "Architecture Publisher",
   "question": "Architecture Publisher 如何把架构模型变成图册和页面？",
-  "summary": "作者用 archpub 处理模型。构建时先校验模型，按固定的提交把范围内的每个文件交给认领它的组件，再规划视图，把每个视图都布局在同一套网格上。随后排出一部图册，收入作者编排的总览，每个视图各占一幅图版，图版上每个组件画成长度与代码量成正比的条带；写出一个 Archify 页面，模型指定了导读时，页面就是作者写的导读；并写出一份清单，记录这些产物的哈希摘要。交付物须经一位具名审阅者验收，才能出版。",
-  "scope": "v0.14.0 发布版的 Architecture Publisher：src/ 下的源码、包清单，以及各项随附物料的清单。",
+  "summary": "作者用 archpub 处理模型。构建时先校验模型，按固定的提交把范围内的每个文件交给认领它的组件，再规划视图，把每个视图都布局在同一套网格上。随后排出一部图册，收入模型写明的总览，每个视图各占一幅图版，图版上每个组件画成一张卡片，卡片上条带的长度与所属文件的大小成正比；写出一个 Archify 页面，模型指定了导读时，页面就是作者写的导读；写出图册的数据和一份读者文件；并写出一份清单，记录这些产物的哈希摘要。交付物须经一位具名审阅者验收，才能出版。",
+  "scope": "v0.15.0 发布版的 Architecture Publisher：src/ 下的源码、包清单，以及各项随附物料的清单。",
   "limits": [
     "每个组件按路径规则认领目录和文件，范围内的每个文件都按最具体的那条规则归属；关系引用的是导入或调用另一组件的模块。",
     "关系指源码中的导入和进程调用，并非运行时的先后顺序；共用的拒绝错误类型和子进程环境不画成关系。",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "4be4dd77940a5990336e17ae5fc6d884941f27f2",
+    "revision": "7018b0244d6c5d2c9f92f3f0c0d6091a5c48ab95",
     "browse": "https://github.com/HengYangDS/architecture-publisher/blob/{revision}/{path}"
   },
   "coverage": {
@@ -289,7 +289,8 @@
       "label": "archpub",
       "kind": "command",
       "details": {
-        "命令": "check、build、import likec4、scaffold guide、migrate、accept、verify、publish、skill",
+        "命令": "check、build、import likec4、scaffold guide、migrate、compare、accept、verify、publish、skill、help",
+        "输出": "一份报告，每项事实占一行并带标记；加 --json 则输出一份 JSON 结果",
         "退出码": "0 完成、1 拒绝、2 用法错误、3 失败"
       },
       "files": ["src/cli/", "src/refusal.mjs", "package.json"]
@@ -318,7 +319,8 @@
       "kind": "check",
       "details": {
         "校验": "第 3 版模型，每个问题都给出 JSON 路径",
-        "接受": "可选的 edition 对象：画法选条带或卡片，配色用内置的，或自带一套合乎印刷规则的"
+        "接受": "可选的 edition 对象：配色用内置的，或自带一套合乎印刷规则的",
+        "读取": "模型写明的总览，由步骤和区块组成，都不写位置；总览写成 Typst 文件名的，一律拒绝"
       },
       "files": ["src/model/"]
     },
@@ -328,9 +330,10 @@
       "kind": "stage",
       "details": {
         "写出": "一份交付物，写完才重命名就位",
-        "选定": "图册的画法和配色，在规划之前定一次"
+        "选定": "图册的配色，在规划之前定一次",
+        "汇集": "构建读到、测得和画出的内容，供数据和读者文件取用"
       },
-      "files": ["src/build.mjs", "src/style.mjs"]
+      "files": ["src/build.mjs", "src/manifest.mjs", "src/projection.mjs", "src/style.mjs"]
     },
     {
       "id": "binding",
@@ -369,6 +372,17 @@
         "列出": "更换固定的提交后，每条认领规则、关系和引用的变化"
       },
       "files": ["src/sources/worklist.mjs"]
+    },
+    {
+      "id": "facts",
+      "label": "测得的事实",
+      "kind": "check",
+      "details": {
+        "测量": "作者没有写明而图版要画的内容：组件所属的文件及其大小、每个文件的占比和新旧档、视图的枢纽、关系引用的文件数",
+        "分档": "文件按最近一次改动分成固定的新旧三档：提交前 7 日内、超过 7 日而在 90 日内、更早",
+        "列出": "每项属性只列一次，写明所属对象、单位，以及测自固定的提交还是模型"
+      },
+      "files": ["src/facts/"]
     },
     {
       "id": "plan",
@@ -440,9 +454,9 @@
       "details": {
         "编排": "每个视图排成图册正文区的一幅图版，三种宽度里取布线不变差的最窄一档，或保持全宽，把概述排在图上方",
         "记录": "每幅图版未通过的平衡检查，供审阅者查看",
-        "绘制": "每个组件画成条带，条长即代码量，全册同一比例；也可画成卡片",
+        "绘制": "每个组件画成一张卡片，条带的长度即所属文件的大小，全册同一比例",
         "对齐": "词间不留空格的语言里，组件详情除每条末行外，各行都撑满同一行宽",
-        "标明": "图中所画的内容，列在图版的图例里；条带图版用一条末端带箭头的线表示枢纽"
+        "标明": "图中所画而卡片上没有写的内容，列在图版的图例里；通向枢纽的线加粗一倍"
       },
       "files": ["src/poster/"]
     },
@@ -451,7 +465,7 @@
       "label": "字体",
       "kind": "medium",
       "details": {
-        "度量": "图中文字按 Source Sans 3 和 Noto Sans CJK SC 计，图上方的概述按 Source Serif 4 计，都与图册排版一致；版式字体计入自带的字偶间距",
+        "度量": "图中文字按 Source Sans 3 和 Noto Sans CJK SC 计，图上方的概述按 Source Serif 4 计，都与图册排版一致；专用字体计入自带的字偶间距",
         "断行": "词间不留空格的语言里，组件详情按段落断行，每行按 Typst 排出的宽度填满"
       },
       "files": ["src/poster/text.mjs", "src/breaks.mjs"]
@@ -500,7 +514,8 @@
       "kind": "medium",
       "details": {
         "存放": "版式类和版式设计令牌，含四套内置配色，图册据此排版",
-        "检查": "作者的编排是否合乎版式规则，以及其中的文本框和字形",
+        "绘制": "按模型写明的内容画出总览：主线横贯版面上部，其余区块按半宽或三分之一宽排在其后",
+        "检查": "Typst 排出的版面：每段文字都在版面之内，不压其他文字，也不被线条压住，每个字符都有随附的字体可画",
         "排出": "图版的图例，按基线定位，每个标记对准标签的中线；详情里要撑满的行，排满行宽"
       },
       "files": ["src/overview/", "src/house.json"]
@@ -513,9 +528,20 @@
         "排版": "图册记录、各幅图版和总览，由 Typst 一遍排出，符合 PDF/A-3a 与 PDF/UA-1",
         "渲染": "总览页和各图版页，按每种宽度输出 PNG",
         "用语": "跟随模型的语言",
-        "加排": "已验收交付物的题跋页，上有圆形印记和签条"
+        "加排": "已验收交付物的验收页，上有圆形印记和签条"
       },
       "files": ["src/edition/"]
+    },
+    {
+      "id": "data",
+      "label": "数据与读者文件",
+      "kind": "medium",
+      "details": {
+        "数据": "一次构建所得的全部内容，每样只写一次：作品、固定的提交、视图、每条陈述、测得的事实、一张证据表和每幅图版的记录",
+        "读者文件": "每条陈述在自己的 id 下写一次，附所列文件和事实，用模型的语言，末尾是导读原文",
+        "拒绝": "读者文件所列陈述与模型不一致，图版画出的陈述与视图不一致，或图版、读者文件、自动生成的页面里有数据所没有的内容，都在写出任何文件之前拒绝"
+      },
+      "files": ["src/pinned/"]
     },
     {
       "id": "acceptance",
@@ -524,7 +550,8 @@
       "details": {
         "记录": "谁在何时验收了哪些字节，写成 in-toto Statement",
         "签名": "审阅者指定 SSH 密钥时，为验收记录签名",
-        "核验": "产物、验收记录、题跋页和签名",
+        "核验": "产物、验收记录、验收页和签名",
+        "比较": "两份交付物的文件，先各自对照清单核验",
         "复制": "仅已验收的交付物"
       },
       "files": ["src/delivery.mjs"]
@@ -534,7 +561,7 @@
       "label": "物料",
       "kind": "supply",
       "details": {
-        "存放": "Archify、LikeC4 解析器、字体与版式字体、opentype.js 和图标",
+        "存放": "Archify、LikeC4 解析器、字体与专用字体、opentype.js 和图标",
         "核验": "按哈希摘要"
       },
       "files": ["src/supply.mjs", "renderers/", "supplies/"]
@@ -575,7 +602,7 @@
       "id": "reviewer-cli",
       "from": "reviewer",
       "to": "cli",
-      "label": "运行 accept、publish"
+      "label": "运行 compare、accept、verify"
     },
     {
       "id": "cli-importer",
@@ -602,7 +629,7 @@
       "id": "cli-acceptance",
       "from": "cli",
       "to": "acceptance",
-      "label": "accept、verify、publish",
+      "label": "compare、accept、verify、publish",
       "files": ["src/cli/run.mjs"]
     },
     {
@@ -638,14 +665,14 @@
       "from": "builder",
       "to": "model",
       "label": "加载",
-      "files": ["src/build.mjs", "src/style.mjs"]
+      "files": ["src/build.mjs", "src/projection.mjs", "src/style.mjs"]
     },
     {
       "id": "builder-binding",
       "from": "builder",
       "to": "binding",
       "label": "绑定文件",
-      "files": ["src/build.mjs", "src/style.mjs"]
+      "files": ["src/build.mjs", "src/projection.mjs"]
     },
     {
       "id": "builder-coverage",
@@ -666,7 +693,7 @@
       "from": "builder",
       "to": "plates",
       "label": "编排图版",
-      "files": ["src/build.mjs"]
+      "files": ["src/build.mjs", "src/projection.mjs"]
     },
     {
       "id": "builder-edition",
@@ -680,14 +707,14 @@
       "from": "builder",
       "to": "map",
       "label": "写出页面",
-      "files": ["src/build.mjs"]
+      "files": ["src/build.mjs", "src/projection.mjs"]
     },
     {
       "id": "builder-guide",
       "from": "builder",
       "to": "guide",
       "label": "读取导读",
-      "files": ["src/build.mjs"]
+      "files": ["src/build.mjs", "src/manifest.mjs", "src/projection.mjs"]
     },
     {
       "id": "builder-overview",
@@ -695,6 +722,20 @@
       "to": "overview",
       "label": "检查总览",
       "files": ["src/build.mjs"]
+    },
+    {
+      "id": "builder-facts",
+      "from": "builder",
+      "to": "facts",
+      "label": "测量事实",
+      "files": ["src/build.mjs", "src/projection.mjs"]
+    },
+    {
+      "id": "builder-data",
+      "from": "builder",
+      "to": "data",
+      "label": "写出数据和读者文件",
+      "files": ["src/projection.mjs"]
     },
     {
       "id": "binding-scope",
@@ -778,26 +819,26 @@
       "from": "plates",
       "to": "typefaces",
       "label": "断行",
-      "files": ["src/poster/plate.mjs", "src/poster/spread.mjs", "src/poster/strip.mjs"]
+      "files": ["src/poster/part.mjs", "src/poster/spread.mjs"]
     },
     {
       "id": "plates-presentation",
       "from": "plates",
       "to": "presentation",
       "label": "设置组件样式",
-      "files": [
-        "src/poster/compose/plates.mjs",
-        "src/poster/figure.mjs",
-        "src/poster/plate.mjs",
-        "src/poster/strip.mjs"
-      ]
+      "files": ["src/poster/compose/plates.mjs", "src/poster/part.mjs", "src/poster/plate.mjs"]
     },
     {
       "id": "plates-words",
       "from": "plates",
       "to": "words",
       "label": "选取用语",
-      "files": ["src/poster/compose/plates.mjs", "src/poster/plate.mjs", "src/poster/strip.mjs"]
+      "files": [
+        "src/poster/compose/plates.mjs",
+        "src/poster/part.mjs",
+        "src/poster/plate.mjs",
+        "src/poster/strip.mjs"
+      ]
     },
     {
       "id": "map-layout",
@@ -880,7 +921,7 @@
       "id": "overview-supplies",
       "from": "overview",
       "to": "supplies",
-      "label": "用版式字体排版",
+      "label": "用专用字体排版",
       "files": ["src/overview/glyphs.mjs", "src/overview/typeset.mjs"]
     },
     {
@@ -908,7 +949,7 @@
       "id": "edition-supplies",
       "from": "edition",
       "to": "supplies",
-      "label": "用版式字体排版",
+      "label": "用专用字体排版",
       "files": ["src/edition/colophon.mjs", "src/edition/typeset.mjs"]
     },
     {
@@ -929,7 +970,7 @@
       "id": "acceptance-edition",
       "from": "acceptance",
       "to": "edition",
-      "label": "排题跋页",
+      "label": "排验收页",
       "files": ["src/delivery.mjs"]
     },
     {
@@ -945,7 +986,7 @@
       "id": "overview",
       "title": "一次构建的全程",
       "question": "从作者的模型到出版的交付物，一次构建要经过哪些部分？",
-      "summary": "作者运行 archpub build，由交付物构建器生成图版、图册和页面。审阅者运行 accept 和 publish；验收时在交付物旁排出题跋页，只有已验收的交付物才会复制到出版根目录。",
+      "summary": "作者运行 archpub build，由交付物构建器生成图版、图册和页面，以及数据和读者文件。审阅者运行 compare、accept 和 verify；验收时在交付物旁排出验收页，只有已验收的交付物才会复制到出版根目录。",
       "tiers": [
         {
           "id": "people",
@@ -965,7 +1006,7 @@
         {
           "id": "media",
           "label": "媒介",
-          "members": ["plates", "edition", "map"]
+          "members": ["plates", "edition", "map", "data"]
         },
         {
           "id": "outside",
@@ -978,8 +1019,18 @@
       "id": "files",
       "title": "文件：取自固定的提交",
       "question": "构建怎样按固定的提交把每个文件交给所属组件？archpub check 又报告些什么？",
-      "summary": "在固定的提交上，文件绑定按最具体的那条认领规则，把范围内的每个文件交给所属组件，并读出它的哈希摘要、大小和最近一次改动。覆盖报告统计已归属、未覆盖和已排除的文件；更换提交的待办清单列出更换固定的提交会带来哪些变化。",
-      "members": ["builder", "model", "binding", "scope", "coverage", "worklist", "repository"]
+      "summary": "在固定的提交上，文件绑定按最具体的那条认领规则，把范围内的每个文件交给所属组件，并读出它的哈希摘要、大小和最近一次改动；测得的事实据此给出每个组件的大小和每个文件的新旧档，数据则为每个路径留一行证据。覆盖报告统计已归属、未覆盖和已排除的文件；更换提交的待办清单列出更换固定的提交会带来哪些变化。",
+      "members": [
+        "builder",
+        "model",
+        "binding",
+        "facts",
+        "data",
+        "scope",
+        "coverage",
+        "worklist",
+        "repository"
+      ]
     },
     {
       "id": "models",
@@ -1015,7 +1066,7 @@
       "id": "edition",
       "title": "图册",
       "question": "规划好的视图由谁排成图册？这一步用到哪些物料？",
-      "summary": "图版编排器把每个规划好的视图排成一幅图版，组件画成长度与代码量成正比的条带，也可画成卡片。图册用 Typst 一遍排出全部图版和总览；字体、图标和版式字体都由物料提供。",
+      "summary": "图版编排器把每个规划好的视图排成一幅图版，每个组件画成一张卡片，卡片上条带的长度与所属文件的大小成正比。图册用 Typst 一遍排出全部图版和总览，总览按模型写明的内容画出；字体、图标和专用字体都由物料提供。",
       "members": [
         "builder",
         "plan",

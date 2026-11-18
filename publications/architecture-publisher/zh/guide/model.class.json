@@ -10,7 +10,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "4be4dd77940a5990336e17ae5fc6d884941f27f2"
+      "revision": "7018b0244d6c5d2c9f92f3f0c0d6091a5c48ab95"
     }
   },
   "layout": {
@@ -43,7 +43,7 @@
         },
         {
           "name": "overview",
-          "type": ".typ path"
+          "type": "claim, lead, course, blocks"
         },
         {
           "name": "guide",
@@ -51,14 +51,14 @@
         },
         {
           "name": "edition",
-          "type": "marks, palette"
+          "type": "palette"
         }
       ],
       "sources": [
         {
           "path": "src/model/load.mjs",
-          "line": 38,
-          "end_line": 50,
+          "line": 39,
+          "end_line": 51,
           "label": "Fields"
         }
       ]
@@ -83,8 +83,8 @@
       "sources": [
         {
           "path": "src/model/paths.mjs",
-          "line": 35,
-          "end_line": 75,
+          "line": 32,
+          "end_line": 72,
           "label": "Coverage"
         }
       ]
@@ -117,8 +117,8 @@
       "sources": [
         {
           "path": "src/model/load.mjs",
-          "line": 315,
-          "end_line": 324,
+          "line": 316,
+          "end_line": 325,
           "label": "Relations"
         }
       ]
@@ -159,8 +159,8 @@
       "sources": [
         {
           "path": "src/model/load.mjs",
-          "line": 302,
-          "end_line": 313,
+          "line": 303,
+          "end_line": 314,
           "label": "Components"
         }
       ]
@@ -189,8 +189,8 @@
       "sources": [
         {
           "path": "src/model/load.mjs",
-          "line": 380,
-          "end_line": 409,
+          "line": 379,
+          "end_line": 408,
           "label": "Views"
         }
       ]

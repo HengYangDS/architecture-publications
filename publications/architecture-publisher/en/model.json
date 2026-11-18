@@ -5,8 +5,8 @@
   "locale": "en",
   "title": "Architecture Publisher",
   "question": "How does Architecture Publisher turn an architecture model into a print edition and a page?",
-  "summary": "An author runs archpub on a model. A build validates it, gives each file in its scope to the component that claims it at the pinned revision, plans the views and lays each out on one grid. It typesets a print edition of the overview the author composes and one plate per view, each part a strip as long as its code, writes one Archify page, which is the author's guide when the model names one, and a manifest of their digests; a named reviewer accepts the delivery before it is published.",
-  "scope": "Architecture Publisher as released at v0.14.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
+  "summary": "An author runs archpub on a model. A build validates it, gives each file in its scope to the component that claims it at the pinned revision, plans the views and lays each out on one grid. It typesets a print edition of the overview the model states and one plate per view, each part a card with a strip as long as its files are large, writes one Archify page, which is the author's guide when the model names one, the edition as data and a reader file, and a manifest of their digests; a named reviewer accepts the delivery before it is published.",
+  "scope": "Architecture Publisher as released at v0.15.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
   "limits": [
     "Each component claims the directories and files its path rules name, and each file in the scope goes to its most specific claim; a relation cites the modules that import or call the other component.",
     "Relations are imports and process calls in the source, not runtime order; the shared refusal type and the child environment are not drawn as relations.",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "4be4dd77940a5990336e17ae5fc6d884941f27f2",
+    "revision": "7018b0244d6c5d2c9f92f3f0c0d6091a5c48ab95",
     "browse": "https://github.com/HengYangDS/architecture-publisher/blob/{revision}/{path}"
   },
   "coverage": {
@@ -304,7 +304,8 @@
       "label": "archpub",
       "kind": "command",
       "details": {
-        "commands": "check, build, import likec4, scaffold guide, migrate, accept, verify, publish, skill",
+        "commands": "check, build, import likec4, scaffold guide, migrate, compare, accept, verify, publish, skill, help",
+        "prints": "a report with one marked line per fact, or one JSON result with --json",
         "exits": "0 done, 1 refused, 2 usage, 3 failure"
       },
       "files": ["src/cli/", "src/refusal.mjs", "package.json"]
@@ -333,7 +334,8 @@
       "kind": "check",
       "details": {
         "validates": "version 3, every problem with its JSON path",
-        "admits": "an optional edition object: strip or card marks, and a built-in palette or the model's own, held to print rules"
+        "admits": "an optional edition object: a built-in palette or the model's own, held to print rules",
+        "reads": "the overview the model states, as steps and blocks without positions; a composition's file name is refused"
       },
       "files": ["src/model/"]
     },
@@ -343,9 +345,10 @@
       "kind": "stage",
       "details": {
         "writes": "one delivery, renamed into place when complete",
-        "chooses": "the edition's marks and palette once, before the plan"
+        "chooses": "the edition's palette once, before the plan",
+        "gathers": "what the build read, measured and drew, for the data and the reader file"
       },
-      "files": ["src/build.mjs", "src/style.mjs"]
+      "files": ["src/build.mjs", "src/manifest.mjs", "src/projection.mjs", "src/style.mjs"]
     },
     {
       "id": "binding",
@@ -384,6 +387,17 @@
         "lists": "what moving the pin changes for each claim, relation and citation"
       },
       "files": ["src/sources/worklist.mjs"]
+    },
+    {
+      "id": "facts",
+      "label": "Measured facts",
+      "kind": "check",
+      "details": {
+        "measures": "what a plate draws that its author did not state: a part's files and their bytes, each file's share and age band, a view's hub and the files a relation cites",
+        "sorts": "files into three fixed age bands: changed within 7 days of the pin, over 7 and within 90 days, and earlier",
+        "lists": "each property once, with its subject, its unit and whether it is measured from the pin or from the model"
+      },
+      "files": ["src/facts/"]
     },
     {
       "id": "plan",
@@ -455,9 +469,9 @@
       "details": {
         "composes": "each view as one plate for the edition's body, at the narrowest of three widths that wires no worse, or at the full width with its summary above it",
         "records": "the balance gates each plate misses, for the reviewer",
-        "draws": "each part as a strip as long as its code, on one scale for the edition, or as a card",
+        "draws": "each part as one card, its strip as long as its files are large, on one scale for the edition",
         "justifies": "a part's details in an edition written without spaces between words, each line but a detail's last spread to one measure",
-        "names": "what each figure shows in its plate's key; on a strip plate, the hub by a line that ends in its arrowhead"
+        "names": "what a figure shows and a card does not say, in its plate's key; the hub by lines twice as heavy"
       },
       "files": ["src/poster/"]
     },
@@ -515,7 +529,8 @@
       "kind": "medium",
       "details": {
         "holds": "the house class and its tokens, with the four built-in palettes, which typeset the edition",
-        "checks": "the author's composition: its lint, its text boxes and its glyphs",
+        "draws": "the overview from what the model states: the course across the first band, the blocks after it in halves and thirds",
+        "checks": "the page Typst drew: each text inside the page and clear of the others and of every line, and each character in a bundled face",
         "sets": "a plate's key by its baseline, each mark centred on its label, and a spread line of details to its measure"
       },
       "files": ["src/overview/", "src/house.json"]
@@ -533,6 +548,17 @@
       "files": ["src/edition/"]
     },
     {
+      "id": "data",
+      "label": "Data and reader file",
+      "kind": "medium",
+      "details": {
+        "data": "the pinned edition, each thing once: the work, the pin, the views, every statement and measured fact, one evidence table and each plate's record",
+        "reader file": "every statement once under its id with its files and facts, in the model's language, then the guide's text",
+        "refuses": "a reader file that does not list the model's statements, a plate that did not draw its view's, and any of them, or a generated page, that holds what the data lacks, before anything is written"
+      },
+      "files": ["src/pinned/"]
+    },
+    {
       "id": "acceptance",
       "label": "Acceptance and publication",
       "kind": "stage",
@@ -540,6 +566,7 @@
         "records": "who accepted which bytes and when, as an in-toto Statement",
         "signs": "the record with an SSH key, when the reviewer names one",
         "verifies": "the artifacts, the record, the colophon page and the signature",
+        "compares": "two deliveries file by file, each first checked against its own manifest",
         "copies": "only an accepted delivery"
       },
       "files": ["src/delivery.mjs"]
@@ -590,7 +617,7 @@
       "id": "reviewer-cli",
       "from": "reviewer",
       "to": "cli",
-      "label": "runs accept, publish"
+      "label": "runs compare, accept, verify"
     },
     {
       "id": "cli-importer",
@@ -617,7 +644,7 @@
       "id": "cli-acceptance",
       "from": "cli",
       "to": "acceptance",
-      "label": "accept, verify, publish",
+      "label": "compare, accept, verify, publish",
       "files": ["src/cli/run.mjs"]
     },
     {
@@ -653,14 +680,14 @@
       "from": "builder",
       "to": "model",
       "label": "loads",
-      "files": ["src/build.mjs", "src/style.mjs"]
+      "files": ["src/build.mjs", "src/projection.mjs", "src/style.mjs"]
     },
     {
       "id": "builder-binding",
       "from": "builder",
       "to": "binding",
       "label": "binds files",
-      "files": ["src/build.mjs", "src/style.mjs"]
+      "files": ["src/build.mjs", "src/projection.mjs"]
     },
     {
       "id": "builder-coverage",
@@ -681,7 +708,7 @@
       "from": "builder",
       "to": "plates",
       "label": "composes plates",
-      "files": ["src/build.mjs"]
+      "files": ["src/build.mjs", "src/projection.mjs"]
     },
     {
       "id": "builder-edition",
@@ -695,14 +722,14 @@
       "from": "builder",
       "to": "map",
       "label": "writes the page",
-      "files": ["src/build.mjs"]
+      "files": ["src/build.mjs", "src/projection.mjs"]
     },
     {
       "id": "builder-guide",
       "from": "builder",
       "to": "guide",
       "label": "reads the guide",
-      "files": ["src/build.mjs"]
+      "files": ["src/build.mjs", "src/manifest.mjs", "src/projection.mjs"]
     },
     {
       "id": "builder-overview",
@@ -710,6 +737,20 @@
       "to": "overview",
       "label": "checks the overview",
       "files": ["src/build.mjs"]
+    },
+    {
+      "id": "builder-facts",
+      "from": "builder",
+      "to": "facts",
+      "label": "measures facts",
+      "files": ["src/build.mjs", "src/projection.mjs"]
+    },
+    {
+      "id": "builder-data",
+      "from": "builder",
+      "to": "data",
+      "label": "writes data, reader file",
+      "files": ["src/projection.mjs"]
     },
     {
       "id": "binding-scope",
@@ -793,26 +834,26 @@
       "from": "plates",
       "to": "typefaces",
       "label": "breaks lines",
-      "files": ["src/poster/plate.mjs", "src/poster/spread.mjs", "src/poster/strip.mjs"]
+      "files": ["src/poster/part.mjs", "src/poster/spread.mjs"]
     },
     {
       "id": "plates-presentation",
       "from": "plates",
       "to": "presentation",
       "label": "styles parts",
-      "files": [
-        "src/poster/compose/plates.mjs",
-        "src/poster/figure.mjs",
-        "src/poster/plate.mjs",
-        "src/poster/strip.mjs"
-      ]
+      "files": ["src/poster/compose/plates.mjs", "src/poster/part.mjs", "src/poster/plate.mjs"]
     },
     {
       "id": "plates-words",
       "from": "plates",
       "to": "words",
       "label": "sets its words",
-      "files": ["src/poster/compose/plates.mjs", "src/poster/plate.mjs", "src/poster/strip.mjs"]
+      "files": [
+        "src/poster/compose/plates.mjs",
+        "src/poster/part.mjs",
+        "src/poster/plate.mjs",
+        "src/poster/strip.mjs"
+      ]
     },
     {
       "id": "map-layout",
@@ -960,7 +1001,7 @@
       "id": "overview",
       "title": "One build, end to end",
       "question": "Which parts does one build pass through, from the author's model to a published delivery?",
-      "summary": "The author runs archpub build, and the delivery builder makes plates, the print edition and the page. The reviewer runs accept and publish; acceptance sets a colophon page beside the delivery, and only an accepted delivery is copied to the publication root.",
+      "summary": "The author runs archpub build, and the delivery builder makes plates, the print edition, the page, and the data with its reader file. The reviewer runs compare, accept and verify; acceptance sets a colophon page beside the delivery, and only an accepted delivery is copied to the publication root.",
       "tiers": [
         {
           "id": "people",
@@ -980,7 +1021,7 @@
         {
           "id": "media",
           "label": "Media",
-          "members": ["plates", "edition", "map"]
+          "members": ["plates", "edition", "map", "data"]
         },
         {
           "id": "outside",
@@ -993,8 +1034,18 @@
       "id": "files",
       "title": "Files at the pinned revision",
       "question": "How does a build give each file to its owner at the pinned revision, and what does archpub check report?",
-      "summary": "At the pinned revision, file binding gives each file in the scope to its most specific claim and reads its digest, size and last change. The coverage report counts owned, uncovered and excluded files; the re-pin worklist lists what moving the pin changes.",
-      "members": ["builder", "model", "binding", "scope", "coverage", "worklist", "repository"]
+      "summary": "At the pinned revision, file binding gives each file in the scope to its most specific claim and reads its digest, size and last change; from these the measured facts give each part its size and each file its age band, and the data keeps one row of evidence for each path. The coverage report counts owned, uncovered and excluded files; the re-pin worklist lists what moving the pin changes.",
+      "members": [
+        "builder",
+        "model",
+        "binding",
+        "facts",
+        "data",
+        "scope",
+        "coverage",
+        "worklist",
+        "repository"
+      ]
     },
     {
       "id": "models",
@@ -1030,7 +1081,7 @@
       "id": "edition",
       "title": "The print edition",
       "question": "What turns the planned views into the print edition, and which supplies does it use?",
-      "summary": "The plate composer turns each planned view into one plate and draws each part as a strip as long as its code, or as a card. The print edition typesets every plate and the overview in one Typst pass; the supplies provide the fonts, the icons and the house faces.",
+      "summary": "The plate composer turns each planned view into one plate and draws each part as one card, with a strip as long as its files are large. The print edition typesets every plate and the overview, which is drawn from what the model states, in one Typst pass; the supplies provide the fonts, the icons and the house faces.",
       "members": [
         "builder",
         "plan",

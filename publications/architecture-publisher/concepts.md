@@ -1,7 +1,7 @@
 # Architecture Publisher: term renderings
 
-The renderings this work fixes before translation, used everywhere in `zh/model.json` and `zh/overview.typ`. Source
-names the file of `architecture-publisher` at v0.14.0 (`4be4dd7`) that defines or uses the term; the edition's own
+The renderings this work fixes before translation, used everywhere under `zh/`. Source names the file of
+`architecture-publisher` at v0.15.0 (`7018b02`) that defines or uses the term; the edition's own
 Chinese words come from `src/edition/words.mjs` and `src/locale.mjs`. Renderings marked "approved" are the
 owner-approved shared renderings.
 
@@ -13,9 +13,13 @@ owner-approved shared renderings.
 | print edition, edition                                      | 图册 (the edition's name: 架构图册)              | `src/edition/words.mjs`                                                          |
 | plate                                                       | 图版                                             | `src/edition/words.mjs`                                                          |
 | overview                                                    | 总览                                             | `src/edition/words.mjs`                                                          |
+| state (an overview); the overview a model states            | 写明; 模型写明的总览                             | `src/model/overview.mjs`                                                         |
+| course, step, block (of a stated overview)                  | 主线, 步骤, 区块                                 | `src/model/overview.mjs`                                                         |
+| further course (a block that is a course of its own)        | 副线                                             | `src/model/overview.mjs`                                                         |
 | scope                                                       | 范围                                             | `src/edition/words.mjs`, `src/sources/scope.mjs`                                 |
 | Where it lives                                              | 文件位置                                         | `src/edition/words.mjs`                                                          |
 | claim (a statement the page cites)                          | 陈述                                             | `src/edition/words.mjs` (readingNote)                                            |
+| statement (a component, relation or group)                  | 陈述                                             | `src/pinned/reader.mjs`, `src/locale.mjs`                                        |
 | each cited by its SHA-256                                   | 各附 SHA-256                                     | `src/edition/words.mjs` (readValue)                                              |
 | view                                                        | 视图                                             | `src/locale.mjs`, `src/plan/views.mjs`                                           |
 | component                                                   | 组件                                             | `src/locale.mjs`                                                                 |
@@ -23,6 +27,7 @@ owner-approved shared renderings.
 | group                                                       | 分组                                             | `src/locale.mjs`                                                                 |
 | words (the publisher's own)                                 | 用语                                             | `src/locale.mjs`, `src/edition/words.mjs`                                        |
 | page (the Archify page)                                     | 页面                                             | `src/map/archify.mjs`                                                            |
+| generated page (no guide named)                             | 自动生成的页面                                   | `src/projection.mjs`, `src/map/explainer.mjs`                                    |
 | interactive page                                            | 交互页面                                         | `src/map/explainer.mjs`                                                          |
 | guide                                                       | 导读                                             | `src/map/guide.mjs`                                                              |
 | explainer                                                   | 讲解页                                           | `src/map/explainer.mjs`                                                          |
@@ -35,11 +40,11 @@ owner-approved shared renderings.
 | publication root                                            | 出版根目录                                       | `src/delivery.mjs`, `src/cli/run.mjs`                                            |
 | release, released                                           | 发布 (approved)                                  | `package.json`, `src/edition/words.mjs`                                          |
 | delivery                                                    | 交付物                                           | `src/build.mjs`, `src/delivery.mjs`                                              |
-| manifest                                                    | 清单                                             | `src/build.mjs`                                                                  |
+| manifest                                                    | 清单                                             | `src/manifest.mjs`                                                               |
 | package manifest                                            | 包清单                                           | `package.json`                                                                   |
 | supply, vendored supply                                     | 物料, 随附物料                                   | `src/supply.mjs`                                                                 |
 | supply manifest                                             | 物料清单                                         | `src/supply.mjs`                                                                 |
-| in custody                                                  | 随附物料及版本 (the block title)                 | this work's `overview.typ` only; the repository says "verify" (`src/supply.mjs`) |
+| in custody                                                  | 随附物料及版本 (the block title)                 | this work's overview block only; the repository says "verify" (`src/supply.mjs`) |
 | digest                                                      | 哈希摘要                                         | `src/build.mjs`                                                                  |
 | artifact                                                    | 产物                                             | `src/build.mjs`, `src/delivery.mjs`                                              |
 | stage (kind of component)                                   | 阶段                                             | this work's `model.json` kinds                                                   |
@@ -60,7 +65,7 @@ owner-approved shared renderings.
 | claim (a component's path claim)                            | 认领 (verb); 认领规则 (noun)                     | `src/sources/bind.mjs`, `src/model/schema.json`                                  |
 | path rule                                                   | 路径规则                                         | `src/model/schema.json` (claim patterns); the phrase is this work's              |
 | owner (of a file)                                           | 所属组件                                         | `src/sources/bind.mjs`                                                           |
-| owner (of meaning, evidence, form, acceptance)              | 归属方 (各归一方)                                | composition (`overview.typ`)                                                     |
+| owner (of meaning, evidence, form, acceptance)              | 归属方 (各归一方)                                | this work's overview (`claim`)                                                   |
 | owned                                                       | 已归属                                           | `src/sources/coverage.mjs`                                                       |
 | uncovered                                                   | 未覆盖                                           | `src/sources/coverage.mjs`                                                       |
 | excluded                                                    | 已排除                                           | `src/sources/scope.mjs`                                                          |
@@ -76,6 +81,7 @@ owner-approved shared renderings.
 | clone                                                       | 克隆                                             | `src/map/guide.mjs`                                                              |
 | fetch                                                       | 抓取                                             | `src/sources/git.mjs`                                                            |
 | diff                                                        | 比较                                             | `src/sources/worklist.mjs`                                                       |
+| compare (two deliveries)                                    | 比较 (`archpub compare` kept)                    | `src/delivery.mjs`                                                               |
 | glob                                                        | glob (kept)                                      | `src/sources/scope.mjs`                                                          |
 | cite, citation                                              | 引用                                             | `src/build.mjs`, `src/sources/worklist.mjs`                                      |
 | cited range                                                 | 引用区间                                         | `src/map/guide.mjs`                                                              |
@@ -83,7 +89,7 @@ owner-approved shared renderings.
 | verify                                                      | 核验                                             | `src/supply.mjs`, `src/delivery.mjs`                                             |
 | check                                                       | 检查 (`archpub check` kept)                      | `src/cli/run.mjs`, `src/overview/checks.mjs`                                     |
 | refuse, refusal                                             | 拒绝                                             | `src/refusal.mjs`                                                                |
-| degrade                                                     | 降级                                             | this work's `overview.typ` only                                                  |
+| degrade                                                     | 降级                                             | this work's overview block only                                                  |
 | problem                                                     | 问题                                             | `src/refusal.mjs`                                                                |
 | caller                                                      | 调用方                                           | `src/refusal.mjs`                                                                |
 | reading plan, plan                                          | 阅读规划, 规划                                   | `src/plan/views.mjs`                                                             |
@@ -96,7 +102,7 @@ owner-approved shared renderings.
 | layer                                                       | 分层                                             | `src/layout/rows.mjs`                                                            |
 | placement, place                                            | 摆放                                             | `src/layout/placement.mjs`                                                       |
 | position                                                    | 位置                                             | `src/layout/placement.mjs`                                                       |
-| card                                                        | 卡片                                             | `src/edition/words.mjs` (readingNote)                                            |
+| card                                                        | 卡片                                             | `src/poster/part.mjs`, `src/edition/words.mjs` (readingNote)                     |
 | wire                                                        | 连线                                             | `src/layout/channels.mjs`                                                        |
 | bus                                                         | 总线                                             | `src/layout/channels.mjs`                                                        |
 | corridor                                                    | 走廊                                             | `src/layout/channels.mjs`                                                        |
@@ -105,24 +111,26 @@ owner-approved shared renderings.
 | neatness measure, measure                                   | 整洁度量, 度量                                   | `src/layout/measure.mjs`                                                         |
 | overlap                                                     | 重叠                                             | `src/layout/measure.mjs`, `src/overview/checks.mjs`                              |
 | medium, media                                               | 媒介                                             | `src/kinds.mjs`                                                                  |
-| compose, composition, composer                              | 编排, 编排器                                     | `src/poster/compose/plates.mjs`, `src/overview/lint.mjs`                         |
+| compose, composer (of plates)                               | 编排, 编排器                                     | `src/poster/compose/plates.mjs`                                                  |
+| composition (an overview as a Typst file; retired)          | 编排                                             | `src/model/overview.mjs` (the refusal of a composition)                          |
 | body (the edition's)                                        | 正文区                                           | `src/overview/house.typ`                                                         |
 | balance gate                                                | 平衡检查                                         | `src/poster/compose/gates.mjs`                                                   |
 | typeface, face                                              | 字体                                             | `src/poster/text.mjs`                                                            |
-| house class                                                 | 版式类                                           | `src/overview/house.typ`                                                         |
-| house faces                                                 | 版式字体                                         | `src/overview/glyphs.mjs`                                                        |
+| house class (a Typst class)                                 | 版式类 (类 as in 文档类)                         | `src/overview/house.typ`                                                         |
+| house faces (Source Serif 4, Source Sans 3)                 | 专用字体; in full 出版工具的专用字体             | `renderers/house/supply/supply.json`, `src/overview/glyphs.mjs`                  |
 | tokens (house tokens)                                       | 版式设计令牌                                     | `src/overview/house.typ`, `src/house.json`                                       |
 | typeset, set                                                | 排版                                             | `src/edition/words.mjs` (typeset → 排版)                                         |
 | record (the edition's)                                      | 图册记录                                         | `src/edition/record.mjs`                                                         |
 | render                                                      | 渲染                                             | `src/edition/typeset.mjs`                                                        |
 | break lines                                                 | 断行                                             | `src/breaks.mjs`                                                                 |
-| lint (of a composition)                                     | 版式规则检查                                     | `src/overview/lint.mjs`                                                          |
 | text box                                                    | 文本框                                           | `src/overview/checks.mjs`                                                        |
 | glyph                                                       | 字形                                             | `src/overview/glyphs.mjs`                                                        |
+| ring (the mark of a station on a stated overview)           | 圆环                                             | `src/overview/drawn.typ`, `src/overview/checks.mjs`                              |
 | kind                                                        | 类型                                             | `src/kinds.mjs`                                                                  |
 | icon                                                        | 图标                                             | `src/icons.mjs`                                                                  |
 | command line                                                | 命令行                                           | `src/cli/run.mjs`                                                                |
 | exits (detail), exit code; usage (exit 2)                   | 退出码; 用法错误                                 | `src/cli/run.mjs`                                                                |
+| report, mark (of a command's report)                        | 报告, 标记                                       | `src/cli/report.mjs`                                                             |
 | external tool                                               | 外部工具                                         | this work's `model.json` kinds; external in `src/kinds.mjs`                      |
 | delivery store                                              | 交付物存储                                       | this work's `model.json` kinds; root in `src/delivery.mjs`                       |
 | OpenSpec change                                             | OpenSpec 正式变更 (approved)                     | `openspec/` (outside the scope)                                                  |
@@ -131,8 +139,8 @@ owner-approved shared renderings.
 | reading (a plate's: summary and where each component lives) | 说明栏                                           | `docs/reference/operations.md`, `src/poster/compose/plates.mjs`                  |
 | summary above its figure, full width                        | 图上方的概述, 全宽                               | `docs/reference/operations.md`, `src/poster/compose/plates.mjs`                  |
 | type step                                                   | 字号档                                           | `docs/reference/operations.md`, `README.md`                                      |
-| type sizes (house class)                                    | 字号 (四档字号)                                  | `docs/reference/model.md` (Overview)                                             |
-| palette                                                     | 配色                                             | `docs/reference/model.md` (Overview)                                             |
+| type sizes (house class)                                    | 字号 (四档字号)                                  | `src/overview/house.typ`, `src/house.json`                                       |
+| palette                                                     | 配色                                             | `docs/reference/model.md` (Parts and palette)                                    |
 | the overview's page (16:9)                                  | 版面 (页面 is the Archify page)                  | `docs/reference/model.md` (Overview)                                             |
 | text metrics (Archify's)                                    | 文字度量                                         | `docs/reference/operations.md`                                                   |
 | row wrapping                                                | 折行                                             | `docs/reference/operations.md`, `src/poster/compose/plates.mjs`                  |
@@ -156,22 +164,27 @@ owner-approved shared renderings.
 | showcase (quality)                                          | showcase (kept)                                  | `src/map/guide.mjs`                                                              |
 | temporary clone                                             | 临时克隆                                         | `src/map/guide.mjs`                                                              |
 | tracked file; Git object store                              | 已跟踪文件; Git 对象库                           | `src/sources/scope.mjs`, `src/sources/git.mjs`                                   |
-| house rule                                                  | 版式规则                                         | `src/overview/lint.mjs`                                                          |
 | lock (the edition's, as a lockfile)                         | 锁文件                                           | `docs/reference/model.md`                                                        |
 | shifted, moved, touched, gone (a cited range)               | 偏移, 移动, 触及, 消失                           | `src/sources/worklist.mjs`                                                       |
 | rasterizer (deleted at this pin)                            | 栅格化器                                         | this work's `guide/guide.archify.md`                                             |
 | details, status (of a component)                            | 详情, 状态                                       | `docs/reference/operations.md`                                                   |
 | host path, user name                                        | 主机路径, 用户名                                 | `docs/reference/operations.md`                                                   |
-| marks (how the edition draws its parts)                     | 画法                                             | `docs/reference/model.md` (Marks and palette)                                    |
-| strip (a part drawn from its code)                          | 条带                                             | `docs/reference/model.md`, `src/poster/strip.mjs`                                |
+| marks (`edition.marks`, retired in 0.15.0)                  | 画法                                             | `src/model/edition.mjs` (the refusal of the retired field)                       |
+| strip (the files a part owns, a region of its card)         | 条带                                             | `docs/reference/model.md`, `src/poster/strip.mjs`                                |
 | one scale for the edition                                   | 全册同一比例                                     | `src/poster/strip.mjs`                                                           |
 | indigo, persimmon, soot, patina (palettes)                  | 靛蓝, 柿漆, 松烟, 铜绿                           | `src/house.json`                                                                 |
 | contrast, lightness, chroma, hue                            | 对比度, 明度, 彩度, 色相                         | `src/model/edition.mjs`                                                          |
-| age band, the three age bands                               | 新旧档, 新旧三档                                 | `src/sources/ages.mjs`; the rendering is this work's                             |
+| age band, the three age bands                               | 新旧档, 新旧三档                                 | `src/facts/ages.mjs`; the rendering is this work's                               |
 | last change (of a file)                                     | 最近一次改动                                     | `src/sources/bind.mjs`                                                           |
+| measured fact, fact                                         | 测得的事实, 事实                                 | `src/facts/catalogue.mjs`; 测得, 事实 from `src/locale.mjs`                      |
+| property, subject, unit (of a fact)                         | 属性, 所属对象, 单位                             | `src/facts/catalogue.mjs`                                                        |
+| share (a file's, of its part's bytes)                       | 占比                                             | `src/facts/edition.mjs`                                                          |
+| data (the pinned edition as data)                           | 数据                                             | `src/pinned/data.mjs`; 数据 from `src/locale.mjs`                                |
+| reader file                                                 | 读者文件                                         | `src/pinned/reader.mjs`; 读者文件 from `src/locale.mjs`                          |
+| evidence table, row of evidence                             | 证据表, 一行证据                                 | `src/pinned/evidence.mjs`; 证据表 from `src/locale.mjs`                          |
 | shallow clone                                               | 浅克隆                                           | `src/sources/bind.mjs`                                                           |
-| tick (one per file a relation cites)                        | 刻痕                                             | `src/locale.mjs`                                                                 |
-| colophon page                                               | 题跋页                                           | `src/edition/colophon.mjs`                                                       |
+| count (of the files a relation cites)                       | 文件数                                           | `src/poster/lines.mjs`, `src/locale.mjs`                                         |
+| colophon page (an acceptance adds it)                       | 验收页                                           | `src/edition/colophon.mjs`; titled 验收记录 in `src/edition/words.mjs`           |
 | acceptance record                                           | 验收记录                                         | `src/edition/words.mjs` (colophon)                                               |
 | acceptance slip, slip                                       | 签条                                             | `src/edition/colophon.typ`                                                       |
 | acceptance mark, round mark                                 | 印记, 圆形印记                                   | `src/edition/colophon.typ`; the rendering is this work's                         |
@@ -182,8 +195,8 @@ owner-approved shared renderings.
 | key (a plate's)                                             | 图例                                             | `docs/reference/operations.md`, `src/overview/house.typ`                         |
 | mark, label (of a key's entry)                              | 标记, 标签                                       | `src/overview/house.typ`                                                         |
 | baseline                                                    | 基线                                             | `src/overview/house.typ`                                                         |
-| hub (the part a view's relations lead to)                   | 枢纽                                             | `src/poster/strip.mjs`; the rendering is this work's                             |
-| arrowhead                                                   | 箭头                                             | `src/poster/strip.mjs`                                                           |
+| hub (the part a view's relations lead to)                   | 枢纽                                             | `src/facts/view.mjs`; the rendering is this work's                               |
+| arrowhead                                                   | 箭头                                             | `src/poster/lines.mjs`                                                           |
 | written without spaces between words                        | 词间不留空格                                     | `src/locale.mjs`                                                                 |
 | justified paragraph; flush left                             | 两端对齐的段落; 左对齐                           | `src/poster/spread.mjs`                                                          |
 | measure (the width lines wrap to)                           | 行宽                                             | `src/poster/spread.mjs`                                                          |

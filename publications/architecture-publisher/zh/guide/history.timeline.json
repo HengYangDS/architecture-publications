@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "4be4dd77940a5990336e17ae5fc6d884941f27f2"
+      "revision": "7018b0244d6c5d2c9f92f3f0c0d6091a5c48ab95"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 399,
-          "end_line": 409,
+          "line": 631,
+          "end_line": 641,
           "label": "0.4.0"
         }
       ]
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 354,
-          "end_line": 359,
+          "line": 586,
+          "end_line": 591,
           "label": "0.6.0"
         }
       ]
@@ -71,8 +71,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 247,
-          "end_line": 292,
+          "line": 479,
+          "end_line": 524,
           "label": "0.8.0"
         }
       ]
@@ -86,8 +86,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 230,
-          "end_line": 238,
+          "line": 462,
+          "end_line": 470,
           "label": "0.9.0"
         }
       ]
@@ -102,14 +102,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 186,
-          "end_line": 197,
+          "line": 418,
+          "end_line": 429,
           "label": "0.10.0"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 222,
-          "end_line": 225,
+          "line": 454,
+          "end_line": 457,
           "label": "Removed"
         }
       ]
@@ -123,8 +123,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 173,
-          "end_line": 184,
+          "line": 405,
+          "end_line": 416,
           "label": "0.10.1"
         }
       ]
@@ -138,8 +138,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 164,
-          "end_line": 171,
+          "line": 396,
+          "end_line": 403,
           "label": "0.10.2"
         }
       ]
@@ -153,8 +153,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 143,
-          "end_line": 156,
+          "line": 375,
+          "end_line": 388,
           "label": "0.11.0"
         }
       ]
@@ -168,8 +168,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 115,
-          "end_line": 141,
+          "line": 347,
+          "end_line": 373,
           "label": "0.12.0"
         }
       ]
@@ -179,13 +179,13 @@
       "at": "2026-11-13T14:18:10+08:00",
       "lane": "layout",
       "kind": "change",
-      "title": "0.13.0 条带、配色与题跋页",
-      "detail": "每个组件画成长度与代码量成正比的条带，全册同一比例，按固定的新旧三档上色。模型可以选定画法和配色。验收记录改为 in-toto Statement，另排一页题跋页，两者都可用 archpub verify 核验。",
+      "title": "0.13.0 条带、配色与验收页",
+      "detail": "每个组件画成长度与代码量成正比的条带，全册同一比例，按固定的新旧三档上色。模型可以选定画法和配色。验收记录改为 in-toto Statement，另排验收页，两者都可用 archpub verify 核验。",
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 58,
-          "end_line": 113,
+          "line": 290,
+          "end_line": 345,
           "label": "0.13.0"
         }
       ]
@@ -199,8 +199,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 46,
-          "end_line": 56,
+          "line": 278,
+          "end_line": 288,
           "label": "0.13.1"
         }
       ]
@@ -210,13 +210,29 @@
       "at": "2026-11-14T11:56:26+08:00",
       "lane": "layout",
       "title": "0.14.0 详情两端对齐，图例标记居中",
-      "detail": "中文图册里，组件的详情排成两端对齐的段落。引擎度量版式字体时计入字偶间距，与 Typst 的排法一致。图版的图例按基线定位，每个标记对准旁边标签的中线。",
+      "detail": "中文图册里，组件的详情排成两端对齐的段落。引擎度量专用字体时计入字偶间距，与 Typst 的排法一致。图版的图例按基线定位，每个标记对准旁边标签的中线。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 242,
+          "end_line": 276,
+          "label": "0.14.0"
+        }
+      ]
+    },
+    {
+      "id": "v0150",
+      "at": "2026-11-19T04:40:22+08:00",
+      "lane": "model",
+      "kind": "change",
+      "title": "0.15.0 模型写明总览，另有卡片与数据",
+      "detail": "总览改由模型写明，由出版工具画出。每个组件画成一张卡片，上有条带、类型和详情。交付物另含模型，以及图册的数据和一份读者文件；archpub compare 列出两份交付物中内容不同的文件。",
       "sources": [
         {
           "path": "CHANGELOG.md",
           "line": 10,
-          "end_line": 44,
-          "label": "0.14.0"
+          "end_line": 240,
+          "label": "0.15.0"
         }
       ]
     }

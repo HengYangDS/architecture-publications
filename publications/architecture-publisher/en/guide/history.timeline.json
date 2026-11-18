@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "4be4dd77940a5990336e17ae5fc6d884941f27f2"
+      "revision": "7018b0244d6c5d2c9f92f3f0c0d6091a5c48ab95"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 399,
-          "end_line": 409,
+          "line": 631,
+          "end_line": 641,
           "label": "0.4.0"
         }
       ]
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 354,
-          "end_line": 359,
+          "line": 586,
+          "end_line": 591,
           "label": "0.6.0"
         }
       ]
@@ -71,8 +71,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 247,
-          "end_line": 292,
+          "line": 479,
+          "end_line": 524,
           "label": "0.8.0"
         }
       ]
@@ -86,8 +86,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 230,
-          "end_line": 238,
+          "line": 462,
+          "end_line": 470,
           "label": "0.9.0"
         }
       ]
@@ -102,14 +102,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 186,
-          "end_line": 197,
+          "line": 418,
+          "end_line": 429,
           "label": "0.10.0"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 222,
-          "end_line": 225,
+          "line": 454,
+          "end_line": 457,
           "label": "Removed"
         }
       ]
@@ -123,8 +123,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 173,
-          "end_line": 184,
+          "line": 405,
+          "end_line": 416,
           "label": "0.10.1"
         }
       ]
@@ -138,8 +138,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 164,
-          "end_line": 171,
+          "line": 396,
+          "end_line": 403,
           "label": "0.10.2"
         }
       ]
@@ -153,8 +153,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 143,
-          "end_line": 156,
+          "line": 375,
+          "end_line": 388,
           "label": "0.11.0"
         }
       ]
@@ -168,8 +168,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 115,
-          "end_line": 141,
+          "line": 347,
+          "end_line": 373,
           "label": "0.12.0"
         }
       ]
@@ -184,8 +184,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 58,
-          "end_line": 113,
+          "line": 290,
+          "end_line": 345,
           "label": "0.13.0"
         }
       ]
@@ -199,8 +199,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 46,
-          "end_line": 56,
+          "line": 278,
+          "end_line": 288,
           "label": "0.13.1"
         }
       ]
@@ -214,9 +214,25 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 10,
-          "end_line": 44,
+          "line": 242,
+          "end_line": 276,
           "label": "0.14.0"
+        }
+      ]
+    },
+    {
+      "id": "v0150",
+      "at": "2026-11-19T04:40:22+08:00",
+      "lane": "model",
+      "kind": "change",
+      "title": "0.15.0 A stated overview, cards and data",
+      "detail": "The model states its overview and the publisher draws it. Every part is one card with its strip, kind and details. A delivery adds the model, the edition as data and a reader file, and archpub compare lists the files in which two deliveries differ.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 10,
+          "end_line": 240,
+          "label": "0.15.0"
         }
       ]
     }
