@@ -1,6 +1,6 @@
 # AIGW 怎样让团队的每个 AI 客户端，都和同一份审阅过的配置保持一致？ {#guide}
 
-AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-what) 提供商、模型，以及客户端的模型选择，都经过审阅，放在一个加锁的文件 `aigw.toml` 里。[](source:store-owner) 写入时，它对每个受支持客户端只改写自己的那部分设置，全程是一次带防护的事务。[](source:transaction) 请求绝不经过 AIGW：每个客户端按需读取自己的令牌，自己调用端点。[](source:boundary)
+AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-what) 审阅过的提供商、模型，以及客户端的模型选择，都放在同一个加锁文件 `aigw.toml` 里。[](source:store-owner) 写入时，它对每个受支持客户端只改写自己的那部分设置，全程是一次带防护的事务。[](source:transaction) 请求绝不经过 AIGW：每个客户端按需读取自己的令牌，自己调用端点。[](source:boundary)
 
 - [它控制的是配置，不是流量](block:p-owners)：请求执行、会话连续性和团队访问，仍由客户端和网关负责。[](source:research-boundary)[](source:research-restraint)
 - [同步失败时，只恢复它自己写过的文件](block:p-race)，其他写入者后来的修改不会丢失。[](source:restore)
@@ -92,7 +92,7 @@ AIGW 是面向团队 AI 客户端的本地优先控制面。[](source:readme-wha
 
 ## 谁使用 AIGW，它又牵涉到什么？ {#p-context}
 
-AIGW 的价值假设是：团队成员只要有一份凭据，来自任一受支持提供商，就能得到可用的客户端配置，看得懂，也能安全撤回。[](source:research-value)
+AIGW 有一条价值假设：团队成员只要持有任一受支持提供商的凭据，就能得到可用的客户端配置，看得懂，也能安全撤回。[](source:research-value)
 
 @facts
 | 客户端 | `<client>` 可取 `claude`、`claude-desktop`、`codex` 和 `hermes` |
@@ -255,7 +255,7 @@ Codex 或 Claude Code 自己报出警告或错误时，`aigw check <client> --de
 
 对其他报告，加上 `--verbose` 后，AIGW 的输出之后会附上客户端自己的输出，最多四行。这些行里没有提供商令牌，也没有已知形式的凭据。客户端自行认证或经外部凭据助手认证时，不显示这些行，修复办法是直接运行客户端本身。[](source:check-client-report)
 
-AIGW 的脱敏涵盖 `Authorization` 头直到行尾、cookie 头，以及 URL 里的用户名，带不带密码都一样。它还涵盖名为 `key`、`sig` 或 `signature` 的查询参数，以及 `sk-` 之后至少还有 20 个字符的裸密钥。[](source:redaction-forms)`aigw check` 的 JSON 文档 `schema_version` 为 4，新增 `clients[].failure.client_report`：会话失败时客户端自己的输出，只在加 `--verbose` 时出现。这类失败的下一步是 `next_detail` 里的一段文字，没有 `next_action`。[](source:check-schema)
+AIGW 的脱敏涵盖从 `Authorization` 头到行尾这一段、cookie 头，以及 URL 里的用户名，带不带密码都一样。它还涵盖名为 `key`、`sig` 或 `signature` 的查询参数，以及 `sk-` 之后至少还有 20 个字符的裸密钥。[](source:redaction-forms)`aigw check` 的 JSON 文档 `schema_version` 为 4，新增 `clients[].failure.client_report`：会话失败时客户端自己的输出，只在加 `--verbose` 时出现。这类失败的下一步是 `next_detail` 里的一段文字，没有 `next_action`。[](source:check-schema)
 
 ## 提供商的模型会经历哪些状态？ {#p-catalog}
 

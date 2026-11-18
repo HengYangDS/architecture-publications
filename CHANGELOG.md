@@ -37,8 +37,8 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 - The six Chinese guides, which a work's page in a browser is built from, follow the corrected term tables and
   Chinese models, in the article and in the labels of its figures. A reader other than the writer read each guide
   against its English, and a second reader confirmed every change. DDWG's release declaration is 发布配置, Film
-  Kit's bound 限值 and Architecture Publisher's lock 锁文件 in their term tables too, and OpenAI Responses Proxy's
-  table no longer repeats two rows.
+  Kit's bound 限值, its recognition proxy 只作旁证的识别结果 and Architecture Publisher's lock 锁文件 in their term
+  tables too, and OpenAI Responses Proxy's table no longer repeats two rows.
 - The works name roles, not kinds of holder: Architecture Publisher's Chinese work says 「角色」 and 「审阅者」,
   its English work `Roles`, and the Responses proxy's Chinese work 「运维者」. A test refuses 「人员」 and
   「审阅人」 in a work's Chinese files and term table.

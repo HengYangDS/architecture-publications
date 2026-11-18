@@ -58,7 +58,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @source retakes-doc title="绑定确切文本的重录" path="src/filmkit/narration/retakes.py" lines=1:9
 @source run-on-doc title="连读录音" path="src/filmkit/narration/run_on.py" lines=1:8
 @source audition-propose title="推荐的录音" path="src/filmkit/narration/audition.py" lines=86:112
-@source transcription-doc title="转写结果仅供参考" path="src/filmkit/narration/transcription.py" lines=1:10
+@source transcription-doc title="转写结果只是旁证" path="src/filmkit/narration/transcription.py" lines=1:10
 @source selection title="选定录音文件" path="src/filmkit/narration/selection.py" lines=73:108
 @source speech-refusals title="停顿上限与声明的术语" path="src/filmkit/narration/selection.py" lines=111:130
 @source snapshots title="锁定版本的语音模型" path="src/filmkit/narration/snapshots.py" lines=58:86
@@ -244,7 +244,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 | step-pic-gate | 画面门禁 | `check-picture` 用工具运行器执行逐帧检测和动效检测，再对它们的绘制记录执行同步检测。[](source:gate-check)[](source:tools-doc) | picture-flow | pic-gate | | pic-command-to-pic-gate-1,pic-gate-to-pic-tools-1,pic-tools-to-pic-gate-1 |
 | step-pic-record | 门禁记录 | 绑定检测所依据的输入，并列出每个门禁问题。已声明的标题在片头显示时间太短算一个，静止文字的对比度低于 4.5:1 也算一个。只要有一个门禁问题，就拒绝渲染。[](source:gate-doc) | picture-flow | pic-record | | pic-gate-to-pic-record-1 |
 | step-pic-render | HyperFrames | `render-picture` 找不到当前输入的通过记录就拒绝。否则渲染带字幕画面那份组装好的完整超高清文档；加上 `--uncaptioned` 时，渲染无字幕画面的那一份。[](source:render-gate)[](source:render) | picture-flow | pic-hyperframes | | pic-render-to-pic-record-1,pic-record-to-pic-render-1,pic-render-to-pic-hyperframes-1,pic-hyperframes-to-pic-render-1 |
-| step-pic-validate | 制作命令 | `validate-picture` 把画面绑定到渲染记录和组装好的文档，并检查每一帧是否落在 60 fps 的网格上。[](source:validate) | picture-flow | pic-command | | pic-command-to-pic-render-3 |
+| step-pic-validate | 制作命令 | `validate-picture` 把画面绑定到它的渲染记录和组装好的文档，并检查每一帧是否落在 60 fps 网格上。[](source:validate) | picture-flow | pic-command | | pic-command-to-pic-render-3 |
 
 @callout level=note title="可测量的规则，不是审美"
 | 门禁拒绝的每一项逐帧问题，都由 DDWG 评审转成了交付影片必须遵守的规则。[](source:frame-gates)审美仍由评审判断。[](source:verification-doc) |

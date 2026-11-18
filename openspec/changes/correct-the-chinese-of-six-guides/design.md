@@ -42,7 +42,14 @@ none in an edition, 501 on ETHOS's Chinese page.
    - Rests on: the model was read twice in the first Change; a table row is one cell. Three rows move: Film Kit's
      bound, Architecture Publisher's lock, DDWG's release declaration (decided on 2026-11-18, missed in its
      table).
-3. A check on structure stands beside the readings.
+3. A sentence the page's writing checks refuse is reworded, and read again.
+   - The released publisher refused three pages built from the corrected guides: Archify's writing checks allow two
+     的 in a sentence and fifty reading units, and take 仅供参考 in running text for a qualification. Eight
+     sentences were reworded with their meaning kept, a reader confirmed four and proposed five changes, all
+     taken; a transcript is now a 旁证 in Film Kit's guide and table, since the page cannot say 仅供参考.
+   - Rests on: the page is the product's, and its checks are the guide's limits. The first three passes did not
+     run them, so the faults came out only at the build.
+4. A check on structure stands beside the readings.
    - Every figure file parses with the same keys, ids and sources as before; every source mark, anchor, directive,
      code span and number of the article stands as before, apart from Chinese words inside a directive's title
      and one "0.2.0" the English has.

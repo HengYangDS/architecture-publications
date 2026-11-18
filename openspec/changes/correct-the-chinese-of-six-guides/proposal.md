@@ -15,9 +15,9 @@ named two ways, word-for-word phrasing and sentences that have to be read twice.
 - Each work's Chinese guide follows its corrected term table and its Chinese model, in the article and in the
   labels and texts of its figures: 421 lines in 35 files of six works. A word that is also plain Chinese keeps its
   plain sense where it has it: 证明 as "to show" stays in ETHOS and DDWG.
-- Five rows of four term tables follow what the readings settled: DDWG's release declaration is 发布配置, as
-  ETHOS's is; Film Kit's bound is 限值, as its model says; Architecture Publisher's lock is 锁文件; two rows that
-  OpenAI Responses Proxy's table repeated are removed.
+- Six rows of four term tables follow what the readings settled: DDWG's release declaration is 发布配置, as
+  ETHOS's is; Film Kit's bound is 限值, as its model says, and its recognition proxy 只作旁证的识别结果; Architecture
+  Publisher's lock is 锁文件; two rows that OpenAI Responses Proxy's table repeated are removed.
 - One figure of Architecture Publisher's Chinese guide names its locale `zh-CN`, as the other eight do.
 - No id, anchor, source mark, citation, number, identifier, command or English text changes, and no figure's
   structure.

@@ -68,7 +68,7 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | word checks                                    | 字词检查                             | `src/filmkit/narration/narrate.py`                                                                             |
 | dry run                                        | 试运行                               | `src/filmkit/narration/narrate.py`                                                                             |
 | align; alignment; forced aligner               | 对齐；对齐结果；强制对齐器           | `src/filmkit/narration/alignment.py`                                                                           |
-| transcribe; recognizer; recognition proxy      | 转写；识别器；仅供参考的识别结果     | `src/filmkit/narration/transcription.py`                                                                       |
+| transcribe; recognizer; recognition proxy      | 转写；识别器；只作旁证的识别结果     | `src/filmkit/narration/transcription.py`                                                                       |
 | select; selection                              | 选定；选定结果                       | `src/filmkit/narration/selection.py`                                                                           |
 | heard pause; unmarked pause; pause limit       | 听得到的停顿；无标点停顿；停顿上限   | `src/filmkit/narration/flow.py`                                                                                |
 | word boundary; steps between thoughts          | 词边界；意群之间的变化幅度           | `src/filmkit/narration/flow.py`                                                                                |
