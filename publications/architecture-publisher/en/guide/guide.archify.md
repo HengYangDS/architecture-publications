@@ -388,7 +388,7 @@ Before moving `repository.revision` to a later commit, run `archpub check --agai
 | Claims or relation files refused         | 0     |
 | Newly uncovered files                    | 11    |
 
-No claim and no relation file was refused. Eleven files are new. The four under `src/facts/` form the new component Measured facts, and the five under `src/pinned/` form Data and reader file. The other two fall to the delivery builder.
+No claim and no relation file was refused. Eleven files fell under no claim, ten of them new and one moved into `src/facts/`. The four under `src/facts/` form the new component Measured facts, and the five under `src/pinned/` form Data and reader file. The other two fall to the delivery builder.
 
 @callout level=warning title="Archify checks only that a range exists"
 | After a re-pin, a shifted citation would cite other text. Move it to its new range, and reread every touched one.[](source:model-shifted) |
