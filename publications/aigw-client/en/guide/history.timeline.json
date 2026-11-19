@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "d5a2f98fe480d358f68d1f301c4021dac8b816ce"
+      "revision": "517b4a41244e9711668a87bb08cbb9dbea863d45"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,14 +42,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1147,
-          "end_line": 1155,
+          "line": 1204,
+          "end_line": 1212,
           "label": "0.1.0"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 1235,
-          "end_line": 1236,
+          "line": 1292,
+          "end_line": 1293,
           "label": "0.1.0"
         }
       ]
@@ -64,8 +64,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1061,
-          "end_line": 1085,
+          "line": 1118,
+          "end_line": 1142,
           "label": "0.2.0"
         }
       ]
@@ -80,8 +80,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1033,
-          "end_line": 1059,
+          "line": 1090,
+          "end_line": 1116,
           "label": "0.3.0"
         }
       ]
@@ -95,8 +95,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 812,
-          "end_line": 838,
+          "line": 869,
+          "end_line": 895,
           "label": "0.4.1"
         }
       ]
@@ -110,8 +110,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 748,
-          "end_line": 758,
+          "line": 805,
+          "end_line": 815,
           "label": "0.4.5"
         }
       ]
@@ -126,8 +126,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 732,
-          "end_line": 746,
+          "line": 789,
+          "end_line": 803,
           "label": "0.4.6"
         }
       ]
@@ -141,8 +141,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 721,
-          "end_line": 730,
+          "line": 778,
+          "end_line": 787,
           "label": "0.4.7"
         }
       ]
@@ -156,8 +156,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 699,
-          "end_line": 709,
+          "line": 756,
+          "end_line": 766,
           "label": "0.4.9"
         }
       ]
@@ -172,8 +172,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 580,
-          "end_line": 605,
+          "line": 637,
+          "end_line": 662,
           "label": "0.4.16"
         }
       ]
@@ -187,8 +187,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 549,
-          "end_line": 578,
+          "line": 606,
+          "end_line": 635,
           "label": "0.4.17"
         }
       ]
@@ -203,8 +203,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 432,
-          "end_line": 473,
+          "line": 489,
+          "end_line": 530,
           "label": "0.5.0"
         }
       ]
@@ -218,8 +218,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 402,
-          "end_line": 410,
+          "line": 459,
+          "end_line": 467,
           "label": "0.6.1"
         }
       ]
@@ -234,8 +234,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 180,
-          "end_line": 401,
+          "line": 237,
+          "end_line": 458,
           "label": "0.7.0"
         }
       ]
@@ -249,8 +249,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 141,
-          "end_line": 179,
+          "line": 198,
+          "end_line": 236,
           "label": "0.7.1"
         }
       ]
@@ -264,8 +264,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 103,
-          "end_line": 139,
+          "line": 160,
+          "end_line": 196,
           "label": "0.7.2"
         }
       ]
@@ -280,8 +280,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 36,
-          "end_line": 101,
+          "line": 93,
+          "end_line": 158,
           "label": "0.8.0"
         }
       ]
@@ -295,9 +295,25 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 14,
-          "end_line": 34,
+          "line": 71,
+          "end_line": 91,
           "label": "0.8.1"
+        }
+      ]
+    },
+    {
+      "id": "v082",
+      "at": "2026-11-19T04:45:15+08:00",
+      "lane": "catalog",
+      "kind": "change",
+      "title": "v0.8.2 No shared label per provider",
+      "detail": "Breaking: AIGW refuses a configuration or a team file in which two models of one provider have one label, ignoring case, and names both models and the label. A model whose ID adds to its family's ID derives a label with the rest of its ID. The team file moves to GPT-6.2 Astra and GPT-6.2 Sol.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 14,
+          "end_line": 69,
+          "label": "0.8.2"
         }
       ]
     }

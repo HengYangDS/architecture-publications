@@ -7,7 +7,7 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 - [No client file holds a Token](block:p-token): a helper reads it from one selected store when the client asks.[](source:helper-projection)
 - [Each check proves one more thing](block:p-ready), and synchronized client files are not an answered request.[](source:experience-readiness)
 
-@answer scope="AIGW v0.8.1 · commit d5a2f98 · its source and its own documents"
+@answer scope="AIGW v0.8.2 · commit 517b4a4 · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What AIGW is" path="README.md" lines=3:6
 @source readme-install title="Install" path="README.md" lines=30:42
@@ -74,21 +74,36 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 @source readme-for title="The clients aigw takes" path="README.md" lines=164:164
 @source readme-environment title="Environment Tokens" path="README.md" lines=183:185
 @source manifest-provider title="A provider in the team file" path="manifests/team.toml" lines=1:18
-@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=1147:1155
-@source changelog-081 title="The 0.8.1 release" path="CHANGELOG.md" lines=14:34
-@source setup-model-kept title="A model preference kept at the first setup" path="CHANGELOG.md" lines=145:149
-@source team-labels title="The labels a team file replaces" path="CHANGELOG.md" lines=150:152
-@source check-parent-session title="A client check inside an agent session" path="CHANGELOG.md" lines=153:157
-@source check-names title="Environment variable names on Windows" path="CHANGELOG.md" lines=159:161
-@source check-client-report title="A client's own warning or error" path="CHANGELOG.md" lines=107:118
-@source check-codex-memory title="Codex's memory work in a client check" path="CHANGELOG.md" lines=119:120
-@source redaction-forms title="The credential forms that redaction covers" path="CHANGELOG.md" lines=121:125
-@source check-schema title="The JSON document of aigw check" path="CHANGELOG.md" lines=129:133
-@source team-lines title="The newest model of every line" path="CHANGELOG.md" lines=134:136
-@source keychain-foreign title="A Keychain item that another program stored" path="CHANGELOG.md" lines=40:65
-@source rollback-credentials title="A program rollback moves no credential" path="CHANGELOG.md" lines=72:76
-@source keychain-migration title="No command migrates a Keychain item" path="CHANGELOG.md" lines=77:83
-@source token-empty title="A stored Token that is empty" path="CHANGELOG.md" lines=90:97
+@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=1204:1212
+@source changelog-082 title="The 0.8.2 release" path="CHANGELOG.md" lines=14:69
+@source setup-model-kept title="A model preference kept at the first setup" path="CHANGELOG.md" lines=202:206
+@source team-labels title="The labels a team file replaces" path="CHANGELOG.md" lines=207:209
+@source check-parent-session title="A client check inside an agent session" path="CHANGELOG.md" lines=210:214
+@source check-names title="Environment variable names on Windows" path="CHANGELOG.md" lines=216:218
+@source check-client-report title="A client's own warning or error" path="CHANGELOG.md" lines=164:175
+@source check-codex-memory title="Codex's memory work in a client check" path="CHANGELOG.md" lines=176:177
+@source redaction-forms title="The credential forms that redaction covers" path="CHANGELOG.md" lines=178:182
+@source check-schema title="The JSON document of aigw check" path="CHANGELOG.md" lines=186:190
+@source team-lines title="The newest model of every line" path="CHANGELOG.md" lines=191:193
+@source keychain-foreign title="A Keychain item that another program stored" path="CHANGELOG.md" lines=97:122
+@source rollback-credentials title="A program rollback moves no credential" path="CHANGELOG.md" lines=129:133
+@source keychain-migration title="No command migrates a Keychain item" path="CHANGELOG.md" lines=134:140
+@source token-empty title="A stored Token that is empty" path="CHANGELOG.md" lines=147:154
+@source team-per-provider title="Models chosen per provider" path="CHANGELOG.md" lines=23:27
+@source team-selection title="What applying a team file selects" path="internal/cli/setup/team.go" lines=60:65
+@source model-label title="The label a model derives" path="internal/domain/model.go" lines=532:571
+@source label-shared title="Two models of one provider with one label" path="internal/domain/model_validation.go" lines=87:100
+@source label-refusal title="What the refusal of a shared label names" path="internal/domain/model_errors.go" lines=69:80
+@source team-label-refusal title="A team file refused for a shared label" path="internal/cli/setup/team.go" lines=179:192
+@source family-created title="A family that model add creates" path="internal/cli/model/add.go" lines=204:218
+@source family-edited title="A family that model edit creates" path="internal/cli/model/edit.go" lines=101:104
+@source model-name title="A model's name without its provider" path="internal/domain/model.go" lines=145:159
+@source codex-alias title="The alias in Codex's model catalog" path="internal/adapter/codex/modelcatalog/document.go" lines=66:100
+@source codex-alias-name title="The name that Codex's alias is given" path="internal/adapter/codex/reconcile.go" lines=307:307
+@source hermes-yaml title="The YAML library" path="go.mod" lines=22:22
+@source hermes-encode title="How Hermes's configuration is written" path="internal/adapter/hermes/document.go" lines=115:120
+@source hermes-blocks title="Literal blocks in Hermes's configuration" path="CHANGELOG.md" lines=45:50
+@source hermes-folded title="Folded block scalars in Hermes's configuration" path="CHANGELOG.md" lines=67:69
 
 ## Who uses AIGW, and what does it touch? {#p-context}
 
@@ -99,7 +114,7 @@ AIGW's value hypothesis: a team member with any one supported provider credentia
 | Token store | The platform credential service when available, else one local fallback; an explicit `AIGW_SECRET_BACKEND` of `keyring`, `file` or `env` fails closed |
 | Environment Tokens | Read-only, from `AIGW_TOKEN_<PROVIDER>`; the client process must inherit the same environment |
 
-AIGW fixes these values.[](source:readme-for)[](source:readme-credentials)[](source:readme-environment) A team curates a team file of only reviewed provider endpoints and qualified models, without Tokens.[](source:rollout-maintainer) AIGW ships a team file of its own, which keeps the newest model of every Claude, GPT and Gemini line.[](source:team-lines) Below is the start of the shipped `manifests/team.toml`: its version and one provider with two of its models.[](source:manifest-provider)
+AIGW fixes these values.[](source:readme-for)[](source:readme-credentials)[](source:readme-environment) A team curates a team file of only reviewed provider endpoints and qualified models, without Tokens.[](source:rollout-maintainer) AIGW ships its own team file, where each provider keeps, for every Claude, GPT and Gemini line, the newest model that it lists and that qualifies there.[](source:team-lines)[](source:team-per-provider) Below is the start of the shipped `manifests/team.toml`: its version and one provider with two of its models.[](source:manifest-provider)
 
 @code id=provider source=manifest-provider language=toml
 
@@ -123,7 +138,7 @@ A team distributes a reviewed public team file, and each member supplies Tokens 
 | step-curate | Curate the team file | Only reviewed provider endpoints and qualified models; no Tokens, personal paths, identities or release credentials.[](source:rollout-maintainer) | rollout-flow | rollout-curate |
 | step-publish | Publish at a tag | From a release tag or immutable commit, so every member receives the same file.[](source:rollout-maintainer) | rollout-flow | rollout-publish |
 | step-install | Install AIGW | A signed, notarized Homebrew cask on macOS, or a portable archive for macOS, Linux and Windows that `aigw self install` installs.[](source:readme-install) | rollout-flow | rollout-install |
-| step-import | Apply the team file | Applying it needs neither every provider Token nor an installed client.[](source:readme-team) Its preview, its result and `--json` list every label that the file replaces, for providers, families and models, with the old and the new value.[](source:team-labels) | rollout-flow | rollout-import |
+| step-import | Apply the team file | Applying it needs neither every provider Token nor an installed client.[](source:readme-team) From the recommendations, it selects a model only for a client that has none, so a client's existing selection stays.[](source:team-selection) Its preview, its result and `--json` list every label that the file replaces, for providers, families and models, with the old and the new value.[](source:team-labels) | rollout-flow | rollout-import |
 | step-connect | Connect one provider | Name only the provider you hold; the others stay available without becoming prerequisites.[](source:readme-connect)[](source:readme-activate) | rollout-flow | rollout-connect |
 | step-check | Sync and check | `aigw sync` updates every enabled client whose model, authentication and client files are available, and never creates a missing client.[](source:readme-sync) | rollout-flow | rollout-check |
 
@@ -140,9 +155,11 @@ A client selects one model, named `provider/model`. The provider holds the endpo
 @steps id=model-steps
 | step-selection | Client selection | One client's model, enabled intent, protocol and authentication; no global default, inheritance or fallback across clients.[](source:selection-concept)[](source:selection-struct) | model-erd | erd-selection |
 | step-model | Model | What one provider serves, named `provider/model`: the provider's own model ID, byte for byte, and the protocols on which AIGW may use it.[](source:model-concept)[](source:model-struct) | model-erd | erd-model |
-| step-family | Family | Optional: the canonical model that a provider's model is, so that variants and providers can be compared.[](source:family-concept)[](source:family-struct) | model-erd | erd-family |
+| step-family | Family | Optional: the canonical model that a provider's model is, so that variants and providers can be compared.[](source:family-concept)[](source:family-struct) A family that `aigw model add --family` or `aigw model edit --family` creates is labelled with its own ID.[](source:family-created)[](source:family-edited) | model-erd | erd-family |
 | step-provider | Provider | A service you hold a Token for: its endpoints, one per protocol, and a Token slot when authentication needs one. Configuration and team files never contain the Token.[](source:provider-concept)[](source:provider-struct) | model-erd | erd-provider |
 | step-token | Token | Kept in the selected store, outside the configuration and every client file.[](source:token-storage) | model-erd | erd-token |
+
+A model with no `label` of its own derives one from its provider's label and its family's. For a model whose ID begins or ends with its family's ID and adds more, that label also carries the rest of the ID.[](source:model-label) AIGW refuses a configuration or a team file in which two models of one provider have one label, derived or explicit, ignoring case.[](source:label-shared)[](source:team-label-refusal) The refusal names both models and the label.[](source:label-refusal)
 
 Client files are the part of one client's own configuration that AIGW owns. AIGW writes and withdraws only its settings there, and missing and unselected clients stay untouched.[](source:client-files-concept)
 
@@ -281,10 +298,10 @@ Qualification is separate evidence: explicit protocol and real-client evidence f
 | step-synchronization | Synchronization | Plans every client's files, commits the configuration, then writes the client files, as one transaction.[](source:preflight)[](source:commit-order) | parts-map | parts-sync |
 | step-store | Configuration store | Owns `aigw.toml`, its lock, its backup and its verified snapshot, and keeps the exact file it wrote, for a guarded rollback.[](source:store-owner)[](source:store-commit) | parts-map | parts-store |
 | step-seam | Adapter seam | One contract for every client: discover, converge, plan, apply, inspect, verify and withdraw.[](source:seam) | parts-map | parts-seam |
-| step-codex | Codex | A bounded region of `~/.codex/config.toml`, and its model catalog. | parts-map | parts-codex |
+| step-codex | Codex | A bounded region of `~/.codex/config.toml`, and its model catalog. In that catalog, the alias that AIGW adds for a model shows the model's label without its provider.[](source:model-name)[](source:codex-alias-name)[](source:codex-alias) Where another entry already shows that name, the model's ID follows it in parentheses.[](source:codex-alias) | parts-map | parts-codex |
 | step-claude-code | Claude Code | `~/.claude/settings.json`: endpoint, model preference and credential helper. The first `aigw setup` after an upgrade from 0.6.1 accepts settings in which you changed or removed the `model` that 0.6.1 wrote. It keeps your choice while the provider and endpoint stay the same.[](source:setup-model-kept) | parts-map | parts-claude-code |
 | step-claude-desktop | Claude Desktop | Its separate third-party inference library. | parts-map | parts-claude-desktop |
-| step-hermes | Hermes | Its provider catalog, protocol and model. | parts-map | parts-hermes |
+| step-hermes | Hermes | Its provider catalog, protocol and model. AIGW reads and writes Hermes's configuration through `go.yaml.in/yaml/v4`.[](source:hermes-yaml)[](source:hermes-encode) It keeps a literal block for text with trailing spaces and leaves the value of a folded block scalar unchanged.[](source:hermes-blocks)[](source:hermes-folded) | parts-map | parts-hermes |
 
 ## Why one guarded transaction? {#p-decision}
 
@@ -326,7 +343,7 @@ AIGW answers one question of four, and leaves the others to the products built f
 
 ## How did AIGW get here? {#p-history}
 
-AIGW released v0.1.0 on 19 September 2026 and v0.8.1, the version this page describes, on 16 November 2026.[](source:changelog-010)[](source:changelog-081) The timeline shows seventeen releases that changed what AIGW does for its users, and the last panel lists what is still open.
+AIGW released v0.1.0 on 19 September 2026 and v0.8.2, the version this page describes, on 18 November 2026.[](source:changelog-010)[](source:changelog-082) The timeline shows eighteen releases that changed what AIGW does for its users, and the last panel lists what is still open.
 
 @diagram timeline id=history source=history.timeline.json title="How AIGW got here"
 

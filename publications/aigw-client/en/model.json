@@ -6,7 +6,7 @@
   "title": "AIGW Client Projection",
   "question": "How does AIGW turn one reviewed configuration into guarded client files in every admitted client?",
   "summary": "AIGW keeps providers, models and client selections in one locked configuration, aigw.toml, and its Tokens in one selected store. It writes AIGW's settings into each client's files through one adapter seam, as a guarded, compensated transaction. It never carries a request.",
-  "scope": "The AIGW program as released at v0.8.1: its production Go packages, the command entry point, the team file and go.mod.",
+  "scope": "The AIGW program as released at v0.8.2: its production Go packages, the command entry point, the team file and go.mod.",
   "limits": [
     "Each component cites every production file the rules attribute to it; a relation cites the files of the packages that import the other component.",
     "Tests, their inputs and the repository's tools, CI and documentation are outside the scope."
@@ -14,7 +14,7 @@
   "repository": {
     "name": "aigw-cli",
     "url": "https://github.com/HengYangDS/aigw-cli.git",
-    "revision": "d5a2f98fe480d358f68d1f301c4021dac8b816ce",
+    "revision": "517b4a41244e9711668a87bb08cbb9dbea863d45",
     "browse": "https://github.com/HengYangDS/aigw-cli/blob/{revision}/{path}"
   },
   "coverage": {
@@ -27,6 +27,10 @@
       {
         "path": "cmd/aigw/testdata/",
         "reason": "Inputs of the command tests."
+      },
+      {
+        "path": "internal/adapter/hermes/testdata/",
+        "reason": "Inputs of the Hermes adapter's tests."
       }
     ]
   },
@@ -405,7 +409,8 @@
       "label": "Codex",
       "kind": "client",
       "details": {
-        "writes": "a bounded region of ~/.codex/config.toml and its model catalog"
+        "writes": "a bounded region of ~/.codex/config.toml and its model catalog",
+        "names": "a model's alias in that catalog by the model's label without its provider, with the model's ID where another entry has that name"
       },
       "files": ["internal/adapter/codex/"]
     },
@@ -432,7 +437,8 @@
       "label": "Hermes",
       "kind": "client",
       "details": {
-        "writes": "its provider catalog, protocol and model"
+        "writes": "its provider catalog, protocol and model",
+        "through": "go.yaml.in/yaml/v4, leaving the value of a folded block scalar unchanged"
       },
       "files": ["internal/adapter/hermes/"]
     },
@@ -472,6 +478,7 @@
       "kind": "authority",
       "details": {
         "owns": "providers, models, families, recommendations, client selections and the team file",
+        "refuses": "two models of one provider with one label, derived or explicit, ignoring case",
         "imports": "the standard library only"
       },
       "files": ["internal/domain/", "manifests/", "go.mod"]

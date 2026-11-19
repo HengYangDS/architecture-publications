@@ -6,7 +6,7 @@
   "title": "AIGW 统一客户端配置",
   "question": "AIGW 怎样把一份审阅过的配置，带防护地写入每个已准入客户端的文件？",
   "summary": "AIGW 把提供商、模型和客户端的模型选择放在一份加锁的配置 aigw.toml 里，令牌放在选定的一个存储里。写入客户端文件时，它走统一的适配器接口，只改写其中归自己管的设置；整个写入是一次带防护的事务，中途出错会补偿。请求绝不经过 AIGW。",
-  "scope": "v0.8.1 发布版本的 AIGW 程序：生产代码的 Go 包、命令入口、团队文件和 go.mod。",
+  "scope": "v0.8.2 发布版本的 AIGW 程序：生产代码的 Go 包、命令入口、团队文件和 go.mod。",
   "limits": [
     "每个组件都列出规则划给它的全部生产代码文件；每条关系列出的，是导入另一方组件的那些包里的文件。",
     "测试及其输入，以及仓库的工具、CI 和文档，都不在范围之内。"
@@ -14,7 +14,7 @@
   "repository": {
     "name": "aigw-cli",
     "url": "https://github.com/HengYangDS/aigw-cli.git",
-    "revision": "d5a2f98fe480d358f68d1f301c4021dac8b816ce",
+    "revision": "517b4a41244e9711668a87bb08cbb9dbea863d45",
     "browse": "https://github.com/HengYangDS/aigw-cli/blob/{revision}/{path}"
   },
   "coverage": {
@@ -27,6 +27,10 @@
       {
         "path": "cmd/aigw/testdata/",
         "reason": "命令测试的输入。"
+      },
+      {
+        "path": "internal/adapter/hermes/testdata/",
+        "reason": "Hermes 适配器测试的输入。"
       }
     ]
   },
@@ -404,7 +408,8 @@
       "label": "Codex",
       "kind": "client",
       "details": {
-        "写入": "~/.codex/config.toml 中归 AIGW 管的一块，以及模型清单"
+        "写入": "~/.codex/config.toml 中归 AIGW 管的一块，以及模型清单",
+        "命名": "模型清单里的别名显示模型的 label，不带提供商；已有条目显示同一名称时，再附上模型 ID"
       },
       "files": ["internal/adapter/codex/"]
     },
@@ -431,7 +436,8 @@
       "label": "Hermes",
       "kind": "client",
       "details": {
-        "写入": "提供商清单、协议和模型"
+        "写入": "提供商清单、协议和模型",
+        "读写": "通过 go.yaml.in/yaml/v4；折叠块标量的值保持不变"
       },
       "files": ["internal/adapter/hermes/"]
     },
@@ -471,6 +477,7 @@
       "kind": "authority",
       "details": {
         "管理": "提供商、模型、模型家族、推荐、客户端的模型选择和团队文件",
+        "拒绝": "同一提供商的两个模型 label 相同；不分大小写，显式写明还是自动生成都一样",
         "依赖": "只用标准库"
       },
       "files": ["internal/domain/", "manifests/", "go.mod"]
