@@ -7,7 +7,7 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 - [Every effect is compiled, judged, freshly admitted and applied by exact compare-and-swap](block:p-plan).[](source:invariants)
 - [Each kind of evidence proves only its own plane](block:p-evidence), so local proof is not anti-forgery assurance.[](source:planes)[](source:proof-boundary)
 
-@answer scope="ETHOS v0.2.0-beta.10 · commit b10254f · its source and its own documents · proof timings measured on 2026-11-08 under v0.2.0-beta.6"
+@answer scope="ETHOS v0.2.0-beta.10 · commit b10254f · its source and its own documents · proof timings measured on 2026-11-19 under v0.2.0-beta.10"
 @meta locale=en style=editorial
 @source kernel title="The kernel" path="README.md" lines=100:107
 @source native title="What stays native" path="README.md" lines=26:29
@@ -244,8 +244,8 @@ The gates ETHOS packages for every repository run beside the gates a repository 
 
 @steps id=proof-steps
 | step-proof-ready | Readiness gates | Every gate that is neither a test nor a package gate ran first, in parallel within capacity; a failure among them ends the proof before it waits.[](source:preflight)[](source:ready-set) | proof-run | proof-ready |
-| step-proof-wait | Waiting for host load | The proof then waited 75 seconds, until two 1-minute load samples in a row were within the limit.[](source:load-limit) | proof-run | proof-wait |
-| step-proof-tests | Test and package gates | Tests and packaging ran last; one behavior gate took 701 of the proof's 874 seconds.[](source:preflight) | proof-run | proof-tests |
+| step-proof-wait | Waiting for host load | The proof then waited 15 seconds, until two 1-minute load samples in a row were within the limit.[](source:load-limit) | proof-run | proof-wait |
+| step-proof-tests | Test and package gates | Tests and packaging ran last; one behavior gate took 901 of the proof's 1052 seconds.[](source:preflight) | proof-run | proof-tests |
 
 ## What does each kind of evidence prove? {#p-evidence}
 

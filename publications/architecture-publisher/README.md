@@ -24,7 +24,8 @@ what the manifest binds and how a delivery is accepted and published. It shows
 the releases that brought the publisher here and ends with what moving the pin
 changes. Each claim about the product cites a line range at v0.15.0, and the
 diagrams the draft names sit beside it. The re-pin counts were measured on
-2026-11-08, when this work moved from v0.9.0 to v0.10.0; the move to v0.10.1
+2026-11-18, when this work moved from v0.14.0 to v0.15.0. Of the moves before
+it, the move to v0.10.1
 changed no claim, the move to v0.10.2 changed only what a reading too tall for
 the body does, the move to v0.11.0 only where a plate sets its summary, and the
 move to v0.12.0 only the command list and line ranges. The move to v0.13.1

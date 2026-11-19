@@ -7,7 +7,7 @@
 - [A layout with an overlap is never drawn](block:p-layout), and a view that no layout draws is refused, not shrunk.[](source:contract-layout-floor)
 - [Only an accepted delivery is published](block:p-accept), and never over a different one.[](source:contract-acceptance)
 
-@answer scope="Architecture Publisher v0.15.0 · commit 7018b02 · its source and its own documents · re-pin counts measured on 2026-11-08"
+@answer scope="Architecture Publisher v0.15.0 · commit 7018b02 · its source and its own documents · re-pin counts measured on 2026-11-18"
 @meta locale=en style=editorial
 @source contract-product title="The product" path="docs/product-contract.md" lines=13:21
 @source contract-meaning title="Who owns meaning and form" path="docs/product-contract.md" lines=34:39
@@ -378,17 +378,17 @@ Before moving `repository.revision` to a later commit, run `archpub check --agai
 | step-wl-uncovered | Newly uncovered files | Files of the scope that fall under no claim at the later commit.[](source:model-repin) | worklist-tree | wl-uncovered |
 | step-wl-citations | Cited line ranges | Each range the draft and its diagrams cite: the same, shifted, moved with its file, touched by a change, or gone.[](source:worklist-citation)[](source:model-repin) | worklist-tree | wl-citations |
 
-| Moving this work from 5a26416 to 548637c | Count |
+| Moving this work from 4be4dd7 to 7018b02 | Count |
 | ---------------------------------------- | ----- |
-| Commits since the pin                    | 27    |
-| Owned files modified, of 66              | 23    |
-| Owned files deleted                      | 9     |
-| Components with modified files           | 13    |
-| Relations whose cited files changed      | 26    |
-| Claims or relation files refused         | 5     |
-| Newly uncovered files                    | 4     |
+| Commits since the pin                    | 96    |
+| Owned files modified, of 73              | 31    |
+| Owned files deleted                      | 1     |
+| Components with modified files           | 15    |
+| Relations whose cited files changed      | 36    |
+| Claims or relation files refused         | 0     |
+| Newly uncovered files                    | 11    |
 
-The refusals are the deleted rasterizer's claim and four relation files the release deleted. Three of the new files form the print edition's own component, and the house tokens join the house class.
+No claim and no relation file was refused. Eleven files are new. The four under `src/facts/` form the new component Measured facts, and the five under `src/pinned/` form Data and reader file. The other two fall to the delivery builder.
 
 @callout level=warning title="Archify checks only that a range exists"
 | After a re-pin, a shifted citation would cite other text. Move it to its new range, and reread every touched one.[](source:model-shifted) |

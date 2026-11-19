@@ -7,7 +7,7 @@ ETHOS 放行改动只看证据：OpenSpec 正式变更说明意图，当场观�
 - [每次改动都要经过编译和判定，当场放行，再用精确的 compare-and-swap 执行](block:p-plan)。[](source:invariants)
 - [每种证据只证明自己那个层面](block:p-evidence)，所以本地核验不是防伪保证。[](source:planes)[](source:proof-boundary)
 
-@answer scope="ETHOS v0.2.0-beta.10 · 提交 b10254f · 它的源码和文档 · 核验耗时实测于 2026-11-08，所用版本为 v0.2.0-beta.6"
+@answer scope="ETHOS v0.2.0-beta.10 · 提交 b10254f · 它的源码和文档 · 核验耗时实测于 2026-11-19，所用版本为 v0.2.0-beta.10"
 @meta locale=zh-CN style=editorial
 @source kernel title="内核" path="README.md" lines=100:107
 @source native title="哪些保持原生" path="README.md" lines=26:29
@@ -244,8 +244,8 @@ ETHOS 为每个仓库内置的门禁，和仓库自己声明的门禁放在同�
 
 @steps id=proof-steps
 | step-proof-ready | 就绪门禁 | 既不是测试门禁、也不是打包门禁的，都先运行，在容量限度内并行；其中一个失败，核验就在等待之前结束。[](source:preflight)[](source:ready-set) | proof-run | proof-ready |
-| step-proof-wait | 等待主机负载 | 核验随后等了 75 秒，直到连续两个 1 分钟负载样本都不超过上限。[](source:load-limit) | proof-run | proof-wait |
-| step-proof-tests | 测试与打包门禁 | 测试和打包最后运行；核验共用时 874 秒，其中一个行为门禁就占了 701 秒。[](source:preflight) | proof-run | proof-tests |
+| step-proof-wait | 等待主机负载 | 核验随后等了 15 秒，直到连续两个 1 分钟负载样本都不超过上限。[](source:load-limit) | proof-run | proof-wait |
+| step-proof-tests | 测试与打包门禁 | 测试和打包最后运行；核验共用时 1052 秒，其中一个行为门禁就占了 901 秒。[](source:preflight) | proof-run | proof-tests |
 
 ## 每种证据证明什么？ {#p-evidence}
 

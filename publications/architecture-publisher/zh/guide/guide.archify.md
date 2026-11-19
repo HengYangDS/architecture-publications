@@ -7,7 +7,7 @@
 - [有重叠的布局绝不画出](block:p-layout)；任何布局都画不出的视图会被拒绝，不会缩小。[](source:contract-layout-floor)
 - [只出版已验收的交付物](block:p-accept)，也绝不覆盖另一份不同的交付物。[](source:contract-acceptance)
 
-@answer scope="Architecture Publisher v0.15.0 · 提交 7018b02 · 源码与项目自身的文档 · 更换提交的计数测于 2026-11-08"
+@answer scope="Architecture Publisher v0.15.0 · 提交 7018b02 · 源码与项目自身的文档 · 更换提交的计数测于 2026-11-18"
 @meta locale=zh-CN style=editorial
 @source contract-product title="产品" path="docs/product-contract.md" lines=13:21
 @source contract-meaning title="含义与形式归谁" path="docs/product-contract.md" lines=34:39
@@ -378,17 +378,17 @@ Architecture Publisher 的变更日志始于 2026 年 9 月 18 日的 0.1.0-alph
 | step-wl-uncovered | 新增未覆盖文件 | 在更晚的提交上，范围内任何认领规则都覆盖不到的文件。[](source:model-repin) | worklist-tree | wl-uncovered |
 | step-wl-citations | 引用区间 | 草稿和其中的图所引用的每个区间：不变、偏移、随文件移动、被改动触及，或消失。[](source:worklist-citation)[](source:model-repin) | worklist-tree | wl-citations |
 
-| 本作品从 5a26416 换到 548637c  | 数量 |
+| 本作品从 4be4dd7 换到 7018b02  | 数量 |
 | ------------------------------ | ---- |
-| 固定之后的提交                 | 27   |
-| 被修改的已归属文件（共 66 个） | 23   |
-| 被删除的已归属文件             | 9    |
-| 有文件被修改的组件             | 13   |
-| 被引用文件有变化的关系         | 26   |
-| 被拒绝的认领规则或关系文件     | 5    |
-| 新增未覆盖文件                 | 4    |
+| 固定之后的提交                 | 96   |
+| 被修改的已归属文件（共 73 个） | 31   |
+| 被删除的已归属文件             | 1    |
+| 有文件被修改的组件             | 15   |
+| 被引用文件有变化的关系         | 36   |
+| 被拒绝的认领规则或关系文件     | 0    |
+| 新增未覆盖文件                 | 11   |
 
-被拒绝项是栅格化器（已删除）的认领规则，以及这次发布删掉的四个关系文件。新文件中有三个组成了图册自己的组件，版式设计令牌则并入版式类。
+没有被拒绝的认领规则或关系文件。新文件共十一个：`src/facts/` 下四个，归新组件“测得的事实”；`src/pinned/` 下五个，归新组件“数据与读者文件”；其余两个归交付物构建器。
 
 @callout level=warning title="Archify 只检查区间是否存在"
 | 更换固定的提交后，引用一旦偏移，就会指向其他文字。要把它移到新区间，并重读每个被触及的引用。[](source:model-shifted) |

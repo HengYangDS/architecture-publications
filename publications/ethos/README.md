@@ -26,8 +26,8 @@ that carry a change and where one full proof spends its time. It ends with the
 evidence planes, why local proof is enough and when it is not, what every
 repository shares, the principles behind the design and what is still open.
 Each claim cites a line range at v0.2.0-beta.10, and the diagrams the draft
-names sit beside it. The proof's timings were measured on 2026-11-08, on
-Architecture Publisher's own proof under ETHOS v0.2.0-beta.6.
+names sit beside it. The proof's timings were measured on 2026-11-19, on
+Architecture Publisher's own proof under ETHOS v0.2.0-beta.10.
 
 Each component claims the directories and files its path rules name, and each
 file goes to its most specific claim, so every file in the scope has one owner.
