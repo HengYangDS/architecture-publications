@@ -60,7 +60,7 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 - The repository's tools run on Node 26.13.1, a security release, and its format check on Prettier
   3.10.1.
 - OpenAI Responses Proxy is pinned at v6.0.3, Architecture Publisher at
-  v0.15.0, Film Kit at v0.24.1, ETHOS at v0.2.0-beta.10 and AIGW at v0.8.2.
+  v0.15.0, Film Kit at v0.24.1, ETHOS at v0.2.0-beta.10 and AIGW at v0.8.3.
   Building the works needs Architecture Publisher 0.15.0 or later. The
   Architecture Publisher work lists the `skill` command, describes strips,
   palettes, age bands and the sealed acceptance of an edition, and claims
@@ -116,6 +116,11 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   with a take held to its words by reading; and the host's load in a duration record. Two parts join it, the take
   judgment and the native renderer, with thirteen relations more than it had, and its history ends at the release.
   The release 0.24.1 moves the repository's supply only, and the work pins it.
+  At v0.8.3 the AIGW work says that `aigw setup --from` applies the team file whatever becomes of each Token, which
+  providers it asks about in a terminal, what it does with a Token that its provider does not accept and with a
+  prompt that is cancelled, that its JSON document has schema version 4 with a Token's state and reason, that a
+  Token is validated by one request to its provider's catalog and what that request cannot refuse, and that the team
+  file names four providers and recommends for each client a model on each; its history ends at the release.
 - The ETHOS work claims the application layer and the operation catalog. The
   AIGW work uses the client's new vocabulary: it no longer has a renaming
   component, and its catalog, readiness, configuration and rollout panels follow
