@@ -1164,9 +1164,10 @@
       ]
     }
   ],
+  "edition": { "palette": "soot" },
   "editors": [
     {
-      "name": "Yang HENG"
+      "name": "衡阳"
     }
   ],
   "license": "MIT"

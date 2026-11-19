@@ -1353,9 +1353,17 @@
       ]
     }
   ],
+  "edition": {
+    "palette": {
+      "ground": "#f6f1f1",
+      "ink": "#312124",
+      "dye": ["#e2c5cf", "#b38294", "#76475c"],
+      "accent": "#306751"
+    }
+  },
   "editors": [
     {
-      "name": "Yang HENG"
+      "name": "衡阳"
     }
   ],
   "license": "MIT"

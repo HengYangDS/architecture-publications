@@ -1185,6 +1185,7 @@
       ]
     }
   ],
+  "edition": { "palette": "soot" },
   "editors": [
     {
       "name": "Yang HENG"

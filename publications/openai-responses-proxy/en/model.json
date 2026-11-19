@@ -1226,6 +1226,14 @@
       ]
     }
   ],
+  "edition": {
+    "palette": {
+      "ground": "#f5efe7",
+      "ink": "#271c19",
+      "dye": ["#d8b5a8", "#a87062", "#673e36"],
+      "accent": "#316354"
+    }
+  },
   "editors": [
     {
       "name": "Yang HENG"

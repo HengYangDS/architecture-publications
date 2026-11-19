@@ -1088,9 +1088,10 @@
       "members": ["builder", "map", "guide", "presentation", "words", "supplies", "repository"]
     }
   ],
+  "edition": { "palette": "persimmon" },
   "editors": [
     {
-      "name": "Yang HENG"
+      "name": "衡阳"
     }
   ],
   "license": "MIT"
