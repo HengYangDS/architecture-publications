@@ -106,31 +106,6 @@ panel, the page's list of panels and its full viewer name that view.
 - **WHEN** a work's model declares a view with a question but no title
 - **THEN** the input check fails and names that view
 
-### Requirement: A work may hold its overview composition
-
-A work MAY hold one Typst composition beside each of its models when the model
-names it in `overview`. The input check SHALL admit that file and SHALL fail a
-work whose model names a composition its language directory lacks or a path
-outside that directory. Beside its guide's directory, a language directory
-SHALL hold no file other than its model and that composition.
-
-#### Scenario: A named composition
-
-- **WHEN** a work's model names `overview.typ` and its language directory holds
-  that file
-- **THEN** the work passes
-
-#### Scenario: A named composition that is missing
-
-- **WHEN** a work's model names `overview.typ` and its language directory does
-  not hold it
-- **THEN** the input check fails for that work
-
-#### Scenario: An unnamed Typst file
-
-- **WHEN** a language directory holds a `.typ` file its model does not name
-- **THEN** the input check fails for that work
-
 ### Requirement: A work may hold its guide
 
 A work MAY hold the guide its model names in `guide`: an Archify explainer
@@ -280,3 +255,43 @@ name the one genre of repository it applies to. A test SHALL refuse a table that
 
 - **WHEN** an entry names no role that asks it
 - **THEN** the test fails and names the entry
+
+### Requirement: A work states its overview in its model
+
+A work MAY state its overview in each of its models, as the statement the
+publisher draws. The input check SHALL fail a model whose `overview` names a
+file or is no statement. Beside its guide's directory, a language directory
+SHALL hold no file other than its model.
+
+#### Scenario: A stated overview
+
+- **WHEN** a work's model states an overview and its language directory holds the model and the guide's directory alone
+- **THEN** the work passes
+
+#### Scenario: A named composition
+
+- **WHEN** a work's model names `overview.typ` in `overview`
+- **THEN** the input check fails for that work and says that the overview is stated in the model
+
+#### Scenario: A Typst file beside the model
+
+- **WHEN** a language directory holds a `.typ` file
+- **THEN** the input check fails for that work
+
+### Requirement: The languages of a work state one overview
+
+The overviews that the models of one work state SHALL have one shape: the same
+blocks, steps, stations and items at the same places, and at each place the
+same identifier and the same reference to a point, a view or a part. The input
+check SHALL fail a work whose languages differ in it and SHALL name the first
+place that differs.
+
+#### Scenario: A reference one language lacks
+
+- **WHEN** the English statement names a view at a station and the Chinese statement names none there
+- **THEN** the input check fails for that work and names that station's `view`
+
+#### Scenario: The same statement in other words
+
+- **WHEN** two languages state the same blocks with the same identifiers and references, and every text differs
+- **THEN** the work passes
