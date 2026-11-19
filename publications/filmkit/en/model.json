@@ -9,7 +9,7 @@
   "scope": "The Film Kit engine as released at v0.24.1: the src/filmkit package, with its Python modules, Node tools and watch list, and the pyproject.toml and VERSION that package it.",
   "limits": [
     "Each component cites every file the rules attribute to it; a relation cites the modules that make its call or run its process.",
-    "Relations are calls and process calls in the source, not runtime order, and not every call is drawn: reads of the film record and the spoken units, which most modules make, the calls that verification and review make across the build, and the calls of the take judgment into alignment and selection and of convergence into the narration command are named in component details.",
+    "Relations are calls and process calls in the source, not runtime order, and not every call is drawn: reads of the film record and the spoken units, which most modules make, the calls that verification and review make across the build, the take judgment's calls into alignment and selection, and auditions' runs of the narration command are named in component details.",
     "Tests, the sample film, the OpenSpec specifications and Changes, the documentation and the repository's tooling and CI are outside the scope."
   ],
   "repository": {
@@ -1511,7 +1511,7 @@
       "id": "acceptance",
       "title": "Packaging, verification, delivery and review",
       "question": "How are the films packaged, verified, delivered, reviewed and reproduced?",
-      "summary": "Packaging encodes four films; verification reads and decodes; delivery sends 25 members and reads them back. Review prompts the independent reviewer; reproduction compares a rebuild with the published release.",
+      "summary": "Packaging encodes four films; verification reads each record and decodes each film; delivery sends 25 members and reads them back. Review prompts the independent reviewer; reproduction compares a rebuild with the published release.",
       "members": [
         "packaging",
         "verification",
