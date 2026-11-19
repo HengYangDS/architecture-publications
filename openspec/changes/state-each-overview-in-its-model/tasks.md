@@ -7,7 +7,7 @@
 
 - [x] 2.1 State the overview in each of the twelve models and remove the twelve `overview.typ` files. Done when `mise run check` passes and each of the twelve models checks `ok` with Architecture Publisher 0.15.0. `mise run check` passes, and the released 0.15.0 built each of the twelve models into a delivery (07:43:37).
 - [x] 2.2 Name the detail audit in Film Kit's statement in both languages, read by a reader other than the writer. Done when both Film Kit models check `ok`. Both Film Kit models name the detail audit and build with 0.15.0; the wording was read by a reader other than the writer on 2026-11-18.
-- [ ] 2.3 Have a reader other than the writer read the six Chinese overview pages as the publisher set them, against the English at each place, and settle each finding at the source. Done when the findings are settled, the changed models build with Architecture Publisher 0.15.0 and a reader confirms the changed places.
+- [x] 2.3 Have a reader other than the writer read the six Chinese overview pages as the publisher set them, against the English at each place, and settle each finding at the source. Done when the findings are settled, the changed models build with Architecture Publisher 0.15.0 and a reader confirms the changed places. Eight of nine findings are settled in seven models and the ninth, the product's own word for the reader file, stays (`works-015-set/words/first-reading.txt` in the publisher's work directory); the released 0.15.0 built the seven again (08:49:23), and a reader confirmed the changed places.
 
 ## 3. The Architecture Publisher work
 
