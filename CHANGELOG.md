@@ -51,7 +51,7 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 - The repository's tools run on Node 26.13.1, a security release, and its format check on Prettier
   3.10.1.
 - OpenAI Responses Proxy is pinned at v6.0.3, Architecture Publisher at
-  v0.15.0, Film Kit at v0.23.1, ETHOS at v0.2.0-beta.10 and AIGW at v0.8.1.
+  v0.15.0, Film Kit at v0.23.1, ETHOS at v0.2.0-beta.10 and AIGW at v0.8.2.
   Building the works needs Architecture Publisher 0.15.0 or later. The
   Architecture Publisher work lists the `skill` command, describes strips,
   palettes, age bands and the sealed acceptance of an edition, and claims
@@ -91,6 +91,11 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   a delivery holds the model, the pinned edition as data and a reader file, and that `archpub compare` stands beside
   acceptance; it claims the files new in its scope, `src/facts/` and `src/pinned/` as new parts, names no holder for
   `publish`, and its history ends at the release.
+  At v0.8.2 the AIGW work says how a model's label is derived when its ID adds to its family's, that a configuration
+  or a team file in which two models of one provider have one label is refused, that the team file keeps each
+  provider's newest qualifying model of a product line and leaves a client's selection, what Codex's catalog alias
+  shows, and that Hermes's configuration is read and written through `go.yaml.in/yaml/v4`; the inputs of the Hermes
+  adapter's tests leave its scope, and its history ends at the release.
 - The ETHOS work claims the application layer and the operation catalog. The
   AIGW work uses the client's new vocabulary: it no longer has a renaming
   component, and its catalog, readiness, configuration and rollout panels follow
