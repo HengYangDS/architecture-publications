@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "517b4a41244e9711668a87bb08cbb9dbea863d45"
+      "revision": "fbec6f90d85951adbba853539efa0f8b3bc7c2fc"
     }
   },
   "components": [
@@ -58,7 +58,7 @@
         {
           "path": "README.md",
           "line": 125,
-          "end_line": 141,
+          "end_line": 145,
           "label": "Setup"
         }
       ]
@@ -89,8 +89,8 @@
       "sources": [
         {
           "path": "README.md",
-          "line": 269,
-          "end_line": 275,
+          "line": 274,
+          "end_line": 280,
           "label": "Adapters"
         }
       ]
@@ -105,8 +105,8 @@
       "sources": [
         {
           "path": "README.md",
-          "line": 292,
-          "end_line": 295,
+          "line": 297,
+          "end_line": 300,
           "label": "Endpoints"
         }
       ]
@@ -121,8 +121,8 @@
       "sources": [
         {
           "path": "README.md",
-          "line": 176,
-          "end_line": 181,
+          "line": 181,
+          "end_line": 186,
           "label": "Credentials"
         }
       ]

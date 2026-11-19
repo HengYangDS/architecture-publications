@@ -2,8 +2,8 @@
 
 [`en/model.json`](en/model.json) is an Architecture Model of how AIGW turns one
 reviewed configuration into guarded client files in every admitted client. It
-pins `aigw-cli` at v0.8.2 (`517b4a41244e9711668a87bb08cbb9dbea863d45`), and its
-components own all 242 production files of its coverage scope: `cmd/`,
+pins `aigw-cli` at v0.8.3 (`fbec6f90d85951adbba853539efa0f8b3bc7c2fc`), and its
+components own all 243 production files of its coverage scope: `cmd/`,
 `internal/`, the team file and `go.mod`. Twenty-one components, forty relations
 and six views show the configuration and its owners, the admitted clients and
 their seam, what a command reports, the program itself and one sync from plan
@@ -20,7 +20,7 @@ rollback and where a client's Token comes from. It ends with how much each
 check proves, what happens to a provider's models over time, the parts that
 keep the clients in step, why one guarded transaction, what AIGW leaves to
 others, how it is released and what is still open. Each claim cites a line
-range at v0.8.2, and the diagrams the draft names sit beside it.
+range at v0.8.3, and the diagrams the draft names sit beside it.
 
 Each component claims the directories and files its path rules name, and each
 production file goes to its most specific claim. A relation is kept only when
