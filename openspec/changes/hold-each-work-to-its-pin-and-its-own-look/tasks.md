@@ -10,4 +10,4 @@
 
 ## 3. Record
 
-- [ ] 3.1 Record the change under `Unreleased` in `CHANGELOG.md`. Done when `mise run check` passes.
+- [x] 3.1 Record the change under `Unreleased` in `CHANGELOG.md`. Done when `mise run check` passes. `mise run check` passes.

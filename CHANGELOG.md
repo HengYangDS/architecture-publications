@@ -29,6 +29,13 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 ### Changed
 
+- Each work names the palette its edition is drawn in, the same in both languages: ETHOS Indigo, the Data
+  Department Work Guidelines Soot, Architecture Publisher Persimmon, AIGW Client Patina, Film Kit Sappan and the
+  OpenAI Responses Proxy Chestnut. The Chinese editions name their editor 衡阳.
+- Two measurements are made again at their works' pins. The ETHOS page's figure of one full proof holds the gates
+  of a proof that v0.2.0-beta.10 ran on 2026-11-19, where it held one of v0.2.0-beta.6; the table of a pin move
+  in Architecture Publisher's own page holds the work's move from v0.14.0 to v0.15.0, where it held the move
+  from v0.9.0 to v0.10.0.
 - Every work states its overview in its model, in both languages, and the twelve `overview.typ` compositions
   are gone: Architecture Publisher 0.15.0 draws the overview from the statement and refuses a model that names a
   composition. The input check holds a work's languages to one shape of statement and refuses a Typst file beside
