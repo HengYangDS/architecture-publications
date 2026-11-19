@@ -307,7 +307,7 @@
       "lane": "catalog",
       "kind": "change",
       "title": "v0.8.2 同一提供商的模型 label 不得相同",
-      "detail": "不兼容变更：同一提供商的两个模型如果 label 相同（不分大小写），AIGW 就拒绝这份配置或团队文件，并指出这两个模型和这个 label。模型 ID 在模型家族 ID 之外还有内容时，自动生成的 label 会带上多出的部分。团队文件改用 GPT-6.2 Astra 和 GPT-6.2 Sol。",
+      "detail": "不兼容变更：同一提供商的两个模型如果 label 相同（不分大小写），AIGW 就拒绝它们所在的配置或团队文件，并指出这两个模型和这个 label。模型 ID 在模型家族 ID 之外还有内容时，自动生成的 label 会带上多出的部分。团队文件改用 GPT-6.2 Astra 和 GPT-6.2 Sol。",
       "sources": [
         {
           "path": "CHANGELOG.md",

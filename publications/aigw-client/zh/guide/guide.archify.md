@@ -138,7 +138,7 @@ AIGW 有一条价值假设：团队成员只要持有任一受支持提供商的
 | step-curate | 编订团队文件 | 只收录审阅过的提供商端点和通过鉴定的模型；令牌、个人路径、身份和发布凭据一概不收。[](source:rollout-maintainer) | rollout-flow | rollout-curate |
 | step-publish | 按标签发布 | 从发布标签或不可变的提交发布，让每位成员拿到同一份文件。[](source:rollout-maintainer) | rollout-flow | rollout-publish |
 | step-install | 安装 AIGW | 在 macOS 上用已签名、经公证的 Homebrew cask，或用面向 macOS、Linux 和 Windows 的便携归档包，由 `aigw self install` 安装。[](source:readme-install) | rollout-flow | rollout-install |
-| step-import | 应用团队文件 | 应用时，既不需要备齐每个提供商的令牌，也不需要先装好客户端。[](source:readme-team)只有还没有选定模型的客户端，才会按推荐选定一个；客户端已有的模型选择保持不变。[](source:team-selection)预览、结果和 `--json` 都会列出文件替换的每个 `label`，涵盖提供商、模型家族和模型，新旧取值并列。[](source:team-labels) | rollout-flow | rollout-import |
+| step-import | 应用团队文件 | 应用时，既不需要备齐每个提供商的令牌，也不需要先装好客户端。[](source:readme-team)AIGW 只为还没有选定模型的客户端按推荐选定一个模型；客户端已有的模型选择保持不变。[](source:team-selection)预览、结果和 `--json` 都会列出文件替换的每个 `label`，涵盖提供商、模型家族和模型，新旧取值并列。[](source:team-labels) | rollout-flow | rollout-import |
 | step-connect | 连接一个提供商 | 只指定你持有令牌的提供商；其余提供商仍然可用，但不会成为前提。[](source:readme-connect)[](source:readme-activate) | rollout-flow | rollout-connect |
 | step-check | 同步并检查 | 凡是模型、认证和客户端文件都可用的已启用客户端，`aigw sync` 都会更新，但绝不会创建缺失的客户端。[](source:readme-sync) | rollout-flow | rollout-check |
 
@@ -159,7 +159,7 @@ AIGW 有一条价值假设：团队成员只要持有任一受支持提供商的
 | step-provider | 提供商 | 你持有其令牌的服务：每个协议一个端点；认证需要时，再加一个令牌槽位。配置和团队文件绝不包含令牌。[](source:provider-concept)[](source:provider-struct) | model-erd | erd-provider |
 | step-token | 令牌 | 保存在选定的存储中，既不在配置里，也不在任何客户端文件里。[](source:token-storage) | model-erd | erd-token |
 
-模型没有自己的 `label` 时，AIGW 用提供商和模型家族的 `label` 生成一个。如果模型 ID 以模型家族 ID 开头或结尾，此外还有内容，生成的 `label` 就再带上多出的那部分。[](source:model-label)同一提供商的两个模型如果 `label` 相同，AIGW 就拒绝这份配置或团队文件；比较不分大小写，`label` 是显式写明还是自动生成都一样。[](source:label-shared)[](source:team-label-refusal)拒绝时会指出这两个模型和这个 `label`。[](source:label-refusal)
+模型没有自己的 `label` 时，AIGW 用提供商和模型家族的 `label` 生成一个。如果模型 ID 以模型家族 ID 开头或结尾，此外还有内容，生成的 `label` 就再带上多出的那部分。[](source:model-label)同一提供商的两个模型 `label` 相同，AIGW 就拒绝其所在的配置或团队文件；比较不分大小写，`label` 是显式写明还是自动生成都一样。[](source:label-shared)[](source:team-label-refusal)拒绝时会指出这两个模型和这个 `label`。[](source:label-refusal)
 
 客户端文件指单个客户端自身配置中归 AIGW 管的那部分。AIGW 只在其中写入和撤回自己的设置。客户端如果缺失，或还没有选定模型，就保持原样。[](source:client-files-concept)
 
