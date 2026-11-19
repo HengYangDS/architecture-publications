@@ -2,6 +2,7 @@ min_version = "2026.10.14"
 
 [settings]
 locked = true
+minimum_release_age = "24h"
 
 # The repository's common verbs; the npm scripts they call own the commands.
 [tasks.bootstrap]
