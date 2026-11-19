@@ -1,7 +1,7 @@
 # Film Kit: term renderings
 
 The renderings this work fixes before translation, used everywhere under `zh/`. Source
-names the file of `filmkit` at v0.23.1 (`7b2308c`) that defines or uses the term. Film Kit's own Chinese words come
+names the file of `filmkit` at v0.24.0 (`4893228`) that defines or uses the term. Film Kit's own Chinese words come
 from its player (`src/filmkit/delivery/player.py`) and its sample film (`examples/sample-film/`); the owner-approved
 film editions are cited as `ethos-film` at v1.0.1 (`c33e60f`) or `ddwg-film`, the repository
 `data-department-work-guidelines-film` at v1.2.0 (`f286c43`), with their file. An edition is one language version of
@@ -164,7 +164,7 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | run far off centre                                            | 大幅偏离中心的时段                   | `src/filmkit/picture/detail_gates.py`                                                                          |
 | derive; derivation; derivation's receipt                      | 派生；派生记录                       | `src/filmkit/picture/derivation.py`                                                                            |
 | ground (the picture holds in its caption band)                | 底色                                 | `src/filmkit/picture/ground.py`                                                                                |
-| capture; software capture                                     | 捕获方式；软件捕获                   | `src/filmkit/film.py`; `src/filmkit/picture/rendering.py`                                                      |
+| capture; software capture                                     | 捕获方式；软件捕获                   | `src/filmkit/film.py`; `src/filmkit/picture/derivation.py`                                                     |
 | qualify (the renderer); qualification                         | 鉴定                                 | `src/filmkit/picture/qualification.py`                                                                         |
 | readiness receipt                                             | 就绪记录                             | `src/filmkit/preflight.py`                                                                                     |
 | geometry check; geometry record                               | 几何检查；几何检查记录               | `src/filmkit/picture/geometry-check.mjs`; `src/filmkit/preflight.py`                                           |
@@ -177,3 +177,22 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | identity (the recognizer's)                                   | 识别器标识                           | `src/filmkit/narration/transcription.py`                                                                       |
 | runtime (the library that runs the speech models)             | 运行时                               | `pyproject.toml`                                                                                               |
 | B-frames                                                      | B 帧                                 | `src/filmkit/delivery/packaging.py`                                                                            |
+| judgment (of a take); line (of the judgment)                  | 录音判定；判定项                     | `src/filmkit/narration/judgment.py`                                                                            |
+| phrase end                                                    | 短语结尾                             | `src/filmkit/narration/take_edges.py`                                                                          |
+| differ by reading (a unit of a transcript)                    | 读音不同                             | `src/filmkit/narration/recognition.py`                                                                         |
+| margin (a take's, from a line)                                | 余量                                 | `src/filmkit/narration/judgment.py`                                                                            |
+| clarity line (a single thought's)                             | 清晰度合格线                         | `src/filmkit/review/clarity.py`                                                                                |
+| candidate (take)                                              | 候选录音                             | `src/filmkit/narration/candidates.py`                                                                          |
+| targets file (the audition's)                                 | 试音目标文件                         | `src/filmkit/narration/audition.py`                                                                            |
+| converge (settle an edition's narration)                      | 收敛                                 | `src/filmkit/narration/converge.py`                                                                            |
+| native renderer (the engine's)                                | 原生渲染器                           | `src/filmkit/picture/renderer.py`; `src/filmkit/picture/native-canvas.mjs`                                     |
+| native canvas; native library                                 | 原生 canvas；原生库                  | `src/filmkit/picture/renderer.py`                                                                              |
+| pinned canvas build                                           | 指定构建版本的 canvas                | `src/filmkit/picture/renderer.py`                                                                              |
+| text renderer (the canvas's)                                  | 文字渲染器                           | `src/filmkit/picture/renderer.py`                                                                              |
+| span (of a render); stream copy                               | 分段；流复制                         | `src/filmkit/picture/renderer.py`; `src/filmkit/picture/native-canvas.mjs`                                     |
+| group of frames                                               | 帧组                                 | `src/filmkit/picture/encoding.py`                                                                              |
+| digest of the drawn frames                                    | 所绘帧的摘要                         | `src/filmkit/picture/renderer.py`                                                                              |
+| integrity (npm's, of a package)                               | 完整性校验值                         | `src/filmkit/picture/renderer.py`                                                                              |
+| whole-turn gate                                               | 整圈弧线门禁                         | `src/filmkit/picture/browser.py`                                                                               |
+| load (the host's 1-minute load average)                       | 主机负载；1 分钟平均负载             | `src/filmkit/durations.py`                                                                                     |
+| text table (the audits', of advance widths)                   | 文字宽度表                           | `src/filmkit/picture/metrics.py`                                                                               |

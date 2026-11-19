@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "7b2308c470eb1bac8c60461110ac98863c4bdf93"
+      "revision": "489322854cdf82dcc3b5b0b0ee9b99a94345e959"
     }
   },
   "mainPath": ["take-narrated", "take-judged", "take-selected", "take-assembled"],
@@ -28,8 +28,8 @@
         },
         {
           "path": "src/filmkit/narration/group_generation.py",
-          "line": 172,
-          "end_line": 209,
+          "line": 177,
+          "end_line": 214,
           "label": "Record"
         }
       ]
@@ -42,9 +42,15 @@
       "sources": [
         {
           "path": "src/filmkit/narration/take_edges.py",
-          "line": 186,
-          "end_line": 213,
+          "line": 191,
+          "end_line": 218,
           "label": "Ending"
+        },
+        {
+          "path": "src/filmkit/narration/judgment.py",
+          "line": 1,
+          "end_line": 44,
+          "label": "Judgment"
         }
       ]
     },
@@ -70,8 +76,8 @@
       "sources": [
         {
           "path": "src/filmkit/soundtrack/assembly.py",
-          "line": 559,
-          "end_line": 625,
+          "line": 562,
+          "end_line": 628,
           "label": "Assemble"
         }
       ]
@@ -85,7 +91,7 @@
         {
           "path": "src/filmkit/soundtrack/assembly.py",
           "line": 157,
-          "end_line": 177,
+          "end_line": 180,
           "label": "Refuse"
         }
       ]
@@ -98,8 +104,8 @@
       "sources": [
         {
           "path": "src/filmkit/narration/audition.py",
-          "line": 86,
-          "end_line": 112,
+          "line": 73,
+          "end_line": 88,
           "label": "Propose"
         }
       ]
@@ -189,6 +195,14 @@
       "items": [
         "An audition narrates other seeds or a run-on cut in the quiet.",
         "A retake binds the SHA-256 of its text and speech."
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "What a take is judged by",
+      "items": [
+        "Its length, ending, phrase ends, opening, pauses, terms, units and clarity.",
+        "No unit of its transcript may differ from its text by reading."
       ]
     }
   ]

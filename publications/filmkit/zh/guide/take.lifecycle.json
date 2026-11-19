@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "7b2308c470eb1bac8c60461110ac98863c4bdf93"
+      "revision": "489322854cdf82dcc3b5b0b0ee9b99a94345e959"
     }
   },
   "mainPath": ["take-narrated", "take-judged", "take-selected", "take-assembled"],
@@ -28,8 +28,8 @@
         },
         {
           "path": "src/filmkit/narration/group_generation.py",
-          "line": 172,
-          "end_line": 209,
+          "line": 177,
+          "end_line": 214,
           "label": "Record"
         }
       ]
@@ -42,9 +42,15 @@
       "sources": [
         {
           "path": "src/filmkit/narration/take_edges.py",
-          "line": 186,
-          "end_line": 213,
+          "line": 191,
+          "end_line": 218,
           "label": "Ending"
+        },
+        {
+          "path": "src/filmkit/narration/judgment.py",
+          "line": 1,
+          "end_line": 44,
+          "label": "Judgment"
         }
       ]
     },
@@ -70,8 +76,8 @@
       "sources": [
         {
           "path": "src/filmkit/soundtrack/assembly.py",
-          "line": 559,
-          "end_line": 625,
+          "line": 562,
+          "end_line": 628,
           "label": "Assemble"
         }
       ]
@@ -85,7 +91,7 @@
         {
           "path": "src/filmkit/soundtrack/assembly.py",
           "line": 157,
-          "end_line": 177,
+          "end_line": 180,
           "label": "Refuse"
         }
       ]
@@ -98,8 +104,8 @@
       "sources": [
         {
           "path": "src/filmkit/narration/audition.py",
-          "line": 86,
-          "end_line": 112,
+          "line": 73,
+          "end_line": 88,
           "label": "Propose"
         }
       ]
@@ -186,6 +192,14 @@
       "items": [
         "试音用其他种子朗读，或连读后在静音处剪开。",
         "重录绑定自身文本和朗读文本的 SHA-256。"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "录音按什么判定",
+      "items": [
+        "长度、收尾、短语结尾、开头、停顿、术语、差异单元和清晰度。",
+        "转写结果按读音比较，不得有任何单元与文本不同。"
       ]
     }
   ]

@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "7b2308c470eb1bac8c60461110ac98863c4bdf93"
+      "revision": "489322854cdf82dcc3b5b0b0ee9b99a94345e959"
     }
   },
   "components": [
@@ -97,16 +97,16 @@
     {
       "id": "ctx-browser",
       "type": "external",
-      "label": "HyperFrames、Chrome",
+      "label": "canvas、Chrome",
       "sublabel": "影片的 npm 包",
       "pos": [520, 190],
       "size": [180, 64],
       "sources": [
         {
-          "path": "src/filmkit/picture/rendering.py",
-          "line": 232,
-          "end_line": 238,
-          "label": "Renderer"
+          "path": "src/filmkit/picture/renderer.py",
+          "line": 120,
+          "end_line": 126,
+          "label": "Canvas"
         }
       ]
     },

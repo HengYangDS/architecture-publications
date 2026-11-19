@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "7b2308c470eb1bac8c60461110ac98863c4bdf93"
+      "revision": "489322854cdf82dcc3b5b0b0ee9b99a94345e959"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 482,
-          "end_line": 491,
+          "line": 515,
+          "end_line": 524,
           "label": "0.1.0"
         }
       ]
@@ -57,8 +57,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 443,
-          "end_line": 453,
+          "line": 476,
+          "end_line": 486,
           "label": "0.3.0"
         }
       ]
@@ -73,8 +73,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 402,
-          "end_line": 411,
+          "line": 435,
+          "end_line": 444,
           "label": "0.6.0"
         }
       ]
@@ -88,8 +88,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 369,
-          "end_line": 380,
+          "line": 402,
+          "end_line": 413,
           "label": "0.8.0"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 343,
-          "end_line": 347,
+          "line": 376,
+          "end_line": 380,
           "label": "0.9.0"
         }
       ]
@@ -118,8 +118,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 323,
-          "end_line": 331,
+          "line": 356,
+          "end_line": 364,
           "label": "0.10.0"
         }
       ]
@@ -134,8 +134,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 277,
-          "end_line": 291,
+          "line": 310,
+          "end_line": 324,
           "label": "0.12.0"
         }
       ]
@@ -150,8 +150,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 261,
-          "end_line": 273,
+          "line": 294,
+          "end_line": 306,
           "label": "0.13.0"
         }
       ]
@@ -165,8 +165,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 243,
-          "end_line": 252,
+          "line": 276,
+          "end_line": 285,
           "label": "0.14.0"
         }
       ]
@@ -180,8 +180,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 221,
-          "end_line": 229,
+          "line": 254,
+          "end_line": 262,
           "label": "0.17.0"
         }
       ]
@@ -196,8 +196,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 211,
-          "end_line": 219,
+          "line": 244,
+          "end_line": 252,
           "label": "0.18.0"
         }
       ]
@@ -212,8 +212,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 195,
-          "end_line": 210,
+          "line": 228,
+          "end_line": 243,
           "label": "0.19.0"
         }
       ]
@@ -227,8 +227,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 178,
-          "end_line": 194,
+          "line": 211,
+          "end_line": 227,
           "label": "0.20.0"
         }
       ]
@@ -243,8 +243,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 155,
-          "end_line": 176,
+          "line": 188,
+          "end_line": 209,
           "label": "0.21.0"
         }
       ]
@@ -258,8 +258,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 147,
-          "end_line": 153,
+          "line": 180,
+          "end_line": 186,
           "label": "0.21.1"
         }
       ]
@@ -273,8 +273,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 141,
-          "end_line": 145,
+          "line": 174,
+          "end_line": 178,
           "label": "0.21.2"
         }
       ]
@@ -289,8 +289,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 106,
-          "end_line": 126,
+          "line": 139,
+          "end_line": 159,
           "label": "0.22.0"
         }
       ]
@@ -304,8 +304,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 73,
-          "end_line": 79,
+          "line": 106,
+          "end_line": 112,
           "label": "0.22.2"
         }
       ]
@@ -319,8 +319,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 67,
-          "end_line": 71,
+          "line": 100,
+          "end_line": 104,
           "label": "0.22.3"
         }
       ]
@@ -335,8 +335,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 15,
-          "end_line": 65,
+          "line": 48,
+          "end_line": 98,
           "label": "0.23.0"
         }
       ]
@@ -351,9 +351,25 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 7,
-          "end_line": 13,
+          "line": 40,
+          "end_line": 46,
           "label": "0.23.1"
+        }
+      ]
+    },
+    {
+      "id": "v240",
+      "at": "2026-11-19T12:20:21+08:00",
+      "lane": "picture",
+      "kind": "alert",
+      "title": "v0.24.0 画面改在原生 canvas 上绘制",
+      "detail": "引擎改在 @napi-rs/canvas 1.1.1 的原生 canvas 上绘制影片画面，不再用浏览器：每一帧都送进 x264，一份画面分四段绘制，再以流复制合并。HyperFrames 和 GSAP 不再使用，采用这个版本的影片要重新组装并渲染画面。试音、judge 和 converge 共用同一套录音判定；converge 不需要影片作者给出试音目标文件、短语或种子，就能把一个语言版的旁白定下来。耗时记录写明命令开始和结束时的主机负载。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 7,
+          "end_line": 38,
+          "label": "0.24.0"
         }
       ]
     }
