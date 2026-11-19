@@ -7,25 +7,25 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 - [录音只有完整收尾才能进入音轨](block:p-takes)，除非影片为它的衔接声明了尾音淡出。[](source:abrupt)
 - [画面只有通过门禁才会渲染](block:p-picture)，而且门禁针对的必须是当前的画面合成、时间线、样式表、字体和引擎版本。[](source:render-gate)
 
-@answer scope="Film Kit v0.24.0 · 提交 4893228 · 源码及项目自带文档"
+@answer scope="Film Kit v0.24.1 · 提交 db7a837 · 源码及项目自带文档"
 @meta locale=zh-CN style=editorial
 @source readme-what title="Film Kit 做什么" path="README.md" lines=3:3
 @source spec-rate title="帧率" path="src/filmkit/specification.py" lines=25:30
 @source spec-sound title="采样率与节目响度" path="src/filmkit/specification.py" lines=33:47
 @source sample-declaration title="样例影片的声明" path="examples/sample-film/content/film.toml" lines=6:23
-@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=515:519
-@source changelog-019 title="0.19.0 的改动" path="CHANGELOG.md" lines=228:243
-@source changelog-020 title="0.20.0 的改动" path="CHANGELOG.md" lines=211:227
-@source changelog-0211 title="0.21.1 的改动" path="CHANGELOG.md" lines=180:186
-@source changelog-0212 title="0.21.2 的发布" path="CHANGELOG.md" lines=174:178
-@source changelog-0213 title="0.21.3 的发布" path="CHANGELOG.md" lines=161:172
-@source changelog-0220 title="0.22.0 的改动" path="CHANGELOG.md" lines=139:159
-@source changelog-0221 title="0.22.1 的发布" path="CHANGELOG.md" lines=114:137
-@source changelog-0222 title="0.22.2 的修复" path="CHANGELOG.md" lines=106:112
-@source changelog-0223 title="0.22.3 的新增" path="CHANGELOG.md" lines=100:104
-@source changelog-0230 title="0.23.0 的改动" path="CHANGELOG.md" lines=48:98
-@source changelog-0231 title="0.23.1 的发布" path="CHANGELOG.md" lines=40:46
-@source changelog-0240 title="0.24.0 的改动" path="CHANGELOG.md" lines=7:38
+@source changelog-010 title="0.1.0 的发布" path="CHANGELOG.md" lines=521:525
+@source changelog-019 title="0.19.0 的改动" path="CHANGELOG.md" lines=234:249
+@source changelog-020 title="0.20.0 的改动" path="CHANGELOG.md" lines=217:233
+@source changelog-0211 title="0.21.1 的改动" path="CHANGELOG.md" lines=186:192
+@source changelog-0212 title="0.21.2 的发布" path="CHANGELOG.md" lines=180:184
+@source changelog-0213 title="0.21.3 的发布" path="CHANGELOG.md" lines=167:178
+@source changelog-0220 title="0.22.0 的改动" path="CHANGELOG.md" lines=145:165
+@source changelog-0221 title="0.22.1 的发布" path="CHANGELOG.md" lines=120:143
+@source changelog-0222 title="0.22.2 的修复" path="CHANGELOG.md" lines=112:118
+@source changelog-0223 title="0.22.3 的新增" path="CHANGELOG.md" lines=106:110
+@source changelog-0230 title="0.23.0 的改动" path="CHANGELOG.md" lines=54:104
+@source changelog-0231 title="0.23.1 的发布" path="CHANGELOG.md" lines=46:52
+@source changelog-0240 title="0.24.0 的改动" path="CHANGELOG.md" lines=13:44
 @source readme-engine title="引擎不带任何影片的内容" path="README.md" lines=5:5
 @source readme-requirements title="运行要求" path="README.md" lines=9:12
 @source readme-layout title="影片的目录结构" path="README.md" lines=18:26
@@ -40,7 +40,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @source readme-endings title="完整收尾" path="README.md" lines=290:292
 @source readme-dev title="开发" path="README.md" lines=316:316
 @source agents-contract title="引擎契约" path="AGENTS.md" lines=10:16
-@source changelog-pin title="影片保留原有的锁定版本" path="CHANGELOG.md" lines=415:415
+@source changelog-pin title="影片保留原有的锁定版本" path="CHANGELOG.md" lines=421:421
 @source film-root title="查找影片" path="src/filmkit/repository.py" lines=28:50
 @source film-load title="检查声明" path="src/filmkit/film.py" lines=516:538
 @source edition-places title="语言版写到哪里" path="src/filmkit/production.py" lines=163:179

@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "489322854cdf82dcc3b5b0b0ee9b99a94345e959"
+      "revision": "db7a8370f9da0456a9cccaef648e928667d186af"
     }
   },
   "mainPath": ["take-narrated", "take-judged", "take-selected", "take-assembled"],

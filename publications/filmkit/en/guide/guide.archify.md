@@ -7,25 +7,25 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 - [A take reaches the soundtrack only if it ends whole](block:p-takes), or if the film declares a release for its join.[](source:abrupt)
 - [The picture renders only after its gate passes](block:p-picture) for the current composition, timeline, stylesheet, fonts and engine version.[](source:render-gate)
 
-@answer scope="Film Kit v0.24.0 · commit 4893228 · its source and its own documents"
+@answer scope="Film Kit v0.24.1 · commit db7a837 · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What Film Kit does" path="README.md" lines=3:3
 @source spec-rate title="Frame rate" path="src/filmkit/specification.py" lines=25:30
 @source spec-sound title="Sample rate and program level" path="src/filmkit/specification.py" lines=33:47
 @source sample-declaration title="The sample film's declaration" path="examples/sample-film/content/film.toml" lines=6:23
-@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=515:519
-@source changelog-019 title="The 0.19.0 changes" path="CHANGELOG.md" lines=228:243
-@source changelog-020 title="The 0.20.0 changes" path="CHANGELOG.md" lines=211:227
-@source changelog-0211 title="The 0.21.1 changes" path="CHANGELOG.md" lines=180:186
-@source changelog-0212 title="The 0.21.2 release" path="CHANGELOG.md" lines=174:178
-@source changelog-0213 title="The 0.21.3 release" path="CHANGELOG.md" lines=161:172
-@source changelog-0220 title="The 0.22.0 changes" path="CHANGELOG.md" lines=139:159
-@source changelog-0221 title="The 0.22.1 release" path="CHANGELOG.md" lines=114:137
-@source changelog-0222 title="The 0.22.2 fixes" path="CHANGELOG.md" lines=106:112
-@source changelog-0223 title="The 0.22.3 addition" path="CHANGELOG.md" lines=100:104
-@source changelog-0230 title="The 0.23.0 changes" path="CHANGELOG.md" lines=48:98
-@source changelog-0231 title="The 0.23.1 release" path="CHANGELOG.md" lines=40:46
-@source changelog-0240 title="The 0.24.0 changes" path="CHANGELOG.md" lines=7:38
+@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=521:525
+@source changelog-019 title="The 0.19.0 changes" path="CHANGELOG.md" lines=234:249
+@source changelog-020 title="The 0.20.0 changes" path="CHANGELOG.md" lines=217:233
+@source changelog-0211 title="The 0.21.1 changes" path="CHANGELOG.md" lines=186:192
+@source changelog-0212 title="The 0.21.2 release" path="CHANGELOG.md" lines=180:184
+@source changelog-0213 title="The 0.21.3 release" path="CHANGELOG.md" lines=167:178
+@source changelog-0220 title="The 0.22.0 changes" path="CHANGELOG.md" lines=145:165
+@source changelog-0221 title="The 0.22.1 release" path="CHANGELOG.md" lines=120:143
+@source changelog-0222 title="The 0.22.2 fixes" path="CHANGELOG.md" lines=112:118
+@source changelog-0223 title="The 0.22.3 addition" path="CHANGELOG.md" lines=106:110
+@source changelog-0230 title="The 0.23.0 changes" path="CHANGELOG.md" lines=54:104
+@source changelog-0231 title="The 0.23.1 release" path="CHANGELOG.md" lines=46:52
+@source changelog-0240 title="The 0.24.0 changes" path="CHANGELOG.md" lines=13:44
 @source readme-engine title="The engine carries no film's content" path="README.md" lines=5:5
 @source readme-requirements title="Requirements" path="README.md" lines=9:12
 @source readme-layout title="A film's layout" path="README.md" lines=18:26
@@ -40,7 +40,7 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 @source readme-endings title="Whole endings" path="README.md" lines=290:292
 @source readme-dev title="Development" path="README.md" lines=316:316
 @source agents-contract title="The engine contract" path="AGENTS.md" lines=10:16
-@source changelog-pin title="A film keeps its pin" path="CHANGELOG.md" lines=415:415
+@source changelog-pin title="A film keeps its pin" path="CHANGELOG.md" lines=421:421
 @source film-root title="Finding the film" path="src/filmkit/repository.py" lines=28:50
 @source film-load title="Checking the declaration" path="src/filmkit/film.py" lines=516:538
 @source edition-places title="Where an edition writes" path="src/filmkit/production.py" lines=163:179
