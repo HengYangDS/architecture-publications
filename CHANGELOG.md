@@ -29,6 +29,8 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 ### Changed
 
+- The AIGW Client work names its team file by its file: the scope names `manifests/team.toml`, and the
+  overview's block on team files gives the command as `setup --from team.toml`.
 - Each work names the palette its edition is drawn in, the same in both languages: ETHOS Indigo, the Data
   Department Work Guidelines Soot, Architecture Publisher Persimmon, AIGW Client Patina, Film Kit Sappan and the
   OpenAI Responses Proxy Chestnut. The Chinese editions name their editor 衡阳.
