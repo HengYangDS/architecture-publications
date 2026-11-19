@@ -4,6 +4,12 @@ min_version = "2026.10.14"
 locked = true
 minimum_release_age = "24h"
 
+# npm reads this repository's own configuration, which holds npm's release age. npm treats
+# environment names case-insensitively, so its lower-case alias is removed.
+[env]
+npm_config_userconfig = false
+NPM_CONFIG_USERCONFIG = "{{ config_root }}/.config/npm/npmrc"
+
 # The repository's common verbs; the npm scripts they call own the commands.
 [tasks.bootstrap]
 description = "Install the locked npm packages"
