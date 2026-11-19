@@ -111,7 +111,7 @@
             {
               "id": "publish",
               "label": "出版",
-              "note": "root/id/version；只放已验收的交付物，不会覆盖另一份"
+              "note": "root/id/version；只放已验收的交付物，绝不覆盖另一份"
             }
           ]
         }

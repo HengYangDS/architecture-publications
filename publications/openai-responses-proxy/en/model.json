@@ -265,27 +265,27 @@
         "stations": [
           {
             "id": "prepare",
-            "label": "Prepare",
+            "label": "PREPARE",
             "note": "the successor starts from the selected generation"
           },
           {
             "id": "ready",
-            "label": "Ready",
+            "label": "READY",
             "note": "socket inherited, identity echoed"
           },
           {
             "id": "commit",
-            "label": "Commit",
+            "label": "COMMIT",
             "note": "the old listener stops accepting"
           },
           {
             "id": "serving",
-            "label": "Serving",
+            "label": "SERVING",
             "note": "health proved on /healthz"
           },
           {
             "id": "finalize",
-            "label": "Finalize",
+            "label": "FINALIZE",
             "note": "the old one finishes its turns, at most 900 s"
           }
         ],

@@ -127,7 +127,7 @@
         {
           "at": "model-json",
           "id": "likec4",
-          "label": "LikeC4, version 1 or 2",
+          "label": "A LikeC4 workspace, or a version 1 or 2 model",
           "note": "imported, or migrated to version 3"
         }
       ]
