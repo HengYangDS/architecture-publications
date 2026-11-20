@@ -1093,7 +1093,7 @@
       "id": "page",
       "title": "The page",
       "question": "How is the page made, and what is checked on the way?",
-      "summary": "The Explainer page part runs Archify and delivers one panel per view, or the author's guide when the model names one. The Guide part clones the repository at the pinned revision to verify every cited range there.",
+      "summary": "The Explainer page part runs Archify to make the page, one panel per view; it delivers the author's guide when the model names one. The Guide part clones the repository at the pinned revision to verify every cited range there.",
       "members": ["builder", "map", "guide", "presentation", "words", "supplies", "repository"]
     }
   ],

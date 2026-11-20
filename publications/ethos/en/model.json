@@ -5,7 +5,7 @@
   "locale": "en",
   "title": "ETHOS",
   "question": "How does ETHOS turn official intent and fresh facts into proven repository change, and what does it hold every repository to?",
-  "summary": "ETHOS compiles an OpenSpec Change, fresh facts and prior Attestations into a TransitionPlan, admits each effect only on a pass, and holds every governed repository, itself included, to one declared structure.",
+  "summary": "It compiles an OpenSpec Change, fresh facts and prior Attestations into one TransitionPlan, and admits each effect only on a pass. Every governed repository, ETHOS itself included, keeps to one declared structure.",
   "scope": "The ETHOS product as released at v0.2.0-beta.10: the src/ethos package, its system declarations and the repository's own .ethos binding.",
   "limits": [
     "A component lists only the files under the paths it claims, and a relation only the modules that import the other component.",
@@ -1701,7 +1701,7 @@
       "id": "runtime-release",
       "from": "runtime",
       "to": "release",
-      "label": "admits identity",
+      "label": "admits build identity",
       "files": [
         "src/ethos/adapters/repo/runtime/authority.py",
         "src/ethos/adapters/repo/runtime/manifest.py",

@@ -62,6 +62,15 @@ export async function verifyCustody(directory, repositoryRoot) {
   }
 }
 
+/** Whether a text begins with the first word of a title: the word itself, a word apart from what follows. */
+export function opensWithName(text, title) {
+  const lead = typeof title === "string" ? title.trim().split(/\s+/u)[0] : "";
+  const body = typeof text === "string" ? text.trim() : "";
+  if (!lead || !body.startsWith(lead)) return false;
+  const after = body.slice(lead.length);
+  return after === "" || /^[\s\p{P}]/u.test(after) || /\p{Script=Han}$/u.test(lead);
+}
+
 export async function verifyModel(directory) {
   const model = await readJson(path.join(directory, "model.json"));
   assert.equal(model.format, MODEL_FORMAT);
@@ -78,6 +87,8 @@ export async function verifyModel(directory) {
     const summary = typeof view.summary === "string" ? view.summary.trim() : "";
     assert.ok(summary, `view ${view.id} has no summary`);
   }
+  // The cover sets the title above the summary: a summary that opens with the work's name says it twice.
+  assert.ok(!opensWithName(model.summary, model.title), "the summary opens with the work's name");
   return model.id;
 }
 

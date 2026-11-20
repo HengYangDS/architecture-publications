@@ -26,9 +26,15 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   Publisher pages quote the file their reader writes from the pinned revision,
   and the AIGW, ETHOS, Film Kit and OpenAI Responses Proxy pages list the values
   their sources fix.
+- The input check refuses a work's summary that opens with the work's name, which the cover sets directly
+  above it.
 
 ### Changed
 
+- A work's cover says its name once, in its title. The summaries of ETHOS, AIGW Client and Film Kit open
+  with what the work does, in both languages, and the guidelines' Chinese summary turns the sentence whose
+  spread line ended before 「OpenSpec」. The ETHOS relation into the release part names the build identity it
+  admits, and plate 06 of Architecture Publisher says its Explainer page part makes the page.
 - The AIGW Client work names its team file by its file: the scope names `manifests/team.toml`, and the
   overview's block on team files gives the command as `setup --from team.toml`.
 - Each work names the palette its edition is drawn in, the same in both languages: ETHOS Indigo, the Data

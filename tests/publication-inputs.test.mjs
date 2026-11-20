@@ -7,6 +7,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { test } from "node:test";
 import {
+  opensWithName,
   verifyCustody,
   verifyModel,
   verifyPublications,
@@ -125,6 +126,23 @@ test("every view is named by a title of its own", async () => {
       await writeModel(directory, copy);
       await assert.rejects(verifyModel(directory), /view overview has no title of its own/);
     }
+  });
+});
+
+test("a work's summary does not open with its name, which the cover sets above it", async () => {
+  assert.equal(opensWithName("ETHOS compiles a plan.", "ETHOS"), true);
+  assert.equal(opensWithName("Film Kit narrates each edition.", "Film Kit"), true);
+  assert.equal(opensWithName("AIGW 把配置放在一个文件里。", "AIGW 统一客户端配置"), true);
+  assert.equal(opensWithName("数据部门工作指南把读者引到规则。", "数据部门工作指南"), true);
+  assert.equal(opensWithName("Each effect is admitted on a pass.", "ETHOS"), false);
+  assert.equal(opensWithName("Filmmakers read it.", "Film Kit"), false);
+  await withDirectory(async (directory) => {
+    const work = { ...model("shop"), summary: "Shop takes orders." };
+    await writeModel(directory, work);
+    await assert.rejects(verifyModel(directory), /the summary opens with the work's name/);
+    work.summary = "Orders reach the warehouse.";
+    await writeModel(directory, work);
+    assert.equal(await verifyModel(directory), "shop");
   });
 });
 
