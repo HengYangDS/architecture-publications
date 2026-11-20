@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "db7a8370f9da0456a9cccaef648e928667d186af"
+      "revision": "54383d9eaadd149bf785316b3000e2f5a7b969f8"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 521,
-          "end_line": 530,
+          "line": 568,
+          "end_line": 577,
           "label": "0.1.0"
         }
       ]
@@ -57,8 +57,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 482,
-          "end_line": 492,
+          "line": 529,
+          "end_line": 539,
           "label": "0.3.0"
         }
       ]
@@ -73,8 +73,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 441,
-          "end_line": 450,
+          "line": 488,
+          "end_line": 497,
           "label": "0.6.0"
         }
       ]
@@ -88,8 +88,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 408,
-          "end_line": 419,
+          "line": 455,
+          "end_line": 466,
           "label": "0.8.0"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 382,
-          "end_line": 386,
+          "line": 429,
+          "end_line": 433,
           "label": "0.9.0"
         }
       ]
@@ -118,8 +118,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 362,
-          "end_line": 370,
+          "line": 409,
+          "end_line": 417,
           "label": "0.10.0"
         }
       ]
@@ -134,8 +134,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 316,
-          "end_line": 330,
+          "line": 363,
+          "end_line": 377,
           "label": "0.12.0"
         }
       ]
@@ -150,8 +150,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 300,
-          "end_line": 312,
+          "line": 347,
+          "end_line": 359,
           "label": "0.13.0"
         }
       ]
@@ -165,8 +165,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 282,
-          "end_line": 291,
+          "line": 329,
+          "end_line": 338,
           "label": "0.14.0"
         }
       ]
@@ -180,8 +180,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 260,
-          "end_line": 268,
+          "line": 307,
+          "end_line": 315,
           "label": "0.17.0"
         }
       ]
@@ -196,8 +196,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 250,
-          "end_line": 258,
+          "line": 297,
+          "end_line": 305,
           "label": "0.18.0"
         }
       ]
@@ -212,8 +212,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 234,
-          "end_line": 249,
+          "line": 281,
+          "end_line": 296,
           "label": "0.19.0"
         }
       ]
@@ -227,8 +227,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 217,
-          "end_line": 233,
+          "line": 264,
+          "end_line": 280,
           "label": "0.20.0"
         }
       ]
@@ -243,8 +243,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 194,
-          "end_line": 215,
+          "line": 241,
+          "end_line": 262,
           "label": "0.21.0"
         }
       ]
@@ -258,8 +258,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 186,
-          "end_line": 192,
+          "line": 233,
+          "end_line": 239,
           "label": "0.21.1"
         }
       ]
@@ -273,8 +273,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 180,
-          "end_line": 184,
+          "line": 227,
+          "end_line": 231,
           "label": "0.21.2"
         }
       ]
@@ -289,8 +289,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 145,
-          "end_line": 165,
+          "line": 192,
+          "end_line": 212,
           "label": "0.22.0"
         }
       ]
@@ -304,8 +304,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 112,
-          "end_line": 118,
+          "line": 159,
+          "end_line": 165,
           "label": "0.22.2"
         }
       ]
@@ -319,8 +319,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 106,
-          "end_line": 110,
+          "line": 153,
+          "end_line": 157,
           "label": "0.22.3"
         }
       ]
@@ -335,8 +335,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 54,
-          "end_line": 104,
+          "line": 101,
+          "end_line": 151,
           "label": "0.23.0"
         }
       ]
@@ -351,8 +351,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 46,
-          "end_line": 52,
+          "line": 93,
+          "end_line": 99,
           "label": "0.23.1"
         }
       ]
@@ -367,9 +367,41 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 13,
-          "end_line": 44,
+          "line": 60,
+          "end_line": 91,
           "label": "0.24.0"
+        }
+      ]
+    },
+    {
+      "id": "v250",
+      "at": "2026-11-20T12:38:08+08:00",
+      "lane": "delivery",
+      "kind": "alert",
+      "title": "v0.25.0 A review round prepared in one run",
+      "detail": "review.round prepare writes a round's player binding and readback, measurements and prompts in one run; the commands prompts and bind are gone. filmkit.delivery.release writes a film's release manifest from its delivered build. python -m filmkit.adoption lists what a release asks of a film's tracked files, and an edition keeps no separate sync record.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 29,
+          "end_line": 52,
+          "label": "0.25.0"
+        }
+      ]
+    },
+    {
+      "id": "v260",
+      "at": "2026-11-20T14:44:39+08:00",
+      "lane": "picture",
+      "kind": "alert",
+      "title": "v0.26.0 The packaged film's still scan",
+      "detail": "produce scan-film scans each edition's packaged 1080p captioned film for still pictures under speech, and the delivery's verification and the delivery refuse an edition without its passing scan. converge asks whether a settled edition fits its runtime and exits 1 when it misses, and a build's sum counts the convergence. A cast may declare runtime_fit.reserve_seconds.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 7,
+          "end_line": 27,
+          "label": "0.26.0"
         }
       ]
     }

@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "db7a8370f9da0456a9cccaef648e928667d186af"
+      "revision": "54383d9eaadd149bf785316b3000e2f5a7b969f8"
     }
   },
   "components": [
@@ -89,7 +89,7 @@
         {
           "path": "src/filmkit/produce.py",
           "line": 106,
-          "end_line": 146,
+          "end_line": 145,
           "label": "Actions"
         }
       ]
@@ -104,8 +104,8 @@
       "sources": [
         {
           "path": "src/filmkit/picture/renderer.py",
-          "line": 120,
-          "end_line": 126,
+          "line": 117,
+          "end_line": 123,
           "label": "Canvas"
         }
       ]
@@ -120,8 +120,8 @@
       "sources": [
         {
           "path": "src/filmkit/production.py",
-          "line": 163,
-          "end_line": 179,
+          "line": 170,
+          "end_line": 186,
           "label": "Places"
         }
       ]
@@ -153,7 +153,7 @@
         {
           "path": "src/filmkit/delivery/folder.py",
           "line": 1,
-          "end_line": 45,
+          "end_line": 52,
           "label": "Delivery"
         }
       ]

@@ -6,7 +6,7 @@
   "title": "Film Kit",
   "question": "How does Film Kit rebuild a film's two editions from its tracked sources, and what holds each step to its inputs?",
   "summary": "Film Kit narrates each edition thought by thought with a pinned local voice model, assembles one soundtrack at one program level, times the captions, gates and renders the picture, and packages four films: a UHD master and a 1080p film, each with and without captions. Each step records the SHA-256 of what it read, and a later step refuses a record bound to other bytes.",
-  "scope": "The Film Kit engine as released at v0.24.1: the src/filmkit package, with its Python modules, Node tools and watch list, and the pyproject.toml and VERSION that package it.",
+  "scope": "The Film Kit engine as released at v0.26.0: the src/filmkit package, with its Python modules, Node tools and watch list, and the pyproject.toml and VERSION that package it.",
   "limits": [
     "A component lists only the files under the paths it claims, and a relation only the modules that make its call or run its process.",
     "A relation shows only a call or process call in the source, not runtime order. Four kinds of call are not drawn, and the web page names them: most reads of Spoken units and of Film and editions; the calls Verification and Review make across the build; Take judgment's calls into Alignment and selection; and the runs of the narration command by Auditions and script edits.",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "filmkit",
     "url": "https://github.com/HengYangDS/filmkit.git",
-    "revision": "db7a8370f9da0456a9cccaef648e928667d186af",
+    "revision": "54383d9eaadd149bf785316b3000e2f5a7b969f8",
     "browse": "https://github.com/HengYangDS/filmkit/blob/{revision}/{path}"
   },
   "coverage": {
@@ -403,7 +403,7 @@
       "kind": "command",
       "details": {
         "runs": "one production action for one edition",
-        "actions": "select, assemble, refresh-captions, check-sound, stage-picture, check-picture, preflight, render-picture, validate-picture, qualify-renderer, compare-pictures, package-metadata, package-film",
+        "actions": "select, assemble, refresh-captions, check-sound, stage-picture, check-picture, preflight, render-picture, validate-picture, qualify-renderer, compare-pictures, package-metadata, package-film, scan-film",
         "preflight": "reports every stale or missing input before a render, the sound gate's record, the geometry record and a draft that the engine's renderer drew among them, and writes the edition's readiness receipt"
       },
       "files": ["src/filmkit/produce.py", "src/filmkit/preflight.py"]
@@ -482,7 +482,7 @@
       "kind": "narration",
       "details": {
         "auditions": "other seeds of a thought, and proposes a take that no line of the judgment refuses",
-        "converges": "an edition's narration with no targets file, phrase or seed from its author: it runs the narration command for what is due, judges every thought, generates candidates for each refused one and binds the accepted candidate with the widest margin",
+        "converges": "an edition's narration with no targets file, phrase or seed from its author: it runs the narration command for what is due, judges every thought, generates candidates for each refused one and binds the accepted candidate with the widest margin; then it asks whether the settled edition fits its runtime, and exits 1 for a miss",
         "binds": "the chosen seed to the thought's exact text and speech",
         "edits": "thoughts in place, moving each retake with its text"
       },
@@ -490,6 +490,7 @@
         "src/filmkit/narration/audition.py",
         "src/filmkit/narration/candidates.py",
         "src/filmkit/narration/converge.py",
+        "src/filmkit/narration/fitting.py",
         "src/filmkit/narration/script_edits.py"
       ]
     },
@@ -653,13 +654,14 @@
         "derives": "the uncaptioned picture from the captioned one, for a film that declares software capture and a captioned picture the pinned canvas build drew, by one x264 encode that paints the caption band's rows in the ground",
         "validates": "each rendered picture's receipt, which must name the engine's canvas package, version and text renderer, its frames, size and cadence, and a keyframe every 2 s; a derived picture against its derivation's receipt",
         "qualifies": "the renderer by a second render of the captioned stage in another count of spans: the two must state one digest of their drawn frames and compare with no row left out",
-        "scans": "a rendered film for speech over a still picture",
+        "scans": "a draft, and each edition's packaged 1080p captioned film, for speech over a still picture; the film's scan decides",
         "compares": "each edition's two pictures before packaging: a rendered pair at every frame, which may differ only by its captions and must keep its edge slivers within the bound; a derived pair by the derivation's receipt, decoding no picture"
       },
       "files": [
         "src/filmkit/picture/__init__.py",
         "src/filmkit/picture/rendering.py",
         "src/filmkit/picture/still_scan.py",
+        "src/filmkit/picture/still_record.py",
         "src/filmkit/picture/equivalence.py",
         "src/filmkit/picture/faults.py",
         "src/filmkit/picture/slivers.py",
@@ -669,6 +671,7 @@
         "src/filmkit/picture/ground.py",
         "src/filmkit/picture/qualification.py",
         "src/filmkit/picture/faces.py",
+        "src/filmkit/picture/template.py",
         "src/filmkit/picture/errors.py"
       ]
     },
@@ -711,7 +714,7 @@
       "label": "Verification",
       "kind": "check",
       "details": {
-        "verifies": "sources, narration custody, both pictures and their equivalence, both packages, every decoded film and the review",
+        "verifies": "sources, narration custody, both pictures and their equivalence, both packages, the still scan of the 1080p captioned film, every decoded film and the review",
         "reads back": "the keywords and authors Spotlight imports from each film, where the host has mdimport",
         "refuses": "a caption cue whose text is not typeset",
         "writes": "only each edition's duration record of the run, and nothing with --read-only; it reads and decodes"
@@ -723,9 +726,10 @@
       "label": "Reproduction",
       "kind": "check",
       "details": {
-        "compares": "a rebuild with the published release: bytes, decoded audio, container, and each frame's PSNR"
+        "compares": "a rebuild with the published release: bytes, decoded audio, container, and each frame's PSNR",
+        "writes": "the release manifest from the reviewed, delivered build, and stages the assets it names"
       },
-      "files": ["src/filmkit/delivery/reproduction.py"]
+      "files": ["src/filmkit/delivery/reproduction.py", "src/filmkit/delivery/release.py"]
     },
     {
       "id": "delivery",
@@ -734,7 +738,7 @@
       "details": {
         "delivers": "the 25 delivery members to the film's delivery folder, then reads them back",
         "destination": "the folder --destination names, else the film's declared delivery_folder below the root FILMKIT_DELIVERY_ROOT names, else that name below the user's videos folder",
-        "refuses": "a destination it must not fill, such as the film's root, before anything is read back or changed",
+        "refuses": "a destination it must not fill, such as the film's root, or an edition without its passing still scan, before anything is read back or changed",
         "serves": "local review media with byte ranges",
         "reads": "the entry page and both players back in a real browser before rsync changes anything"
       },
@@ -745,7 +749,7 @@
       "label": "Review",
       "kind": "check",
       "details": {
-        "prepares": "an independent review round: set-aside, player binding, prompts and records",
+        "prepares": "an independent review round: set-aside, a preparation by one command with the player binding and prompts, and records",
         "measures": "rate, pauses, endings, levels, voice clarity, recognition and the picture records",
         "reads": "a segment's voice clarity over the whole soundtrack's kept frames whose centres lie in it, as the reviewers do",
         "judges": "each thought's ending by the criterion the assembly uses"
@@ -790,10 +794,18 @@
       "kind": "contract",
       "details": {
         "packages": "src/filmkit as one wheel, its Node tools included",
-        "version": "0.24.1, from VERSION",
-        "depends": "mlx-audio 0.6.6, NumPy, Pillow, Pydantic, pypinyin and snowballstemmer"
+        "version": "0.26.0, from VERSION",
+        "depends": "mlx-audio 0.6.6, NumPy, Pillow, Pydantic, pypinyin and snowballstemmer",
+        "records": "the npm packages it runs in a film and the versions of the Python packages its dependencies resolve to, in released.json",
+        "lists": "what a release asks of a film's tracked files, with python -m filmkit.adoption"
       },
-      "files": ["pyproject.toml", "VERSION"]
+      "files": [
+        "pyproject.toml",
+        "VERSION",
+        "src/filmkit/adoption.py",
+        "src/filmkit/released.py",
+        "src/filmkit/released.json"
+      ]
     },
     {
       "id": "film-repository",
@@ -1300,7 +1312,7 @@
       "from": "reproduction",
       "to": "verification",
       "label": "accepts the published review",
-      "files": ["src/filmkit/delivery/reproduction.py"]
+      "files": ["src/filmkit/delivery/reproduction.py", "src/filmkit/delivery/release.py"]
     },
     {
       "id": "picture-rendering-host-tools",

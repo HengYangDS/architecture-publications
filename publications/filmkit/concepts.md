@@ -1,7 +1,7 @@
 # Film Kit: term renderings
 
 The renderings this work fixes before translation, used everywhere under `zh/`. Source
-names the file of `filmkit` at v0.24.1 (`db7a837`) that defines or uses the term. Film Kit's own Chinese words come
+names the file of `filmkit` at v0.26.0 (`54383d9`) that defines or uses the term. Film Kit's own Chinese words come
 from its player (`src/filmkit/delivery/player.py`) and its sample film (`examples/sample-film/`); the owner-approved
 film editions are cited as `ethos-film` at v1.0.1 (`c33e60f`) or `ddwg-film`, the repository
 `data-department-work-guidelines-film` at v1.2.0 (`f286c43`), with their file. An edition is one language version of
@@ -73,6 +73,7 @@ a film (中文版, 英文版); 版本 stays reserved for a software version. Com
 | heard pause; unmarked pause; pause limit                      | 听得到的停顿；无标点停顿；停顿上限   | `src/filmkit/narration/flow.py`                                                                                |
 | word boundary; steps between thoughts                         | 词边界；意群之间的变化幅度           | `src/filmkit/narration/flow.py`                                                                                |
 | designed pauses                                               | 设计好的停顿                         | `src/filmkit/soundtrack/policy.py`                                                                             |
+| thought pause; runtime (the length an edition must fit)       | 意群间停顿；片长                     | `src/filmkit/soundtrack/fit.py`; `src/filmkit/narration/fitting.py`                                            |
 | assemble; assembly                                            | 拼接                                 | `examples/sample-film/content/narration.md` (拼成); `src/filmkit/soundtrack/assembly.py`                       |
 | soundtrack                                                    | 音轨                                 | `examples/sample-film/content/narration.md`; `src/filmkit/soundtrack/assembly.py`                              |
 | program level; gain                                           | 节目响度；增益                       | `src/filmkit/specification.py`; `src/filmkit/soundtrack/assembly.py`                                           |
