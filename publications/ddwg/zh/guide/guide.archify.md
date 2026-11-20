@@ -1,6 +1,6 @@
 # 数据部门工作指南怎样把读者引到适用的规则？规则又怎样改动？ {#guide}
 
-这份指南是一个文档仓库，成员和智能体不用安装任何软件就能读。[](source:readme-repo)一张任务地图把每个工作问题引到对应规则所在的主题，这些规则都写在章程统领的七个主题里。[](source:map-open)[](source:profile-sources)规则要改，只能走一项 OpenSpec 正式变更：先由已安装的 ETHOS 准入和核验，各个代码托管平台才发布这个版本。[](source:gov-change)
+这份指南是一个文档仓库，成员和智能体不用安装任何软件就能读。[](source:readme-repo)一张任务地图把每个工作问题引到对应规则所在的主题，这些规则都写在七个主题里，章程居首。[](source:map-open)[](source:profile-sources)规则要改，只能走一项 OpenSpec 正式变更：先由已安装的 ETHOS 准入和核验，各个代码托管平台才发布这个版本。[](source:gov-change)
 
 - [每条规则只归一处管](block:p-topics)：导航、范例、决策记录和治理页面都链接过去，不另写一遍。[](source:gd-owner)
 - [章程约束每个主题](block:p-charter)：所有工作都要守住四条底线，记录用什么形式由风险决定。[](source:charter-boundaries)[](source:charter-risk)
@@ -91,7 +91,7 @@
 @steps id=readers-steps
 | step-rd-members | 成员和智能体 | 从工作问题开始，首页把读者引到任务地图，不再列一遍主题清单。[](source:readme-start)[](source:gd-entry) | readers-map | rd-members |
 | step-rd-agents | 智能体入口 | 智能体在委托范围内工作；章程规定依据和底线，验收留在人手里。改动之前，智能体先读治理页面。[](source:agents-scope)[](source:agents-change) | readers-map | rd-agents |
-| step-rd-map | 任务地图 | 每个工作问题都引到负责它的章节；处理紧急故障或越界事件的路线排在最前。[](source:map-open) | readers-map | rd-map |
+| step-rd-map | 任务地图 | 每个工作问题都引到负责它的主题；处理紧急故障或越界事件的路线排在最前。[](source:map-open) | readers-map | rd-map |
 | step-rd-contributing | 贡献指南 | 收录维护者修改、检查或发布时用的命令。编辑之前，维护者先读治理页面，再运行 `ethos status`。[](source:contrib-audience) | readers-map | rd-contributing |
 | step-rd-governance | 仓库变更与发布 | 权限、验收和撤下的边界归它管，规程归贡献指南。[](source:gov-split) | readers-map | rd-governance |
 
@@ -153,7 +153,7 @@ OpenSpec 工作空间里的六份能力规格，保存已验收的需求。需�
 | 指南查找 | 找到合适的指南       | 两个入口、任务地图，每项义务只在一处维护[](source:gd-entry)[](source:gd-owner)                        |
 | 工作实践 | 把指南用到实际工作中 | 决策、数据、交付、沟通、智能体和辅导方面的职责[](source:wp-purpose)                                   |
 | 文档质量 | 维护可读的源文件     | 英文行文、链接和原生检查配置[](source:quality-purpose)                                                |
-| 核验     | 拿出检查过的结果     | CI 由 CUE 统一定义，ETHOS 治理配置不设门禁[](source:verification-proof)                               |
+| 核验     | 拿出检查过的结果     | CI 由 CUE 统一定义，ETHOS 治理配置不设核验门禁[](source:verification-proof)                           |
 | 仓库治理 | 变更或验收源文件     | MIT License 授权、同一张已签名的提交图、发布配置和 OpenSpec[](source:rg-license)[](source:rg-binding) |
 | 发布     | 发布或撤下下载文件   | VERSION、变更日志、签名标签、托管作业和两个平台[](source:publication-identity)                        |
 
@@ -191,7 +191,7 @@ OpenSpec 工作空间里的六份能力规格，保存已验收的需求。需�
 | step-ch-archive | 正式变更 | 验收进入 dev，交付并没有结束；归档提交还要有自己的签名、核验和发布。[](source:gov-archive) | change-flow | ch-change |
 | step-ch-forge | 所选平台 | 每个平台各自发布，发布后各自核验；一个平台的结果，证明不了另一个平台的任何事。[](source:gov-peers) | change-flow | ch-forge |
 
-## 检查读什么？ {#p-checks}
+## 各项检查读什么？ {#p-checks}
 
 仓库没有自己的软件包、测试或检查命令；每项检查都由已安装的 ETHOS 运行。[](source:contrib-full)[](source:gov-no-code)
 
@@ -229,7 +229,7 @@ OpenSpec 工作空间里的六份能力规格，保存已验收的需求。需�
 | step-rl-verify | 核验已发布的版本 | 核对该标签在这个平台上的 Git 引用、发行版和源文件 CI。另一个平台的交付先不结，等它自己的检查通过。[](source:contrib-verify) | release-flow | rl-verify |
 
 @facts
-| GitLab | 组织主要的发布平台[](source:gov-planes) |
+| GitLab | 本组织主要的发布平台[](source:gov-planes) |
 | GitHub | 独立的仓库、CI/CD 和分发，GitLab 中断时也照常可用[](source:gov-planes) |
 | 按平台 | 发布按平台分别验收，不是跨两个平台的事务[](source:gov-peers) |
 | 已声明 | 发布配置绑定两个平台，以及已验收内容的快进镜像[](source:release-peers)[](source:rg-binding) |

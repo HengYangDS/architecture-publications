@@ -165,7 +165,7 @@
     {
       "id": "erd-token",
       "label": "Token",
-      "tag": "Token store",
+      "tag": "Credential store",
       "row": 1,
       "col": 2,
       "attributes": [

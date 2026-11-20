@@ -8,14 +8,14 @@ them is proposed, checked and released. It pins
 files of its coverage scope: the two entries, the task map, the seven topics,
 the decision records, the maintenance documents, the OpenSpec workspace with
 its six capability specs, and the ETHOS, tool, check and CI configuration.
-Thirty-one components and sixty-nine relations are drawn in six views: the
-seven topics under one charter, where readers start, what work practice asks
-of each topic, one change from proposal to admission, what the checks read, and
-an edition on two Forges.
+Thirty-one components and sixty-nine relations are drawn in six views: seven
+topics led by the charter, where readers start, what Work practice asks of
+each topic, one change from proposal to admission, what the checks read, and a
+release on two Forges.
 
 [`en/model.json`](en/model.json) also states the work's overview, which Architecture Publisher draws on one page: the route from two entries through the
 task map to the seven topics, what the charter holds every topic to, the life
-of one change and who owns what, and the edition on its two Forges.
+of one change and who owns what, and the release on its two Forges.
 
 [`en/guide/guide.archify.md`](en/guide/guide.archify.md) is the work's guide, an
 Archify explainer that Architecture Publisher delivers as its page. It opens
@@ -23,7 +23,7 @@ with who reads the guidelines and where they start, which topic owns which
 work question, what the charter holds every topic to and how the topics hand
 work to each other. It then shows which specs state what the guidelines must
 do, how a change is proposed, checked and admitted, what the checks read and
-how an edition is released on two Forges. It ends with the decisions behind
+how a release reaches two Forges. It ends with the decisions behind
 the lifecycle and what is still open. Each claim cites a line range at v8.0.0,
 and the diagrams the draft names sit beside it.
 

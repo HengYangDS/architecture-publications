@@ -256,7 +256,7 @@
       "lane": "lifecycle",
       "kind": "change",
       "title": "v6.0.0 A listener is replaced only by handoff",
-      "detail": "The drain control is removed: its two routes, the 503 proxy_draining response and its counters, failure classes and health fields. Upgrade, rollback and reload replace a running listener only by handoff, and a runtime without both handoff capabilities is refused before any change. An installation written by 5.0.6 or earlier is refused instead of read with defaults.",
+      "detail": "The drain control is removed: its two routes, the 503 proxy_draining response and its counters, failure classes and health fields. Upgrade, rollback and reload replace a running listener only by handoff, and one that lacks a handoff capability is refused before any change. An installation written by 5.0.6 or earlier is refused instead of read with defaults.",
       "sources": [
         {
           "path": "CHANGELOG.md",

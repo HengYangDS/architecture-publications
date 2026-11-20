@@ -49,7 +49,7 @@
       "id": "lay-grid",
       "type": "backend",
       "label": "网格布局",
-      "sublabel": "同一套列栅格",
+      "sublabel": "同一套网格",
       "pos": [440, 170],
       "size": [180, 64],
       "sources": [

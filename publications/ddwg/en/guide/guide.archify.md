@@ -1,6 +1,6 @@
 # How do the Data Department work guidelines lead a reader to a rule, and how does a rule change? {#guide}
 
-The guidelines are a documentation repository that members and Agents read without installing anything.[](source:readme-repo) One task map sends each work question to the topic that owns its rule, and seven topics under the charter hold those rules.[](source:map-open)[](source:profile-sources) A rule changes only through one official OpenSpec Change, which installed ETHOS admits and proves before each Forge publishes the edition.[](source:gov-change)
+The guidelines are a documentation repository that members and Agents read without installing anything.[](source:readme-repo) One task map sends each work question to the topic that owns its rule, and seven topics, the charter first, hold those rules.[](source:map-open)[](source:profile-sources) A rule changes only through one official OpenSpec Change, which installed ETHOS admits and proves before each Forge publishes the release.[](source:gov-change)
 
 - [Each rule has one owner](block:p-topics): navigation, examples, decision records and governance link to that owner and do not restate it.[](source:gd-owner)
 - [The charter binds every topic](block:p-charter): four hard boundaries hold for all work, and risk sets the form of the record.[](source:charter-boundaries)[](source:charter-risk)
@@ -91,7 +91,7 @@ Members and Agents read the same pages, and reading needs no installed software.
 @steps id=readers-steps
 | step-rd-members | Members and Agents | Start from a work question; the home page leads to the task map and does not repeat its topic list.[](source:readme-start)[](source:gd-entry) | readers-map | rd-members |
 | step-rd-agents | Agent entry | An Agent works within a delegated scope; the charter defines authority and hard boundaries, and people keep acceptance. Before a change it reads the governance page.[](source:agents-scope)[](source:agents-change) | readers-map | rd-agents |
-| step-rd-map | Task map | Each work question goes to the section that owns it; an urgent failure or breach has the first route.[](source:map-open) | readers-map | rd-map |
+| step-rd-map | Task map | Each work question goes to the topic that owns it; an urgent failure or breach has the first route.[](source:map-open) | readers-map | rd-map |
 | step-rd-contributing | Contributing | Holds the commands for maintainers who change, check or publish. Before editing they read the governance page and run `ethos status`.[](source:contrib-audience) | readers-map | rd-contributing |
 | step-rd-governance | Repository change and release | Owns permission, acceptance and retirement boundaries; Contributing owns the procedures.[](source:gov-split) | readers-map | rd-governance |
 
@@ -121,7 +121,7 @@ Read the charter when the question is who may decide, which facts can be trusted
 | L2 high risk | Production, funds, sensitive data, overwrite or irreversibility | Written decision, authorization, rollback, independent review and human acceptance[](source:charter-review) |
 
 @facts
-| Tell the truth | No fabricated, hidden or selected facts, and no uncertainty presented as certainty.[](source:charter-boundaries) |
+| Tell the truth | No fabricated, hidden or selectively presented facts, and no uncertainty presented as certainty.[](source:charter-boundaries) |
 | Stay in bounds | Subject, time, competence, permission, data, security, compliance and action limits hold.[](source:charter-boundaries) |
 | Name the owner | Each important judgment, decision, change and acceptance has an accountable person.[](source:charter-boundaries) |
 | No false completion | Nothing is called complete, correct, usable or adopted without matching current evidence.[](source:charter-boundaries) |
@@ -153,7 +153,7 @@ Six capability specs in the OpenSpec workspace hold the accepted requirements. R
 | Guidance discovery    | Find the right guidance   | The two entries, the task map and one editable owner for each obligation[](source:gd-entry)[](source:gd-owner)         |
 | Work practice         | Apply it to actual work   | The decision, data, delivery, communication, Agent and coaching duties[](source:wp-purpose)                            |
 | Document quality      | Maintain readable source  | English prose, links and the native check policy[](source:quality-purpose)                                             |
-| Verification          | Establish checked results | One CUE owner for CI and a profile that declares no gates[](source:verification-proof)                                 |
+| Verification          | Establish checked results | One CUE owner for CI and a profile that declares no proof gates[](source:verification-proof)                           |
 | Repository governance | Change or accept source   | The MIT grant, one signed commit graph, the release declaration and OpenSpec[](source:rg-license)[](source:rg-binding) |
 | Publication           | Publish or retire assets  | VERSION, the Changelog, the signed tag, hosted jobs and both Forges[](source:publication-identity)                     |
 
@@ -189,7 +189,7 @@ Installed ETHOS owns attribution, the lane lease, admission, proof, acceptance a
 | step-ch-runtime | Installed ETHOS | Admits the exact paths just before a write, and its Git hooks admit each commit and push.[](source:agents-change)[](source:contrib-audience) | change-flow | ch-runtime |
 | step-ch-prove | Installed ETHOS | Proof runs the full graph at the exact HEAD; a refusal is never bypassed by a raw push.[](source:contrib-prove) | change-flow | ch-runtime |
 | step-ch-archive | Official Change | Acceptance into dev does not close delivery; the archive commit needs its own signature, proof and publication.[](source:gov-archive) | change-flow | ch-change |
-| step-ch-forge | Selected Forge | Each peer is published and verified on its own; one peer's result proves nothing about the other.[](source:gov-peers) | change-flow | ch-forge |
+| step-ch-forge | Selected Forge | Each peer is published and verified independently; one peer's result proves nothing about the other.[](source:gov-peers) | change-flow | ch-forge |
 
 ## What do the checks read? {#p-checks}
 
@@ -206,27 +206,27 @@ The repository has no package, test or check command of its own; installed ETHOS
 
 The configuration map holds these pointers, and the governance page names the installed check that reads each one.[](source:config-map)[](source:gov-checks) Mise installs the one locked ETHOS release, which supplies its own Node, formatters and prose and link tools.[](source:mise-supply)[](source:contrib-supply) The common model generates both Forges' pipelines from the parameters, and every hosted job runs the same full graph.[](source:ci-projection)[](source:github-job)
 
-## How is an edition released on two Forges? {#p-release}
+## How is a release published on two Forges? {#p-release}
 
 `VERSION` holds the one release identity, which the charter links to, and only the signed tag identifies the exact released content.[](source:gov-version)[](source:charter-version)[](source:version-file)
 
-@workflow id=release-flow title="One edition on one selected Forge"
-| rl-prepare | Prepare the edition | backend |
+@workflow id=release-flow title="One release on one selected Forge"
+| rl-prepare | Prepare the release | backend |
 | rl-prove | Prove and accept | security |
 | rl-cut | Cut and tag | backend |
 | rl-publish | Create the Release | external |
-| rl-verify | Verify the edition | backend |
+| rl-verify | Verify the release | backend |
 | rl-prepare > rl-prove | |
 | rl-prove > rl-cut | accepted |
 | rl-cut > rl-publish | signed tag | emphasis |
 | rl-publish > rl-verify | |
 
 @steps id=release-steps
-| step-rl-prepare | Prepare the edition | Update `VERSION` under the official Change and keep notes under Unreleased, with no date before the cut.[](source:contrib-prepare) | release-flow | rl-prepare |
+| step-rl-prepare | Prepare the release | Update `VERSION` under the official Change and keep notes under Unreleased, with no date before the cut.[](source:contrib-prepare) | release-flow | rl-prepare |
 | step-rl-prove | Prove and accept | Commit with a trusted SSH signature and prove the exact OID; archive only when every declared obligation has evidence.[](source:contrib-prove) | release-flow | rl-prove |
 | step-rl-cut | Cut and tag | Date the section, prove again, and sign the tag only after the selected Forge's source jobs pass.[](source:contrib-cut) | release-flow | rl-cut |
-| step-rl-publish | Create the Release | The same reviewed notes go to that Forge; from 8.0.0 an edition attaches no download.[](source:contrib-publish) | release-flow | rl-publish |
-| step-rl-verify | Verify the edition | Check that Forge's refs, Release and source CI at the tag; keep the other peer's delivery open until its own checks pass.[](source:contrib-verify) | release-flow | rl-verify |
+| step-rl-publish | Create the Release | The same reviewed notes go to that Forge; from 8.0.0 a release attaches no download.[](source:contrib-publish) | release-flow | rl-publish |
+| step-rl-verify | Verify the release | Check that Forge's refs, Release and source CI at the tag; keep the other peer's delivery open until its own checks pass.[](source:contrib-verify) | release-flow | rl-verify |
 
 @facts
 | GitLab | The organization's primary publication plane[](source:gov-planes) |
@@ -247,7 +247,7 @@ A withdrawn task keeps its line and identity without a checkbox, so the archived
 
 ## How did the guidelines get here? {#p-history}
 
-Versioned editions begin with v4.0.0 on 2026-09-26; earlier branch editions had no release tags.[](source:changelog-intro)[](source:changelog-400) The timeline picks eleven releases, up to v8.0.0 on 2026-11-01, that changed what members, Agents or maintainers read.[](source:changelog-800)
+Versioned releases begin with v4.0.0 on 2026-09-26; earlier branch editions had no release tags.[](source:changelog-intro)[](source:changelog-400) The timeline picks eleven releases, up to v8.0.0 on 2026-11-01, that changed what members, Agents or maintainers read.[](source:changelog-800)
 
 @diagram timeline id=history source=history.timeline.json title="How the guidelines got here"
 

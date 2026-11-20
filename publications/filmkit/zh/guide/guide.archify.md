@@ -4,7 +4,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 
 - [引擎不存放任何影片的内容](block:p-context)：脚本、配音设定、页面和画面合成都留在影片仓库里。[](source:readme-engine)
 - [任何语音模型加载之前，先检查字词](block:p-words)；拒绝时列出每一个失败项。[](source:narrate-gate)
-- [录音只有完整收尾才能进入音轨](block:p-takes)，除非影片为它的衔接声明了尾音淡出。[](source:abrupt)
+- [录音只有自然收尾才能进入音轨](block:p-takes)，除非影片为它的衔接声明了尾音淡出。[](source:abrupt)
 - [画面只有通过门禁才会渲染](block:p-picture)，而且门禁针对的必须是当前的画面合成、时间线、样式表、字体和引擎版本。[](source:render-gate)
 
 @answer scope="Film Kit v0.24.1 · 提交 db7a837 · 源码及项目自带文档"
@@ -144,7 +144,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 @diagram architecture id=context-map source=context.architecture.json title="Film Kit 读取、运行和写出什么"
 
 @steps id=context-steps
-| step-ctx-film | 影片仓库 | 声明（含播放器配色），每个语言版的脚本、配音设定和旁白，以及画面的模板、脚本和样式。[](source:readme-layout) | context-map | ctx-film |
+| step-ctx-film | 影片仓库 | 声明（含播放器配色），每个语言版的脚本、配音设定和旁白，以及画面的模板、代码和样式。[](source:readme-layout) | context-map | ctx-film |
 | step-ctx-engine | Film Kit 引擎 | 每个动作只做一个语言版，语言版由参数指定；开工之前先检查声明。[](source:produce-actions)[](source:film-load)渲染之前，`preflight` 报告所有过期或缺失的输入，其中包括声音门禁记录和几何检查记录。影片声明了草稿，才需要草稿的静止画面扫描；检查结果写成该语言版的就绪记录。[](source:preflight-doc)被扫描的草稿必须由引擎的渲染器绘制。[](source:preflight-draft) | context-map | ctx-engine |
 | step-ctx-supply | 下载安装步骤 | 只有这一步会联网。指定构建版本的浏览器和每个模型快照，都按锁定的摘要检查。[](source:supply-doc) | context-map | ctx-supply |
 | step-ctx-models | 语音模型 | 语音合成模型负责朗读，强制对齐器标出每个词的时间，识别器负责转写，全部运行于 MLX。[](source:snapshots) | context-map | ctx-models |
@@ -188,7 +188,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 | step-route-select | 选定录音 | `produce select` 把每份录音文件及其对齐结果，绑定到当前的脚本、配音设定和旁白参考录音。若录音文件超出影片的停顿上限，或已声明术语读得与参照处不同，就拒绝这份录音文件。[](source:selection)[](source:speech-refusals) | route-flow | route-select |
 | step-route-assemble | 拼接音轨 | 拼接步骤设计停顿，匹配每个意群、段落和章节的响度，并用一次增益达到节目响度。若排好的音轨里有超出影片上限的无标点停顿，或已声明术语读得与参照处不同，拼接步骤就拒绝这条音轨。[](source:assembly-doc)[](source:clip-levels)[](source:program-gain)随后 `produce check-sound` 检查拼好的音轨。段落清晰度低于影片声明的下限、收尾突兀或被截断、短语戛然而止，都会被拒绝。[](source:sound-gate) | route-flow | route-assemble |
 | step-route-gate | 检查画面 | `check-picture` 检测每一帧、每个标签的同步和动效，还检测单条线、逐步画出的线条和名称这三类细节，然后写出门禁记录。[](source:gate-doc)[](source:detail-gates-doc) | route-flow | route-gate |
-| step-route-render | 组装、渲染 | 带字幕画面和无字幕画面各自组装；门禁记录通过之后，引擎的渲染器才在原生 canvas 上绘制带字幕的那一份。[](source:stage)[](source:render-gate)[](source:render)[](source:renderer-doc)影片声明软件捕获时，无字幕画面由带字幕画面派生：用 x264 重新编码一次，把字幕带所在的行涂成底色。其他情况下，无字幕画面也由渲染器绘制，加 `--native` 时同样如此。[](source:derivation-doc)派生得到的这一对画面依据派生记录比对，不解码任何画面。[](source:equivalence-doc) | route-flow | route-render |
+| step-route-render | 组装、渲染 | 带字幕画面和无字幕画面各自组装；门禁记录写明通过之后，引擎的渲染器才在原生 canvas 上绘制带字幕的那一份。[](source:stage)[](source:render-gate)[](source:render)[](source:renderer-doc)影片声明软件捕获时，无字幕画面由带字幕画面派生：用 x264 重新编码一次，把字幕带所在的行涂成底色。其他情况下，无字幕画面也由渲染器绘制，加 `--native` 时同样如此。[](source:derivation-doc)派生得到的这一对画面依据派生记录比对，不解码任何画面。[](source:equivalence-doc) | route-flow | route-render |
 | step-route-compare | 比对两份画面 | 渲染出的两份画面只能在字幕上不同：画面合成在每条字幕处、每隔半秒比对一次，解码后各帧只比对字幕带以外的行。随后逐帧扫描两份画面，找出只持续一帧的故障。同一次扫描还测量边缘细条：每帧最密集的一块里，相差超过 40 级的采样有多少。超出限值的帧会被拒绝。[](source:equivalence-doc) | route-flow | route-compare |
 | step-route-package | 打包成片 | FFmpeg 把每部成片的画面（带字幕或无字幕）与音轨和章节封装在一起；每部成片都先检查，再链接到位。[](source:package-doc)[](source:package-film) | route-flow | route-package |
 | step-route-verify | 核验每个输入 | 核验器读取并解码，检查范围包括来源、旁白、两份画面及二者的等效性、两个包、解码后的全部四部成片和评审。主机上有 `mdimport` 时，还读回 Spotlight 从每部成片导入的关键词和作者。[](source:verification-doc)[](source:verify-spotlight) | route-flow | route-verify |
@@ -198,7 +198,7 @@ Film Kit 从影片自己的仓库重建中文版和英文版。[](source:readme-
 影片可以要求在朗读开始之前，先检查它的字词。[](source:readme-words)
 
 @facts
-| 概念 | 每个段落声明的概念在两个语言版中相同，都要用认可的说法讲到。旁白、标题、字幕术语、发布文案、播放器摘要和画面源文件里，都不能出现反例。[](source:concepts-doc) |
+| 概念 | 每个段落声明的概念在两个语言版中相同，都要用认可的说法讲到。旁白、标题、字幕术语、发布文案、播放器摘要和画面源文件里，都不能出现声明为反例的说法。[](source:concepts-doc) |
 | 引文 | 本地有来源仓库的克隆时，每条概念引文都必须能在锁定提交的对应文档里找到。[](source:concepts-doc) |
 | 读音 | 关注列表中每个汉字都必须落在声明过的词里，这个词的读音必须是字典读音。字典按上下文读成别的音时，这个词要记下原因。[](source:readings-doc)[](source:watch-list) |
 | 名称 | 中文旁白里的每个拉丁字母单词，和每个至少含两个大写字母的英文单词，都要声明读法。[](source:readings-doc) |
@@ -349,7 +349,7 @@ v0.22.1 把渲染器换成 HyperFrames 0.9.46，样例影片的十二部成片�
 | 平台           | Apple 芯片 {caution:仅一个平台} | 语音模型运行于 MLX，所以引擎需要 Apple 芯片的 Mac。[](source:readme-requirements)                                                                                                                                                                                      |
 | 样例影片       | 本地验收 {caution:不在 CI 中}   | 构建它需要语音模型和指定构建版本的浏览器，所以托管 CI 只运行可移植的证明。[](source:readme-dev)                                                                                                                                                                        |
 | 人工试听       | 单独进行 {caution:不计分}       | 评审依据自动化证据为音频打分；人工试听是之后的验收。[](source:human-listening)                                                                                                                                                                                         |
-| 录音收尾       | 有防护 {good:拒绝}              | mlx-audio 0.6.5 已包含上游的修复，引擎锁定 0.6.6。录音仍可能因别的原因在最后一个音节中途结束，所以仍靠试音保证完整收尾，拼接步骤拒绝收尾突兀的录音。[](source:readme-endings)[](source:abrupt)                                                                         |
+| 录音收尾       | 有防护 {good:拒绝}              | mlx-audio 0.6.5 已包含上游的修复，引擎锁定 0.6.6。录音仍可能因别的原因在最后一个音节中途结束，所以仍靠试音保证自然收尾，拼接步骤拒绝收尾突兀的录音。[](source:readme-endings)[](source:abrupt)                                                                         |
 | 文字宽度       | 实测 {good:影片自己的字体}      | 检测时用影片自己的字体测量文字宽度；文字高度仍用估算值。[](source:readme-metrics)                                                                                                                                                                                      |
 | 静止时偏离中心 | 一律拒绝 {good:不论后续}        | 偏离中心超过 50 px、持续不少于 2 s 的静止状态，门禁一律拒绝。不论画面随后在它之上继续扩展，还是停在本阶段之内，或被阶段切换、下一个场景取代，都不例外。[](source:readme-balance)                                                                                       |
 | 新的渲染器     | 锁定版本 {caution:由影片决定}   | 影片继续锁定现有的 `filmkit` 版本，直到用新的发布版本制作、评审并验收一个语言版。[](source:changelog-pin)采用 v0.24.0 的影片要声明 `@napi-rs/canvas` 1.1.1 并重新渲染画面：渲染记录里没有写明 canvas，校验就拒绝。[](source:readme-install)[](source:receipt-renderer) |

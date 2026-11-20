@@ -4,13 +4,13 @@
   "id": "openai-responses-proxy",
   "locale": "en",
   "title": "OpenAI Responses Proxy",
-  "question": "How does OpenAI Responses Proxy make a Codex Responses turn portable across third-party providers, and how does it install and keep its own listener running?",
-  "summary": "A loopback listener rebuilds each Responses request in one closed grammar with store=false, sends it to the provider its path names within one total deadline, and retries only what the failure class allows. A signed release installs through one journaled transaction as an immutable generation; an upgrade hands the listening socket to the new process, and a watchdog under the native service manager restarts a stopped listener.",
+  "question": "How does OpenAI Responses Proxy make a Codex Responses turn portable across third-party providers, and how does it install its own listener and keep it running?",
+  "summary": "A loopback listener rebuilds each Responses request in one closed grammar with store=false, sends it, within one total deadline, to the provider named in its path, and retries only what the failure class allows. A signed release asset installs through one journaled transaction as an immutable generation; an upgrade hands the listening socket to a successor process, and a watchdog under the native service manager restarts a stopped listener.",
   "scope": "The OpenAI Responses Proxy product as released at v6.0.3: the openai_responses_proxy package with its provider manifest, pyproject.toml and VERSION.",
   "limits": [
-    "Each component owns the files its claims name; a relation cites the files that import or call the other component.",
-    "A relation stands for an import, a call on an object of the other component that the caller hands over, or a process call that carries behaviour; imports used only for an exception class, a type, a shared helper or the product's names are not drawn.",
-    "Tests, the repository tools, the OpenSpec specifications and change history, the documents and CI are outside the scope, each excluded with its reason."
+    "A component lists only the files under the paths it claims, and a relation only the files that import or call the other component.",
+    "A relation shows only an import that carries behaviour, a process call, or a call on an object of the other component that was passed in; imports used only for an exception class, a type, a shared helper or the product's names are not drawn.",
+    "Tests, the repository tools, the OpenSpec specifications and change history, the documents and CI are outside the scope."
   ],
   "repository": {
     "name": "openai-responses-proxy",
@@ -99,8 +99,8 @@
     ]
   },
   "overview": {
-    "claim": "Portable requests, transactional releases",
-    "lead": "A loopback data plane for Codex and other Responses clients: each request is rebuilt store-free and sent to the provider its path names, and the proxy installs, hands off and supervises its own listener.",
+    "claim": "Portable requests, transactional installs",
+    "lead": "A loopback data plane for Codex and other Responses clients: each request is rebuilt store-free and sent to the provider named in its path, and the proxy installs, hands off and supervises its own listener.",
     "course": {
       "steps": [
         {
@@ -131,12 +131,12 @@
             {
               "id": "delegation",
               "label": "Delegation",
-              "note": "readable only on a route that selects it"
+              "note": "agent messages readable only on a plaintext route"
             },
             {
               "id": "gate",
-              "label": "Gate",
-              "note": "a cooling provider answers at once"
+              "label": "Cooldown",
+              "note": "refused while its provider cools"
             },
             {
               "id": "exchange",
@@ -146,7 +146,7 @@
             {
               "id": "transport",
               "label": "Transport",
-              "note": "no redirects; a sent request is never resent"
+              "note": "no redirects; an unanswered request is never resent"
             }
           ],
           "view": "request-path"
@@ -188,7 +188,7 @@
         {
           "from": "transport",
           "to": ["client"],
-          "label": "Delivery validates each event before writing it, and holds events before content, so a pre-content response.failed can be reopened."
+          "label": "Response delivery validates each event before writing it and holds those that precede content, so a response.failed among them can reopen the request."
         }
       ]
     },
@@ -215,18 +215,21 @@
       {
         "title": "Each failure has one bounded answer",
         "items": [
-          ["429", "relayed once; that provider alone cools for Retry-After, at most 300 s"],
+          [
+            "429",
+            "relayed without a retry; that provider alone cools for Retry-After, at most 300 s"
+          ],
           ["503 after retries", "relayed; that provider cools briefly before the next probe"],
-          ["DMXAPI 477", "the exact empty_response: the same bytes once more"],
+          ["DMXAPI 477", "the exact empty_response: one retry with the same bytes"],
           ["response_failed", "shrinking, pair-safe retries, then one dialogue-only attempt"],
           ["input too long", "one smaller historical projection; current input and images kept"],
           ["lost after sending", "502 upstream_outcome_unknown; the client decides"],
-          ["deadline", "504 before commitment; after it the stream closes, never replayed"]
+          ["deadline", "504 if nothing was delivered; else the stream closes, never replayed"]
         ],
         "view": "failures"
       },
       {
-        "title": "Every release is one journaled transaction",
+        "title": "Every install is one journaled transaction",
         "stations": [
           {
             "id": "admitted",
@@ -289,13 +292,13 @@
             "note": "the old one finishes its turns, at most 900 s"
           }
         ],
-        "text": "Upgrade, rollback and reload all take this path. A runtime that does not advertise both handoff capabilities is refused before any change.",
+        "text": "Upgrade, rollback and reload all take this path. A running listener that lacks a handoff capability is refused before any change.",
         "view": "handoff"
       },
       {
         "title": "Kept running",
         "items": [
-          ["service manager", "launchd, systemd or Task Scheduler keeps it alive"],
+          ["native service manager", "launchd, systemd or Task Scheduler restarts the watchdog"],
           ["watchdog", "checks the port every 15 s; starts the listener"]
         ],
         "view": "supervision"
@@ -429,7 +432,7 @@
       "kind": "gate",
       "details": {
         "reads": "one length-framed body within 30 s and 64 MiB",
-        "counts": "the running handlers and the admitted Responses, which an old listener waits on after a handoff",
+        "counts": "the running handlers and the admitted Responses requests, which an old listener waits on after a handoff",
         "controls": "handoff only from a loopback client with a loopback Host and no Origin"
       },
       "files": ["src/openai_responses_proxy/relay/admission.py"]
@@ -492,7 +495,7 @@
       "kind": "relay",
       "details": {
         "retries": "only what the failure class allows, within one total deadline",
-        "cools": "one provider after a 429 or an exhausted 503"
+        "cools": "one provider on a 429 or a 503 after retries"
       },
       "files": [
         "src/openai_responses_proxy/relay/exchange.py",
@@ -507,7 +510,7 @@
       "details": {
         "bounds": "DNS, connection, TLS, writes and reads by the exchange deadline",
         "reuses": "an idle keep-alive connection at most 30 s old",
-        "refuses": "redirects; a complete request is never sent twice"
+        "refuses": "redirects; resending a complete, unanswered request"
       },
       "files": [
         "src/openai_responses_proxy/relay/upstream.py",
@@ -520,7 +523,7 @@
       "kind": "relay",
       "details": {
         "validates": "a terminal JSON body, or each SSE event before it is written",
-        "holds": "events before content, so a pre-content response.failed can be reopened",
+        "holds": "events until content, so an earlier response.failed can reopen the request",
         "ends": "a stream at a terminal event or a top-level error event; nothing after it is forwarded",
         "reports": "the ending of each stream and JSON response to telemetry and the log, an error event as stream_error with its code"
       },
@@ -602,7 +605,7 @@
       "details": {
         "keeps": "runtime-config.json beside each generation; an upgrade keeps its limits",
         "validates": "port, timeouts and body, stream and catalog limits",
-        "refuses": "a carrier without a body, stream or catalog limit, as 5.0.6 or earlier wrote it",
+        "refuses": "a config without a body, stream or catalog limit, as 5.0.6 or earlier wrote it",
         "provides": "bounded logs, the loopback transport and clean child environments"
       },
       "files": [
@@ -710,7 +713,7 @@
       "kind": "coordinator",
       "details": {
         "replaces": "a running listener only by handoff, which keeps admission open",
-        "refuses": "a runtime that does not advertise both handoff capabilities, before any change",
+        "refuses": "a listener that lacks selected-generation-handoff or admission-preserving-handoff, before any change",
         "rolls back": "a handoff that failed before its successor committed, once /healthz shows the predecessor serving as captured and evidence shows that no handoff of the request is to come",
         "waits out": "a request that ended without the listener's answer, for its timeout and one second, before it restores",
         "proves": "the successor's identity before the transaction finalizes"
@@ -739,7 +742,7 @@
       "kind": "supervisor",
       "details": {
         "checks": "the listener port every 15 s",
-        "starts": "the listener on a closed port, waiting while a transaction is open and not yet activated"
+        "starts": "the listener when it finds the port closed, waiting while a transaction is open and not yet activated"
       },
       "files": ["src/openai_responses_proxy/lifecycle/supervision/watchdog.py"]
     },
@@ -801,7 +804,7 @@
       "id": "responses-relay-request-admission",
       "from": "responses-relay",
       "to": "request-admission",
-      "label": "admits each Response",
+      "label": "admits each request",
       "files": ["src/openai_responses_proxy/relay/responses.py"]
     },
     {
@@ -953,7 +956,7 @@
       "id": "command-line-runtime-settings",
       "from": "command-line",
       "to": "runtime-settings",
-      "label": "activates the carrier",
+      "label": "activates the config",
       "files": ["src/openai_responses_proxy/cli/application.py"]
     },
     {
@@ -1029,7 +1032,7 @@
       "id": "payload-transaction-runtime-settings",
       "from": "payload-transaction",
       "to": "runtime-settings",
-      "label": "writes the candidate carrier",
+      "label": "writes the candidate config",
       "files": [
         "src/openai_responses_proxy/lifecycle/records.py",
         "src/openai_responses_proxy/lifecycle/transaction/completion.py",
@@ -1136,8 +1139,8 @@
     {
       "id": "request-path",
       "title": "One Responses turn, from the client to a provider",
-      "question": "Which parts does one Responses turn cross between the client and its provider?",
-      "summary": "The loopback listener passes each turn to the Responses relay, which projects the body and admits it. The upstream exchange sends it over the upstream transport to the provider; response delivery returns JSON or SSE.",
+      "question": "Which components handle the turn on the way, and in what order?",
+      "summary": "The loopback listener passes each turn to the Responses relay, which projects the body and admits it. The Upstream exchange sends it over the Upstream transport to the provider; Response delivery returns JSON or SSE.",
       "members": [
         "client",
         "listener",
@@ -1153,8 +1156,8 @@
     {
       "id": "portability",
       "title": "What leaves the listener",
-      "question": "How does a request become portable across providers, and how is a refused one made smaller?",
-      "summary": "Replay projection sends store=false and no response, conversation or cache bindings, keeping calls paired with outputs. Bounded recovery re-projects strictly smaller, pair-safe requests derived from a refused one.",
+      "question": "What does the projection keep and remove, and how is a request the provider refuses made smaller?",
+      "summary": "Replay projection sets store=false and removes the bindings to a previous response, a conversation and a cache, keeping calls paired with outputs. Bounded recovery re-projects strictly smaller, pair-safe requests derived from one the provider refused.",
       "members": [
         "responses-relay",
         "replay-projection",
@@ -1168,8 +1171,8 @@
     {
       "id": "failures",
       "title": "Failures bounded per provider",
-      "question": "How are upstream failures retried, cooled and reported without holding up another provider?",
-      "summary": "The upstream exchange retries only what the failure class allows and cools only its provider after a 429 or an exhausted 503. Telemetry counts failure classes; the transport never sends a complete request twice.",
+      "question": "After an upstream failure, what is retried and reported, and how is only its provider cooled?",
+      "summary": "The Upstream exchange retries only what the failure class allows and cools only its provider on a 429 or a 503 after retries. Telemetry counts failure classes; the Upstream transport never resends a complete request left unanswered.",
       "members": [
         "upstream-exchange",
         "upstream-transport",
@@ -1183,8 +1186,8 @@
     {
       "id": "install",
       "title": "One install, one transaction",
-      "question": "How does a signed release asset become the selected generation, and what can be rolled back?",
-      "summary": "Release admission verifies SHA256SUMS.sig, and a journaled payload transaction materializes the admitted bytes as a new generation. It ends finalized or rolled back; the selector keeps at most one predecessor.",
+      "question": "How does a signed release asset become the active generation, and how far back can a rollback go?",
+      "summary": "Release admission verifies SHA256SUMS.sig, and the journaled Payload transaction materializes the admitted bytes as a new generation. It ends finalized, or the prior state is restored; the generation selector keeps at most one predecessor.",
       "members": [
         "command-line",
         "lifecycle-commands",
@@ -1199,8 +1202,8 @@
     {
       "id": "handoff",
       "title": "A new listener without a dropped turn",
-      "question": "How do an upgrade and a reload move the listening socket to a new process?",
-      "summary": "Listener handoff passes the listening socket to a successor process while admission stays open, and no other transition exists. Deployment refuses a runtime without both handoff capabilities, and proves the successor's identity before the transaction finalizes.",
+      "question": "How do an upgrade and a reload move the listening socket to a successor process?",
+      "summary": "Listener handoff passes the listening socket to a successor process while request admission stays open; no other transition exists. Deployment refuses a listener that lacks selected-generation-handoff or admission-preserving-handoff, and proves the successor's identity before the transaction finalizes.",
       "members": [
         "deployment",
         "listener",
@@ -1214,8 +1217,8 @@
     {
       "id": "supervision",
       "title": "Kept running by the operating system",
-      "question": "Who starts the listener and keeps it running?",
-      "summary": "The lifecycle commands register native supervision and remove it on uninstall; it registers the watchdog, which the native service manager starts and restarts. The watchdog starts the listener on a closed port, but waits while a transaction is open and not yet activated.",
+      "question": "When does the watchdog start the listener?",
+      "summary": "Called by Lifecycle commands, Native supervision registers the watchdog with the native service manager and removes it on uninstall; the service manager starts and restarts it. When the watchdog finds the port closed, it starts the listener, but it waits while a transaction is open and not yet activated.",
       "members": [
         "lifecycle-commands",
         "native-supervision",

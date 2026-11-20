@@ -4,7 +4,7 @@ Film Kit rebuilds a film's Chinese and English editions from the film's own repo
 
 - [The engine holds no film's content](block:p-context): scripts, casts, pages and the picture's composition stay in the film's repository.[](source:readme-engine)
 - [Words are checked before any speech model loads](block:p-words), and a refusal names every failure.[](source:narrate-gate)
-- [A take reaches the soundtrack only if it ends whole](block:p-takes), or if the film declares a release for its join.[](source:abrupt)
+- [A take reaches the soundtrack only if it ends naturally](block:p-takes), or if the film declares a tail release for its join.[](source:abrupt)
 - [The picture renders only after its gate passes](block:p-picture) for the current composition, timeline, stylesheet, fonts and engine version.[](source:render-gate)
 
 @answer scope="Film Kit v0.24.1 · commit db7a837 · its source and its own documents"
@@ -135,7 +135,7 @@ A film is the folder that holds `content/film.toml`; the engine finds it through
 | Frame rate | 60 fps; the engine refuses a script that declares another |
 | Sample rate | 48 kHz |
 | Program level | -16.5 LUFS, true peak at most -1 dBTP |
-| Films per edition | 4: a UHD master and a 1080p film, each with captions and without |
+| Films per edition | 4: a UHD master and a 1080p film, each with and without captions |
 
 The engine fixes these specifications, and a film uses them as they are.[](source:spec-rate)[](source:spec-sound)[](source:renditions) A film declares everything else in `content/film.toml`; this is the declaration of the sample film in the repository.[](source:sample-declaration)
 
@@ -144,7 +144,7 @@ The engine fixes these specifications, and a film uses them as they are.[](sourc
 @diagram architecture id=context-map source=context.architecture.json title="What Film Kit reads, runs and writes"
 
 @steps id=context-steps
-| step-ctx-film | Film repository | The declaration with the player's colours, each edition's script, cast and narration, and the picture's template, script and style.[](source:readme-layout) | context-map | ctx-film |
+| step-ctx-film | Film repository | The declaration with the player's colours, each edition's script, cast and narration, and the picture's template, code and style.[](source:readme-layout) | context-map | ctx-film |
 | step-ctx-engine | Film Kit engine | Each action produces one edition, which it takes as an argument; the declaration is checked before any work.[](source:produce-actions)[](source:film-load) `preflight` reports every stale or missing input before a render, the sound gate's record and the geometry record among them. It asks for the draft's still scan only of a film that declares drafts, and writes the edition's readiness receipt.[](source:preflight-doc) The scan must be of a draft that the engine's renderer drew.[](source:preflight-draft) | context-map | ctx-engine |
 | step-ctx-supply | Supply step | The only step that reaches the network. It checks the browser build and each model snapshot against pinned digests.[](source:supply-doc) | context-map | ctx-supply |
 | step-ctx-models | Speech models | A voice model narrates, a forced aligner times the words and a recognizer transcribes them, all on MLX.[](source:snapshots) | context-map | ctx-models |
@@ -198,7 +198,7 @@ Each command runs at the film's root, and each production action names its editi
 A film can make its words checkable before anything is narrated.[](source:readme-words)
 
 @facts
-| Concepts | Each segment says its declared concepts in approved words, alike in both editions. No counterexample appears in the narration, titles, caption terms, release prose, the player's summary or picture sources.[](source:concepts-doc) |
+| Concepts | Each segment says its declared concepts in approved words, alike in both editions. No declared counterexample appears in the narration, titles, caption terms, release prose, the player's summary or picture sources.[](source:concepts-doc) |
 | Quotations | With a clone of the source repository, each concept's quotation must be in its document at the pinned commit.[](source:concepts-doc) |
 | Readings | Each watched Chinese character lies in a declared word, whose reading must be a dictionary reading. A word the dictionary reads otherwise in context records why.[](source:readings-doc)[](source:watch-list) |
 | Names | Every Latin word in the Chinese narration, and every English word with two or more capitals, needs a declared spoken form.[](source:readings-doc) |
@@ -349,7 +349,7 @@ An engine change keeps every film's output bytes unless its release says otherwi
 | Platform                | Apple silicon {caution:One platform} | The speech models run on MLX, so the engine needs an Apple-silicon Mac.[](source:readme-requirements)                                                                                                                                                                                                                          |
 | Sample film             | Local acceptance {caution:Not in CI} | Its build needs the speech models and the browser build, so hosted CI runs only the portable proof.[](source:readme-dev)                                                                                                                                                                                                       |
 | Human listening         | Separate {caution:Not scored}        | A review scores audio from automated evidence; listening is a later acceptance.[](source:human-listening)                                                                                                                                                                                                                      |
-| Take endings            | Guarded {good:Refused}               | mlx-audio 0.6.5 carries the upstream repair, and the engine pins 0.6.6. A take can still end inside its last syllable for another reason, so auditions keep endings whole and the assembly refuses an abrupt take.[](source:readme-endings)[](source:abrupt)                                                                   |
+| Take endings            | Guarded {good:Refused}               | mlx-audio 0.6.5 carries the upstream repair, and the engine pins 0.6.6. A take can still end inside its last syllable for another reason, so auditions keep endings natural and the assembly refuses an abrupt take.[](source:readme-endings)[](source:abrupt)                                                                 |
 | Text widths             | Measured {good:The film's fonts}     | Audits measure widths with the film's own faces; a text's height keeps an estimate.[](source:readme-metrics)                                                                                                                                                                                                                   |
 | Still off-centre states | Refused {good:Whatever follows}      | The gate refuses every still state that stands more than 50 px off centre for 2 s or more. That holds whether the picture then grows from it, it ends within its stage, or a stage cut or the next scene replaces it.[](source:readme-balance)                                                                                 |
 | A new renderer          | Pinned {caution:The film decides}    | A film keeps its `filmkit` pin until it produces, reviews and accepts an edition on the new release.[](source:changelog-pin) A film that takes v0.24.0 declares `@napi-rs/canvas` 1.1.1 and renders its pictures again: validation refuses a receipt that names no canvas.[](source:readme-install)[](source:receipt-renderer) |

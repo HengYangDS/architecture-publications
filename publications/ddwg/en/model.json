@@ -4,12 +4,12 @@
   "id": "ddwg",
   "locale": "en",
   "title": "Data Department Work Guidelines",
-  "question": "How do the Data Department work guidelines lead a reader to the rule that owns a task, and how is a change to them proposed, checked and released?",
-  "summary": "One task map routes each work question to one of seven topics under the charter. Six OpenSpec capability specs state what the guidance and its upkeep must do, installed ETHOS admits and proves every change, and each Forge receives the signed edition on its own.",
-  "scope": "The guidelines as released at v8.0.0: the entries, the task map, the seven topics, the decision records, the maintenance documents, the OpenSpec workspace with its six capability specs, and the ETHOS, tool, check and CI configuration that keeps them.",
+  "question": "How do the Data Department work guidelines lead a reader to the rule that governs a task, and how is a change to them proposed, checked and released?",
+  "summary": "One task map routes each work question to one of seven topics led by the charter. Six OpenSpec capability specs state what the guidance and its upkeep must do, installed ETHOS admits and proves every change, and each Forge receives the signed release independently.",
+  "scope": "The guidelines as released at v8.0.0: the entries, the task map, the seven topics, the decision records, the maintenance documents, the OpenSpec workspace with its six capability specs, and the configuration of ETHOS, tools, checks and CI that maintains them.",
   "limits": [
-    "A relation records a link, a named path or a requirement by which one component routes a reader to another, places a duty with it, constrains it, or generates, installs or runs it; it cites the files that make that reference.",
-    "Links between the seven topics, links back to an entry, the task map or the governance page, and pointers that another document already holds are listed in the notes rather than drawn.",
+    "A component lists only the files under the paths it claims, and a relation only those that generate, install or run the other component, or whose link, named path or requirement routes a reader to it, places a duty on it or constrains it.",
+    "Between the seven topics, only links to the charter are drawn. Links back to an entry, the task map or Repository change and release, and pointers that another document already holds, are not.",
     "The archived Change history is outside the scope; documents and checks are described, not their observed use by the department."
   ],
   "repository": {
@@ -40,7 +40,7 @@
               "branches": [
                 {
                   "part": "repository-entry",
-                  "note": "README.md: the purpose, then the task map and the MIT grant"
+                  "note": "README.md: the purpose, then the task map and the MIT License"
                 },
                 {
                   "part": "agent-entry",
@@ -58,13 +58,13 @@
         {
           "id": "topics",
           "label": "Seven topics, one owner for each rule",
-          "note": "the task map routes each work question to the section that owns it",
+          "note": "the task map routes each work question to the topic that owns it",
           "stations": [
             {
               "branches": [
                 {
                   "part": "charter",
-                  "note": "two kinds of authority, four hard boundaries, the risk levels every topic applies"
+                  "note": "two kinds of authority, four hard boundaries, the risk levels four topics cite"
                 },
                 {
                   "part": "decide",
@@ -100,7 +100,7 @@
     "blocks": [
       {
         "title": "One owner for each rule",
-        "text": "Each obligation has one editable owner. Navigation, examples, decision records and governance link to it without restating it."
+        "text": "Each rule has one editable owner. Navigation, examples, decision records and governance link to it without restating it."
       },
       {
         "title": "Urgent first",
@@ -112,7 +112,7 @@
         "items": [
           [
             "Tell the truth",
-            "no fabricated, hidden or selected facts; no uncertainty dressed as certainty"
+            "no fabricated, hidden or selectively presented facts; no uncertainty dressed as certainty"
           ],
           [
             "Stay in bounds",
@@ -124,7 +124,7 @@
           ],
           [
             "No false completion",
-            "no claim of complete, correct, usable or adopted without matching evidence"
+            "nothing claimed complete, correct, usable or adopted without matching evidence"
           ]
         ],
         "view": "practice"
@@ -194,7 +194,7 @@
           "from": "proof",
           "label": "block or unknown: nothing moves, and no raw push goes around it"
         },
-        "text": "The proof is the full host graph at the exact HEAD.",
+        "text": "Proof: the full graph on the host at the exact HEAD.",
         "view": "change"
       },
       {
@@ -202,14 +202,17 @@
         "items": [
           ["OpenSpec Change", "material intent, requirements, design and progress in tasks.md"],
           ["Installed ETHOS", "attribution, lease, admission, proof, acceptance and publication"],
-          ["Governance page", "permission, acceptance, release and retirement boundaries"],
-          ["Contributing", "the exact commands to edit, verify, prepare ETHOS and publish"],
+          [
+            "Repository change and release",
+            "permission, acceptance, release and retirement boundaries"
+          ],
+          ["Contributing", "the exact commands to edit, verify, install ETHOS and publish"],
           ["Configuration map", "the native input behind each check"],
           ["Decision records", "durable rationale and rejected alternatives, never tasks or logs"]
         ]
       },
       {
-        "title": "The edition",
+        "title": "The release",
         "items": [
           ["VERSION", "8.0.0, the one release identity; the Changelog follows it"],
           ["Tag", "a signed vX.Y.Z that matches VERSION and its Changelog entry"]
@@ -217,7 +220,7 @@
         "view": "release"
       },
       {
-        "title": "Two Forges, each on its own",
+        "title": "Two Forges, each independent",
         "items": [
           ["GitLab", "the organization's publication plane"],
           ["GitHub", "an independent repository, CI/CD and distribution"]
@@ -287,7 +290,7 @@
       "icon": "file-cog"
     },
     "identity": {
-      "label": "edition record",
+      "label": "release record",
       "category": "database",
       "icon": "tag"
     },
@@ -345,7 +348,7 @@
       "label": "Task map",
       "kind": "map",
       "details": {
-        "routes": "each work question to the section that owns it",
+        "routes": "each work question to the topic that owns it",
         "first": "the route for an urgent failure or breach"
       },
       "files": ["docs/README.md"]
@@ -427,7 +430,7 @@
       "label": "Repository change and release",
       "kind": "policy",
       "details": {
-        "owns": "change authority, release, runner and retirement boundaries"
+        "owns": "permission, acceptance, release and retirement boundaries"
       },
       "files": ["docs/governance/"]
     },
@@ -445,7 +448,7 @@
       "label": "Contributing",
       "kind": "procedure",
       "details": {
-        "owns": "the commands to edit, verify, prepare ETHOS and publish"
+        "owns": "the commands to edit, verify, install ETHOS and publish"
       },
       "files": ["CONTRIBUTING.md"]
     },
@@ -518,7 +521,7 @@
       "label": "ETHOS profile",
       "kind": "declaration",
       "details": {
-        "declares": "the seven normative sources, every path material, no gates of its own"
+        "declares": "seven normative topics, every path as material, no proof gates of its own"
       },
       "files": [".ethos/profile.toml"]
     },
@@ -536,7 +539,7 @@
       "label": "Version and Changelog",
       "kind": "identity",
       "details": {
-        "edition": "8.0.0",
+        "release": "8.0.0",
         "follows": "SemVer 2.0.0 and Keep a Changelog 1.1.0"
       },
       "files": ["VERSION", "CHANGELOG.md"]
@@ -582,7 +585,7 @@
       "label": "Installed ETHOS",
       "kind": "tool",
       "details": {
-        "owns": "admission, checks, proof, acceptance and publication"
+        "owns": "attribution, lease, admission, proof, acceptance and publication"
       }
     },
     {
@@ -792,21 +795,21 @@
       "id": "governance-openspec-workspace",
       "from": "governance",
       "to": "openspec-workspace",
-      "label": "Change authority",
+      "label": "authority of the Change",
       "files": ["docs/governance/README.md"]
     },
     {
       "id": "governance-ethos-profile",
       "from": "governance",
       "to": "ethos-profile",
-      "label": "no gates",
+      "label": "no proof gates",
       "files": ["docs/governance/README.md"]
     },
     {
       "id": "governance-release-declaration",
       "from": "governance",
       "to": "release-declaration",
-      "label": "peers, mirror",
+      "label": "peers, accepted mirror",
       "files": ["docs/governance/README.md"]
     },
     {
@@ -981,7 +984,7 @@
       "id": "spec-repository-governance-release-declaration",
       "from": "spec-repository-governance",
       "to": "release-declaration",
-      "label": "peers, mirror",
+      "label": "peers, accepted mirror",
       "files": ["openspec/specs/repository-governance/spec.md"]
     },
     {
@@ -1086,9 +1089,9 @@
   "views": [
     {
       "id": "overview",
-      "title": "Seven topics under one charter",
-      "question": "How does the task map route a work question to the one topic that owns its rule?",
-      "summary": "The task map routes each work question to the section that owns it, with the route for an urgent failure or breach first. Questions of authority and risk go to the charter, and four topics cite its risk levels.",
+      "title": "Seven topics led by the charter",
+      "question": "Which topic does the task map send each work question to?",
+      "summary": "The task map routes each work question to the topic that owns it, with the route for an urgent failure or breach first. Questions of authority and risk go to the charter, and four topics cite its risk levels.",
       "members": [
         "agent-entry",
         "task-map",
@@ -1104,8 +1107,8 @@
     {
       "id": "readers",
       "title": "Where readers start",
-      "question": "Where do members, Agents and maintainers start, and where does each entry lead?",
-      "summary": "Members read the repository entry first; it leads to the task map and points maintainers to Contributing. Agents start at the agent entry, then the task map, and read Repository change and release before a change.",
+      "question": "Where does each entry lead members, Agents and maintainers?",
+      "summary": "Members read the repository entry first; it leads to the task map and points maintainers to Contributing. Agents start at the Agent entry, then the task map, and read Repository change and release before a change.",
       "members": [
         "members",
         "repository-entry",
@@ -1119,8 +1122,8 @@
     },
     {
       "id": "practice",
-      "title": "What work practice asks of each topic",
-      "question": "Which duties does the work-practice capability place on each topic, and which rules do the topics share?",
+      "title": "What Work practice asks of each topic",
+      "question": "Which duty falls to which topic, and which rules do the topics share?",
       "summary": "Work practice places duties on the six topics under the charter, such as framing and records on Analysis and decisions. Four of them share the charter's risk levels, and Practice and evolution cites its hard boundaries.",
       "members": [
         "spec-work-practice",
@@ -1137,8 +1140,8 @@
     {
       "id": "change",
       "title": "One change, proposed and admitted",
-      "question": "How is a change to the guidelines proposed, recorded and admitted?",
-      "summary": "The OpenSpec workspace carries each material change as one official Change that ETHOS validates and plans. The ETHOS profile puts every path in a Change and binds the repository to installed ETHOS, which owns admission.",
+      "question": "Where is a change recorded, and what admits it?",
+      "summary": "The OpenSpec workspace carries each material change as one official Change that ETHOS validates and plans. The ETHOS profile counts every changed path as material and binds the repository to installed ETHOS, which owns admission.",
       "members": [
         "governance",
         "contributing",
@@ -1154,8 +1157,8 @@
     {
       "id": "checks",
       "title": "What the checks read",
-      "question": "Which native inputs do the installed checks read, locally and in CI?",
-      "summary": "The configuration map locates each check's native input: check inputs configure installed ETHOS and tool supply installs it. In CI, CI parameters generate pipelines that install the locked ETHOS and run its full graph.",
+      "question": "Where is each check's native input kept, and what runs the checks in CI?",
+      "summary": "The configuration map locates each check's native input: ETHOS is configured by Check inputs and installed by Tool supply. In CI, pipelines generated from CI parameters install the locked ETHOS and run its full graph.",
       "members": [
         "configuration-map",
         "check-inputs",
@@ -1170,9 +1173,9 @@
     },
     {
       "id": "release",
-      "title": "An edition on two Forges",
-      "question": "How is an edition cut and published on GitLab and GitHub?",
-      "summary": "Contributing prepares and cuts the edition and creates a Release on each Forge. The release declaration binds the GitLab and GitHub peers and protected v* tags; each Forge receives the signed edition on its own.",
+      "title": "A release on two Forges",
+      "question": "How is a release cut and published on GitLab and GitHub?",
+      "summary": "Following Contributing, a maintainer prepares and cuts the release and creates a Release on each Forge. The release declaration binds both Forges and protected v* tags; each Forge receives the signed release independently.",
       "members": [
         "governance",
         "contributing",

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "tree",
   "meta": {
-    "title": "哪个章节负责哪类工作问题",
+    "title": "哪个主题负责哪类工作问题",
     "locale": "zh-CN",
     "output": "topics.html",
     "quality_profile": "showcase",

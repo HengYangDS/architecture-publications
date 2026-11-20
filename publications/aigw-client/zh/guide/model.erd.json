@@ -165,7 +165,7 @@
     {
       "id": "erd-token",
       "label": "令牌",
-      "tag": "令牌存储",
+      "tag": "凭据存储",
       "row": 1,
       "col": 2,
       "attributes": [

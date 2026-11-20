@@ -4,13 +4,13 @@
   "id": "architecture-publisher",
   "locale": "en",
   "title": "Architecture Publisher",
-  "question": "How does Architecture Publisher turn an architecture model into a print edition and a page?",
-  "summary": "An author runs archpub on a model. A build validates it, gives each file in its scope to the component that claims it at the pinned revision, plans the views and lays each out on one grid. It typesets a print edition of the overview the model states and one plate per view, each part a card with a strip as long as its files are large, writes one Archify page, which is the author's guide when the model names one, the edition as data and a reader file, and a manifest of their digests; a named reviewer accepts the delivery before it is published.",
+  "question": "How does Architecture Publisher turn an architecture model into a print edition and an HTML page?",
+  "summary": "A build validates the model, gives each file in its scope at the pinned revision to the component that claims it, plans the views and lays each out on one grid. It typesets a print edition: the model's overview and one plate per view, each part a card with a strip whose length is in proportion to the size of its files. It also writes one HTML page, which is the author's guide when the model names one; the edition as data, with a reader file for a reader that works from text; and a manifest of their digests. A named reviewer accepts the delivery before it is published.",
   "scope": "Architecture Publisher as released at v0.15.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
   "limits": [
-    "Each component claims the directories and files its path rules name, and each file in the scope goes to its most specific claim; a relation cites the modules that import or call the other component.",
-    "Relations are imports and process calls in the source, not runtime order; the shared refusal type and the child environment are not drawn as relations.",
-    "The vendored programs, fonts and artwork that the supply manifests list, and the repository's tests, tools, documentation, OpenSpec changes and CI, are outside the scope."
+    "A component lists only the files under the paths it claims, each file given to its most specific claim; a relation lists only the modules that import or call the other component.",
+    "Relations show only imports and process calls in the source, not runtime order; none is drawn for the shared refusal type or the child environment.",
+    "The vendored programs, fonts and artwork that the supply manifests list, and the repository's tests, tools, documentation, OpenSpec Changes and CI, are outside the scope."
   ],
   "repository": {
     "name": "architecture-publisher",
@@ -23,7 +23,7 @@
   },
   "overview": {
     "claim": "Meaning, evidence, form and acceptance each have one owner",
-    "lead": "archpub draws any repository's architecture from an explicit model, binds every byte of a delivery to its inputs, and publishes only what a named reviewer accepted.",
+    "lead": "The publisher draws any repository's architecture from an explicit model, binds every byte of a delivery to its inputs, and publishes only what a named reviewer accepted.",
     "course": {
       "steps": [
         {
@@ -43,7 +43,7 @@
           "id": "repository",
           "label": "Repository",
           "note": "holds the evidence",
-          "text": "read through Git at the pinned revision, each file given to its most specific claim; no fetch, no prompt, no change to the checkout",
+          "text": "read through Git at the pinned revision, each file given to its most specific claim",
           "stations": [
             {
               "id": "files",
@@ -56,7 +56,7 @@
           "id": "publisher",
           "label": "Publisher",
           "note": "gives it form",
-          "text": "views on one column lattice, wires only horizontal or vertical; the edition set by Typst in the house faces",
+          "text": "each view on one grid; the edition set by Typst in the house faces",
           "stations": [
             {
               "id": "plan",
@@ -127,8 +127,8 @@
         {
           "at": "model-json",
           "id": "likec4",
-          "label": "A LikeC4 workspace, or a version 1 or 2 model",
-          "note": "imported, or migrated to version 3"
+          "label": "Imported from a LikeC4 workspace, or migrated",
+          "note": "from version 1 or 2 to version 3"
         }
       ]
     },
@@ -147,33 +147,24 @@
       {
         "title": "How a view is drawn",
         "items": [
-          [
-            "Rows",
-            "parts on shared row lines of one column lattice, each as wide as its text or its strip"
-          ],
+          ["Rows", "parts on shared row lines of one grid, each as wide as its text or its strip"],
           ["Wires", "only horizontal or vertical, in channels between rows"],
           ["Overlap", "a layout that overlaps is never drawn"],
-          ["Refusal", "a view no layout draws is refused, never shrunk"]
+          ["Refusal", "a view that no layout can draw is refused, never shrunk"]
         ],
         "view": "layout"
       },
       {
         "title": "What a delivery holds",
         "items": [
-          [
-            "Edition",
-            "one PDF/A-3a and PDF/UA-1 file; its pages as PNG, 2400 px wide unless asked"
-          ],
+          ["Edition", "one PDF/A-3a and PDF/UA-1 file; its pages as PNG, 2400 px wide by default"],
           ["Page", "one HTML file: the author's guide, or one Archify panel per view"],
           [
             "Data",
             "the model as read, the edition as JSON with each read file's digest, and a reader file"
           ],
           ["Manifest", "digests of the model, the supplies and every artifact"],
-          [
-            "Acceptance",
-            "an in-toto Statement of who accepted which bytes and when, with a colophon page"
-          ]
+          ["Acceptance", "the record as an in-toto Statement, with a colophon page"]
         ]
       },
       {
@@ -197,11 +188,11 @@
         "items": [
           [
             "Git",
-            "reads at the pinned revision, and clones it only to check a guide; never fetches or changes the checkout"
+            "reads at the pinned revision and clones only to check a guide; never fetches, prompts or changes the checkout"
           ],
           ["Children", "Git, Archify and Typst run with an allowlisted environment"],
           ["LikeC4", "parsed under Node's permission model, reading only its own supply"],
-          ["Output", "one new delivery directory, renamed into place when complete"],
+          ["Output", "one new delivery directory"],
           ["Bytes", "the same model, files and version give the same bytes on one platform"]
         ],
         "view": "files"
@@ -211,7 +202,10 @@
         "items": [
           ["check", "validate, bind, compose and count coverage; --against lists the re-pin work"],
           ["build", "write a delivery; compare, accept, verify and publish follow"],
-          ["import", "write a model from LikeC4; migrate converts versions 1 and 2"]
+          [
+            "import",
+            "write a model from LikeC4; migrate converts versions 1 and 2; scaffold drafts a guide"
+          ]
         ]
       },
       {
@@ -413,7 +407,7 @@
       "label": "Grid layout",
       "kind": "engine",
       "details": {
-        "places": "cards on one column lattice"
+        "places": "cards on one grid"
       },
       "files": ["src/layout/"]
     },
@@ -469,7 +463,7 @@
       "details": {
         "composes": "each view as one plate for the edition's body, at the narrowest of three widths that wires no worse, or at the full width with its summary above it",
         "records": "the balance gates each plate misses, for the reviewer",
-        "draws": "each part as one card, its strip as long as its files are large, on one scale for the edition",
+        "draws": "each part as one card, its strip's length the size of its files, on one scale for the edition",
         "justifies": "a part's details in an edition written without spaces between words, each line but a detail's last spread to one measure",
         "names": "what a figure shows and a card does not say, in its plate's key; the hub by lines twice as heavy"
       },
@@ -509,7 +503,7 @@
       "label": "Explainer page",
       "kind": "medium",
       "details": {
-        "delivers": "one native Archify explainer, one panel per view without a guide"
+        "delivers": "one native Archify page, one panel per view without a guide"
       },
       "files": ["src/map/"]
     },
@@ -518,7 +512,7 @@
       "label": "Guide",
       "kind": "medium",
       "details": {
-        "delivers": "the author's Archify draft as the page",
+        "delivers": "the guide, an Archify draft, as the page",
         "verifies": "every cited range at the pinned revision"
       },
       "files": ["src/map/guide.mjs"]
@@ -665,7 +659,7 @@
       "id": "importer-words",
       "from": "importer",
       "to": "words",
-      "label": "sets its words",
+      "label": "takes its words",
       "files": ["src/importers/likec4.mjs"]
     },
     {
@@ -847,7 +841,7 @@
       "id": "plates-words",
       "from": "plates",
       "to": "words",
-      "label": "sets its words",
+      "label": "takes its words",
       "files": [
         "src/poster/compose/plates.mjs",
         "src/poster/part.mjs",
@@ -866,14 +860,14 @@
       "id": "map-presentation",
       "from": "map",
       "to": "presentation",
-      "label": "types components",
+      "label": "marks the kinds",
       "files": ["src/map/archify.mjs"]
     },
     {
       "id": "map-words",
       "from": "map",
       "to": "words",
-      "label": "words the page",
+      "label": "takes its words",
       "files": ["src/map/archify.mjs", "src/map/explainer.mjs"]
     },
     {
@@ -971,7 +965,7 @@
       "id": "edition-words",
       "from": "edition",
       "to": "words",
-      "label": "sets its words",
+      "label": "takes its words",
       "files": ["src/edition/words.mjs"]
     },
     {
@@ -1001,7 +995,7 @@
       "id": "overview",
       "title": "One build, end to end",
       "question": "Which parts does one build pass through, from the author's model to a published delivery?",
-      "summary": "The author runs archpub build, and the delivery builder makes plates, the print edition, the page, and the data with its reader file. The reviewer runs compare, accept and verify; acceptance sets a colophon page beside the delivery, and only an accepted delivery is copied to the publication root.",
+      "summary": "The author runs archpub build, and the delivery builder makes plates, the print edition, the page, and the data with its reader file. The reviewer runs compare, accept and verify; the Acceptance and publication stage sets a colophon page beside the delivery and copies only an accepted delivery to the publication root.",
       "tiers": [
         {
           "id": "people",
@@ -1033,8 +1027,8 @@
     {
       "id": "files",
       "title": "Files at the pinned revision",
-      "question": "How does a build give each file to its owner at the pinned revision, and what does archpub check report?",
-      "summary": "At the pinned revision, file binding gives each file in the scope to its most specific claim and reads its digest, size and last change; from these the measured facts give each part its size and each file its age band, and the data keeps one row of evidence for each path. The coverage report counts owned, uncovered and excluded files; the re-pin worklist lists what moving the pin changes.",
+      "question": "How does a build give each file to the component that claims it, and what does the archpub check command report?",
+      "summary": "At the pinned revision, File binding gives each file in the scope to its most specific claim and reads its digest, size and last change; from these the Measured facts check gives each part its size and each file its age band, and the data keeps one row of evidence for each path. The coverage report counts owned, uncovered and excluded files; the re-pin worklist lists what moving the pin changes.",
       "members": [
         "builder",
         "model",
@@ -1050,15 +1044,15 @@
     {
       "id": "models",
       "title": "Where a model comes from",
-      "question": "How does a model reach the publisher: written by its author, imported from LikeC4 or migrated from an earlier version?",
-      "summary": "The author writes the model; through archpub, the LikeC4 importer parses a LikeC4 workspace and model migration converts a version 1 or 2 model to version 3. The model loader validates both as version 3.",
+      "question": "Which parts bring a model in from LikeC4 or from an earlier version, and which validates every model?",
+      "summary": "The author writes the model; through archpub, the LikeC4 importer parses a LikeC4 workspace and Model migration converts a version 1 or 2 model to version 3. The model loader validates every model as version 3.",
       "members": ["author", "cli", "importer", "migration", "model", "words", "supplies"]
     },
     {
       "id": "layout",
       "title": "Grid layout",
       "question": "How does one grid lay out both the plates and the page's diagrams?",
-      "summary": "Rows come from tiers or relations. Placement solves card positions exactly, wires group relations into buses and corridors, and the channel solver routes each channel; the measure refuses any overlap.",
+      "summary": "Rows come from tiers or relations. Placement solves card positions exactly, the Wires part groups relations into buses and corridors, and the channel solver routes each channel; the neatness measure refuses any overlap.",
       "tiers": [
         {
           "id": "media",
@@ -1081,7 +1075,7 @@
       "id": "edition",
       "title": "The print edition",
       "question": "What turns the planned views into the print edition, and which supplies does it use?",
-      "summary": "The plate composer turns each planned view into one plate and draws each part as one card, with a strip as long as its files are large. The print edition typesets every plate and the overview, which is drawn from what the model states, in one Typst pass; the supplies provide the fonts, the icons and the house faces.",
+      "summary": "The plate composer turns each planned view into one plate and draws each part as one card, with a strip whose length is in proportion to the size of its files. The Print edition part typesets every plate and the overview, which is drawn from what the model states, in one Typst pass; the Supplies part provides the fonts and the icons.",
       "members": [
         "builder",
         "plan",
@@ -1098,8 +1092,8 @@
     {
       "id": "page",
       "title": "The page",
-      "question": "How is the interactive page made, and what does it check?",
-      "summary": "The explainer page runs Archify and delivers one panel per view, or the author's Archify draft when the model names a guide. The guide clones the repository at the pinned revision and checks every cited range there.",
+      "question": "How is the page made, and what is checked on the way?",
+      "summary": "The Explainer page part runs Archify and delivers one panel per view, or the author's guide when the model names one. The Guide part clones the repository at the pinned revision to verify every cited range there.",
       "members": ["builder", "map", "guide", "presentation", "words", "supplies", "repository"]
     }
   ],

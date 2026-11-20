@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "一份审阅过的配置，写入每个客户端",
+    "title": "从命令到客户端文件",
     "output": "parts.html",
     "quality_profile": "showcase",
     "locale": "zh-CN",
@@ -131,7 +131,7 @@
       "id": "persists",
       "from": "parts-sync",
       "to": "parts-store",
-      "label": "持久化"
+      "label": "保存"
     },
     {
       "id": "plans-applies",

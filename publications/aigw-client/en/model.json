@@ -5,10 +5,10 @@
   "locale": "en",
   "title": "AIGW Client Projection",
   "question": "How does AIGW turn one reviewed configuration into guarded client files in every admitted client?",
-  "summary": "AIGW keeps providers, models and client selections in one locked configuration, aigw.toml, and its Tokens in one selected store. It writes AIGW's settings into each client's files through one adapter seam, as a guarded, compensated transaction. It never carries a request.",
+  "summary": "AIGW keeps providers, models and client selections in one configuration, aigw.toml, changed under one lock, and the provider Tokens in one selected store. It writes AIGW's settings into each client's files through one adapter seam, as a guarded, compensated transaction. It never carries a request.",
   "scope": "The AIGW program as released at v0.8.3: its production Go packages, the command entry point, the team file manifests/team.toml and go.mod.",
   "limits": [
-    "Each component cites every production file the rules attribute to it; a relation cites the files of the packages that import the other component.",
+    "A component lists only the production files under the paths it claims, and a relation only the files of the packages that import the other component.",
     "Tests, their inputs and the repository's tools, CI and documentation are outside the scope."
   ],
   "repository": {
@@ -47,7 +47,7 @@
             {
               "id": "provider",
               "label": "Provider",
-              "note": "a service you hold a Token for: one endpoint per protocol, never a credential"
+              "note": "a service the operator holds a Token for: one endpoint per protocol, never a credential"
             },
             {
               "id": "model",
@@ -66,7 +66,7 @@
           "id": "clients",
           "label": "Data plane · the clients",
           "note": "each client keeps its own state and calls its endpoint itself",
-          "text": "plan · apply · check, one guarded transaction",
+          "text": "plan · apply · check",
           "stations": [
             {
               "branches": [
@@ -83,7 +83,7 @@
                 {
                   "id": "claude-desktop",
                   "label": "Claude Desktop",
-                  "note": "Claude-3p/configLibrary · its own library; everything else stays with the app"
+                  "note": "Claude-3p/configLibrary · third-party inference; the rest stays with the app"
                 },
                 {
                   "id": "hermes",
@@ -99,14 +99,14 @@
           "id": "endpoints",
           "label": "Endpoints",
           "note": "providers, or a chosen gateway",
-          "text": "each request goes straight to its endpoint; traffic, retries and service lifecycle belong to them"
+          "text": "requests go straight to an endpoint; its product owns traffic normalization, retries and service lifecycle"
         }
       ],
       "lines": [
         {
           "from": "tokens",
           "to": ["codex", "claude-code", "claude-desktop", "hermes"],
-          "label": "each client reads its own Token on demand through aigw credential, matched to its client files"
+          "label": "through aigw credential, each client reads on demand the provider Token that a fingerprint in its files names"
         }
       ],
       "spurs": [
@@ -138,22 +138,25 @@
       {
         "title": "What the operator does",
         "items": [
-          ["setup", "first-time setup: one provider, one installed client and one of its models"],
+          [
+            "setup",
+            "start with one provider, one installed client and one of the provider's models"
+          ],
           ["use", "point one client at one provider/model"],
           [
             "sync",
-            "make every enabled client's files match; --dry-run shows the plan and reads no secret"
+            "make every enabled client's files match; --dry-run shows the plan and reads no credential"
           ],
           [
             "check",
             "as deep as --depth asks: local, endpoint, model or client; model and client may use quota"
           ],
           ["provider rotate", "replace one provider's Token"],
-          ["config rollback", "restore the configuration and the client files, not the program"]
+          ["config rollback", "roll back the configuration and the client files, not the program"]
         ]
       },
       {
-        "title": "One vocabulary every surface reports",
+        "title": "States and check depths, on every surface",
         "items": [
           [
             "configured",
@@ -164,7 +167,7 @@
             "a check without a request · one authenticated request that names no model"
           ],
           ["model · client", "one bounded inference request · a real client session"],
-          ["deferred", "a credential or a client's files postponed on purpose"],
+          ["deferred", "a client-file write or a credential postponed on purpose"],
           ["degraded", "still configured, with a recoverable problem"],
           ["invalid · unavailable", "unsafe to use · a required capability is missing"]
         ],
@@ -181,7 +184,7 @@
           {
             "id": "plan",
             "label": "Plan",
-            "note": "complete and secret-free before any write"
+            "note": "complete and credential-free before any write"
           },
           {
             "id": "prepare",
@@ -195,7 +198,7 @@
           {
             "id": "receipt",
             "label": "Receipt",
-            "note": "one receipt to compensate"
+            "note": "one to compensate from"
           }
         ],
         "pass": {
@@ -204,7 +207,7 @@
         },
         "aside": {
           "from": "commit",
-          "label": "Compensate in reverse, only while our write still holds; drift fails closed, and a later writer is never overwritten."
+          "label": "Compensation runs in reverse, only while AIGW's own write still holds; on drift it fails closed and never overwrites a later write."
         },
         "view": "projection"
       },
@@ -212,26 +215,26 @@
         "title": "Who owns what",
         "items": [
           ["AIGW configuration", "providers, models, recommendations and each client's selection"],
-          ["Selected Token store", "the provider Tokens; AIGW chooses the store"],
+          ["Credential store", "the provider Tokens; AIGW chooses the store"],
           ["Client adapter", "AIGW's own settings in one admitted client's files"],
           ["The client", "conversations, memory, tools and GUI state"],
           ["The endpoint product", "traffic normalization, retries and service lifecycle"],
-          ["Local Git and the Forges", "signed commits and tags; hosting, CI and Release records"]
+          ["Local Git and the Forges", "signed commits and tags; hosting, CI and release records"]
         ],
         "view": "authority"
       },
       {
         "title": "The program itself",
         "items": [
-          ["self update", "updates or rolls back only a portable program"],
+          ["self update · self rollback", "updates or rolls back only a portable program"],
           ["self uninstall", "removes AIGW's settings from client files, then the program"]
         ],
         "view": "program"
       },
       {
-        "title": "Team files, without secrets",
+        "title": "Team files, without credentials",
         "items": [
-          ["setup --from team.toml", "applies a team file; what it names wins for models"],
+          ["setup --from team.toml", "applies a reviewed team file, overriding local models"],
           ["--dry-run", "previews a team file and writes nothing"]
         ]
       },
@@ -239,7 +242,7 @@
         "title": "Changing a provider",
         "items": [
           ["provider edit", "changes an endpoint deliberately; no command renames a provider"],
-          ["provider rotate", "replaces a Token in the selected store"]
+          ["provider rotate", "the provider must accept the new Token"]
         ]
       }
     ]
@@ -275,6 +278,7 @@
       "icon": "database"
     },
     "client": {
+      "label": "client adapter",
       "category": "external",
       "icon": "app-window"
     }
@@ -282,7 +286,7 @@
   "components": [
     {
       "id": "program-entry",
-      "label": "Program",
+      "label": "Program entry",
       "kind": "interface",
       "details": {
         "starts": "the command-line application"
@@ -305,7 +309,7 @@
       "kind": "interface",
       "details": {
         "command": "aigw credential",
-        "serves": "a client's own Token on demand, on standard output, where it never writes a diagnostic"
+        "serves": "the Token of a client's provider on demand, on standard output, where it never writes a diagnostic"
       },
       "files": ["internal/cli/credential/"]
     },
@@ -314,7 +318,7 @@
       "label": "Terminal",
       "kind": "interface",
       "details": {
-        "renders": "human and JSON output, prompts and errors; imports no use case"
+        "renders": "human-readable and JSON output, prompts and errors; imports no use case"
       },
       "files": ["internal/terminal/"]
     },
@@ -323,7 +327,7 @@
       "label": "Use cases",
       "kind": "coordinator",
       "details": {
-        "returns": "values that several commands share, for the terminal to render"
+        "returns": "values that several commands share, for Terminal to render"
       },
       "files": ["internal/app/"]
     },
@@ -342,7 +346,7 @@
       "kind": "coordinator",
       "details": {
         "converges": "client selections and their client files",
-        "commits": "one configuration transition with guarded compensation"
+        "commits": "one configuration change, with guarded compensation"
       },
       "files": ["internal/app/synchronization/"]
     },
@@ -447,7 +451,7 @@
       "label": "Program updates",
       "kind": "boundary",
       "details": {
-        "resolves": "signed releases from both Forges",
+        "resolves": "signed releases from GitHub and GitLab",
         "installs": "a verified portable program, one predecessor kept"
       },
       "files": ["internal/program/"]
@@ -488,7 +492,7 @@
       "label": "Platform",
       "kind": "boundary",
       "details": {
-        "owns": "AIGW-owned paths, guarded file writes and their rollback, bounded child processes"
+        "owns": "AIGW's own paths, guarded file writes and their compensation, bounded child processes"
       },
       "files": ["internal/platform/"]
     }
@@ -505,7 +509,7 @@
       "id": "program-entry-client-admission",
       "from": "program-entry",
       "to": "client-admission",
-      "label": "admits clients",
+      "label": "loads admitted clients",
       "files": ["cmd/aigw/main.go"]
     },
     {
@@ -575,7 +579,7 @@
       "id": "commands-synchronization",
       "from": "commands",
       "to": "synchronization",
-      "label": "converges",
+      "label": "previews",
       "files": [
         "internal/cli/invocation/catalog.go",
         "internal/cli/invocation/closest.go",
@@ -833,7 +837,7 @@
       "id": "synchronization-credentials",
       "from": "synchronization",
       "to": "credentials",
-      "label": "checks the reader",
+      "label": "checks the Token reader",
       "files": [
         "internal/app/synchronization/preview.go",
         "internal/app/synchronization/selection.go",
@@ -961,7 +965,7 @@
       "id": "codex-platform",
       "from": "codex",
       "to": "platform",
-      "label": "guarded writes",
+      "label": "writes under guard",
       "files": [
         "internal/adapter/codex/adapter.go",
         "internal/adapter/codex/adapter_selection.go",
@@ -989,7 +993,7 @@
       "id": "claude-code-platform",
       "from": "claude-code",
       "to": "platform",
-      "label": "guarded writes",
+      "label": "writes under guard",
       "files": [
         "internal/adapter/claude/adapter.go",
         "internal/adapter/claude/adapter_verify.go",
@@ -1005,7 +1009,7 @@
       "id": "claude-desktop-platform",
       "from": "claude-desktop",
       "to": "platform",
-      "label": "guarded writes",
+      "label": "writes under guard",
       "files": [
         "internal/adapter/claudedesktop/adapter.go",
         "internal/adapter/claudedesktop/configuration.go",
@@ -1018,7 +1022,7 @@
       "id": "hermes-platform",
       "from": "hermes",
       "to": "platform",
-      "label": "guarded writes",
+      "label": "writes under guard",
       "files": [
         "internal/adapter/hermes/adapter.go",
         "internal/adapter/hermes/adapter_verification_unix.go",
@@ -1093,7 +1097,7 @@
       "id": "credentials-platform",
       "from": "credentials",
       "to": "platform",
-      "label": "owner-only files",
+      "label": "writes owner-only files",
       "files": [
         "internal/secret/command.go",
         "internal/secret/command_unix.go",
@@ -1189,9 +1193,9 @@
   "views": [
     {
       "id": "overview",
-      "title": "One reviewed configuration, written into every client",
-      "question": "How does one reviewed configuration become guarded client files in each admitted client?",
-      "summary": "Synchronization persists to the configuration store and plans and applies through the adapter seam that each client adapter implements. It commits one configuration transition with guarded compensation.",
+      "title": "From a command to the client files",
+      "question": "Which parts does a change pass through on the way?",
+      "summary": "Synchronization plans each change through the adapter seam, which every client adapter implements, saves it to the configuration store and then applies it through the same seam. A failed change is compensated under guard.",
       "members": [
         "commands",
         "use-cases",
@@ -1207,8 +1211,8 @@
     {
       "id": "authority",
       "title": "Who owns which state",
-      "question": "Which owners hold the configuration, the Tokens and the host's paths, and who reads them?",
-      "summary": "The configuration store owns aigw.toml under one lock and the credential store owns provider Tokens; the platform owns AIGW-owned paths. The credential helper reads one Token and the providers and clients it serves.",
+      "question": "Which owners hold the configuration, the Tokens and AIGW's own paths, and who reads them?",
+      "summary": "The configuration store owns aigw.toml under one lock and the credential store the provider Tokens; Platform owns AIGW's own paths. The credential helper reads the providers and clients, then the Token that a client file's fingerprint names.",
       "members": [
         "commands",
         "credential-helper",
@@ -1223,7 +1227,7 @@
       "id": "adapters",
       "title": "Admitted clients and their seam",
       "question": "How are client adapters admitted, held to one contract and kept to guarded writes?",
-      "summary": "The program admits clients: client admission lists the built-in adapters in admission order. Each adapter implements the adapter seam, held to one contract, and makes guarded writes through the platform.",
+      "summary": "Client admission admits clients by listing their built-in adapters in admission order; the program entry loads that list at start. Each adapter implements the adapter seam, held to one contract, and makes guarded writes through Platform.",
       "members": [
         "program-entry",
         "client-admission",
@@ -1239,8 +1243,8 @@
     {
       "id": "readiness",
       "title": "What a command can report",
-      "question": "How does a command decide what to report and what to do next?",
-      "summary": "Activation classifies the enabled-client scope, and readiness reads health from diagnostics to give a state such as configured or degraded; the depth that aigw check reached says how much was proven. Use cases return values the terminal renders as human or JSON output.",
+      "question": "Where does a command get the state and next action it reports?",
+      "summary": "Activation classifies the enabled-client scope and selects the next action. Readiness reads health from Diagnostics to give a state such as configured or degraded; the depth that aigw check reached says how much was proven. Terminal renders the values from Use cases as human-readable or JSON output.",
       "members": [
         "commands",
         "use-cases",
@@ -1256,7 +1260,7 @@
       "id": "program",
       "title": "The program itself",
       "question": "How does the program start, admit its clients and replace itself?",
-      "summary": "The program starts the commands and admits clients through client admission. Program updates resolves signed releases from both Forges and installs a portable program through the platform, keeping one predecessor.",
+      "summary": "The program entry starts Commands and loads the admitted clients from Client admission. The part Program updates finds signed releases on GitHub and GitLab and installs a portable program through Platform, keeping one predecessor.",
       "members": [
         "program-entry",
         "commands",
@@ -1270,9 +1274,9 @@
     },
     {
       "id": "projection",
-      "title": "One sync, from plan to compensation",
-      "question": "Where does one sync read, plan, write and compensate?",
-      "summary": "Synchronization observes through discovery, validates against the domain, plans and applies through the adapter seam and persists to the configuration store. The platform owns guarded file writes and their rollback.",
+      "title": "One sync, discovery to compensation",
+      "question": "Which part performs each step, and which compensates?",
+      "summary": "Synchronization observes through Discovery, validates against Domain, plans through the adapter seam, saves to the configuration store and then applies through the seam; on failure it compensates from the receipt. Platform owns guarded file writes and their compensation.",
       "members": [
         "synchronization",
         "discovery",

@@ -5,10 +5,10 @@
   "locale": "zh-CN",
   "title": "AIGW 统一客户端配置",
   "question": "AIGW 怎样把一份审阅过的配置，带防护地写入每个已准入客户端的文件？",
-  "summary": "AIGW 把提供商、模型和客户端的模型选择放在一份加锁的配置 aigw.toml 里，令牌放在选定的一个存储里。写入客户端文件时，它走统一的适配器接口，只改写其中归自己管的设置；整个写入是一次带防护的事务，中途出错会补偿。请求绝不经过 AIGW。",
+  "summary": "AIGW 把提供商、模型和客户端的模型选择放在一份配置 aigw.toml 里，改动时加锁；提供商令牌放在选定的一个存储里。写入客户端文件时，它走统一的适配器接口，只改写其中归自己管的设置；整个写入是一次带防护的事务，中途出错会补偿。请求绝不经过 AIGW。",
   "scope": "v0.8.3 发布版本的 AIGW 程序：生产代码的 Go 包、命令入口、团队文件 manifests/team.toml 和 go.mod。",
   "limits": [
-    "每个组件都列出规则划给它的全部生产代码文件；每条关系列出的，是导入另一方组件的那些包里的文件。",
+    "组件只列出它认领的路径下的生产代码文件，关系只列出导入了对方的那些包的文件。",
     "测试及其输入，以及仓库的工具、CI 和文档，都不在范围之内。"
   ],
   "repository": {
@@ -47,7 +47,7 @@
             {
               "id": "provider",
               "label": "提供商",
-              "note": "你持有其令牌的服务：每种协议一个端点，绝不含凭据"
+              "note": "操作者持有其令牌的服务：每种协议一个端点，绝不含凭据"
             },
             {
               "id": "model",
@@ -66,7 +66,7 @@
           "id": "clients",
           "label": "数据面 · 各客户端",
           "note": "各客户端保留自己的状态，自己调用自己的端点",
-          "text": "规划 · 应用 · 检查，一次带防护的事务",
+          "text": "规划 · 应用 · 检查",
           "stations": [
             {
               "branches": [
@@ -83,7 +83,7 @@
                 {
                   "id": "claude-desktop",
                   "label": "Claude Desktop",
-                  "note": "Claude-3p/configLibrary · 它自己的配置库；其余都归应用本身"
+                  "note": "Claude-3p/configLibrary · 第三方推理配置库；其余归应用本身"
                 },
                 {
                   "id": "hermes",
@@ -99,14 +99,14 @@
           "id": "endpoints",
           "label": "端点",
           "note": "提供商，或选定的网关",
-          "text": "每个请求直接发往自己的端点；流量、重试和服务生命周期都归它们"
+          "text": "客户端的请求直达各自端点；流量规范化、重试和服务生命周期归端点背后的服务"
         }
       ],
       "lines": [
         {
           "from": "tokens",
           "to": ["codex", "claude-code", "claude-desktop", "hermes"],
-          "label": "每个客户端通过 aigw credential 按需读取自己的令牌，令牌与该客户端的文件对应"
+          "label": "每个客户端通过 aigw credential 按需读取令牌：客户端文件里的指纹指明读哪个提供商的令牌"
         }
       ],
       "spurs": [
@@ -138,7 +138,7 @@
       {
         "title": "操作者做什么",
         "items": [
-          ["setup", "首次设置：一个提供商、一个已安装的客户端和它的一个模型"],
+          ["setup", "从一个提供商、一个已安装的客户端和该提供商的一个模型起步"],
           ["use", "让一个客户端选用一个 provider/model"],
           ["sync", "让每个已启用客户端的文件与配置一致；--dry-run 只显示计划，不读取任何凭据"],
           [
@@ -146,11 +146,11 @@
             "按 --depth 检查到 local、endpoint、model 或 client 一级；model 和 client 可能消耗配额"
           ],
           ["provider rotate", "替换一个提供商的令牌"],
-          ["config rollback", "恢复配置和客户端文件，不恢复程序"]
+          ["config rollback", "回滚配置和客户端文件，不回滚程序"]
         ]
       },
       {
-        "title": "各处输出共用的同一套状态词",
+        "title": "各处输出共用的状态词和检查深度",
         "items": [
           ["已配置", "本地前提条件满足；检查得越深，证明的就越多"],
           ["local · endpoint", "不发请求的检查 · 一次带认证、不指定模型的请求"],
@@ -203,7 +203,7 @@
         "title": "什么归谁",
         "items": [
           ["AIGW 配置", "提供商、模型、推荐和每个客户端的选择"],
-          ["选定的令牌存储", "提供商令牌；存储由 AIGW 选择"],
+          ["凭据存储", "提供商令牌；存储由 AIGW 选择"],
           ["客户端适配器", "某个已准入客户端文件里 AIGW 自己的设置"],
           ["客户端本身", "对话、记忆、工具和图形界面状态"],
           ["端点背后的服务", "流量规范化、重试和服务生命周期"],
@@ -214,7 +214,7 @@
       {
         "title": "程序本身",
         "items": [
-          ["self update", "只更新或回滚便携程序"],
+          ["self update · self rollback", "只更新或回滚便携程序"],
           ["self uninstall", "先移除 AIGW 在客户端文件中的设置，再移除程序"]
         ],
         "view": "program"
@@ -222,7 +222,7 @@
       {
         "title": "不含凭据的团队文件",
         "items": [
-          ["setup --from team.toml", "应用一个团队文件；模型以团队文件所列为准"],
+          ["setup --from team.toml", "应用审阅过的团队文件；模型与本地不同时以它为准"],
           ["--dry-run", "预览一个团队文件，不写入任何东西"]
         ]
       },
@@ -230,7 +230,7 @@
         "title": "变更提供商",
         "items": [
           ["provider edit", "有意修改一个端点；没有命令能重命名提供商"],
-          ["provider rotate", "替换选定存储中的一个令牌"]
+          ["provider rotate", "提供商接受新令牌后才替换"]
         ]
       }
     ]
@@ -273,7 +273,7 @@
       "icon": "database"
     },
     "client": {
-      "label": "客户端",
+      "label": "客户端适配器",
       "category": "external",
       "icon": "app-window"
     }
@@ -281,10 +281,10 @@
   "components": [
     {
       "id": "program-entry",
-      "label": "程序",
+      "label": "程序入口",
       "kind": "interface",
       "details": {
-        "入口": "命令行程序"
+        "启动": "命令行程序"
       },
       "files": ["cmd/aigw/"]
     },
@@ -304,7 +304,7 @@
       "kind": "interface",
       "details": {
         "命令": "aigw credential",
-        "输出": "客户端需要时，把该客户端自己的令牌写到标准输出；诊断信息绝不写到这里"
+        "输出": "客户端需要时，把它所用提供商的令牌写到标准输出；诊断信息绝不写到这里"
       },
       "files": ["internal/cli/credential/"]
     },
@@ -322,7 +322,7 @@
       "label": "用例",
       "kind": "coordinator",
       "details": {
-        "返回": "多条命令共用的值，交给终端渲染"
+        "返回": "多条命令共用的值，交给“终端”渲染"
       },
       "files": ["internal/app/"]
     },
@@ -446,7 +446,7 @@
       "label": "程序更新",
       "kind": "boundary",
       "details": {
-        "来源": "两个代码托管平台上已签名的发布版本",
+        "来源": "GitHub 和 GitLab 上已签名的发布版本",
         "安装": "验证过的便携程序，并保留前一版本"
       },
       "files": ["internal/program/"]
@@ -487,7 +487,7 @@
       "label": "平台",
       "kind": "boundary",
       "details": {
-        "管理": "AIGW 自己的路径、带防护的文件写入和回滚、受限的子进程"
+        "管理": "AIGW 自己的路径、带防护的文件写入及其补偿、受限的子进程"
       },
       "files": ["internal/platform/"]
     }
@@ -504,7 +504,7 @@
       "id": "program-entry-client-admission",
       "from": "program-entry",
       "to": "client-admission",
-      "label": "确定准入的客户端",
+      "label": "载入已准入的客户端",
       "files": ["cmd/aigw/main.go"]
     },
     {
@@ -574,7 +574,7 @@
       "id": "commands-synchronization",
       "from": "commands",
       "to": "synchronization",
-      "label": "收敛",
+      "label": "预览",
       "files": [
         "internal/cli/invocation/catalog.go",
         "internal/cli/invocation/closest.go",
@@ -819,7 +819,7 @@
       "id": "synchronization-configuration-store",
       "from": "synchronization",
       "to": "configuration-store",
-      "label": "持久化",
+      "label": "保存",
       "files": [
         "internal/app/synchronization/preview.go",
         "internal/app/synchronization/selection.go",
@@ -832,7 +832,7 @@
       "id": "synchronization-credentials",
       "from": "synchronization",
       "to": "credentials",
-      "label": "检查凭据读取程序",
+      "label": "检查读取令牌的程序",
       "files": [
         "internal/app/synchronization/preview.go",
         "internal/app/synchronization/selection.go",
@@ -1092,7 +1092,7 @@
       "id": "credentials-platform",
       "from": "credentials",
       "to": "platform",
-      "label": "仅属主可读写的文件",
+      "label": "写入仅属主可读写的文件",
       "files": [
         "internal/secret/command.go",
         "internal/secret/command_unix.go",
@@ -1188,9 +1188,9 @@
   "views": [
     {
       "id": "overview",
-      "title": "一份审阅过的配置，写入每个客户端",
-      "question": "一份审阅过的配置，怎样带防护地写入每个已准入客户端的文件？",
-      "summary": "同步组件通过适配器接口规划并应用改动，每个客户端适配器都实现这个接口，结果保存到配置存储。每次同步提交一次配置变更，中途出错会有条件地补偿。",
+      "title": "从命令到客户端文件",
+      "question": "一次改动途中要经过哪些组件？",
+      "summary": "“同步”通过适配器接口规划每次改动，先保存到配置存储，再通过适配器接口应用；每个客户端适配器都实现这个接口。中途出错，会有条件地补偿。",
       "members": [
         "commands",
         "use-cases",
@@ -1206,8 +1206,8 @@
     {
       "id": "authority",
       "title": "哪些状态归谁",
-      "question": "配置、令牌和主机路径各归谁管，又有谁会读取？",
-      "summary": "aigw.toml 归配置存储管，由一把锁保护；提供商令牌归凭据存储管；AIGW 自己的路径归平台组件管。凭据助手读取一个令牌，以及与之对应的提供商和客户端。",
+      "question": "配置、令牌和 AIGW 自己的路径各归谁管，又有谁会读取？",
+      "summary": "aigw.toml 归配置存储管，由一把锁保护；提供商令牌归凭据存储管；AIGW 自己的路径归“平台”管。凭据助手先读取提供商和客户端，再读取客户端文件里的指纹所指的令牌。",
       "members": [
         "commands",
         "credential-helper",
@@ -1222,7 +1222,7 @@
       "id": "adapters",
       "title": "已准入的客户端和适配器接口",
       "question": "客户端适配器怎样准入，怎样遵守同一份契约，又怎样确保只做带防护的写入？",
-      "summary": "准入哪些客户端由程序确定：客户端准入组件按准入顺序列出内置适配器。每个适配器都实现适配器接口、遵守同一份契约，并通过平台组件做带防护的写入。",
+      "summary": "“客户端准入”按准入顺序列出内置适配器，由此确定准入哪些客户端；程序入口启动时载入这份清单。每个适配器都实现适配器接口、遵守同一份契约，并通过“平台”做带防护的写入。",
       "members": [
         "program-entry",
         "client-admission",
@@ -1238,8 +1238,8 @@
     {
       "id": "readiness",
       "title": "命令能报告什么",
-      "question": "命令如何决定报告什么、下一步做什么？",
-      "summary": "激活组件划定已启用客户端的范围；就绪状态组件从诊断组件读取健康状况，给出“已配置”“降级”这类状态；aigw check 检查到哪一级，就证明到哪一级。用例返回的值由终端渲染成给人读的文字或 JSON。",
+      "question": "命令报告的状态和下一步操作，各从哪里来？",
+      "summary": "“激活”划定已启用客户端的范围，并选出下一步操作；“就绪状态”从“诊断”读取健康状况，给出“已配置”“降级”这类状态；aigw check 检查到哪一级，就证明到哪一级。“用例”返回的值由“终端”渲染成给人读的文字或 JSON。",
       "members": [
         "commands",
         "use-cases",
@@ -1255,7 +1255,7 @@
       "id": "program",
       "title": "程序本身",
       "question": "程序怎样启动，怎样确定准入哪些客户端，又怎样替换自己？",
-      "summary": "程序启动各条命令；哪些客户端可用，由客户端准入组件决定。程序更新组件从两个代码托管平台解析已签名的发布版本，再通过平台组件安装便携程序，并保留前一个版本。",
+      "summary": "程序入口启动“命令”，并从“客户端准入”载入已准入的客户端。“程序更新”在 GitHub 和 GitLab 上查找已签名的发布版本，再通过“平台”安装便携程序，并保留前一版本。",
       "members": [
         "program-entry",
         "commands",
@@ -1269,9 +1269,9 @@
     },
     {
       "id": "projection",
-      "title": "一次同步：从规划到补偿",
-      "question": "一次同步里，读取、规划、写入和补偿各在哪里完成？",
-      "summary": "同步组件先通过发现组件观测现状，再按领域规则校验，然后通过适配器接口规划并应用，最后保存到配置存储。带防护的文件写入及其回滚都归平台组件管。",
+      "title": "一次同步：从发现到补偿",
+      "question": "每一步由哪个组件完成，出错时又由谁补偿？",
+      "summary": "“同步”先通过“发现”观测，再按“领域”的规则校验，然后通过适配器接口规划，把改动保存到配置存储，最后通过适配器接口应用；出错时凭回执补偿。带防护的文件写入及其补偿归“平台”管。",
       "members": [
         "synchronization",
         "discovery",

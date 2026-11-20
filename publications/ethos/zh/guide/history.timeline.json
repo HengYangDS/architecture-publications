@@ -241,8 +241,8 @@
       "at": "2026-11-11T14:22:20+08:00",
       "lane": "lanes",
       "kind": "change",
-      "title": "beta.7 统一的操作目录",
-      "detail": "每条命令都从操作目录中选定一项声明过的操作，CLI、SDK 和 MCP 工具因此拒绝同样的请求。npm 启动器退役，改为直接运行安装好的 ethos。",
+      "title": "beta.7 统一的操作总表",
+      "detail": "每条命令都从操作总表中选定一项声明过的操作，CLI、SDK 和 MCP 工具因此拒绝同样的请求。npm 启动器退役，改为直接运行安装好的 ethos。",
       "sources": [
         {
           "path": "CHANGELOG.md",

@@ -4,7 +4,7 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 
 - [It changes requests, never conversations](block:p-portable): store=false, no provider bindings, and tool calls kept with their outputs.[](source:readme-compat)
 - [A request the provider received in full is never sent again](block:p-resend); the client gets `502 upstream_outcome_unknown` and decides.[](source:dr6-resend)
-- [An upgrade keeps admitting turns](block:p-handoff): the new process inherits the listening socket, and the old one finishes what it accepted.[](source:readme-handoff)
+- [An upgrade keeps admitting turns](block:p-handoff): the successor process inherits the listening socket, and the old one finishes what it accepted.[](source:readme-handoff)
 - [Every installation step is journaled](block:p-install), so `recover` finishes or undoes an interrupted one.[](source:arch-completion)
 
 @answer scope="OpenAI Responses Proxy v6.0.3 · commit 6d1b384 · its source and its own documents"
@@ -300,8 +300,8 @@ A handoff that fails before its successor commits is rolled back. Deployment fir
 
 A request that ends without the listener's answer is not rolled back at once, because the listener may still begin it. Deployment waits for the request's timeout and one second, 31 seconds by default, from its first read of a listener with no handoff in flight. An upgrade or a rollback then restores the previous release if the listener still shows none. A handoff that begins in that time is followed to its end.[](source:code-wait-at-rest)[](source:code-resolve)[](source:changelog-602)
 
-@callout level=warning title="A runtime without both handoff capabilities is refused"
-| `install`, `rollback` and `reload` refuse a runtime that does not advertise both handoff capabilities, before any change. Every release from 5.0.0 on advertises both. Remove an older runtime with its own release, then install this one.[](source:code-strategy)[](source:code-incompatible)[](source:readme-handoff)[](source:changelog-600) |
+@callout level=warning title="A listener that lacks a handoff capability is refused"
+| `install`, `rollback` and `reload` refuse a running listener that does not advertise both `selected-generation-handoff` and `admission-preserving-handoff`, before any change. Every release from 5.0.0 on advertises both. Remove an older installation with its own release, then install this one.[](source:code-strategy)[](source:code-incompatible)[](source:readme-handoff)[](source:changelog-600) |
 
 ## What does an installation write, and where? {#p-disk}
 
@@ -335,7 +335,7 @@ The watchdog starts the listener when its port is closed, and waits while a tran
 @steps id=running-steps
 | step-run-manager | Native service manager | Starts the watchdog at load and keeps it alive.[](source:code-plist)[](source:code-unit)[](source:code-task) | running-map | run-manager |
 | step-run-watchdog | Watchdog | Checks the listener port every 15 s and backs off up to 120 s while starts keep failing.[](source:code-watchdog) | running-map | run-watchdog |
-| step-run-carrier | runtime-config.json | The listener, watchdog and handoff child each load the carrier beside their own executable, not the shell's environment.[](source:code-activate-carrier) | running-map | run-carrier |
+| step-run-carrier | runtime-config.json | The listener, watchdog and handoff child each load the config beside their own executable, not the shell's environment.[](source:code-activate-carrier) | running-map | run-carrier |
 | step-run-cli | Command line | One lifecycle writer at a time; `status` reads /healthz and the payload without changing anything.[](source:code-lock)[](source:readme-evidence) | running-map | run-cli |
 
 @facts

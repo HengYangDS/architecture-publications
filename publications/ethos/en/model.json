@@ -8,8 +8,8 @@
   "summary": "ETHOS compiles an OpenSpec Change, fresh facts and prior Attestations into a TransitionPlan, admits each effect only on a pass, and holds every governed repository, itself included, to one declared structure.",
   "scope": "The ETHOS product as released at v0.2.0-beta.10: the src/ethos package, its system declarations and the repository's own .ethos binding.",
   "limits": [
-    "Each component cites every file the rules attribute to it; a relation cites the modules that import the other component.",
-    "Relations are imports and process calls in the source, not runtime order or design intent."
+    "A component lists only the files under the paths it claims, and a relation only the modules that import the other component.",
+    "Relations show only source imports and process calls, not runtime order or design intent."
   ],
   "repository": {
     "name": "ethos",
@@ -21,7 +21,7 @@
     "include": ["src/ethos/", "system/", ".ethos/"]
   },
   "overview": {
-    "claim": "Intent is compiled and proven before the repository moves",
+    "claim": "Intent is compiled and the commit proven before the repository moves",
     "lead": "Each step compiles official intent and fresh facts into one TransitionPlan; only a pass admits an effect, every effect is one exact compare-and-swap, and no Attestation grants authority.",
     "course": {
       "steps": [
@@ -40,7 +40,7 @@
             {
               "id": "start",
               "label": "Start",
-              "note": "own branch from the candidate train"
+              "note": "own branch from the candidate"
             },
             {
               "id": "prewrite",
@@ -51,7 +51,7 @@
             {
               "id": "commit",
               "label": "Commit",
-              "note": "hooks of the selected runtime admit it",
+              "note": "hooks of the selected runtime guard it",
               "view": "commits"
             },
             {
@@ -62,7 +62,7 @@
             {
               "id": "proof",
               "label": "Prove",
-              "note": "the gate graph for the exact HEAD, kept beside Git",
+              "note": "exact HEAD's gate DAG; proof in the Git common directory",
               "view": "proof"
             }
           ],
@@ -72,7 +72,7 @@
           "id": "candidate",
           "label": "Candidate",
           "note": "candidate/dev · land",
-          "text": "Lanes land one at a time; a stale base is refused and replayed by lane refresh-base.",
+          "text": "Lanes land one at a time; a lane on a stale base is refused until lane refresh-base replays it.",
           "view": "overview"
         },
         {
@@ -85,7 +85,7 @@
           "id": "release",
           "label": "Release",
           "note": "main · signed v* tags",
-          "text": "main takes signed tags of accepted dev; hosted jobs release them."
+          "text": "main takes accepted dev, then a signed tag; hosted jobs release the tag."
         },
         {
           "id": "peers",
@@ -119,10 +119,7 @@
       {
         "title": "How a lane is held",
         "items": [
-          [
-            "Lease",
-            "holder, generation and expiry in state.sqlite: one owner per lane, renewed, resumed or taken over"
-          ],
+          ["Lease", "holder, generation and expiry in state.sqlite: one holder per lane"],
           [
             "Write order",
             "target path · repository root · context refresh · status · prewrite · write · post-write audit"
@@ -131,19 +128,16 @@
             "Handoff",
             "a lane moves between hosts as one content-addressed package; revoke-source ends the old Lease"
           ],
-          [
-            "Retire",
-            "landed, superseded, absorbed-ref, abandon or recover, always at the expected head"
-          ]
+          ["Retire", "always at the expected head; retirement ends the Lease"]
         ],
         "view": "lanes"
       },
       {
-        "title": "How a move is refused",
+        "title": "Refusals and their repair",
         "items": [
           ["No authority", "without --authorize and --expect-head nothing moves"],
           [
-            "Diverged train",
+            "Diverged candidate",
             "candidate --refresh-from-accepted resets it before the lane is replayed"
           ],
           ["Unproven archive", "archive-change --compensate restores the exact pre-archive head"],
@@ -162,7 +156,7 @@
           {
             "id": "authority",
             "label": "Authority",
-            "note": "resolved, with every contradiction"
+            "note": "resolved; every contradiction reported"
           },
           {
             "id": "compile",
@@ -181,7 +175,7 @@
           {
             "id": "effect",
             "label": "Effect",
-            "note": "one exact compare and swap"
+            "note": "one exact compare-and-swap"
           },
           {
             "id": "record",
@@ -202,7 +196,7 @@
       },
       {
         "title": "Structure every governed repository shares",
-        "text": "ETHOS holds itself to the same floor. A profile chooses facts and gates, never what a command means.",
+        "text": "ETHOS holds itself to the same structure. A profile chooses facts and gates, never what a command means.",
         "lists": [
           {
             "title": "Declared",
@@ -215,7 +209,7 @@
           {
             "title": "Checked",
             "items": [
-              ["Documents", "names, licence, links"],
+              ["Documents", "names, license, links"],
               ["Size", "one per-file ceiling"],
               ["Pipelines", "one CI model, every Forge"]
             ]
@@ -229,7 +223,7 @@
             ]
           },
           {
-            "title": "Beside Git",
+            "title": "In the Git common directory",
             "items": [
               ["state.sqlite", "the Leases"],
               ["attestations-set", "the durable Attestations"],
@@ -248,16 +242,16 @@
         ]
       },
       {
-        "title": "Reached the same way",
+        "title": "One meaning, every surface",
         "items": [
-          ["CLI", "status, plan, prove, land, publish, lane, hook and host"],
-          ["MCP", "the same operations over a root-bound transport"],
+          ["CLI", "status, plan, prove, land, publish, adopt, lane and others"],
+          ["MCP", "status, plan, land, publish and adopt"],
           ["Skills", "packages checked against the commands they declare"]
         ],
         "view": "surfaces"
       },
       {
-        "title": "Every lane ends explicitly",
+        "title": "Lane commands",
         "items": [
           ["retire", "landed · superseded · absorbed-ref · abandon · recover"],
           ["lease", "renew · resume · reacquire · takeover"],
@@ -315,7 +309,7 @@
       "label": "CLI",
       "kind": "surface",
       "details": {
-        "commands": "status, plan, prove, land, publish, adopt, lane, hook, attestation, mcp",
+        "commands": "status, plan, prove, land, publish, adopt, lane, hook, host, attestation, mcp",
         "launcher": "the installed ethos console, which runs each command in the repository's selected runtime"
       },
       "files": ["src/ethos/cli.py", "src/ethos/surface/cli/", "src/ethos/application/console.py"]
@@ -325,7 +319,7 @@
       "label": "MCP server",
       "kind": "surface",
       "details": {
-        "projects": "the same application operations over a root-bound transport"
+        "projects": "status, plan, land, publish and adopt"
       },
       "files": ["src/ethos/surface/mcp/"]
     },
@@ -975,7 +969,7 @@
       "id": "operation-catalog-projections",
       "from": "operation-catalog",
       "to": "projections",
-      "label": "runs lane project, format",
+      "label": "runs lane project, lane format",
       "files": ["src/ethos/application/catalog.py"]
     },
     {
@@ -989,7 +983,7 @@
       "id": "operation-catalog-lease",
       "from": "operation-catalog",
       "to": "lease",
-      "label": "runs lane lease, handoff",
+      "label": "runs lane lease, lane handoff",
       "files": ["src/ethos/application/catalog.py"]
     },
     {
@@ -1094,7 +1088,7 @@
       "id": "current-resolution-kernel",
       "from": "current-resolution",
       "to": "kernel",
-      "label": "builds Commitment",
+      "label": "loads Commitment",
       "files": [
         "src/ethos/adapters/admission/current/authority.py",
         "src/ethos/adapters/admission/current/resolution.py"
@@ -1330,7 +1324,7 @@
       "id": "hooks-ref-admission",
       "from": "hooks",
       "to": "ref-admission",
-      "label": "admits ref updates",
+      "label": "admits ref moves",
       "files": [
         "src/ethos/adapters/repo/hook/admission.py",
         "src/ethos/application/hook/admission.py"
@@ -1747,8 +1741,8 @@
     {
       "id": "overview",
       "title": "One change, from intent to the accepted branch",
-      "question": "How does one change move from an official OpenSpec Change to a proven commit on the accepted branch?",
-      "summary": "A Work Lane starts an owned branch and worktree; prewrite admission admits its exact write paths. Landing requires proof of the exact HEAD and a mutation decision, and promotes the lane to candidate, dev and main by CAS.",
+      "question": "Which components admit, prove and land a change, from its OpenSpec Change to the accepted branch?",
+      "summary": "A Work Lane starts an owned branch and worktree; Prewrite admission admits its exact write paths. On proof of the exact HEAD and a Mutation decision, the part Landing and acceptance promotes the lane in turn to candidate, dev and main by compare-and-swap (CAS).",
       "members": [
         "openspec-intent",
         "work-lane",
@@ -1763,8 +1757,8 @@
     {
       "id": "status",
       "title": "Where a checkout stands",
-      "question": "How does ethos status read a checkout's role, gaps and next action?",
-      "summary": "The CLI hands status to the operation catalog, which runs it. Status resolves Lease authority, official intent and fresh path facts once, through current resolution, and answers with role, gaps, foreign lanes and the next action.",
+      "question": "How does the ethos status command read a checkout's role, gaps and next action?",
+      "summary": "The CLI hands status to the operation catalog, which runs it. Status resolves Lease authority, official intent and fresh path facts once, through Current resolution, and answers with role, gaps, foreign lanes and the next action.",
       "members": [
         "cli",
         "operation-catalog",
@@ -1779,9 +1773,9 @@
     },
     {
       "id": "intent",
-      "title": "Intent compiled into a plan",
+      "title": "Where a TransitionPlan comes from",
       "question": "How does ETHOS compile the official Change and fresh facts into one TransitionPlan?",
-      "summary": "OpenSpec intent compiles the official Change into a Commitment, and current resolution resolves fresh path facts. Planning selects gates and compiles the TransitionPlan; only a pass admits an effect.",
+      "summary": "The part OpenSpec intent compiles the Change into a Commitment, and Current resolution resolves fresh path facts. Planning selects gates and compiles the TransitionPlan; only a pass admits an effect.",
       "members": [
         "cli",
         "operation-catalog",
@@ -1798,8 +1792,8 @@
     {
       "id": "proof",
       "title": "Proof of one exact HEAD",
-      "question": "How is the proof of one exact HEAD produced, judged and kept?",
-      "summary": "The gate runner runs the admitted gate DAG; native evidence captures each native tool's output once. Quality obligations judge coverage and tests from native reports; proof records its Attestation in the Attestation set.",
+      "question": "How is such a proof produced, judged and kept?",
+      "summary": "The gate runner runs the admitted gate DAG; Native evidence captures each native tool's output once. The part Quality obligations judges coverage and tests from native reports; Proof Attestation records the proof in the Attestation set.",
       "members": [
         "cli",
         "operation-catalog",
@@ -1817,7 +1811,7 @@
       "id": "admission",
       "title": "What may mutate the repository",
       "question": "Which checks admit a write, a commit or a ref move, and who holds the authority?",
-      "summary": "Prewrite admission admits exact write paths and patches, attributes them to the Change and checks authority and the Lease holder. Hooks guard commits and ref moves; ref admission admits ref intents against the Lease.",
+      "summary": "Prewrite admission admits exact write paths and patches, attributes them to the Change and checks authority and the Lease holder. The hook protocol guards commits and ref moves; Ref admission admits ref intents against the Lease.",
       "members": [
         "cli",
         "operation-catalog",
@@ -1834,8 +1828,8 @@
     {
       "id": "lanes",
       "title": "A Work Lane from start to retirement",
-      "question": "How is a Work Lane started, moved between hosts, landed and retired?",
-      "summary": "A Work Lane acquires the Lease and creates a branch and worktree; handoff moves it between hosts as one content-addressed package. The mutation decision admits landing, which moves refs by CAS; retirement ends the Lease.",
+      "question": "Which components start a lane, move it between hosts, land it and retire it?",
+      "summary": "A Work Lane acquires the Lease and creates a branch and worktree; Lane handoff moves it between hosts as one content-addressed package. The Mutation decision admits ethos land; refs move by CAS in Landing and acceptance; Lane retirement ends the Lease.",
       "members": [
         "cli",
         "operation-catalog",
@@ -1851,8 +1845,8 @@
     {
       "id": "commits",
       "title": "Commits a lane may make",
-      "question": "How does a lane admit its commits and bind the hooks that guard them?",
-      "summary": "A Work Lane admits its commits through commits and signatures, which enforce the commit grammar and SSH signatures against the trust anchor. The lane activates the hooks that Git runs to guard commits.",
+      "question": "What admits a lane's commits, and what guards them?",
+      "summary": "The part Commits and signatures admits a lane's commits: it enforces the commit grammar and verifies SSH signatures against the trust anchor. The lane activates the hooks Git runs to guard commits.",
       "members": [
         "work-lane",
         "commits",
@@ -1867,8 +1861,8 @@
     {
       "id": "peers",
       "title": "Publication to every peer",
-      "question": "How does an accepted head reach each Forge, and what binds its release?",
-      "summary": "Peer publication requires proof, admits updates through ref admission and pushes exact refs to each Forge with a receipt. Landing selects the release refs; release identity compiles each distribution's build identity.",
+      "question": "How does an accepted head reach each peer, and what selects release refs?",
+      "summary": "Peer publication requires proof, admits updates via Ref admission and pushes exact refs to each Forge with a receipt. Release refs are selected by Landing and acceptance; Release identity compiles each distribution's build identity.",
       "members": [
         "cli",
         "operation-catalog",
@@ -1886,7 +1880,7 @@
       "id": "structure",
       "title": "The structure every governed repository shares",
       "question": "What does ETHOS declare and check about a repository's structure, in ETHOS itself and every adopter?",
-      "summary": "Repository paradigm declares names, documents, package docstrings, OpenSpec, toolchain, pipelines and size for every repository, ETHOS included, and repairs gaps deterministically. Repository audit checks conformance and docs.",
+      "summary": "Repository paradigm declares names, documents, package docstrings, OpenSpec, toolchain, pipelines and size for every repository, ETHOS included, and repairs gaps deterministically. Repository audit covers conformance and docs.",
       "members": [
         "repository-audit",
         "paradigm",
@@ -1904,7 +1898,7 @@
       "id": "runtime",
       "title": "The runtime every hook runs",
       "question": "How does a repository bind one immutable runtime, so that plain Git commands are admitted?",
-      "summary": "Runtime generations select one immutable runtime through runtime/CURRENT, with tools from the exact mise lock, and proof binds it. The hook protocol selects that runtime; ref admission admits the hooks' effects.",
+      "summary": "The part Runtime generations selects one immutable runtime through runtime/CURRENT, with tools from the exact mise lock, and Proof Attestation binds it. The hook protocol selects that runtime; Ref admission admits the hooks' effects.",
       "members": [
         "cli",
         "operation-catalog",
@@ -1921,8 +1915,8 @@
     {
       "id": "surfaces",
       "title": "One meaning, every surface",
-      "question": "How do people, agents and Git reach the same operations?",
-      "summary": "The CLI hands each request to the operation catalog, which runs the one implementation the request selects. The MCP server projects status, plan, land, publish and adopt over a root-bound transport; the CLI is the installed ethos console.",
+      "question": "How do the CLI and the MCP server reach the same operations?",
+      "summary": "The CLI hands each request to the operation catalog, which runs the one implementation the request selects. The MCP server projects five of these operations (status, plan, land, publish and adopt) over a root-bound transport; the CLI is the installed ethos console.",
       "members": [
         "cli",
         "operation-catalog",

@@ -5,12 +5,12 @@
   "locale": "en",
   "title": "Film Kit",
   "question": "How does Film Kit rebuild a film's two editions from its tracked sources, and what holds each step to its inputs?",
-  "summary": "Film Kit narrates each edition thought by thought with a pinned local voice model, assembles one soundtrack at one program level, times the captions, gates and renders the picture, and packages four films, a UHD master and a 1080p film each with captions and without. Each step records the SHA-256 of what it read, and a later step refuses a record bound to other bytes.",
+  "summary": "Film Kit narrates each edition thought by thought with a pinned local voice model, assembles one soundtrack at one program level, times the captions, gates and renders the picture, and packages four films: a UHD master and a 1080p film, each with and without captions. Each step records the SHA-256 of what it read, and a later step refuses a record bound to other bytes.",
   "scope": "The Film Kit engine as released at v0.24.1: the src/filmkit package, with its Python modules, Node tools and watch list, and the pyproject.toml and VERSION that package it.",
   "limits": [
-    "Each component cites every file the rules attribute to it; a relation cites the modules that make its call or run its process.",
-    "Relations are calls and process calls in the source, not runtime order, and not every call is drawn: reads of the film record and the spoken units, which most modules make, the calls that verification and review make across the build, the take judgment's calls into alignment and selection, and auditions' runs of the narration command are named in component details.",
-    "Tests, the sample film, the OpenSpec specifications and Changes, the documentation and the repository's tooling and CI are outside the scope."
+    "A component lists only the files under the paths it claims, and a relation only the modules that make its call or run its process.",
+    "A relation shows only a call or process call in the source, not runtime order. Four kinds of call are not drawn, and the web page names them: most reads of Spoken units and of Film and editions; the calls Verification and Review make across the build; Take judgment's calls into Alignment and selection; and the runs of the narration command by Auditions and script edits.",
+    "Tests, the sample film, the OpenSpec specifications and changes, the documentation and the repository's tooling and CI are outside the scope."
   ],
   "repository": {
     "name": "filmkit",
@@ -97,7 +97,7 @@
       "steps": [
         {
           "label": "The film",
-          "note": "film.toml and the files it names",
+          "note": "the declaration and the files it names",
           "stations": [
             {
               "label": "Declare",
@@ -110,7 +110,7 @@
         },
         {
           "label": "Narration",
-          "note": "filmkit.narration.narrate",
+          "note": "narration.narrate",
           "stations": [
             {
               "label": "Check words",
@@ -164,7 +164,7 @@
         },
         {
           "label": "Package",
-          "note": "package-metadata, package-film",
+          "note": "produce package-metadata, package-film",
           "stations": [
             {
               "label": "Package",
@@ -198,7 +198,7 @@
           "view": "acceptance"
         },
         {
-          "label": "Rebuild",
+          "label": "Reproduce",
           "note": "delivery.reproduction",
           "stations": [
             {
@@ -210,7 +210,7 @@
           "id": "rebuild"
         }
       ],
-      "text": "zh and en take each step from Narrate to Package. Each record binds the SHA-256 of what its step read, and a later step refuses one bound to other bytes.",
+      "text": "Each edition, zh and en, takes every step from Narrate to Package. Each record binds the SHA-256 of what its step read, and a later step refuses one bound to other bytes.",
       "parallel": [
         {
           "from": "narrate",
@@ -225,7 +225,7 @@
         "items": [
           [
             "Concepts",
-            "each segment says its declared concepts in approved words; no counterexample appears anywhere"
+            "each segment says its declared concepts in approved words; no declared counterexample appears anywhere"
           ],
           [
             "Readings",
@@ -241,25 +241,25 @@
         "items": [
           [
             "Frame audit",
-            "every frame at 1/30 s: layout, legibility, balance and how text lines up"
+            "at 30 frames per second: layout, legibility, balance and how text lines up"
           ],
-          ["Sync audit", "each label against its spoken words; marks that wait for a name"],
+          ["Sync audit", "each label against its spoken words; any mark whose name is late"],
           [
             "Text measures",
-            "the declared title for 1 s before the first word; each text at rest at 4.5:1 or more"
+            "the declared title shows for 1 s before the first word; text at rest has a contrast of 4.5:1 or more"
           ],
           ["Motion audit", "ghosts, stalls, pops, jumps and dash snaps at 30 frames per second"],
           [
             "Detail audit",
             "single lines, strokes and names, through every frame at 60 frames per second"
           ],
-          ["Gate record", "binds the composition, timeline, stylesheet, fonts and engine version"]
+          ["Gate record", "picture-gates, with a verdict; the picture renders only after a pass"]
         ],
         "view": "picture"
       },
       {
-        "title": "A take reaches the soundtrack only if it ends whole",
-        "note": "A whole take is quiet at its end, its last syllable dying away instead of stopping.",
+        "title": "A take reaches the soundtrack only if it ends naturally",
+        "note": "A natural ending is quiet: the last syllable dies away instead of stopping short.",
         "stations": [
           {
             "id": "seed",
@@ -297,7 +297,7 @@
         },
         "aside": {
           "from": "judge",
-          "label": "Abrupt: audition other seeds, or read on into the next thought and cut in the quiet, then bind the chosen seed to the thought's text and speech. The assembly refuses an abrupt take unless the film declares a release for its join."
+          "label": "Abrupt: audition other seeds, or read on into the next thought and cut in the quiet, then bind the chosen seed to the thought's text and speech. The assembly refuses an abrupt take unless the film declares a tail release for its join."
         },
         "view": "sound"
       },
@@ -325,7 +325,7 @@
         "items": [
           ["declaration", "file prefix, editions, fonts, player colours and review policy"],
           ["scripts, casts", "each edition's text, thoughts, seeds and retakes"],
-          ["composition", "the picture's template, script and style"]
+          ["composition", "the picture's template, code and style"]
         ]
       },
       {
@@ -340,7 +340,7 @@
       {
         "title": "Delivered per edition",
         "items": [
-          ["films", "a UHD master and a 1080p film, each with captions and without"],
+          ["films", "a UHD master and a 1080p film, each with and without captions"],
           ["viewing", "cover, SRT, VTT, transcript, chapters and player"],
           ["entry", "one language page leads to both players"]
         ],
@@ -425,7 +425,7 @@
       "details": {
         "finds": "the film that FILMKIT_ROOT names, or the nearest content/film.toml",
         "declares": "file prefix, editions, fonts, player colours, review policy and source manifest, checked before any work",
-        "fixes": "60 fps, 48 kHz, -16.5 LUFS, and a UHD master and a 1080p film, each with captions and without"
+        "fixes": "60 fps, 48 kHz, -16.5 LUFS, and a UHD master and a 1080p film, each with and without captions"
       },
       "files": [
         "src/filmkit/__init__.py",
@@ -550,7 +550,7 @@
       "kind": "step",
       "details": {
         "assembles": "the selected takes with designed pauses at one program level",
-        "refuses": "a take that ends abruptly without a declared release, an unmarked pause above its limit, and a declared term said unlike its reference",
+        "refuses": "a take that ends abruptly without a declared tail release, an unmarked pause above its limit, and a declared term said unlike its reference",
         "writes": "the soundtrack, the timeline, the assembly receipt and the sound gate's record",
         "judges": "the assembled soundtrack by the review's measures, and refuses a segment under the film's clarity floor, an abrupt or cut ending and a stopped phrase",
         "levels": "on the tolerances a script declares, each thought within its segment, each segment within its chapter and each chapter within the film, each by one static gain"
@@ -693,7 +693,7 @@
       "label": "Packaging",
       "kind": "step",
       "details": {
-        "packages": "four films, a UHD master and a 1080p film each with captions and without, with cover, release tags and chapters; each 1080p film encoded by x264 in software and keyed every 2 s, and no film with B-frames",
+        "packages": "four films (a UHD master and a 1080p film, each with and without captions), with cover, release tags and chapters; each 1080p film encoded by x264 in software and keyed every 2 s, and no film with B-frames",
         "derives": "the viewing package: cover, subtitles, transcript, chapters and the player, which the engine renders",
         "sets": "the chapter track's language in place",
         "names": "the film's version from its VERSION, in each film and on both pages"
@@ -1038,7 +1038,7 @@
       "id": "take-judgment-soundtrack",
       "from": "take-judgment",
       "to": "soundtrack",
-      "label": "reads the declared releases",
+      "label": "reads the declared tail releases",
       "files": ["src/filmkit/narration/judgment.py"]
     },
     {
@@ -1080,7 +1080,7 @@
       "id": "soundtrack-captions",
       "from": "soundtrack",
       "to": "captions",
-      "label": "times captions",
+      "label": "has cues timed",
       "files": ["src/filmkit/soundtrack/assembly.py"]
     },
     {
@@ -1132,7 +1132,7 @@
       "id": "picture-gate-picture-rendering",
       "from": "picture-gate",
       "to": "picture-rendering",
-      "label": "binds composition, faces",
+      "label": "binds composition, fonts",
       "files": ["src/filmkit/picture/gates.py", "src/filmkit/picture/sync_audit.py"]
     },
     {
@@ -1160,7 +1160,7 @@
       "id": "tool-runner-picture-rendering",
       "from": "tool-runner",
       "to": "picture-rendering",
-      "label": "takes the declared faces",
+      "label": "takes the declared fonts",
       "files": ["src/filmkit/picture/metrics.py"]
     },
     {
@@ -1327,7 +1327,7 @@
       "id": "delivery-host-tools",
       "from": "delivery",
       "to": "host-tools",
-      "label": "rsync, shasum",
+      "label": "runs rsync, shasum",
       "files": ["src/filmkit/delivery/folder.py"]
     },
     {
@@ -1425,9 +1425,9 @@
   "views": [
     {
       "id": "overview",
-      "title": "From a film's sources to its delivered films",
-      "question": "Which commands carry one edition from its script to its four delivered films?",
-      "summary": "The narration command runs synthesis for the thought takes. The production command assembles the soundtrack, refreshes captions, checks the picture, renders it only after a passing gate record and packages four films. Both commands write a duration record when they end.",
+      "title": "From a film's sources to its packaged films",
+      "question": "Which commands carry one edition from its script to its four packaged films?",
+      "summary": "The narration command hands synthesis to Thought takes. The production command assembles the soundtrack, refreshes captions, checks the picture, renders it only after a passing gate record and packages four films. Both commands write a duration record when they end.",
       "members": [
         "narration-command",
         "thought-takes",
@@ -1443,8 +1443,8 @@
     {
       "id": "film",
       "title": "What the engine reads from a film",
-      "question": "What does the engine read from the film it builds, and what must hold before narration?",
-      "summary": "Film and editions reads the film repository's declaration and checks it before any work. The narration command first runs the word checks on concepts, readings and terms, and refuses before any speech model loads.",
+      "question": "Which component reads the film's declaration, and what must hold before narration?",
+      "summary": "The part Film and editions reads the film repository's declaration and checks it before any work. The narration command first runs Word checks on concepts, readings and terms and, if one fails, refuses before any speech model loads.",
       "members": [
         "film-repository",
         "film-and-editions",
@@ -1459,8 +1459,8 @@
     {
       "id": "narration",
       "title": "Narration and its supply",
-      "question": "How is each thought narrated, auditioned and aligned, and what does the supply install first?",
-      "summary": "Thought takes narrate each thought from the cast's seed or retake, and auditions try other seeds; the take judgment judges each take by the film's lines, and alignment and selection aligns each recording to its text. Supply installs the browser build and three speech models. No narration process outlives a narration that is asked to end.",
+      "question": "How is each thought narrated, auditioned and aligned, and what does Supply install first?",
+      "summary": "Each thought is narrated by Thought takes, from the cast's seed or retake, and other seeds are tried by Auditions and script edits; Take judgment judges each take by every line the film holds for it; each recording is aligned to its text by Alignment and selection; Supply installs the browser build and three speech models. A narration run that is asked to end leaves no process behind.",
       "members": [
         "narration-command",
         "thought-takes",
@@ -1477,7 +1477,7 @@
       "id": "sound",
       "title": "One assembly for sound and captions",
       "question": "How do the selected takes become one soundtrack, a timeline and its captions?",
-      "summary": "Soundtrack assembly sets the selected takes with designed pauses at one program level, writes the soundtrack and timeline, and refuses abrupt takes. Captions time cues on the aligned words, never across a thought.",
+      "summary": "Soundtrack assembly lays out the selected takes with designed pauses, brings the whole to one program level, writes the soundtrack and timeline, and refuses abrupt takes. Each cue is timed by Captions on the aligned words; no cue spans two thoughts.",
       "members": [
         "production-command",
         "alignment",
@@ -1510,8 +1510,8 @@
     {
       "id": "acceptance",
       "title": "Packaging, verification, delivery and review",
-      "question": "How are the films packaged, verified, delivered, reviewed and reproduced?",
-      "summary": "Packaging encodes four films; verification reads each record and decodes each film; delivery sends 25 members and reads them back. Review prompts the independent reviewer; reproduction compares a rebuild with the published release.",
+      "question": "What checks the four packaged films, and what is a rebuild compared with?",
+      "summary": "Packaging encodes four films; Verification reads each record and decodes each film; Delivery sends the delivery folder its 25 members and reads them back. Review writes prompts for the independent reviewer; Reproduction compares a rebuild with the published release.",
       "members": [
         "packaging",
         "verification",

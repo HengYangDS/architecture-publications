@@ -1,10 +1,10 @@
-# OpenAI Responses Proxy 怎样让 Codex 流量能在提供商之间迁移，又怎样让自己持续运行？ {#guide}
+# OpenAI Responses Proxy 怎样让 Codex 流量可在提供商之间移植，又怎样让自己持续运行？ {#guide}
 
-OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 客户端和第三方 Responses 提供商之间。[](source:readme-what) 每个请求都按同一套封闭语法重建，能在提供商之间迁移；客户端的会话存储，它绝不改动。[](source:readme-portable)[](source:dr2-decision) 代理每次安装都成为不可变的一代，由看门狗监管，看门狗则由系统服务管理器保活。[](source:readme-generations)[](source:readme-macos)
+OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 客户端和第三方 Responses 提供商之间。[](source:readme-what) 每个请求都按同一套封闭语法重建，可在提供商之间移植；客户端的会话存储，它绝不改动。[](source:readme-portable)[](source:dr2-decision) 代理每次安装都成为不可变的一代，由看门狗监管，看门狗则由系统服务管理器保活。[](source:readme-generations)[](source:readme-macos)
 
 - [只改请求，绝不改会话](block:p-portable)：store=false，不带提供商绑定，工具调用和输出不拆开。[](source:readme-compat)
-- [提供商已完整收到的请求绝不再发](block:p-resend)；客户端收到 `502 upstream_outcome_unknown`，由它决定怎么办。[](source:dr6-resend)
-- [升级期间继续放行每轮请求](block:p-handoff)：新进程继承监听套接字，旧进程做完已接受的请求。[](source:readme-handoff)
+- [提供商已完整收到的请求绝不重发](block:p-resend)；客户端收到 `502 upstream_outcome_unknown`，由它决定怎么办。[](source:dr6-resend)
+- [升级期间继续放行每轮请求](block:p-handoff)：后继进程继承监听套接字，旧进程做完已接受的请求。[](source:readme-handoff)
 - [每个安装步骤都记入事务日志](block:p-install)，因此 `recover` 能完成或撤销中断的安装。[](source:arch-completion)
 
 @answer scope="OpenAI Responses Proxy v6.0.3 · 提交 6d1b384 · 源代码与项目自有文档"
@@ -203,7 +203,7 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 
 ## 请求发出去时保留了什么？ {#p-portable}
 
-连续性来自客户端重放的对话，而非提供商的存储。因此，可移植的会话无需服务端状态，就能在已准入的提供商之间迁移。[](source:dr2-consequence)
+连续性来自客户端重放的对话，而非提供商的存储。因此，可移植的会话无需服务端状态，就能在已准入的提供商之间移植。[](source:dr2-consequence)
 
 @diagram tree id=projection-tree source=projection.tree.json
 
@@ -300,8 +300,8 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 
 请求若没等到监听器应答就结束，部署不立即回滚，因为监听器仍可能开始交接。部署第一次读到监听器没有交接在进行，就从这时起等满请求自带的超时再加一秒，默认共 31 秒。届时仍没有交接，升级或回滚才还原此前的发布版本。这期间开始的交接，部署一直跟到结束。[](source:code-wait-at-rest)[](source:code-resolve)[](source:changelog-602)
 
-@callout level=warning title="未同时声明两项交接能力的运行时会被拒绝"
-| 运行时若没有同时声明两项交接能力，`install`、`rollback` 和 `reload` 在做任何改动之前就拒绝。5.0.0 起的每个发布版本都声明了这两项能力。更旧的运行时要先用它自己的版本卸载，再安装本版本。[](source:code-strategy)[](source:code-incompatible)[](source:readme-handoff)[](source:changelog-600) |
+@callout level=warning title="缺少交接能力的监听器会被拒绝"
+| 运行中的监听器若没有同时声明 `selected-generation-handoff` 和 `admission-preserving-handoff`，`install`、`rollback` 和 `reload` 在做任何改动之前就拒绝。5.0.0 起的每个发布版本都声明了这两项能力。更旧的安装要先用它自己的版本卸载，再安装本版本。[](source:code-strategy)[](source:code-incompatible)[](source:readme-handoff)[](source:changelog-600) |
 
 ## 一次安装写入什么，写在哪里？ {#p-disk}
 

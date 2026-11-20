@@ -38,7 +38,7 @@
       "id": "take-judged",
       "type": "decision",
       "label": "已判定",
-      "sublabel": "是否完整收尾？",
+      "sublabel": "是否自然收尾？",
       "sources": [
         {
           "path": "src/filmkit/narration/take_edges.py",
@@ -183,7 +183,7 @@
   "cards": [
     {
       "dot": "emerald",
-      "title": "什么是完整收尾",
+      "title": "什么是自然收尾",
       "items": ["最后 30 ms 是安静的。", "最后一个音节渐渐消失，而不是在不到 6 ms 内戛然而止。"]
     },
     {

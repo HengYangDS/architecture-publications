@@ -4,13 +4,13 @@
   "id": "openai-responses-proxy",
   "locale": "zh-CN",
   "title": "OpenAI Responses Proxy",
-  "question": "OpenAI Responses Proxy 如何让一轮 Codex Responses 对话能在第三方提供商之间迁移？又如何安装自己的监听器，并让它持续运行？",
-  "summary": "回环监听器按一套只认已知结构的封闭语法重建每个 Responses 请求，并设 store=false；请求发往路径所指的提供商，全程受同一个总时限约束，只有失败类别允许时才重试。已签名的发布版本由一个事务完成安装，全程写入事务日志，成为不可变的一代；升级时，监听套接字交给新进程；监听器一旦停止，系统服务管理器托管的看门狗就会重启它。",
+  "question": "OpenAI Responses Proxy 如何让一轮 Codex Responses 对话可在第三方提供商之间移植？又如何安装自己的监听器，并让它持续运行？",
+  "summary": "回环监听器按一套只认已知结构的封闭语法重建每个 Responses 请求，并设 store=false；请求发往路径所指的提供商，全程受同一个总时限约束，只有失败类别允许时才重试。已签名的发布资产由一个事务完成安装，全程写入事务日志，成为一个不可变的世代；升级时，监听套接字交给后继进程；监听器一旦停止，系统服务管理器托管的看门狗就会重启它。",
   "scope": "v6.0.3 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
   "limits": [
-    "每个组件负责其声明中列出的文件；关系所引用的，是导入或调用另一组件的文件。",
-    "关系代表承载行为的导入、进程调用，或对另一组件对象的调用（对象由调用方传入）；仅为异常类、类型、共用辅助函数或产品名称而做的导入，图中不画。",
-    "测试、仓库工具、OpenSpec 规范及其正式变更历史、文档和 CI 都不在范围内，各自注明了排除理由。"
+    "组件只列出它认领的路径下的文件，关系只列出导入或调用对方组件的文件。",
+    "关系只表示用到对方行为的导入、进程调用，或对另一组件对象的调用（对象由外部传入）；仅为异常类、类型、共用辅助函数或产品名称而做的导入，不画。",
+    "测试、仓库工具、OpenSpec 规范及其正式变更历史、文档和 CI 都不在范围内。"
   ],
   "repository": {
     "name": "openai-responses-proxy",
@@ -99,7 +99,7 @@
     ]
   },
   "overview": {
-    "claim": "可移植的请求，事务化的发布",
+    "claim": "可移植的请求，事务化的安装",
     "lead": "面向 Codex 及其他 Responses 客户端的回环数据面：每个请求都按 store=false 重建，再发往路径所指的提供商；代理还负责安装、交接和监管自己的监听器。",
     "course": {
       "steps": [
@@ -131,12 +131,12 @@
             {
               "id": "delegation",
               "label": "委派",
-              "note": "仅在选用它的路由上可读"
+              "note": "Agent 消息仅在明文路由上可读"
             },
             {
               "id": "gate",
-              "label": "闸门",
-              "note": "提供商在冷却中则立即应答"
+              "label": "冷却",
+              "note": "提供商冷却期间拒绝请求"
             },
             {
               "id": "exchange",
@@ -146,7 +146,7 @@
             {
               "id": "transport",
               "label": "传输",
-              "note": "不跟随重定向；已发出的请求绝不重发"
+              "note": "不跟随重定向；发出后无应答的请求绝不重发"
             }
           ],
           "view": "request-path"
@@ -188,7 +188,7 @@
         {
           "from": "transport",
           "to": ["client"],
-          "label": "投递环节逐个校验事件后才写出；内容出现之前的事件先暂存，此时收到 response.failed 还能重新发起。"
+          "label": "“响应投递”逐个校验事件后才写出；内容之前的事件先暂存，其中若有 response.failed，还能重新发起请求。"
         }
       ]
     },
@@ -206,18 +206,18 @@
       {
         "title": "每种失败只有一种应对，且有限度",
         "items": [
-          ["429", "转发一次；仅该提供商按 Retry-After 冷却，至多 300 秒"],
+          ["429", "转发给客户端，不重试；仅该提供商按 Retry-After 冷却，至多 300 秒"],
           ["重试后的 503", "转发；该提供商短暂冷却，直到下一次探测"],
-          ["DMXAPI 477", "完全匹配的 empty_response：同样的字节再发一次"],
+          ["DMXAPI 477", "完全匹配的 empty_response：用同样的字节重试一次"],
           ["response_failed", "逐步缩小、不拆配对地重试，最后再试一次只含对话的请求"],
           ["输入超长", "删减历史后改发一次更小的请求，保留本轮输入和图片"],
           ["发出后断连", "502 upstream_outcome_unknown；由客户端决定"],
-          ["时限", "响应提交前返回 504；提交后关闭流，绝不重放"]
+          ["时限", "尚无内容送达时返回 504；否则关闭流，绝不重放"]
         ],
         "view": "failures"
       },
       {
-        "title": "每次发布都是一个事务，全程写入事务日志",
+        "title": "每次安装都是一个事务，全程写入事务日志",
         "stations": [
           {
             "id": "admitted",
@@ -280,13 +280,13 @@
             "note": "旧监听器处理完手上的各轮对话，至多 900 秒"
           }
         ],
-        "text": "升级、回滚和重载都走这条路径。运行时若未同时声明两项交接能力，命令在改动之前就拒绝。",
+        "text": "升级、回滚和重载都走这条路径。运行中的监听器若缺少任何一项交接能力，命令在改动之前就拒绝。",
         "view": "handoff"
       },
       {
         "title": "保持运行",
         "items": [
-          ["服务管理器", "launchd、systemd 或任务计划程序负责保活"],
+          ["系统服务管理器", "launchd、systemd 或任务计划程序重启看门狗"],
           ["看门狗", "每 15 秒检查端口；启动监听器"]
         ],
         "view": "supervision"
@@ -420,7 +420,7 @@
       "kind": "gate",
       "details": {
         "请求体": "只读一个，按长度定界，限时 30 秒、限长 64 MiB",
-        "计数": "运行中的处理器和已放行的 Responses 请求；交接之后，旧监听器等它们结束",
+        "计数": "处理中的 HTTP 请求和已放行的 Responses 请求；交接之后，旧监听器等它们结束",
         "控制": "交接只接受回环客户端的请求，Host 须为回环地址，且不带 Origin"
       },
       "files": ["src/openai_responses_proxy/relay/admission.py"]
@@ -498,7 +498,7 @@
       "details": {
         "时限": "DNS、连接、TLS、写入和读取都不得超出交互时限",
         "复用": "空闲不超过 30 秒的 keep-alive 连接",
-        "拒绝": "重定向；完整发出的请求绝不再发"
+        "拒绝": "重定向；完整发出而无应答的请求绝不重发"
       },
       "files": [
         "src/openai_responses_proxy/relay/upstream.py",
@@ -511,9 +511,9 @@
       "kind": "relay",
       "details": {
         "校验": "最终的 JSON 响应体；SSE 事件则逐个校验后才写出",
-        "暂存": "内容出现之前的事件；此时遇到 response.failed 还能重新发起",
+        "暂存": "内容出现之前的事件；其中若有 response.failed，还能重新发起请求",
         "结束": "遇到终态事件或顶层 error 事件就结束这条流，之后的内容不再转发",
-        "报告": "每条流和每个 JSON 响应怎样结束，记入遥测和日志；error 事件记为 stream_error，并带事件的错误码"
+        "报告": "每条流和每个 JSON 响应如何结束，记入遥测和日志；error 事件记为 stream_error，并带事件的错误码"
       },
       "files": [
         "src/openai_responses_proxy/relay/sse.py",
@@ -684,7 +684,7 @@
     },
     {
       "id": "generation-selector",
-      "label": "代选择器",
+      "label": "世代选择器",
       "kind": "state",
       "details": {
         "选定": "当前的不可变代，以及至多一个前代；已安装的载荷只经它指明的代读取",
@@ -701,7 +701,7 @@
       "kind": "coordinator",
       "details": {
         "方式": "替换运行中的监听器只走交接，准入全程开放",
-        "拒绝": "未同时声明两项交接能力的运行时，在做任何改动之前",
+        "拒绝": "缺少 selected-generation-handoff 或 admission-preserving-handoff 能力的监听器，在做任何改动之前",
         "回滚": "在后继进程 COMMIT 之前就失败的交接；先由 /healthz 确认旧监听器仍在服务、与交接开始时记下的一致，并有证据表明这次请求的交接不会再开始",
         "等待": "请求没等到监听器的应答就结束时，等满请求自带的超时再加一秒，之后才还原",
         "身份": "事务完结前，先核实后继进程的身份"
@@ -764,7 +764,7 @@
       "id": "listener-request-admission",
       "from": "listener",
       "to": "request-admission",
-      "label": "统计处理器数、核对控制请求方",
+      "label": "统计处理中请求、核对交接来源",
       "files": [
         "src/openai_responses_proxy/serving/control.py",
         "src/openai_responses_proxy/serving/entrypoint.py",
@@ -913,7 +913,7 @@
       "id": "bounded-recovery-replay-projection",
       "from": "bounded-recovery",
       "to": "replay-projection",
-      "label": "重新投影派生请求",
+      "label": "重建每个派生请求",
       "files": [
         "src/openai_responses_proxy/protocol/recovery/execution.py",
         "src/openai_responses_proxy/protocol/recovery/input.py"
@@ -1127,8 +1127,8 @@
     {
       "id": "request-path",
       "title": "一轮 Responses 对话：从客户端到提供商",
-      "question": "一轮 Responses 对话，从客户端到提供商要经过哪些部分？",
-      "summary": "回环监听器把每一轮对话交给 Responses 转发环节，由它重建请求体并放行。上游交互经上游传输把请求发给提供商，响应投递再返回 JSON 或 SSE。",
+      "question": "这一轮对话途中依次由哪些组件处理？",
+      "summary": "回环监听器把每一轮对话交给“Responses 转发”，由它重建请求体并放行。“上游交互”经“上游传输”把请求发给提供商，“响应投递”再返回 JSON 或 SSE。",
       "members": [
         "client",
         "listener",
@@ -1144,8 +1144,8 @@
     {
       "id": "portability",
       "title": "发往提供商的请求",
-      "question": "请求怎样才能在提供商之间迁移？被拒的请求又怎样缩小？",
-      "summary": "重放投影发送时设 store=false，不带 response、conversation 或缓存绑定，工具调用与输出始终配对。被拒的请求由限次恢复派生出严格更小、不拆配对的请求，再重新投影。",
+      "question": "投影保留什么、去除什么？被提供商拒绝的请求如何缩小？",
+      "summary": "“重放投影”设 store=false，去除与前一个 response、conversation 和缓存的绑定，工具调用与输出始终配对。被提供商拒绝的请求，由“限次恢复”派生出严格更小、不拆配对的请求，再逐个重建。",
       "members": [
         "responses-relay",
         "replay-projection",
@@ -1159,8 +1159,8 @@
     {
       "id": "failures",
       "title": "失败按提供商隔离",
-      "question": "上游失败后如何重试、冷却出问题的提供商并报告，而不耽误其他提供商？",
-      "summary": "上游交互只在失败类别允许时重试；遇到 429 或重试耗尽的 503，只冷却出问题的那个提供商。遥测统计失败类别；上游传输绝不把完整发出的请求再发一次。",
+      "question": "上游失败后，重试什么、报告什么？又如何只冷却出问题的那个提供商？",
+      "summary": "“上游交互”只在失败类别允许时重试；遇到 429 或重试耗尽的 503，只冷却出问题的那个提供商。失败类别由“遥测与日志”统计；请求完整发出后若没等到应答，“上游传输”绝不重发。",
       "members": [
         "upstream-exchange",
         "upstream-transport",
@@ -1174,8 +1174,8 @@
     {
       "id": "install",
       "title": "一次安装，一个事务",
-      "question": "已签名的发布资产如何成为选定的一代？哪些可以回滚？",
-      "summary": "发布版本准入先验证 SHA256SUMS.sig；载荷事务把通过准入的字节落盘，成为新的一代，全程写入事务日志。事务要么完结，要么回滚；代选择器至多保留一个前代。",
+      "question": "已签名的发布资产如何成为当前代？回滚能回到哪一代？",
+      "summary": "“发布版本准入”先验证 SHA256SUMS.sig；“载荷事务”把通过准入的字节落盘，成为新的一代，全程写入事务日志。事务要么完结，要么还原原状；世代选择器至多保留一个前代。",
       "members": [
         "command-line",
         "lifecycle-commands",
@@ -1190,8 +1190,8 @@
     {
       "id": "handoff",
       "title": "换新监听器，一轮也不丢",
-      "question": "升级和重载如何把监听套接字移到新进程？",
-      "summary": "监听器交接把监听套接字交给后继进程，期间准入一直开放；替换监听器没有别的方式。运行时若未同时声明两项交接能力，部署就拒绝；事务完结之前，部署先核实后继进程的身份。",
+      "question": "升级和重载如何把监听套接字移到后继进程？",
+      "summary": "“监听器交接”把监听套接字交给后继进程，期间请求准入一直开放；替换监听器没有别的方式。监听器若未同时声明两项交接能力（从选定的一代交接、保持请求准入开放），“部署”就拒绝；事务完结前，它先核实后继进程的身份。",
       "members": [
         "deployment",
         "listener",
@@ -1205,8 +1205,8 @@
     {
       "id": "supervision",
       "title": "由操作系统保持运行",
-      "question": "谁启动监听器并让它持续运行？",
-      "summary": "生命周期命令注册系统服务监管，卸载时移除它；系统服务监管注册看门狗，由系统服务管理器启动它，并在它停止时重启。看门狗发现端口关闭就启动监听器，但有事务仍在进行、尚未激活时会等待。",
+      "question": "看门狗何时启动监听器？",
+      "summary": "“生命周期命令”通过“系统服务监管”向系统服务管理器注册看门狗，卸载时移除；系统服务管理器启动它，并在它停止时重启。看门狗发现端口关闭就启动监听器，但有事务仍在进行、尚未激活时会等待。",
       "members": [
         "lifecycle-commands",
         "native-supervision",

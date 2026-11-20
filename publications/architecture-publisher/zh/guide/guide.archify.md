@@ -156,7 +156,7 @@
 
 ## 模型里有什么，什么时候会被拒绝？ {#p-model}
 
-模型由作者编写，也可以用 `archpub import likec4` 从 LikeC4 工作空间生成，或用 `archpub migrate` 从第 1 版模型转换。[](source:model-meaning)[](source:ops-migrate)加载器一遍就报出所有问题和各自的 JSON 路径；模型无效，就什么也不构建。[](source:load-problems)
+模型由作者编写，也可以用 `archpub import likec4` 从 LikeC4 工作空间生成，或用 `archpub migrate` 从第 1 版模型转换。[](source:model-meaning)[](source:ops-migrate)加载器一遍就报出所有错误和各自的 JSON 路径；模型无效，就什么也不构建。[](source:load-problems)
 
 按模型格式，最小的模型只有三个组件、两个关系和它们的类型。[](source:model-smallest)[](source:model-minimal)它可以构建，但它的图版会让图册正文区大半空白。[](source:model-smallest)
 
@@ -176,7 +176,7 @@
 | 未知字段 | 拒绝，因此拼错的字段不会悄悄消失。[](source:model-unknown) |
 | `marks` 字段或未知的配色 | 拒绝，代码为 `model_field_retired` 或 `model_palette_unknown`，并指出 `/edition` 下的 JSON 路径。[](source:edition-read) |
 | id 为 `model`、`manifest`、`acceptance` 或 `colophon` | 以 `delivery_name_taken` 拒绝，因为交付物里会有两个文件同名。[](source:delivery-names) |
-| 无效模型 | 退出码 1，并给出每个问题的代码、JSON 路径和说明。[](source:cli-exit) |
+| 无效模型 | 退出码 1，并给出每处错误的代码、JSON 路径和说明。[](source:cli-exit) |
 
 ## 按固定的提交，每个文件怎样找到所属组件？ {#p-files}
 
@@ -246,7 +246,7 @@
 
 每个视图就是一幅图版，即按图册正文区布局的一幅图，图中文字都不小于 14 px。[](source:ops-plate)Typst 0.15.1 用版式类把图册排成一个 PDF，每页 1600 × 900 pt。[](source:ops-edition)
 
-图版把每个组件画成一张卡片。有检出目录可读时，卡片上有一道条带，条长就是组件拥有的文件大小，全册用同一比例。[](source:model-cards)[](source:model-no-strip)模型可以在 `edition` 对象里选定配色。[](source:model-cards)文件大小、占比和新旧档在规划视图之前测一次，各幅图版都读这份结果。[](source:facts-edition)
+图版把每个组件画成一张卡片。有检出目录可读时，卡片上有一道条带，条长就是组件拥有的文件大小，全册用同一比例。[](source:model-cards)[](source:model-no-strip)模型可以在 `edition` 对象里选定配色。[](source:model-cards)文件大小、占比和新旧分档在规划视图之前测一次，各幅图版都读这份结果。[](source:facts-edition)
 
 @diagram workflow id=edition-flow source=edition.workflow.json
 

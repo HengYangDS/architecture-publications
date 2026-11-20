@@ -128,7 +128,7 @@ AIGW 有一条价值假设：团队成员只要持有任一受支持提供商的
 
 @facts
 | 客户端 | `<client>` 可取 `claude`、`claude-desktop`、`codex` 和 `hermes` |
-| 令牌存储 | 平台凭据服务可用时就用它，否则用唯一的本地后备存储；用 `AIGW_SECRET_BACKEND` 显式选定 `keyring`、`file` 或 `env` 时，出错即拒绝 |
+| 凭据存储 | 平台凭据服务可用时就用它，否则用唯一的本地后备存储；用 `AIGW_SECRET_BACKEND` 显式选定 `keyring`、`file` 或 `env` 时，出错即拒绝 |
 | 环境变量中的令牌 | 只读，取自 `AIGW_TOKEN_<PROVIDER>`；客户端进程必须继承同一环境 |
 
 这些取值由 AIGW 固定。[](source:readme-for)[](source:readme-credentials)[](source:readme-environment)团队编订一份团队文件，只收录审阅过的提供商端点和通过鉴定的模型，不含令牌。[](source:rollout-maintainer)
@@ -144,7 +144,7 @@ AIGW 自带一份团队文件，其中每个提供商在 Claude、GPT 和 Gemini
 | step-ctx-member | 团队成员 | 应用这份团队文件，只连接自己持有令牌的提供商。[](source:readme-team) | context-map | ctx-member |
 | step-ctx-control | AIGW 控制面 | 保管提供商、它们的令牌和模型，让每个客户端指向一个模型；不转发请求，不运行网关，对话状态也不归它管。[](source:readme-what) | context-map | ctx-control |
 | step-ctx-clients | 受支持的客户端 | Codex、Claude Code、Claude Desktop 和 Hermes；AIGW 只把自己的设置写进它们的文件。发布版本要支持某个客户端，必须先取得完整的原生证据。[](source:readme-what)[](source:readme-adapters) | context-map | ctx-clients |
-| step-ctx-store | 令牌存储 | 平台凭据服务、本地后备存储，或只读的环境变量；一旦显式选定，出错即拒绝。[](source:readme-credentials) | context-map | ctx-store |
+| step-ctx-store | 凭据存储 | 平台凭据服务、本地后备存储，或只读的环境变量；一旦显式选定，出错即拒绝。[](source:readme-credentials) | context-map | ctx-store |
 | step-ctx-endpoints | 提供商端点 | 直连的 URL，或独立运营的兼容端点；AIGW 保存这一选择，但绝不运营该服务。[](source:readme-boundaries) | context-map | ctx-endpoints |
 
 ## 团队如何起步？ {#p-team}
@@ -255,7 +255,7 @@ AIGW 自带一份团队文件，其中每个提供商在 Claude、GPT 和 Gemini
 @sequence id=token-flow title="令牌按需读取"
 | actor token-client | 原生客户端 | frontend |
 | actor token-helper | 凭据助手 | backend | source:credential |
-| actor token-store | 令牌存储 | security | source:token-store |
+| actor token-store | 凭据存储 | security | source:token-store |
 | actor token-endpoint | 提供商端点 | external |
 | token-client | token-helper | 客户端 + 指纹 |
 | token-helper | token-store | 读取提供商的令牌 |
@@ -266,7 +266,7 @@ AIGW 自带一份团队文件，其中每个提供商在 Claude、GPT 和 Gemini
 
 @steps id=token-steps
 | step-match | 凭据助手 | 校验这次请求，只把对应的令牌写到标准输出。指纹指明一个客户端、提供商和端点，并不授权调用方。[](source:credential) | token-flow | token-helper | | token-client-to-token-helper-1,token-helper-to-token-client-1 |
-| step-read | 令牌存储 | 使用平台凭据服务时，每次读取都在子进程中运行，时限 5 秒。存储不可用时直接拒绝，不会改试其他存储。[](source:token-store) | token-flow | token-store | | token-helper-to-token-store-1,token-store-to-token-helper-1 |
+| step-read | 凭据存储 | 使用平台凭据服务时，每次读取都在子进程中运行，时限 5 秒。存储不可用时直接拒绝，不会改试其他存储。[](source:token-store) | token-flow | token-store | | token-helper-to-token-store-1,token-store-to-token-helper-1 |
 | step-call | 提供商端点 | 客户端自行发送请求；AIGW 不在请求路径上。[](source:boundary) | token-flow | token-endpoint | | token-client-to-token-endpoint-1,token-endpoint-to-token-client-1 |
 
 在 macOS 上，0.3.5 及更早版本存入的钥匙串条目，AIGW 不接管，也没有命令会迁移这类条目。[](source:keychain-foreign)[](source:keychain-migration)macOS 不让 AIGW 读取这类条目；读不了的条目，AIGW 也不替换。需要这份凭据的命令，例如 `aigw use` 或 `aigw client enable`，就此结束。它会说明条目是另一个程序存入的，并给出修复办法：先备好凭据，删除该条目，再重新存入。[](source:keychain-foreign)

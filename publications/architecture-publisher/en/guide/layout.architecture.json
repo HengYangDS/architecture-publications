@@ -49,7 +49,7 @@
       "id": "lay-grid",
       "type": "backend",
       "label": "Grid layout",
-      "sublabel": "one column lattice",
+      "sublabel": "one grid",
       "pos": [440, 170],
       "size": [180, 64],
       "sources": [

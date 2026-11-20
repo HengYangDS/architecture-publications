@@ -38,7 +38,7 @@
       "id": "take-judged",
       "type": "decision",
       "label": "Judged",
-      "sublabel": "does it end whole?",
+      "sublabel": "does it end naturally?",
       "sources": [
         {
           "path": "src/filmkit/narration/take_edges.py",
@@ -183,7 +183,7 @@
   "cards": [
     {
       "dot": "emerald",
-      "title": "What a whole ending is",
+      "title": "What a natural ending is",
       "items": [
         "The last 30 ms are quiet.",
         "The last syllable dies away instead of stopping in under 6 ms."

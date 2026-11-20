@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "One reviewed configuration, written into every client",
+    "title": "From a command to the client files",
     "output": "parts.html",
     "quality_profile": "showcase",
     "locale": "en",

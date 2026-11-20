@@ -114,7 +114,7 @@
     {
       "id": "ctx-store",
       "type": "database",
-      "label": "令牌存储",
+      "label": "凭据存储",
       "sublabel": "一个选定的后端",
       "pos": [270, 320],
       "size": [180, 64],

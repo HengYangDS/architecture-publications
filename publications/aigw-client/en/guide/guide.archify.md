@@ -128,7 +128,7 @@ AIGW's value hypothesis: a team member with any one supported provider credentia
 
 @facts
 | Clients | `claude`, `claude-desktop`, `codex` and `hermes`, the values `<client>` takes |
-| Token store | The platform credential service when available, else one local fallback; an explicit `AIGW_SECRET_BACKEND` of `keyring`, `file` or `env` fails closed |
+| Credential store | The platform credential service when available, else one local fallback; an explicit `AIGW_SECRET_BACKEND` of `keyring`, `file` or `env` fails closed |
 | Environment Tokens | Read-only, from `AIGW_TOKEN_<PROVIDER>`; the client process must inherit the same environment |
 
 AIGW fixes these values.[](source:readme-for)[](source:readme-credentials)[](source:readme-environment) A team curates a team file of only reviewed provider endpoints and qualified models, without Tokens.[](source:rollout-maintainer)
@@ -144,7 +144,7 @@ AIGW ships its own team file, where each provider keeps, for every Claude, GPT a
 | step-ctx-member | Team member | Applies that team file and connects only the providers whose Tokens they hold.[](source:readme-team) | context-map | ctx-member |
 | step-ctx-control | AIGW control plane | Keeps providers, their Tokens and their models, and points each client at one model; it relays no requests, runs no gateway and owns no conversation state.[](source:readme-what) | context-map | ctx-control |
 | step-ctx-clients | Supported clients | Codex, Claude Code, Claude Desktop and Hermes; AIGW writes only its own settings into their files. Release support needs completed native evidence.[](source:readme-what)[](source:readme-adapters) | context-map | ctx-clients |
-| step-ctx-store | Token store | The platform credential service, a local fallback or a read-only environment; an explicit choice fails closed.[](source:readme-credentials) | context-map | ctx-store |
+| step-ctx-store | Credential store | The platform credential service, a local fallback or a read-only environment; an explicit choice fails closed.[](source:readme-credentials) | context-map | ctx-store |
 | step-ctx-endpoints | Provider endpoints | A direct URL or an independently operated compatible endpoint; AIGW stores the choice and never operates the service.[](source:readme-boundaries) | context-map | ctx-endpoints |
 
 ## How does a team get started? {#p-team}
@@ -255,7 +255,7 @@ A client's files name the credential helper and a fingerprint of the client, pro
 @sequence id=token-flow title="A Token, read on demand"
 | actor token-client | Native client | frontend |
 | actor token-helper | Credential helper | backend | source:credential |
-| actor token-store | Token store | security | source:token-store |
+| actor token-store | Credential store | security | source:token-store |
 | actor token-endpoint | Provider endpoint | external |
 | token-client | token-helper | client + fingerprint |
 | token-helper | token-store | read the provider's Token |
@@ -266,7 +266,7 @@ A client's files name the credential helper and a fingerprint of the client, pro
 
 @steps id=token-steps
 | step-match | Credential helper | Checks the request and writes only its Token to standard output. The fingerprint names a client, provider and endpoint; it does not authorize the caller.[](source:credential) | token-flow | token-helper | | token-client-to-token-helper-1,token-helper-to-token-client-1 |
-| step-read | Token store | With the platform credential service, each read runs in a subprocess with a five-second deadline. An unavailable store fails closed, and no other store is tried.[](source:token-store) | token-flow | token-store | | token-helper-to-token-store-1,token-store-to-token-helper-1 |
+| step-read | Credential store | With the platform credential service, each read runs in a subprocess with a five-second deadline. An unavailable store fails closed, and no other store is tried.[](source:token-store) | token-flow | token-store | | token-helper-to-token-store-1,token-store-to-token-helper-1 |
 | step-call | Provider endpoint | The client sends its own request; AIGW is not on the request path.[](source:boundary) | token-flow | token-endpoint | | token-client-to-token-endpoint-1,token-endpoint-to-token-client-1 |
 
 On macOS, AIGW does not take over a Keychain item that 0.3.5 or earlier stored, and no command migrates one.[](source:keychain-foreign)[](source:keychain-migration) macOS refuses AIGW the read of such an item, and AIGW does not replace an item that it cannot read. A command that needs the credential, such as `aigw use` or `aigw client enable`, ends there. It says that another program stored the item and names the fix: have the credential at hand, delete the item, then store it again.[](source:keychain-foreign)

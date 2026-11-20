@@ -64,7 +64,7 @@ owner-approved shared renderings.
 | permission model (Node)                                     | 权限模型                                         | `src/importers/likec4.mjs`                                                       |
 | claim (a component's path claim)                            | 认领 (verb); 认领规则 (noun)                     | `src/sources/bind.mjs`, `src/model/schema.json`                                  |
 | path rule                                                   | 路径规则                                         | `src/model/schema.json` (claim patterns); the phrase is this work's              |
-| owner (of a file)                                           | 所属组件                                         | `src/sources/bind.mjs`                                                           |
+| owner (of a file); a component's own files                  | 所属组件; 名下文件                               | `src/sources/bind.mjs`                                                           |
 | owner (of meaning, evidence, form, acceptance)              | 归属方 (各归一方)                                | this work's overview (`claim`)                                                   |
 | owned                                                       | 已归属                                           | `src/sources/coverage.mjs`                                                       |
 | uncovered                                                   | 未覆盖                                           | `src/sources/coverage.mjs`                                                       |
@@ -90,13 +90,12 @@ owner-approved shared renderings.
 | check                                                       | 检查 (`archpub check` kept)                      | `src/cli/run.mjs`, `src/overview/checks.mjs`                                     |
 | refuse, refusal                                             | 拒绝                                             | `src/refusal.mjs`                                                                |
 | degrade                                                     | 降级                                             | this work's overview block only                                                  |
-| problem                                                     | 问题                                             | `src/refusal.mjs`                                                                |
+| problem                                                     | 错误 (问题 is a plate's question)                | `src/refusal.mjs`                                                                |
 | caller                                                      | 调用方                                           | `src/refusal.mjs`                                                                |
 | reading plan, plan                                          | 阅读规划, 规划                                   | `src/plan/views.mjs`                                                             |
 | layout, lay out                                             | 布局                                             | `src/layout/grid.mjs`                                                            |
 | layout engine                                               | 布局引擎                                         | this work's `model.json` kinds; engine in `src/poster/plate.mjs`                 |
-| grid                                                        | 网格                                             | `src/layout/grid.mjs`                                                            |
-| column lattice, one column lattice                          | 列栅格, 同一套列栅格                             | `src/layout/placement.mjs`                                                       |
+| grid (the one column lattice cards are placed on)           | 网格                                             | `src/layout/grid.mjs`, `src/layout/placement.mjs`                                |
 | row                                                         | 行                                               | `src/layout/rows.mjs`                                                            |
 | tier                                                        | 层级                                             | `src/layout/rows.mjs`, `src/model/schema.json`                                   |
 | layer                                                       | 分层                                             | `src/layout/rows.mjs`                                                            |
@@ -133,7 +132,7 @@ owner-approved shared renderings.
 | report, mark (of a command's report)                        | 报告, 标记                                       | `src/cli/report.mjs`                                                             |
 | external tool                                               | 外部工具                                         | this work's `model.json` kinds; external in `src/kinds.mjs`                      |
 | delivery store                                              | 交付物存储                                       | this work's `model.json` kinds; root in `src/delivery.mjs`                       |
-| OpenSpec change                                             | OpenSpec 正式变更 (approved)                     | `openspec/` (outside the scope)                                                  |
+| OpenSpec Change                                             | OpenSpec 正式变更 (approved)                     | `openspec/` (outside the scope)                                                  |
 | work (a publication)                                        | 作品                                             | this work's `guide/guide.archify.md`                                             |
 | summary (a view's)                                          | 概述 (哈希摘要 is digest)                        | `docs/reference/model.md` (Views)                                                |
 | reading (a plate's: summary and where each component lives) | 说明栏                                           | `docs/reference/operations.md`, `src/poster/compose/plates.mjs`                  |
@@ -174,7 +173,7 @@ owner-approved shared renderings.
 | one scale for the edition                                   | 全册同一比例                                     | `src/poster/strip.mjs`                                                           |
 | indigo, persimmon, soot, patina (palettes)                  | 靛蓝, 柿漆, 松烟, 铜绿                           | `src/house.json`                                                                 |
 | contrast, lightness, chroma, hue                            | 对比度, 明度, 彩度, 色相                         | `src/model/edition.mjs`                                                          |
-| age band, the three age bands                               | 新旧档, 新旧三档                                 | `src/facts/ages.mjs`; the rendering is this work's                               |
+| age band, the three age bands                               | 新旧分档, 新旧三档                               | `src/facts/ages.mjs`; the rendering is this work's                               |
 | last change (of a file)                                     | 最近一次改动                                     | `src/sources/bind.mjs`                                                           |
 | measured fact, fact                                         | 测得的事实, 事实                                 | `src/facts/catalogue.mjs`; 测得, 事实 from `src/locale.mjs`                      |
 | property, subject, unit (of a fact)                         | 属性, 所属对象, 单位                             | `src/facts/catalogue.mjs`                                                        |
