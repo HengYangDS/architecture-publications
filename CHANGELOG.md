@@ -67,8 +67,8 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 - The works name roles, not kinds of holder: Architecture Publisher's Chinese work says 「角色」 and 「审阅者」,
   its English work `Roles`, and the Responses proxy's Chinese work 「运维者」. A test refuses 「人员」 and
   「审阅人」 in a work's Chinese files and term table.
-- The repository's checks run on ETHOS 0.2.0-beta.11, and the hosted jobs keep their CI artifacts
-  for 14 days.
+- The repository's checks run on ETHOS 0.2.0-beta.11, the hosted GitHub job installs Mise 2026.11.10
+  instead of 2026.11.9, and the hosted jobs keep their CI artifacts for 14 days.
 - The repository's tools run on Node 26.13.1, a security release, and its format check on Prettier
   3.10.1.
 - OpenAI Responses Proxy is pinned at v6.0.3, Architecture Publisher at
