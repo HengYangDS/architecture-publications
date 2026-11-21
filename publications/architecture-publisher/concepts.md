@@ -1,7 +1,7 @@
 # Architecture Publisher: term renderings
 
 The renderings this work fixes before translation, used everywhere under `zh/`. Source names the file of
-`architecture-publisher` at v0.15.0 (`7018b02`) that defines or uses the term; the edition's own
+`architecture-publisher` at v0.16.0 (`c991457`) that defines or uses the term; the edition's own
 Chinese words come from `src/edition/words.mjs` and `src/locale.mjs`. Renderings marked "approved" are the
 owner-approved shared renderings.
 
@@ -17,10 +17,10 @@ owner-approved shared renderings.
 | course, step, block (of a stated overview)                  | 主线, 步骤, 区块                                 | `src/model/overview.mjs`                                                         |
 | further course (a block that is a course of its own)        | 副线                                             | `src/model/overview.mjs`                                                         |
 | scope                                                       | 范围                                             | `src/edition/words.mjs`, `src/sources/scope.mjs`                                 |
-| Where it lives                                              | 文件位置                                         | `src/edition/words.mjs`                                                          |
+| Files (the heading of a narrowed plate's file list)         | 文件位置                                         | `src/edition/words.mjs` (places)                                                 |
 | claim (a statement the page cites)                          | 陈述                                             | `src/edition/words.mjs` (readingNote)                                            |
 | statement (a component, relation or group)                  | 陈述                                             | `src/pinned/reader.mjs`, `src/locale.mjs`                                        |
-| each cited by its SHA-256                                   | 各附 SHA-256                                     | `src/edition/words.mjs` (readValue)                                              |
+| each cited by its SHA-256                                   | 各附 SHA-256                                     | `src/edition/words.mjs` (writtenFrom)                                            |
 | view                                                        | 视图                                             | `src/locale.mjs`, `src/plan/views.mjs`                                           |
 | component                                                   | 组件                                             | `src/locale.mjs`                                                                 |
 | relation                                                    | 关系                                             | `src/locale.mjs`                                                                 |
@@ -153,7 +153,10 @@ owner-approved shared renderings.
 | missed gate                                                 | 未通过的检查                                     | `src/poster/compose/gates.mjs`; this work's `model.json` (plates)                |
 | text run                                                    | 文字串                                           | `docs/reference/operations.md`                                                   |
 | title page, contents                                        | 扉页, 目录                                       | `docs/reference/operations.md`; 目录 from `src/edition/words.mjs`                |
+| index (the parts by name, closing the edition)              | 索引                                             | `src/edition/words.mjs`, `docs/reference/operations.md`                          |
 | page images                                                 | 各页图像                                         | `docs/reference/operations.md`, `src/edition/typeset.mjs`                        |
+| figure files (a plate's figure and key alone)               | 单独成图                                         | `src/edition/typeset.mjs`, `docs/reference/operations.md`                        |
+| transparent ground                                          | 透明底                                           | `docs/reference/operations.md`, `src/edition/typeset.mjs`                        |
 | admit (a view)                                              | 接纳                                             | `src/plan/views.mjs`                                                             |
 | native diagram                                              | 原生图                                           | `src/map/explainer.mjs`                                                          |
 | scaffold, starting draft                                    | 生成初稿, 初稿 (`archpub scaffold` kept)         | `docs/reference/operations.md`                                                   |

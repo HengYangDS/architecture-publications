@@ -7,52 +7,52 @@
 - [有重叠的布局绝不画出](block:p-layout)；任何布局都画不出的视图会被拒绝，不会缩小。[](source:contract-layout-floor)
 - [只出版已验收的交付物](block:p-accept)，也绝不覆盖另一份不同的交付物。[](source:contract-acceptance)
 
-@answer scope="Architecture Publisher v0.15.0 · 提交 7018b02 · 源码与项目自身的文档 · 更换提交的计数测于 2026-11-18"
+@answer scope="Architecture Publisher v0.16.0 · 提交 c991457 · 源码与项目自身的文档 · 更换提交的计数测于 2026-11-18"
 @meta locale=zh-CN style=editorial
 @source contract-product title="产品" path="docs/product-contract.md" lines=13:21
-@source contract-meaning title="含义与形式归谁" path="docs/product-contract.md" lines=34:39
-@source contract-processing title="一次构建的六步" path="docs/product-contract.md" lines=69:82
-@source contract-bytes title="相同输入，相同字节" path="docs/product-contract.md" lines=84:86
-@source contract-guide title="导读与自动生成的页面" path="docs/product-contract.md" lines=125:135
-@source contract-layout-floor title="卡片、连线，绝无重叠" path="docs/product-contract.md" lines=148:155
-@source contract-acceptance title="验收与出版" path="docs/product-contract.md" lines=167:171
-@source contract-counts title="只计数，不拒绝" path="docs/product-contract.md" lines=182:184
+@source contract-meaning title="含义与形式归谁" path="docs/product-contract.md" lines=38:43
+@source contract-processing title="一次构建的六步" path="docs/product-contract.md" lines=73:86
+@source contract-bytes title="相同输入，相同字节" path="docs/product-contract.md" lines=88:90
+@source contract-guide title="导读与自动生成的页面" path="docs/product-contract.md" lines=132:142
+@source contract-layout-floor title="卡片、连线，绝无重叠" path="docs/product-contract.md" lines=155:162
+@source contract-acceptance title="验收与出版" path="docs/product-contract.md" lines=174:178
+@source contract-counts title="只计数，不拒绝" path="docs/product-contract.md" lines=189:191
 @source model-meaning title="含义的唯一来源" path="docs/reference/model.md" lines=11:17
 @source model-fields title="顶层字段" path="docs/reference/model.md" lines=61:85
 @source model-unknown title="未知字段" path="docs/reference/model.md" lines=87:89
-@source model-claims title="最具体的认领规则" path="docs/reference/model.md" lines=149:166
-@source model-repo title="按提交读取" path="docs/reference/model.md" lines=168:176
-@source model-version-one title="从第 1 版转换" path="docs/reference/model.md" lines=194:205
-@source model-coverage title="覆盖路径与 glob" path="docs/reference/model.md" lines=218:224
-@source model-repin title="更换提交的待办清单" path="docs/reference/model.md" lines=246:258
-@source model-shifted title="偏移与被触及的引用" path="docs/reference/model.md" lines=260:263
-@source model-overview title="模型写明的总览" path="docs/reference/model.md" lines=375:380
-@source model-groups title="分组" path="docs/reference/model.md" lines=503:509
-@source model-views title="视图" path="docs/reference/model.md" lines=513:525
-@source model-views-plan title="声明的视图与规划的视图" path="docs/reference/model.md" lines=537:541
+@source model-claims title="最具体的认领规则" path="docs/reference/model.md" lines=150:167
+@source model-repo title="按提交读取" path="docs/reference/model.md" lines=169:177
+@source model-version-one title="从第 1 版转换" path="docs/reference/model.md" lines=218:229
+@source model-coverage title="覆盖路径与 glob" path="docs/reference/model.md" lines=242:248
+@source model-repin title="更换提交的待办清单" path="docs/reference/model.md" lines=270:282
+@source model-shifted title="偏移与被触及的引用" path="docs/reference/model.md" lines=284:287
+@source model-overview title="模型写明的总览" path="docs/reference/model.md" lines=399:404
+@source model-groups title="分组" path="docs/reference/model.md" lines=528:534
+@source model-views title="视图" path="docs/reference/model.md" lines=538:550
+@source model-views-plan title="声明的视图与规划的视图" path="docs/reference/model.md" lines=562:566
 @source ops-check title="archpub check" path="docs/reference/operations.md" lines=68:80
 @source ops-build title="archpub build" path="docs/reference/operations.md" lines=81:83
-@source ops-migrate title="导入、生成初稿与迁移" path="docs/reference/operations.md" lines=98:104
+@source ops-migrate title="导入、生成初稿与迁移" path="docs/reference/operations.md" lines=97:103
 @source cli-exit title="退出码与拒绝" path="docs/reference/command-line.md" lines=35:41
-@source ops-rows title="行、摆放与通道" path="docs/reference/operations.md" lines=122:135
-@source ops-overlap title="布局绝不重叠" path="docs/reference/operations.md" lines=137:142
-@source ops-gates title="四项平衡检查" path="docs/reference/operations.md" lines=174:180
-@source ops-page title="自动生成的页面" path="docs/reference/operations.md" lines=260:269
-@source ops-page-grid title="页面中的图用同一套网格" path="docs/reference/operations.md" lines=271:276
-@source ops-overview title="总览" path="docs/reference/operations.md" lines=337:351
-@source ops-guide title="导读" path="docs/reference/operations.md" lines=355:361
-@source ops-guide-clone title="按提交核验来源" path="docs/reference/operations.md" lines=363:371
-@source ops-scaffold title="导读初稿" path="docs/reference/operations.md" lines=373:375
-@source ops-delivery title="交付物中的文件" path="docs/reference/operations.md" lines=382:397
+@source ops-rows title="行、摆放与通道" path="docs/reference/operations.md" lines=121:134
+@source ops-overlap title="布局绝不重叠" path="docs/reference/operations.md" lines=136:141
+@source ops-gates title="四项平衡检查" path="docs/reference/operations.md" lines=173:179
+@source ops-page title="自动生成的页面" path="docs/reference/operations.md" lines=259:268
+@source ops-page-grid title="页面中的图用同一套网格" path="docs/reference/operations.md" lines=270:275
+@source ops-overview title="总览" path="docs/reference/operations.md" lines=336:350
+@source ops-guide title="导读" path="docs/reference/operations.md" lines=354:360
+@source ops-guide-clone title="按提交核验来源" path="docs/reference/operations.md" lines=362:370
+@source ops-scaffold title="导读初稿" path="docs/reference/operations.md" lines=372:374
+@source ops-delivery title="交付物中的文件" path="docs/reference/operations.md" lines=381:397
 @source ops-manifest title="清单" path="docs/reference/operations.md" lines=399:417
 @source ops-accept title="archpub accept" path="docs/reference/operations.md" lines=421:425
 @source ops-publish title="archpub publish" path="docs/reference/operations.md" lines=473:477
 @source readme-layout title="布局即网格" path="README.md" lines=57:59
-@source build-prepare title="一次构建的路线" path="src/build.mjs" lines=161:269
+@source build-prepare title="一次构建的路线" path="src/build.mjs" lines=161:273
 @source overview-warnings title="检查对总览发出的警告" path="src/build.mjs" lines=118:159
-@source build-artifacts title="每个产物的哈希摘要" path="src/build.mjs" lines=341:358
-@source manifest-record title="清单记录" path="src/manifest.mjs" lines=85:157
-@source build-rename title="重命名就位" path="src/build.mjs" lines=444:461
+@source build-artifacts title="每个产物的哈希摘要" path="src/build.mjs" lines=345:362
+@source manifest-record title="清单记录" path="src/manifest.mjs" lines=100:164
+@source build-rename title="重命名就位" path="src/build.mjs" lines=454:471
 @source load-top title="模型的字段" path="src/model/load.mjs" lines=39:51
 @source load-problems title="一遍报出全部问题" path="src/model/load.mjs" lines=57:66
 @source load-files title="认领规则与被引用的文件" path="src/model/load.mjs" lines=122:160
@@ -70,10 +70,11 @@
 @source views-undrawn title="没有视图画出的部分" path="src/plan/views.mjs" lines=158:176
 @source views-admit title="逐一接纳视图" path="src/plan/views.mjs" lines=198:221
 @source guide-read title="读取草稿" path="src/map/guide.mjs" lines=131:161
-@source guide-page title="草稿即页面" path="src/map/guide.mjs" lines=163:214
-@source guide-clone title="临时克隆" path="src/map/guide.mjs" lines=243:263
-@source explainer-page title="每个视图一个面板" path="src/map/explainer.mjs" lines=212:223
-@source explainer-deliver title="用 Archify 定稿" path="src/map/explainer.mjs" lines=293:304
+@source guide-page title="草稿即页面" path="src/map/guide.mjs" lines=163:221
+@source guide-clone title="临时克隆" path="src/map/guide.mjs" lines=241:261
+@source explainer-page title="每个视图一个面板" path="src/map/explainer.mjs" lines=212:229
+@source explainer-deliver title="用 Archify 定稿" path="src/map/explainer.mjs" lines=349:360
+@source page-held title="Archify 写出的页面，留待交付" path="src/map/explainer.mjs" lines=285:324
 @source typeset-version title="Typst 0.15.1" path="src/overview/typeset.mjs" lines=36:52
 @source typeset-stage title="暂存版式类、模型和绘制总览的文件" path="src/overview/typeset.mjs" lines=91:113
 @source typeset-problems title="Typst 的诊断转为拒绝" path="src/overview/typeset.mjs" lines=165:196
@@ -82,55 +83,57 @@
 @source overview-forms title="总览里可以写什么" path="src/model/overview.mjs" lines=1:10
 @source drawn-layout title="版面怎样布局" path="src/overview/drawn.typ" lines=3:9
 @source drawn-fit title="两档间距各排一遍" path="src/overview/drawn.typ" lines=760:777
-@source contract-plate-floor title="图版质量底线" path="docs/product-contract.md" lines=139:144
-@source ops-plate title="图版" path="docs/reference/operations.md" lines=164:173
-@source ops-reading title="图版的宽度与说明栏" path="docs/reference/operations.md" lines=191:219
-@source ops-edition title="图册" path="docs/reference/operations.md" lines=221:234
-@source house-reading title="说明栏过高时的排法" path="src/overview/house.typ" lines=577:613
-@source ops-edition-text title="文字、日期与各页图像" path="docs/reference/operations.md" lines=236:258
+@source contract-plate-floor title="图版质量底线" path="docs/product-contract.md" lines=146:151
+@source ops-plate title="图版" path="docs/reference/operations.md" lines=163:172
+@source ops-reading title="图版的宽度与说明栏" path="docs/reference/operations.md" lines=190:218
+@source ops-edition title="图册" path="docs/reference/operations.md" lines=220:233
+@source house-reading title="说明栏过高时的排法" path="src/overview/house.typ" lines=588:624
+@source ops-edition-text title="文字、日期与各页图像" path="docs/reference/operations.md" lines=235:257
 @source ops-refusal-paths title="拒绝指向何处" path="docs/reference/operations.md" lines=485:490
 @source plates-compositions title="图版尝试的每种编排" path="src/poster/compose/plates.mjs" lines=150:161
 @source plates-line-warnings title="构建对图版连线发出的警告" path="src/poster/compose/plates.mjs" lines=79:109
 @source plates-admit title="正文区容得下的视图" path="src/poster/compose/plates.mjs" lines=201:213
-@source plates-width title="图版宽度规则" path="src/poster/compose/plates.mjs" lines=257:312
+@source plates-width title="图版宽度规则" path="src/poster/compose/plates.mjs" lines=275:330
 @source plates-gates title="平衡检查只记录，不拒绝" path="src/poster/compose/gates.mjs" lines=1:24
 @source edition-typeset title="一遍排版，一个 PDF" path="src/edition/typeset.mjs" lines=11:15
-@source edition-images title="各页图像" path="src/edition/typeset.mjs" lines=129:150
+@source edition-images title="各页图像" path="src/edition/typeset.mjs" lines=178:199
+@source edition-width title="默认宽度" path="src/edition/typeset.mjs" lines=20:24
+@source edition-figures title="单独输出每幅图" path="src/edition/typeset.mjs" lines=200:240
 @source checks-boxes title="文字在界内且不相叠" path="src/overview/checks.mjs" lines=3:56
 @source checks-lines title="文字不被线和圆环压住" path="src/overview/checks.mjs" lines=94:138
 @source glyphs-overview title="随附字体画不出的字符" path="src/overview/glyphs.mjs" lines=42:66
-@source edition-overview title="总览排入图册" path="src/edition/typeset.mjs" lines=52:65
+@source edition-overview title="总览排入图册" path="src/edition/typeset.mjs" lines=100:113
 @source supply-verify title="按哈希摘要核验物料" path="src/supply.mjs" lines=21:39
 @source delivery-verify title="核验交付物" path="src/delivery.mjs" lines=29:57
-@source delivery-compare title="比较两份交付物" path="src/delivery.mjs" lines=73:125
+@source delivery-compare title="比较两份交付物" path="src/delivery.mjs" lines=73:126
 @source evidence-table title="证据表" path="src/pinned/evidence.mjs" lines=19:72
 @source guide-pinned title="按固定的提交读取导读" path="src/projection.mjs" lines=57:93
 @source delivery-names title="会让两个文件同名的 id" path="src/projection.mjs" lines=28:55
 @source facts-edition title="为图册测得的事实" path="src/facts/edition.mjs" lines=5:10
-@source delivery-accept title="记录验收" path="src/delivery.mjs" lines=172:240
-@source delivery-publish title="出版一份副本" path="src/delivery.mjs" lines=338:379
+@source delivery-accept title="记录验收" path="src/delivery.mjs" lines=173:241
+@source delivery-publish title="出版一份副本" path="src/delivery.mjs" lines=339:380
 @source worklist-fates title="每个文件的去向" path="src/sources/worklist.mjs" lines=5:12
 @source worklist-citation title="引用区间的变化" path="src/sources/worklist.mjs" lines=63:67
 @source worklist-repin title="待办清单" path="src/sources/worklist.mjs" lines=97:110
 @source model-smallest title="最小模型" path="docs/reference/model.md" lines=26:28
 @source model-minimal title="最小的模型" path="docs/reference/model.md" lines=33:58
-@source changelog-first title="第一个版本" path="CHANGELOG.md" lines=1211:1217
-@source changelog-040 title="0.4.0 版本" path="CHANGELOG.md" lines=631:636
-@source model-cards title="每个组件一张卡片" path="docs/reference/model.md" lines=265:305
-@source model-ages title="新旧三档" path="docs/reference/model.md" lines=307:312
-@source model-count title="连线上的引用文件数" path="docs/reference/model.md" lines=314:320
-@source model-palette title="内置配色与自带配色" path="docs/reference/model.md" lines=330:341
-@source model-palette-rules title="自带配色要过的规则" path="docs/reference/model.md" lines=347:358
-@source model-no-strip title="卡片何时不画条带" path="docs/reference/model.md" lines=278:288
-@source model-palette-overview title="总览用同一套配色" path="docs/reference/model.md" lines=370:371
-@source ops-strip-box title="卡片所占的方框" path="docs/reference/operations.md" lines=183:189
+@source changelog-first title="第一个版本" path="CHANGELOG.md" lines=1302:1308
+@source changelog-040 title="0.4.0 版本" path="CHANGELOG.md" lines=722:727
+@source model-cards title="每个组件一张卡片" path="docs/reference/model.md" lines=289:329
+@source model-ages title="新旧三档" path="docs/reference/model.md" lines=331:336
+@source model-count title="连线上的引用文件数" path="docs/reference/model.md" lines=338:344
+@source model-palette title="内置配色与自带配色" path="docs/reference/model.md" lines=354:365
+@source model-palette-rules title="自带配色要过的规则" path="docs/reference/model.md" lines=371:382
+@source model-no-strip title="卡片何时不画条带" path="docs/reference/model.md" lines=302:312
+@source model-palette-overview title="总览用同一套配色" path="docs/reference/model.md" lines=394:395
+@source ops-strip-box title="卡片所占的方框" path="docs/reference/operations.md" lines=182:188
 @source ops-acceptance-scope title="验收说明什么" path="docs/reference/operations.md" lines=427:428
 @source ops-colophon title="验收页" path="docs/reference/operations.md" lines=430:448
 @source ops-statement title="验收记录" path="docs/reference/operations.md" lines=450:455
 @source ops-sign title="为验收记录签名" path="docs/reference/operations.md" lines=457:460
 @source ops-verify title="archpub verify" path="docs/reference/operations.md" lines=462:471
 @source ops-earlier-records title="旧版本的验收记录" path="docs/reference/operations.md" lines=479:481
-@source manifest-version title="清单第 8 版" path="src/manifest.mjs" lines=8:9
+@source manifest-version title="清单第 8 版" path="src/manifest.mjs" lines=15:16
 @source style-choice title="选定图册的配色" path="src/style.mjs" lines=9:25
 @source ages-bands title="所有图册共用的三档" path="src/facts/ages.mjs" lines=1:10
 @source bind-times title="每个文件最近一次改动" path="src/sources/bind.mjs" lines=49:65
@@ -139,15 +142,15 @@
 @source strip-lengths title="全册条带同一比例" path="src/poster/strip.mjs" lines=47:57
 @source placement-narrowest title="列宽不小于最长的条带" path="src/layout/placement.mjs" lines=209:216
 @source delivery-statement title="一份 in-toto Statement" path="src/delivery.mjs" lines=14:21
-@source delivery-sign title="对记录的原始字节签名" path="src/delivery.mjs" lines=154:163
-@source delivery-check title="核验一次验收" path="src/delivery.mjs" lines=317:336
+@source delivery-sign title="对记录的原始字节签名" path="src/delivery.mjs" lines=155:164
+@source delivery-check title="核验一次验收" path="src/delivery.mjs" lines=318:337
 @source colophon-page title="验收页上的内容" path="src/edition/colophon.mjs" lines=38:78
-@source ops-key-line title="图例所在的线" path="docs/reference/operations.md" lines=238:241
-@source house-key title="按基线定位的图例" path="src/overview/house.typ" lines=553:556
+@source ops-key-line title="图例所在的线" path="docs/reference/operations.md" lines=237:240
+@source house-key title="按基线定位的图例" path="src/overview/house.typ" lines=563:566
 @source strip-key title="画条带时的图例" path="src/poster/strip.mjs" lines=186:195
-@source strip-hub title="图例里表示枢纽的线" path="src/poster/strip.mjs" lines=245:255
-@source words-leads title="枢纽线旁的用语" path="src/locale.mjs" lines=70:70
-@source locale-unspaced title="词间不留空格的语言" path="src/locale.mjs" lines=212:219
+@source strip-hub title="图例里表示枢纽的线" path="src/poster/strip.mjs" lines=255:265
+@source words-leads title="枢纽线旁的用语" path="src/locale.mjs" lines=73:73
+@source locale-unspaced title="词间不留空格的语言" path="src/locale.mjs" lines=214:221
 @source text-paragraph title="详情按段落断行" path="src/poster/text.mjs" lines=303:307
 @source spread-lines title="哪些详情要撑满行宽" path="src/poster/spread.mjs" lines=3:9
 @source spread-limit title="撑满一行可以消去的余量" path="src/breaks.mjs" lines=85:95
@@ -255,12 +258,12 @@
 | step-ed-fits | 正文区内放得下？ | 所有编排都无法把视图布局在正文区内时，就以 `plate_unfittable` 拒绝；文字绝不缩小。[](source:plates-admit)[](source:contract-plate-floor)画条带时，只要有视图在 320 px 这一档放不下，全册就改用更短的条带重新规划。[](source:strip-lengths) | edition-flow | ed-fits |
 | step-ed-width | 选定宽度 | 图宽在正文区的 100%、80%、65% 中取布线不变差的最窄一档。有概述的视图要为说明栏让出五分之一；这样布线变差时，图保持全宽，概述排在图上方。[](source:plates-width)[](source:ops-reading) | edition-flow | ed-width |
 | step-ed-gates | 做四项平衡检查 | 度量图版的最大空白矩形、空白带、空洞和重心。未通过的检查只记录，供审阅者查看，不拒绝。[](source:plates-gates)[](source:ops-gates) | edition-flow | ed-gates |
-| step-ed-typeset | 一遍排版 | 版式类把扉页、目录、总览和每幅图版排入一个 PDF，符合 PDF/A-3a 与 PDF/UA-1。[](source:edition-typeset)[](source:ops-edition) | edition-flow | ed-typeset |
+| step-ed-typeset | 一遍排版 | 版式类把扉页、目录、总览、每幅图版和索引排入一个 PDF，符合 PDF/A-3a 与 PDF/UA-1。[](source:edition-typeset)[](source:ops-edition)目录链接到总览和每幅图版。索引按名称列出全部组件，各附链接，指向画出该组件的图版。[](source:ops-edition) | edition-flow | ed-typeset |
 | step-ed-text | 文字与度量一致？ | Typst 排出的文字串比引擎度量的宽，或标题超出所在行，都会被拒绝。图上方的概述若有一行被 Typst 排得宽过 32 em，也会被拒绝。[](source:ops-edition-text)说明栏高过正文区时只放概述，连概述也放不下才拒绝。[](source:house-reading) | edition-flow | ed-text |
-| step-ed-images | PDF 与各页图像 | Typst 把总览页和每幅图版页按各宽度渲染为 PNG；构建未指定其他宽度时为 2400 px。[](source:edition-images)[](source:ops-edition-text) | edition-flow | ed-images |
+| step-ed-images | PDF 与各页图像 | Typst 把总览页和每幅图版页按各宽度渲染为 PNG；构建未指定其他宽度时为 3840 px。[](source:edition-images)[](source:edition-width)[](source:ops-edition-text)每幅图版的图连同图例还单独输出两份：一份透明底的 PNG，一份 SVG。[](source:edition-figures)[](source:ops-delivery) | edition-flow | ed-images |
 | step-ed-refused | 图册被拒绝 | 图版被拒绝时指明对应的视图；Typst 拒绝时指明 Typst 报告的那一行。[](source:ops-refusal-paths)[](source:typeset-problems) | edition-flow | ed-refused |
 
-清单为每幅图版记录：所占正文区比例、说明栏，以及未通过的平衡检查。[](source:ops-manifest)
+清单为每幅图版记录：所占正文区比例、说明栏、单独成图的文件，以及未通过的平衡检查。[](source:ops-manifest)
 
 @facts
 | 条带 | 组件拥有的每个文件占一段，段宽按文件占组件字节数的比例。最大的组件画成 320 px 长；有视图容不下时，全册改用 208 px。[](source:strip-marks)[](source:strip-lengths)构建没有读取检出目录，或模型没有认领文件时，每张卡片都不画条带，也不发警告。[](source:model-no-strip) |
@@ -285,22 +288,22 @@
 | actor page-guide | 导读 | backend | source:guide-page |
 | actor page-clone | 临时克隆 | database | source:guide-clone |
 | actor page-archify | 随附 Archify | security | source:explainer-deliver |
-| phase | 校验 |
+| phase | 校验并交付 |
 | page-guide | page-clone | 按模型的提交克隆 |
-| page-guide | page-archify | 校验，含严格写作检查 |
+| page-guide | page-archify | 定稿，含严格写作检查 | emphasis |
 | page-archify | page-clone | 核验每个引用区间 |
-| page-archify | page-guide | 通过 | return |
-| phase | 交付 |
-| page-guide | page-clone | 再次克隆 |
-| page-guide | page-archify | 讲解页定稿 | emphasis |
-| page-archify | page-guide | 页面 | return |
+| page-archify | page-guide | 页面，留待写入 | return |
+| phase | 被拒绝时 |
+| page-guide | page-archify | 单独校验 |
+| page-archify | page-guide | 全部检查结果 | return |
 
 @steps id=page-steps
 | step-page-read | 导读 | 读取草稿，以及草稿中 `@diagram`、`@chart` 和 `@image` 行指定的每个文件；符号链接、其他路径或缺失的文件都会被拒绝。[](source:guide-read)[](source:ops-guide)不论构建哪些媒介，都会读取导读。带 `--repo` 时，导读引用的路径在固定的提交上不是文件，就以 `guide_file_missing` 拒绝。[](source:guide-pinned) | page-flow | page-guide |
 | step-page-repo | 导读 | 草稿指定的仓库 URL 或提交与模型不同，就会被拒绝。[](source:guide-page) | page-flow | page-guide |
-| step-page-clone | 临时克隆 | 与检出目录共享对象，`origin` 指向模型的 URL，`HEAD` 指向模型的提交；用完即删除。[](source:guide-clone)[](source:ops-guide-clone) | page-flow | page-clone | | page-guide-to-page-clone-1,page-guide-to-page-clone-2 |
-| step-page-validate | 随附 Archify | 按本次构建的质量校验草稿，质量为 showcase 时加做严格写作检查，并按该提交核验每个引用区间。[](source:guide-page)[](source:ops-guide-clone) | page-flow | page-archify | | page-guide-to-page-archify-1,page-archify-to-page-clone-1,page-archify-to-page-guide-1 |
-| step-page-deliver | 随附 Archify | 把页面写成一个独立的 `<model id>.html`；草稿和 Archify 的回执不进入交付物。[](source:explainer-deliver) | page-flow | page-archify | | page-guide-to-page-archify-2,page-archify-to-page-guide-2 |
+| step-page-clone | 临时克隆 | 与检出目录共享对象，`origin` 指向模型的 URL，`HEAD` 指向模型的提交；用完即删除。[](source:guide-clone)[](source:ops-guide-clone) | page-flow | page-clone | | page-guide-to-page-clone-1 |
+| step-page-validate | 随附 Archify | 按本次构建的质量校验草稿，质量为 showcase 时加做严格写作检查，并按该提交核验每个引用区间。[](source:guide-page)[](source:ops-guide-clone) | page-flow | page-archify | | page-guide-to-page-archify-1,page-archify-to-page-clone-1 |
+| step-page-deliver | 随附 Archify | Archify 在同一次运行里把页面写成一个独立的 `<model id>.html`，并检查写出的页面。[](source:explainer-deliver)构建保留 Archify 写出的页面，写入交付物时不作改动。[](source:page-held)草稿和 Archify 的回执不进入交付物。[](source:explainer-deliver) | page-flow | page-archify | | page-archify-to-page-guide-1 |
+| step-page-refused | 随附 Archify | 只有 Archify 拒绝页面时，才再单独校验一次，拒绝信息因此列出全部检查结果。`archpub check` 只校验页面，不交付。[](source:guide-page)[](source:build-prepare) | page-flow | page-archify | | page-guide-to-page-archify-2,page-archify-to-page-guide-2 |
 
 没有草稿时，出版工具为每个视图写一个面板，每个面板都有一幅按同一套网格布局的原生图。[](source:ops-page)[](source:explainer-page)`archpub scaffold guide` 把这样的页面写成一份初稿。[](source:ops-scaffold)
 
@@ -321,7 +324,7 @@
 
 ## 清单绑定了什么？ {#p-manifest}
 
-交付物包含图册 `<model id>.pdf`、各页图像、页面 `<model id>.html` 和 `manifest.json`。每份交付物还有 `model.json`、数据 `<model id>.json` 和读者文件 `<model id>.md`。[](source:ops-delivery)清单不含主机路径或用户名，图册的日期取自固定的提交。在同一平台上，相同的模型与出版工具版本重建出的每个字节都相同。[](source:ops-manifest)[](source:contract-bytes)
+交付物包含图册 `<model id>.pdf`、各页图像、`figures/` 下每幅图版单独成图的文件、页面 `<model id>.html` 和 `manifest.json`。每份交付物还有 `model.json`、数据 `<model id>.json` 和读者文件 `<model id>.md`。[](source:ops-delivery)清单不含主机路径或用户名，图册的日期取自固定的提交。在同一平台上，相同的模型与出版工具版本重建出的每个字节都相同。[](source:ops-manifest)[](source:contract-bytes)
 
 验收时，再在旁边写入 `acceptance.json` 和 `colophon.pdf`；审阅者签名时，还有 `acceptance.sig`。这三个文件都不进清单，产物也一概不变。[](source:ops-delivery)[](source:ops-accept)
 
@@ -356,12 +359,12 @@
 | 验收页 | `colophon.pdf` 只有一页，开本和语言都随图册。朱砂色的圆形印记上有“验收”二字、日期，以及审阅者的姓名或印章用名。旁边的签条列出验收记录的各项内容。[](source:ops-colophon)[](source:colophon-page) |
 | 签名 | 可选。`archpub accept --sign` 用 ssh-keygen 对验收记录的原始字节签名，写入 `acceptance.sig`；记录里写明密钥指纹。[](source:ops-sign)[](source:delivery-sign) |
 | `archpub verify` | 检查每个产物、验收记录和验收页。记录写明了签名者，就必须有签名文件；没有写明，就不能有。加上 `--allowed-signers`，还会核验签名确属这位审阅者。[](source:ops-verify)[](source:delivery-check) |
-| `archpub compare` | 先让两份交付物各自对照清单核验，再列出内容不同的文件。各页图像列在所属图版之下，其余文件列为全册的文件。验收记录、签名和验收页不参与比较；这条命令也不写入任何文件。[](source:delivery-compare) |
+| `archpub compare` | 先让两份交付物各自对照清单核验，再列出内容不同的文件。各页图像和单独成图的文件列在所属图版之下，其余文件列为全册的文件。验收记录、签名和验收页不参与比较；这条命令也不写入任何文件。[](source:delivery-compare) |
 | 旧版验收记录 | `verify` 和 `publish` 遇到旧版本写下的记录，会以 `acceptance_version_unsupported` 拒绝。删掉它，对未改动的交付物重新验收即可。[](source:ops-earlier-records) |
 
 ## Architecture Publisher 怎样走到今天？ {#p-history}
 
-Architecture Publisher 的变更日志始于 2026 年 9 月 18 日的 0.1.0-alpha.0。[](source:changelog-first)10 月 30 日发布的 0.4.0 让它成为通用的出版工具，能把模型出版成多种媒介。[](source:changelog-040)下图从这一版开始，列出到 0.15.0 为止的十三个版本；除 0.13.1 外，每个版本都改变了作者或审阅者看到的东西。
+Architecture Publisher 的变更日志始于 2026 年 9 月 18 日的 0.1.0-alpha.0。[](source:changelog-first)10 月 30 日发布的 0.4.0 让它成为通用的出版工具，能把模型出版成多种媒介。[](source:changelog-040)下图从这一版开始，列出到 0.16.0 为止的十四个版本；除 0.13.1 外，每个版本都改变了作者或审阅者看到的东西。
 
 @diagram timeline id=history source=history.timeline.json title="Architecture Publisher 怎样走到今天"
 

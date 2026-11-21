@@ -70,7 +70,7 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 - The repository's tools run on Node 26.13.1, a security release, and its format check on Prettier
   3.10.1.
 - OpenAI Responses Proxy is pinned at v6.0.3, Architecture Publisher at
-  v0.15.0, Film Kit at v0.26.0, ETHOS at v0.2.0-beta.10 and AIGW at v0.8.3.
+  v0.16.0, Film Kit at v0.26.0, ETHOS at v0.2.0-beta.10 and AIGW at v0.8.3.
   Building the works needs Architecture Publisher 0.15.0 or later. The
   Architecture Publisher work lists the `skill` command, describes strips,
   palettes, age bands and the sealed acceptance of an edition, and claims
@@ -136,6 +136,10 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   film is scanned for still pictures under speech and that the verification and the delivery require that scan, and
   that `converge` counts a settled edition against its runtime; the seven new files of the two releases have their
   owners, and its history ends at the release.
+  At v0.16.0 the Architecture Publisher work says that each plate's figure and key are delivered alone, as PNG on a
+  transparent ground and as SVG, that the edition ends with an index of the parts linked from the contents, that a
+  page's image is 3840 px wide by default, and that a build asks Archify once to validate and write its page; its
+  history ends at the release.
 - The ETHOS work claims the application layer and the operation catalog. The
   AIGW work uses the client's new vocabulary: it no longer has a renaming
   component, and its catalog, readiness, configuration and rollout panels follow

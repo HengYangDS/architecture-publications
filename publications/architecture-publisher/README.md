@@ -2,8 +2,8 @@
 
 [`en/model.json`](en/model.json) is an Architecture Model of how Architecture
 Publisher turns an architecture model into a print edition and a page. It pins
-`architecture-publisher` at v0.15.0
-(`7018b0244d6c5d2c9f92f3f0c0d6091a5c48ab95`), and its components own all 90
+`architecture-publisher` at v0.16.0
+(`c99145758b41fbcd8fdf02d4b20768d48e4b90ff`), and its components own all 90
 files of its coverage scope: the publisher's source under `src/`, its
 `package.json` and the manifests of its six vendored supplies. Thirty-three
 components, fifty-five relations and six views show one build from the author
@@ -22,7 +22,7 @@ page of the print edition and how a plate draws its parts as cards with the
 strips of their files, how the page and the overview are made and checked,
 what the manifest binds and how a delivery is accepted and published. It shows
 the releases that brought the publisher here and ends with what moving the pin
-changes. Each claim about the product cites a line range at v0.15.0, and the
+changes. Each claim about the product cites a line range at v0.16.0, and the
 diagrams the draft names sit beside it. The re-pin counts were measured on
 2026-11-18, when this work moved from v0.14.0 to v0.15.0. Of the moves before
 it, the move to v0.10.1
@@ -43,7 +43,11 @@ manifest holds and what a delivery carries. It gave `src/manifest.mjs` and
 with one relation from the delivery builder: the measured facts, which own
 `src/facts/`, and the data and reader file, which own `src/pinned/`. Eight
 relations cite other modules than before, three of them
-`src/poster/part.mjs`.
+`src/poster/part.mjs`. The move to v0.16.0 added claims about each plate's
+figure files, the edition's index, the images' default width and the single
+Archify run that validates and writes a build's page. It added no
+component and no relation; the delivery builder's relation to the print edition
+also cites `src/manifest.mjs`, which now takes the edition's file names.
 
 Each component claims the directories and files its path rules name, and each
 file goes to its most specific claim, so every file in the scope has one owner;

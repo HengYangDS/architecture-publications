@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "7018b0244d6c5d2c9f92f3f0c0d6091a5c48ab95"
+      "revision": "c99145758b41fbcd8fdf02d4b20768d48e4b90ff"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 631,
-          "end_line": 641,
+          "line": 722,
+          "end_line": 732,
           "label": "0.4.0"
         }
       ]
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 586,
-          "end_line": 591,
+          "line": 677,
+          "end_line": 682,
           "label": "0.6.0"
         }
       ]
@@ -71,8 +71,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 479,
-          "end_line": 524,
+          "line": 570,
+          "end_line": 615,
           "label": "0.8.0"
         }
       ]
@@ -86,8 +86,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 462,
-          "end_line": 470,
+          "line": 553,
+          "end_line": 561,
           "label": "0.9.0"
         }
       ]
@@ -102,14 +102,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 418,
-          "end_line": 429,
+          "line": 509,
+          "end_line": 520,
           "label": "0.10.0"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 454,
-          "end_line": 457,
+          "line": 545,
+          "end_line": 548,
           "label": "Removed"
         }
       ]
@@ -123,8 +123,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 405,
-          "end_line": 416,
+          "line": 496,
+          "end_line": 507,
           "label": "0.10.1"
         }
       ]
@@ -138,8 +138,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 396,
-          "end_line": 403,
+          "line": 487,
+          "end_line": 494,
           "label": "0.10.2"
         }
       ]
@@ -153,8 +153,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 375,
-          "end_line": 388,
+          "line": 466,
+          "end_line": 479,
           "label": "0.11.0"
         }
       ]
@@ -168,8 +168,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 347,
-          "end_line": 373,
+          "line": 438,
+          "end_line": 464,
           "label": "0.12.0"
         }
       ]
@@ -184,8 +184,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 290,
-          "end_line": 345,
+          "line": 381,
+          "end_line": 436,
           "label": "0.13.0"
         }
       ]
@@ -199,8 +199,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 278,
-          "end_line": 288,
+          "line": 369,
+          "end_line": 379,
           "label": "0.13.1"
         }
       ]
@@ -214,8 +214,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 242,
-          "end_line": 276,
+          "line": 333,
+          "end_line": 367,
           "label": "0.14.0"
         }
       ]
@@ -230,9 +230,25 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 10,
-          "end_line": 240,
+          "line": 98,
+          "end_line": 331,
           "label": "0.15.0"
+        }
+      ]
+    },
+    {
+      "id": "v0160",
+      "at": "2026-11-21T06:50:15+08:00",
+      "lane": "edition",
+      "kind": "change",
+      "title": "0.16.0 Figures alone and an index",
+      "detail": "Each plate's figure and key are also delivered alone, as PNG on a transparent ground and as SVG. The edition ends with an index of the parts, and a page's image is 3840 px wide by default.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 10,
+          "end_line": 96,
+          "label": "0.16.0"
         }
       ]
     }

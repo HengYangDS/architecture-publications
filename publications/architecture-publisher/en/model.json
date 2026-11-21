@@ -6,7 +6,7 @@
   "title": "Architecture Publisher",
   "question": "How does Architecture Publisher turn an architecture model into a print edition and an HTML page?",
   "summary": "A build validates the model, gives each file in its scope at the pinned revision to the component that claims it, plans the views and lays each out on one grid. It typesets a print edition: the model's overview and one plate per view, each part a card with a strip whose length is in proportion to the size of its files. It also writes one HTML page, which is the author's guide when the model names one; the edition as data, with a reader file for a reader that works from text; and a manifest of their digests. A named reviewer accepts the delivery before it is published.",
-  "scope": "Architecture Publisher as released at v0.15.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
+  "scope": "Architecture Publisher as released at v0.16.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
   "limits": [
     "A component lists only the files under the paths it claims, each file given to its most specific claim; a relation lists only the modules that import or call the other component.",
     "Relations show only imports and process calls in the source, not runtime order; none is drawn for the shared refusal type or the child environment.",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "7018b0244d6c5d2c9f92f3f0c0d6091a5c48ab95",
+    "revision": "c99145758b41fbcd8fdf02d4b20768d48e4b90ff",
     "browse": "https://github.com/HengYangDS/architecture-publisher/blob/{revision}/{path}"
   },
   "coverage": {
@@ -138,7 +138,7 @@
         "items": [
           ["Archify", "3.2.0"],
           ["opentype.js", "2.0.0"],
-          ["Lucide", "1.73.0"],
+          ["Lucide", "1.74.0"],
           ["Noto Sans CJK SC", "2.004"],
           ["Source Serif 4", "4.005"],
           ["Source Sans 3", "3.052"]
@@ -157,7 +157,7 @@
       {
         "title": "What a delivery holds",
         "items": [
-          ["Edition", "one PDF/A-3a and PDF/UA-1 file; its pages as PNG, 2400 px wide by default"],
+          ["Edition", "one PDF/A-3a and PDF/UA-1 file; its pages as PNG, 3840 px wide by default"],
           ["Page", "one HTML file: the author's guide, or one Archify panel per view"],
           [
             "Data",
@@ -535,7 +535,7 @@
       "kind": "medium",
       "details": {
         "typesets": "the record, every plate and the overview in one Typst pass, as PDF/A-3a and PDF/UA-1",
-        "renders": "the overview's and each plate's page as PNG at each width",
+        "renders": "the overview's and each plate's page as PNG at each width, and each plate's figure alone as PNG and SVG",
         "sets": "its own words in the model's language",
         "adds": "a colophon page to an accepted delivery: a round mark and an acceptance slip"
       },
@@ -709,7 +709,7 @@
       "from": "builder",
       "to": "edition",
       "label": "typesets the edition",
-      "files": ["src/build.mjs"]
+      "files": ["src/build.mjs", "src/manifest.mjs"]
     },
     {
       "id": "builder-map",

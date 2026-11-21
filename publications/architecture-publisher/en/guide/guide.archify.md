@@ -7,52 +7,52 @@
 - [A layout with an overlap is never drawn](block:p-layout), and a view that no layout draws is refused, not shrunk.[](source:contract-layout-floor)
 - [Only an accepted delivery is published](block:p-accept), and never over a different one.[](source:contract-acceptance)
 
-@answer scope="Architecture Publisher v0.15.0 · commit 7018b02 · its source and its own documents · re-pin counts measured on 2026-11-18"
+@answer scope="Architecture Publisher v0.16.0 · commit c991457 · its source and its own documents · re-pin counts measured on 2026-11-18"
 @meta locale=en style=editorial
 @source contract-product title="The product" path="docs/product-contract.md" lines=13:21
-@source contract-meaning title="Who owns meaning and form" path="docs/product-contract.md" lines=34:39
-@source contract-processing title="The six steps of a build" path="docs/product-contract.md" lines=69:82
-@source contract-bytes title="The same inputs, the same bytes" path="docs/product-contract.md" lines=84:86
-@source contract-guide title="The guide and the generated page" path="docs/product-contract.md" lines=125:135
-@source contract-layout-floor title="Cards, wires and no overlap" path="docs/product-contract.md" lines=148:155
-@source contract-acceptance title="Acceptance and publication" path="docs/product-contract.md" lines=167:171
-@source contract-counts title="Counts, never refusals" path="docs/product-contract.md" lines=182:184
+@source contract-meaning title="Who owns meaning and form" path="docs/product-contract.md" lines=38:43
+@source contract-processing title="The six steps of a build" path="docs/product-contract.md" lines=73:86
+@source contract-bytes title="The same inputs, the same bytes" path="docs/product-contract.md" lines=88:90
+@source contract-guide title="The guide and the generated page" path="docs/product-contract.md" lines=132:142
+@source contract-layout-floor title="Cards, wires and no overlap" path="docs/product-contract.md" lines=155:162
+@source contract-acceptance title="Acceptance and publication" path="docs/product-contract.md" lines=174:178
+@source contract-counts title="Counts, never refusals" path="docs/product-contract.md" lines=189:191
 @source model-meaning title="The only source of meaning" path="docs/reference/model.md" lines=11:17
 @source model-fields title="Top-level fields" path="docs/reference/model.md" lines=61:85
 @source model-unknown title="Unknown fields" path="docs/reference/model.md" lines=87:89
-@source model-claims title="The most specific claim" path="docs/reference/model.md" lines=149:166
-@source model-repo title="Reading at the revision" path="docs/reference/model.md" lines=168:176
-@source model-version-one title="From version 1" path="docs/reference/model.md" lines=194:205
-@source model-coverage title="Coverage paths and globs" path="docs/reference/model.md" lines=218:224
-@source model-repin title="The re-pin worklist" path="docs/reference/model.md" lines=246:258
-@source model-shifted title="Shifted and touched citations" path="docs/reference/model.md" lines=260:263
-@source model-overview title="The overview a model states" path="docs/reference/model.md" lines=375:380
-@source model-groups title="Groups" path="docs/reference/model.md" lines=503:509
-@source model-views title="Views" path="docs/reference/model.md" lines=513:525
-@source model-views-plan title="Declared and planned views" path="docs/reference/model.md" lines=537:541
+@source model-claims title="The most specific claim" path="docs/reference/model.md" lines=150:167
+@source model-repo title="Reading at the revision" path="docs/reference/model.md" lines=169:177
+@source model-version-one title="From version 1" path="docs/reference/model.md" lines=218:229
+@source model-coverage title="Coverage paths and globs" path="docs/reference/model.md" lines=242:248
+@source model-repin title="The re-pin worklist" path="docs/reference/model.md" lines=270:282
+@source model-shifted title="Shifted and touched citations" path="docs/reference/model.md" lines=284:287
+@source model-overview title="The overview a model states" path="docs/reference/model.md" lines=399:404
+@source model-groups title="Groups" path="docs/reference/model.md" lines=528:534
+@source model-views title="Views" path="docs/reference/model.md" lines=538:550
+@source model-views-plan title="Declared and planned views" path="docs/reference/model.md" lines=562:566
 @source ops-check title="archpub check" path="docs/reference/operations.md" lines=68:80
 @source ops-build title="archpub build" path="docs/reference/operations.md" lines=81:83
-@source ops-migrate title="Import, scaffold and migrate" path="docs/reference/operations.md" lines=98:104
+@source ops-migrate title="Import, scaffold and migrate" path="docs/reference/operations.md" lines=97:103
 @source cli-exit title="Exit status and refusals" path="docs/reference/command-line.md" lines=35:41
-@source ops-rows title="Rows, placement and channels" path="docs/reference/operations.md" lines=122:135
-@source ops-overlap title="A layout never overlaps" path="docs/reference/operations.md" lines=137:142
-@source ops-gates title="The four balance gates" path="docs/reference/operations.md" lines=174:180
-@source ops-page title="The generated page" path="docs/reference/operations.md" lines=260:269
-@source ops-page-grid title="The page's diagrams on the same grid" path="docs/reference/operations.md" lines=271:276
-@source ops-overview title="The overview" path="docs/reference/operations.md" lines=337:351
-@source ops-guide title="The guide" path="docs/reference/operations.md" lines=355:361
-@source ops-guide-clone title="Sources verified at the revision" path="docs/reference/operations.md" lines=363:371
-@source ops-scaffold title="A starting guide" path="docs/reference/operations.md" lines=373:375
-@source ops-delivery title="The delivery's files" path="docs/reference/operations.md" lines=382:397
+@source ops-rows title="Rows, placement and channels" path="docs/reference/operations.md" lines=121:134
+@source ops-overlap title="A layout never overlaps" path="docs/reference/operations.md" lines=136:141
+@source ops-gates title="The four balance gates" path="docs/reference/operations.md" lines=173:179
+@source ops-page title="The generated page" path="docs/reference/operations.md" lines=259:268
+@source ops-page-grid title="The page's diagrams on the same grid" path="docs/reference/operations.md" lines=270:275
+@source ops-overview title="The overview" path="docs/reference/operations.md" lines=336:350
+@source ops-guide title="The guide" path="docs/reference/operations.md" lines=354:360
+@source ops-guide-clone title="Sources verified at the revision" path="docs/reference/operations.md" lines=362:370
+@source ops-scaffold title="A starting guide" path="docs/reference/operations.md" lines=372:374
+@source ops-delivery title="The delivery's files" path="docs/reference/operations.md" lines=381:397
 @source ops-manifest title="The manifest" path="docs/reference/operations.md" lines=399:417
 @source ops-accept title="archpub accept" path="docs/reference/operations.md" lines=421:425
 @source ops-publish title="archpub publish" path="docs/reference/operations.md" lines=473:477
 @source readme-layout title="Layout is a grid" path="README.md" lines=57:59
-@source build-prepare title="One build's route" path="src/build.mjs" lines=161:269
+@source build-prepare title="One build's route" path="src/build.mjs" lines=161:273
 @source overview-warnings title="What a check warns of on the overview" path="src/build.mjs" lines=118:159
-@source build-artifacts title="Every artifact's digest" path="src/build.mjs" lines=341:358
-@source manifest-record title="The manifest record" path="src/manifest.mjs" lines=85:157
-@source build-rename title="Renamed into place" path="src/build.mjs" lines=444:461
+@source build-artifacts title="Every artifact's digest" path="src/build.mjs" lines=345:362
+@source manifest-record title="The manifest record" path="src/manifest.mjs" lines=100:164
+@source build-rename title="Renamed into place" path="src/build.mjs" lines=454:471
 @source load-top title="The model's fields" path="src/model/load.mjs" lines=39:51
 @source load-problems title="Every problem in one pass" path="src/model/load.mjs" lines=57:66
 @source load-files title="Claims and cited files" path="src/model/load.mjs" lines=122:160
@@ -70,10 +70,11 @@
 @source views-undrawn title="What no view draws" path="src/plan/views.mjs" lines=158:176
 @source views-admit title="Admitting every view" path="src/plan/views.mjs" lines=198:221
 @source guide-read title="Reading the draft" path="src/map/guide.mjs" lines=131:161
-@source guide-page title="The draft as the page" path="src/map/guide.mjs" lines=163:214
-@source guide-clone title="A temporary clone" path="src/map/guide.mjs" lines=243:263
-@source explainer-page title="One panel per view" path="src/map/explainer.mjs" lines=212:223
-@source explainer-deliver title="Finalizing with Archify" path="src/map/explainer.mjs" lines=293:304
+@source guide-page title="The draft as the page" path="src/map/guide.mjs" lines=163:221
+@source guide-clone title="A temporary clone" path="src/map/guide.mjs" lines=241:261
+@source explainer-page title="One panel per view" path="src/map/explainer.mjs" lines=212:229
+@source explainer-deliver title="Finalizing with Archify" path="src/map/explainer.mjs" lines=349:360
+@source page-held title="The page Archify wrote, held for the delivery" path="src/map/explainer.mjs" lines=285:324
 @source typeset-version title="Typst 0.15.1" path="src/overview/typeset.mjs" lines=36:52
 @source typeset-stage title="Staging the class, the drawing and the model" path="src/overview/typeset.mjs" lines=91:113
 @source typeset-problems title="Typst's diagnostics as refusals" path="src/overview/typeset.mjs" lines=165:196
@@ -82,55 +83,57 @@
 @source overview-forms title="What a statement may hold" path="src/model/overview.mjs" lines=1:10
 @source drawn-layout title="How the page is laid out" path="src/overview/drawn.typ" lines=3:9
 @source drawn-fit title="A page at two spacings" path="src/overview/drawn.typ" lines=760:777
-@source contract-plate-floor title="The plate quality floor" path="docs/product-contract.md" lines=139:144
-@source ops-plate title="A plate" path="docs/reference/operations.md" lines=164:173
-@source ops-reading title="A plate's width and reading" path="docs/reference/operations.md" lines=191:219
-@source ops-edition title="The print edition" path="docs/reference/operations.md" lines=221:234
-@source house-reading title="What a plate's reading does when it is too tall" path="src/overview/house.typ" lines=577:613
-@source ops-edition-text title="Text, dates and page images" path="docs/reference/operations.md" lines=236:258
+@source contract-plate-floor title="The plate quality floor" path="docs/product-contract.md" lines=146:151
+@source ops-plate title="A plate" path="docs/reference/operations.md" lines=163:172
+@source ops-reading title="A plate's width and reading" path="docs/reference/operations.md" lines=190:218
+@source ops-edition title="The print edition" path="docs/reference/operations.md" lines=220:233
+@source house-reading title="What a plate's reading does when it is too tall" path="src/overview/house.typ" lines=588:624
+@source ops-edition-text title="Text, dates and page images" path="docs/reference/operations.md" lines=235:257
 @source ops-refusal-paths title="Where a refusal points" path="docs/reference/operations.md" lines=485:490
 @source plates-compositions title="Every composition a plate tries" path="src/poster/compose/plates.mjs" lines=150:161
 @source plates-line-warnings title="What a build says of its plates' lines" path="src/poster/compose/plates.mjs" lines=79:109
 @source plates-admit title="A view the body admits" path="src/poster/compose/plates.mjs" lines=201:213
-@source plates-width title="The plate width rule" path="src/poster/compose/plates.mjs" lines=257:312
+@source plates-width title="The plate width rule" path="src/poster/compose/plates.mjs" lines=275:330
 @source plates-gates title="Gates recorded, not refused" path="src/poster/compose/gates.mjs" lines=1:24
 @source edition-typeset title="One pass, one PDF" path="src/edition/typeset.mjs" lines=11:15
-@source edition-images title="The page images" path="src/edition/typeset.mjs" lines=129:150
+@source edition-images title="The page images" path="src/edition/typeset.mjs" lines=178:199
+@source edition-width title="The default width" path="src/edition/typeset.mjs" lines=20:24
+@source edition-figures title="Each plate's figure files" path="src/edition/typeset.mjs" lines=200:240
 @source checks-boxes title="Text inside and apart" path="src/overview/checks.mjs" lines=3:56
 @source checks-lines title="Text clear of lines and rings" path="src/overview/checks.mjs" lines=94:138
 @source glyphs-overview title="A character no bundled face draws" path="src/overview/glyphs.mjs" lines=42:66
-@source edition-overview title="The overview set in the edition" path="src/edition/typeset.mjs" lines=52:65
+@source edition-overview title="The overview set in the edition" path="src/edition/typeset.mjs" lines=100:113
 @source supply-verify title="Supplies verified by digest" path="src/supply.mjs" lines=21:39
 @source delivery-verify title="Verifying a delivery" path="src/delivery.mjs" lines=29:57
-@source delivery-compare title="Comparing two deliveries" path="src/delivery.mjs" lines=73:125
+@source delivery-compare title="Comparing two deliveries" path="src/delivery.mjs" lines=73:126
 @source evidence-table title="The evidence table" path="src/pinned/evidence.mjs" lines=19:72
 @source guide-pinned title="The guide read at the pin" path="src/projection.mjs" lines=57:93
 @source delivery-names title="An id that names two files alike" path="src/projection.mjs" lines=28:55
 @source facts-edition title="The edition's measured facts" path="src/facts/edition.mjs" lines=5:10
-@source delivery-accept title="Recording an acceptance" path="src/delivery.mjs" lines=172:240
-@source delivery-publish title="Publishing a copy" path="src/delivery.mjs" lines=338:379
+@source delivery-accept title="Recording an acceptance" path="src/delivery.mjs" lines=173:241
+@source delivery-publish title="Publishing a copy" path="src/delivery.mjs" lines=339:380
 @source worklist-fates title="What became of each file" path="src/sources/worklist.mjs" lines=5:12
 @source worklist-citation title="How a cited range fares" path="src/sources/worklist.mjs" lines=63:67
 @source worklist-repin title="The worklist" path="src/sources/worklist.mjs" lines=97:110
 @source model-smallest title="A minimal model" path="docs/reference/model.md" lines=26:28
 @source model-minimal title="The smallest model" path="docs/reference/model.md" lines=33:58
-@source changelog-first title="The first release" path="CHANGELOG.md" lines=1211:1217
-@source changelog-040 title="The 0.4.0 release" path="CHANGELOG.md" lines=631:636
-@source model-cards title="Every part is one card" path="docs/reference/model.md" lines=265:305
-@source model-ages title="The three age bands" path="docs/reference/model.md" lines=307:312
-@source model-count title="The number of cited files" path="docs/reference/model.md" lines=314:320
-@source model-palette title="Built-in palettes and a model's own" path="docs/reference/model.md" lines=330:341
-@source model-palette-rules title="The rules a palette must pass" path="docs/reference/model.md" lines=347:358
-@source model-no-strip title="When a card has no strip" path="docs/reference/model.md" lines=278:288
-@source model-palette-overview title="The overview in the same palette" path="docs/reference/model.md" lines=370:371
-@source ops-strip-box title="A card's box" path="docs/reference/operations.md" lines=183:189
+@source changelog-first title="The first release" path="CHANGELOG.md" lines=1302:1308
+@source changelog-040 title="The 0.4.0 release" path="CHANGELOG.md" lines=722:727
+@source model-cards title="Every part is one card" path="docs/reference/model.md" lines=289:329
+@source model-ages title="The three age bands" path="docs/reference/model.md" lines=331:336
+@source model-count title="The number of cited files" path="docs/reference/model.md" lines=338:344
+@source model-palette title="Built-in palettes and a model's own" path="docs/reference/model.md" lines=354:365
+@source model-palette-rules title="The rules a palette must pass" path="docs/reference/model.md" lines=371:382
+@source model-no-strip title="When a card has no strip" path="docs/reference/model.md" lines=302:312
+@source model-palette-overview title="The overview in the same palette" path="docs/reference/model.md" lines=394:395
+@source ops-strip-box title="A card's box" path="docs/reference/operations.md" lines=182:188
 @source ops-acceptance-scope title="What acceptance establishes" path="docs/reference/operations.md" lines=427:428
 @source ops-colophon title="The colophon page" path="docs/reference/operations.md" lines=430:448
 @source ops-statement title="The acceptance record" path="docs/reference/operations.md" lines=450:455
 @source ops-sign title="Signing the record" path="docs/reference/operations.md" lines=457:460
 @source ops-verify title="archpub verify" path="docs/reference/operations.md" lines=462:471
 @source ops-earlier-records title="Records of earlier releases" path="docs/reference/operations.md" lines=479:481
-@source manifest-version title="Manifest version 8" path="src/manifest.mjs" lines=8:9
+@source manifest-version title="Manifest version 8" path="src/manifest.mjs" lines=15:16
 @source style-choice title="Choosing the edition's style" path="src/style.mjs" lines=9:25
 @source ages-bands title="The same bands for every edition" path="src/facts/ages.mjs" lines=1:10
 @source bind-times title="Each file's last change" path="src/sources/bind.mjs" lines=49:65
@@ -139,15 +142,15 @@
 @source strip-lengths title="One strip length for the edition" path="src/poster/strip.mjs" lines=47:57
 @source placement-narrowest title="No column narrower than a strip" path="src/layout/placement.mjs" lines=209:216
 @source delivery-statement title="An in-toto Statement" path="src/delivery.mjs" lines=14:21
-@source delivery-sign title="Signing the record's exact bytes" path="src/delivery.mjs" lines=154:163
-@source delivery-check title="Verifying an acceptance" path="src/delivery.mjs" lines=317:336
+@source delivery-sign title="Signing the record's exact bytes" path="src/delivery.mjs" lines=155:164
+@source delivery-check title="Verifying an acceptance" path="src/delivery.mjs" lines=318:337
 @source colophon-page title="What the colophon page sets" path="src/edition/colophon.mjs" lines=38:78
-@source ops-key-line title="The key's line" path="docs/reference/operations.md" lines=238:241
-@source house-key title="A key set by its baseline" path="src/overview/house.typ" lines=553:556
+@source ops-key-line title="The key's line" path="docs/reference/operations.md" lines=237:240
+@source house-key title="A key set by its baseline" path="src/overview/house.typ" lines=563:566
 @source strip-key title="The key where strips are drawn" path="src/poster/strip.mjs" lines=186:195
-@source strip-hub title="The hub's line in the key" path="src/poster/strip.mjs" lines=245:255
-@source words-leads title="The words beside the hub's line" path="src/locale.mjs" lines=70:70
-@source locale-unspaced title="Languages written without word spaces" path="src/locale.mjs" lines=212:219
+@source strip-hub title="The hub's line in the key" path="src/poster/strip.mjs" lines=255:265
+@source words-leads title="The words beside the hub's line" path="src/locale.mjs" lines=73:73
+@source locale-unspaced title="Languages written without word spaces" path="src/locale.mjs" lines=214:221
 @source text-paragraph title="A detail wrapped as a paragraph" path="src/poster/text.mjs" lines=303:307
 @source spread-lines title="Which details are spread" path="src/poster/spread.mjs" lines=3:9
 @source spread-limit title="The slack a spread line closes" path="src/breaks.mjs" lines=85:95
@@ -255,12 +258,12 @@ A plate draws each part as one card. With a checkout, the card holds a strip who
 | step-ed-fits | Laid out in the body? | A view no composition lays out in the body is refused with `plate_unfittable`; its text is never shrunk.[](source:plates-admit)[](source:contract-plate-floor) With strips, an edition one of whose views does not fit at 320 px is planned again with every strip shorter.[](source:strip-lengths) | edition-flow | ed-fits |
 | step-ed-width | Choose its width | The figure takes the narrowest of 100, 80 and 65 percent of the body that wires no worse. A view with a summary gives up a fifth for its reading. When that wires worse, the figure keeps the full width and its summary is set above it.[](source:plates-width)[](source:ops-reading) | edition-flow | ed-width |
 | step-ed-gates | Measure four gates | Its largest blank rectangle, blank bands, holes and centre of mass are measured. A missed gate is recorded for the reviewer, not refused.[](source:plates-gates)[](source:ops-gates) | edition-flow | ed-gates |
-| step-ed-typeset | Typeset in one pass | The house class sets the title page, contents, overview and every plate into one PDF that conforms to PDF/A-3a and PDF/UA-1.[](source:edition-typeset)[](source:ops-edition) | edition-flow | ed-typeset |
+| step-ed-typeset | Typeset in one pass | The house class sets the title page, contents, overview, every plate and an index into one PDF that conforms to PDF/A-3a and PDF/UA-1.[](source:edition-typeset)[](source:ops-edition) The contents link to the overview and to every plate. The index lists every part by name, with links to the plates that draw it.[](source:ops-edition) | edition-flow | ed-typeset |
 | step-ed-text | Text as measured? | A run Typst sets wider than the engine measured it or a title longer than its line is refused. So is a line of a summary above its figure that Typst sets wider than 32 ems.[](source:ops-edition-text) A reading taller than the body sets its summary alone, and is refused only when that does not fit either.[](source:house-reading) | edition-flow | ed-text |
-| step-ed-images | PDF and page images | Typst renders the overview's and each plate's page as PNG at each width, 2400 px unless the build names others.[](source:edition-images)[](source:ops-edition-text) | edition-flow | ed-images |
+| step-ed-images | PDF and page images | Typst renders the overview's and each plate's page as PNG at each width, 3840 px unless the build names others.[](source:edition-images)[](source:edition-width)[](source:ops-edition-text) It also sets each plate's figure and key alone, as a PNG on a transparent ground and as an SVG.[](source:edition-figures)[](source:ops-delivery) | edition-flow | ed-images |
 | step-ed-refused | Edition refused | A plate's refusal names its view, and a Typst refusal the line Typst reported.[](source:ops-refusal-paths)[](source:typeset-problems) | edition-flow | ed-refused |
 
-The manifest records each plate's share of the body, its reading and the gates it misses.[](source:ops-manifest)
+The manifest records each plate's share of the body, its reading, its figure files and the gates it misses.[](source:ops-manifest)
 
 @facts
 | Strip | One segment per file the part owns, as wide as its share of the part's bytes. The largest part is 320 px long, or 208 px when a view cannot hold its strips.[](source:strip-marks)[](source:strip-lengths) A build without a checkout, or a model that claims no files, draws every card without a strip and raises no warning.[](source:model-no-strip) |
@@ -285,22 +288,22 @@ The page is one standalone `<model id>.html`, delivered by the vendored Archify 
 | actor page-guide | Guide | backend | source:guide-page |
 | actor page-clone | Temporary clone | database | source:guide-clone |
 | actor page-archify | Vendored Archify | security | source:explainer-deliver |
-| phase | Validate |
+| phase | Validate and deliver |
 | page-guide | page-clone | clone at the model's revision |
-| page-guide | page-archify | validate, strict writing |
+| page-guide | page-archify | finalize, strict writing | emphasis |
 | page-archify | page-clone | verify each cited range |
-| page-archify | page-guide | pass | return |
-| phase | Deliver |
-| page-guide | page-clone | clone again |
-| page-guide | page-archify | finalize the explainer | emphasis |
-| page-archify | page-guide | the page | return |
+| page-archify | page-guide | the page, held | return |
+| phase | Refused |
+| page-guide | page-archify | validate alone |
+| page-archify | page-guide | every finding | return |
 
 @steps id=page-steps
 | step-page-read | Guide | Reads the draft and each file its `@diagram`, `@chart` and `@image` lines name; a link, another path or a missing file is refused.[](source:guide-read)[](source:ops-guide) The guide is read whichever media are built. With `--repo`, a path it cites that is no file at the pin is refused with `guide_file_missing`.[](source:guide-pinned) | page-flow | page-guide |
 | step-page-repo | Guide | A draft that names another repository URL or revision than the model is refused.[](source:guide-page) | page-flow | page-guide |
-| step-page-clone | Temporary clone | Shares the checkout's objects, with `origin` at the model's URL and `HEAD` at its revision, and is removed after use.[](source:guide-clone)[](source:ops-guide-clone) | page-flow | page-clone | | page-guide-to-page-clone-1,page-guide-to-page-clone-2 |
-| step-page-validate | Vendored Archify | Validates the draft at the build's quality, with strict writing at showcase, and verifies every cited line range at the revision.[](source:guide-page)[](source:ops-guide-clone) | page-flow | page-archify | | page-guide-to-page-archify-1,page-archify-to-page-clone-1,page-archify-to-page-guide-1 |
-| step-page-deliver | Vendored Archify | Writes the page as one standalone `<model id>.html`; the draft and Archify's receipts stay out of the delivery.[](source:explainer-deliver) | page-flow | page-archify | | page-guide-to-page-archify-2,page-archify-to-page-guide-2 |
+| step-page-clone | Temporary clone | Shares the checkout's objects, with `origin` at the model's URL and `HEAD` at its revision, and is removed after use.[](source:guide-clone)[](source:ops-guide-clone) | page-flow | page-clone | | page-guide-to-page-clone-1 |
+| step-page-validate | Vendored Archify | Validates the draft at the build's quality, with strict writing at showcase, and verifies every cited line range at the revision.[](source:guide-page)[](source:ops-guide-clone) | page-flow | page-archify | | page-guide-to-page-archify-1,page-archify-to-page-clone-1 |
+| step-page-deliver | Vendored Archify | In the same run, Archify writes the page as one standalone `<model id>.html` and checks what it wrote.[](source:explainer-deliver) The build keeps those bytes and writes them into the delivery unchanged.[](source:page-held) The draft and Archify's receipts stay out of the delivery.[](source:explainer-deliver) | page-flow | page-archify | | page-archify-to-page-guide-1 |
+| step-page-refused | Vendored Archify | Only when Archify refuses the page does the build validate the draft again by itself, so the refusal names every finding. `archpub check` only validates and delivers nothing.[](source:guide-page)[](source:build-prepare) | page-flow | page-archify | | page-guide-to-page-archify-2,page-archify-to-page-guide-2 |
 
 Without a draft, the publisher writes one panel per view, each with a native diagram laid out on the same grid.[](source:ops-page)[](source:explainer-page) `archpub scaffold guide` writes that page as a starting draft.[](source:ops-scaffold)
 
@@ -321,7 +324,7 @@ The overview is one 16:9 page, and the print edition sets it after its contents.
 
 ## What does the manifest bind? {#p-manifest}
 
-A delivery holds the print edition as `<model id>.pdf`, its page images, the page as `<model id>.html` and `manifest.json`. Every delivery also holds `model.json`, the data as `<model id>.json` and the reader file as `<model id>.md`.[](source:ops-delivery) The manifest holds no host path or user name, and the edition is dated by the revision's commit. The same model and version rebuild every byte on one platform.[](source:ops-manifest)[](source:contract-bytes)
+A delivery holds the print edition as `<model id>.pdf`, its page images, each plate's figure files in `figures/`, the page as `<model id>.html` and `manifest.json`. Every delivery also holds `model.json`, the data as `<model id>.json` and the reader file as `<model id>.md`.[](source:ops-delivery) The manifest holds no host path or user name, and the edition is dated by the revision's commit. The same model and version rebuild every byte on one platform.[](source:ops-manifest)[](source:contract-bytes)
 
 Acceptance later writes `acceptance.json`, `colophon.pdf` and, when the reviewer signs, `acceptance.sig` beside them. None of the three is in the manifest, and no artifact changes.[](source:ops-delivery)[](source:ops-accept)
 
@@ -356,12 +359,12 @@ A build shows only that the delivery came from its inputs. A named reviewer acce
 | Colophon page | `colophon.pdf` is one page in the edition's size and language. A round mark in cinnabar carries the word for accepted, the date and the reviewer's name or a seal name. A slip beside it lists the record's facts.[](source:ops-colophon)[](source:colophon-page) |
 | Signature | Optional. `archpub accept --sign` signs the record's exact bytes with ssh-keygen into `acceptance.sig`, and the record names the key's fingerprint.[](source:ops-sign)[](source:delivery-sign) |
 | `archpub verify` | Checks every artifact, the record and the colophon page, and that a signature is present exactly when the record names a signer. With `--allowed-signers` it checks the signature for the reviewer.[](source:ops-verify)[](source:delivery-check) |
-| `archpub compare` | Checks each of two deliveries against its own manifest, then lists the files that differ. A page image is listed under its plate, every other file as a file of the whole edition. The acceptance record, its signature and the colophon page are not compared, and nothing is written.[](source:delivery-compare) |
+| `archpub compare` | Checks each of two deliveries against its own manifest, then lists the files that differ. A page image or a figure file is listed under its plate, every other file as a file of the whole edition. The acceptance record, its signature and the colophon page are not compared, and nothing is written.[](source:delivery-compare) |
 | Earlier record | `verify` and `publish` refuse a record of an earlier release with `acceptance_version_unsupported`. Remove it and accept the unchanged delivery again.[](source:ops-earlier-records) |
 
 ## How did Architecture Publisher get here? {#p-history}
 
-Architecture Publisher's changelog opens with 0.1.0-alpha.0 on 2026-09-18.[](source:changelog-first) Its 0.4.0, on 2026-10-30, made it a general model-to-media publisher.[](source:changelog-040) The timeline starts there and shows thirteen releases, up to 0.15.0; all but 0.13.1 changed what an author or a reviewer meets.
+Architecture Publisher's changelog opens with 0.1.0-alpha.0 on 2026-09-18.[](source:changelog-first) Its 0.4.0, on 2026-10-30, made it a general model-to-media publisher.[](source:changelog-040) The timeline starts there and shows fourteen releases, up to 0.16.0; all but 0.13.1 changed what an author or a reviewer meets.
 
 @diagram timeline id=history source=history.timeline.json title="How Architecture Publisher got here"
 

@@ -6,7 +6,7 @@
   "title": "Architecture Publisher",
   "question": "Architecture Publisher 怎样把架构模型变成图册和 HTML 页面？",
   "summary": "构建时先校验模型，按固定的提交把范围内的每个文件交给认领它的组件，再规划视图，把每个视图都排在同一套网格上。随后排出一部图册，收入模型写明的总览，每个视图各占一幅图版；图版上每个组件画成一张卡片，卡片上条带的长度与名下文件的大小成正比。此外写出一个 HTML 页面，模型指定了导读时，页面就是作者写的导读；写出图册的数据，另附一份读者文件，供靠文本工作的读者使用；并写出一份清单，记录这些产物的哈希摘要。交付物须经一位具名审阅者验收，才能出版。",
-  "scope": "v0.15.0 发布版的 Architecture Publisher：src/ 下的源码、包清单，以及各项随附物料的清单。",
+  "scope": "v0.16.0 发布版的 Architecture Publisher：src/ 下的源码、包清单，以及各项随附物料的清单。",
   "limits": [
     "组件只列出它认领的路径下的文件，每个文件只归最具体的那条认领规则；关系只列出导入或调用对方组件的模块。",
     "关系只表示源码中的导入和进程调用，不表示运行顺序；共用的拒绝错误类型和子进程环境不画成关系。",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "7018b0244d6c5d2c9f92f3f0c0d6091a5c48ab95",
+    "revision": "c99145758b41fbcd8fdf02d4b20768d48e4b90ff",
     "browse": "https://github.com/HengYangDS/architecture-publisher/blob/{revision}/{path}"
   },
   "coverage": {
@@ -138,7 +138,7 @@
         "items": [
           ["Archify", "3.2.0"],
           ["opentype.js", "2.0.0"],
-          ["Lucide", "1.73.0"],
+          ["Lucide", "1.74.0"],
           ["Noto Sans CJK SC", "2.004"],
           ["Source Serif 4", "4.005"],
           ["Source Sans 3", "3.052"]
@@ -157,7 +157,7 @@
       {
         "title": "交付物包含什么",
         "items": [
-          ["图册", "一个符合 PDF/A-3a 与 PDF/UA-1 的文件；各页另出 PNG，默认宽 2400 px"],
+          ["图册", "一个符合 PDF/A-3a 与 PDF/UA-1 的文件；各页另出 PNG，默认宽 3840 px"],
           ["页面", "一个 HTML 文件：作者的导读，或每个视图一个 Archify 面板"],
           ["数据", "构建读到的模型；图册的 JSON 数据，记有每个已读文件的哈希摘要；一份读者文件"],
           ["清单", "模型、物料和每个产物的哈希摘要"],
@@ -526,7 +526,7 @@
       "kind": "medium",
       "details": {
         "排版": "图册记录、各幅图版和总览，由 Typst 一遍排出，符合 PDF/A-3a 与 PDF/UA-1",
-        "渲染": "总览页和各图版页，按每种宽度输出 PNG",
+        "渲染": "总览页和各图版页，按每种宽度输出 PNG；每幅图版的图单独输出 PNG 与 SVG",
         "用语": "跟随模型的语言",
         "加排": "已验收交付物的验收页，上有圆形印记和签条"
       },
@@ -700,7 +700,7 @@
       "from": "builder",
       "to": "edition",
       "label": "排版图册",
-      "files": ["src/build.mjs"]
+      "files": ["src/build.mjs", "src/manifest.mjs"]
     },
     {
       "id": "builder-map",
