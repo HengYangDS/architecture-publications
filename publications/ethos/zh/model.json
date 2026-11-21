@@ -5,7 +5,7 @@
   "locale": "zh-CN",
   "title": "ETHOS",
   "question": "ETHOS 怎样根据正式意图和当下的事实改动仓库，并让每次改动都经过核验？它又要求每个仓库守住什么？",
-  "summary": "先把 OpenSpec 正式变更、当下的事实和先前的存证编译成一份 TransitionPlan，每项改动只有判定为 pass 才放行。每个受治理的仓库都遵守同一套声明好的结构，ETHOS 自己也不例外。",
+  "summary": "TransitionPlan 由 OpenSpec 正式变更、当下的事实和先前的存证编译而成，每项改动只有判定为 pass 才放行。每个受治理的仓库都遵守同一套声明好的结构，ETHOS 自己也不例外。",
   "scope": "ETHOS 产品的 v0.2.0-beta.10 发布版：src/ethos 包、system/ 中的声明，以及仓库自己的 .ethos 绑定。",
   "limits": [
     "组件只列出它认领的路径下的文件，关系只列出导入对方组件的模块。",

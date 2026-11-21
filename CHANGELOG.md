@@ -31,6 +31,10 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 ### Changed
 
+- Seven summaries are turned so that no line of theirs stands with too little to fill it, its spaces or
+  characters stretched past the house's limits: in English plates 03 and 06 of Architecture Publisher, plate 03
+  of Film Kit and plate 05 of OpenAI Responses Proxy; in Chinese the ETHOS cover, the overview of Architecture
+  Publisher and plate 04 of OpenAI Responses Proxy. Each says what it said before, as its other language does.
 - A work's cover says its name once, in its title. The summaries of ETHOS, AIGW Client and Film Kit open
   with what the work does, in both languages, and the guidelines' Chinese summary turns the sentence whose
   spread line ended before 「OpenSpec」. The ETHOS relation into the release part names the build identity it

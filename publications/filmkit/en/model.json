@@ -1472,7 +1472,7 @@
       "id": "narration",
       "title": "Narration and its supply",
       "question": "How is each thought narrated, auditioned and aligned, and what does Supply install first?",
-      "summary": "Each thought is narrated by Thought takes, from the cast's seed or retake, and other seeds are tried by Auditions and script edits; Take judgment judges each take by every line the film holds for it; each recording is aligned to its text by Alignment and selection; Supply installs the browser build and three speech models. A narration run that is asked to end leaves no process behind.",
+      "summary": "Thought takes reads each thought aloud from the cast's seed or retake, and Auditions and script edits tries other seeds; Take judgment judges each take by every line the film holds for it; Alignment and selection aligns each recording to its text; Supply installs the browser build and three speech models. A narration run that is asked to end leaves no process behind.",
       "members": [
         "narration-command",
         "thought-takes",

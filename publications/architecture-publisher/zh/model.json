@@ -986,7 +986,7 @@
       "id": "overview",
       "title": "一次构建的全程",
       "question": "从作者的模型到出版的交付物，一次构建要经过哪些部分？",
-      "summary": "作者运行 archpub build，由交付物构建器生成图版、图册和页面，以及数据和读者文件。审阅者运行 compare、accept 和 verify；“验收与出版”在交付物旁排出验收页，只把已验收的交付物复制到出版根目录。",
+      "summary": "作者运行 archpub build，由交付物构建器生成图版、图册和页面，以及数据和读者文件。审阅者随后运行 compare、accept 和 verify；“验收与出版”在交付物旁排出验收页，只把已验收的交付物复制到出版根目录。",
       "tiers": [
         {
           "id": "people",

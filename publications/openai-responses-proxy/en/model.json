@@ -1203,7 +1203,7 @@
       "id": "handoff",
       "title": "A new listener without a dropped turn",
       "question": "How do an upgrade and a reload move the listening socket to a successor process?",
-      "summary": "Listener handoff passes the listening socket to a successor process while request admission stays open; no other transition exists. Deployment refuses a listener that lacks selected-generation-handoff or admission-preserving-handoff, and proves the successor's identity before the transaction finalizes.",
+      "summary": "Listener handoff passes the listening socket to a successor process, and request admission stays open throughout; no other transition exists. Deployment refuses a listener unless it declares both selected-generation-handoff and admission-preserving-handoff, and proves the successor's identity before the transaction finalizes.",
       "members": [
         "deployment",
         "listener",
