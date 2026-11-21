@@ -23,6 +23,11 @@
       "parent": "fp-checkout"
     },
     {
+      "id": "fp-pin",
+      "label": ".config/mise/config.toml（固定版本）",
+      "parent": "fp-checkout"
+    },
+    {
       "id": "fp-spec",
       "label": "openspec/（官方）",
       "parent": "fp-checkout"

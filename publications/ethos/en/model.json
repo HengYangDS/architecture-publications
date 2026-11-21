@@ -6,7 +6,7 @@
   "title": "ETHOS",
   "question": "How does ETHOS turn official intent and fresh facts into proven repository change, and what does it hold every repository to?",
   "summary": "It compiles an OpenSpec Change, fresh facts and prior Attestations into one TransitionPlan, and admits each effect only on a pass. Every governed repository, ETHOS itself included, keeps to one declared structure.",
-  "scope": "The ETHOS product as released at v0.2.0-beta.10: the src/ethos package, its system declarations and the repository's own .ethos binding.",
+  "scope": "The ETHOS product as released at v0.2.0-beta.11: the src/ethos package, its system declarations and the repository's own .ethos binding.",
   "limits": [
     "A component lists only the files under the paths it claims, and a relation only the modules that import the other component.",
     "Relations show only source imports and process calls, not runtime order or design intent."
@@ -14,7 +14,7 @@
   "repository": {
     "name": "ethos",
     "url": "https://github.com/HengYangDS/ethos.git",
-    "revision": "b10254f871435813dbf7e609ee535f397f8ef7ad",
+    "revision": "e4d9d04d36a089aae3924f0dc83f2a990493e852",
     "browse": "https://github.com/HengYangDS/ethos/blob/{revision}/{path}"
   },
   "coverage": {
@@ -309,7 +309,7 @@
       "label": "CLI",
       "kind": "surface",
       "details": {
-        "commands": "status, plan, prove, land, publish, adopt, lane, hook, host, attestation, mcp",
+        "commands": "status, plan, prove, land, publish, adopt, lane, hook, host, attestation, release, mcp",
         "launcher": "the installed ethos console, which runs each command in the repository's selected runtime"
       },
       "files": ["src/ethos/cli.py", "src/ethos/surface/cli/", "src/ethos/application/console.py"]
@@ -408,7 +408,8 @@
         "src/ethos/contracts/next_step.py",
         "src/ethos/application/result_projection.py",
         "src/ethos/application/__init__.py",
-        "src/ethos/contracts/digest.py"
+        "src/ethos/contracts/digest.py",
+        "src/ethos/contracts/codes/"
       ]
     },
     {
@@ -458,7 +459,9 @@
         "src/ethos/adapters/repo/gate_policy.py",
         "src/ethos/contracts/gates.py",
         "system/gates.toml",
-        "system/repository-gates.toml"
+        "system/repository-gates.toml",
+        "src/ethos/contracts/gate_providers.py",
+        "src/ethos/contracts/gate-providers.toml"
       ]
     },
     {
@@ -906,7 +909,7 @@
       "id": "operation-catalog-landing",
       "from": "operation-catalog",
       "to": "landing",
-      "label": "runs land",
+      "label": "runs land, release accept",
       "files": ["src/ethos/application/catalog.py"]
     },
     {
@@ -934,7 +937,7 @@
       "id": "operation-catalog-gate-runner",
       "from": "operation-catalog",
       "to": "gate-runner",
-      "label": "runs host run",
+      "label": "runs host run, host status",
       "files": ["src/ethos/application/catalog.py"]
     },
     {
@@ -1546,11 +1549,13 @@
       "id": "publication-forges",
       "from": "publication",
       "to": "forges",
-      "label": "pushes refs",
+      "label": "pushes refs, reads hosted runs",
       "files": [
         "src/ethos/adapters/mutation/publication/__init__.py",
         ".ethos/release.toml",
-        "src/ethos/repository/release/publication.py"
+        "src/ethos/repository/release/publication.py",
+        "src/ethos/adapters/mutation/publication/forge.py",
+        "src/ethos/adapters/mutation/publication/hosted_runs.py"
       ]
     },
     {

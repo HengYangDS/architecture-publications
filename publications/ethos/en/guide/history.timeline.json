@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/ethos.git",
       "provider": "github",
-      "revision": "b10254f871435813dbf7e609ee535f397f8ef7ad"
+      "revision": "e4d9d04d36a089aae3924f0dc83f2a990493e852"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -43,8 +43,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 2074,
-          "end_line": 2082,
+          "line": 2551,
+          "end_line": 2559,
           "label": "0.2.0-alpha.5"
         }
       ]
@@ -58,8 +58,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1986,
-          "end_line": 1999,
+          "line": 2463,
+          "end_line": 2476,
           "label": "0.2.0-alpha.6"
         }
       ]
@@ -73,20 +73,20 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1834,
-          "end_line": 1838,
+          "line": 2311,
+          "end_line": 2315,
           "label": "0.2.0-alpha.8"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 1888,
-          "end_line": 1893,
+          "line": 2365,
+          "end_line": 2370,
           "label": "0.2.0-alpha.8"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 1792,
-          "end_line": 1794,
+          "line": 2269,
+          "end_line": 2271,
           "label": "0.2.0-alpha.10"
         }
       ]
@@ -101,8 +101,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1575,
-          "end_line": 1586,
+          "line": 2052,
+          "end_line": 2063,
           "label": "0.2.0-alpha.18"
         }
       ]
@@ -116,8 +116,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1526,
-          "end_line": 1529,
+          "line": 2003,
+          "end_line": 2006,
           "label": "0.2.0-alpha.19"
         }
       ]
@@ -131,8 +131,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1386,
-          "end_line": 1392,
+          "line": 1863,
+          "end_line": 1869,
           "label": "0.2.0-alpha.22"
         }
       ]
@@ -147,8 +147,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1264,
-          "end_line": 1273,
+          "line": 1741,
+          "end_line": 1750,
           "label": "0.2.0-alpha.26"
         }
       ]
@@ -162,8 +162,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1206,
-          "end_line": 1215,
+          "line": 1683,
+          "end_line": 1692,
           "label": "0.2.0-alpha.27"
         }
       ]
@@ -177,8 +177,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1039,
-          "end_line": 1046,
+          "line": 1516,
+          "end_line": 1523,
           "label": "0.2.0-alpha.29"
         }
       ]
@@ -192,8 +192,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 907,
-          "end_line": 929,
+          "line": 1384,
+          "end_line": 1406,
           "label": "0.2.0-beta.2"
         }
       ]
@@ -208,8 +208,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 807,
-          "end_line": 822,
+          "line": 1284,
+          "end_line": 1299,
           "label": "0.2.0-beta.3"
         }
       ]
@@ -224,14 +224,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 594,
-          "end_line": 603,
+          "line": 1071,
+          "end_line": 1080,
           "label": "0.2.0-beta.6"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 621,
-          "end_line": 626,
+          "line": 1098,
+          "end_line": 1103,
           "label": "0.2.0-beta.6"
         }
       ]
@@ -246,14 +246,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 311,
-          "end_line": 325,
+          "line": 788,
+          "end_line": 802,
           "label": "0.2.0-beta.7"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 586,
-          "end_line": 588,
+          "line": 1063,
+          "end_line": 1065,
           "label": "0.2.0-beta.7"
         }
       ]
@@ -267,8 +267,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 191,
-          "end_line": 193,
+          "line": 668,
+          "end_line": 670,
           "label": "0.2.0-beta.8"
         }
       ]
@@ -283,14 +283,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 134,
-          "end_line": 139,
+          "line": 611,
+          "end_line": 616,
           "label": "0.2.0-beta.9"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 125,
-          "end_line": 126,
+          "line": 602,
+          "end_line": 603,
           "label": "0.2.0-beta.9"
         }
       ]
@@ -305,21 +305,49 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 36,
-          "end_line": 42,
+          "line": 513,
+          "end_line": 519,
           "label": "0.2.0-beta.10"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 43,
-          "end_line": 49,
+          "line": 520,
+          "end_line": 526,
           "label": "0.2.0-beta.10"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 50,
-          "end_line": 53,
+          "line": 527,
+          "end_line": 530,
           "label": "0.2.0-beta.10"
+        }
+      ]
+    },
+    {
+      "id": "beta-11",
+      "at": "2026-11-21T09:31:08+08:00",
+      "lane": "host",
+      "kind": "change",
+      "title": "beta.11 Pins and the host queue",
+      "detail": "A release build's ethos adopt plans its own pin in .config/mise/config.toml, and ethos lane repair-paradigm --pin moves a repository to the release running that command. A wait for the host queue keeps its place behind live holders, up to 36,000 seconds.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 182,
+          "end_line": 190,
+          "label": "0.2.0-beta.11"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 64,
+          "end_line": 73,
+          "label": "0.2.0-beta.11"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 300,
+          "end_line": 311,
+          "label": "0.2.0-beta.11"
         }
       ]
     }

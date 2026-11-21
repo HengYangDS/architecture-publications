@@ -23,6 +23,11 @@
       "parent": "fp-checkout"
     },
     {
+      "id": "fp-pin",
+      "label": ".config/mise/config.toml, the pin",
+      "parent": "fp-checkout"
+    },
+    {
       "id": "fp-spec",
       "label": "openspec/, official",
       "parent": "fp-checkout"

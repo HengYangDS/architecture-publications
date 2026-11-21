@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/ethos.git",
       "provider": "github",
-      "revision": "b10254f871435813dbf7e609ee535f397f8ef7ad"
+      "revision": "e4d9d04d36a089aae3924f0dc83f2a990493e852"
     }
   },
   "components": [
@@ -72,8 +72,8 @@
       "sources": [
         {
           "path": "docs/plans/terminal-governance-product-design.md",
-          "line": 403,
-          "end_line": 406,
+          "line": 402,
+          "end_line": 405,
           "label": "Service"
         }
       ]

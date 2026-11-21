@@ -1,7 +1,7 @@
 # ETHOS: term renderings
 
 The renderings this work fixes before translation, used everywhere under `zh/`. Source
-names the file of `ethos` at v0.2.0-beta.10 (`b10254f`) that defines or uses the term; "film" is the owner-approved
+names the file of `ethos` at v0.2.0-beta.11 (`e4d9d04`) that defines or uses the term; "film" is the owner-approved
 Chinese narration, `content/narration.md` of `ethos-film` at v1.0.1 (`c33e60f`). Product names, command names and
 their options, verdict values (`pass`, `block`, `unknown`), file and ref names, and the kernel names Commitment, Facts
 and TransitionPlan stay in Latin type.
@@ -40,6 +40,7 @@ narration; profile and checkout are his choices of that day.
 | load limit                                    | 负载上限                                                                             | `src/ethos/adapters/gates/proof_slot.py`                                                                 |
 | floor (proof floor)                           | 底线                                                                                 | `src/ethos/adapters/repo/gate_policy.py`                                                                 |
 | obligation                                    | 义务                                                                                 | `src/ethos/repository/policy/quality/`; film                                                             |
+| reporting obligation                          | 只报告的义务                                                                         | `src/ethos/contracts/paradigm/paradigm.toml`                                                             |
 | source budget                                 | 源码预算                                                                             | `src/ethos/domain/source_budget/`                                                                        |
 | native                                        | 原生                                                                                 | `src/ethos/adapters/gates/native/`; film                                                                 |
 | formatting, configuration, provenance (gates) | 格式、配置文件、出处                                                                 | `src/ethos/adapters/gates/`                                                                              |
@@ -96,9 +97,13 @@ narration; profile and checkout are his choices of that day.
 | release                                       | 发布                                                                                 | `src/ethos/repository/release/`; film                                                                    |
 | Release identity                              | 发布标识                                                                             | `src/ethos/repository/release/`                                                                          |
 | distribution                                  | 分发包                                                                               | `src/ethos/repository/release/`                                                                          |
+| release build                                 | 发布版                                                                               | `src/ethos/adapters/repo/adoption.py`                                                                    |
+| pin (a release, in Mise)                      | 固定版本 / 固定                                                                      | `src/ethos/repository/release/pin.py`                                                                    |
 | identity                                      | 标识（门禁的执行标识、构建标识、发布标识）；身份只用于人和账号                       | `src/ethos/repository/policy/gates.py`                                                                   |
 | push / atomic                                 | 推送 / 原子                                                                          | `src/ethos/adapters/mutation/publication/execution.py`; film                                             |
 | hosted jobs                                   | 托管的流水线作业                                                                     | `src/ethos/repository/release/publication.py`                                                            |
+| hosted run                                    | 托管运行                                                                             | `src/ethos/adapters/mutation/publication/hosted_runs.py`                                                 |
+| CI peer                                       | 带 CI 的平台                                                                         | `src/ethos/application/publication/hosted.py`                                                            |
 | surface                                       | 入口                                                                                 | `src/ethos/surface/`                                                                                     |
 | command plane                                 | `ethos` 命令                                                                         | `docs/reference/command-plane.md`                                                                        |
 | operation catalog                             | 操作总表                                                                             | `src/ethos/contracts/operations/catalog.py`                                                              |
