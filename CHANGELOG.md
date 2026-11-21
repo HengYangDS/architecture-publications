@@ -26,11 +26,12 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   Publisher pages quote the file their reader writes from the pinned revision,
   and the AIGW, ETHOS, Film Kit and OpenAI Responses Proxy pages list the values
   their sources fix.
-- The input check refuses a work's summary that opens with the work's name, which the cover sets directly
-  above it.
+- The input check refuses a work's question or summary that opens with the work's name, which the cover sets
+  directly above them.
 
 ### Changed
 
+- Each work's Chinese question no longer opens with the work's name, which its cover sets directly above it.
 - Seven summaries are turned so that no line of theirs stands with too little to fill it, its spaces or
   characters stretched past the house's limits: in English plates 03 and 06 of Architecture Publisher, plate 03
   of Film Kit and plate 05 of OpenAI Responses Proxy; in Chinese the ETHOS cover, the overview of Architecture

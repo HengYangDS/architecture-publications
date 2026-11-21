@@ -4,7 +4,7 @@
   "id": "openai-responses-proxy",
   "locale": "zh-CN",
   "title": "OpenAI Responses Proxy",
-  "question": "OpenAI Responses Proxy 如何让一轮 Codex Responses 对话可在第三方提供商之间移植？又如何安装自己的监听器，并让它持续运行？",
+  "question": "如何让一轮 Codex Responses 对话可在第三方提供商之间移植？又如何安装监听器并使之持续运行？",
   "summary": "回环监听器按一套只认已知结构的封闭语法重建每个 Responses 请求，并设 store=false；请求发往路径所指的提供商，全程受同一个总时限约束，只有失败类别允许时才重试。已签名的发布资产由一个事务完成安装，全程写入事务日志，成为一个不可变的世代；升级时，监听套接字交给后继进程；监听器一旦停止，系统服务管理器托管的看门狗就会重启它。",
   "scope": "v6.0.3 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
   "limits": [

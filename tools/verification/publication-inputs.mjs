@@ -87,7 +87,9 @@ export async function verifyModel(directory) {
     const summary = typeof view.summary === "string" ? view.summary.trim() : "";
     assert.ok(summary, `view ${view.id} has no summary`);
   }
-  // The cover sets the title above the summary: a summary that opens with the work's name says it twice.
+  // The cover sets the title above the question and the summary: either one opening with the work's name says
+  // it twice.
+  assert.ok(!opensWithName(model.question, model.title), "the question opens with the work's name");
   assert.ok(!opensWithName(model.summary, model.title), "the summary opens with the work's name");
   return model.id;
 }

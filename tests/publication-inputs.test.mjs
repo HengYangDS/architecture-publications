@@ -129,7 +129,7 @@ test("every view is named by a title of its own", async () => {
   });
 });
 
-test("a work's summary does not open with its name, which the cover sets above it", async () => {
+test("a work's question and summary do not open with its name, which the cover sets above them", async () => {
   assert.equal(opensWithName("ETHOS compiles a plan.", "ETHOS"), true);
   assert.equal(opensWithName("Film Kit narrates each edition.", "Film Kit"), true);
   assert.equal(opensWithName("AIGW 把配置放在一个文件里。", "AIGW 统一客户端配置"), true);
@@ -140,9 +140,9 @@ test("a work's summary does not open with its name, which the cover sets above i
     const work = { ...model("shop"), summary: "Shop takes orders." };
     await writeModel(directory, work);
     await assert.rejects(verifyModel(directory), /the summary opens with the work's name/);
-    work.summary = "Orders reach the warehouse.";
+    Object.assign(work, { summary: "Orders reach the warehouse.", question: "Shop 怎样送货？" });
     await writeModel(directory, work);
-    assert.equal(await verifyModel(directory), "shop");
+    await assert.rejects(verifyModel(directory), /the question opens with the work's name/);
   });
 });
 
