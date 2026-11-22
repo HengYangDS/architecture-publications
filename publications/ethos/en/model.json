@@ -43,6 +43,12 @@
               "note": "own branch from the candidate"
             },
             {
+              "id": "status",
+              "label": "Status",
+              "note": "role, gaps and next action before any write",
+              "view": "status"
+            },
+            {
               "id": "prewrite",
               "label": "Prewrite",
               "note": "exact tracked paths before a write",
@@ -131,6 +137,18 @@
           ["Retire", "always at the expected head; retirement ends the Lease"]
         ],
         "view": "lanes"
+      },
+      {
+        "title": "The runtime behind every hook",
+        "items": [
+          ["Selected", "one immutable runtime, its tools from the exact mise lock"],
+          [
+            "Hooks",
+            "the hooks of plain Git commands run it, and Ref admission admits their effects"
+          ],
+          ["Bound", "a Proof Attestation binds that runtime"]
+        ],
+        "view": "runtime"
       },
       {
         "title": "Refusals and their repair",

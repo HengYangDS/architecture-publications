@@ -31,6 +31,11 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 ### Changed
 
+- Every view is reached from its work's overview: ETHOS's lane step gains the station Status and its overview a
+  short block on the runtime every hook runs; AIGW Client's block "What the operator does" and Film Kit's step
+  "Package" name their works' first view. Each in both languages. The input check refuses a view its overview
+  names nowhere (`tests/publication-overview.test.mjs`); the tests' shared model, directory and writer stand in
+  `tests/fixtures/works.mjs`, and `npm test` runs every test file.
 - Each work's Chinese question no longer opens with the work's name, which its cover sets directly above it.
 - Seven summaries are turned so that no line of theirs stands with too little to fill it, its spaces or
   characters stretched past the house's limits: in English plates 03 and 06 of Architecture Publisher, plate 03

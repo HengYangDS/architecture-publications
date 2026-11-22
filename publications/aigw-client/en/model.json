@@ -153,7 +153,8 @@
           ],
           ["provider rotate", "replace one provider's Token"],
           ["config rollback", "roll back the configuration and the client files, not the program"]
-        ]
+        ],
+        "view": "overview"
       },
       {
         "title": "States and check depths, on every surface",

@@ -71,6 +71,16 @@ export function opensWithName(text, title) {
   return after === "" || /^[\s\p{P}]/u.test(after) || /\p{Script=Han}$/u.test(lead);
 }
 
+/** The views an overview statement names: every `view` of its steps, stations, blocks and further courses. */
+function viewsNamed(value, named = new Set()) {
+  if (Array.isArray(value)) for (const item of value) viewsNamed(item, named);
+  else if (value && typeof value === "object")
+    for (const [key, item] of Object.entries(value))
+      if (key === "view" && typeof item === "string") named.add(item);
+      else viewsNamed(item, named);
+  return named;
+}
+
 export async function verifyModel(directory) {
   const model = await readJson(path.join(directory, "model.json"));
   assert.equal(model.format, MODEL_FORMAT);
@@ -81,11 +91,14 @@ export async function verifyModel(directory) {
   const claims = (model.components ?? []).flatMap((component) => component.files ?? []);
   assert.ok(claims.length > 0, "the model claims no files");
   // The publisher names a view's plate, panel and viewer by its own title, and sets its summary beside its figure.
+  // The overview is the edition's map: every view is reached from it.
+  const named = viewsNamed(model.overview);
   for (const view of model.views ?? []) {
     const title = typeof view.title === "string" ? view.title.trim() : "";
     assert.ok(title && title !== model.title, `view ${view.id} has no title of its own`);
     const summary = typeof view.summary === "string" ? view.summary.trim() : "";
     assert.ok(summary, `view ${view.id} has no summary`);
+    assert.ok(named.has(view.id), `the overview names no element for view ${view.id}`);
   }
   // The cover sets the title above the question and the summary: either one opening with the work's name says
   // it twice.

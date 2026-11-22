@@ -6,7 +6,7 @@
     "bootstrap": "npm ci --ignore-scripts",
     "check": "npm run format:check && npm test",
     "fix": "npm run format:fix",
-    "test": "node --test tests/publication-inputs.test.mjs",
+    "test": "node --test \"tests/*.test.mjs\"",
     "format:check": "prettier --config .config/checks/prettier/prettier.toml --ignore-path .config/checks/prettier/prettierignore --check . && taplo fmt --config .config/checks/taplo/taplo.toml --check .ethos/*.toml .config/checks/*/*.toml",
     "format:fix": "prettier --config .config/checks/prettier/prettier.toml --ignore-path .config/checks/prettier/prettierignore --write . && taplo fmt --config .config/checks/taplo/taplo.toml .ethos/*.toml .config/checks/*/*.toml"
   },

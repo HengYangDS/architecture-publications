@@ -14,6 +14,7 @@ import {
   verifyQuestionTable,
   verifyWork,
 } from "../tools/verification/publication-inputs.mjs";
+import { model, withDirectory, writeModel } from "./fixtures/works.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
@@ -30,33 +31,7 @@ test("every work is one pinned model with verified custody and a unique id", asy
   ]);
 });
 
-const model = (id, locale = "en") => ({
-  format: "architecture-publisher.model",
-  version: 3,
-  id,
-  locale,
-  title: "Shop",
-  question: "How does an order reach the warehouse?",
-  repository: { name: "shop", revision: "a".repeat(40) },
-  components: [{ id: "orders", label: "Orders", files: ["orders.go"] }],
-  relations: [],
-});
 const chinese = { ...model("shop", "zh-CN"), title: "商店" };
-
-async function withDirectory(run) {
-  const directory = await mkdtemp(path.join(os.tmpdir(), "publication-inputs-"));
-  try {
-    await run(directory);
-  } finally {
-    await rm(directory, { recursive: true, force: true });
-  }
-}
-
-/** Write a model into the given directory. */
-async function writeModel(directory, body) {
-  await mkdir(directory, { recursive: true });
-  await writeFile(path.join(directory, "model.json"), JSON.stringify(body));
-}
 
 /** A work's README, headed by its title and naming the revision it pins. */
 const readme = (title = "Shop", revision = "a".repeat(40)) =>
@@ -109,6 +84,7 @@ test("every view is named by a title of its own", async () => {
   await withDirectory(async (directory) => {
     const titled = {
       ...model("shop"),
+      overview: { blocks: [{ title: "Orders", items: [], view: "overview" }] },
       views: [
         {
           id: "overview",
@@ -150,6 +126,7 @@ test("every view carries a summary", async () => {
   await withDirectory(async (directory) => {
     const summarised = {
       ...model("shop"),
+      overview: { blocks: [{ title: "Orders", items: [], view: "overview" }] },
       views: [
         {
           id: "overview",

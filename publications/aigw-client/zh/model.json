@@ -147,7 +147,8 @@
           ],
           ["provider rotate", "替换一个提供商的令牌"],
           ["config rollback", "回滚配置和客户端文件，不回滚程序"]
-        ]
+        ],
+        "view": "overview"
       },
       {
         "title": "各处输出共用的状态词和检查深度",

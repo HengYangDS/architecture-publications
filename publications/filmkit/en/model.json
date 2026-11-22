@@ -172,7 +172,8 @@
               "id": "package"
             }
           ],
-          "id": "packaging"
+          "id": "packaging",
+          "view": "overview"
         },
         {
           "label": "Accept",

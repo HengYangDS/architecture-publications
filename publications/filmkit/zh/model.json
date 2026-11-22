@@ -172,7 +172,8 @@
               "label": "打包",
               "note": "film-package"
             }
-          ]
+          ],
+          "view": "overview"
         },
         {
           "id": "acceptance",
