@@ -30,7 +30,7 @@ None.
 ## Impact
 
 Changed: six models (`publications/{ethos,aigw-client,filmkit}/{en,zh}/model.json`),
-`tools/verification/publication-inputs.mjs`, `tests/publication-inputs.test.mjs`, `package.json` and
-`CHANGELOG.md`. New: `tests/publication-overview.test.mjs` and `tests/fixtures/works.mjs`. Built with Architecture
+`tools/verification/publication-inputs.mjs`, `tests/publication-inputs.test.mjs`, `package.json`,
+`.gitattributes` and `CHANGELOG.md`. New: `tests/publication-overview.test.mjs` and `tests/fixtures/works.mjs`. Built with Architecture
 Publisher 0.16.0, the six editions build with no overview warning, and the line measures read as before (ETHOS's
 Chinese overview checked by eye: the station and the block fit).
