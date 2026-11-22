@@ -13,4 +13,4 @@
 
 ## 4. The owner's pronoun
 
-- [ ] 4.1 Say the owner's choices where ETHOS's `concepts.md` said his. Done when no he, him or his is left outside quotations in the works' and the repository's Markdown (archived Changes and released changelog sections aside) and `mise run check` passes.
+- [x] 4.1 Say the owner's choices where ETHOS's `concepts.md` said `his`. Done when no `he`, `him` or `his` is left outside quotations in the works' and the repository's Markdown (archived Changes and released changelog sections aside) and `mise run check` passes. `concepts.md` says the owner's choices; no `he`, `him` or `his` is left outside quotations; `mise run check` passes.

@@ -8,7 +8,7 @@ and TransitionPlan stay in Latin type.
 
 Since 2026-11-18, by the owner's decision, the renderings of Attestation, proof, authority and obligation follow
 the ETHOS film's concept table as it stands (`content/concepts.toml` of `ethos-film` at v2.0.1), not its first
-narration; profile and checkout are his choices of that day.
+narration; profile and checkout are the owner's choices of that day.
 
 | English                                       | 中文                                                                                 | Source                                                                                                   |
 | --------------------------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------- |

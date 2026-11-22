@@ -14,7 +14,7 @@ derives that template from a GitHub or GitLab address when a model states none (
   host may still state one.
 - The new rule's test stands in `tests/publication-repository.test.mjs`, beside the input tests; the custody
   fixture's git calls drop the caller's `GIT_*` variables.
-- A second commit: ETHOS's `concepts.md` called the owner he ("profile and checkout are his choices"); it says the
+- A second commit: ETHOS's `concepts.md` called the owner `he` ("profile and checkout are his choices"); it says the
   owner's choices. The owner has stated no pronouns. The publisher reads no `concepts.md`, so no edition changes.
 
 ## Capabilities
