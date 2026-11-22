@@ -12,6 +12,8 @@ const REFERENCES = new Set(["id", "from", "to", "at", "after", "view", "part"]);
 /** A guide the publisher delivers as the page: an Archify draft in a directory of its own. */
 const GUIDE = /^(?!\.\.?\/)[^/\\]+\/[^/\\]+\.archify\.md$/;
 const REVISION = /^([0-9a-f]{40}|[0-9a-f]{64})$/;
+/** A repository's address on a Forge whose file addresses Architecture Publisher derives from it (0.17.0). */
+const FORGE = /^https:\/\/(github\.com|gitlab\.com)\//iu;
 /** The locales the publisher reads. */
 const LOCALES = new Set(["en", "zh-CN", "zh-TW", "es", "ko"]);
 /** A locale's language, which names the directory that holds a work's model in that locale. */
@@ -104,6 +106,11 @@ export async function verifyModel(directory) {
   // it twice.
   assert.ok(!opensWithName(model.question, model.title), "the question opens with the work's name");
   assert.ok(!opensWithName(model.summary, model.title), "the summary opens with the work's name");
+  // The publisher derives the browse template from a GitHub or GitLab address, so a work there states it once.
+  assert.ok(
+    model.repository?.browse === undefined || !FORGE.test(model.repository?.url ?? ""),
+    "the model states the browse template its GitHub or GitLab address implies",
+  );
   return model.id;
 }
 

@@ -9,6 +9,8 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 ### Added
 
+- `tests/publication-repository.test.mjs`, the test that a work on GitHub or GitLab states its repository's
+  address once.
 - `questions/question-table.json`, the 27 questions a work is checked against, each asking one thing, with
   a test of the table's form; and the matrices of three works filled against it by hand.
 - `trials/`, the rules and records of the trials that Architecture Publisher's roadmap opens with: the
@@ -31,6 +33,10 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 ### Changed
 
+- The twelve models of the six works no longer state `repository.browse`: Architecture Publisher 0.17.0 derives
+  the template from a GitHub or GitLab address, and each work's was the one its address implies. The input
+  check refuses a template stated beside such an address. The pages, images and figures keep their bytes; each
+  delivery's model, and the files that carry it or its digest, lose the line.
 - Every view is reached from its work's overview: ETHOS's lane step gains the station Status and its overview a
   short block on the runtime every hook runs; AIGW Client's block "What the operator does" and Film Kit's step
   "Package" name their works' first view. Each in both languages. The input check refuses a view its overview

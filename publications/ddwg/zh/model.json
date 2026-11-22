@@ -15,8 +15,7 @@
   "repository": {
     "name": "data-department-work-guidelines",
     "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
-    "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42",
-    "browse": "https://github.com/HengYangDS/data-department-work-guidelines/blob/{revision}/{path}"
+    "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42"
   },
   "coverage": {
     "exclude": [

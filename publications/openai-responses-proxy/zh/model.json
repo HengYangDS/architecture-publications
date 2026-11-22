@@ -15,8 +15,7 @@
   "repository": {
     "name": "openai-responses-proxy",
     "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
-    "revision": "6d1b384f9037454b667ef26ec366d8fcfec1e81c",
-    "browse": "https://github.com/HengYangDS/openai-responses-proxy/blob/{revision}/{path}"
+    "revision": "6d1b384f9037454b667ef26ec366d8fcfec1e81c"
   },
   "coverage": {
     "exclude": [

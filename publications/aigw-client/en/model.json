@@ -14,8 +14,7 @@
   "repository": {
     "name": "aigw-cli",
     "url": "https://github.com/HengYangDS/aigw-cli.git",
-    "revision": "fbec6f90d85951adbba853539efa0f8b3bc7c2fc",
-    "browse": "https://github.com/HengYangDS/aigw-cli/blob/{revision}/{path}"
+    "revision": "fbec6f90d85951adbba853539efa0f8b3bc7c2fc"
   },
   "coverage": {
     "include": ["cmd/", "internal/", "manifests/", "go.mod"],

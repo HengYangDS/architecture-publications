@@ -14,8 +14,7 @@
   "repository": {
     "name": "ethos",
     "url": "https://github.com/HengYangDS/ethos.git",
-    "revision": "e4d9d04d36a089aae3924f0dc83f2a990493e852",
-    "browse": "https://github.com/HengYangDS/ethos/blob/{revision}/{path}"
+    "revision": "e4d9d04d36a089aae3924f0dc83f2a990493e852"
   },
   "coverage": {
     "include": ["src/ethos/", "system/", ".ethos/"]

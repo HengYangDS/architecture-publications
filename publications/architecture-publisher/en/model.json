@@ -15,8 +15,7 @@
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "c99145758b41fbcd8fdf02d4b20768d48e4b90ff",
-    "browse": "https://github.com/HengYangDS/architecture-publisher/blob/{revision}/{path}"
+    "revision": "c99145758b41fbcd8fdf02d4b20768d48e4b90ff"
   },
   "coverage": {
     "include": ["src/", "package.json", "renderers/*/supply/supply.json", "supplies/*/supply.json"]

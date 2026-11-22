@@ -15,8 +15,7 @@
   "repository": {
     "name": "filmkit",
     "url": "https://github.com/HengYangDS/filmkit.git",
-    "revision": "54383d9eaadd149bf785316b3000e2f5a7b969f8",
-    "browse": "https://github.com/HengYangDS/filmkit/blob/{revision}/{path}"
+    "revision": "54383d9eaadd149bf785316b3000e2f5a7b969f8"
   },
   "coverage": {
     "exclude": [

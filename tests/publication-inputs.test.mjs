@@ -394,6 +394,9 @@ test("custody refuses corrupt identity, escaping paths and unsupported storage",
     const git = (...args) =>
       execFileSync("git", args, {
         cwd: directory,
+        env: Object.fromEntries(
+          Object.entries(process.env).filter(([name]) => !name.startsWith("GIT_")),
+        ),
         timeout: 10000,
         stdio: ["ignore", "pipe", "pipe"],
       })
