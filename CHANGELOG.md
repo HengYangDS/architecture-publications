@@ -33,6 +33,9 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 ### Changed
 
+- The overviews of AIGW Client and of Architecture Publisher, in both languages, say what they said in fewer
+  words, so that each fits one page when the overview is set in three sizes: a fact the same page states
+  elsewhere is said once, and two short lists of AIGW Client become one.
 - The twelve models of the six works no longer state `repository.browse`: Architecture Publisher 0.17.0 derives
   the template from a GitHub or GitLab address, and each work's was the one its address implies. The input
   check refuses a template stated beside such an address. The pages, images and figures keep their bytes; each

@@ -29,7 +29,7 @@
           "id": "author",
           "label": "Author",
           "note": "owns the meaning",
-          "text": "components that claim files, relations that cite them, views, a scope, an overview and a guide; each problem with its JSON path",
+          "text": "components that claim files, relations that cite them, views, a scope, an overview and a guide",
           "stations": [
             {
               "id": "model-json",
@@ -185,10 +185,7 @@
       {
         "title": "What the publisher may touch",
         "items": [
-          [
-            "Git",
-            "reads at the pinned revision and clones only to check a guide; never fetches, prompts or changes the checkout"
-          ],
+          ["Git", "clones only to check a guide; never fetches, prompts or changes the checkout"],
           ["Children", "Git, Archify and Typst run with an allowlisted environment"],
           ["LikeC4", "parsed under Node's permission model, reading only its own supply"],
           ["Output", "one new delivery directory"],
@@ -213,7 +210,7 @@
       },
       {
         "title": "What it will not do",
-        "text": "infer architecture from code, judge whether a model is true, or decide that a figure is good enough to publish"
+        "text": "infer architecture from code, rule a model true, or call a figure fit to publish"
       }
     ]
   },

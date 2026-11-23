@@ -113,7 +113,7 @@
           "at": "provider",
           "id": "tokens",
           "label": "Tokens",
-          "note": "one selected store: keyring, DPAPI or an owner-only file"
+          "note": "keyring, DPAPI, owner-only file"
         },
         {
           "at": "model",
@@ -150,7 +150,7 @@
             "check",
             "as deep as --depth asks: local, endpoint, model or client; model and client may use quota"
           ],
-          ["provider rotate", "replace one provider's Token"],
+          ["provider rotate", "replace a provider's Token only once it accepts the new one"],
           ["config rollback", "roll back the configuration and the client files, not the program"]
         ],
         "view": "overview"
@@ -179,17 +179,17 @@
           {
             "id": "discover",
             "label": "Discover",
-            "note": "each admitted client and its native paths"
+            "note": "admitted clients and their native paths"
           },
           {
             "id": "plan",
             "label": "Plan",
-            "note": "complete and credential-free before any write"
+            "note": "complete before writing, credential-free"
           },
           {
             "id": "prepare",
             "label": "Prepare",
-            "note": "every target, with its exact state before and after"
+            "note": "each target's exact state before and after"
           },
           {
             "id": "commit",
@@ -207,7 +207,7 @@
         },
         "aside": {
           "from": "commit",
-          "label": "Compensation runs in reverse, only while AIGW's own write still holds; on drift it fails closed and never overwrites a later write."
+          "label": "Compensation in reverse, AIGW's own write only; a drifted file is refused, never overwritten."
         },
         "view": "projection"
       },
@@ -215,10 +215,9 @@
         "title": "Who owns what",
         "items": [
           ["AIGW configuration", "providers, models, recommendations and each client's selection"],
-          ["Credential store", "the provider Tokens; AIGW chooses the store"],
+          ["Credential store", "the provider Tokens, kept in the one store AIGW chooses"],
           ["Client adapter", "AIGW's own settings in one admitted client's files"],
           ["The client", "conversations, memory, tools and GUI state"],
-          ["The endpoint product", "traffic normalization, retries and service lifecycle"],
           ["Local Git and the Forges", "signed commits and tags; hosting, CI and release records"]
         ],
         "view": "authority"
@@ -232,17 +231,13 @@
         "view": "program"
       },
       {
-        "title": "Team files, without credentials",
+        "title": "Team files, no credentials · provider changes",
         "items": [
-          ["setup --from team.toml", "applies a reviewed team file, overriding local models"],
-          ["--dry-run", "previews a team file and writes nothing"]
-        ]
-      },
-      {
-        "title": "Changing a provider",
-        "items": [
-          ["provider edit", "changes an endpoint deliberately; no command renames a provider"],
-          ["provider rotate", "the provider must accept the new Token"]
+          [
+            "setup --from team.toml · --dry-run",
+            "applies a reviewed team file, overriding local models · previews it and writes nothing"
+          ],
+          ["provider edit", "changes an endpoint deliberately; no command renames a provider"]
         ]
       }
     ]

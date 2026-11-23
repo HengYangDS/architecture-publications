@@ -2,10 +2,10 @@
 
 Architecture Publisher's queue item `edition-map` sets a work's overview in three sizes: one to read across a room,
 one to read on a screen and one to read when zoomed. When a page runs long, the overview no longer shrinks its notes
-to a fourth size. In the publisher's drawing of that layout, eight of the twelve works fit one page as they stand. The
-overviews of AIGW Client and of Architecture Publisher, in both languages, ran 30 to 41 pt past the page's foot. On
-2026-11-23 the owner chose to shorten these four statements, each saying all it said, rather than shrink the notes
-again or let an overview take a second page.
+to a fourth size. In the publisher's drawing of that layout, eight of the twelve overviews (six works, each in two
+languages) fit one page as they stand. The overviews of AIGW Client and of Architecture Publisher, in both languages,
+ran 30 to 41 pt past the page's foot. On 2026-11-23 the owner chose to shorten these four statements, each saying all
+it said, rather than shrink the notes again or let an overview take a second page.
 
 ## What Changes
 

@@ -15,7 +15,7 @@ words against the originals, in both languages.
 **Non-Goals:**
 
 - The publisher's layout itself, which its own Change brings with its drawings.
-- The other ten works, which fit as they stand.
+- The other four works, whose overviews fit as they stand.
 
 ## Decisions
 
