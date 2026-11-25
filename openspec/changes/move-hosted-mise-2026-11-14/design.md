@@ -36,7 +36,7 @@ hosted jobs use. Three of their fixes and changes touch what the jobs do:
 
 ## Risks / Trade-offs
 
-- [Mise 2026.11.14 changes the hosted bootstrap] → The proposal's hosted runs on both Forges qualify
-  it before landing; restoring the earlier parameter rolls it back.
+- [Mise 2026.11.14 changes the hosted bootstrap] → The proposal's push runs the hosted jobs on both Forges,
+  and the landing waits for them; restoring the earlier parameter rolls it back.
 - [The lock check reads the tracked lock differently] → Task 2.1 runs it with 2026.11.14 before the
   proof and records what it names.

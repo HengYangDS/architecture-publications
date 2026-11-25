@@ -1,6 +1,6 @@
 ## Why
 
-The hosted jobs install Mise 2026.11.11. Mise 2026.11.14, published on 24 November 2026 at 11:00
+The hosted GitHub job installs Mise 2026.11.11. Mise 2026.11.14, published on 24 November 2026 at 11:00
 UTC, is the latest stable release, and it passed the 24-hour release age on 25 November 2026. On
 26 November 2026 the owner asked that Mise be at its latest stable release everywhere, and the CI
 macOS guest's Mise moved to 2026.11.14 the same morning.
