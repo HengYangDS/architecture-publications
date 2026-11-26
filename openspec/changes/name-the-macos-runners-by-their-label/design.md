@@ -1,7 +1,7 @@
 ## Context
 
 See [proposal.md](proposal.md). `.config/ci/verification.toml` names the tags a GitLab macOS job selects its runner
-by, and ETHOS's common model writes `.gitlab-ci.yml` from it. ETHOS 仓库纳管, which keeps the guests' runners,
+by, and ETHOS's common model writes `.gitlab-ci.yml` from it. The session that keeps the guests' runners
 added `macos-latest` and the role tags to the publications' two macOS runners on 26 November 2026 and keeps the
 former tags until this repository's main no longer names them.
 
@@ -14,7 +14,7 @@ former tags until this repository's main no longer names them.
 **Non-Goals:**
 
 - Changing a job, a check, a runner's protection or the GitHub workflow.
-- Dropping the former tags from the runners, which ETHOS 仓库纳管 does once main is published.
+- Dropping the former tags from the runners, which their keeper does once main is published.
 
 ## Decisions
 
