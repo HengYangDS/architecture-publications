@@ -33,6 +33,7 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 ### Changed
 
+- The GitLab macOS jobs select their runners by the fleet's label, `macos-latest`, and their role, `review` or `protected`, instead of the hosts' former tags.
 - The overviews of AIGW Client and of Architecture Publisher, in both languages, say what they said in fewer
   words, so that each fits one page when the overview is set in three sizes: a fact the same page states
   elsewhere is said once, and two short lists of AIGW Client become one.
