@@ -2,8 +2,8 @@
 
 [`en/model.json`](en/model.json) is an Architecture Model of how OpenAI Responses Proxy makes a Codex
 Responses turn portable across third-party providers, and how it installs and keeps its own
-listener running. It pins `openai-responses-proxy` at v7.0.1
-(`8094cf82936113592a79dcd7e32a72f6df0d6528`), and its components own all 85 files of its coverage
+listener running. It pins `openai-responses-proxy` at v7.0.2
+(`f89a05c1ef062760266b09abc63bf86bb9147309`), and its components own all 85 files of its coverage
 scope: the `src/openai_responses_proxy` package with its provider manifest, `pyproject.toml` and
 `VERSION`. Twenty-six components, forty-five relations and six views show one turn from the client
 to a provider, what leaves the listener, how each failure stays bounded to its provider, one
@@ -17,7 +17,7 @@ Architecture Publisher delivers as its page. It opens with who sends traffic thr
 what one turn crosses, then shows what a request keeps on its way out and when it may be sent
 again. It ends with how a signed release becomes the serving generation, how an upgrade hands the
 listening socket to a new process, what an installation writes and what keeps the listener
-running. Each claim cites a line range at v7.0.1, and the diagrams the draft names sit beside it.
+running. Each claim cites a line range at v7.0.2, and the diagrams the draft names sit beside it.
 
 Each component claims the directories and files its path rules name, and each file in scope goes to
 its most specific claim. The scope is the whole repository less its declared exclusions, each with

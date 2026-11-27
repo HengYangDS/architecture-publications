@@ -89,7 +89,7 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   instead of 2026.11.9, and the hosted jobs keep their CI artifacts for 14 days.
 - The repository's tools run on Node 26.13.1, a security release, and its format check on Prettier
   3.10.1.
-- OpenAI Responses Proxy is pinned at v7.0.1, Architecture Publisher at v0.21.0, Film Kit at
+- OpenAI Responses Proxy is pinned at v7.0.2, Architecture Publisher at v0.21.0, Film Kit at
   v0.35.0, ETHOS at v0.2.0-beta.11, AIGW at v0.10.0 and the Data Department Work Guidelines at v10.1.3.
   The Architecture Publisher work lists the `skill` command, describes strips,
   palettes, age bands and the sealed acceptance of an edition, and claims
@@ -159,11 +159,11 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   the host's queue, that `ethos publish --observe-hosted` reads a head's hosted runs without granting authority, and
   that an obligation which only reports refuses no path; the five new files of the release have their owners, and
   its history ends at the release.
-  At v7.0.1 the Responses proxy work says that the proxy runs on macOS and Linux only, with no Windows service,
-  launcher or asset; that a Suhe.AI route sends Responses and model-catalog requests to suheai.cn through the
-  provider-portable projection; that every request is checked against that grammar, and that the DMXAPI route sends
-  the first attempt of a stateless request as the client wrote it and every later attempt projected; its history
-  ends at the release. At v0.10.0 the AIGW work says that every command takes the model Codex or Hermes chose in its
+  At v7.0.2 the Responses proxy work says that the proxy runs on macOS and Linux only, with no Windows service,
+  launcher or asset, and that a Suhe.AI route sends Responses and model-catalog requests to suheai.cn through the
+  same provider-portable projection as the other routes; its history records 7.0.1, whose DMXAPI route sent the
+  first attempt of a stateless request as the client wrote it, and ends at 7.0.2, which withdrew it.
+  At v0.10.0 the AIGW work says that every command takes the model Codex or Hermes chose in its
   own file as that client's selection unless the command names one, that a team file's import removes the local-only
   models nothing uses unless `--keep-local` is given, that a store which cannot tell whether a Token is there leaves
   the clients waiting, what Claude Code's `modelOverrides` and Claude Desktop's `behavesAs` record, and that

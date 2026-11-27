@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
       "provider": "github",
-      "revision": "8094cf82936113592a79dcd7e32a72f6df0d6528"
+      "revision": "f89a05c1ef062760266b09abc63bf86bb9147309"
     }
   },
   "layout": {
@@ -94,8 +94,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/protocol/replay/projection.py",
-          "line": 98,
-          "end_line": 100,
+          "line": 96,
+          "end_line": 98,
           "label": "Store"
         }
       ]
@@ -141,8 +141,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/protocol/replay/projection.py",
-          "line": 101,
-          "end_line": 103,
+          "line": 99,
+          "end_line": 101,
           "label": "Bindings"
         }
       ]
@@ -161,8 +161,8 @@
         },
         {
           "path": "src/openai_responses_proxy/protocol/replay/projection.py",
-          "line": 105,
-          "end_line": 112,
+          "line": 103,
+          "end_line": 110,
           "label": "Include"
         }
       ]

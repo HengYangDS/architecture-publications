@@ -5,8 +5,8 @@
   "locale": "zh-CN",
   "title": "OpenAI Responses Proxy",
   "question": "如何让一轮 Codex Responses 对话可在第三方提供商之间移植？又如何安装监听器并使之持续运行？",
-  "summary": "回环监听器按一套只认已知结构的封闭语法检查每个 Responses 请求，以 store=false 发往路径所指的提供商，全程受同一个总时限约束，只有失败类别允许时才重试。请求都按这套语法重建，唯独 DMXAPI 上无状态请求的首次尝试原样发出。已签名的发布资产由一个事务完成安装，全程写入事务日志，成为一个不可变的世代；升级时，监听套接字交给后继进程；监听器一旦停止，系统服务管理器托管的看门狗就会重启它。",
-  "scope": "v7.0.1 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
+  "summary": "回环监听器按一套只认已知结构的封闭语法重建每个 Responses 请求，并设 store=false；请求发往路径所指的提供商，全程受同一个总时限约束，只有失败类别允许时才重试。已签名的发布资产由一个事务完成安装，全程写入事务日志，成为一个不可变的世代；升级时，监听套接字交给后继进程；监听器一旦停止，系统服务管理器托管的看门狗就会重启它。",
+  "scope": "v7.0.2 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
   "limits": [
     "组件只列出它认领的路径下的文件，关系只列出导入或调用对方组件的文件。",
     "关系只表示用到对方行为的导入、进程调用，或对另一组件对象的调用（对象由外部传入）；仅为异常类、类型、共用辅助函数或产品名称而做的导入，不画。",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "openai-responses-proxy",
     "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
-    "revision": "8094cf82936113592a79dcd7e32a72f6df0d6528"
+    "revision": "f89a05c1ef062760266b09abc63bf86bb9147309"
   },
   "coverage": {
     "exclude": [
@@ -99,7 +99,7 @@
   },
   "overview": {
     "claim": "可移植的请求，事务化的安装",
-    "lead": "面向 Codex 及其他 Responses 客户端的回环数据面：每个请求都经同一套语法检查，以 store=false 发往路径所指的提供商；代理还负责安装、交接和监管自己的监听器。",
+    "lead": "面向 Codex 及其他 Responses 客户端的回环数据面：每个请求都重建并设 store=false，再发往路径所指的提供商；代理还负责安装、交接和监管自己的监听器。",
     "course": {
       "steps": [
         {
@@ -198,7 +198,7 @@
     },
     "blocks": [
       {
-        "title": "投影怎样处理请求",
+        "title": "发往提供商的请求",
         "items": [
           ["保留", "对话消息、工具调用及其输出、本轮控制项、加密的 Agent 消息"],
           ["去除", "前一个 response 与 conversation 的绑定、缓存键、推理内容、条目引用、搜索调用"],
@@ -212,7 +212,7 @@
         "items": [
           ["429", "转发给客户端，不重试；仅该提供商按 Retry-After 冷却，至多 300 秒"],
           ["重试后的 503", "转发；该提供商短暂冷却，直到下一次探测"],
-          ["DMXAPI 477", "完全匹配的 empty_response：用投影后的字节重试一次"],
+          ["DMXAPI 477", "完全匹配的 empty_response：用同样的字节重试一次"],
           ["response_failed", "逐步缩小、不拆配对地重试，最后再试一次只含对话的请求"],
           ["输入超长", "删减历史后改发一次更小的请求，保留本轮输入和图片"],
           ["发出后断连", "502 upstream_outcome_unknown；由客户端决定"],
@@ -447,7 +447,7 @@
       "label": "重放投影",
       "kind": "grammar",
       "details": {
-        "发送": "store=false，不带 response、conversation 或缓存绑定；DMXAPI 上无状态请求的首次尝试除外",
+        "发送": "store=false，不带 response、conversation 或缓存绑定",
         "保留": "可移植的对话，以及完整的工具调用与输出配对",
         "拒绝": "未知或不安全的结构，在任何上游 I/O 之前"
       },
@@ -1144,9 +1144,9 @@
     },
     {
       "id": "portability",
-      "title": "投影怎样处理请求",
+      "title": "发往提供商的请求",
       "question": "投影保留什么、去除什么？被提供商拒绝的请求如何缩小？",
-      "summary": "“重放投影”设 store=false，去除与前一个 response、conversation 和缓存的绑定，工具调用与输出始终配对；DMXAPI 上无状态请求的首次尝试除外，它原样发出。被提供商拒绝的请求，由“限次恢复”派生出严格更小、不拆配对的请求，再逐个重建。",
+      "summary": "“重放投影”设 store=false，去除与前一个 response、conversation 和缓存的绑定，工具调用与输出始终配对。被提供商拒绝的请求，由“限次恢复”派生出严格更小、不拆配对的请求，再逐个重建。",
       "members": [
         "responses-relay",
         "replay-projection",
