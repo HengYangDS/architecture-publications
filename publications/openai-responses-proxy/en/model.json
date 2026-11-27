@@ -5,8 +5,8 @@
   "locale": "en",
   "title": "OpenAI Responses Proxy",
   "question": "How does OpenAI Responses Proxy make a Codex Responses turn portable across third-party providers, and how does it install its own listener and keep it running?",
-  "summary": "A loopback listener rebuilds each Responses request in one closed grammar with store=false, sends it, within one total deadline, to the provider named in its path, and retries only what the failure class allows. A signed release asset installs through one journaled transaction as an immutable generation; an upgrade hands the listening socket to a successor process, and a watchdog under the native service manager restarts a stopped listener.",
-  "scope": "The OpenAI Responses Proxy product as released at v7.0.0: the openai_responses_proxy package with its provider manifest, pyproject.toml and VERSION.",
+  "summary": "A loopback listener checks each Responses request against one closed grammar and sends it with store=false, within one total deadline, to the provider named in its path, and retries only what the failure class allows. It rebuilds each request in that grammar, except the first attempt of a stateless request on DMXAPI, which leaves as written. A signed release asset installs through one journaled transaction as an immutable generation; an upgrade hands the listening socket to a successor process, and a watchdog under the native service manager restarts a stopped listener.",
+  "scope": "The OpenAI Responses Proxy product as released at v7.0.1: the openai_responses_proxy package with its provider manifest, pyproject.toml and VERSION.",
   "limits": [
     "A component lists only the files under the paths it claims, and a relation only the files that import or call the other component.",
     "A relation shows only an import that carries behaviour, a process call, or a call on an object of the other component that was passed in; imports used only for an exception class, a type, a shared helper or the product's names are not drawn.",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "openai-responses-proxy",
     "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
-    "revision": "b0d850501653ca53bf20565c02cd7379994a4144"
+    "revision": "8094cf82936113592a79dcd7e32a72f6df0d6528"
   },
   "coverage": {
     "exclude": [
@@ -99,7 +99,7 @@
   },
   "overview": {
     "claim": "Portable requests, transactional installs",
-    "lead": "A loopback data plane for Codex and other Responses clients: each request is rebuilt store-free and sent to the provider named in its path, and the proxy installs, hands off and supervises its own listener.",
+    "lead": "A loopback data plane for Codex and other Responses clients: each request is checked in one grammar and sent store-free to the provider named in its path, and the proxy installs, hands off and supervises its own listener.",
     "course": {
       "steps": [
         {
@@ -198,7 +198,7 @@
     },
     "blocks": [
       {
-        "title": "What leaves the listener",
+        "title": "What the projection does",
         "items": [
           [
             "kept",
@@ -224,7 +224,7 @@
             "relayed without a retry; that provider alone cools for Retry-After, at most 300 s"
           ],
           ["503 after retries", "relayed; that provider cools briefly before the next probe"],
-          ["DMXAPI 477", "the exact empty_response: one retry with the same bytes"],
+          ["DMXAPI 477", "the exact empty_response: one retry with the projected bytes"],
           ["response_failed", "shrinking, pair-safe retries, then one dialogue-only attempt"],
           ["input too long", "one smaller historical projection; current input and images kept"],
           ["lost after sending", "502 upstream_outcome_unknown; the client decides"],
@@ -459,7 +459,7 @@
       "label": "Replay projection",
       "kind": "grammar",
       "details": {
-        "sends": "store=false, without response, conversation or cache bindings",
+        "sends": "store=false, without response, conversation or cache bindings, except a stateless first attempt on DMXAPI",
         "keeps": "portable dialogue and complete tool call and output pairs",
         "refuses": "unknown or unsafe structure before any upstream I/O"
       },
@@ -1156,9 +1156,9 @@
     },
     {
       "id": "portability",
-      "title": "What leaves the listener",
+      "title": "What the projection does",
       "question": "What does the projection keep and remove, and how is a request the provider refuses made smaller?",
-      "summary": "Replay projection sets store=false and removes the bindings to a previous response, a conversation and a cache, keeping calls paired with outputs. Bounded recovery re-projects strictly smaller, pair-safe requests derived from one the provider refused.",
+      "summary": "Replay projection sets store=false and removes the bindings to a previous response, a conversation and a cache, keeping calls paired with outputs, except a stateless first attempt on DMXAPI, which leaves as written. Bounded recovery re-projects strictly smaller, pair-safe requests derived from one the provider refused.",
       "members": [
         "responses-relay",
         "replay-projection",

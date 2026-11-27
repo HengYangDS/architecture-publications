@@ -12,6 +12,10 @@ do (the Chinese model's worklist; the English one's is the same):
 | DDWG                   | v8.0.0 → v10.1.3  | 172     | 33 of 48 (30 modified, 3 deleted)           | 42, 10, 59, 0                              | 25 and 61                          | 0, 1               |
 | Film Kit               | v0.26.0 → v0.35.0 | 421     | 96 of 155 (89 modified, 5 deleted, 2 moved) | 28, 58, 89, 7                              | 26 and 74                          | 20, 46             |
 
+The proxy released v7.0.1 on the same day, after its worklist; the review of this Change found it, and the work
+moves on to it with a worklist of its own: 9 commits, 7 of 85 files in scope modified, citations 136 the same, 48
+shifted, 7 touched, 6 components and 12 relations to reread, nothing refused or uncovered.
+
 ## Goals / Non-Goals
 
 **Goals:**

@@ -1,7 +1,7 @@
 ## Why
 
 A work follows its repository's latest release. On 2026-11-27 five works pin releases their repositories have moved
-past: OpenAI Responses Proxy v6.0.3 (latest v7.0.0), AIGW Client v0.8.3 (v0.10.0), Architecture Publisher v0.16.0
+past: OpenAI Responses Proxy v6.0.3 (latest v7.0.1), AIGW Client v0.8.3 (v0.10.0), Architecture Publisher v0.16.0
 (v0.21.0), DDWG v8.0.0 (v10.1.3) and Film Kit v0.26.0 (v0.35.0). ETHOS pins its latest, v0.2.0-beta.11.
 
 ## What Changes

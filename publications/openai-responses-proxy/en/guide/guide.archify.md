@@ -1,13 +1,13 @@
 # How does OpenAI Responses Proxy keep Codex traffic portable across providers, and keep itself running? {#guide}
 
-OpenAI Responses Proxy is a loopback listener between a Responses client, such as Codex, and third-party Responses providers.[](source:readme-what) It rebuilds every request in one closed, provider-portable grammar and never edits the client's conversation storage.[](source:readme-portable)[](source:dr2-decision) It installs as an immutable generation and runs under a watchdog that the native service manager keeps alive.[](source:readme-generations)[](source:readme-macos)
+OpenAI Responses Proxy is a loopback listener between a Responses client, such as Codex, and third-party Responses providers.[](source:readme-what) It checks every request against one closed, provider-portable grammar and never edits the client's conversation storage.[](source:readme-portable)[](source:dr2-decision)[](source:readme-compat) It installs as an immutable generation and runs under a watchdog that the native service manager keeps alive.[](source:readme-generations)[](source:readme-macos)
 
-- [It changes requests, never conversations](block:p-portable): store=false, no provider bindings, and tool calls kept with their outputs.[](source:readme-compat)
+- [It changes requests, never conversations](block:p-portable): store=false, no provider bindings, and tool calls kept with their outputs. DMXAPI's first attempt of a stateless request is the exception and leaves as written.[](source:readme-compat)
 - [A request the provider received in full is never sent again](block:p-resend); the client gets `502 upstream_outcome_unknown` and decides.[](source:dr6-resend)
 - [An upgrade keeps admitting turns](block:p-handoff): the successor process inherits the listening socket, and the old one finishes what it accepted.[](source:readme-handoff)
 - [Every installation step is journaled](block:p-install), so `recover` finishes or undoes an interrupted one.[](source:arch-completion)
 
-@answer scope="OpenAI Responses Proxy v7.0.0 · commit b0d8505 · its source and its own documents"
+@answer scope="OpenAI Responses Proxy v7.0.1 · commit 8094cf8 · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What the proxy is" path="README.md" lines=3:7
 @source readme-portable title="No conversation storage is edited" path="README.md" lines=12:13
@@ -22,37 +22,37 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 @source readme-purge title="Purging exact files" path="README.md" lines=218:224
 @source readme-generations title="Generations and the selector" path="README.md" lines=226:233
 @source readme-handoff title="Admission-preserving handoff" path="README.md" lines=238:245
-@source readme-compat title="Compatibility behavior" path="README.md" lines=253:272
-@source readme-deadline title="One exchange deadline" path="README.md" lines=274:293
-@source readme-ucloud title="Plaintext delegation on UCloud" path="README.md" lines=295:303
-@source readme-request title="Request boundary" path="README.md" lines=307:332
-@source readme-body title="Body admission" path="README.md" lines=334:341
-@source readme-evidence title="Runtime evidence" path="README.md" lines=363:373
+@source readme-compat title="Compatibility behavior" path="README.md" lines=253:278
+@source readme-deadline title="One exchange deadline" path="README.md" lines=280:299
+@source readme-ucloud title="Plaintext delegation on UCloud" path="README.md" lines=301:309
+@source readme-request title="Request boundary" path="README.md" lines=313:338
+@source readme-body title="Body admission" path="README.md" lines=340:347
+@source readme-evidence title="Runtime evidence" path="README.md" lines=369:379
 @source arch-authority title="Who owns which state" path="docs/architecture/authority-and-runtime-boundary.md" lines=40:50
-@source arch-projection title="What the projection removes" path="docs/architecture/authority-and-runtime-boundary.md" lines=226:239
-@source arch-agent title="Encrypted agent messages" path="docs/architecture/authority-and-runtime-boundary.md" lines=248:257
-@source arch-live title="The live-response boundary" path="docs/architecture/authority-and-runtime-boundary.md" lines=259:263
-@source arch-recovery title="Recovery ownership" path="docs/architecture/authority-and-runtime-boundary.md" lines=287:304
-@source arch-commit title="Commit, prewarm, handoff, rebind" path="docs/architecture/authority-and-runtime-boundary.md" lines=328:342
-@source arch-selector title="One selector" path="docs/architecture/authority-and-runtime-boundary.md" lines=344:357
-@source arch-completion title="Completion and recovery" path="docs/architecture/authority-and-runtime-boundary.md" lines=359:366
-@source arch-deletion title="Exact-file deletion" path="docs/architecture/authority-and-runtime-boundary.md" lines=368:378
+@source arch-projection title="What the projection removes" path="docs/architecture/authority-and-runtime-boundary.md" lines=226:242
+@source arch-agent title="Encrypted agent messages" path="docs/architecture/authority-and-runtime-boundary.md" lines=251:260
+@source arch-live title="The live-response boundary" path="docs/architecture/authority-and-runtime-boundary.md" lines=262:266
+@source arch-recovery title="Recovery ownership" path="docs/architecture/authority-and-runtime-boundary.md" lines=290:308
+@source arch-commit title="Commit, prewarm, handoff, rebind" path="docs/architecture/authority-and-runtime-boundary.md" lines=332:346
+@source arch-selector title="One selector" path="docs/architecture/authority-and-runtime-boundary.md" lines=348:361
+@source arch-completion title="Completion and recovery" path="docs/architecture/authority-and-runtime-boundary.md" lines=363:370
+@source arch-deletion title="Exact-file deletion" path="docs/architecture/authority-and-runtime-boundary.md" lines=372:382
 @source threat-assets title="Assets and the client's credential" path="docs/architecture/threat-model.md" lines=18:30
 @source threat-boundaries title="Trust boundaries" path="docs/architecture/threat-model.md" lines=32:44
 @source threat-residual title="Residual risks" path="docs/architecture/threat-model.md" lines=72:85
 @source dr1-decision title="DR-0001: two products, two owners" path="docs/decisions/dr-0001-control-plane-data-plane-boundary.md" lines=23:29
 @source dr2-decision title="DR-0002: stateless, portable replay" path="docs/decisions/dr-0002-provider-portable-stateless-replay.md" lines=23:57
-@source dr2-consequence title="DR-0002: continuity from replayed dialogue" path="docs/decisions/dr-0002-provider-portable-stateless-replay.md" lines=68:77
+@source dr2-consequence title="DR-0002: continuity from replayed dialogue" path="docs/decisions/dr-0002-provider-portable-stateless-replay.md" lines=82:91
 @source dr3-decision title="DR-0003: recovery scoped by provider" path="docs/decisions/dr-0003-provider-scoped-recovery-and-backpressure.md" lines=22:35
 @source dr6-resend title="DR-0006: a sent request is not sent again" path="docs/decisions/dr-0006-semantic-fit-before-framework-adoption.md" lines=200:228
 @source code-route title="Route dispatch" path="src/openai_responses_proxy/serving/server.py" lines=176:193
 @source code-body title="Reading one framed body" path="src/openai_responses_proxy/relay/responses.py" lines=126:144
-@source code-project title="Projection and delegation" path="src/openai_responses_proxy/relay/responses.py" lines=250:289
-@source code-gate title="Cooldown, then admission" path="src/openai_responses_proxy/relay/responses.py" lines=314:340
+@source code-project title="Projection and delegation" path="src/openai_responses_proxy/relay/responses.py" lines=250:297
+@source code-gate title="Cooldown, then admission" path="src/openai_responses_proxy/relay/responses.py" lines=324:350
 @source code-cooldown title="Provider cooldowns" path="src/openai_responses_proxy/relay/responses.py" lines=40:86
-@source code-deadline title="One exchange, one deadline" path="src/openai_responses_proxy/relay/exchange.py" lines=122:152
-@source code-http-error title="Classified upstream errors" path="src/openai_responses_proxy/relay/exchange.py" lines=369:438
-@source code-transport-error title="Transport failures" path="src/openai_responses_proxy/relay/exchange.py" lines=441:478
+@source code-deadline title="One exchange, one deadline" path="src/openai_responses_proxy/relay/exchange.py" lines=126:164
+@source code-http-error title="Classified upstream errors" path="src/openai_responses_proxy/relay/exchange.py" lines=381:460
+@source code-transport-error title="Transport failures" path="src/openai_responses_proxy/relay/exchange.py" lines=463:500
 @source code-outcome title="A failure after a complete send" path="src/openai_responses_proxy/relay/upstream.py" lines=409:422
 @source code-reused title="A failed send on a reused connection" path="src/openai_responses_proxy/relay/upstream.py" lines=346:387
 @source code-reopen title="Only a pre-content failure is reopened" path="src/openai_responses_proxy/relay/sse.py" lines=287:294
@@ -66,9 +66,9 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 @source code-disposition title="Which statuses are retried" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=56:92
 @source code-compact title="Pair-safe compaction" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=105:156
 @source code-input-variant title="The input-variant contract" path="src/openai_responses_proxy/protocol/recovery/input.py" lines=90:100
-@source code-capacity title="Input-length and media-budget refusals" path="src/openai_responses_proxy/relay/exchange.py" lines=390:401
+@source code-capacity title="Input-length and media-budget refusals" path="src/openai_responses_proxy/relay/exchange.py" lines=412:423
 @source code-dmx title="DMXAPI empty_response" path="src/openai_responses_proxy/providers/policies/dmxapi.py" lines=16:34
-@source code-manifest title="The provider manifest" path="src/openai_responses_proxy/providers/manifest.toml" lines=1:15
+@source code-manifest title="The provider manifest" path="src/openai_responses_proxy/providers/manifest.toml" lines=1:16
 @source code-plaintext title="Selecting plaintext delegation" path="src/openai_responses_proxy/protocol/agent_delivery.py" lines=111:129
 @source code-signature title="Verifying the signature" path="src/openai_responses_proxy/lifecycle/artifact.py" lines=295:333
 @source code-artifact title="Admitting the archive" path="src/openai_responses_proxy/lifecycle/artifact.py" lines=223:292
@@ -117,19 +117,19 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 @source code-lock title="One lifecycle writer" path="src/openai_responses_proxy/cli/application.py" lines=67:86
 @source code-options title="What the port and deadline options accept" path="src/openai_responses_proxy/cli/options.py" lines=32:73
 @source readme-port title="The default port" path="README.md" lines=91:99
-@source readme-budgets title="Limits a fresh installation may choose" path="README.md" lines=343:359
+@source readme-budgets title="Limits a fresh installation may choose" path="README.md" lines=349:365
 @source code-defaults title="Runtime defaults" path="src/openai_responses_proxy/runtime/config.py" lines=68:84
 @source code-platforms title="Release platforms" path="src/openai_responses_proxy/product_identity.py" lines=13:20
-@source changelog-100 title="The 1.0.0 release" path="CHANGELOG.md" lines=2185:2191
-@source changelog-202 title="Renamed in 2.0.2" path="CHANGELOG.md" lines=1580:1590
-@source changelog-500 title="Renamed in 5.0.0" path="CHANGELOG.md" lines=680:687
-@source changelog-5111 title="The 5.1.11 release" path="CHANGELOG.md" lines=251:264
-@source changelog-5112 title="The 5.1.12 release" path="CHANGELOG.md" lines=229:249
-@source changelog-600 title="The 6.0.0 release" path="CHANGELOG.md" lines=173:227
-@source changelog-601 title="The 6.0.1 release" path="CHANGELOG.md" lines=133:171
-@source changelog-602 title="The 6.0.2 release" path="CHANGELOG.md" lines=80:131
-@source changelog-603 title="The 6.0.3 release" path="CHANGELOG.md" lines=50:78
-@source changelog-700 title="The 7.0.0 release" path="CHANGELOG.md" lines=11:48
+@source changelog-100 title="The 1.0.0 release" path="CHANGELOG.md" lines=2199:2205
+@source changelog-202 title="Renamed in 2.0.2" path="CHANGELOG.md" lines=1594:1604
+@source changelog-500 title="Renamed in 5.0.0" path="CHANGELOG.md" lines=694:701
+@source changelog-5111 title="The 5.1.11 release" path="CHANGELOG.md" lines=265:278
+@source changelog-5112 title="The 5.1.12 release" path="CHANGELOG.md" lines=243:263
+@source changelog-600 title="The 6.0.0 release" path="CHANGELOG.md" lines=187:241
+@source changelog-601 title="The 6.0.1 release" path="CHANGELOG.md" lines=147:185
+@source changelog-602 title="The 6.0.2 release" path="CHANGELOG.md" lines=94:145
+@source changelog-603 title="The 6.0.3 release" path="CHANGELOG.md" lines=64:92
+@source changelog-701 title="The 7.0.1 release" path="CHANGELOG.md" lines=11:23
 
 ## Who sends traffic through the proxy, and what does it leave to others? {#p-context}
 
@@ -195,7 +195,7 @@ Only `POST /<provider>/v1/responses` and `GET /<provider>/v1/models` are admitte
 @steps id=turn-steps
 | step-turn-route | Loopback listener | Resolves the provider from the path and rejects encoded, dotted or unrelated paths before any upstream I/O.[](source:readme-request)[](source:code-route) | turn-flow | turn-listener | | turn-client-to-turn-listener-1,turn-listener-to-turn-relay-1 |
 | step-turn-body | Responses relay | Reads one ASCII Content-Length body within 30 s and 64 MiB; a slower or larger body gets 408 or 413.[](source:readme-body)[](source:code-body) | turn-flow | turn-relay | | turn-listener-to-turn-relay-1 |
-| step-turn-project | Replay projection | Rebuilds the body in the portable grammar, then selects plaintext delegation when the route asks for it.[](source:code-project) | turn-flow | turn-projection | | turn-relay-to-turn-projection-1,turn-projection-to-turn-relay-1 |
+| step-turn-project | Replay projection | Rebuilds the body in the portable grammar, then selects plaintext delegation when the route asks for it. On DMXAPI, the first attempt of a stateless request leaves as the client wrote it.[](source:code-project) | turn-flow | turn-projection | | turn-relay-to-turn-projection-1,turn-projection-to-turn-relay-1 |
 | step-turn-gate | Responses relay | A cooling provider answers 429 or 503 with Retry-After. Otherwise the turn is admitted and counted as one active Response.[](source:code-cooldown)[](source:code-gate) | turn-flow | turn-relay | | turn-relay-to-turn-exchange-1 |
 | step-turn-send | Upstream exchange | One deadline, 900 s by default, bounds headers, retries, reads and every write to the client.[](source:readme-deadline)[](source:code-deadline) | turn-flow | turn-exchange | | turn-exchange-to-turn-provider-1,turn-provider-to-turn-exchange-1,turn-exchange-to-turn-relay-1 |
 | step-turn-deliver | Response delivery | Validates each event before writing it, and holds events that come before any content.[](source:code-hold)[](source:arch-live) | turn-flow | turn-delivery | | turn-relay-to-turn-delivery-1,turn-delivery-to-turn-client-1 |
@@ -207,7 +207,7 @@ Continuity comes from the dialogue the client replays, not from a provider's sto
 @diagram tree id=projection-tree source=projection.tree.json
 
 @steps id=projection-steps
-| step-pr-bindings | Provider bindings | Response, conversation, cache and stored-item bindings have no shared meaning across providers, so they are removed.[](source:arch-projection) | projection-tree | pr-bindings |
+| step-pr-bindings | Provider bindings | Response, conversation, cache and stored-item bindings have no shared meaning across providers, so they are removed, except on DMXAPI's first attempt of a stateless request.[](source:arch-projection) | projection-tree | pr-bindings |
 | step-pr-pairs | Tool calls with their outputs | A call keeps its identity and its output stays paired. A later result with its own identity becomes an attributed message in place.[](source:arch-projection) | projection-tree | pr-pairs |
 | step-pr-agent | Encrypted agent messages | Native control data keeps its envelope and ciphertext; the proxy does not decrypt it or promise that another provider can.[](source:arch-agent) | projection-tree | pr-agent |
 | step-pr-controls | Current-turn controls | An empty additional_tools list stays empty, also during native compaction.[](source:dr2-decision) | projection-tree | pr-controls |
@@ -215,6 +215,9 @@ Continuity comes from the dialogue the client replays, not from a provider's sto
 
 @callout level=note title="Readable delegation on UCloud"
 | The UCloud route aliases the collaboration namespace before generation and restores it once readable arguments arrive. It never relabels ciphertext as plaintext.[](source:readme-ucloud)[](source:code-plaintext) |
+
+@callout level=note title="First attempts sent as written on DMXAPI"
+| The DMXAPI route sends the first attempt of a stateless request (store=false, no previous_response_id, conversation or item reference) as written, once the grammar admits it. DMXAPI does not reason on a changed request. Every later attempt, after an HTTP 400, a transient failure or a stream failure before content, sends the projected request.[](source:readme-compat)[](source:arch-projection)[](source:code-project)[](source:changelog-701) |
 
 ## When may a request be sent again? {#p-resend}
 
@@ -231,16 +234,17 @@ A provider that received a complete request may already be working on it. Sendin
 
 Each upstream error has one bounded answer, and a cooldown holds back only the provider that caused it.[](source:dr3-decision)[](source:arch-recovery)
 
-| Upstream answer                       | What the proxy does                                                                                                                                                      |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `429`                                 | Relays it once, then cools that provider for its Retry-After, at most 300 s[](source:code-http-error)                                                                    |
-| `503` after bounded retries           | Relays the original error, then briefly cools that provider[](source:code-disposition)[](source:code-http-error)                                                         |
-| DMXAPI `477 empty_response`           | Sends the same projected bytes once more[](source:code-dmx)                                                                                                              |
-| `response_failed`                     | Strictly shrinking, pair-safe retries, then at most one dialogue-only attempt[](source:code-compact)                                                                     |
-| Invalid `input` union                 | One smaller current-dialogue attempt, then stops[](source:code-input-variant)                                                                                            |
-| Input too long or media over budget   | One attempt without older history, if the current input allows, then stops[](source:code-capacity)[](source:code-compact)                                                |
-| `invalid_encrypted_content`           | Relays the refusal without replacing the task[](source:arch-agent)                                                                                                       |
-| A top-level `error` event in a stream | Relays the event and the end of the response, and nothing the upstream sends after it[](source:code-stream-terminals)[](source:code-stream-end)[](source:changelog-5112) |
+| Upstream answer                              | What the proxy does                                                                                                                                                      |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `429`                                        | Relays it once, then cools that provider for its Retry-After, at most 300 s[](source:code-http-error)                                                                    |
+| `503` after bounded retries                  | Relays the original error, then briefly cools that provider[](source:code-disposition)[](source:code-http-error)                                                         |
+| DMXAPI `477 empty_response`                  | Sends the projected bytes once more[](source:code-dmx)[](source:readme-compat)                                                                                           |
+| HTTP 400 to a DMXAPI request sent as written | Sends the projected request once, then recovers as on the other routes[](source:code-http-error)[](source:arch-recovery)                                                 |
+| `response_failed`                            | Strictly shrinking, pair-safe retries, then at most one dialogue-only attempt[](source:code-compact)                                                                     |
+| Invalid `input` union                        | One smaller current-dialogue attempt, then stops[](source:code-input-variant)                                                                                            |
+| Input too long or media over budget          | One attempt without older history, if the current input allows, then stops[](source:code-capacity)[](source:code-compact)                                                |
+| `invalid_encrypted_content`                  | Relays the refusal without replacing the task[](source:arch-agent)                                                                                                       |
+| A top-level `error` event in a stream        | Relays the event and the end of the response, and nothing the upstream sends after it[](source:code-stream-terminals)[](source:code-stream-end)[](source:changelog-5112) |
 
 ## How does a signed release become the serving generation? {#p-install}
 
@@ -321,7 +325,7 @@ These are the macOS defaults; Linux follows XDG directories.[](source:code-roots
 
 ## How did the proxy get here? {#p-history}
 
-The proxy went from 1.0.0 in July 2026 to 7.0.0 in November, and changed its name twice on the way.[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-700) Below are nineteen of its releases that changed what a client or an operator meets.
+The proxy went from 1.0.0 in July 2026 to 7.0.1 in November, and changed its name twice on the way.[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-701) Below are twenty of its releases that changed what a client or an operator meets.
 
 @diagram timeline id=history source=history.timeline.json title="How the proxy got here"
 
