@@ -45,7 +45,8 @@ Run the publisher with a checkout of the described repository. `check` resolves
 every claim and cited file at the pinned revision without changing the
 checkout; `build` writes a new delivery under the ignored `build/` directory.
 Every model states its overview and leaves its files' addresses to its repository's, which needs Architecture
-Publisher 0.17.0 or later, and the print edition needs Typst
+Publisher 0.17.0 to 0.19.0 (0.20.0 and later refuse the positions and sizes the works' guides state), and the
+print edition needs Typst
 0.15.1 on the path. The publisher draws the overview a model states on one page of its edition, after the contents. A work whose model names a guide gets
 that guide as its page, with every line range it cites checked at the pinned
 revision.

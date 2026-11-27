@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
       "provider": "github",
-      "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42"
+      "revision": "127e15186115c1cf30e9f476e4991d587bf50500"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 769,
-          "end_line": 808,
+          "line": 905,
+          "end_line": 942,
           "label": "4.0.0"
         }
       ]
@@ -54,8 +54,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 746,
-          "end_line": 758,
+          "line": 886,
+          "end_line": 896,
           "label": "4.1.0"
         }
       ]
@@ -70,8 +70,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 691,
-          "end_line": 713,
+          "line": 839,
+          "end_line": 859,
           "label": "5.0.0"
         }
       ]
@@ -85,8 +85,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 653,
-          "end_line": 670,
+          "line": 807,
+          "end_line": 822,
           "label": "5.0.3"
         }
       ]
@@ -100,8 +100,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 596,
-          "end_line": 619,
+          "line": 758,
+          "end_line": 779,
           "label": "5.1.0"
         }
       ]
@@ -116,8 +116,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 439,
-          "end_line": 465,
+          "line": 621,
+          "end_line": 645,
           "label": "7.0.0"
         }
       ]
@@ -131,8 +131,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 421,
-          "end_line": 437,
+          "line": 605,
+          "end_line": 619,
           "label": "7.0.1"
         }
       ]
@@ -146,8 +146,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 359,
-          "end_line": 390,
+          "line": 549,
+          "end_line": 578,
           "label": "7.0.4"
         }
       ]
@@ -161,8 +161,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 322,
-          "end_line": 331,
+          "line": 516,
+          "end_line": 523,
           "label": "7.0.6"
         }
       ]
@@ -176,8 +176,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 185,
-          "end_line": 252,
+          "line": 391,
+          "end_line": 456,
           "label": "7.0.12"
         }
       ]
@@ -192,9 +192,86 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 17,
-          "end_line": 183,
+          "line": 225,
+          "end_line": 389,
           "label": "8.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v900",
+      "at": "2026-11-22T19:48:15+08:00",
+      "lane": "duties",
+      "kind": "change",
+      "title": "v9.0.0 每项职责写明约束力度",
+      "detail": "“重要工作”等说法改指 L1 或 L2 工作，L1 工作因此承担这些职责。除指引和范例外，每句祈使句都按对应需求写明“必须”“不得”“应当”或“可以”。治理规则按读者任务移到“仓库变更与发布”和“源文件检查与 CI”两个页面。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 160,
+          "end_line": 223,
+          "label": "9.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v910",
+      "at": "2026-11-23T03:44:09+08:00",
+      "lane": "duties",
+      "title": "v9.1.0 职级、绩效档位与成长",
+      "detail": "新增一页，规定一条专业序列：四段共八个职级，以及按成员本职级评定的六个绩效档位，从 S 到 E。两名评定者依据记录评定，不设名额比例。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 135,
+          "end_line": 158,
+          "label": "9.1.0"
+        }
+      ]
+    },
+    {
+      "id": "v930",
+      "at": "2026-11-24T16:47:15+08:00",
+      "lane": "duties",
+      "title": "v9.3.0 部门的九个职能",
+      "detail": "数据主题列出九个职能：六个沿数据价值链纵向排列，三个横跨其上。一项数据的职责默认分给这些职能，哪项职责都不吞并另一项。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 109,
+          "end_line": 121,
+          "label": "9.3.0"
+        }
+      ]
+    },
+    {
+      "id": "v1000",
+      "at": "2026-11-24T23:47:02+08:00",
+      "lane": "duties",
+      "kind": "change",
+      "title": "v10.0.0 绩效档位改为五档",
+      "detail": "绩效档位改为 S 到 D 五档：B 是本职级应有的表现，C 是及格线，D 低于及格线。先看 D 的条件；D 以上，每一档回答一个是非问题。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 79,
+          "end_line": 107,
+          "label": "10.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v1010",
+      "at": "2026-11-25T13:56:48+08:00",
+      "lane": "repository",
+      "title": "v10.1.0 CI 只在 ARM macOS 上运行",
+      "detail": "两个平台的 CI 都只在 ARM macOS 上运行，用同一个 Runner 标签选定。Linux 和 Windows 作业、Linux 容器镜像，以及从软件包仓库下载 Mise 的做法，都已撤下。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 34,
+          "end_line": 42,
+          "label": "10.1.0"
         }
       ]
     }

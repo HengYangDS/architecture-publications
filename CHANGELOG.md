@@ -33,6 +33,8 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 ### Changed
 
+- The works' READMEs leave the publisher releases that check and build them to the repository's README, which names
+  Architecture Publisher 0.17.0 to 0.19.0: 0.20.0 and later refuse the positions and sizes the works' guides state.
 - The GitLab macOS jobs select their runners by the fleet's label, `macos-latest`, and their role, `review` or
   `protected`, instead of the hosts' former tags.
 - The overviews of AIGW Client and of Architecture Publisher, in both languages, say what they said in fewer
@@ -87,9 +89,9 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   instead of 2026.11.9, and the hosted jobs keep their CI artifacts for 14 days.
 - The repository's tools run on Node 26.13.1, a security release, and its format check on Prettier
   3.10.1.
-- OpenAI Responses Proxy is pinned at v6.0.3, Architecture Publisher at
-  v0.16.0, Film Kit at v0.26.0, ETHOS at v0.2.0-beta.11 and AIGW at v0.8.3.
-  Building the works needs Architecture Publisher 0.15.0 or later. The
+- OpenAI Responses Proxy is pinned at v7.0.0, Architecture Publisher at v0.21.0, Film Kit at
+  v0.35.0, ETHOS at v0.2.0-beta.11, AIGW at v0.10.0 and the Data Department Work Guidelines at v10.1.3.
+  Building the works needs Architecture Publisher 0.17.0 to 0.19.0. The
   Architecture Publisher work lists the `skill` command, describes strips,
   palettes, age bands and the sealed acceptance of an edition, and claims
   `src/style.mjs`. The Film Kit work claims the engine's own draft and picture
@@ -163,6 +165,31 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   the host's queue, that `ethos publish --observe-hosted` reads a head's hosted runs without granting authority, and
   that an obligation which only reports refuses no path; the five new files of the release have their owners, and
   its history ends at the release.
+  At v7.0.0 the Responses proxy work says that the proxy runs on macOS and Linux only, with no Windows service,
+  launcher or asset, and that a Suhe.AI route sends Responses and model-catalog requests to suheai.cn through the
+  projection the other routes share; its history ends at the release. At v0.10.0 the AIGW work says that every
+  command takes the model Codex or Hermes chose in its own file as that client's selection unless the command names
+  one, that a team file's import removes the local-only models nothing uses unless `--keep-local` is given, that a
+  store which cannot tell whether a Token is there leaves the clients waiting, what Claude Code's `modelOverrides`
+  and Claude Desktop's `behavesAs` record, and that `aigw check` writes schema version 5; its history ends at the
+  release. At v0.21.0 the Architecture Publisher work says that the publisher lays out a guide's diagrams and
+  refuses a diagram file that states a position, that an edition with a stated overview refuses a view the overview
+  does not reach, that a plate's head links back to the overview and the index gives each part a paragraph of links,
+  that a figure over the whole body sets its summary in the plate's head, that the reader file holds every statement
+  once and then the guide as prose, and that the bundled Archify is 3.3.0; it claims the eight files new in its
+  scope, and its history ends at the release. At v10.1.3 the DDWG work says that the guidelines hold eight topics,
+  the eighth on grades, performance tiers and promotion judged from work records, that the charter's third
+  non-negotiable boundary binds every risk level and its lowest level is L0 low risk, what each word of force
+  allows, that the governance rules stand on two pages, one for change and release and one for source checks and CI,
+  that the data topic names nine functions, and that both Forges run CI on ARM macOS only; it claims `docs/grow.md`
+  as a new part, and its history ends at v10.1.0, the last release that changed what members, Agents or maintainers
+  read. At v0.35.0 the Film Kit work says that one console command, `filmkit`, runs each verb of a film's build over
+  a build graph that plans, builds and verifies its nodes and keeps a run record for each, in place of the
+  production command and its duration records; that `filmkit check` checks a film's sources at once, its register
+  through the Vale the engine pins among them, and that narration is refused until it passes; that a film's editions
+  follow the languages it declares; that `filmkit narrate` settles an edition's narration and leaves a take under
+  its clarity line for the author's ear; and that the picture gate weighs the mass of a scene's lit paints; it
+  claims the forty-six files new in its scope, and its history ends at the release.
 - The ETHOS work claims the application layer and the operation catalog. The
   AIGW work uses the client's new vocabulary: it no longer has a renaming
   component, and its catalog, readiness, configuration and rollout panels follow

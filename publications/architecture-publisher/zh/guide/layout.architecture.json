@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "c99145758b41fbcd8fdf02d4b20768d48e4b90ff"
+      "revision": "888880d8c3f56b63eea9b9e8e1bffbf986f4c5b4"
     }
   },
   "components": [
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "src/map/archify.mjs",
-          "line": 174,
-          "end_line": 182,
+          "line": 198,
+          "end_line": 206,
           "label": "Diagram layout"
         }
       ]
@@ -119,8 +119,8 @@
       "sources": [
         {
           "path": "src/layout/channel-solver/search.mjs",
-          "line": 170,
-          "end_line": 176,
+          "line": 207,
+          "end_line": 213,
           "label": "solveChannel"
         }
       ]

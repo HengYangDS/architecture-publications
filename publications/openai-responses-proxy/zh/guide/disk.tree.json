@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
       "provider": "github",
-      "revision": "6d1b384f9037454b667ef26ec366d8fcfec1e81c"
+      "revision": "b0d850501653ca53bf20565c02cd7379994a4144"
     }
   },
   "layout": {
@@ -28,8 +28,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/runtime/config.py",
-          "line": 160,
-          "end_line": 170,
+          "line": 149,
+          "end_line": 156,
           "label": "数据根目录"
         }
       ]
@@ -77,7 +77,7 @@
         {
           "path": "src/openai_responses_proxy/serving/inventory.py",
           "line": 15,
-          "end_line": 22,
+          "end_line": 23,
           "label": "成员"
         }
       ]
@@ -90,8 +90,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/generation.py",
-          "line": 140,
-          "end_line": 163,
+          "line": 138,
+          "end_line": 161,
           "label": "选定"
         }
       ]
@@ -118,8 +118,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/runtime/config.py",
-          "line": 173,
-          "end_line": 189,
+          "line": 159,
+          "end_line": 172,
           "label": "状态根目录"
         }
       ]
@@ -160,8 +160,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/command.py",
-          "line": 37,
-          "end_line": 51,
+          "line": 36,
+          "end_line": 45,
           "label": "命令路径"
         }
       ]

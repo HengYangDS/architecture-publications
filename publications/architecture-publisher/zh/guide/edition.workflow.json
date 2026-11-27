@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "c99145758b41fbcd8fdf02d4b20768d48e4b90ff"
+      "revision": "888880d8c3f56b63eea9b9e8e1bffbf986f4c5b4"
     },
     "legend": {
       "entries": {
@@ -73,8 +73,8 @@
       "sources": [
         {
           "path": "src/poster/compose/plates.mjs",
-          "line": 150,
-          "end_line": 161,
+          "line": 159,
+          "end_line": 170,
           "label": "Compositions"
         }
       ]
@@ -88,8 +88,8 @@
       "sources": [
         {
           "path": "src/poster/compose/plates.mjs",
-          "line": 201,
-          "end_line": 213,
+          "line": 210,
+          "end_line": 222,
           "label": "Admitted"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "src/poster/compose/plates.mjs",
-          "line": 275,
-          "end_line": 330,
+          "line": 284,
+          "end_line": 339,
           "label": "Width"
         }
       ]
@@ -133,8 +133,8 @@
       "sources": [
         {
           "path": "src/edition/typeset.mjs",
-          "line": 11,
-          "end_line": 15,
+          "line": 23,
+          "end_line": 27,
           "label": "Edition"
         }
       ]
@@ -148,8 +148,8 @@
       "sources": [
         {
           "path": "docs/reference/operations.md",
-          "line": 242,
-          "end_line": 249,
+          "line": 262,
+          "end_line": 269,
           "label": "Text"
         }
       ]
@@ -163,8 +163,8 @@
       "sources": [
         {
           "path": "src/edition/typeset.mjs",
-          "line": 178,
-          "end_line": 199,
+          "line": 153,
+          "end_line": 174,
           "label": "Images"
         }
       ]
@@ -177,9 +177,9 @@
       "label": "图册被拒绝",
       "sources": [
         {
-          "path": "docs/reference/operations.md",
-          "line": 485,
-          "end_line": 490,
+          "path": "docs/reference/refusals.md",
+          "line": 11,
+          "end_line": 15,
           "label": "Refusals"
         }
       ]

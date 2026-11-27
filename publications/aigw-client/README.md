@@ -2,8 +2,8 @@
 
 [`en/model.json`](en/model.json) is an Architecture Model of how AIGW turns one
 reviewed configuration into guarded client files in every admitted client. It
-pins `aigw-cli` at v0.8.3 (`fbec6f90d85951adbba853539efa0f8b3bc7c2fc`), and its
-components own all 243 production files of its coverage scope: `cmd/`,
+pins `aigw-cli` at v0.10.0 (`51fdc384f0a023696ae08d3f938fa68a05150f5e`), and its
+components own all 257 production files of its coverage scope: `cmd/`,
 `internal/`, the team file and `go.mod`. Twenty-one components, forty relations
 and six views show the configuration and its owners, the admitted clients and
 their seam, what a command reports, the program itself and one sync from plan
@@ -20,7 +20,7 @@ rollback and where a client's Token comes from. It ends with how much each
 check proves, what happens to a provider's models over time, the parts that
 keep the clients in step, why one guarded transaction, what AIGW leaves to
 others, how it is released and what is still open. Each claim cites a line
-range at v0.8.3, and the diagrams the draft names sit beside it.
+range at v0.10.0, and the diagrams the draft names sit beside it.
 
 Each component claims the directories and files its path rules name, and each
 production file goes to its most specific claim. A relation is kept only when
@@ -38,8 +38,8 @@ archpub check publications/aigw-client/en/model.json --repo <aigw-cli checkout>
 archpub build publications/aigw-client/en/model.json --repo <aigw-cli checkout> --out build/aigw-client/en
 ```
 
-Checking and building the work needs Architecture Publisher 0.15.0 or later, which draws the overview a model states, and building the edition needs Typst 0.15.1 on the
-path.
+Checking and building the work needs the Architecture Publisher releases and the Typst that the repository's
+[README](../../README.md) names.
 
 [`source.json`](source.json) records the original claim model and edition
 project with their digests. Both are retained at the preservation commit it

@@ -1,86 +1,88 @@
 # How do the Data Department work guidelines lead a reader to a rule, and how does a rule change? {#guide}
 
-The guidelines are a documentation repository that members and Agents read without installing anything.[](source:readme-repo) One task map sends each work question to the topic that owns its rule, and seven topics, the charter first, hold those rules.[](source:map-open)[](source:profile-sources) A rule changes only through one official OpenSpec Change, which installed ETHOS admits and proves before each Forge publishes the release.[](source:gov-change)
+The guidelines are a documentation repository that members and Agents read without installing anything.[](source:readme-repo) One task map sends each work question to the topic that owns its rule, and eight topics, the charter first, hold those rules.[](source:map-open)[](source:profile-sources) A rule changes only through one official OpenSpec Change, which installed ETHOS admits and proves before each Forge publishes the release.[](source:gov-change)
 
 - [Each rule has one owner](block:p-topics): navigation, examples, decision records and governance link to that owner and do not restate it.[](source:gd-owner)
-- [The charter binds every topic](block:p-charter): four hard boundaries hold for all work, and risk sets the form of the record.[](source:charter-boundaries)[](source:charter-risk)
+- [The charter binds every topic](block:p-charter): four non-negotiable boundaries hold for all work, and risk sets the form of the record.[](source:charter-boundaries)[](source:charter-risk)
 - [A change is admitted before it is written](block:p-change): a selected Change, an owned lane and exact-path admission come first.[](source:agents-change)
-- [Passing checks do not show adoption](block:p-open): a readable route proves neither that members use the guidance nor that work improved.[](source:charter-judgment)
+- [Passing checks do not show adoption](block:p-open): a readable route and passing checks do not prove that members use the guidance.[](source:map-maintain)
 
-@answer scope="DDWG v8.0.0 · commit b9da15d · its documents, specs and configuration"
+@answer scope="DDWG v10.1.3 · commit 127e151 · its documents, specs and configuration"
 @meta locale=en style=editorial
 @source readme-start title="Start with your work question" path="README.md" lines=8:10
 @source readme-repo title="A documentation repository" path="README.md" lines=15:21
 @source agents-scope title="The Agent entry" path="AGENTS.md" lines=3:7
 @source agents-change title="Before changing tracked source" path="AGENTS.md" lines=9:16
 @source map-open title="One page per work question" path="docs/README.md" lines=11:15
-@source map-groups title="The task map's routes" path="docs/README.md" lines=17:64
-@source map-route title="Reading routes, not stages" path="docs/README.md" lines=66:71
-@source map-maintain title="Maintain this repository" path="docs/README.md" lines=78:88
-@source charter-purpose title="When to use the charter" path="docs/charter.md" lines=13:17
-@source charter-authority title="Authority to act" path="docs/charter.md" lines=42:57
-@source charter-facts title="Authority about facts" path="docs/charter.md" lines=59:68
-@source charter-boundaries title="Four non-negotiable boundaries" path="docs/charter.md" lines=76:90
-@source charter-risk title="Form follows risk" path="docs/charter.md" lines=96:108
-@source charter-review title="Independent review" path="docs/charter.md" lines=110:115
-@source charter-judgment title="Rules serve judgment" path="docs/charter.md" lines=151:153
-@source charter-version title="Guideline stewardship" path="docs/charter.md" lines=155:164
-@source decide-record title="Record the choice and next action" path="docs/decide.md" lines=156:162
-@source decide-act title="Once action begins" path="docs/decide.md" lines=176:179
+@source map-groups title="The task map's routes" path="docs/README.md" lines=17:66
+@source map-route title="Follow the work through" path="docs/README.md" lines=68:73
+@source map-maintain title="Maintain this repository" path="docs/README.md" lines=80:90
+@source charter-purpose title="When to use the charter" path="docs/charter.md" lines=13:19
+@source charter-authority title="Authority to act" path="docs/charter.md" lines=43:59
+@source charter-facts title="Authority about facts" path="docs/charter.md" lines=61:70
+@source charter-boundaries title="Four non-negotiable boundaries" path="docs/charter.md" lines=78:93
+@source charter-risk title="Form follows risk" path="docs/charter.md" lines=99:111
+@source charter-review title="Independent review" path="docs/charter.md" lines=113:118
+@source charter-version title="Guideline stewardship" path="docs/charter.md" lines=158:168
+@source decide-record title="Record the choice and next action" path="docs/decide.md" lines=157:164
+@source decide-act title="Once action begins" path="docs/decide.md" lines=178:180
 @source deliver-loop title="The working loop" path="docs/deliver.md" lines=80:93
-@source deliver-states title="Name the state, not the effort" path="docs/deliver.md" lines=95:112
+@source deliver-states title="Name the state, not the effort" path="docs/deliver.md" lines=95:113
 @source deliver-urgent title="Urgent containment" path="docs/deliver.md" lines=25:30
-@source data-close title="Close the claim through delivery" path="docs/data.md" lines=93:96
-@source communicate-next title="Completion reports and undefined problems" path="docs/communicate.md" lines=184:186
-@source agent-model title="Agent execution" path="docs/human-agent.md" lines=114:133
-@source agent-uses title="Decisions owned by others" path="docs/human-agent.md" lines=62:66
-@source evolve-governance title="Rule changes follow governance" path="docs/evolve.md" lines=242:244
+@source data-close title="Close the claim through delivery" path="docs/data.md" lines=95:98
+@source communicate-next title="Completion reports and undefined problems" path="docs/communicate.md" lines=212:214
+@source agent-model title="Agent execution" path="docs/human-agent.md" lines=112:130
+@source agent-uses title="Decisions owned by others" path="docs/human-agent.md" lines=61:64
+@source evolve-governance title="Rule changes follow governance" path="docs/evolve.md" lines=250:252
 @source records-register title="What a decision record keeps" path="docs/decisions/README.md" lines=22:45
 @source dr4-decision title="DR-0004: the official lifecycle" path="docs/decisions/dr-0004-official-lifecycle.md" lines=21:35
 @source dr5-decision title="DR-0005: close on delivered scope" path="docs/decisions/dr-0005-change-closure-scope.md" lines=29:50
 @source dr5-alternatives title="DR-0005: rejected alternatives" path="docs/decisions/dr-0005-change-closure-scope.md" lines=52:60
-@source gov-change title="Material changes and Forges" path="docs/governance/README.md" lines=11:13
-@source gov-split title="Procedures and boundaries" path="docs/governance/README.md" lines=24:25
-@source gov-authority title="Change authority" path="docs/governance/README.md" lines=29:33
-@source gov-archive title="Acceptance does not close delivery" path="docs/governance/README.md" lines=42:45
-@source gov-planes title="Four planes of evidence" path="docs/governance/README.md" lines=47:60
-@source gov-peers title="Release acceptance per peer" path="docs/governance/README.md" lines=62:72
-@source gov-version title="One release identity" path="docs/governance/README.md" lines=84:94
-@source gov-checks title="Each check and its consumer" path="docs/governance/README.md" lines=153:170
-@source gov-no-code title="Code only for an unowned duty" path="docs/governance/README.md" lines=172:178
-@source config-map title="The configuration map" path="docs/governance/configuration.md" lines=16:26
+@source gov-change title="Material changes and Forges" path="docs/governance/change-and-release.md" lines=11:12
+@source gov-split title="Procedures and boundaries" path="docs/governance/change-and-release.md" lines=12:14
+@source gov-authority title="Change authority" path="docs/governance/change-and-release.md" lines=16:22
+@source gov-archive title="Acceptance does not close delivery" path="docs/governance/change-and-release.md" lines=96:99
+@source gov-planes title="Four planes of evidence" path="docs/governance/change-and-release.md" lines=30:41
+@source gov-peers title="Release acceptance per peer" path="docs/governance/change-and-release.md" lines=32:48
+@source gov-version title="One release identity" path="docs/governance/change-and-release.md" lines=62:67
+@source gov-checks title="Each check and its consumer" path="docs/governance/checks-and-ci.md" lines=39:48
+@source gov-no-code title="Code only for an unowned duty" path="docs/governance/checks-and-ci.md" lines=50:54
+@source config-map title="The configuration map" path="docs/governance/configuration.md" lines=15:25
 @source contrib-audience title="Who Contributing is for" path="CONTRIBUTING.md" lines=3:11
 @source contrib-full title="The full source check" path="CONTRIBUTING.md" lines=37:51
-@source contrib-links title="Link acceptance still pending" path="CONTRIBUTING.md" lines=85:94
-@source contrib-spelling title="A temporary spelling increment" path="CONTRIBUTING.md" lines=67:72
-@source contrib-supply title="Make ETHOS available" path="CONTRIBUTING.md" lines=152:167
+@source contrib-links title="Link acceptance still pending" path="CONTRIBUTING.md" lines=84:93
+@source contrib-spelling title="A temporary spelling increment" path="CONTRIBUTING.md" lines=66:71
+@source contrib-supply title="Make ETHOS available" path="CONTRIBUTING.md" lines=151:166
 @source contrib-prepare title="Prepare the edition" path="CONTRIBUTING.md" lines=223:228
 @source contrib-prove title="Prove and accept the source" path="CONTRIBUTING.md" lines=230:242
-@source contrib-cut title="Cut and tag the release" path="CONTRIBUTING.md" lines=244:275
-@source contrib-publish title="Publish on the selected Forge" path="CONTRIBUTING.md" lines=289:302
-@source contrib-verify title="Verify the published edition" path="CONTRIBUTING.md" lines=344:349
+@source contrib-cut title="Cut and tag the release" path="CONTRIBUTING.md" lines=244:273
+@source contrib-publish title="Publish on the selected Forge" path="CONTRIBUTING.md" lines=287:300
+@source contrib-verify title="Verify the published edition" path="CONTRIBUTING.md" lines=341:346
 @source change-record title="One active Change" path="openspec/README.md" lines=3:12
 @source change-admission title="ETHOS owns admission and closeout" path="openspec/README.md" lines=30:41
 @source specs-index title="The six capabilities" path="openspec/specs/README.md" lines=3:20
 @source gd-entry title="Task-oriented guidance discovery" path="openspec/specs/guidance-discovery/spec.md" lines=11:19
 @source gd-owner title="Unique normative owner" path="openspec/specs/guidance-discovery/spec.md" lines=43:48
-@source gd-install title="Reading needs no installation" path="openspec/specs/guidance-discovery/spec.md" lines=466:470
+@source gd-install title="Reading needs no installation" path="openspec/specs/guidance-discovery/spec.md" lines=467:471
 @source wp-purpose title="Work practice" path="openspec/specs/work-practice/spec.md" lines=3:18
+@source wp-grades title="Grades and tiers" path="openspec/specs/work-practice/spec.md" lines=666:689
 @source quality-purpose title="Document quality" path="openspec/specs/quality/spec.md" lines=3:8
 @source verification-proof title="Proof uses only installed checks" path="openspec/specs/verification/spec.md" lines=24:31
 @source verification-review title="Reader interpretation is reviewed" path="openspec/specs/verification/spec.md" lines=10:22
 @source rg-license title="One MIT grant" path="openspec/specs/repository-governance/spec.md" lines=12:19
 @source rg-binding title="Repository governance bindings" path="openspec/specs/repository-governance/spec.md" lines=56:79
-@source publication-identity title="Release identity" path="openspec/specs/publication/spec.md" lines=304:310
-@source profile-sources title="The normative sources" path=".ethos/profile.toml" lines=1:21
-@source release-peers title="The release declaration" path=".ethos/release.toml" lines=1:27
+@source publication-identity title="Release identity" path="openspec/specs/publication/spec.md" lines=288:294
+@source profile-sources title="The normative sources" path=".ethos/profile.toml" lines=1:17
+@source release-peers title="The release declaration" path=".ethos/release.toml" lines=1:21
 @source mise-supply title="The locked ETHOS supply" path=".config/mise/config.toml" lines=1:31
 @source ci-projection title="Generated pipelines" path=".config/checks/ci-projection/policy.toml" lines=1:16
-@source github-job title="The GitHub job" path=".github/workflows/ci.yml" lines=36:46
+@source ci-platform title="One platform, ARM macOS" path="docs/governance/checks-and-ci.md" lines=99:104
+@source github-job title="The GitHub job" path=".github/workflows/ci.yml" lines=36:43
 @source version-file title="VERSION" path="VERSION" lines=1:1
 @source changelog-intro title="Earlier editions had no release tags" path="CHANGELOG.md" lines=10:11
-@source changelog-400 title="The 4.0.0 release" path="CHANGELOG.md" lines=769:808
-@source changelog-800 title="The 8.0.0 release" path="CHANGELOG.md" lines=17:183
+@source changelog-400 title="The 4.0.0 release" path="CHANGELOG.md" lines=905:942
+@source changelog-1010 title="The 10.1.0 release" path="CHANGELOG.md" lines=34:42
+@source changelog-1013 title="The 10.1.3 release" path="CHANGELOG.md" lines=15:19
 
 ## Who reads the guidelines, and where do they start? {#p-readers}
 
@@ -97,7 +99,7 @@ Members and Agents read the same pages, and reading needs no installed software.
 
 ## Which topic owns which work question? {#p-topics}
 
-The task map groups its routes by the kind of work. They are reading routes, not stages that every task must pass.[](source:map-route)
+The task map groups its routes by the kind of work. A reader opens only the topic needed for the next decision and stops when authority, target or critical facts are missing.[](source:map-route)
 
 @diagram tree id=topics-tree source=topics.tree.json
 
@@ -105,25 +107,27 @@ The task map groups its routes by the kind of work. They are reading routes, not
 | step-tp-urgent | Urgent failure or breach | Goes straight to emergencies and exceptions, before any routine route.[](source:map-open) | topics-tree | tp-urgent |
 | step-tp-direction | Direction and decisions | Establish authority and the risk level, frame a decision, or diagnose a failure.[](source:map-groups) | topics-tree | tp-direction |
 | step-tp-delivery | Data and delivery | Qualify a data asset, change shared data, or close work against its completion conditions.[](source:map-groups) | topics-tree | tp-delivery |
-| step-tp-collab | Collaboration and improvement | Prepare an update, escalate a risk, delegate to an Agent, coach a member or improve a practice.[](source:map-groups) | topics-tree | tp-collab |
+| step-tp-collab | Collaboration and improvement | Prepare an update, escalate a risk, delegate to an Agent, coach a member, assess a period or a promotion, or improve a practice.[](source:map-groups) | topics-tree | tp-collab |
 | step-tp-maintain | Maintain this repository | OpenSpec and ETHOS own change authority; decision records keep the reasons current rules cannot explain.[](source:map-maintain) | topics-tree | tp-maintain |
 
-The ETHOS profile names the same seven topics as the repository's normative sources.[](source:profile-sources)
+The ETHOS profile names the same eight topics as the repository's normative sources.[](source:profile-sources)
 
 ## What does the charter hold every topic to? {#p-charter}
 
 Read the charter when the question is who may decide, which facts can be trusted or which boundary must hold.[](source:charter-purpose) The same rule words bind members and their Agents, and risk decides the form of the work, not whether a duty exists.[](source:charter-risk)
 
+Must and must not allow no departure. Should and should not set the default, which a stated reason may depart from; may leaves the choice to the responsible person.[](source:charter-risk)
+
 | Level        | When it applies                                                 | Minimum response                                                                                            |
 | ------------ | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| L0 light     | Local, reversible work without an external commitment           | Conclusion, basis and action in one clear exchange                                                          |
+| L0 low risk  | Local, reversible work without an external commitment           | Conclusion, basis and action in one clear exchange                                                          |
 | L1 standard  | Cross-role work, competing options or material uncertainty      | Problem, options, path and acceptance in the existing record                                                |
 | L2 high risk | Production, funds, sensitive data, overwrite or irreversibility | Written decision, authorization, rollback, independent review and human acceptance[](source:charter-review) |
 
 @facts
 | Tell the truth | No fabricated, hidden or selectively presented facts, and no uncertainty presented as certainty.[](source:charter-boundaries) |
 | Stay in bounds | Subject, time, competence, permission, data, security, compliance and action limits hold.[](source:charter-boundaries) |
-| Name the owner | Each important judgment, decision, change and acceptance has an accountable person.[](source:charter-boundaries) |
+| Name the owner | Every judgment, decision, change and acceptance has an accountable person.[](source:charter-boundaries) |
 | No false completion | Nothing is called complete, correct, usable or adopted without matching current evidence.[](source:charter-boundaries) |
 
 @callout level=note title="Two kinds of authority"
@@ -142,20 +146,20 @@ Each topic owns its rules and links to the topic that owns the next duty.[](sour
 | step-ho-deliver | Execution and delivery | Owns completion: once a decision is acted on, and for every completion report, its conditions, evidence limits and named states apply.[](source:decide-act)[](source:communicate-next)[](source:deliver-states) | handoffs-map | ho-deliver |
 | step-ho-evolve | Practice and evolution | Holds the emergency route that urgent containment follows; a change to a rule still follows repository governance.[](source:deliver-urgent)[](source:evolve-governance) | handoffs-map | ho-evolve |
 
-The working loop runs frame, analyze, decide, execute, verify and learn. These actions guide the work; they are not separate stages.[](source:deliver-loop)
+The working loop runs frame, analyze, decide, execute, verify and learn. These actions guide the work and may be combined or revisited, keeping every applicable duty.[](source:deliver-loop)
 
 ## Which specs state what the guidelines must do? {#p-specs}
 
 Six capability specs in the OpenSpec workspace hold the accepted requirements. Requirements enter them only through an official Change.[](source:specs-index)[](source:change-record)
 
-| Capability            | Concern                   | What it binds                                                                                                          |
-| --------------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Guidance discovery    | Find the right guidance   | The two entries, the task map and one editable owner for each obligation[](source:gd-entry)[](source:gd-owner)         |
-| Work practice         | Apply it to actual work   | The decision, data, delivery, communication, Agent and coaching duties[](source:wp-purpose)                            |
-| Document quality      | Maintain readable source  | English prose, links and the native check policy[](source:quality-purpose)                                             |
-| Verification          | Establish checked results | One CUE owner for CI and a profile that declares no proof gates[](source:verification-proof)                           |
-| Repository governance | Change or accept source   | The MIT grant, one signed commit graph, the release declaration and OpenSpec[](source:rg-license)[](source:rg-binding) |
-| Publication           | Publish or retire assets  | VERSION, the Changelog, the signed tag, hosted jobs and both Forges[](source:publication-identity)                     |
+| Capability            | Concern                   | What it binds                                                                                                                             |
+| --------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Guidance discovery    | Find the right guidance   | The two entries, the task map and one editable owner for each obligation[](source:gd-entry)[](source:gd-owner)                            |
+| Work practice         | Apply it to actual work   | The decision, data, delivery, communication, Agent and coaching duties, and the grades and tiers[](source:wp-purpose)[](source:wp-grades) |
+| Document quality      | Maintain readable source  | English prose, links and the native check policy[](source:quality-purpose)                                                                |
+| Verification          | Establish checked results | One CUE owner for CI and a profile that declares no proof gates[](source:verification-proof)                                              |
+| Repository governance | Change or accept source   | The MIT grant, one signed commit graph, the release declaration and OpenSpec[](source:rg-license)[](source:rg-binding)                    |
+| Publication           | Publish or retire assets  | VERSION, the Changelog, the signed tag, hosted jobs and both Forges[](source:publication-identity)                                        |
 
 The work-practice spec adds no authority and certifies no adoption.[](source:wp-purpose) The quality checks establish source properties; human review still judges meaning.[](source:quality-purpose)
 
@@ -197,14 +201,16 @@ The repository has no package, test or check command of its own; installed ETHOS
 
 | Check                          | Native input                                        |
 | ------------------------------ | --------------------------------------------------- |
-| Markdown, JSON and YAML format | Prettier policy under `.config/checks/prettier/`    |
-| TOML format                    | Taplo policy under `.config/checks/taplo/`          |
+| Markdown, JSON and YAML format | Installed ETHOS, with its shipped Prettier policy   |
+| TOML format                    | Installed ETHOS, with its shipped Taplo policy      |
 | Prose and department terms     | Vale with a temporary spelling increment            |
 | Local links and fragments      | Lychee parameters under `.config/checks/lychee/`    |
 | ETHOS installation             | Mise configuration and its lock                     |
 | Generated CI                   | The verification parameters and runner declarations |
 
-The configuration map holds these pointers, and the governance page names the installed check that reads each one.[](source:config-map)[](source:gov-checks) Mise installs the one locked ETHOS release, which supplies its own Node, formatters and prose and link tools.[](source:mise-supply)[](source:contrib-supply) The common model generates both Forges' pipelines from the parameters, and every hosted job runs the same full graph.[](source:ci-projection)[](source:github-job)
+The configuration map holds these pointers, and the Source checks and CI page names the installed check that reads each one.[](source:config-map)[](source:gov-checks) Mise installs the one locked ETHOS release, which supplies its own Node, formatters and prose and link tools.[](source:mise-supply)[](source:contrib-supply) The common model generates both Forges' pipelines from the parameters, and every hosted job runs the same full graph.[](source:ci-projection)[](source:github-job)
+
+Both Forges run CI on one platform, ARM macOS.[](source:ci-platform)
 
 ## How is a release published on two Forges? {#p-release}
 
@@ -247,7 +253,9 @@ A withdrawn task keeps its line and identity without a checkbox, so the archived
 
 ## How did the guidelines get here? {#p-history}
 
-Versioned releases begin with v4.0.0 on 2026-09-26; earlier branch editions had no release tags.[](source:changelog-intro)[](source:changelog-400) The timeline picks eleven releases, up to v8.0.0 on 2026-11-01, that changed what members, Agents or maintainers read.[](source:changelog-800)
+Versioned releases begin with v4.0.0 on 2026-09-26; earlier branch editions had no release tags.[](source:changelog-intro)[](source:changelog-400) The timeline picks sixteen releases, up to v10.1.0 on 2026-11-25, that changed what members, Agents or maintainers read.[](source:changelog-1010)
+
+The latest release is v10.1.3, which states each rule only once.[](source:changelog-1013)
 
 @diagram timeline id=history source=history.timeline.json title="How the guidelines got here"
 

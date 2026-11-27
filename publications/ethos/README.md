@@ -47,8 +47,8 @@ archpub check publications/ethos/en/model.json --repo <ethos checkout>
 archpub build publications/ethos/en/model.json --repo <ethos checkout> --out build/ethos/en
 ```
 
-Checking and building the work needs Architecture Publisher 0.15.0 or later, which draws the overview a model states, and building the edition needs Typst 0.15.1 on the
-path.
+Checking and building the work needs the Architecture Publisher releases and the Typst that the repository's
+[README](../../README.md) names.
 
 [`source.json`](source.json) records the design and artwork preserved from
 ETHOS `e60fec5` with their digests. They describe a retired publication

@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "fbec6f90d85951adbba853539efa0f8b3bc7c2fc"
+      "revision": "51fdc384f0a023696ae08d3f938fa68a05150f5e"
     }
   },
   "mainPath": ["cat-available", "cat-added", "cat-deprecated"],
@@ -22,8 +22,8 @@
       "sources": [
         {
           "path": "docs/concepts/product-concepts.md",
-          "line": 159,
-          "end_line": 159,
+          "line": 168,
+          "end_line": 168,
           "label": "available"
         }
       ]
@@ -36,8 +36,8 @@
       "sources": [
         {
           "path": "docs/concepts/product-concepts.md",
-          "line": 160,
-          "end_line": 160,
+          "line": 169,
+          "end_line": 169,
           "label": "added"
         }
       ]
@@ -50,8 +50,8 @@
       "sources": [
         {
           "path": "docs/concepts/product-concepts.md",
-          "line": 162,
-          "end_line": 162,
+          "line": 171,
+          "end_line": 171,
           "label": "deprecated"
         }
       ]
@@ -64,8 +64,8 @@
       "sources": [
         {
           "path": "docs/concepts/product-concepts.md",
-          "line": 161,
-          "end_line": 161,
+          "line": 170,
+          "end_line": 170,
           "label": "missing"
         }
       ]

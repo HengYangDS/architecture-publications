@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "fbec6f90d85951adbba853539efa0f8b3bc7c2fc"
+      "revision": "51fdc384f0a023696ae08d3f938fa68a05150f5e"
     }
   },
   "components": [
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "internal/app/synchronization/transaction.go",
-          "line": 41,
-          "end_line": 119,
+          "line": 77,
+          "end_line": 156,
           "label": "commit"
         }
       ]
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "internal/adapter/registry.go",
-          "line": 93,
-          "end_line": 111,
+          "line": 114,
+          "end_line": 132,
           "label": "Adapter"
         }
       ]
@@ -86,9 +86,9 @@
       "size": [180, 68],
       "sources": [
         {
-          "path": "internal/adapter/claude/settings.go",
-          "line": 91,
-          "end_line": 95,
+          "path": "internal/adapter/claude/settings_apply.go",
+          "line": 33,
+          "end_line": 37,
           "label": "Rollback"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "internal/adapter/claudedesktop/configuration.go",
-          "line": 276,
-          "end_line": 279,
+          "line": 279,
+          "end_line": 282,
           "label": "Rollback"
         }
       ]
@@ -119,8 +119,8 @@
       "sources": [
         {
           "path": "internal/adapter/hermes/projection.go",
-          "line": 349,
-          "end_line": 352,
+          "line": 365,
+          "end_line": 368,
           "label": "Rollback"
         }
       ]

@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "c99145758b41fbcd8fdf02d4b20768d48e4b90ff"
+      "revision": "888880d8c3f56b63eea9b9e8e1bffbf986f4c5b4"
     }
   },
   "mainPath": ["life-delivered", "life-accepted", "life-published"],
@@ -22,14 +22,14 @@
       "sources": [
         {
           "path": "src/build.mjs",
-          "line": 373,
-          "end_line": 382,
+          "line": 489,
+          "end_line": 503,
           "label": "Staging"
         },
         {
           "path": "src/build.mjs",
-          "line": 454,
-          "end_line": 471,
+          "line": 579,
+          "end_line": 594,
           "label": "Rename"
         }
       ]
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "src/delivery.mjs",
-          "line": 173,
-          "end_line": 241,
+          "line": 168,
+          "end_line": 236,
           "label": "Accept"
         }
       ]
@@ -56,8 +56,8 @@
       "sources": [
         {
           "path": "src/delivery.mjs",
-          "line": 339,
-          "end_line": 380,
+          "line": 334,
+          "end_line": 375,
           "label": "Publish"
         }
       ]
@@ -70,8 +70,8 @@
       "sources": [
         {
           "path": "src/delivery.mjs",
-          "line": 49,
-          "end_line": 55,
+          "line": 46,
+          "end_line": 52,
           "label": "Changed"
         }
       ]
@@ -84,8 +84,8 @@
       "sources": [
         {
           "path": "src/delivery.mjs",
-          "line": 355,
-          "end_line": 360,
+          "line": 350,
+          "end_line": 355,
           "label": "Conflict"
         }
       ]
@@ -98,8 +98,8 @@
       "sources": [
         {
           "path": "src/delivery.mjs",
-          "line": 355,
-          "end_line": 360,
+          "line": 350,
+          "end_line": 355,
           "label": "Identical"
         }
       ]

@@ -5,17 +5,17 @@
   "locale": "en",
   "title": "Data Department Work Guidelines",
   "question": "How do the Data Department work guidelines lead a reader to the rule that governs a task, and how is a change to them proposed, checked and released?",
-  "summary": "One task map routes each work question to one of seven topics led by the charter. Six OpenSpec capability specs state what the guidance and its upkeep must do, installed ETHOS admits and proves every change, and each Forge receives the signed release independently.",
-  "scope": "The guidelines as released at v8.0.0: the entries, the task map, the seven topics, the decision records, the maintenance documents, the OpenSpec workspace with its six capability specs, and the configuration of ETHOS, tools, checks and CI that maintains them.",
+  "summary": "One task map routes each work question to one of eight topics led by the charter. Six OpenSpec capability specs state what the guidance and its upkeep must do, installed ETHOS admits and proves every change, and each Forge receives the signed release independently.",
+  "scope": "The guidelines as released at v10.1.3: the entries, the task map, the eight topics, the decision records, the maintenance documents, the OpenSpec workspace with its six capability specs, and the configuration of ETHOS, tools, checks and CI that maintains them.",
   "limits": [
     "A component lists only the files under the paths it claims, and a relation only those that generate, install or run the other component, or whose link, named path or requirement routes a reader to it, places a duty on it or constrains it.",
-    "Between the seven topics, only links to the charter are drawn. Links back to an entry, the task map or Repository change and release, and pointers that another document already holds, are not.",
+    "Between the eight topics, only links to the charter are drawn. Links back to an entry, the task map or Repository change and release, and pointers that another document already holds, are not.",
     "The archived Change history is outside the scope; documents and checks are described, not their observed use by the department."
   ],
   "repository": {
     "name": "data-department-work-guidelines",
     "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
-    "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42"
+    "revision": "127e15186115c1cf30e9f476e4991d587bf50500"
   },
   "coverage": {
     "exclude": [
@@ -56,14 +56,14 @@
         },
         {
           "id": "topics",
-          "label": "Seven topics, one owner for each rule",
+          "label": "Eight topics, one owner for each rule",
           "note": "the task map routes each work question to the topic that owns it",
           "stations": [
             {
               "branches": [
                 {
                   "part": "charter",
-                  "note": "two kinds of authority, four hard boundaries, the risk levels four topics cite"
+                  "note": "two kinds of authority, four non-negotiable boundaries, the risk levels four topics cite"
                 },
                 {
                   "part": "decide",
@@ -88,6 +88,10 @@
                 {
                   "part": "evolve",
                   "note": "emergencies and exceptions; coaching; admitting or retiring a practice"
+                },
+                {
+                  "part": "grow",
+                  "note": "grades, tiers and promotion, judged from work records"
                 }
               ]
             }
@@ -107,7 +111,7 @@
         "view": "readers"
       },
       {
-        "title": "Four hard boundaries",
+        "title": "Four non-negotiable boundaries",
         "items": [
           [
             "Tell the truth",
@@ -131,7 +135,7 @@
       {
         "title": "Form follows risk",
         "items": [
-          ["L0 light", "local and reversible: conclusion, basis and action in one exchange"],
+          ["L0 low risk", "local and reversible: conclusion, basis and action in one exchange"],
           [
             "L1 standard",
             "cross-role work, competing options or material uncertainty: a reviewable record"
@@ -213,7 +217,7 @@
       {
         "title": "The release",
         "items": [
-          ["VERSION", "8.0.0, the one release identity; the Changelog follows it"],
+          ["VERSION", "10.1.3, the one release identity; the Changelog follows it"],
           ["Tag", "a signed vX.Y.Z that matches VERSION and its Changelog entry"]
         ],
         "view": "release"
@@ -357,7 +361,7 @@
       "label": "Charter",
       "kind": "topic",
       "details": {
-        "owns": "two kinds of authority, four hard boundaries, risk levels L0 to L2"
+        "owns": "two kinds of authority, four non-negotiable boundaries, risk levels L0 to L2"
       },
       "files": ["docs/charter.md"]
     },
@@ -384,7 +388,7 @@
       "label": "Data quality and adoption",
       "kind": "topic",
       "details": {
-        "owns": "eight admission conditions, use admission, data changes"
+        "owns": "eight admission conditions, use admission, data changes, nine functions"
       },
       "files": ["docs/data.md"]
     },
@@ -414,6 +418,15 @@
         "owns": "practice admission, review cadence, emergencies"
       },
       "files": ["docs/evolve.md"]
+    },
+    {
+      "id": "grow",
+      "label": "Grades, tiers and growth",
+      "kind": "topic",
+      "details": {
+        "owns": "eight grades, tiers S to D, assessment and promotion"
+      },
+      "files": ["docs/grow.md"]
     },
     {
       "id": "decision-records",
@@ -520,7 +533,7 @@
       "label": "ETHOS profile",
       "kind": "declaration",
       "details": {
-        "declares": "seven normative topics, every path as material, no proof gates of its own"
+        "declares": "eight normative topics, every path as material, no proof gates of its own"
       },
       "files": [".ethos/profile.toml"]
     },
@@ -538,7 +551,7 @@
       "label": "Version and Changelog",
       "kind": "identity",
       "details": {
-        "release": "8.0.0",
+        "release": "10.1.3",
         "follows": "SemVer 2.0.0 and Keep a Changelog 1.1.0"
       },
       "files": ["VERSION", "CHANGELOG.md"]
@@ -548,7 +561,7 @@
       "label": "Tool supply",
       "kind": "input",
       "details": {
-        "pins": "ETHOS 0.2.0-alpha.25 through Mise and its lock"
+        "pins": "ETHOS 0.2.0-beta.11 through Mise and its lock"
       },
       "files": [".config/mise/"]
     },
@@ -557,7 +570,7 @@
       "label": "Check inputs",
       "kind": "input",
       "details": {
-        "holds": "Prettier, Taplo, Vale and Lychee policy, Git text and ignore rules"
+        "holds": "Vale and Lychee inputs, Git text and ignore rules"
       },
       "files": [".config/checks/", ".editorconfig", ".gitattributes", ".gitignore"]
     },
@@ -566,7 +579,7 @@
       "label": "CI parameters",
       "kind": "input",
       "details": {
-        "declares": "runners, deadlines and the Mise bootstrap; no jobs of its own"
+        "declares": "runners, deadlines and the Mise version; no jobs of its own"
       },
       "files": [".config/ci/", ".config/checks/ci-projection/"]
     },
@@ -575,7 +588,7 @@
       "label": "Generated pipelines",
       "kind": "projection",
       "details": {
-        "runs": "the full ETHOS graph on Linux, macOS and Windows"
+        "runs": "the full ETHOS graph on ARM macOS"
       },
       "files": [".github/", ".gitlab-ci.yml"]
     },
@@ -696,6 +709,13 @@
       "files": ["docs/README.md"]
     },
     {
+      "id": "task-map-grow",
+      "from": "task-map",
+      "to": "grow",
+      "label": "assess, promote",
+      "files": ["docs/README.md"]
+    },
+    {
       "id": "task-map-decision-records",
       "from": "task-map",
       "to": "decision-records",
@@ -741,8 +761,15 @@
       "id": "evolve-charter",
       "from": "evolve",
       "to": "charter",
-      "label": "hard boundaries",
+      "label": "non-negotiable boundaries",
       "files": ["docs/evolve.md"]
+    },
+    {
+      "id": "grow-charter",
+      "from": "grow",
+      "to": "charter",
+      "label": "authority, boundaries",
+      "files": ["docs/grow.md"]
     },
     {
       "id": "decision-records-charter",
@@ -788,35 +815,35 @@
       "from": "governance",
       "to": "decision-records",
       "label": "durable rationale",
-      "files": ["docs/governance/README.md"]
+      "files": ["docs/governance/change-and-release.md"]
     },
     {
       "id": "governance-openspec-workspace",
       "from": "governance",
       "to": "openspec-workspace",
       "label": "authority of the Change",
-      "files": ["docs/governance/README.md"]
+      "files": ["docs/governance/change-and-release.md"]
     },
     {
       "id": "governance-ethos-profile",
       "from": "governance",
       "to": "ethos-profile",
       "label": "no proof gates",
-      "files": ["docs/governance/README.md"]
+      "files": ["docs/governance/checks-and-ci.md"]
     },
     {
       "id": "governance-release-declaration",
       "from": "governance",
       "to": "release-declaration",
       "label": "peers, accepted mirror",
-      "files": ["docs/governance/README.md"]
+      "files": ["docs/governance/change-and-release.md"]
     },
     {
       "id": "governance-edition",
       "from": "governance",
       "to": "edition",
       "label": "release identity",
-      "files": ["docs/governance/README.md"]
+      "files": ["docs/governance/change-and-release.md"]
     },
     {
       "id": "contributing-tool-supply",
@@ -938,6 +965,13 @@
       "files": ["openspec/specs/work-practice/spec.md"]
     },
     {
+      "id": "spec-work-practice-grow",
+      "from": "spec-work-practice",
+      "to": "grow",
+      "label": "grades, tiers",
+      "files": ["openspec/specs/work-practice/spec.md"]
+    },
+    {
       "id": "spec-quality-check-inputs",
       "from": "spec-quality",
       "to": "check-inputs",
@@ -1022,6 +1056,13 @@
       "files": [".ethos/profile.toml"]
     },
     {
+      "id": "ethos-profile-decision-records",
+      "from": "ethos-profile",
+      "to": "decision-records",
+      "label": "record root",
+      "files": [".ethos/profile.toml"]
+    },
+    {
       "id": "ethos-profile-ethos",
       "from": "ethos-profile",
       "to": "ethos",
@@ -1088,7 +1129,7 @@
   "views": [
     {
       "id": "overview",
-      "title": "Seven topics led by the charter",
+      "title": "Eight topics led by the charter",
       "question": "Which topic does the task map send each work question to?",
       "summary": "The task map routes each work question to the topic that owns it, with the route for an urgent failure or breach first. Questions of authority and risk go to the charter, and four topics cite its risk levels.",
       "members": [
@@ -1100,7 +1141,8 @@
         "data",
         "communicate",
         "human-agent",
-        "evolve"
+        "evolve",
+        "grow"
       ]
     },
     {
@@ -1123,7 +1165,7 @@
       "id": "practice",
       "title": "What Work practice asks of each topic",
       "question": "Which duty falls to which topic, and which rules do the topics share?",
-      "summary": "Work practice places duties on the six topics under the charter, such as framing and records on Analysis and decisions. Four of them share the charter's risk levels, and Practice and evolution cites its hard boundaries.",
+      "summary": "Work practice places duties on the seven topics under the charter, such as framing and records on Analysis and decisions. Four of them share the charter's risk levels; Practice and evolution and Grades, tiers and growth cite its boundaries.",
       "members": [
         "spec-work-practice",
         "decision-records",
@@ -1133,7 +1175,8 @@
         "data",
         "communicate",
         "human-agent",
-        "evolve"
+        "evolve",
+        "grow"
       ]
     },
     {

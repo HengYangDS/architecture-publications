@@ -6,7 +6,7 @@
   "title": "OpenAI Responses Proxy",
   "question": "How does OpenAI Responses Proxy make a Codex Responses turn portable across third-party providers, and how does it install its own listener and keep it running?",
   "summary": "A loopback listener rebuilds each Responses request in one closed grammar with store=false, sends it, within one total deadline, to the provider named in its path, and retries only what the failure class allows. A signed release asset installs through one journaled transaction as an immutable generation; an upgrade hands the listening socket to a successor process, and a watchdog under the native service manager restarts a stopped listener.",
-  "scope": "The OpenAI Responses Proxy product as released at v6.0.3: the openai_responses_proxy package with its provider manifest, pyproject.toml and VERSION.",
+  "scope": "The OpenAI Responses Proxy product as released at v7.0.0: the openai_responses_proxy package with its provider manifest, pyproject.toml and VERSION.",
   "limits": [
     "A component lists only the files under the paths it claims, and a relation only the files that import or call the other component.",
     "A relation shows only an import that carries behaviour, a process call, or a call on an object of the other component that was passed in; imports used only for an exception class, a type, a shared helper or the product's names are not drawn.",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "openai-responses-proxy",
     "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
-    "revision": "6d1b384f9037454b667ef26ec366d8fcfec1e81c"
+    "revision": "b0d850501653ca53bf20565c02cd7379994a4144"
   },
   "coverage": {
     "exclude": [
@@ -174,6 +174,11 @@
                   "note": "api.inferera.com"
                 },
                 {
+                  "id": "suheai",
+                  "label": "suheai",
+                  "note": "suheai.cn"
+                },
+                {
                   "id": "upstream",
                   "label": "upstream",
                   "note": "one origin chosen at install"
@@ -297,7 +302,7 @@
       {
         "title": "Kept running",
         "items": [
-          ["native service manager", "launchd, systemd or Task Scheduler restarts the watchdog"],
+          ["native service manager", "launchd or systemd restarts the watchdog"],
           ["watchdog", "checks the port every 15 s; starts the listener"]
         ],
         "view": "supervision"
@@ -550,7 +555,7 @@
       "label": "Provider registry",
       "kind": "registry",
       "details": {
-        "routes": "aihubmix, dmxapi and ucloud, and one optional /upstream",
+        "routes": "aihubmix, dmxapi, suheai and ucloud, and one optional /upstream",
         "policy": "dmxapi retries its exact 477 empty_response once"
       },
       "files": [
@@ -564,7 +569,7 @@
       "label": "Provider endpoint",
       "kind": "provider",
       "details": {
-        "admitted": "DMXAPI, UCloud and AIHubMix, or one explicit upstream",
+        "admitted": "DMXAPI, UCloud, AIHubMix and Suhe.AI, or one explicit upstream",
         "owns": "model execution, quotas and availability"
       }
     },
@@ -727,8 +732,8 @@
       "label": "Native supervision",
       "kind": "supervisor",
       "details": {
-        "registers": "a launchd agent, a systemd user unit or a scheduled task",
-        "stops": "only processes whose executable and private role it proves; at uninstall, on Linux and Windows, the watchdogs of every generation in generations/"
+        "registers": "a launchd agent or a systemd user unit",
+        "stops": "only processes whose executable and private role it proves; at uninstall, on Linux, the watchdogs of every generation in generations/"
       },
       "files": [
         "src/openai_responses_proxy/lifecycle/supervision/native_service.py",
@@ -751,8 +756,7 @@
       "kind": "host",
       "details": {
         "macOS": "launchd, in the GUI login or the Background domain",
-        "Linux": "the systemd user manager",
-        "Windows": "Task Scheduler, for the current user"
+        "Linux": "the systemd user manager"
       }
     }
   ],
@@ -1104,8 +1108,7 @@
       "label": "registers the watchdog",
       "files": [
         "src/openai_responses_proxy/lifecycle/supervision/macos.py",
-        "src/openai_responses_proxy/lifecycle/supervision/linux.py",
-        "src/openai_responses_proxy/lifecycle/supervision/windows.py"
+        "src/openai_responses_proxy/lifecycle/supervision/linux.py"
       ]
     },
     {
@@ -1115,8 +1118,7 @@
       "label": "starts, restarts",
       "files": [
         "src/openai_responses_proxy/lifecycle/supervision/macos.py",
-        "src/openai_responses_proxy/lifecycle/supervision/linux.py",
-        "src/openai_responses_proxy/lifecycle/supervision/windows.py"
+        "src/openai_responses_proxy/lifecycle/supervision/linux.py"
       ]
     },
     {

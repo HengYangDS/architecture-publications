@@ -7,27 +7,27 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 - [An upgrade keeps admitting turns](block:p-handoff): the successor process inherits the listening socket, and the old one finishes what it accepted.[](source:readme-handoff)
 - [Every installation step is journaled](block:p-install), so `recover` finishes or undoes an interrupted one.[](source:arch-completion)
 
-@answer scope="OpenAI Responses Proxy v6.0.3 · commit 6d1b384 · its source and its own documents"
+@answer scope="OpenAI Responses Proxy v7.0.0 · commit b0d8505 · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What the proxy is" path="README.md" lines=3:7
 @source readme-portable title="No conversation storage is edited" path="README.md" lines=12:13
-@source readme-boundary title="Product boundary" path="README.md" lines=25:37
-@source readme-linux title="Supervision on Linux" path="README.md" lines=50:60
-@source readme-macos title="The watchdog on macOS" path="README.md" lines=62:70
-@source readme-install title="Installing a signed asset" path="README.md" lines=84:87
-@source readme-install-tx title="Installation as a transaction" path="README.md" lines=99:107
-@source readme-routes title="Provider routes" path="README.md" lines=120:130
-@source readme-upstream title="One explicit upstream" path="README.md" lines=132:144
-@source readme-status title="What status reports" path="README.md" lines=185:201
-@source readme-purge title="Purging exact files" path="README.md" lines=217:223
-@source readme-generations title="Generations and the selector" path="README.md" lines=225:232
-@source readme-handoff title="Admission-preserving handoff" path="README.md" lines=237:244
-@source readme-compat title="Compatibility behavior" path="README.md" lines=252:271
-@source readme-deadline title="One exchange deadline" path="README.md" lines=273:292
-@source readme-ucloud title="Plaintext delegation on UCloud" path="README.md" lines=294:302
-@source readme-request title="Request boundary" path="README.md" lines=306:331
-@source readme-body title="Body admission" path="README.md" lines=333:340
-@source readme-evidence title="Runtime evidence" path="README.md" lines=362:372
+@source readme-boundary title="Product boundary" path="README.md" lines=26:38
+@source readme-linux title="Supervision on Linux" path="README.md" lines=52:62
+@source readme-macos title="The watchdog on macOS" path="README.md" lines=64:72
+@source readme-install title="Installing a signed asset" path="README.md" lines=86:89
+@source readme-install-tx title="Installation as a transaction" path="README.md" lines=101:109
+@source readme-routes title="Provider routes" path="README.md" lines=122:133
+@source readme-upstream title="One explicit upstream" path="README.md" lines=135:147
+@source readme-status title="What status reports" path="README.md" lines=188:202
+@source readme-purge title="Purging exact files" path="README.md" lines=218:224
+@source readme-generations title="Generations and the selector" path="README.md" lines=226:233
+@source readme-handoff title="Admission-preserving handoff" path="README.md" lines=238:245
+@source readme-compat title="Compatibility behavior" path="README.md" lines=253:272
+@source readme-deadline title="One exchange deadline" path="README.md" lines=274:293
+@source readme-ucloud title="Plaintext delegation on UCloud" path="README.md" lines=295:303
+@source readme-request title="Request boundary" path="README.md" lines=307:332
+@source readme-body title="Body admission" path="README.md" lines=334:341
+@source readme-evidence title="Runtime evidence" path="README.md" lines=363:373
 @source arch-authority title="Who owns which state" path="docs/architecture/authority-and-runtime-boundary.md" lines=40:50
 @source arch-projection title="What the projection removes" path="docs/architecture/authority-and-runtime-boundary.md" lines=226:239
 @source arch-agent title="Encrypted agent messages" path="docs/architecture/authority-and-runtime-boundary.md" lines=248:257
@@ -68,7 +68,7 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 @source code-input-variant title="The input-variant contract" path="src/openai_responses_proxy/protocol/recovery/input.py" lines=90:100
 @source code-capacity title="Input-length and media-budget refusals" path="src/openai_responses_proxy/relay/exchange.py" lines=390:401
 @source code-dmx title="DMXAPI empty_response" path="src/openai_responses_proxy/providers/policies/dmxapi.py" lines=16:34
-@source code-manifest title="The provider manifest" path="src/openai_responses_proxy/providers/manifest.toml" lines=1:12
+@source code-manifest title="The provider manifest" path="src/openai_responses_proxy/providers/manifest.toml" lines=1:15
 @source code-plaintext title="Selecting plaintext delegation" path="src/openai_responses_proxy/protocol/agent_delivery.py" lines=111:129
 @source code-signature title="Verifying the signature" path="src/openai_responses_proxy/lifecycle/artifact.py" lines=295:333
 @source code-artifact title="Admitting the archive" path="src/openai_responses_proxy/lifecycle/artifact.py" lines=223:292
@@ -92,45 +92,44 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 @source code-resolve title="Resolving a failed request" path="src/openai_responses_proxy/lifecycle/deployment/handoff.py" lines=493:558
 @source code-disk-match title="Only the selected payload" path="src/openai_responses_proxy/serving/control.py" lines=137:150
 @source code-expired title="An expired request is refused" path="src/openai_responses_proxy/serving/control.py" lines=76:82
-@source code-spawn title="Passing the socket" path="src/openai_responses_proxy/serving/handoff/protocol.py" lines=235:284
+@source code-spawn title="Passing the socket" path="src/openai_responses_proxy/serving/handoff/protocol.py" lines=198:244
 @source code-prepare title="Preparing a successor" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=256:324
 @source code-commit title="Crossing COMMIT" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=335:371
 @source code-old-finishes title="The old listener finishes" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=398:429
-@source code-child title="The successor's side" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=481:539
+@source code-child title="The successor's side" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=480:538
 @source code-local title="Control from a local controller only" path="src/openai_responses_proxy/relay/admission.py" lines=96:106
-@source code-selector title="Reading the selector" path="src/openai_responses_proxy/serving/identity.py" lines=112:135
-@source code-selected title="The selected generation" path="src/openai_responses_proxy/lifecycle/generation.py" lines=75:80
+@source code-selector title="Reading the selector" path="src/openai_responses_proxy/serving/identity.py" lines=110:133
+@source code-selected title="The selected generation" path="src/openai_responses_proxy/lifecycle/generation.py" lines=73:78
 @source code-no-selection title="Status without a selected generation" path="src/openai_responses_proxy/lifecycle/control.py" lines=240:247
 @source code-journal-paths title="The journal beside the data root" path="src/openai_responses_proxy/lifecycle/records.py" lines=26:38
-@source code-command-path title="The command path" path="src/openai_responses_proxy/lifecycle/command.py" lines=37:51
+@source code-command-path title="The command path" path="src/openai_responses_proxy/lifecycle/command.py" lines=36:45
 @source code-uninstall title="The order of an uninstall" path="src/openai_responses_proxy/lifecycle/uninstall.py" lines=129:139
 @source code-purge title="A purge needs an owned generation" path="src/openai_responses_proxy/lifecycle/transaction/completion.py" lines=228:241
 @source code-watchdogs-linux title="Ending each generation's watchdog on Linux" path="src/openai_responses_proxy/lifecycle/supervision/linux.py" lines=197:207
-@source code-watchdogs-windows title="Ending each generation's watchdog on Windows" path="src/openai_responses_proxy/lifecycle/supervision/windows.py" lines=254:261
 @source code-plist title="The launch agent" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=125:138
 @source code-domains title="GUI or Background domain" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=66:87
 @source code-unit title="The systemd user unit" path="src/openai_responses_proxy/lifecycle/supervision/linux.py" lines=21:35
-@source code-task title="The scheduled task" path="src/openai_responses_proxy/lifecycle/supervision/windows.py" lines=49:89
-@source code-roots title="Data and state roots" path="src/openai_responses_proxy/runtime/config.py" lines=160:189
-@source code-watchdog title="The watchdog loop" path="src/openai_responses_proxy/lifecycle/supervision/watchdog.py" lines=104:142
+@source code-roots title="Data and state roots" path="src/openai_responses_proxy/runtime/config.py" lines=149:172
+@source code-watchdog title="The watchdog loop" path="src/openai_responses_proxy/lifecycle/supervision/watchdog.py" lines=91:129
 @source code-activate-carrier title="Each role loads its carrier" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=153:160
 @source code-carrier-schema title="A carrier must hold every field" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=163:174
 @source code-status-next title="One next command per state" path="src/openai_responses_proxy/cli/outcome.py" lines=37:43
 @source code-lock title="One lifecycle writer" path="src/openai_responses_proxy/cli/application.py" lines=67:86
 @source code-options title="What the port and deadline options accept" path="src/openai_responses_proxy/cli/options.py" lines=32:73
-@source readme-port title="The default port" path="README.md" lines=89:97
-@source readme-budgets title="Limits a fresh installation may choose" path="README.md" lines=342:358
-@source code-defaults title="Runtime defaults" path="src/openai_responses_proxy/runtime/config.py" lines=70:86
-@source code-platforms title="Release platforms" path="src/openai_responses_proxy/product_identity.py" lines=13:18
-@source changelog-100 title="The 1.0.0 release" path="CHANGELOG.md" lines=2146:2152
-@source changelog-202 title="Renamed in 2.0.2" path="CHANGELOG.md" lines=1541:1551
-@source changelog-500 title="Renamed in 5.0.0" path="CHANGELOG.md" lines=641:648
-@source changelog-5111 title="The 5.1.11 release" path="CHANGELOG.md" lines=212:225
-@source changelog-5112 title="The 5.1.12 release" path="CHANGELOG.md" lines=190:210
-@source changelog-600 title="The 6.0.0 release" path="CHANGELOG.md" lines=134:188
-@source changelog-601 title="The 6.0.1 release" path="CHANGELOG.md" lines=94:132
-@source changelog-602 title="The 6.0.2 release" path="CHANGELOG.md" lines=41:92
-@source changelog-603 title="The 6.0.3 release" path="CHANGELOG.md" lines=11:39
+@source readme-port title="The default port" path="README.md" lines=91:99
+@source readme-budgets title="Limits a fresh installation may choose" path="README.md" lines=343:359
+@source code-defaults title="Runtime defaults" path="src/openai_responses_proxy/runtime/config.py" lines=68:84
+@source code-platforms title="Release platforms" path="src/openai_responses_proxy/product_identity.py" lines=13:20
+@source changelog-100 title="The 1.0.0 release" path="CHANGELOG.md" lines=2185:2191
+@source changelog-202 title="Renamed in 2.0.2" path="CHANGELOG.md" lines=1580:1590
+@source changelog-500 title="Renamed in 5.0.0" path="CHANGELOG.md" lines=680:687
+@source changelog-5111 title="The 5.1.11 release" path="CHANGELOG.md" lines=251:264
+@source changelog-5112 title="The 5.1.12 release" path="CHANGELOG.md" lines=229:249
+@source changelog-600 title="The 6.0.0 release" path="CHANGELOG.md" lines=173:227
+@source changelog-601 title="The 6.0.1 release" path="CHANGELOG.md" lines=133:171
+@source changelog-602 title="The 6.0.2 release" path="CHANGELOG.md" lines=80:131
+@source changelog-603 title="The 6.0.3 release" path="CHANGELOG.md" lines=50:78
+@source changelog-700 title="The 7.0.0 release" path="CHANGELOG.md" lines=11:48
 
 ## Who sends traffic through the proxy, and what does it leave to others? {#p-context}
 
@@ -142,7 +141,7 @@ The proxy owns Responses normalization, replay portability, bounded recovery and
 | Exchange deadline | 900 s for the whole exchange, including every write to the client |
 | SSE event | At most 64 MiB, also for the events held before content |
 | Model catalog | 30 s and at most 8 MiB per request |
-| Release platforms | macOS arm64, Linux x86_64, Windows x86_64 |
+| Release platforms | macOS arm64, Linux x86_64 |
 
 The listener binds 127.0.0.1 only and does not authenticate requests.[](source:threat-boundaries) Use `--port` only when 8792 conflicts with another local service.[](source:readme-port) The other values are the runtime's defaults, and each platform has its own native release asset.[](source:code-defaults)[](source:readme-deadline)[](source:code-platforms) A fresh installation can choose other body, event and catalog limits, and an upgrade keeps the persisted values.[](source:readme-budgets)
 
@@ -154,9 +153,9 @@ The listener binds 127.0.0.1 only and does not authenticate requests.[](source:t
 | step-ctx-client | Responses client | Codex, Hermes or a Responses SDK, admitted only after its request, replay, streaming, error and installed-client journeys pass.[](source:readme-boundary) | context-map | ctx-client |
 | step-ctx-control | Client control plane | Owns credentials, provider selection and client configuration. It points the client at one loopback URL per provider.[](source:readme-boundary)[](source:readme-routes) | context-map | ctx-control |
 | step-ctx-proxy | OpenAI Responses Proxy | Listens on 127.0.0.1 only and holds no credential of its own; the client's Authorization header goes upstream for one request.[](source:threat-boundaries)[](source:threat-assets) | context-map | ctx-proxy |
-| step-ctx-providers | Provider endpoints | The manifest names DMXAPI, UCloud and AIHubMix; one explicit upstream can be added at installation.[](source:code-manifest)[](source:readme-upstream) | context-map | ctx-providers |
+| step-ctx-providers | Provider endpoints | The manifest names DMXAPI, UCloud, AIHubMix and Suhe.AI; one explicit upstream can be added at installation.[](source:code-manifest)[](source:readme-upstream) | context-map | ctx-providers |
 | step-ctx-operator | Operator | Installs a signed release asset with a trust anchor supplied through a separate trusted channel.[](source:readme-install) | context-map | ctx-operator |
-| step-ctx-service | Native service manager | Keeps the watchdog running: launchd on macOS, a systemd user manager on Linux, Task Scheduler on Windows.[](source:readme-macos)[](source:readme-linux) | context-map | ctx-service |
+| step-ctx-service | Native service manager | Keeps the watchdog running: launchd on macOS, a systemd user manager on Linux.[](source:readme-macos)[](source:readme-linux) | context-map | ctx-service |
 
 | Owner                | Authoritative state                                                    |
 | -------------------- | ---------------------------------------------------------------------- |
@@ -305,7 +304,7 @@ A request that ends without the listener's answer is not rolled back at once, be
 
 ## What does an installation write, and where? {#p-disk}
 
-These are the macOS defaults; Linux follows XDG directories and Windows uses LOCALAPPDATA.[](source:code-roots)
+These are the macOS defaults; Linux follows XDG directories.[](source:code-roots)
 
 @diagram tree id=disk-tree source=disk.tree.json
 
@@ -313,16 +312,16 @@ These are the macOS defaults; Linux follows XDG directories and Windows uses LOC
 | step-dk-selector | payload-selection.json | The sole authority for the active generation and its one predecessor, read by both the listener and the lifecycle commands. An installed payload is read only through the generation it names; payload files at the data root's own level are not the product's.[](source:code-selector)[](source:code-selected)[](source:changelog-603) | disk-tree | dk-selector |
 | step-dk-generations | generations/ | Each install writes a new directory, and a successful upgrade keeps exactly one predecessor.[](source:readme-generations) | disk-tree | dk-generations |
 | step-dk-transaction | Transaction journal | Lives beside the data root only while a transaction is open, outside the files it may delete.[](source:code-journal-paths) | disk-tree | dk-transaction |
-| step-dk-command | Command link | A symbolic link, or a launcher on Windows, to the newest selected release, so a serving rollback cannot downgrade the command.[](source:code-command-path)[](source:readme-generations) | disk-tree | dk-command |
+| step-dk-command | Command link | A symbolic link to the newest selected release, so a serving rollback cannot downgrade the command.[](source:code-command-path)[](source:readme-generations) | disk-tree | dk-command |
 | step-dk-agent | Launch agent | Runs the executable in its watchdog role, with RunAtLoad and KeepAlive.[](source:code-plist) | disk-tree | dk-agent |
 
-`uninstall` reads the payload generations before it removes the native service, so an invalid `generations/` directory is refused before anything is removed. On Linux and Windows it ends the watchdogs of every generation in that directory.[](source:code-uninstall)[](source:code-watchdogs-linux)[](source:code-watchdogs-windows)[](source:changelog-603)
+`uninstall` reads the payload generations before it removes the native service, so an invalid `generations/` directory is refused before anything is removed. On Linux it ends the watchdogs of every generation in that directory.[](source:code-uninstall)[](source:code-watchdogs-linux)[](source:changelog-603)
 
 `uninstall --purge` records each payload file's path and digest first, then deletes only those exact files. Unknown content stays and is reported.[](source:readme-purge) A data root without a generation that the product owns fails the purge, and its content is preserved.[](source:code-purge)[](source:changelog-603)
 
 ## How did the proxy get here? {#p-history}
 
-The proxy went from 1.0.0 in July 2026 to 6.0.3 in November, and changed its name twice on the way.[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-603) Below are eighteen of its releases that changed what a client or an operator meets.
+The proxy went from 1.0.0 in July 2026 to 7.0.0 in November, and changed its name twice on the way.[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-700) Below are nineteen of its releases that changed what a client or an operator meets.
 
 @diagram timeline id=history source=history.timeline.json title="How the proxy got here"
 
@@ -333,7 +332,7 @@ The watchdog starts the listener when its port is closed, and waits while a tran
 @diagram architecture id=running-map source=running.architecture.json
 
 @steps id=running-steps
-| step-run-manager | Native service manager | Starts the watchdog at load and keeps it alive.[](source:code-plist)[](source:code-unit)[](source:code-task) | running-map | run-manager |
+| step-run-manager | Native service manager | Starts the watchdog at load and keeps it alive.[](source:code-plist)[](source:code-unit) | running-map | run-manager |
 | step-run-watchdog | Watchdog | Checks the listener port every 15 s and backs off up to 120 s while starts keep failing.[](source:code-watchdog) | running-map | run-watchdog |
 | step-run-carrier | runtime-config.json | The listener, watchdog and handoff child each load the config beside their own executable, not the shell's environment.[](source:code-activate-carrier) | running-map | run-carrier |
 | step-run-cli | Command line | One lifecycle writer at a time; `status` reads /healthz and the payload without changing anything.[](source:code-lock)[](source:readme-evidence) | running-map | run-cli |
@@ -341,7 +340,6 @@ The watchdog starts the listener when its port is closed, and waits while a tran
 @facts
 | macOS | With a GUI login the agent lives in that login's domain and returns after a restart; in the Background domain it does not.[](source:readme-macos)[](source:code-domains) |
 | Linux | A reachable systemd user manager is required; lingering, owned by the host administrator, decides whether it runs after logout.[](source:readme-linux) |
-| Windows | A current-user scheduled task that fires at logon and every minute; a second instance is ignored.[](source:code-task) |
 
 | State               | Meaning                                                                     | Next command     |
 | ------------------- | --------------------------------------------------------------------------- | ---------------- |

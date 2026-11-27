@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
       "provider": "github",
-      "revision": "6d1b384f9037454b667ef26ec366d8fcfec1e81c"
+      "revision": "b0d850501653ca53bf20565c02cd7379994a4144"
     }
   },
   "components": [
@@ -33,7 +33,7 @@
       "id": "run-manager",
       "type": "external",
       "label": "系统服务管理器",
-      "sublabel": "launchd、systemd、计划任务",
+      "sublabel": "launchd、systemd",
       "pos": [300, 40],
       "size": [180, 64],
       "sources": [
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/supervision/watchdog.py",
-          "line": 104,
-          "end_line": 142,
+          "line": 91,
+          "end_line": 129,
           "label": "循环"
         }
       ]

@@ -6,7 +6,7 @@
   "title": "AIGW 统一客户端配置",
   "question": "怎样把一份审阅过的配置，带防护地写入每个已准入客户端的文件？",
   "summary": "提供商、模型和客户端的模型选择都放在一份配置 aigw.toml 里，改动时加锁；提供商令牌放在选定的一个存储里。写入客户端文件时走统一的适配器接口，只改写其中归 AIGW 管的设置；整个写入是一次带防护的事务，中途出错会补偿。请求绝不经过 AIGW。",
-  "scope": "v0.8.3 发布版本的 AIGW 程序：生产代码的 Go 包、命令入口、团队文件 manifests/team.toml 和 go.mod。",
+  "scope": "v0.10.0 发布版本的 AIGW 程序：生产代码的 Go 包、命令入口、团队文件 manifests/team.toml 和 go.mod。",
   "limits": [
     "组件只列出它认领的路径下的生产代码文件，关系只列出导入了对方的那些包的文件。",
     "测试及其输入，以及仓库的工具、CI 和文档，都不在范围之内。"
@@ -14,7 +14,7 @@
   "repository": {
     "name": "aigw-cli",
     "url": "https://github.com/HengYangDS/aigw-cli.git",
-    "revision": "fbec6f90d85951adbba853539efa0f8b3bc7c2fc"
+    "revision": "51fdc384f0a023696ae08d3f938fa68a05150f5e"
   },
   "coverage": {
     "include": ["cmd/", "internal/", "manifests/", "go.mod"],
@@ -223,7 +223,7 @@
         "items": [
           [
             "setup --from team.toml · --dry-run",
-            "应用审阅过的团队文件，模型与本地不同时以它为准 · 只预览，不写入"
+            "应用审阅过的团队文件，同名模型以它为准，闲置的本地独有模型移除 · 只预览，不写入"
           ],
           ["provider edit", "有意修改一个端点；没有命令能重命名提供商"]
         ]
@@ -336,6 +336,7 @@
       "kind": "coordinator",
       "details": {
         "职责": "让客户端文件与客户端的模型选择保持一致",
+        "跟随": "Codex 或 Hermes 在自身文件里选定的模型，当作它的模型选择",
         "事务": "提交一次配置变更，出错时有条件地补偿"
       },
       "files": ["internal/app/synchronization/"]
@@ -375,7 +376,8 @@
       "kind": "contract",
       "details": {
         "操作": ["发现", "收敛", "规划", "应用", "检视", "验证", "撤回"],
-        "测试": "每个适配器都要通过同一套契约测试"
+        "测试": "每个适配器都要通过同一套契约测试",
+        "记录": "把客户端文件显示的模型选择写进 AIGW 放在旁边的记录，不改动文件本身"
       },
       "files": [
         "internal/adapter/registry.go",
@@ -383,6 +385,8 @@
         "internal/adapter/adapters.go",
         "internal/adapter/apply_failure.go",
         "internal/adapter/conflict.go",
+        "internal/adapter/record.go",
+        "internal/adapter/selection.go",
         "internal/adapter/target_error.go",
         "internal/adapter/contract/",
         "internal/adapter/surface/",
@@ -413,7 +417,8 @@
       "label": "Claude Code",
       "kind": "client",
       "details": {
-        "写入": "~/.claude/settings.json"
+        "写入": "~/.claude/settings.json",
+        "映射": "在 modelOverrides 里把每个 Anthropic 模型 ID 映射到所选提供商提供它时用的 ID，并在 settings.json.aigw-owned-keys.json 里记下这个键"
       },
       "files": ["internal/adapter/claude/"]
     },
@@ -422,7 +427,8 @@
       "label": "Claude Desktop",
       "kind": "client",
       "details": {
-        "写入": "单独的第三方推理配置库"
+        "写入": "单独的第三方推理配置库",
+        "指明": "在 behavesAs 里写明条目中的模型对应哪个 Anthropic 模型"
       },
       "files": ["internal/adapter/claudedesktop/"]
     },
@@ -527,6 +533,7 @@
         "internal/cli/invocation/context.go",
         "internal/cli/invocation/failure.go",
         "internal/cli/invocation/flag.go",
+        "internal/cli/invocation/followed.go",
         "internal/cli/invocation/models.go",
         "internal/cli/invocation/preview.go",
         "internal/cli/invocation/protocol.go",
@@ -577,6 +584,7 @@
         "internal/cli/invocation/context.go",
         "internal/cli/invocation/failure.go",
         "internal/cli/invocation/flag.go",
+        "internal/cli/invocation/followed.go",
         "internal/cli/invocation/models.go",
         "internal/cli/invocation/preview.go",
         "internal/cli/invocation/protocol.go",
@@ -652,6 +660,7 @@
         "internal/cli/invocation/context.go",
         "internal/cli/invocation/failure.go",
         "internal/cli/invocation/flag.go",
+        "internal/cli/invocation/followed.go",
         "internal/cli/invocation/models.go",
         "internal/cli/invocation/preview.go",
         "internal/cli/invocation/protocol.go",
@@ -790,7 +799,9 @@
       "to": "adapter-seam",
       "label": "规划、应用",
       "files": [
+        "internal/app/synchronization/follow.go",
         "internal/app/synchronization/preview.go",
+        "internal/app/synchronization/record.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
         "internal/app/synchronization/synchronizer.go",
@@ -803,7 +814,9 @@
       "to": "discovery",
       "label": "观测",
       "files": [
+        "internal/app/synchronization/follow.go",
         "internal/app/synchronization/preview.go",
+        "internal/app/synchronization/record.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
         "internal/app/synchronization/synchronizer.go",
@@ -816,7 +829,9 @@
       "to": "configuration-store",
       "label": "保存",
       "files": [
+        "internal/app/synchronization/follow.go",
         "internal/app/synchronization/preview.go",
+        "internal/app/synchronization/record.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
         "internal/app/synchronization/synchronizer.go",
@@ -829,7 +844,9 @@
       "to": "credentials",
       "label": "检查读取令牌的程序",
       "files": [
+        "internal/app/synchronization/follow.go",
         "internal/app/synchronization/preview.go",
+        "internal/app/synchronization/record.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
         "internal/app/synchronization/synchronizer.go",
@@ -842,7 +859,9 @@
       "to": "domain",
       "label": "校验",
       "files": [
+        "internal/app/synchronization/follow.go",
         "internal/app/synchronization/preview.go",
+        "internal/app/synchronization/record.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
         "internal/app/synchronization/synchronizer.go",
@@ -900,6 +919,7 @@
         "internal/adapter/codex/reconcile.go",
         "internal/adapter/codex/scheduler.go",
         "internal/adapter/codex/selection.go",
+        "internal/adapter/codex/selection_record.go",
         "internal/adapter/codex/surfaces.go",
         "internal/adapter/codex/targets.go",
         "internal/adapter/codex/unrecorded.go"
@@ -916,9 +936,13 @@
         "internal/adapter/claude/conflict.go",
         "internal/adapter/claude/inspection.go",
         "internal/adapter/claude/live_verification.go",
+        "internal/adapter/claude/model_overrides.go",
         "internal/adapter/claude/native_paths.go",
+        "internal/adapter/claude/owned_keys.go",
         "internal/adapter/claude/plan.go",
-        "internal/adapter/claude/settings.go"
+        "internal/adapter/claude/settings.go",
+        "internal/adapter/claude/settings_apply.go",
+        "internal/adapter/claude/settings_withdrawal.go"
       ]
     },
     {
@@ -946,7 +970,9 @@
         "internal/adapter/hermes/document.go",
         "internal/adapter/hermes/gateway.go",
         "internal/adapter/hermes/projection.go",
+        "internal/adapter/hermes/record.go",
         "internal/adapter/hermes/selection.go",
+        "internal/adapter/hermes/selection_record.go",
         "internal/adapter/hermes/verification_home_unix.go",
         "internal/adapter/hermes/verification_home_windows.go"
       ]
@@ -974,6 +1000,7 @@
         "internal/adapter/codex/reconcile.go",
         "internal/adapter/codex/scheduler.go",
         "internal/adapter/codex/selection.go",
+        "internal/adapter/codex/selection_record.go",
         "internal/adapter/codex/surfaces.go",
         "internal/adapter/codex/targets.go",
         "internal/adapter/codex/unrecorded.go"
@@ -990,9 +1017,13 @@
         "internal/adapter/claude/conflict.go",
         "internal/adapter/claude/inspection.go",
         "internal/adapter/claude/live_verification.go",
+        "internal/adapter/claude/model_overrides.go",
         "internal/adapter/claude/native_paths.go",
+        "internal/adapter/claude/owned_keys.go",
         "internal/adapter/claude/plan.go",
-        "internal/adapter/claude/settings.go"
+        "internal/adapter/claude/settings.go",
+        "internal/adapter/claude/settings_apply.go",
+        "internal/adapter/claude/settings_withdrawal.go"
       ]
     },
     {
@@ -1020,7 +1051,9 @@
         "internal/adapter/hermes/document.go",
         "internal/adapter/hermes/gateway.go",
         "internal/adapter/hermes/projection.go",
+        "internal/adapter/hermes/record.go",
         "internal/adapter/hermes/selection.go",
+        "internal/adapter/hermes/selection_record.go",
         "internal/adapter/hermes/verification_home_unix.go",
         "internal/adapter/hermes/verification_home_windows.go"
       ]
@@ -1034,7 +1067,9 @@
         "internal/adapter/adapters.go",
         "internal/adapter/apply_failure.go",
         "internal/adapter/conflict.go",
+        "internal/adapter/record.go",
         "internal/adapter/registry.go",
+        "internal/adapter/selection.go",
         "internal/adapter/support.go",
         "internal/adapter/target_error.go"
       ]
@@ -1049,7 +1084,9 @@
         "internal/adapter/apply_failure.go",
         "internal/adapter/conflict.go",
         "internal/adapter/contract/contract.go",
+        "internal/adapter/record.go",
         "internal/adapter/registry.go",
+        "internal/adapter/selection.go",
         "internal/adapter/support.go",
         "internal/adapter/target_error.go",
         "internal/adapter/verification/verify.go"
@@ -1103,6 +1140,7 @@
         "internal/secret/file_windows.go",
         "internal/secret/keyring.go",
         "internal/secret/memory.go",
+        "internal/secret/native/deadline.go",
         "internal/secret/native/keychain_darwin.go",
         "internal/secret/native/keychain_darwin_nocgo.go",
         "internal/secret/native/keychain_list_darwin.go",

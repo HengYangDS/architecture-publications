@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "54383d9eaadd149bf785316b3000e2f5a7b969f8"
+      "revision": "8ef48f32a928f89f401ca0e9e9f4c23d27e6792e"
     }
   },
   "mainPath": ["take-narrated", "take-judged", "take-selected", "take-assembled"],
@@ -22,8 +22,8 @@
       "sources": [
         {
           "path": "src/filmkit/narration/synthesis.py",
-          "line": 256,
-          "end_line": 274,
+          "line": 261,
+          "end_line": 280,
           "label": "Plan"
         },
         {
@@ -49,7 +49,7 @@
         {
           "path": "src/filmkit/narration/judgment.py",
           "line": 1,
-          "end_line": 44,
+          "end_line": 50,
           "label": "Judgment"
         }
       ]
@@ -62,8 +62,8 @@
       "sources": [
         {
           "path": "src/filmkit/narration/selection.py",
-          "line": 73,
-          "end_line": 108,
+          "line": 84,
+          "end_line": 124,
           "label": "Select"
         }
       ]
@@ -76,8 +76,8 @@
       "sources": [
         {
           "path": "src/filmkit/soundtrack/assembly.py",
-          "line": 562,
-          "end_line": 628,
+          "line": 573,
+          "end_line": 651,
           "label": "Assemble"
         }
       ]
@@ -90,8 +90,8 @@
       "sources": [
         {
           "path": "src/filmkit/soundtrack/assembly.py",
-          "line": 157,
-          "end_line": 180,
+          "line": 169,
+          "end_line": 192,
           "label": "Refuse"
         }
       ]
@@ -104,8 +104,8 @@
       "sources": [
         {
           "path": "src/filmkit/narration/audition.py",
-          "line": 73,
-          "end_line": 88,
+          "line": 77,
+          "end_line": 96,
           "label": "Propose"
         }
       ]

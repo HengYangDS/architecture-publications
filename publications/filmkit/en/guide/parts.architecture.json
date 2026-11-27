@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "54383d9eaadd149bf785316b3000e2f5a7b969f8"
+      "revision": "8ef48f32a928f89f401ca0e9e9f4c23d27e6792e"
     }
   },
   "components": [
@@ -17,14 +17,14 @@
       "id": "part-narrate",
       "type": "frontend",
       "label": "Narration command",
-      "sublabel": "checks, then narrates",
+      "sublabel": "synthesis, alignment",
       "pos": [40, 40],
       "size": [180, 64],
       "sources": [
         {
           "path": "src/filmkit/narration/narrate.py",
-          "line": 63,
-          "end_line": 117,
+          "line": 62,
+          "end_line": 118,
           "label": "Steps"
         }
       ]
@@ -32,16 +32,16 @@
     {
       "id": "part-produce",
       "type": "frontend",
-      "label": "Production command",
-      "sublabel": "one action, one edition",
+      "label": "Build graph",
+      "sublabel": "one node at a time",
       "pos": [520, 40],
       "size": [180, 64],
       "sources": [
         {
-          "path": "src/filmkit/produce.py",
-          "line": 106,
-          "end_line": 145,
-          "label": "Actions"
+          "path": "src/filmkit/graph/build.py",
+          "line": 1,
+          "end_line": 34,
+          "label": "Build"
         }
       ]
     },
@@ -72,7 +72,7 @@
         {
           "path": "src/filmkit/narration/judgment.py",
           "line": 1,
-          "end_line": 44,
+          "end_line": 50,
           "label": "Judgment"
         }
       ]
@@ -87,8 +87,8 @@
       "sources": [
         {
           "path": "src/filmkit/soundtrack/assembly.py",
-          "line": 562,
-          "end_line": 628,
+          "line": 573,
+          "end_line": 651,
           "label": "Assemble"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "src/filmkit/picture/gates.py",
-          "line": 418,
-          "end_line": 498,
+          "line": 487,
+          "end_line": 598,
           "label": "Gate"
         }
       ]
@@ -119,8 +119,8 @@
       "sources": [
         {
           "path": "src/filmkit/picture/rendering.py",
-          "line": 415,
-          "end_line": 431,
+          "line": 457,
+          "end_line": 473,
           "label": "Render"
         }
       ]
@@ -151,8 +151,8 @@
       "sources": [
         {
           "path": "src/filmkit/delivery/packaging.py",
-          "line": 628,
-          "end_line": 663,
+          "line": 633,
+          "end_line": 668,
           "label": "Package"
         }
       ]
@@ -167,8 +167,8 @@
       "sources": [
         {
           "path": "src/filmkit/delivery/verification.py",
-          "line": 464,
-          "end_line": 509,
+          "line": 469,
+          "end_line": 514,
           "label": "Verify"
         }
       ]

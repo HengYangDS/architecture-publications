@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "c99145758b41fbcd8fdf02d4b20768d48e4b90ff"
+      "revision": "888880d8c3f56b63eea9b9e8e1bffbf986f4c5b4"
     }
   },
   "layout": {
@@ -59,8 +59,8 @@
       "sources": [
         {
           "path": "src/delivery.mjs",
-          "line": 208,
-          "end_line": 223,
+          "line": 203,
+          "end_line": 218,
           "label": "Acceptance"
         }
       ]
@@ -80,7 +80,7 @@
         },
         {
           "name": "version",
-          "type": "8"
+          "type": "9"
         },
         {
           "name": "publisher",
@@ -114,8 +114,8 @@
       "sources": [
         {
           "path": "src/manifest.mjs",
-          "line": 104,
-          "end_line": 163,
+          "line": 107,
+          "end_line": 166,
           "label": "Manifest"
         }
       ]
@@ -190,8 +190,8 @@
       "sources": [
         {
           "path": "src/manifest.mjs",
-          "line": 121,
-          "end_line": 127,
+          "line": 124,
+          "end_line": 130,
           "label": "Supplies"
         }
       ]
@@ -220,8 +220,8 @@
       "sources": [
         {
           "path": "src/build.mjs",
-          "line": 345,
-          "end_line": 362,
+          "line": 461,
+          "end_line": 478,
           "label": "digestTree"
         }
       ]

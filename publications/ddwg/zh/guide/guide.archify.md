@@ -1,86 +1,88 @@
 # 数据部门工作指南怎样把读者引到适用的规则？规则又怎样改动？ {#guide}
 
-这份指南是一个文档仓库，成员和智能体不用安装任何软件就能读。[](source:readme-repo)一张任务地图把每个工作问题引到对应规则所在的主题，这些规则都写在七个主题里，章程居首。[](source:map-open)[](source:profile-sources)规则要改，只能走一项 OpenSpec 正式变更：先由已安装的 ETHOS 准入和核验，各个代码托管平台才发布这个版本。[](source:gov-change)
+这份指南是一个文档仓库，成员和智能体不用安装任何软件就能读。[](source:readme-repo)一张任务地图把每个工作问题引到对应规则所在的主题，这些规则都写在八个主题里，章程居首。[](source:map-open)[](source:profile-sources)规则要改，只能走一项 OpenSpec 正式变更：先由已安装的 ETHOS 准入和核验，各个代码托管平台才发布这个版本。[](source:gov-change)
 
 - [每条规则只归一处管](block:p-topics)：导航、范例、决策记录和治理页面都链接过去，不另写一遍。[](source:gd-owner)
 - [章程约束每个主题](block:p-charter)：所有工作都要守住四条底线，记录用什么形式由风险决定。[](source:charter-boundaries)[](source:charter-risk)
 - [改动先准入，后写入](block:p-change)：写入之前，先要选定一项正式变更，拿到自己的工作通道，并让确切路径通过准入。[](source:agents-change)
-- [检查通过，不等于已经采用](block:p-open)：路线读得通，既证明不了成员在用这份指南，也证明不了工作变好了。[](source:charter-judgment)
+- [检查通过，不等于已经采用](block:p-open)：路线读得通、仓库检查通过，都证明不了成员在用这份指南。[](source:map-maintain)
 
-@answer scope="DDWG v8.0.0 · 提交 b9da15d · 文档、规格和配置"
+@answer scope="DDWG v10.1.3 · 提交 127e151 · 文档、规格和配置"
 @meta locale=zh-CN style=editorial
 @source readme-start title="从工作问题开始" path="README.md" lines=8:10
 @source readme-repo title="文档仓库" path="README.md" lines=15:21
 @source agents-scope title="智能体入口" path="AGENTS.md" lines=3:7
 @source agents-change title="改动已跟踪的源文件之前" path="AGENTS.md" lines=9:16
 @source map-open title="每个工作问题对应一页" path="docs/README.md" lines=11:15
-@source map-groups title="任务地图的路线" path="docs/README.md" lines=17:64
-@source map-route title="是阅读路线，不是阶段" path="docs/README.md" lines=66:71
-@source map-maintain title="维护本仓库" path="docs/README.md" lines=78:88
-@source charter-purpose title="什么时候读章程" path="docs/charter.md" lines=13:17
-@source charter-authority title="行动依据" path="docs/charter.md" lines=42:57
-@source charter-facts title="事实依据" path="docs/charter.md" lines=59:68
-@source charter-boundaries title="四条底线" path="docs/charter.md" lines=76:90
-@source charter-risk title="形式随风险而定" path="docs/charter.md" lines=96:108
-@source charter-review title="独立评审" path="docs/charter.md" lines=110:115
-@source charter-judgment title="规则为判断服务" path="docs/charter.md" lines=151:153
-@source charter-version title="指南的管理" path="docs/charter.md" lines=155:164
-@source decide-record title="记下选择和下一步行动" path="docs/decide.md" lines=156:162
-@source decide-act title="行动开始之后" path="docs/decide.md" lines=176:179
+@source map-groups title="任务地图的路线" path="docs/README.md" lines=17:66
+@source map-route title="顺着工作读下去" path="docs/README.md" lines=68:73
+@source map-maintain title="维护本仓库" path="docs/README.md" lines=80:90
+@source charter-purpose title="什么时候读章程" path="docs/charter.md" lines=13:19
+@source charter-authority title="行动依据" path="docs/charter.md" lines=43:59
+@source charter-facts title="事实依据" path="docs/charter.md" lines=61:70
+@source charter-boundaries title="四条底线" path="docs/charter.md" lines=78:93
+@source charter-risk title="形式随风险而定" path="docs/charter.md" lines=99:111
+@source charter-review title="独立评审" path="docs/charter.md" lines=113:118
+@source charter-version title="指南的管理" path="docs/charter.md" lines=158:168
+@source decide-record title="记下选择和下一步行动" path="docs/decide.md" lines=157:164
+@source decide-act title="行动开始之后" path="docs/decide.md" lines=178:180
 @source deliver-loop title="工作循环" path="docs/deliver.md" lines=80:93
-@source deliver-states title="说做到哪一步，不说花了多少力气" path="docs/deliver.md" lines=95:112
+@source deliver-states title="说做到哪一步，不说花了多少力气" path="docs/deliver.md" lines=95:113
 @source deliver-urgent title="紧急遏制" path="docs/deliver.md" lines=25:30
-@source data-close title="完成说法交给执行与交付收尾" path="docs/data.md" lines=93:96
-@source communicate-next title="完成报告与尚未界定的问题" path="docs/communicate.md" lines=184:186
-@source agent-model title="智能体怎样执行" path="docs/human-agent.md" lines=114:133
-@source agent-uses title="由别人负责的决策" path="docs/human-agent.md" lines=62:66
-@source evolve-governance title="规则要改，仍走仓库治理" path="docs/evolve.md" lines=242:244
+@source data-close title="完成说法交给执行与交付收尾" path="docs/data.md" lines=95:98
+@source communicate-next title="完成报告与尚未界定的问题" path="docs/communicate.md" lines=212:214
+@source agent-model title="智能体怎样执行" path="docs/human-agent.md" lines=112:130
+@source agent-uses title="由别人负责的决策" path="docs/human-agent.md" lines=61:64
+@source evolve-governance title="规则要改，仍走仓库治理" path="docs/evolve.md" lines=250:252
 @source records-register title="决策记录保存什么" path="docs/decisions/README.md" lines=22:45
 @source dr4-decision title="DR-0004：正式变更的生命周期" path="docs/decisions/dr-0004-official-lifecycle.md" lines=21:35
 @source dr5-decision title="DR-0005：按已交付范围关闭" path="docs/decisions/dr-0005-change-closure-scope.md" lines=29:50
 @source dr5-alternatives title="DR-0005：被否决的备选方案" path="docs/decisions/dr-0005-change-closure-scope.md" lines=52:60
-@source gov-change title="实质改动与代码托管平台" path="docs/governance/README.md" lines=11:13
-@source gov-split title="规程与边界" path="docs/governance/README.md" lines=24:25
-@source gov-authority title="变更权限" path="docs/governance/README.md" lines=29:33
-@source gov-archive title="验收不等于交付完结" path="docs/governance/README.md" lines=42:45
-@source gov-planes title="四个层面的证据" path="docs/governance/README.md" lines=47:60
-@source gov-peers title="发布按平台分别验收" path="docs/governance/README.md" lines=62:72
-@source gov-version title="唯一的发布标识" path="docs/governance/README.md" lines=84:94
-@source gov-checks title="每项检查和它的使用方" path="docs/governance/README.md" lines=153:170
-@source gov-no-code title="只为无人负责的职责写代码" path="docs/governance/README.md" lines=172:178
-@source config-map title="配置地图" path="docs/governance/configuration.md" lines=16:26
+@source gov-change title="实质改动与代码托管平台" path="docs/governance/change-and-release.md" lines=11:12
+@source gov-split title="规程与边界" path="docs/governance/change-and-release.md" lines=12:14
+@source gov-authority title="变更权限" path="docs/governance/change-and-release.md" lines=16:22
+@source gov-archive title="验收不等于交付完结" path="docs/governance/change-and-release.md" lines=96:99
+@source gov-planes title="四个层面的证据" path="docs/governance/change-and-release.md" lines=30:41
+@source gov-peers title="发布按平台分别验收" path="docs/governance/change-and-release.md" lines=32:48
+@source gov-version title="唯一的发布标识" path="docs/governance/change-and-release.md" lines=62:67
+@source gov-checks title="每项检查和它的使用方" path="docs/governance/checks-and-ci.md" lines=39:48
+@source gov-no-code title="只为无人负责的职责写代码" path="docs/governance/checks-and-ci.md" lines=50:54
+@source config-map title="配置地图" path="docs/governance/configuration.md" lines=15:25
 @source contrib-audience title="贡献指南写给谁" path="CONTRIBUTING.md" lines=3:11
 @source contrib-full title="完整的源文件检查" path="CONTRIBUTING.md" lines=37:51
-@source contrib-links title="链接验收仍待完成" path="CONTRIBUTING.md" lines=85:94
-@source contrib-spelling title="临时拼写词表" path="CONTRIBUTING.md" lines=67:72
-@source contrib-supply title="准备好 ETHOS" path="CONTRIBUTING.md" lines=152:167
+@source contrib-links title="链接验收仍待完成" path="CONTRIBUTING.md" lines=84:93
+@source contrib-spelling title="临时拼写词表" path="CONTRIBUTING.md" lines=66:71
+@source contrib-supply title="准备好 ETHOS" path="CONTRIBUTING.md" lines=151:166
 @source contrib-prepare title="准备版本" path="CONTRIBUTING.md" lines=223:228
 @source contrib-prove title="核验并验收源文件" path="CONTRIBUTING.md" lines=230:242
-@source contrib-cut title="定版并打标签" path="CONTRIBUTING.md" lines=244:275
-@source contrib-publish title="在所选平台上发布" path="CONTRIBUTING.md" lines=289:302
-@source contrib-verify title="核验已发布的版本" path="CONTRIBUTING.md" lines=344:349
+@source contrib-cut title="定版并打标签" path="CONTRIBUTING.md" lines=244:273
+@source contrib-publish title="在所选平台上发布" path="CONTRIBUTING.md" lines=287:300
+@source contrib-verify title="核验已发布的版本" path="CONTRIBUTING.md" lines=341:346
 @source change-record title="一项进行中的正式变更" path="openspec/README.md" lines=3:12
 @source change-admission title="ETHOS 负责准入和收尾" path="openspec/README.md" lines=30:41
 @source specs-index title="六项能力" path="openspec/specs/README.md" lines=3:20
 @source gd-entry title="按任务查找指南" path="openspec/specs/guidance-discovery/spec.md" lines=11:19
 @source gd-owner title="每条规范只归一处" path="openspec/specs/guidance-discovery/spec.md" lines=43:48
-@source gd-install title="阅读无需安装" path="openspec/specs/guidance-discovery/spec.md" lines=466:470
+@source gd-install title="阅读无需安装" path="openspec/specs/guidance-discovery/spec.md" lines=467:471
 @source wp-purpose title="工作实践" path="openspec/specs/work-practice/spec.md" lines=3:18
+@source wp-grades title="职级与绩效档位" path="openspec/specs/work-practice/spec.md" lines=666:689
 @source quality-purpose title="文档质量" path="openspec/specs/quality/spec.md" lines=3:8
 @source verification-proof title="核验只用已安装的检查" path="openspec/specs/verification/spec.md" lines=24:31
 @source verification-review title="评审读者的理解" path="openspec/specs/verification/spec.md" lines=10:22
 @source rg-license title="同一份 MIT License 授权" path="openspec/specs/repository-governance/spec.md" lines=12:19
 @source rg-binding title="仓库治理绑定什么" path="openspec/specs/repository-governance/spec.md" lines=56:79
-@source publication-identity title="发布标识" path="openspec/specs/publication/spec.md" lines=304:310
-@source profile-sources title="规范来源" path=".ethos/profile.toml" lines=1:21
-@source release-peers title="发布配置" path=".ethos/release.toml" lines=1:27
+@source publication-identity title="发布标识" path="openspec/specs/publication/spec.md" lines=288:294
+@source profile-sources title="规范来源" path=".ethos/profile.toml" lines=1:17
+@source release-peers title="发布配置" path=".ethos/release.toml" lines=1:21
 @source mise-supply title="按锁文件安装 ETHOS" path=".config/mise/config.toml" lines=1:31
 @source ci-projection title="生成的流水线" path=".config/checks/ci-projection/policy.toml" lines=1:16
-@source github-job title="GitHub 作业" path=".github/workflows/ci.yml" lines=36:46
+@source ci-platform title="只在 ARM macOS 上运行 CI" path="docs/governance/checks-and-ci.md" lines=99:104
+@source github-job title="GitHub 作业" path=".github/workflows/ci.yml" lines=36:43
 @source version-file title="VERSION" path="VERSION" lines=1:1
 @source changelog-intro title="更早的版本没有发布标签" path="CHANGELOG.md" lines=10:11
-@source changelog-400 title="4.0.0 的发布" path="CHANGELOG.md" lines=769:808
-@source changelog-800 title="8.0.0 的发布" path="CHANGELOG.md" lines=17:183
+@source changelog-400 title="4.0.0 的发布" path="CHANGELOG.md" lines=905:942
+@source changelog-1010 title="10.1.0 的发布" path="CHANGELOG.md" lines=34:42
+@source changelog-1013 title="10.1.3 的发布" path="CHANGELOG.md" lines=15:19
 
 ## 谁读这份指南，从哪里开始？ {#p-readers}
 
@@ -97,7 +99,7 @@
 
 ## 哪个主题负责哪类工作问题？ {#p-topics}
 
-任务地图按工作类型给路线分组。这些是阅读路线，不是每项任务都必须经过的阶段。[](source:map-route)
+任务地图按工作类型给路线分组。读者只打开下一个决定需要的主题；依据、目标或关键事实不清时，就先停下。[](source:map-route)
 
 @diagram tree id=topics-tree source=topics.tree.json
 
@@ -105,25 +107,27 @@
 | step-tp-urgent | 紧急故障或越界 | 直接转到“紧急情况与例外”，排在所有常规路线之前。[](source:map-open) | topics-tree | tp-urgent |
 | step-tp-direction | 方向与决策 | 查清依据，定下风险级别，界定决策，或者诊断故障。[](source:map-groups) | topics-tree | tp-direction |
 | step-tp-delivery | 数据与交付 | 证明数据资产适合用途，变更共享数据，或者对照完成条件为工作收尾。[](source:map-groups) | topics-tree | tp-delivery |
-| step-tp-collab | 协作与改进 | 准备汇报，上报风险，委托智能体，辅导成员，或者改进实践。[](source:map-groups) | topics-tree | tp-collab |
+| step-tp-collab | 协作与改进 | 准备汇报，上报风险，委托智能体，辅导成员，评定一个周期的绩效或一次晋升，或者改进实践。[](source:map-groups) | topics-tree | tp-collab |
 | step-tp-maintain | 维护本仓库 | OpenSpec 和 ETHOS 管变更权限；现行规则解释不了的理由，记在决策记录里。[](source:map-maintain) | topics-tree | tp-maintain |
 
-ETHOS 治理配置也把这七个主题列为仓库的规范来源。[](source:profile-sources)
+ETHOS 治理配置也把这八个主题列为仓库的规范来源。[](source:profile-sources)
 
 ## 章程要求每个主题遵守什么？ {#p-charter}
 
 要弄清谁可以决定、哪些事实可信、哪条边界必须守住，就读章程。[](source:charter-purpose)规则的字句对成员和他们的智能体一样有约束力；风险决定工作采取什么形式，不决定职责存不存在。[](source:charter-risk)
 
+“必须”和“不得”不容偏离。“应当”和“不应”定下默认做法，说明理由才可偏离；“可以”留给负责人选择。[](source:charter-risk)
+
 | 级别      | 适用情形                                         | 最低要求                                                              |
 | --------- | ------------------------------------------------ | --------------------------------------------------------------------- |
-| L0 轻量   | 局部、可逆、没有对外承诺的工作                   | 一次讲清结论、依据和做法                                              |
+| L0 低风险 | 局部、可逆、没有对外承诺的工作                   | 一次讲清结论、依据和做法                                              |
 | L1 标准   | 跨角色、要在几个方案间取舍或有重大不确定性的工作 | 在现有记录里写清问题、方案、做法和验收                                |
 | L2 高风险 | 涉及生产、资金、敏感数据、覆盖写入或不可逆操作   | 书面决定、授权、回滚、独立评审，最后由人验收[](source:charter-review) |
 
 @facts
 | 说真话 | 不编造、不隐瞒、不挑着说；没把握的不说成有把握。[](source:charter-boundaries) |
 | 守边界 | 对象、时间、能力、权限、数据、安全、合规和行动的界限都要守住。[](source:charter-boundaries) |
-| 责任落到人 | 重要的判断、决定、变更和验收，都有人负责。[](source:charter-boundaries) |
+| 责任落到人 | 每项判断、决定、变更和验收，都有人负责。[](source:charter-boundaries) |
 | 不虚报完成 | 没有对得上的当前证据，就不说完成、正确、可用或已采用。[](source:charter-boundaries) |
 
 @callout level=note title="两种依据"
@@ -142,20 +146,20 @@ ETHOS 治理配置也把这七个主题列为仓库的规范来源。[](source:p
 | step-ho-deliver | 执行与交付 | “完成”归它负责：决策开始执行后，以及写每份完成报告时，都要按它的完成条件、证据边界和工作状态的叫法来。[](source:decide-act)[](source:communicate-next)[](source:deliver-states) | handoffs-map | ho-deliver |
 | step-ho-evolve | 实践与演进 | 紧急路线归它管，紧急遏制就走这条路线；规则要改，仍走仓库治理。[](source:deliver-urgent)[](source:evolve-governance) | handoffs-map | ho-evolve |
 
-工作循环依次是界定、分析、决定、执行、核验和总结。这些动作指引工作，不是彼此分开的阶段。[](source:deliver-loop)
+工作循环依次是界定、分析、决定、执行、核验和总结。这些动作指引工作，可以合并或回头再做，但适用的职责一项都不能丢。[](source:deliver-loop)
 
 ## 哪些规格写明了指南必须做到什么？ {#p-specs}
 
 OpenSpec 工作空间里的六份能力规格，保存已验收的需求。需求要写进去，只能走正式变更。[](source:specs-index)[](source:change-record)
 
-| 能力     | 关注点               | 约束什么                                                                                              |
-| -------- | -------------------- | ----------------------------------------------------------------------------------------------------- |
-| 指南查找 | 找到合适的指南       | 两个入口、任务地图，每项义务只在一处维护[](source:gd-entry)[](source:gd-owner)                        |
-| 工作实践 | 把指南用到实际工作中 | 决策、数据、交付、沟通、智能体和辅导方面的职责[](source:wp-purpose)                                   |
-| 文档质量 | 维护可读的源文件     | 英文行文、链接和原生检查配置[](source:quality-purpose)                                                |
-| 核验     | 拿出检查过的结果     | CI 由 CUE 统一定义，ETHOS 治理配置不设核验门禁[](source:verification-proof)                           |
-| 仓库治理 | 变更或验收源文件     | MIT License 授权、同一张已签名的提交图、发布配置和 OpenSpec[](source:rg-license)[](source:rg-binding) |
-| 发布     | 发布或撤下下载文件   | VERSION、变更日志、签名标签、托管作业和两个平台[](source:publication-identity)                        |
+| 能力     | 关注点               | 约束什么                                                                                                    |
+| -------- | -------------------- | ----------------------------------------------------------------------------------------------------------- |
+| 指南查找 | 找到合适的指南       | 两个入口、任务地图，每项义务只在一处维护[](source:gd-entry)[](source:gd-owner)                              |
+| 工作实践 | 把指南用到实际工作中 | 决策、数据、交付、沟通、智能体和辅导方面的职责，以及职级和绩效档位[](source:wp-purpose)[](source:wp-grades) |
+| 文档质量 | 维护可读的源文件     | 英文行文、链接和原生检查配置[](source:quality-purpose)                                                      |
+| 核验     | 拿出检查过的结果     | CI 由 CUE 统一定义，ETHOS 治理配置不设核验门禁[](source:verification-proof)                                 |
+| 仓库治理 | 变更或验收源文件     | MIT License 授权、同一张已签名的提交图、发布配置和 OpenSpec[](source:rg-license)[](source:rg-binding)       |
+| 发布     | 发布或撤下下载文件   | VERSION、变更日志、签名标签、托管作业和两个平台[](source:publication-identity)                              |
 
 工作实践规格不增加任何权限，也不认定团队已经采用。[](source:wp-purpose)质量检查确认的是源文件的属性，含义仍要由人评审。[](source:quality-purpose)
 
@@ -195,16 +199,18 @@ OpenSpec 工作空间里的六份能力规格，保存已验收的需求。需�
 
 仓库没有自己的软件包、测试或检查命令；每项检查都由已安装的 ETHOS 运行。[](source:contrib-full)[](source:gov-no-code)
 
-| 检查                        | 原生配置                                      |
-| --------------------------- | --------------------------------------------- |
-| Markdown、JSON 和 YAML 格式 | `.config/checks/prettier/` 下的 Prettier 配置 |
-| TOML 格式                   | `.config/checks/taplo/` 下的 Taplo 配置       |
-| 行文与部门术语              | Vale，外加一份临时拼写词表                    |
-| 本地链接和锚点              | `.config/checks/lychee/` 下的 Lychee 参数     |
-| ETHOS 安装                  | Mise 配置及其锁文件                           |
-| 生成的 CI                   | 核验参数和 Runner 声明                        |
+| 检查                        | 原生配置                                  |
+| --------------------------- | ----------------------------------------- |
+| Markdown、JSON 和 YAML 格式 | 已安装的 ETHOS，用它自带的 Prettier 配置  |
+| TOML 格式                   | 已安装的 ETHOS，用它自带的 Taplo 配置     |
+| 行文与部门术语              | Vale，外加一份临时拼写词表                |
+| 本地链接和锚点              | `.config/checks/lychee/` 下的 Lychee 参数 |
+| ETHOS 安装                  | Mise 配置及其锁文件                       |
+| 生成的 CI                   | 核验参数和 Runner 声明                    |
 
-这些对应关系都记在配置地图里，治理页面写明每一项由哪个已安装的检查读取。[](source:config-map)[](source:gov-checks)Mise 安装锁文件固定的那一个 ETHOS 版本，这个版本自带 Node、格式化工具，以及行文和链接工具。[](source:mise-supply)[](source:contrib-supply)通用模型依据 CI 参数生成两个平台的流水线，每个托管作业都运行同样的全套检查。[](source:ci-projection)[](source:github-job)
+这些对应关系都记在配置地图里，“源文件检查与 CI”页面写明每一项由哪个已安装的检查读取。[](source:config-map)[](source:gov-checks)Mise 安装锁文件固定的那一个 ETHOS 版本，这个版本自带 Node、格式化工具，以及行文和链接工具。[](source:mise-supply)[](source:contrib-supply)通用模型依据 CI 参数生成两个平台的流水线，每个托管作业都运行同样的全套检查。[](source:ci-projection)[](source:github-job)
+
+两个平台的 CI 都只在 ARM macOS 上运行。[](source:ci-platform)
 
 ## 一个版本怎样在两个平台上发布？ {#p-release}
 
@@ -247,7 +253,9 @@ OpenSpec 工作空间里的六份能力规格，保存已验收的需求。需�
 
 ## 这套指南怎样走到今天？ {#p-history}
 
-正式的版本号从 v4.0.0 开始，这一版于 2026 年 9 月 26 日发布；此前各分支版本都没有打发布标签。[](source:changelog-intro)[](source:changelog-400)时间线从中挑出十一个版本，最后一个是 2026 年 11 月 1 日发布的 v8.0.0；这些版本都改变了成员、智能体或维护者读到的内容。[](source:changelog-800)
+正式的版本号从 v4.0.0 开始，这一版于 2026 年 9 月 26 日发布；此前各分支版本都没有打发布标签。[](source:changelog-intro)[](source:changelog-400)时间线从中挑出十六个版本，最后一个是 2026 年 11 月 25 日发布的 v10.1.0；这些版本都改变了成员、智能体或维护者读到的内容。[](source:changelog-1010)
+
+最新的版本是 v10.1.3，这一版让每条规则只说一次。[](source:changelog-1013)
 
 @diagram timeline id=history source=history.timeline.json title="这套指南怎样走到今天"
 

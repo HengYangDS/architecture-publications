@@ -6,7 +6,7 @@
   "title": "OpenAI Responses Proxy",
   "question": "如何让一轮 Codex Responses 对话可在第三方提供商之间移植？又如何安装监听器并使之持续运行？",
   "summary": "回环监听器按一套只认已知结构的封闭语法重建每个 Responses 请求，并设 store=false；请求发往路径所指的提供商，全程受同一个总时限约束，只有失败类别允许时才重试。已签名的发布资产由一个事务完成安装，全程写入事务日志，成为一个不可变的世代；升级时，监听套接字交给后继进程；监听器一旦停止，系统服务管理器托管的看门狗就会重启它。",
-  "scope": "v6.0.3 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
+  "scope": "v7.0.0 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
   "limits": [
     "组件只列出它认领的路径下的文件，关系只列出导入或调用对方组件的文件。",
     "关系只表示用到对方行为的导入、进程调用，或对另一组件对象的调用（对象由外部传入）；仅为异常类、类型、共用辅助函数或产品名称而做的导入，不画。",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "openai-responses-proxy",
     "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
-    "revision": "6d1b384f9037454b667ef26ec366d8fcfec1e81c"
+    "revision": "b0d850501653ca53bf20565c02cd7379994a4144"
   },
   "coverage": {
     "exclude": [
@@ -174,6 +174,11 @@
                   "note": "api.inferera.com"
                 },
                 {
+                  "id": "suheai",
+                  "label": "suheai",
+                  "note": "suheai.cn"
+                },
+                {
                   "id": "upstream",
                   "label": "upstream",
                   "note": "安装时选定的一个源站"
@@ -285,7 +290,7 @@
       {
         "title": "保持运行",
         "items": [
-          ["系统服务管理器", "launchd、systemd 或任务计划程序重启看门狗"],
+          ["系统服务管理器", "launchd 或 systemd 重启看门狗"],
           ["看门狗", "每 15 秒检查端口；启动监听器"]
         ],
         "view": "supervision"
@@ -538,7 +543,7 @@
       "label": "提供商注册表",
       "kind": "registry",
       "details": {
-        "路由": "aihubmix、dmxapi 和 ucloud，以及一个可选的 /upstream",
+        "路由": "aihubmix、dmxapi、suheai 和 ucloud，以及一个可选的 /upstream",
         "策略": "dmxapi 遇到完全匹配的 477 empty_response 时重试一次"
       },
       "files": [
@@ -552,7 +557,7 @@
       "label": "提供商端点",
       "kind": "provider",
       "details": {
-        "已接入": "DMXAPI、UCloud 和 AIHubMix，或一个显式指定的上游",
+        "已接入": "DMXAPI、UCloud、AIHubMix 和 Suhe.AI，或一个显式指定的上游",
         "负责": "模型执行、配额和可用性"
       }
     },
@@ -715,8 +720,8 @@
       "label": "系统服务监管",
       "kind": "supervisor",
       "details": {
-        "注册": "launchd Agent、systemd 用户单元或计划任务之一",
-        "停止": "只停可执行文件和私有角色都经它核实的进程；卸载时，在 Linux 和 Windows 上结束 generations/ 中每一代的看门狗"
+        "注册": "launchd Agent 或 systemd 用户单元",
+        "停止": "只停可执行文件和私有角色都经它核实的进程；卸载时，在 Linux 上结束 generations/ 中每一代的看门狗"
       },
       "files": [
         "src/openai_responses_proxy/lifecycle/supervision/native_service.py",
@@ -739,8 +744,7 @@
       "kind": "host",
       "details": {
         "macOS": "launchd，位于 GUI 登录域或 Background 域",
-        "Linux": "systemd 用户管理器",
-        "Windows": "任务计划程序，面向当前用户"
+        "Linux": "systemd 用户管理器"
       }
     }
   ],
@@ -1092,8 +1096,7 @@
       "label": "注册看门狗",
       "files": [
         "src/openai_responses_proxy/lifecycle/supervision/macos.py",
-        "src/openai_responses_proxy/lifecycle/supervision/linux.py",
-        "src/openai_responses_proxy/lifecycle/supervision/windows.py"
+        "src/openai_responses_proxy/lifecycle/supervision/linux.py"
       ]
     },
     {
@@ -1103,8 +1106,7 @@
       "label": "启动、重启",
       "files": [
         "src/openai_responses_proxy/lifecycle/supervision/macos.py",
-        "src/openai_responses_proxy/lifecycle/supervision/linux.py",
-        "src/openai_responses_proxy/lifecycle/supervision/windows.py"
+        "src/openai_responses_proxy/lifecycle/supervision/linux.py"
       ]
     },
     {

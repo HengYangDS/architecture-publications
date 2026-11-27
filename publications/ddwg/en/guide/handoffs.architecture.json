@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
       "provider": "github",
-      "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42"
+      "revision": "127e15186115c1cf30e9f476e4991d587bf50500"
     }
   },
   "components": [
@@ -23,8 +23,8 @@
       "sources": [
         {
           "path": "docs/human-agent.md",
-          "line": 114,
-          "end_line": 133,
+          "line": 112,
+          "end_line": 130,
           "label": "Agent execution"
         }
       ]
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "docs/decide.md",
-          "line": 156,
-          "end_line": 162,
+          "line": 157,
+          "end_line": 164,
           "label": "Record"
         }
       ]
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "docs/communicate.md",
-          "line": 112,
-          "end_line": 127,
+          "line": 135,
+          "end_line": 153,
           "label": "Decision document"
         }
       ]
@@ -71,8 +71,8 @@
       "sources": [
         {
           "path": "docs/data.md",
-          "line": 78,
-          "end_line": 96,
+          "line": 80,
+          "end_line": 100,
           "label": "Admission"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "docs/evolve.md",
-          "line": 218,
-          "end_line": 233,
+          "line": 226,
+          "end_line": 241,
           "label": "Emergencies"
         }
       ]

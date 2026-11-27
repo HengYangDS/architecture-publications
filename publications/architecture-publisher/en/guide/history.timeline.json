@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "c99145758b41fbcd8fdf02d4b20768d48e4b90ff"
+      "revision": "888880d8c3f56b63eea9b9e8e1bffbf986f4c5b4"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 722,
-          "end_line": 732,
+          "line": 965,
+          "end_line": 975,
           "label": "0.4.0"
         }
       ]
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 677,
-          "end_line": 682,
+          "line": 920,
+          "end_line": 925,
           "label": "0.6.0"
         }
       ]
@@ -71,8 +71,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 570,
-          "end_line": 615,
+          "line": 813,
+          "end_line": 858,
           "label": "0.8.0"
         }
       ]
@@ -86,8 +86,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 553,
-          "end_line": 561,
+          "line": 796,
+          "end_line": 804,
           "label": "0.9.0"
         }
       ]
@@ -102,14 +102,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 509,
-          "end_line": 520,
+          "line": 752,
+          "end_line": 763,
           "label": "0.10.0"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 545,
-          "end_line": 548,
+          "line": 788,
+          "end_line": 791,
           "label": "Removed"
         }
       ]
@@ -123,8 +123,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 496,
-          "end_line": 507,
+          "line": 739,
+          "end_line": 750,
           "label": "0.10.1"
         }
       ]
@@ -138,8 +138,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 487,
-          "end_line": 494,
+          "line": 730,
+          "end_line": 737,
           "label": "0.10.2"
         }
       ]
@@ -153,8 +153,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 466,
-          "end_line": 479,
+          "line": 709,
+          "end_line": 722,
           "label": "0.11.0"
         }
       ]
@@ -168,8 +168,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 438,
-          "end_line": 464,
+          "line": 681,
+          "end_line": 707,
           "label": "0.12.0"
         }
       ]
@@ -184,8 +184,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 381,
-          "end_line": 436,
+          "line": 624,
+          "end_line": 679,
           "label": "0.13.0"
         }
       ]
@@ -199,8 +199,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 369,
-          "end_line": 379,
+          "line": 612,
+          "end_line": 622,
           "label": "0.13.1"
         }
       ]
@@ -214,8 +214,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 333,
-          "end_line": 367,
+          "line": 576,
+          "end_line": 610,
           "label": "0.14.0"
         }
       ]
@@ -230,8 +230,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 98,
-          "end_line": 331,
+          "line": 344,
+          "end_line": 574,
           "label": "0.15.0"
         }
       ]
@@ -246,9 +246,87 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 10,
-          "end_line": 96,
+          "line": 250,
+          "end_line": 342,
           "label": "0.16.0"
+        }
+      ]
+    },
+    {
+      "id": "v0170",
+      "at": "2026-11-22T18:24:34+08:00",
+      "lane": "model",
+      "title": "0.17.0 Links from the address",
+      "detail": "A model whose repository is an https address on GitHub or GitLab need not declare repository.browse: the publisher derives it from the address.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 202,
+          "end_line": 248,
+          "label": "0.17.0"
+        }
+      ]
+    },
+    {
+      "id": "v0180",
+      "at": "2026-11-24T17:32:16+08:00",
+      "lane": "layout",
+      "kind": "change",
+      "title": "0.18.0 Every view reached from the overview",
+      "detail": "A plate's head links back to the overview, and holds the summary when the figure takes the whole body. An edition that sets a stated overview refuses a view its overview does not name, and the overview keeps its sizes when a page runs long.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 141,
+          "end_line": 200,
+          "label": "0.18.0"
+        }
+      ]
+    },
+    {
+      "id": "v0190",
+      "at": "2026-11-25T04:19:20+08:00",
+      "lane": "edition",
+      "title": "0.19.0 Archify 3.3.0",
+      "detail": "The bundled Archify is 3.3.0, taken whole from its official archive under Apache-2.0, and draws every page. A page gains Archify's footer panel, a GitHub star prompt and a feedback menu, which a draft's @meta feedback_links=false turns off. The edition, its figures and the data do not change.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 120,
+          "end_line": 139,
+          "label": "0.19.0"
+        }
+      ]
+    },
+    {
+      "id": "v0200",
+      "at": "2026-11-26T08:23:33+08:00",
+      "lane": "edition",
+      "kind": "change",
+      "title": "0.20.0 An index of paragraphs",
+      "detail": "Each part of the index is a short paragraph, and a card's title links to it. The reader file speaks the model's language. The publisher lays out a guide's diagrams and refuses a diagram file that states a position. Releases ship no Windows archives.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 74,
+          "end_line": 118,
+          "label": "0.20.0"
+        }
+      ]
+    },
+    {
+      "id": "v0210",
+      "at": "2026-11-27T10:14:33+08:00",
+      "lane": "layout",
+      "kind": "change",
+      "title": "0.21.0 One width per mark",
+      "detail": "Each mark is stroked at one width the house states, so an overview's ring on parallel tracks and some key samples are drawn heavier. src/model/schema.json states every rule a single value is held to, and src/refusal.json every code the publisher raises or reports, refusals, problems and warnings among them.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 10,
+          "end_line": 72,
+          "label": "0.21.0"
         }
       ]
     }

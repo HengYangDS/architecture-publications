@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
       "provider": "github",
-      "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42"
+      "revision": "127e15186115c1cf30e9f476e4991d587bf50500"
     }
   },
   "components": [
@@ -120,9 +120,9 @@
       "size": [190, 64],
       "sources": [
         {
-          "path": "docs/governance/README.md",
-          "line": 24,
-          "end_line": 25,
+          "path": "docs/governance/change-and-release.md",
+          "line": 12,
+          "end_line": 14,
           "label": "Boundaries"
         }
       ]

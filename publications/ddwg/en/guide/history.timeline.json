@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
       "provider": "github",
-      "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42"
+      "revision": "127e15186115c1cf30e9f476e4991d587bf50500"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 769,
-          "end_line": 808,
+          "line": 905,
+          "end_line": 942,
           "label": "4.0.0"
         }
       ]
@@ -57,8 +57,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 746,
-          "end_line": 758,
+          "line": 886,
+          "end_line": 896,
           "label": "4.1.0"
         }
       ]
@@ -73,8 +73,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 691,
-          "end_line": 713,
+          "line": 839,
+          "end_line": 859,
           "label": "5.0.0"
         }
       ]
@@ -88,8 +88,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 653,
-          "end_line": 670,
+          "line": 807,
+          "end_line": 822,
           "label": "5.0.3"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 596,
-          "end_line": 619,
+          "line": 758,
+          "end_line": 779,
           "label": "5.1.0"
         }
       ]
@@ -119,8 +119,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 439,
-          "end_line": 465,
+          "line": 621,
+          "end_line": 645,
           "label": "7.0.0"
         }
       ]
@@ -134,8 +134,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 421,
-          "end_line": 437,
+          "line": 605,
+          "end_line": 619,
           "label": "7.0.1"
         }
       ]
@@ -149,8 +149,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 359,
-          "end_line": 390,
+          "line": 549,
+          "end_line": 578,
           "label": "7.0.4"
         }
       ]
@@ -164,8 +164,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 322,
-          "end_line": 331,
+          "line": 516,
+          "end_line": 523,
           "label": "7.0.6"
         }
       ]
@@ -179,8 +179,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 185,
-          "end_line": 252,
+          "line": 391,
+          "end_line": 456,
           "label": "7.0.12"
         }
       ]
@@ -195,9 +195,86 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 17,
-          "end_line": 183,
+          "line": 225,
+          "end_line": 389,
           "label": "8.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v900",
+      "at": "2026-11-22T19:48:15+08:00",
+      "lane": "duties",
+      "kind": "change",
+      "title": "v9.0.0 Every duty states its force",
+      "detail": "\"Important work\" and similar phrases now mean L1 or L2 work, so L1 work gains those duties. Outside pointers and examples, each imperative says must, must not, should or may, as its requirement states. The governance rules move, by reader task, to two pages, \"Repository change and release\" and \"Source checks and CI\".",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 160,
+          "end_line": 223,
+          "label": "9.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v910",
+      "at": "2026-11-23T03:44:09+08:00",
+      "lane": "duties",
+      "title": "v9.1.0 Grades, tiers and growth",
+      "detail": "A new page sets one sequence of eight grades in four bands, and six tiers, S to E, read at the member's own grade. Two assessors judge from records, with no quota.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 135,
+          "end_line": 158,
+          "label": "9.1.0"
+        }
+      ]
+    },
+    {
+      "id": "v930",
+      "at": "2026-11-24T16:47:15+08:00",
+      "lane": "duties",
+      "title": "v9.3.0 Nine functions of the department",
+      "detail": "The data topic names nine functions: six along the data value chain and three across them. A data item's responsibilities fall to them by default, and no responsibility absorbs another.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 109,
+          "end_line": 121,
+          "label": "9.3.0"
+        }
+      ]
+    },
+    {
+      "id": "v1000",
+      "at": "2026-11-24T23:47:02+08:00",
+      "lane": "duties",
+      "kind": "change",
+      "title": "v10.0.0 Tiers on five letters",
+      "detail": "Tiers are read on five letters, S to D: B is what the grade expects, C the passing line and D below it. D's conditions are read first; above D, each tier answers one yes-or-no question.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 79,
+          "end_line": 107,
+          "label": "10.0.0"
+        }
+      ]
+    },
+    {
+      "id": "v1010",
+      "at": "2026-11-25T13:56:48+08:00",
+      "lane": "repository",
+      "title": "v10.1.0 CI only on ARM macOS",
+      "detail": "Both Forges run CI only on ARM macOS, selected by one label. The Linux and Windows jobs, the Linux container image and the Mise download from the package registry are retired.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 34,
+          "end_line": 42,
+          "label": "10.1.0"
         }
       ]
     }

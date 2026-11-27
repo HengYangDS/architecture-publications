@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "54383d9eaadd149bf785316b3000e2f5a7b969f8"
+      "revision": "8ef48f32a928f89f401ca0e9e9f4c23d27e6792e"
     }
   },
   "layout": {
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "src/filmkit/narration/selection.py",
-          "line": 97,
-          "end_line": 107,
+          "line": 113,
+          "end_line": 123,
           "label": "Selection"
         }
       ]
@@ -67,8 +67,8 @@
       "sources": [
         {
           "path": "src/filmkit/production.py",
-          "line": 148,
-          "end_line": 150,
+          "line": 214,
+          "end_line": 216,
           "label": "Script"
         }
       ]
@@ -98,8 +98,8 @@
       "sources": [
         {
           "path": "src/filmkit/soundtrack/assembly.py",
-          "line": 519,
-          "end_line": 559,
+          "line": 534,
+          "end_line": 570,
           "label": "Receipt"
         }
       ]
@@ -123,8 +123,8 @@
       "sources": [
         {
           "path": "src/filmkit/soundtrack/assembly.py",
-          "line": 608,
-          "end_line": 615,
+          "line": 623,
+          "end_line": 639,
           "label": "Timeline"
         }
       ]
@@ -159,8 +159,8 @@
       "sources": [
         {
           "path": "src/filmkit/picture/rendering.py",
-          "line": 253,
-          "end_line": 271,
+          "line": 290,
+          "end_line": 308,
           "label": "Stage"
         }
       ]
@@ -205,8 +205,8 @@
       "sources": [
         {
           "path": "src/filmkit/delivery/packaging.py",
-          "line": 275,
-          "end_line": 317,
+          "line": 277,
+          "end_line": 319,
           "label": "Package"
         }
       ],
@@ -240,8 +240,8 @@
       "sources": [
         {
           "path": "src/filmkit/picture/gates.py",
-          "line": 480,
-          "end_line": 490,
+          "line": 580,
+          "end_line": 590,
           "label": "Record"
         }
       ]

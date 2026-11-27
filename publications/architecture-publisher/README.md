@@ -2,8 +2,8 @@
 
 [`en/model.json`](en/model.json) is an Architecture Model of how Architecture
 Publisher turns an architecture model into a print edition and a page. It pins
-`architecture-publisher` at v0.16.0
-(`c99145758b41fbcd8fdf02d4b20768d48e4b90ff`), and its components own all 90
+`architecture-publisher` at v0.21.0
+(`888880d8c3f56b63eea9b9e8e1bffbf986f4c5b4`), and its components own all 107
 files of its coverage scope: the publisher's source under `src/`, its
 `package.json` and the manifests of its six vendored supplies. Thirty-three
 components, fifty-five relations and six views show one build from the author
@@ -22,7 +22,7 @@ page of the print edition and how a plate draws its parts as cards with the
 strips of their files, how the page and the overview are made and checked,
 what the manifest binds and how a delivery is accepted and published. It shows
 the releases that brought the publisher here and ends with what moving the pin
-changes. Each claim about the product cites a line range at v0.16.0, and the
+changes. Each claim about the product cites a line range at v0.21.0, and the
 diagrams the draft names sit beside it. The re-pin counts were measured on
 2026-11-18, when this work moved from v0.14.0 to v0.15.0. Of the moves before
 it, the move to v0.10.1
@@ -47,13 +47,27 @@ relations cite other modules than before, three of them
 figure files, the edition's index, the images' default width and the single
 Archify run that validates and writes a build's page. It added no
 component and no relation; the delivery builder's relation to the print edition
-also cites `src/manifest.mjs`, which now takes the edition's file names.
+also cites `src/manifest.mjs`, which now takes the edition's file names. The
+move to v0.21.0, five releases later, gave the eight files those releases added
+outside a claimed directory to the parts whose subject they implement: the
+refusal table to `archpub`, the table and the module of a delivery's names to
+the delivery builder, the house tokens' module and the shared names table to
+the house class and overview, the languages to Words, the categories to Kinds and icons and
+the reader file's words to the data and reader file. Of the modules new in
+`src/map/`, it gave the four that lay out a guide's diagrams to the guide, whose
+relation to the explainer page now cites three of them, and the two that write
+the guide into the reader file to the data and reader file. It rewrote what the
+work says of the bundled Archify, the manifest's version, a plate's head, the
+edition's index, the overview's closer spacing and the views it does not reach,
+and added no component and no relation.
 
 Each component claims the directories and files its path rules name, and each
 file goes to its most specific claim, so every file in the scope has one owner;
 the roles and outside systems claim none. A relation is kept only when an
 import or a process call in the source backs it, and cites the modules that
-make it; the shared refusal type and the child environment are not drawn. The
+make it; the shared refusal type, the child environment, and the delivery's names
+and house tokens that many modules read (`src/names.mjs`, `src/house.mjs`) are
+not drawn. The
 scope leaves out the vendored programs, fonts and artwork the supply manifests
 list, and the repository's tests, tools, documentation, OpenSpec changes and
 CI. Until `009e84c` the model lived in Architecture Publisher's own repository,
@@ -69,6 +83,5 @@ archpub check publications/architecture-publisher/en/model.json --repo <architec
 archpub build publications/architecture-publisher/en/model.json --repo <architecture-publisher checkout> --out build/architecture-publisher/en
 ```
 
-Checking and building the work needs Architecture Publisher 0.15.0 or later,
-the first that reads an overview stated in the model, and building the edition
-needs Typst 0.15.1 on the path.
+Checking and building the work needs the Architecture Publisher releases and the Typst that the repository's
+[README](../../README.md) names.

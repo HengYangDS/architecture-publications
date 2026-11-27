@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "54383d9eaadd149bf785316b3000e2f5a7b969f8"
+      "revision": "8ef48f32a928f89f401ca0e9e9f4c23d27e6792e"
     }
   },
   "components": [
@@ -40,8 +40,8 @@
       "sources": [
         {
           "path": "README.md",
-          "line": 18,
-          "end_line": 26,
+          "line": 30,
+          "end_line": 40,
           "label": "Layout"
         }
       ]
@@ -73,7 +73,7 @@
         {
           "path": "src/filmkit/supply.py",
           "line": 1,
-          "end_line": 7,
+          "end_line": 12,
           "label": "Supply"
         }
       ]
@@ -82,15 +82,15 @@
       "id": "ctx-engine",
       "type": "security",
       "label": "Film Kit engine",
-      "sublabel": "one action per edition",
+      "sublabel": "verbs, nodes, run records",
       "pos": [280, 190],
       "size": [180, 64],
       "sources": [
         {
-          "path": "src/filmkit/produce.py",
-          "line": 106,
-          "end_line": 145,
-          "label": "Actions"
+          "path": "src/filmkit/graph/cli.py",
+          "line": 1,
+          "end_line": 54,
+          "label": "Verbs"
         }
       ]
     },
@@ -104,8 +104,8 @@
       "sources": [
         {
           "path": "src/filmkit/picture/renderer.py",
-          "line": 117,
-          "end_line": 123,
+          "line": 118,
+          "end_line": 126,
           "label": "Canvas"
         }
       ]
@@ -120,8 +120,8 @@
       "sources": [
         {
           "path": "src/filmkit/production.py",
-          "line": 170,
-          "end_line": 186,
+          "line": 231,
+          "end_line": 247,
           "label": "Places"
         }
       ]
@@ -153,7 +153,7 @@
         {
           "path": "src/filmkit/delivery/folder.py",
           "line": 1,
-          "end_line": 52,
+          "end_line": 53,
           "label": "Delivery"
         }
       ]

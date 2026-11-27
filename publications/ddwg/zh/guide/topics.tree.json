@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
       "provider": "github",
-      "revision": "b9da15d3a57ed2a056af64d6c8adc3684a7b4f42"
+      "revision": "127e15186115c1cf30e9f476e4991d587bf50500"
     }
   },
   "layout": {
@@ -133,7 +133,7 @@
         {
           "path": "docs/README.md",
           "line": 48,
-          "end_line": 64,
+          "end_line": 66,
           "label": "协作"
         }
       ]
@@ -175,8 +175,22 @@
         {
           "path": "docs/README.md",
           "line": 59,
-          "end_line": 64,
+          "end_line": 66,
           "label": "演进"
+        }
+      ]
+    },
+    {
+      "id": "tp-grow",
+      "label": "职级、绩效档位与成长",
+      "sublabel": "评定、晋升",
+      "parent": "tp-collab",
+      "sources": [
+        {
+          "path": "docs/README.md",
+          "line": 61,
+          "end_line": 62,
+          "label": "成长"
         }
       ]
     },
@@ -187,8 +201,8 @@
       "sources": [
         {
           "path": "docs/README.md",
-          "line": 78,
-          "end_line": 88,
+          "line": 80,
+          "end_line": 90,
           "label": "维护"
         }
       ]
@@ -201,8 +215,8 @@
       "sources": [
         {
           "path": "docs/README.md",
-          "line": 84,
-          "end_line": 86,
+          "line": 86,
+          "end_line": 88,
           "label": "决策"
         }
       ]
@@ -215,8 +229,8 @@
       "sources": [
         {
           "path": "docs/README.md",
-          "line": 84,
-          "end_line": 85,
+          "line": 86,
+          "end_line": 87,
           "label": "治理"
         }
       ]

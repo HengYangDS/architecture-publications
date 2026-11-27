@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "c99145758b41fbcd8fdf02d4b20768d48e4b90ff"
+      "revision": "888880d8c3f56b63eea9b9e8e1bffbf986f4c5b4"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 722,
-          "end_line": 732,
+          "line": 965,
+          "end_line": 975,
           "label": "0.4.0"
         }
       ]
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 677,
-          "end_line": 682,
+          "line": 920,
+          "end_line": 925,
           "label": "0.6.0"
         }
       ]
@@ -71,8 +71,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 570,
-          "end_line": 615,
+          "line": 813,
+          "end_line": 858,
           "label": "0.8.0"
         }
       ]
@@ -86,8 +86,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 553,
-          "end_line": 561,
+          "line": 796,
+          "end_line": 804,
           "label": "0.9.0"
         }
       ]
@@ -102,14 +102,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 509,
-          "end_line": 520,
+          "line": 752,
+          "end_line": 763,
           "label": "0.10.0"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 545,
-          "end_line": 548,
+          "line": 788,
+          "end_line": 791,
           "label": "Removed"
         }
       ]
@@ -123,8 +123,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 496,
-          "end_line": 507,
+          "line": 739,
+          "end_line": 750,
           "label": "0.10.1"
         }
       ]
@@ -138,8 +138,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 487,
-          "end_line": 494,
+          "line": 730,
+          "end_line": 737,
           "label": "0.10.2"
         }
       ]
@@ -153,8 +153,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 466,
-          "end_line": 479,
+          "line": 709,
+          "end_line": 722,
           "label": "0.11.0"
         }
       ]
@@ -168,8 +168,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 438,
-          "end_line": 464,
+          "line": 681,
+          "end_line": 707,
           "label": "0.12.0"
         }
       ]
@@ -184,8 +184,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 381,
-          "end_line": 436,
+          "line": 624,
+          "end_line": 679,
           "label": "0.13.0"
         }
       ]
@@ -199,8 +199,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 369,
-          "end_line": 379,
+          "line": 612,
+          "end_line": 622,
           "label": "0.13.1"
         }
       ]
@@ -214,8 +214,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 333,
-          "end_line": 367,
+          "line": 576,
+          "end_line": 610,
           "label": "0.14.0"
         }
       ]
@@ -230,8 +230,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 98,
-          "end_line": 331,
+          "line": 344,
+          "end_line": 574,
           "label": "0.15.0"
         }
       ]
@@ -246,9 +246,87 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 10,
-          "end_line": 96,
+          "line": 250,
+          "end_line": 342,
           "label": "0.16.0"
+        }
+      ]
+    },
+    {
+      "id": "v0170",
+      "at": "2026-11-22T18:24:34+08:00",
+      "lane": "model",
+      "title": "0.17.0 由地址推出链接",
+      "detail": "模型的仓库是 GitHub 或 GitLab 上的 https 地址时，无需声明 repository.browse，出版工具会按地址自行推出。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 202,
+          "end_line": 248,
+          "label": "0.17.0"
+        }
+      ]
+    },
+    {
+      "id": "v0180",
+      "at": "2026-11-24T17:32:16+08:00",
+      "lane": "layout",
+      "kind": "change",
+      "title": "0.18.0 每个视图都能从总览到达",
+      "detail": "图版页头链接回总览；图占满正文区时，概述排在页头。图册设有模型写明的总览时，对总览没有指明的视图一律拒绝；版面偏长时，总览保持原有字号。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 141,
+          "end_line": 200,
+          "label": "0.18.0"
+        }
+      ]
+    },
+    {
+      "id": "v0190",
+      "at": "2026-11-25T04:19:20+08:00",
+      "lane": "edition",
+      "title": "0.19.0 Archify 3.3.0",
+      "detail": "随附的 Archify 升到 3.3.0，从官方归档包整体取用，许可证为 Apache-2.0，页面都由它画出。页面多了 Archify 的页脚面板、GitHub 星标提示和反馈菜单，草稿的 @meta feedback_links=false 可以关掉。图册、单独成图的图和数据都不变。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 120,
+          "end_line": 139,
+          "label": "0.19.0"
+        }
+      ]
+    },
+    {
+      "id": "v0200",
+      "at": "2026-11-26T08:23:33+08:00",
+      "lane": "edition",
+      "kind": "change",
+      "title": "0.20.0 每个组件一段的索引",
+      "detail": "索引为每个组件写一小段，卡片标题链接到这一段。读者文件改用模型的语言。导读里的图由出版工具布局，图文件写了位置的，一律拒绝。发布不再提供 Windows 归档包。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 74,
+          "end_line": 118,
+          "label": "0.20.0"
+        }
+      ]
+    },
+    {
+      "id": "v0210",
+      "at": "2026-11-27T10:14:33+08:00",
+      "lane": "layout",
+      "kind": "change",
+      "title": "0.21.0 每种标记一种线宽",
+      "detail": "每种标记都按版式设计令牌里的一种线宽描边，平行轨道上的站点圆环和图例里的部分样例因此略粗。src/model/schema.json 写明单个值须守的全部规则，src/refusal.json 列出出版工具给出的全部代码，包括拒绝、错误与警告。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 10,
+          "end_line": 72,
+          "label": "0.21.0"
         }
       ]
     }

@@ -6,16 +6,16 @@
   "title": "Architecture Publisher",
   "question": "How does Architecture Publisher turn an architecture model into a print edition and an HTML page?",
   "summary": "A build validates the model, gives each file in its scope at the pinned revision to the component that claims it, plans the views and lays each out on one grid. It typesets a print edition: the model's overview and one plate per view, each part a card with a strip whose length is in proportion to the size of its files. It also writes one HTML page, which is the author's guide when the model names one; the edition as data, with a reader file for a reader that works from text; and a manifest of their digests. A named reviewer accepts the delivery before it is published.",
-  "scope": "Architecture Publisher as released at v0.16.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
+  "scope": "Architecture Publisher as released at v0.21.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
   "limits": [
     "A component lists only the files under the paths it claims, each file given to its most specific claim; a relation lists only the modules that import or call the other component.",
-    "Relations show only imports and process calls in the source, not runtime order; none is drawn for the shared refusal type or the child environment.",
+    "Relations show only imports and process calls in the source, not runtime order; none is drawn for the shared refusal type, the child environment, or the delivery's names and house tokens that many modules read (src/names.mjs, src/house.mjs).",
     "The vendored programs, fonts and artwork that the supply manifests list, and the repository's tests, tools, documentation, OpenSpec Changes and CI, are outside the scope."
   ],
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "c99145758b41fbcd8fdf02d4b20768d48e4b90ff"
+    "revision": "888880d8c3f56b63eea9b9e8e1bffbf986f4c5b4"
   },
   "coverage": {
     "include": ["src/", "package.json", "renderers/*/supply/supply.json", "supplies/*/supply.json"]
@@ -135,7 +135,7 @@
       {
         "title": "Supplies in custody",
         "items": [
-          ["Archify", "3.2.0"],
+          ["Archify", "3.3.0"],
           ["opentype.js", "2.0.0"],
           ["Lucide", "1.74.0"],
           ["Noto Sans CJK SC", "2.004"],
@@ -296,9 +296,10 @@
       "details": {
         "commands": "check, build, import likec4, scaffold guide, migrate, compare, accept, verify, publish, skill, help",
         "prints": "a report with one marked line per fact, or one JSON result with --json",
-        "exits": "0 done, 1 refused, 2 usage, 3 failure"
+        "exits": "0 done, 1 refused, 2 usage, 3 failure",
+        "describes": "every command as data, with --help --json"
       },
-      "files": ["src/cli/", "src/refusal.mjs", "package.json"]
+      "files": ["src/cli/", "src/refusal.mjs", "src/refusal.json", "package.json"]
     },
     {
       "id": "importer",
@@ -338,7 +339,14 @@
         "chooses": "the edition's palette once, before the plan",
         "gathers": "what the build read, measured and drew, for the data and the reader file"
       },
-      "files": ["src/build.mjs", "src/manifest.mjs", "src/projection.mjs", "src/style.mjs"]
+      "files": [
+        "src/build.mjs",
+        "src/delivery.json",
+        "src/manifest.mjs",
+        "src/names.mjs",
+        "src/projection.mjs",
+        "src/style.mjs"
+      ]
     },
     {
       "id": "binding",
@@ -457,7 +465,7 @@
       "label": "Plate composer",
       "kind": "medium",
       "details": {
-        "composes": "each view as one plate for the edition's body, at the narrowest of three widths that wires no worse, or at the full width with its summary above it",
+        "composes": "each view as one plate for the edition's body, at the narrowest of three widths that wires no worse, or at the full width with its summary above it, or over the whole body with its summary in its head",
         "records": "the balance gates each plate misses, for the reviewer",
         "draws": "each part as one card, its strip's length the size of its files, on one scale for the edition",
         "justifies": "a part's details in an edition written without spaces between words, each line but a detail's last spread to one measure",
@@ -482,7 +490,7 @@
       "details": {
         "maps": "kinds to icons"
       },
-      "files": ["src/kinds.mjs", "src/icons.mjs"]
+      "files": ["src/kinds.mjs", "src/icons.mjs", "src/categories.json"]
     },
     {
       "id": "words",
@@ -492,7 +500,7 @@
         "holds": "the publisher's words in five languages",
         "lists": "the languages written without spaces between words: Chinese in either script"
       },
-      "files": ["src/locale.mjs"]
+      "files": ["src/locale.mjs", "src/locales.json"]
     },
     {
       "id": "map",
@@ -509,9 +517,16 @@
       "kind": "medium",
       "details": {
         "delivers": "the guide, an Archify draft, as the page",
-        "verifies": "every cited range at the pinned revision"
+        "verifies": "every cited range at the pinned revision",
+        "lays out": "each diagram of the draft before Archify reads it; a file that places one is refused"
       },
-      "files": ["src/map/guide.mjs"]
+      "files": [
+        "src/map/guide.mjs",
+        "src/map/guide-figures.mjs",
+        "src/map/guide-grid.mjs",
+        "src/map/guide-rows.mjs",
+        "src/map/guide-workflow.mjs"
+      ]
     },
     {
       "id": "overview",
@@ -523,7 +538,7 @@
         "checks": "the page Typst drew: each text inside the page and clear of the others and of every line, and each character in a bundled face",
         "sets": "a plate's key by its baseline, each mark centred on its label, and a spread line of details to its measure"
       },
-      "files": ["src/overview/", "src/house.json"]
+      "files": ["src/overview/", "src/house.json", "src/house.mjs", "src/shared.json"]
     },
     {
       "id": "edition",
@@ -543,10 +558,15 @@
       "kind": "medium",
       "details": {
         "data": "the pinned edition, each thing once: the work, the pin, the views, every statement and measured fact, one evidence table and each plate's record",
-        "reader file": "every statement once under its id with its files and facts, in the model's language, then the guide's text",
+        "reader file": "every statement once under its id with its files and facts, then the guide as prose with each figure as text, all in the model's language",
         "refuses": "a reader file that does not list the model's statements, a plate that did not draw its view's, and any of them, or a generated page, that holds what the data lacks, before anything is written"
       },
-      "files": ["src/pinned/"]
+      "files": [
+        "src/pinned/",
+        "src/reader-words.mjs",
+        "src/map/guide-text.mjs",
+        "src/map/figure-text.mjs"
+      ]
     },
     {
       "id": "acceptance",
@@ -803,7 +823,12 @@
       "from": "guide",
       "to": "map",
       "label": "validates, delivers",
-      "files": ["src/map/guide.mjs"]
+      "files": [
+        "src/map/guide.mjs",
+        "src/map/guide-figures.mjs",
+        "src/map/guide-grid.mjs",
+        "src/map/guide-rows.mjs"
+      ]
     },
     {
       "id": "guide-repository",

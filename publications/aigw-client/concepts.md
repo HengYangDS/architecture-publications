@@ -1,7 +1,7 @@
 # AIGW Client Projection: term renderings
 
 The renderings this work fixes before translation, used everywhere under `zh/`. Source
-names the file of `aigw-cli` at v0.8.3 (`fbec6f9`) that defines or uses the term; the repository defines no Chinese
+names the file of `aigw-cli` at v0.10.0 (`51fdc38`) that defines or uses the term; the repository defines no Chinese
 renderings of its own, and its glossary is `docs/concepts/product-concepts.md`. Command names, flags, paths, package
 names, `aigw check` depths and readiness JSON values stay in Latin type.
 
@@ -123,6 +123,11 @@ names, `aigw check` depths and readiness JSON values stay in Latin type.
 | derived; explicit (a label)                                                         | 自动生成；显式写明                                               | `internal/domain/model.go`                                                                  |
 | alias (in Codex's model catalog)                                                    | 别名                                                             | `internal/adapter/codex/modelcatalog/document.go`                                           |
 | literal block; folded block scalar (YAML)                                           | 字面块；折叠块标量                                               | `CHANGELOG.md`                                                                              |
+| local-only (a model, a family); remove (in an import)                               | 本地独有的；移除                                                 | `internal/domain/team_merge.go`                                                             |
+| follow (a model that Codex or Hermes chose in its own file)                         | 跟随                                                             | `internal/app/synchronization/follow.go`                                                    |
+| model entry (Claude Desktop)                                                        | 模型条目                                                         | `internal/adapter/claudedesktop/configuration.go`                                           |
+| record (AIGW's, of a client file)                                                   | 记录                                                             | `internal/adapter/record.go`                                                                |
+| outside edit (of a client file)                                                     | 在 AIGW 之外被改动                                               | `internal/app/synchronization/record.go`                                                    |
 | prompt (in a terminal); cancel (a prompt)                                           | 提示；取消（写“在提示处取消”，不写“取消提示”）                   | `internal/terminal/prompt.go`                                                               |
 | accept; refuse (a Token, by its provider); verdict (of its validation)              | 接受；拒绝；结论                                                 | `internal/secret/probe/probe.go`                                                            |
 | skip (a provider, in setup)                                                         | 跳过                                                             | `internal/cli/setup/team_tokens.go`                                                         |

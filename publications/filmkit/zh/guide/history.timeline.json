@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/filmkit.git",
       "provider": "github",
-      "revision": "54383d9eaadd149bf785316b3000e2f5a7b969f8"
+      "revision": "8ef48f32a928f89f401ca0e9e9f4c23d27e6792e"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 568,
-          "end_line": 577,
+          "line": 765,
+          "end_line": 774,
           "label": "0.1.0"
         }
       ]
@@ -57,8 +57,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 529,
-          "end_line": 539,
+          "line": 726,
+          "end_line": 736,
           "label": "0.3.0"
         }
       ]
@@ -73,8 +73,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 488,
-          "end_line": 497,
+          "line": 685,
+          "end_line": 694,
           "label": "0.6.0"
         }
       ]
@@ -88,8 +88,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 455,
-          "end_line": 466,
+          "line": 652,
+          "end_line": 663,
           "label": "0.8.0"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 429,
-          "end_line": 433,
+          "line": 626,
+          "end_line": 630,
           "label": "0.9.0"
         }
       ]
@@ -118,8 +118,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 409,
-          "end_line": 417,
+          "line": 606,
+          "end_line": 614,
           "label": "0.10.0"
         }
       ]
@@ -134,8 +134,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 363,
-          "end_line": 377,
+          "line": 560,
+          "end_line": 574,
           "label": "0.12.0"
         }
       ]
@@ -150,8 +150,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 347,
-          "end_line": 359,
+          "line": 544,
+          "end_line": 556,
           "label": "0.13.0"
         }
       ]
@@ -165,8 +165,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 329,
-          "end_line": 338,
+          "line": 526,
+          "end_line": 535,
           "label": "0.14.0"
         }
       ]
@@ -180,8 +180,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 307,
-          "end_line": 315,
+          "line": 504,
+          "end_line": 512,
           "label": "0.17.0"
         }
       ]
@@ -196,8 +196,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 297,
-          "end_line": 305,
+          "line": 494,
+          "end_line": 502,
           "label": "0.18.0"
         }
       ]
@@ -212,8 +212,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 281,
-          "end_line": 296,
+          "line": 478,
+          "end_line": 493,
           "label": "0.19.0"
         }
       ]
@@ -227,8 +227,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 264,
-          "end_line": 280,
+          "line": 461,
+          "end_line": 477,
           "label": "0.20.0"
         }
       ]
@@ -243,8 +243,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 241,
-          "end_line": 262,
+          "line": 438,
+          "end_line": 459,
           "label": "0.21.0"
         }
       ]
@@ -258,8 +258,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 233,
-          "end_line": 239,
+          "line": 430,
+          "end_line": 436,
           "label": "0.21.1"
         }
       ]
@@ -273,8 +273,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 227,
-          "end_line": 231,
+          "line": 424,
+          "end_line": 428,
           "label": "0.21.2"
         }
       ]
@@ -289,8 +289,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 192,
-          "end_line": 212,
+          "line": 389,
+          "end_line": 409,
           "label": "0.22.0"
         }
       ]
@@ -304,8 +304,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 159,
-          "end_line": 165,
+          "line": 356,
+          "end_line": 362,
           "label": "0.22.2"
         }
       ]
@@ -319,8 +319,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 153,
-          "end_line": 157,
+          "line": 350,
+          "end_line": 354,
           "label": "0.22.3"
         }
       ]
@@ -335,8 +335,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 101,
-          "end_line": 151,
+          "line": 298,
+          "end_line": 348,
           "label": "0.23.0"
         }
       ]
@@ -351,8 +351,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 93,
-          "end_line": 99,
+          "line": 290,
+          "end_line": 296,
           "label": "0.23.1"
         }
       ]
@@ -367,8 +367,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 60,
-          "end_line": 91,
+          "line": 257,
+          "end_line": 288,
           "label": "0.24.0"
         }
       ]
@@ -383,8 +383,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 29,
-          "end_line": 52,
+          "line": 226,
+          "end_line": 249,
           "label": "0.25.0"
         }
       ]
@@ -399,9 +399,153 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 7,
-          "end_line": 27,
+          "line": 204,
+          "end_line": 224,
           "label": "0.26.0"
+        }
+      ]
+    },
+    {
+      "id": "v270",
+      "at": "2026-11-23T02:32:51+08:00",
+      "lane": "narration",
+      "kind": "alert",
+      "title": "v0.27.0 朗读之前先做语体检查",
+      "detail": "python -m filmkit.register 用引擎锁定的 Vale 3.27.0，按正式书面语体检查观众在画面之外读到的文字。影片文字里有错误级用法而又没有豁免时，旁白、preflight 和 review.round prepare 都拒绝；影片用 [[register.exceptions]] 在某一处保留某个用法。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 175,
+          "end_line": 195,
+          "label": "0.27.0"
+        }
+      ]
+    },
+    {
+      "id": "v280",
+      "at": "2026-11-23T07:51:16+08:00",
+      "lane": "narration",
+      "kind": "alert",
+      "title": "v0.28.0 改拼的名称必须声明为术语",
+      "detail": "语言版用其他字母改拼的名称必须是 [[narration.terms]] 里的术语；不是的话，读音检查以及 judge、converge 和 audition 在加载任何模型之前就拒绝。录音按它的原文判定，而不按改拼后的写法判定。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 162,
+          "end_line": 173,
+          "label": "0.28.0"
+        }
+      ]
+    },
+    {
+      "id": "v290",
+      "at": "2026-11-23T13:17:06+08:00",
+      "lane": "narration",
+      "kind": "alert",
+      "title": "v0.29.0 语言版的片长随旁白而定",
+      "detail": "拼接按旁白算出每个语言版的片长，向上取整到整秒；credits_duration 只在声明里写一次，脚本不再声明 duration 和 credits_duration。两个语言版可以长短不同，converge 也不再报告片长不符。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 143,
+          "end_line": 160,
+          "label": "0.29.0"
+        }
+      ]
+    },
+    {
+      "id": "v300",
+      "at": "2026-11-23T18:07:48+08:00",
+      "lane": "picture",
+      "kind": "alert",
+      "title": "v0.30.0 锚点标在脚本自己的文字里",
+      "detail": "段落可以在自己的文字里标出锚点，时间线给出每个锚点的时间，画面合成读取 s.anchors[id]，不必再搜索短语。旁白开始之前，先按脚本推导出的时间线绘制每个语言版的画面；画面读取了脚本没有标出的锚点，就拒绝这份脚本。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 128,
+          "end_line": 141,
+          "label": "0.30.0"
+        }
+      ]
+    },
+    {
+      "id": "v310",
+      "at": "2026-11-24T11:43:46+08:00",
+      "lane": "engine",
+      "kind": "alert",
+      "title": "v0.31.0 各语言平等对待",
+      "detail": "引擎为它支持的每种语言各写一份声明，集中存放该语言的各项取值；影片的语言版就是它的 [editions.<code>] 表。每个语言版的文件放在按语言代码推导出的位置，读音契约按语言版拆开，引擎能推导出的内容不再由影片声明。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 102,
+          "end_line": 126,
+          "label": "0.31.0"
+        }
+      ]
+    },
+    {
+      "id": "v320",
+      "at": "2026-11-24T21:36:06+08:00",
+      "lane": "engine",
+      "kind": "change",
+      "title": "v0.32.0 每次运行都有记录",
+      "detail": "语言版构建链上的每条命令都写一份运行记录，按 SHA-256 记下每个输入和输出。filmkit plan 给出每个节点的状态，filmkit verify 逐一核对记录中的文件；准备评审轮次和写发布记录之前都先运行它。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 87,
+          "end_line": 100,
+          "label": "0.32.0"
+        }
+      ]
+    },
+    {
+      "id": "v330",
+      "at": "2026-11-25T04:09:53+08:00",
+      "lane": "narration",
+      "kind": "change",
+      "title": "v0.33.0 英文按读音来听",
+      "detail": "英文版里，转写出的词在锁定版本的 CMUdict 中的读音只要是原文那个词的读法之一，就通过朗读单元判定项；这份词典由下载安装步骤放好。作者对某条录音的试听记录，只对这条录音，把它写明的判定项定下来；清晰度低于合格线的录音留待作者试听。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 70,
+          "end_line": 85,
+          "label": "0.33.0"
+        }
+      ]
+    },
+    {
+      "id": "v340",
+      "at": "2026-11-26T01:52:00+08:00",
+      "lane": "engine",
+      "kind": "alert",
+      "title": "v0.34.0 用子命令构建影片",
+      "detail": "一个控制台命令 filmkit 用各个子命令构建影片，其中有 check、narrate、build、verify、deliver 和 release。制作命令、渲染前检查、耗时记录、检查能否采用新版本的命令和媒体服务器都已移除；除源文件检查和两道门禁外，每个节点只绑定它运行时读取的那几张声明表。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 40,
+          "end_line": 68,
+          "label": "0.34.0"
+        }
+      ]
+    },
+    {
+      "id": "v350",
+      "at": "2026-11-26T21:30:41+08:00",
+      "lane": "picture",
+      "kind": "alert",
+      "title": "v0.35.0 按画面内容衡量平衡",
+      "detail": "所绘场景的重心偏离 x 960 超过 90 px 并持续 1.5 s 以上，或静止状态偏离 y 510 超过 50 px 并持续 2 s 以上，check-picture 都拒绝。新增的重心检测像渲染器一样绘制无字幕的组装画面，但不编码。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 7,
+          "end_line": 17,
+          "label": "0.35.0"
         }
       ]
     }

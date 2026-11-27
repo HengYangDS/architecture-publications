@@ -7,7 +7,7 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 - [No client file holds a Token](block:p-token): a helper reads it from one selected store when the client asks.[](source:helper-projection)
 - [Each check proves one more thing](block:p-ready), and synchronized client files are not an answered request.[](source:experience-readiness)
 
-@answer scope="AIGW v0.8.3 · commit fbec6f9 · its source and its own documents"
+@answer scope="AIGW v0.10.0 · commit 51fdc38 · its source and its own documents"
 @meta locale=en style=editorial
 @source readme-what title="What AIGW is" path="README.md" lines=3:6
 @source readme-install title="Install" path="README.md" lines=30:42
@@ -18,12 +18,12 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 @source readme-sync title="What sync changes" path="README.md" lines=173:179
 @source readme-credentials title="Credential storage" path="README.md" lines=181:186
 @source readme-depths title="The four check depths" path="README.md" lines=213:220
-@source readme-model title="The product model" path="README.md" lines=261:272
-@source readme-adapters title="Supported clients" path="README.md" lines=274:280
-@source readme-boundaries title="Boundaries" path="README.md" lines=288:300
-@source readme-rollback title="Program rollback" path="README.md" lines=328:333
-@source readme-uninstall title="Uninstall" path="README.md" lines=357:362
-@source readme-update-trust title="Signed updates" path="README.md" lines=368:375
+@source readme-model title="The product model" path="README.md" lines=276:287
+@source readme-adapters title="Supported clients" path="README.md" lines=289:295
+@source readme-boundaries title="Boundaries" path="README.md" lines=303:315
+@source readme-rollback title="Program rollback" path="README.md" lines=343:348
+@source readme-uninstall title="Uninstall" path="README.md" lines=372:377
+@source readme-update-trust title="Signed updates" path="README.md" lines=383:390
 @source readme-check title="Checking without inference" path="README.md" lines=24:26
 @source concepts title="Three nouns" path="docs/concepts/product-concepts.md" lines=11:14
 @source provider-concept title="Provider" path="docs/concepts/product-concepts.md" lines=46:61
@@ -31,11 +31,11 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 @source family-concept title="Family" path="docs/concepts/product-concepts.md" lines=82:86
 @source selection-concept title="Client selection" path="docs/concepts/product-concepts.md" lines=88:107
 @source client-files-concept title="Client files" path="docs/concepts/product-concepts.md" lines=109:121
-@source catalog-states title="The provider catalog lifecycle" path="docs/concepts/product-concepts.md" lines=149:162
-@source catalog-qualify title="Qualification and removal" path="docs/concepts/product-concepts.md" lines=164:170
-@source provider-struct title="Provider in configuration" path="internal/domain/model.go" lines=78:85
-@source family-struct title="Family in configuration" path="internal/domain/model.go" lines=87:92
-@source model-struct title="Model in configuration" path="internal/domain/model.go" lines=94:105
+@source catalog-states title="The provider catalog lifecycle" path="docs/concepts/product-concepts.md" lines=158:171
+@source catalog-qualify title="Qualification and removal" path="docs/concepts/product-concepts.md" lines=173:179
+@source provider-struct title="Provider in configuration" path="internal/domain/model.go" lines=79:86
+@source family-struct title="Family in configuration" path="internal/domain/model.go" lines=88:93
+@source model-struct title="Model in configuration" path="internal/domain/model.go" lines=95:106
 @source selection-struct title="A client's selection in configuration" path="internal/domain/clients.go" lines=236:254
 @source research-responsibilities title="Four responsibilities" path="docs/research/provider-tooling-assessment.md" lines=48:57
 @source research-boundary title="A narrower boundary" path="docs/research/provider-tooling-assessment.md" lines=204:207
@@ -50,23 +50,23 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 @source rollout-maintainer title="The maintainer's steps" path="docs/guides/team-rollout.md" lines=15:29
 @source boundary title="Authority and projection boundary" path="docs/architecture/authority-and-projection-boundary.md" lines=38:41
 @source owners title="Who owns which state" path="docs/architecture/authority-and-projection-boundary.md" lines=48:59
-@source transaction title="The synchronization transaction" path="internal/app/synchronization/transaction.go" lines=41:54
-@source preflight title="The preflight" path="internal/app/synchronization/transaction.go" lines=56:71
-@source commit-order title="Entry point, configuration, then client files" path="internal/app/synchronization/transaction.go" lines=75:97
+@source transaction title="The synchronization transaction" path="internal/app/synchronization/transaction.go" lines=77:93
+@source preflight title="The preflight" path="internal/app/synchronization/preview.go" lines=140:172
+@source commit-order title="Entry point, configuration, then client files" path="internal/app/synchronization/transaction.go" lines=108:132
 @source transaction-boundary title="The transaction boundary" path="docs/architecture/security-model.md" lines=198:212
 @source restore title="The guarded restore" path="internal/platform/files.go" lines=197:211
 @source store-commit title="Committing the configuration" path="internal/store/store.go" lines=79:82
 @source store-owner title="What the store owns" path="internal/store/store.go" lines=1:3
-@source store-lock title="The mutation lock" path="internal/store/store.go" lines=181:200
-@source seam title="The adapter contract" path="internal/adapter/registry.go" lines=93:106
+@source store-lock title="The mutation lock" path="internal/store/store.go" lines=186:205
+@source seam title="The adapter contract" path="internal/adapter/registry.go" lines=114:127
 @source entrypoint title="The credential entrypoint" path="docs/architecture/security-model.md" lines=72:80
 @source credential title="The credential protocol" path="docs/architecture/security-model.md" lines=137:145
 @source token-storage title="Where Tokens live" path="docs/architecture/security-model.md" lines=13:16
 @source token-store title="Reading the selected store" path="docs/architecture/security-model.md" lines=38:44
-@source helper-projection title="Claude Desktop's client files" path="internal/adapter/claudedesktop/adapter.go" lines=231:245
+@source helper-projection title="Claude Desktop's client files" path="internal/adapter/claudedesktop/adapter.go" lines=232:246
 @source check-depths title="The ladder of check depths" path="internal/cli/check/depth.go" lines=15:34
 @source verify-snapshot title="When a check writes the verified snapshot" path="internal/cli/check/snapshot.go" lines=20:32
-@source rollback-snapshot title="What config rollback restores" path="internal/cli/config/rollback.go" lines=101:111
+@source rollback-snapshot title="What config rollback restores" path="internal/cli/config/rollback.go" lines=159:169
 @source decision title="DR-0006: one guarded transaction" path="docs/decisions/dr-0006-transactional-client-projection.md" lines=15:30
 @source rejected title="DR-0006: rejected alternatives" path="docs/decisions/dr-0006-transactional-client-projection.md" lines=32:37
 @source revisit title="DR-0006: when to revisit" path="docs/decisions/dr-0006-transactional-client-projection.md" lines=45:48
@@ -74,36 +74,36 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 @source readme-for title="The clients aigw takes" path="README.md" lines=169:169
 @source readme-environment title="Environment Tokens" path="README.md" lines=188:190
 @source manifest-provider title="A provider in the team file" path="manifests/team.toml" lines=1:18
-@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=1252:1260
-@source changelog-083 title="The 0.8.3 release" path="CHANGELOG.md" lines=14:60
-@source setup-model-kept title="A model preference kept at the first setup" path="CHANGELOG.md" lines=250:254
-@source team-labels title="The labels a team file replaces" path="CHANGELOG.md" lines=255:257
-@source check-parent-session title="A client check inside an agent session" path="CHANGELOG.md" lines=258:262
-@source check-names title="Environment variable names on Windows" path="CHANGELOG.md" lines=264:266
-@source check-client-report title="A client's own warning or error" path="CHANGELOG.md" lines=212:223
-@source check-codex-memory title="Codex's memory work in a client check" path="CHANGELOG.md" lines=224:225
-@source redaction-forms title="The credential forms that redaction covers" path="CHANGELOG.md" lines=226:230
-@source check-schema title="The JSON document of aigw check" path="CHANGELOG.md" lines=234:238
-@source team-lines title="The newest model of every line" path="CHANGELOG.md" lines=239:241
-@source keychain-foreign title="A Keychain item that another program stored" path="CHANGELOG.md" lines=145:170
-@source rollback-credentials title="A program rollback moves no credential" path="CHANGELOG.md" lines=177:181
-@source keychain-migration title="No command migrates a Keychain item" path="CHANGELOG.md" lines=182:188
-@source token-empty title="A stored Token that is empty" path="CHANGELOG.md" lines=195:202
-@source team-per-provider title="Models chosen per provider" path="CHANGELOG.md" lines=71:75
+@source changelog-010 title="The 0.1.0 release" path="CHANGELOG.md" lines=1404:1412
+@source changelog-0100 title="The 0.10.0 release" path="CHANGELOG.md" lines=14:133
+@source setup-model-kept title="A model preference kept at the first setup" path="CHANGELOG.md" lines=402:406
+@source team-labels title="The labels a team file replaces" path="CHANGELOG.md" lines=407:409
+@source check-parent-session title="A client check inside an agent session" path="CHANGELOG.md" lines=410:414
+@source check-names title="Environment variable names on Windows" path="CHANGELOG.md" lines=416:418
+@source check-client-report title="A client's own warning or error" path="CHANGELOG.md" lines=364:375
+@source check-codex-memory title="Codex's memory work in a client check" path="CHANGELOG.md" lines=376:377
+@source redaction-forms title="The credential forms that redaction covers" path="CHANGELOG.md" lines=378:382
+@source check-schema title="The JSON document of aigw check" path="CHANGELOG.md" lines=386:390
+@source team-lines title="The newest model of every line" path="CHANGELOG.md" lines=391:393
+@source keychain-foreign title="A Keychain item that another program stored" path="CHANGELOG.md" lines=297:322
+@source rollback-credentials title="A program rollback moves no credential" path="CHANGELOG.md" lines=329:333
+@source keychain-migration title="No command migrates a Keychain item" path="CHANGELOG.md" lines=334:340
+@source token-empty title="A stored Token that is empty" path="CHANGELOG.md" lines=347:354
+@source team-per-provider title="Models chosen per provider" path="CHANGELOG.md" lines=223:227
 @source team-selection title="What applying a team file selects" path="internal/cli/setup/team.go" lines=72:77
-@source model-label title="The label a model derives" path="internal/domain/model.go" lines=532:571
+@source model-label title="The label a model derives" path="internal/domain/model.go" lines=594:633
 @source label-shared title="Two models of one provider with one label" path="internal/domain/model_validation.go" lines=87:100
 @source label-refusal title="What the refusal of a shared label names" path="internal/domain/model_errors.go" lines=69:80
 @source team-label-refusal title="A team file refused for a shared label" path="internal/cli/setup/team.go" lines=192:205
-@source family-created title="A family that model add creates" path="internal/cli/model/add.go" lines=204:218
+@source family-created title="A family that model add creates" path="internal/cli/model/add.go" lines=205:219
 @source family-edited title="A family that model edit creates" path="internal/cli/model/edit.go" lines=101:104
-@source model-name title="A model's name without its provider" path="internal/domain/model.go" lines=145:159
+@source model-name title="A model's name without its provider" path="internal/domain/model.go" lines=162:176
 @source codex-alias title="The alias in Codex's model catalog" path="internal/adapter/codex/modelcatalog/document.go" lines=66:100
 @source codex-alias-name title="The name that Codex's alias is given" path="internal/adapter/codex/reconcile.go" lines=307:307
 @source hermes-yaml title="The YAML library" path="go.mod" lines=22:22
 @source hermes-encode title="How Hermes's configuration is written" path="internal/adapter/hermes/document.go" lines=115:120
-@source hermes-blocks title="Literal blocks in Hermes's configuration" path="CHANGELOG.md" lines=93:98
-@source hermes-folded title="Folded block scalars in Hermes's configuration" path="CHANGELOG.md" lines=115:117
+@source hermes-blocks title="Literal blocks in Hermes's configuration" path="CHANGELOG.md" lines=245:250
+@source hermes-folded title="Folded block scalars in Hermes's configuration" path="CHANGELOG.md" lines=267:269
 @source team-apply title="Applying a team file whatever becomes of each Token" path="internal/cli/setup/team.go" lines=207:211
 @source team-acquire title="The Tokens that setup asks for" path="internal/cli/setup/team_tokens.go" lines=14:21
 @source team-choose title="The question of which providers' Tokens you hold" path="internal/cli/setup/team_tokens.go" lines=60:62
@@ -113,14 +113,26 @@ AIGW is a local-first control plane for a team's AI clients.[](source:readme-wha
 @source exit-failure title="The exit status of a failed command" path="cmd/aigw/main.go" lines=37:40
 @source team-schema title="The JSON document of aigw setup --from" path="internal/cli/setup/team.go" lines=23:27
 @source team-token-states title="The states of a provider's Token after team setup" path="internal/cli/setup/team.go" lines=29:43
-@source team-token-item title="A Token's state and reason in the document" path="internal/cli/setup/team_report.go" lines=125:133
-@source token-refusal title="A provider's refusal of a Token" path="CHANGELOG.md" lines=37:40
-@source token-validate title="How setup validates a Token" path="internal/cli/setup/team.go" lines=403:409
+@source team-token-item title="A Token's state and reason in the document" path="internal/cli/setup/team_report.go" lines=126:134
+@source token-refusal title="A provider's refusal of a Token" path="CHANGELOG.md" lines=189:192
+@source token-validate title="How setup validates a Token" path="internal/cli/setup/team.go" lines=404:410
 @source token-catalog-request title="The provider catalog request" path="internal/domain/probe.go" lines=34:36
-@source token-limit title="The known limit of Token validation" path="CHANGELOG.md" lines=52:60
-@source team-suheai title="Suhe.AI in the team file" path="manifests/team.toml" lines=421:424
-@source team-recommendations title="The team file's recommendations" path="manifests/team.toml" lines=670:700
+@source token-limit title="The known limit of Token validation" path="CHANGELOG.md" lines=204:212
+@source team-suheai title="Suhe.AI in the team file" path="manifests/team.toml" lines=434:437
+@source team-recommendations title="The team file's recommendations" path="manifests/team.toml" lines=683:713
 @source team-export-arrays title="Wide arrays in an exported team file" path="internal/store/file.go" lines=313:332
+@source team-prune title="What an import keeps of the local configuration" path="internal/domain/team_merge.go" lines=86:93
+@source team-keep-local title="The --keep-local flag" path="internal/cli/setup/setup.go" lines=84:84
+@source follow-working title="The configuration every command works from" path="internal/app/synchronization/follow.go" lines=71:77
+@source follow-codex title="Codex's own choice of model" path="internal/adapter/codex/adapter_selection.go" lines=11:16
+@source follow-hermes title="Hermes's own choice of model" path="internal/adapter/hermes/adapter.go" lines=210:216
+@source claude-overrides title="Claude Code's modelOverrides" path="internal/adapter/claude/model_overrides.go" lines=12:17
+@source desktop-behaves title="behavesAs in Claude Desktop's model entries" path="internal/adapter/claudedesktop/adapter.go" lines=259:262
+@source token-deadline title="Where a credential operation stood at its deadline" path="CHANGELOG.md" lines=157:160
+@source token-unobserved title="A store that cannot tell whether a Token is there" path="internal/app/activation/activation.go" lines=68:71
+@source token-unobserved-action title="The next step when a store cannot tell" path="internal/app/activation/activation.go" lines=138:147
+@source waiting-checked title="The files of a client that waits for its Token" path="internal/app/synchronization/record.go" lines=62:68
+@source check-schema-version title="The version of aigw check's JSON document" path="internal/cli/check/report.go" lines=15:18
 
 ## Who uses AIGW, and what does it touch? {#p-context}
 
@@ -167,7 +179,9 @@ A Token that its provider does not accept can be entered again, or its provider 
 
 A prompt that you cancel ends the command before any write.[](source:prompt-cancelled) A piped Token that its provider does not accept does not prevent the write, and the command exits 1.[](source:team-apply)[](source:exit-failure)
 
-`aigw setup --from --json` writes a document with `schema_version` 4.[](source:team-schema) A Token's `state` there may be `rejected`, when its provider refused it, or `unverified`, when its validation got no verdict, each with a `reason`.[](source:team-token-states)[](source:team-token-item) When a provider refuses a Token, the report names that provider and the HTTP status.[](source:token-refusal)
+The import removes each local-only model that no client selects and no recommendation names, then each local-only family that no remaining model uses.[](source:team-prune) `--keep-local` keeps every local-only entry instead.[](source:team-keep-local) No client's selection changes.[](source:team-prune)
+
+`aigw setup --from --json` writes a document with `schema_version` 5.[](source:team-schema) A Token's `state` there may be `rejected`, when its provider refused it, or `unverified`, when its validation got no verdict, each with a `reason`.[](source:team-token-states)[](source:team-token-item) When a provider refuses a Token, the report names that provider and the HTTP status.[](source:token-refusal)
 
 `aigw setup --from` validates a Token with one request to the provider's catalog.[](source:token-validate)[](source:token-catalog-request) A provider whose catalog answers every Token cannot refuse a wrong one in that request, so the command reports such a Token as accepted.[](source:token-limit) `aigw check` sends an inference request for each client's selected model. It shows a wrong Token once a client selects a model of that provider.[](source:token-limit)
 
@@ -191,6 +205,8 @@ A client selects one model, named `provider/model`. The provider holds the endpo
 A model with no `label` of its own derives one from its provider's label and its family's. For a model whose ID begins or ends with its family's ID and adds more, that label also carries the rest of the ID.[](source:model-label) AIGW refuses a configuration or a team file in which two models of one provider have one label, derived or explicit, ignoring case.[](source:label-shared)[](source:team-label-refusal) The refusal names both models and the label.[](source:label-refusal)
 
 Client files are the part of one client's own configuration that AIGW owns. AIGW writes and withdraws only its settings there, and missing and unselected clients stay untouched.[](source:client-files-concept)
+
+Every command works from the stored configuration, with the model that Codex or Hermes chose in its own file as that client's selection.[](source:follow-working)[](source:follow-codex)[](source:follow-hermes) A command's own change goes on top, so a selection it names wins. A choice is followed whether or not its provider has a Token.[](source:follow-working)
 
 ## What happens in one sync? {#p-sync}
 
@@ -266,12 +282,18 @@ A client's files name the credential helper and a fingerprint of the client, pro
 
 @steps id=token-steps
 | step-match | Credential helper | Checks the request and writes only its Token to standard output. The fingerprint names a client, provider and endpoint; it does not authorize the caller.[](source:credential) | token-flow | token-helper | | token-client-to-token-helper-1,token-helper-to-token-client-1 |
-| step-read | Credential store | With the platform credential service, each read runs in a subprocess with a five-second deadline. An unavailable store fails closed, and no other store is tried.[](source:token-store) | token-flow | token-store | | token-helper-to-token-store-1,token-store-to-token-helper-1 |
+| step-read | Credential store | With the platform credential service, each read runs in a subprocess with a five-second deadline. An unavailable store fails closed, and no other store is tried.[](source:token-store) An operation that reaches the deadline names the step it missed: creating the subprocess, starting it, or waiting for its answer.[](source:token-deadline) | token-flow | token-store | | token-helper-to-token-store-1,token-store-to-token-helper-1 |
 | step-call | Provider endpoint | The client sends its own request; AIGW is not on the request path.[](source:boundary) | token-flow | token-endpoint | | token-client-to-token-endpoint-1,token-endpoint-to-token-client-1 |
 
 On macOS, AIGW does not take over a Keychain item that 0.3.5 or earlier stored, and no command migrates one.[](source:keychain-foreign)[](source:keychain-migration) macOS refuses AIGW the read of such an item, and AIGW does not replace an item that it cannot read. A command that needs the credential, such as `aigw use` or `aigw client enable`, ends there. It says that another program stored the item and names the fix: have the credential at hand, delete the item, then store it again.[](source:keychain-foreign)
 
-`aigw sync` and `aigw config rollback` complete, and so does `aigw setup --from` for a provider that it does not name. They leave the client of such a provider waiting, with its files unchanged, as they do for a missing Token. `aigw check --depth local` and `aigw status` report such an item instead of counting it as a stored Token.[](source:keychain-foreign) A stored Token that is empty also counts as a missing Token where a client's files are written.[](source:token-empty)
+`aigw sync` and `aigw config rollback` complete unless a file of such a client fails the check below.[](source:keychain-foreign)[](source:waiting-checked) So does `aigw setup --from` for a provider that it does not name. They leave the client of such a provider waiting, with its files unchanged, as they do for a missing Token.[](source:keychain-foreign)
+
+`aigw check --depth local` and `aigw status` report such an item instead of counting it as a stored Token.[](source:keychain-foreign) A stored Token that is empty also counts as a missing Token where a client's files are written.[](source:token-empty)
+
+A command that names a waiting client still checks its files, refusing a missing file or record, an outside edit, or files selecting different models.[](source:waiting-checked)
+
+When the store cannot tell whether a provider's Token is there, an enabled client of that provider waits for it, as for an absent Token.[](source:token-unobserved) The next step is then the fix that an unavailable client names, or else the local check.[](source:token-unobserved-action)
 
 ## How much does each check prove? {#p-ready}
 
@@ -301,7 +323,9 @@ When Codex or Claude Code itself reports a warning or an error, `aigw check <cli
 
 For another report, `--verbose` adds at most four of the client's own lines after AIGW's, without the provider's Token and the known credential forms. A client that authenticates itself, or through an external credential helper, shows no such lines, and the fix is to run the client itself.[](source:check-client-report)
 
-AIGW's redaction covers an `Authorization` header to the end of its line, a cookie header, and a URL's user with or without a password. It also covers a `key`, `sig` or `signature` query parameter and a bare `sk-` key of at least 20 further characters.[](source:redaction-forms) The JSON document of `aigw check` has `schema_version` 4, which adds `clients[].failure.client_report`: the client's own lines behind a failed session, present only with `--verbose`. For such a failure the next step is prose in `next_detail`, and `next_action` is absent.[](source:check-schema)
+AIGW's redaction covers an `Authorization` header to the end of its line, a cookie header, and a URL's user with or without a password. It also covers a `key`, `sig` or `signature` query parameter and a bare `sk-` key of at least 20 further characters.[](source:redaction-forms)
+
+The JSON document of `aigw check` has `schema_version` 5.[](source:check-schema-version) Version 4 added `clients[].failure.client_report`: the client's own lines behind a failed session, present only with `--verbose`. For such a failure the next step is prose in `next_detail`, and `next_action` is absent.[](source:check-schema)
 
 ## What happens to a provider's models over time? {#p-catalog}
 
@@ -328,8 +352,8 @@ Qualification is separate evidence: explicit protocol and real-client evidence f
 | step-store | Configuration store | Owns `aigw.toml`, its lock, its backup and its verified snapshot, and keeps the exact file it wrote, for a guarded rollback.[](source:store-owner)[](source:store-commit) `aigw config export` writes each array of a team file that is wider than 100 columns with one element on each line.[](source:team-export-arrays) | parts-map | parts-store |
 | step-seam | Adapter seam | One contract for every client: discover, converge, plan, apply, inspect, verify and withdraw.[](source:seam) | parts-map | parts-seam |
 | step-codex | Codex | A bounded region of `~/.codex/config.toml`, and its model catalog. In that catalog, the alias that AIGW adds for a model shows the model's label without its provider.[](source:model-name)[](source:codex-alias-name)[](source:codex-alias) Where another entry already shows that name, the model's ID follows it in parentheses.[](source:codex-alias) | parts-map | parts-codex |
-| step-claude-code | Claude Code | `~/.claude/settings.json`: endpoint, model preference and credential helper. The first `aigw setup` after an upgrade from 0.6.1 accepts settings in which you changed or removed the `model` that 0.6.1 wrote. It keeps your choice while the provider and endpoint stay the same.[](source:setup-model-kept) | parts-map | parts-claude-code |
-| step-claude-desktop | Claude Desktop | Its separate third-party inference library. | parts-map | parts-claude-desktop |
+| step-claude-code | Claude Code | `~/.claude/settings.json`: endpoint, model preference, credential helper and `modelOverrides`, which maps each Anthropic model ID to the ID under which the selected provider serves it.[](source:claude-overrides) The first `aigw setup` after an upgrade from 0.6.1 accepts settings in which you changed or removed the `model` that 0.6.1 wrote. It keeps your choice while the provider and endpoint stay the same.[](source:setup-model-kept) | parts-map | parts-claude-code |
+| step-claude-desktop | Claude Desktop | Its separate third-party inference library. Its model entries name in `behavesAs` the Anthropic model that a provider's own ID serves.[](source:desktop-behaves) | parts-map | parts-claude-desktop |
 | step-hermes | Hermes | Its provider catalog, protocol and model. AIGW reads and writes Hermes's configuration through `go.yaml.in/yaml/v4`.[](source:hermes-yaml)[](source:hermes-encode) It keeps a literal block for text with trailing spaces and leaves the value of a folded block scalar unchanged.[](source:hermes-blocks)[](source:hermes-folded) | parts-map | parts-hermes |
 
 ## Why one guarded transaction? {#p-decision}
@@ -372,7 +396,7 @@ AIGW answers one question of four, and leaves the others to the products built f
 
 ## How did AIGW get here? {#p-history}
 
-AIGW released v0.1.0 on 19 September 2026 and v0.8.3, the version this page describes, on 19 November 2026.[](source:changelog-010)[](source:changelog-083) The timeline shows nineteen releases that changed what AIGW does for its users, and the last panel lists what is still open.
+AIGW released v0.1.0 on 19 September 2026. Its changelog dates v0.10.0, the version this page describes, 23 November 2026.[](source:changelog-010)[](source:changelog-0100) The timeline shows twenty-one releases that changed what AIGW does for its users, and the last panel lists what is still open.
 
 @diagram timeline id=history source=history.timeline.json title="How AIGW got here"
 

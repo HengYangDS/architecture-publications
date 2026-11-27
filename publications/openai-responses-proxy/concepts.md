@@ -1,7 +1,7 @@
 # OpenAI Responses Proxy: term renderings
 
 The renderings this work fixes before translation, used everywhere under `zh/`. Source
-names the file of `openai-responses-proxy` at v6.0.3 (`6d1b384`) that defines or uses the term. Commands, fields,
+names the file of `openai-responses-proxy` at v7.0.0 (`b0d8505`) that defines or uses the term. Commands, fields,
 status values, HTTP status codes and file names stay in Latin type.
 
 | English                                                                     | 中文                                                                             | Source                                                                |
@@ -123,7 +123,6 @@ status values, HTTP status codes and file names stay in Latin type.
 | launchd agent                                                               | launchd Agent                                                                    | `src/openai_responses_proxy/lifecycle/supervision/macos.py`           |
 | GUI login domain, Background domain                                         | GUI 登录域，Background 域                                                        | `src/openai_responses_proxy/lifecycle/supervision/macos.py`           |
 | systemd user unit, user manager                                             | systemd 用户单元，systemd 用户管理器                                             | `src/openai_responses_proxy/lifecycle/supervision/linux.py`           |
-| Task Scheduler, scheduled task                                              | 任务计划程序，计划任务                                                           | `src/openai_responses_proxy/lifecycle/supervision/windows.py`         |
 | own (state, files)                                                          | 负责                                                                             | `docs/architecture/authority-and-runtime-boundary.md`                 |
 | normalization (Responses normalization)                                     | 规范化                                                                           | `README.md`                                                           |
 | authoritative state, owner (of state)                                       | 权威状态，责任方                                                                 | `docs/architecture/authority-and-runtime-boundary.md`                 |
@@ -148,7 +147,6 @@ status values, HTTP status codes and file names stay in Latin type.
 | candidate (payload)                                                         | 候选                                                                             | `src/openai_responses_proxy/lifecycle/candidate.py`                   |
 | data root, state root                                                       | 数据根目录，状态根目录                                                           | `src/openai_responses_proxy/runtime/config.py`                        |
 | rotated (log)                                                               | 轮转                                                                             | `src/openai_responses_proxy/runtime/bounded_log.py`                   |
-| launcher (Windows command)                                                  | 启动器                                                                           | `src/openai_responses_proxy/lifecycle/command.py`                     |
 | supervisor                                                                  | 监管者                                                                           | `src/openai_responses_proxy/lifecycle/control.py`                     |
 | lifecycle writer                                                            | 生命周期写入者                                                                   | `src/openai_responses_proxy/cli/application.py`                       |
 | predecessor (handed-off listener)                                           | 旧监听器                                                                         | `src/openai_responses_proxy/lifecycle/deployment/handoff.py`          |

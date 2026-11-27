@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "fbec6f90d85951adbba853539efa0f8b3bc7c2fc"
+      "revision": "51fdc384f0a023696ae08d3f938fa68a05150f5e"
     }
   },
   "layout": {
@@ -95,8 +95,8 @@
       "sources": [
         {
           "path": "internal/domain/model.go",
-          "line": 94,
-          "end_line": 105,
+          "line": 95,
+          "end_line": 106,
           "label": "Model"
         }
       ]
@@ -121,8 +121,8 @@
       "sources": [
         {
           "path": "internal/domain/model.go",
-          "line": 87,
-          "end_line": 92,
+          "line": 88,
+          "end_line": 93,
           "label": "Family"
         }
       ],
@@ -156,8 +156,8 @@
       "sources": [
         {
           "path": "internal/domain/model.go",
-          "line": 78,
-          "end_line": 85,
+          "line": 79,
+          "end_line": 86,
           "label": "Provider"
         }
       ]
