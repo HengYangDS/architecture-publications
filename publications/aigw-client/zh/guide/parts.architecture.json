@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "51fdc384f0a023696ae08d3f938fa68a05150f5e"
+      "revision": "e228861786b9206074d5fa1728527a277d7d54af"
     }
   },
   "components": [
@@ -40,7 +40,7 @@
         {
           "path": "internal/app/synchronization/transaction.go",
           "line": 77,
-          "end_line": 156,
+          "end_line": 162,
           "label": "commit"
         }
       ]
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "internal/adapter/registry.go",
-          "line": 114,
-          "end_line": 132,
+          "line": 118,
+          "end_line": 136,
           "label": "Adapter"
         }
       ]
@@ -119,8 +119,8 @@
       "sources": [
         {
           "path": "internal/adapter/hermes/projection.go",
-          "line": 365,
-          "end_line": 368,
+          "line": 389,
+          "end_line": 392,
           "label": "Rollback"
         }
       ]

@@ -7,14 +7,14 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 - [Every effect is compiled, judged, freshly admitted and applied by exact compare-and-swap](block:p-plan).[](source:invariants)
 - [Each kind of evidence proves only its own plane](block:p-evidence), so local proof is not anti-forgery assurance.[](source:planes)[](source:proof-boundary)
 
-@answer scope="ETHOS v0.2.0-beta.11 · commit e4d9d04 · its source and its own documents · proof timings measured on 2026-11-19 under v0.2.0-beta.10"
+@answer scope="ETHOS v0.2.0-beta.12 · commit cdb51d4 · its source and its own documents · proof timings measured on 2026-11-19 under v0.2.0-beta.10"
 @meta locale=en style=editorial
-@source kernel title="The kernel" path="README.md" lines=100:107
-@source native title="What stays native" path="README.md" lines=26:29
-@source visibility title="Visibility is not authority" path="README.md" lines=91:93
-@source isomorphic title="Isomorphic governance" path="README.md" lines=33:38
-@source status title="The bounded reader" path="README.md" lines=56:58
-@source maturity-readme title="The kernel and the complete promise" path="README.md" lines=18:24
+@source kernel title="The kernel" path="README.md" lines=98:105
+@source native title="What stays native" path="README.md" lines=24:27
+@source visibility title="Visibility is not authority" path="README.md" lines=89:91
+@source isomorphic title="Isomorphic governance" path="README.md" lines=31:36
+@source status title="The bounded reader" path="README.md" lines=54:56
+@source maturity-readme title="The kernel and the complete promise" path="README.md" lines=16:22
 @source product-kernel title="The trust kernel" path="docs/governance/product-design-contract.md" lines=25:30
 @source promise title="The promise" path="docs/governance/product-design-contract.md" lines=32:36
 @source root-constraint title="Root constraint" path="docs/governance/product-design-contract.md" lines=44:51
@@ -41,7 +41,7 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 @source state-home title="Where state lives" path="docs/architecture/local-state.md" lines=19:27
 @source runtime-home title="Runtime and hooks in the common directory" path="docs/architecture/local-state.md" lines=29:34
 @source host-store title="The host store" path="docs/architecture/local-state.md" lines=53:57
-@source lease-fields title="A Lease's four fields" path="docs/architecture/local-state.md" lines=128:133
+@source lease-fields title="A Lease's four fields" path="docs/architecture/local-state.md" lines=150:155
 @source adopt-writes title="What adoption writes" path="docs/architecture/adoption-profiles.md" lines=18:33
 @source adopt-keeps title="Native configuration kept" path="docs/architecture/adoption-profiles.md" lines=60:67
 @source adopt-pin title="A release build plans its own pin" path="docs/architecture/adoption-profiles.md" lines=35:38
@@ -53,28 +53,28 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 @source write-boundary title="The write boundary" path="docs/architecture/runner-and-mutation.md" lines=27:36
 @source candidate-train title="The candidate train" path="docs/architecture/runner-and-mutation.md" lines=38:43
 @source stale title="A stale candidate base" path="docs/architecture/runner-and-mutation.md" lines=43:46
-@source coordination title="Lanes that share a repository" path="docs/architecture/runner-and-mutation.md" lines=58:67
-@source shared-proof title="One proof for every worktree" path="docs/architecture/runner-and-mutation.md" lines=70:74
-@source archive title="Archiving the Change" path="docs/architecture/runner-and-mutation.md" lines=97:104
-@source compensate title="Compensating a refused archive" path="docs/architecture/runner-and-mutation.md" lines=104:107
-@source closeout title="Accepted-root closeout" path="docs/architecture/runner-and-mutation.md" lines=129:131
-@source retire title="Retiring a landed lane" path="docs/architecture/runner-and-mutation.md" lines=88:92
-@source runtime title="One selected runtime" path="docs/architecture/runner-and-mutation.md" lines=140:145
-@source publish-preview title="The publication preview" path="docs/architecture/runner-and-mutation.md" lines=197:200
-@source publish title="Publication to each peer" path="docs/architecture/runner-and-mutation.md" lines=206:212
-@source verdict title="The closed verdict" path="docs/architecture/runner-and-mutation.md" lines=233:233
-@source proof-gates title="Packaged gates and a repository's own" path="docs/reference/command-plane.md" lines=333:337
-@source load-limit title="Readiness, then the host load" path="docs/reference/command-plane.md" lines=344:344
-@source standard-proof title="Full proof of a frozen head" path="docs/reference/command-plane.md" lines=339:342
-@source blank-lines title="Blank lines by format" path="docs/reference/configuration.md" lines=187:201
+@source coordination title="Lanes that share a repository" path="docs/architecture/runner-and-mutation.md" lines=60:69
+@source shared-proof title="One proof for every worktree" path="docs/architecture/runner-and-mutation.md" lines=76:79
+@source archive title="Archiving the Change" path="docs/architecture/runner-and-mutation.md" lines=107:114
+@source compensate title="Compensating a refused archive" path="docs/architecture/runner-and-mutation.md" lines=114:117
+@source closeout title="Accepted-root closeout" path="docs/architecture/runner-and-mutation.md" lines=139:141
+@source retire title="Retiring a landed lane" path="docs/architecture/runner-and-mutation.md" lines=96:100
+@source runtime title="One selected runtime" path="docs/architecture/runner-and-mutation.md" lines=150:155
+@source publish-preview title="The publication preview" path="docs/architecture/runner-and-mutation.md" lines=207:210
+@source publish title="Publication to each peer" path="docs/architecture/runner-and-mutation.md" lines=216:222
+@source verdict title="The closed verdict" path="docs/architecture/runner-and-mutation.md" lines=243:243
+@source proof-gates title="Packaged gates and a repository's own" path="docs/reference/command-plane.md" lines=344:348
+@source load-limit title="Readiness, then the host load" path="docs/reference/command-plane.md" lines=377:377
+@source standard-proof title="Full proof of a frozen head" path="docs/reference/command-plane.md" lines=350:353
+@source blank-lines title="Blank lines by format" path="docs/reference/configuration.md" lines=199:213
 @source gates-floor title="The packaged proof sets" path="system/gates.toml" lines=5:7
-@source preflight title="The readiness tier before the tests" path="src/ethos/adapters/gates/runner.py" lines=296:328
-@source ready-set title="A bounded compatible ready set" path="src/ethos/adapters/gates/runner.py" lines=331:356
-@source proof-boundary title="DR-0006: the decision" path="docs/decisions/dr-0006-proof-trust-boundary.md" lines=37:47
-@source proof-alternatives title="DR-0006: rejected alternatives" path="docs/decisions/dr-0006-proof-trust-boundary.md" lines=49:56
+@source preflight title="The readiness tier before the tests" path="src/ethos/adapters/gates/runner.py" lines=321:353
+@source ready-set title="A bounded compatible ready set" path="src/ethos/adapters/gates/runner.py" lines=356:381
+@source proof-boundary title="DR-0006: the decision" path="docs/decisions/dr-0006-proof-trust-boundary.md" lines=34:44
+@source proof-alternatives title="DR-0006: rejected alternatives" path="docs/decisions/dr-0006-proof-trust-boundary.md" lines=46:53
 @source paradigm-context title="DR-0012: the drift that was found" path="docs/decisions/dr-0012-repository-paradigm.md" lines=21:34
-@source paradigm title="DR-0012: what the paradigm fixes" path="docs/decisions/dr-0012-repository-paradigm.md" lines=45:58
-@source paradigm-gap title="DR-0012: what a gap blocks" path="docs/decisions/dr-0012-repository-paradigm.md" lines=69:69
+@source paradigm title="DR-0012: what the paradigm fixes" path="docs/decisions/dr-0012-repository-paradigm.md" lines=45:61
+@source paradigm-gap title="DR-0012: what a gap blocks" path="docs/decisions/dr-0012-repository-paradigm.md" lines=72:72
 @source paradigm-preview title="The paradigm repair's preview" path="src/ethos/repository/paradigm/repair.py" lines=66:67
 @source paradigm-next title="The next action of a paradigm report" path="src/ethos/repository/paradigm/repair.py" lines=137:142
 @source list-rule title="The Markdown list rule" path="src/ethos/repository/paradigm/markdown_spacing.py" lines=1:9
@@ -87,13 +87,13 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 @source plan-class title="TransitionPlan" path="src/ethos/contracts/plan.py" lines=181:193
 @source node-class title="PlanNode" path="src/ethos/contracts/plan.py" lines=46:54
 @source plan-inputs title="PlanInputs" path="src/ethos/contracts/plan.py" lines=91:98
-@source prewrite title="The prewrite guard" path="src/ethos/adapters/admission/prewrite.py" lines=117:149
+@source prewrite title="The prewrite guard" path="src/ethos/adapters/admission/prewrite.py" lines=118:150
 @source lane title="Starting a Work Lane" path="src/ethos/adapters/mutation/lane_lifecycle/start.py" lines=345:355
 @source lane-status title="Inspecting a lane's status" path="src/ethos/application/lane/lifecycle.py" lines=44:46
 @source worktree-record title="One worktree in a lane's status" path="src/ethos/adapters/repo/status/workspace.py" lines=394:409
-@source hook title="One hook entry point" path="src/ethos/adapters/repo/hook/protocol.py" lines=21:34
+@source hook title="One hook entry point" path="src/ethos/adapters/repo/hook/protocol.py" lines=23:36
 @source staged-text title="The layout rules pre-commit admits" path="src/ethos/adapters/repo/hook/staged_text.py" lines=1:7
-@source proof title="The proof of one HEAD" path="src/ethos/adapters/mutation/proof.py" lines=417:422
+@source proof title="The proof of one HEAD" path="src/ethos/adapters/mutation/proof.py" lines=419:424
 @source landing title="Landing on the candidate" path="src/ethos/adapters/mutation/landing.py" lines=57:70
 @source push title="An exact push to one peer" path="src/ethos/adapters/mutation/publication/execution.py" lines=45:56
 @source hosted-observe title="Observing hosted runs" path="src/ethos/application/publication/hosted.py" lines=1:5
@@ -104,8 +104,12 @@ ETHOS admits a change only on evidence: an official OpenSpec Change states the i
 @source branch-roles title="The branch roles" path="src/ethos/contracts/paradigm/paradigm.toml" lines=61:68
 @source parameters title="Per-file ceilings and the gate deadline" path="src/ethos/contracts/paradigm/paradigm.toml" lines=105:140
 @source reporting title="Obligations that only report" path="src/ethos/contracts/paradigm/paradigm.toml" lines=12:16
-@source changelog-first title="0.1.0-alpha.1, the first entry" path="CHANGELOG.md" lines=2778:2784
-@source changelog-pinned title="0.2.0-beta.11, the pinned release" path="CHANGELOG.md" lines=15:23
+@source changelog-first title="0.1.0-alpha.1, the first entry" path="CHANGELOG.md" lines=3027:3033
+@source changelog-pinned title="0.2.0-beta.12, the pinned release" path="CHANGELOG.md" lines=15:28
+@source windows title="Windows deprecated" path="CHANGELOG.md" lines=171:173
+@source quiet-host title="A quiet host skips an interval" path="src/ethos/adapters/gates/proof_slot.py" lines=177:179
+@source structure-kept title="DR-0027: what each repository keeps" path="docs/decisions/dr-0027-common-semantic-structure.md" lines=130:133
+@source structure-code title="DR-0027: no code before 0.2.0" path="docs/decisions/dr-0027-common-semantic-structure.md" lines=121:122
 
 ## Who uses ETHOS, and what does it own? {#p-context}
 
@@ -127,7 +131,7 @@ People, AI agents and programs reach the same operations, each through its own s
 Adoption writes one small declaration and, only where it is absent, the native OpenSpec configuration.[](source:adopt-writes)[](source:adopt-keeps) A release build also plans its own pin in `.config/mise/config.toml`, a step that only adds lines.[](source:adopt-pin) Everything else lives in the Git common directory, shared by every worktree, or in the host store.[](source:state-home)[](source:host-store)
 
 @facts
-| Platforms | macOS and Linux are required; Windows is claimed only after native qualification.[](source:experience) |
+| Platforms | macOS and Linux are required.[](source:experience) Windows is deprecated, and a new adoption should not start on it.[](source:windows) |
 | Python | The `ethos` package supports Python 3.12 through 3.14.[](source:python-range) |
 | Branch roles | `main` for release, `dev` accepted, `candidate/dev` the candidate, `work/` for lanes and `proposal/` for proposals[](source:branch-roles) |
 | Per-file ceilings | 500 effective lines per code file and 500 nonblank lines per document, at most 1,000[](source:parameters) |
@@ -248,7 +252,7 @@ The gates ETHOS packages for every repository run beside the gates a repository 
 
 @steps id=proof-steps
 | step-proof-ready | Readiness gates | Every gate that is neither a test nor a package gate ran first, in parallel within capacity; a failure among them ends the proof before it waits.[](source:preflight)[](source:ready-set) | proof-run | proof-ready |
-| step-proof-wait | Waiting for host load | The proof then waited 15 seconds, until two 1-minute load samples in a row were within the limit.[](source:load-limit) | proof-run | proof-wait |
+| step-proof-wait | Waiting for host load | The proof then waited 15 seconds, until two 1-minute load samples in a row were within the limit.[](source:load-limit) Since 0.2.0-beta.12, a sample within the limit taken before the readiness gates counts as the first of the two once it is at least one interval old.[](source:quiet-host) A proof that meets a quiet host and a free slot then skips that interval.[](source:quiet-host) | proof-run | proof-wait |
 | step-proof-tests | Test and package gates | Tests and packaging ran last; one behavior gate took 901 of the proof's 1052 seconds.[](source:preflight) | proof-run | proof-tests |
 
 ## What does each kind of evidence prove? {#p-evidence}
@@ -298,7 +302,7 @@ One paradigm now fixes only what every repository shares, and no repository can 
 
 @facts
 | Shared by every repository | Root entries, configuration by tool, bindings, commit, branch and release conventions, document metadata, formatters, toolchain verbs, orchestration, CI and names[](source:paradigm) |
-| Kept by each repository | Product and domain structure, tests, documentation subjects and provider shape[](source:paradigm) |
+| Kept by each repository | The domain model, the subjects, names and axes of its layout, and provider shape.[](source:structure-kept) This release does not yet enforce the structure rules of DR-0027.[](source:structure-code) |
 | When a repository drifts | The gap blocks prove, land and publish, and prewrite refuses the path, unless its obligation only reports.[](source:paradigm-gap)[](source:reporting) When `ethos lane repair-paradigm` can write the repair, the paradigm report's next action is that repair's preview, `ethos lane repair-paradigm --json`.[](source:paradigm-next)[](source:paradigm-preview) A gap that needs judgment names its own repair.[](source:paradigm-next) |
 | Blank lines | One owner decides the blank lines of each authored format. `ethos lane format` checks and repairs them, and `pre-commit` refuses a staged Markdown or canonical-text file that breaks its rule.[](source:blank-lines)[](source:staged-text) |
 | Markdown lists | After Prettier, one list rule applies.[](source:blank-lines) An item whose blocks are separated by a blank line is followed by one, and every other item directly by the next.[](source:list-rule) |
@@ -324,7 +328,7 @@ Four authored verses constrain its design.[](source:root-constraint) They ask to
 
 ## How did ETHOS get here? {#p-history}
 
-ETHOS's changelog opens with 0.1.0-alpha.1 on 2026-06-30 and reaches 0.2.0-beta.11 on 2026-11-21.[](source:changelog-first)[](source:changelog-pinned) Seventeen 0.2.0 releases along the way changed what ETHOS does for the repositories it governs; each is labelled by its pre-release name.
+ETHOS's changelog opens with 0.1.0-alpha.1 on 2026-06-30 and reaches 0.2.0-beta.12 on 2026-11-28.[](source:changelog-first)[](source:changelog-pinned) Eighteen 0.2.0 releases along the way changed what ETHOS does for the repositories it governs; each is labelled by its pre-release name.
 
 @diagram timeline id=history source=history.timeline.json title="How ETHOS got here"
 
@@ -332,11 +336,11 @@ ETHOS's changelog opens with 0.1.0-alpha.1 on 2026-06-30 and reaches 0.2.0-beta.
 
 The kernel alone does not prove that the whole product promise is delivered.[](source:maturity-readme)
 
-| Area                                          | State                           | What that means                                                                                                                                  |
-| --------------------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Kernel, lanes, proof, landing and publication | In use {good:In use}            | They govern ETHOS and the repositories that adopted it.[](source:isomorphic)[](source:paradigm-context)                                          |
-| MCP for agents                                | Delivered {caution:Unqualified} | Real clients still need conformance runs: discovery, journeys, denials, cancellation, isolation, upgrade and uninstall.[](source:mcp-open)       |
-| Windows                                       | Not claimed {caution:Pending}   | macOS and Linux are required; Windows is claimed only after native qualification.[](source:experience)                                           |
-| Independent verification                      | Optional {good:On demand}       | Selected by the asserted risk, never a default blocker.[](source:independent)                                                                    |
-| The complete product route                    | Open {caution:P0 to P7}         | From current facts and quality to real-use benefit and interchangeable consumers.[](source:route)                                                |
-| Task-based acceptance                         | Target {caution:Open}           | A new human, an agent and an SDK client each inspect, adopt, prove, recover and uninstall without learning ETHOS internals.[](source:acceptance) |
+| Area                                          | State                                | What that means                                                                                                                                              |
+| --------------------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Kernel, lanes, proof, landing and publication | In use {good:In use}                 | They govern ETHOS and the repositories that adopted it.[](source:isomorphic)[](source:paradigm-context)                                                      |
+| MCP for agents                                | Delivered {caution:Unqualified}      | Real clients still need conformance runs: discovery, journeys, denials, cancellation, isolation, upgrade and uninstall.[](source:mcp-open)                   |
+| Windows                                       | Deprecated {caution:Removal pending} | This release still builds and publishes the Windows archives and still runs its CI on Windows; a new adoption should not start on Windows.[](source:windows) |
+| Independent verification                      | Optional {good:On demand}            | Selected by the asserted risk, never a default blocker.[](source:independent)                                                                                |
+| The complete product route                    | Open {caution:P0 to P7}              | From current facts and quality to real-use benefit and interchangeable consumers.[](source:route)                                                            |
+| Task-based acceptance                         | Target {caution:Open}                | A new human, an agent and an SDK client each inspect, adopt, prove, recover and uninstall without learning ETHOS internals.[](source:acceptance)             |

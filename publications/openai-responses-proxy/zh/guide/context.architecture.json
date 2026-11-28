@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
       "provider": "github",
-      "revision": "f89a05c1ef062760266b09abc63bf86bb9147309"
+      "revision": "bc63eca99a413d2e8b835cdb37649726cd9bb240"
     }
   },
   "components": [
@@ -23,8 +23,8 @@
       "sources": [
         {
           "path": "README.md",
-          "line": 26,
-          "end_line": 31,
+          "line": 22,
+          "end_line": 27,
           "label": "责任方"
         }
       ]
@@ -40,8 +40,8 @@
       "sources": [
         {
           "path": "README.md",
-          "line": 86,
-          "end_line": 89,
+          "line": 82,
+          "end_line": 85,
           "label": "安装"
         }
       ]
@@ -56,8 +56,8 @@
       "sources": [
         {
           "path": "README.md",
-          "line": 33,
-          "end_line": 38,
+          "line": 29,
+          "end_line": 34,
           "label": "已准入的客户端"
         }
       ]
@@ -73,7 +73,7 @@
         {
           "path": "README.md",
           "line": 3,
-          "end_line": 7,
+          "end_line": 6,
           "label": "代理是什么"
         }
       ]
@@ -82,14 +82,14 @@
       "id": "ctx-providers",
       "type": "cloud",
       "label": "提供商端点",
-      "sublabel": "DMXAPI、UCloud、AIHubMix、Suhe.AI",
+      "sublabel": "由基础 URL 指明",
       "pos": [500, 180],
       "size": [180, 64],
       "sources": [
         {
           "path": "README.md",
-          "line": 122,
-          "end_line": 133,
+          "line": 123,
+          "end_line": 136,
           "label": "路由"
         }
       ]
@@ -104,8 +104,8 @@
       "sources": [
         {
           "path": "README.md",
-          "line": 64,
-          "end_line": 72,
+          "line": 60,
+          "end_line": 68,
           "label": "看门狗"
         }
       ]

@@ -1,7 +1,7 @@
 # OpenAI Responses Proxy: term renderings
 
 The renderings this work fixes before translation, used everywhere under `zh/`. Source
-names the file of `openai-responses-proxy` at v7.0.2 (`f89a05c`) that defines or uses the term. Commands, fields,
+names the file of `openai-responses-proxy` at v8.0.0 (`bc63eca`) that defines or uses the term. Commands, fields,
 status values, HTTP status codes and file names stay in Latin type.
 
 | English                                                                     | 中文                                                                             | Source                                                                |
@@ -20,14 +20,15 @@ status values, HTTP status codes and file names stay in Latin type.
 | data plane                                                                  | 数据面                                                                           | `docs/architecture/authority-and-runtime-boundary.md`                 |
 | provider                                                                    | 提供商                                                                           | `README.md`                                                           |
 | provider endpoint                                                           | 提供商端点                                                                       | `README.md`                                                           |
-| manifest, provider manifest                                                 | 清单，提供商清单                                                                 | `src/openai_responses_proxy/providers/registry.py`                    |
-| provider registry                                                           | 提供商注册表                                                                     | `src/openai_responses_proxy/providers/registry.py`                    |
-| route                                                                       | 路由                                                                             | `src/openai_responses_proxy/providers/registry.py`                    |
+| manifest, provider manifest                                                 | 清单，提供商清单                                                                 | `CHANGELOG.md`                                                        |
+| route                                                                       | 路由                                                                             | `src/openai_responses_proxy/relay/responses.py`                       |
 | model catalog                                                               | 模型目录                                                                         | `src/openai_responses_proxy/runtime/config.py`                        |
 | origin                                                                      | 源站                                                                             | `README.md`                                                           |
+| upstream origin                                                             | 上游源站                                                                         | `src/openai_responses_proxy/relay/addressing.py`                      |
+| scheme, authority, base path (of a base URL)                                | 协议，主机（可带端口），基础路径                                                 | `src/openai_responses_proxy/relay/addressing.py`                      |
 | upstream                                                                    | 上游                                                                             | `src/openai_responses_proxy/relay/upstream.py`                        |
-| wire policy                                                                 | 报文策略                                                                         | `src/openai_responses_proxy/providers/policies/__init__.py`           |
 | loopback                                                                    | 回环                                                                             | `src/openai_responses_proxy/runtime/loopback.py`                      |
+| web page; Fetch Metadata                                                    | 网页；Fetch Metadata（请求头，不译）                                             | `src/openai_responses_proxy/relay/admission.py`                       |
 | listener                                                                    | 监听器                                                                           | `src/openai_responses_proxy/serving/server.py`                        |
 | listening socket                                                            | 监听套接字                                                                       | `src/openai_responses_proxy/serving/handoff/protocol.py`              |
 | admission, admit                                                            | 准入；作动词时写放行                                                             | `src/openai_responses_proxy/relay/admission.py`                       |
@@ -50,10 +51,8 @@ status values, HTTP status codes and file names stay in Latin type.
 | search call                                                                 | 搜索调用                                                                         | `src/openai_responses_proxy/protocol/replay/items.py`                 |
 | reasoning                                                                   | 推理内容                                                                         | `src/openai_responses_proxy/protocol/replay/items.py`                 |
 | agent message                                                               | Agent 消息                                                                       | `src/openai_responses_proxy/protocol/replay/items.py`                 |
-| delegation                                                                  | 委派                                                                             | `src/openai_responses_proxy/protocol/agent_delivery.py`               |
-| plaintext route                                                             | 明文路由                                                                         | `src/openai_responses_proxy/protocol/agent_delivery.py`               |
-| namespace                                                                   | 命名空间                                                                         | `src/openai_responses_proxy/protocol/agent_delivery.py`               |
-| delivery                                                                    | 投递                                                                             | `src/openai_responses_proxy/protocol/agent_delivery.py`               |
+| namespace                                                                   | 命名空间                                                                         | `docs/decisions/dr-0002-provider-portable-stateless-replay.md`        |
+| delivery                                                                    | 投递                                                                             | `README.md`                                                           |
 | bounded                                                                     | 按所指写明：限次（恢复、重试）、有上限（租约）、大小受限（日志）、有限度（应对） | `src/openai_responses_proxy/protocol/recovery/execution.py`           |
 | recovery, recover                                                           | 恢复                                                                             | `src/openai_responses_proxy/lifecycle/transaction/recovery.py`        |
 | derive, derivation                                                          | 派生                                                                             | `docs/decisions/dr-0002-provider-portable-stateless-replay.md`        |

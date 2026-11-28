@@ -2,8 +2,8 @@
 
 [`en/model.json`](en/model.json) is an Architecture Model of how ETHOS turns
 official intent and fresh facts into proven repository change, and what it
-holds every repository to. It pins ETHOS at v0.2.0-beta.11
-(`e4d9d04d36a089aae3924f0dc83f2a990493e852`), and its components own all 537
+holds every repository to. It pins ETHOS at v0.2.0-beta.12
+(`cdb51d469930a57771d9729713b7ec979938ce50`), and its components own all 549
 files of its coverage scope: the `src/ethos` package, `system/` and the
 repository's own `.ethos/` binding.
 Forty-two components and ninety relations are drawn in eleven views: one
@@ -25,7 +25,7 @@ shows what decides whether an effect runs, what one transition binds, the parts
 that carry a change and where one full proof spends its time. It ends with the
 evidence planes, why local proof is enough and when it is not, what every
 repository shares, the principles behind the design and what is still open.
-Each claim cites a line range at v0.2.0-beta.11, and the diagrams the draft
+Each claim cites a line range at v0.2.0-beta.12, and the diagrams the draft
 names sit beside it. The proof's timings were measured on 2026-11-19, on
 Architecture Publisher's own proof under ETHOS v0.2.0-beta.10.
 

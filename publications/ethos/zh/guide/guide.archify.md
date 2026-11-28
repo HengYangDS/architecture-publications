@@ -7,14 +7,14 @@ ETHOS 放行改动只看证据：OpenSpec 正式变更说明意图，当场观�
 - [每次改动都要经过编译和判定，当场放行，再用精确的 compare-and-swap 执行](block:p-plan)。[](source:invariants)
 - [每种证据只证明自己那个层面](block:p-evidence)，所以本地核验不是防伪保证。[](source:planes)[](source:proof-boundary)
 
-@answer scope="ETHOS v0.2.0-beta.11 · 提交 e4d9d04 · 它的源码和文档 · 核验耗时实测于 2026-11-19，所用版本为 v0.2.0-beta.10"
+@answer scope="ETHOS v0.2.0-beta.12 · 提交 cdb51d4 · 它的源码和文档 · 核验耗时实测于 2026-11-19，所用版本为 v0.2.0-beta.10"
 @meta locale=zh-CN style=editorial
-@source kernel title="内核" path="README.md" lines=100:107
-@source native title="哪些保持原生" path="README.md" lines=26:29
-@source visibility title="看得到不等于获得授权" path="README.md" lines=91:93
-@source isomorphic title="同构治理" path="README.md" lines=33:38
-@source status title="范围有限的读取入口" path="README.md" lines=56:58
-@source maturity-readme title="内核与完整的承诺" path="README.md" lines=18:24
+@source kernel title="内核" path="README.md" lines=98:105
+@source native title="哪些保持原生" path="README.md" lines=24:27
+@source visibility title="看得到不等于获得授权" path="README.md" lines=89:91
+@source isomorphic title="同构治理" path="README.md" lines=31:36
+@source status title="范围有限的读取入口" path="README.md" lines=54:56
+@source maturity-readme title="内核与完整的承诺" path="README.md" lines=16:22
 @source product-kernel title="信任内核" path="docs/governance/product-design-contract.md" lines=25:30
 @source promise title="承诺" path="docs/governance/product-design-contract.md" lines=32:36
 @source root-constraint title="根本约束" path="docs/governance/product-design-contract.md" lines=44:51
@@ -41,7 +41,7 @@ ETHOS 放行改动只看证据：OpenSpec 正式变更说明意图，当场观�
 @source state-home title="状态存放在哪里" path="docs/architecture/local-state.md" lines=19:27
 @source runtime-home title="公共目录中的运行时和钩子" path="docs/architecture/local-state.md" lines=29:34
 @source host-store title="主机存储" path="docs/architecture/local-state.md" lines=53:57
-@source lease-fields title="租约的四个字段" path="docs/architecture/local-state.md" lines=128:133
+@source lease-fields title="租约的四个字段" path="docs/architecture/local-state.md" lines=150:155
 @source adopt-writes title="接入写入什么" path="docs/architecture/adoption-profiles.md" lines=18:33
 @source adopt-keeps title="保留原生配置" path="docs/architecture/adoption-profiles.md" lines=60:67
 @source adopt-pin title="用发布版接入时固定版本" path="docs/architecture/adoption-profiles.md" lines=35:38
@@ -53,28 +53,28 @@ ETHOS 放行改动只看证据：OpenSpec 正式变更说明意图，当场观�
 @source write-boundary title="写入边界" path="docs/architecture/runner-and-mutation.md" lines=27:36
 @source candidate-train title="候选分支" path="docs/architecture/runner-and-mutation.md" lines=38:43
 @source stale title="候选分支基线过时" path="docs/architecture/runner-and-mutation.md" lines=43:46
-@source coordination title="共用一个仓库的通道" path="docs/architecture/runner-and-mutation.md" lines=58:67
-@source shared-proof title="所有工作区共用一份核验结果" path="docs/architecture/runner-and-mutation.md" lines=70:74
-@source archive title="归档正式变更" path="docs/architecture/runner-and-mutation.md" lines=97:104
-@source compensate title="补偿被拒的归档" path="docs/architecture/runner-and-mutation.md" lines=104:107
-@source closeout title="已验收根目录的收尾" path="docs/architecture/runner-and-mutation.md" lines=129:131
-@source retire title="让已落地的通道退役" path="docs/architecture/runner-and-mutation.md" lines=88:92
-@source runtime title="唯一选定的运行时" path="docs/architecture/runner-and-mutation.md" lines=140:145
-@source publish-preview title="平台发布预览" path="docs/architecture/runner-and-mutation.md" lines=197:200
-@source publish title="发布到每个平台" path="docs/architecture/runner-and-mutation.md" lines=206:212
-@source verdict title="判定只有三种取值" path="docs/architecture/runner-and-mutation.md" lines=233:233
-@source proof-gates title="内置门禁与仓库自有门禁" path="docs/reference/command-plane.md" lines=333:337
-@source load-limit title="先就绪，再看主机负载" path="docs/reference/command-plane.md" lines=344:344
-@source standard-proof title="冻结头提交上的完整核验" path="docs/reference/command-plane.md" lines=339:342
-@source blank-lines title="各种格式的空行" path="docs/reference/configuration.md" lines=187:201
+@source coordination title="共用一个仓库的通道" path="docs/architecture/runner-and-mutation.md" lines=60:69
+@source shared-proof title="所有工作区共用一份核验结果" path="docs/architecture/runner-and-mutation.md" lines=76:79
+@source archive title="归档正式变更" path="docs/architecture/runner-and-mutation.md" lines=107:114
+@source compensate title="补偿被拒的归档" path="docs/architecture/runner-and-mutation.md" lines=114:117
+@source closeout title="已验收根目录的收尾" path="docs/architecture/runner-and-mutation.md" lines=139:141
+@source retire title="让已落地的通道退役" path="docs/architecture/runner-and-mutation.md" lines=96:100
+@source runtime title="唯一选定的运行时" path="docs/architecture/runner-and-mutation.md" lines=150:155
+@source publish-preview title="平台发布预览" path="docs/architecture/runner-and-mutation.md" lines=207:210
+@source publish title="发布到每个平台" path="docs/architecture/runner-and-mutation.md" lines=216:222
+@source verdict title="判定只有三种取值" path="docs/architecture/runner-and-mutation.md" lines=243:243
+@source proof-gates title="内置门禁与仓库自有门禁" path="docs/reference/command-plane.md" lines=344:348
+@source load-limit title="先就绪，再看主机负载" path="docs/reference/command-plane.md" lines=377:377
+@source standard-proof title="冻结头提交上的完整核验" path="docs/reference/command-plane.md" lines=350:353
+@source blank-lines title="各种格式的空行" path="docs/reference/configuration.md" lines=199:213
 @source gates-floor title="内置的核验门禁集" path="system/gates.toml" lines=5:7
-@source preflight title="测试之前的就绪层" path="src/ethos/adapters/gates/runner.py" lines=296:328
-@source ready-set title="数量有限且互相兼容的就绪集" path="src/ethos/adapters/gates/runner.py" lines=331:356
-@source proof-boundary title="DR-0006：决定" path="docs/decisions/dr-0006-proof-trust-boundary.md" lines=37:47
-@source proof-alternatives title="DR-0006：被否决的方案" path="docs/decisions/dr-0006-proof-trust-boundary.md" lines=49:56
+@source preflight title="测试之前的就绪层" path="src/ethos/adapters/gates/runner.py" lines=321:353
+@source ready-set title="数量有限且互相兼容的就绪集" path="src/ethos/adapters/gates/runner.py" lines=356:381
+@source proof-boundary title="DR-0006：决定" path="docs/decisions/dr-0006-proof-trust-boundary.md" lines=34:44
+@source proof-alternatives title="DR-0006：被否决的方案" path="docs/decisions/dr-0006-proof-trust-boundary.md" lines=46:53
 @source paradigm-context title="DR-0012：发现的漂移" path="docs/decisions/dr-0012-repository-paradigm.md" lines=21:34
-@source paradigm title="DR-0012：范式规定什么" path="docs/decisions/dr-0012-repository-paradigm.md" lines=45:58
-@source paradigm-gap title="DR-0012：缺口阻止什么" path="docs/decisions/dr-0012-repository-paradigm.md" lines=69:69
+@source paradigm title="DR-0012：范式规定什么" path="docs/decisions/dr-0012-repository-paradigm.md" lines=45:61
+@source paradigm-gap title="DR-0012：缺口阻止什么" path="docs/decisions/dr-0012-repository-paradigm.md" lines=72:72
 @source paradigm-preview title="范式修复的预览命令" path="src/ethos/repository/paradigm/repair.py" lines=66:67
 @source paradigm-next title="范式报告给出的下一步" path="src/ethos/repository/paradigm/repair.py" lines=137:142
 @source list-rule title="Markdown 列表规则" path="src/ethos/repository/paradigm/markdown_spacing.py" lines=1:9
@@ -87,13 +87,13 @@ ETHOS 放行改动只看证据：OpenSpec 正式变更说明意图，当场观�
 @source plan-class title="TransitionPlan" path="src/ethos/contracts/plan.py" lines=181:193
 @source node-class title="PlanNode" path="src/ethos/contracts/plan.py" lines=46:54
 @source plan-inputs title="PlanInputs" path="src/ethos/contracts/plan.py" lines=91:98
-@source prewrite title="写前准入守卫" path="src/ethos/adapters/admission/prewrite.py" lines=117:149
+@source prewrite title="写前准入守卫" path="src/ethos/adapters/admission/prewrite.py" lines=118:150
 @source lane title="开始一条工作通道" path="src/ethos/adapters/mutation/lane_lifecycle/start.py" lines=345:355
 @source lane-status title="查看通道状态" path="src/ethos/application/lane/lifecycle.py" lines=44:46
 @source worktree-record title="通道状态中的一个工作区" path="src/ethos/adapters/repo/status/workspace.py" lines=394:409
-@source hook title="唯一的钩子入口" path="src/ethos/adapters/repo/hook/protocol.py" lines=21:34
+@source hook title="唯一的钩子入口" path="src/ethos/adapters/repo/hook/protocol.py" lines=23:36
 @source staged-text title="pre-commit 放行的版式规则" path="src/ethos/adapters/repo/hook/staged_text.py" lines=1:7
-@source proof title="一个 HEAD 的核验" path="src/ethos/adapters/mutation/proof.py" lines=417:422
+@source proof title="一个 HEAD 的核验" path="src/ethos/adapters/mutation/proof.py" lines=419:424
 @source landing title="落地到候选分支" path="src/ethos/adapters/mutation/landing.py" lines=57:70
 @source push title="向一个平台精确推送" path="src/ethos/adapters/mutation/publication/execution.py" lines=45:56
 @source hosted-observe title="观察托管运行" path="src/ethos/application/publication/hosted.py" lines=1:5
@@ -104,8 +104,12 @@ ETHOS 放行改动只看证据：OpenSpec 正式变更说明意图，当场观�
 @source branch-roles title="分支角色" path="src/ethos/contracts/paradigm/paradigm.toml" lines=61:68
 @source parameters title="单个文件的上限与门禁时限" path="src/ethos/contracts/paradigm/paradigm.toml" lines=105:140
 @source reporting title="只报告的义务" path="src/ethos/contracts/paradigm/paradigm.toml" lines=12:16
-@source changelog-first title="第一条记录：0.1.0-alpha.1" path="CHANGELOG.md" lines=2778:2784
-@source changelog-pinned title="本作品锁定的 0.2.0-beta.11" path="CHANGELOG.md" lines=15:23
+@source changelog-first title="第一条记录：0.1.0-alpha.1" path="CHANGELOG.md" lines=3027:3033
+@source changelog-pinned title="本作品锁定的 0.2.0-beta.12" path="CHANGELOG.md" lines=15:28
+@source windows title="弃用 Windows" path="CHANGELOG.md" lines=171:173
+@source quiet-host title="主机空闲时省掉一轮等待" path="src/ethos/adapters/gates/proof_slot.py" lines=177:179
+@source structure-kept title="DR-0027：各仓库自留的部分" path="docs/decisions/dr-0027-common-semantic-structure.md" lines=130:133
+@source structure-code title="DR-0027：0.2.0 之前不写代码" path="docs/decisions/dr-0027-common-semantic-structure.md" lines=121:122
 
 ## 谁在使用 ETHOS，它又负责什么？ {#p-context}
 
@@ -127,7 +131,7 @@ ETHOS 放行改动只看证据：OpenSpec 正式变更说明意图，当场观�
 接入只写入一份很小的治理配置；原生 OpenSpec 配置只在缺失时才写入。[](source:adopt-writes)[](source:adopt-keeps)用发布版接入时，还会在 `.config/mise/config.toml` 里固定 ETHOS 的版本，只添加新行。[](source:adopt-pin)其余的东西，要么放在所有工作区共用的 Git 公共目录里，要么放在主机存储中。[](source:state-home)[](source:host-store)
 
 @facts
-| 平台 | 必须支持 macOS 和 Linux；Windows 要在原生鉴定之后才声明支持。[](source:experience) |
+| 平台 | 必须支持 macOS 和 Linux。[](source:experience)Windows 已弃用，新的接入不应从 Windows 开始。[](source:windows) |
 | Python | `ethos` 包支持 Python 3.12 至 3.14。[](source:python-range) |
 | 分支角色 | `main` 用于发布，`dev` 是已验收分支，`candidate/dev` 是候选分支；工作通道用 `work/` 前缀，提案用 `proposal/` 前缀[](source:branch-roles) |
 | 单个文件的上限 | 每个代码文件 500 个有效行，每份文档 500 个非空行，最多放宽到 1,000[](source:parameters) |
@@ -248,7 +252,7 @@ ETHOS 为每个仓库内置的门禁，和仓库自己声明的门禁放在同�
 
 @steps id=proof-steps
 | step-proof-ready | 就绪门禁 | 既不是测试门禁、也不是打包门禁的，都先运行，在容量限度内并行；其中一个失败，核验就在等待之前结束。[](source:preflight)[](source:ready-set) | proof-run | proof-ready |
-| step-proof-wait | 等待主机负载 | 核验随后等了 15 秒，直到连续两个 1 分钟负载样本都不超过上限。[](source:load-limit) | proof-run | proof-wait |
+| step-proof-wait | 等待主机负载 | 核验随后等了 15 秒，直到连续两个 1 分钟负载样本都不超过上限。[](source:load-limit)从 0.2.0-beta.12 起，就绪门禁之前取的样本只要不超过上限、且取样后已过了至少一个采样间隔，就算作两个样本里的第一个。[](source:quiet-host)主机空闲、名额空着时，核验因此省掉这一轮等待。[](source:quiet-host) | proof-run | proof-wait |
 | step-proof-tests | 测试与打包门禁 | 测试和打包最后运行；核验共用时 1052 秒，其中一个行为门禁就占了 901 秒。[](source:preflight) | proof-run | proof-tests |
 
 ## 每种证据证明什么？ {#p-evidence}
@@ -298,7 +302,7 @@ xychart-beta horizontal
 
 @facts
 | 所有仓库共有 | 根目录条目、按工具分组的配置、绑定、提交、分支与发布约定、文档元数据、格式化工具、工具链动词、编排、CI 和命名[](source:paradigm) |
-| 各仓库自留 | 产品与领域结构、测试、文档主题和平台形态[](source:paradigm) |
+| 各仓库自留 | 领域模型，目录布局的主题、命名和划分维度，以及平台形态。[](source:structure-kept)本版尚未强制执行 DR-0027 的结构规则。[](source:structure-code) |
 | 某个仓库漂移时 | 缺口会阻止 prove、land 和 publish，写前准入也会拒绝该路径；只报告的义务除外。[](source:paradigm-gap)[](source:reporting)如果 `ethos lane repair-paradigm` 写得出修复，范式报告的下一步就是这项修复的预览 `ethos lane repair-paradigm --json`。[](source:paradigm-next)[](source:paradigm-preview)需要判断的缺口仍给出自己的修复办法。[](source:paradigm-next) |
 | 空行 | 每种格式的空行都由一个归属方决定。`ethos lane format` 检查并修复空行，`pre-commit` 拒绝暂存区里违反规则的 Markdown 文件和规范文本文件。[](source:blank-lines)[](source:staged-text) |
 | Markdown 列表 | Prettier 之后再应用一条列表规则。[](source:blank-lines)条目里各块之间隔了空行的，条目后面空一行；其余条目后面直接接下一条。[](source:list-rule) |
@@ -324,7 +328,7 @@ xychart-beta horizontal
 
 ## ETHOS 怎样走到今天？ {#p-history}
 
-变更日志从 2026 年 6 月 30 日的 0.1.0-alpha.1 写起，写到 11 月 21 日的 0.2.0-beta.11。[](source:changelog-first)[](source:changelog-pinned)其间有十七个 0.2.0 版本改变了 ETHOS 为受治理的仓库所做的事，图中按预发布名标注。
+变更日志从 2026 年 6 月 30 日的 0.1.0-alpha.1 写起，写到 11 月 28 日的 0.2.0-beta.12。[](source:changelog-first)[](source:changelog-pinned)其间有十八个 0.2.0 版本改变了 ETHOS 为受治理的仓库所做的事，图中按预发布名标注。
 
 @diagram timeline id=history source=history.timeline.json title="ETHOS 怎样走到今天"
 
@@ -336,7 +340,7 @@ xychart-beta horizontal
 | -------------------------------- | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | 内核、通道、核验、落地和平台发布 | 在用 {good:在用}          | 它们治理着 ETHOS 和接入它的仓库。[](source:isomorphic)[](source:paradigm-context)                                                |
 | 面向 Agent 的 MCP                | 已交付 {caution:未经鉴定} | 真实客户端仍需跑符合性测试：发现、使用流程、拒绝、取消、隔离、升级和卸载。[](source:mcp-open)                                    |
-| Windows                          | 未声明支持 {caution:待定} | 必须支持 macOS 和 Linux；Windows 要在原生鉴定之后才声明支持。[](source:experience)                                               |
+| Windows                          | 已弃用 {caution:待移除}   | 本版仍构建并发布 Windows 归档包，也仍在 Windows 上运行 CI；新的接入不应从 Windows 开始。[](source:windows)                       |
 | 独立检验                         | 可选 {good:按需}          | 由声明的风险决定是否采用，绝不会默认阻止。[](source:independent)                                                                 |
 | 完整的产品路线                   | 未完成 {caution:P0 至 P7} | 从当前事实和质量，到实际使用中的收益和可互换的使用方。[](source:route)                                                           |
 | 按任务验收                       | 目标 {caution:未完成}     | 一位新用户、一个 Agent 和一个 SDK 客户端，各自都能查看、接入、核验、恢复和卸载，不必了解 ETHOS 的内部机制。[](source:acceptance) |

@@ -6,7 +6,7 @@
   "title": "AIGW Client Projection",
   "question": "How does AIGW turn one reviewed configuration into guarded client files in every admitted client?",
   "summary": "Providers, models and client selections live in one configuration, aigw.toml, changed under one lock, and the provider Tokens in one selected store. Each client's files take only AIGW's own settings through one adapter seam, as a guarded, compensated transaction. No request passes through AIGW.",
-  "scope": "The AIGW program as released at v0.10.0: its production Go packages, the command entry point, the team file manifests/team.toml and go.mod.",
+  "scope": "The AIGW program as released at v0.12.0: its production Go packages, the command entry point, the team file manifests/team.toml and go.mod.",
   "limits": [
     "A component lists only the production files under the paths it claims, and a relation only the files of the packages that import the other component.",
     "Tests, their inputs and the repository's tools, CI and documentation are outside the scope."
@@ -14,7 +14,7 @@
   "repository": {
     "name": "aigw-cli",
     "url": "https://github.com/HengYangDS/aigw-cli.git",
-    "revision": "51fdc384f0a023696ae08d3f938fa68a05150f5e"
+    "revision": "e228861786b9206074d5fa1728527a277d7d54af"
   },
   "coverage": {
     "include": ["cmd/", "internal/", "manifests/", "go.mod"],
@@ -113,7 +113,7 @@
           "at": "provider",
           "id": "tokens",
           "label": "Tokens",
-          "note": "keyring, DPAPI, owner-only file"
+          "note": "keyring or owner-only file"
         },
         {
           "at": "model",
@@ -382,7 +382,8 @@
       "details": {
         "operations": ["discover", "converge", "plan", "apply", "inspect", "verify", "withdraw"],
         "proves": "every adapter against one contract suite",
-        "records": "the selection that a client's file shows, in AIGW's record beside it, without writing the file"
+        "records": "the selection that a client's file shows, in AIGW's record beside it, without writing the file",
+        "resolves": "each client's program from its declaration, stopping a client whose declared program is gone"
       },
       "files": [
         "internal/adapter/registry.go",
@@ -393,6 +394,8 @@
         "internal/adapter/record.go",
         "internal/adapter/selection.go",
         "internal/adapter/target_error.go",
+        "internal/adapter/program.go",
+        "internal/adapter/extensions.go",
         "internal/adapter/contract/",
         "internal/adapter/surface/",
         "internal/adapter/verification/"
@@ -413,7 +416,8 @@
       "kind": "client",
       "details": {
         "writes": "a bounded region of ~/.codex/config.toml and its model catalog",
-        "names": "a model's alias in that catalog by the model's label without its provider, with the model's ID where another entry has that name"
+        "names": "a model's alias in that catalog by the model's label without its provider, with the model's ID where another entry has that name",
+        "gives": "the selected model's entry in that catalog its declared context window"
       },
       "files": ["internal/adapter/codex/"]
     },
@@ -442,7 +446,7 @@
       "label": "Hermes",
       "kind": "client",
       "details": {
-        "writes": "its provider catalog, protocol and model",
+        "writes": "its provider catalog with each model's context window, protocol and model",
         "through": "go.yaml.in/yaml/v4, leaving the value of a folded block scalar unchanged"
       },
       "files": ["internal/adapter/hermes/"]
@@ -462,7 +466,7 @@
       "label": "Credential store",
       "kind": "authority",
       "details": {
-        "owns": "provider Tokens in one selected backend: native keyring, DPAPI or an owner-only file",
+        "owns": "provider Tokens in one selected backend: native keyring or an owner-only file",
         "asked": "once by each command about a provider's Token and about its balance credentials, and again only after that command stores or removes that credential"
       },
       "files": ["internal/secret/"]
@@ -532,6 +536,8 @@
         "internal/cli/client/documents.go",
         "internal/cli/client/edit.go",
         "internal/cli/client/list.go",
+        "internal/cli/client/program.go",
+        "internal/cli/invocation/adopted.go",
         "internal/cli/invocation/catalog.go",
         "internal/cli/invocation/closest.go",
         "internal/cli/invocation/completion.go",
@@ -540,9 +546,11 @@
         "internal/cli/invocation/flag.go",
         "internal/cli/invocation/followed.go",
         "internal/cli/invocation/models.go",
+        "internal/cli/invocation/output.go",
         "internal/cli/invocation/preview.go",
         "internal/cli/invocation/protocol.go",
         "internal/cli/invocation/readiness.go",
+        "internal/cli/invocation/stopped.go",
         "internal/cli/model/add.go",
         "internal/cli/model/documents.go",
         "internal/cli/model/edit.go",
@@ -583,6 +591,7 @@
       "to": "synchronization",
       "label": "previews",
       "files": [
+        "internal/cli/invocation/adopted.go",
         "internal/cli/invocation/catalog.go",
         "internal/cli/invocation/closest.go",
         "internal/cli/invocation/completion.go",
@@ -591,9 +600,11 @@
         "internal/cli/invocation/flag.go",
         "internal/cli/invocation/followed.go",
         "internal/cli/invocation/models.go",
+        "internal/cli/invocation/output.go",
         "internal/cli/invocation/preview.go",
         "internal/cli/invocation/protocol.go",
-        "internal/cli/invocation/readiness.go"
+        "internal/cli/invocation/readiness.go",
+        "internal/cli/invocation/stopped.go"
       ]
     },
     {
@@ -657,8 +668,10 @@
         "internal/cli/client/documents.go",
         "internal/cli/client/edit.go",
         "internal/cli/client/list.go",
+        "internal/cli/client/program.go",
         "internal/cli/config/config.go",
         "internal/cli/config/rollback.go",
+        "internal/cli/invocation/adopted.go",
         "internal/cli/invocation/catalog.go",
         "internal/cli/invocation/closest.go",
         "internal/cli/invocation/completion.go",
@@ -667,9 +680,11 @@
         "internal/cli/invocation/flag.go",
         "internal/cli/invocation/followed.go",
         "internal/cli/invocation/models.go",
+        "internal/cli/invocation/output.go",
         "internal/cli/invocation/preview.go",
         "internal/cli/invocation/protocol.go",
         "internal/cli/invocation/readiness.go",
+        "internal/cli/invocation/stopped.go",
         "internal/cli/model/add.go",
         "internal/cli/model/documents.go",
         "internal/cli/model/edit.go",
@@ -804,11 +819,13 @@
       "to": "adapter-seam",
       "label": "plans, applies",
       "files": [
+        "internal/app/synchronization/adoptions.go",
         "internal/app/synchronization/follow.go",
         "internal/app/synchronization/preview.go",
         "internal/app/synchronization/record.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
+        "internal/app/synchronization/stops.go",
         "internal/app/synchronization/synchronizer.go",
         "internal/app/synchronization/transaction.go"
       ]
@@ -819,11 +836,13 @@
       "to": "discovery",
       "label": "observes",
       "files": [
+        "internal/app/synchronization/adoptions.go",
         "internal/app/synchronization/follow.go",
         "internal/app/synchronization/preview.go",
         "internal/app/synchronization/record.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
+        "internal/app/synchronization/stops.go",
         "internal/app/synchronization/synchronizer.go",
         "internal/app/synchronization/transaction.go"
       ]
@@ -834,11 +853,13 @@
       "to": "configuration-store",
       "label": "persists",
       "files": [
+        "internal/app/synchronization/adoptions.go",
         "internal/app/synchronization/follow.go",
         "internal/app/synchronization/preview.go",
         "internal/app/synchronization/record.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
+        "internal/app/synchronization/stops.go",
         "internal/app/synchronization/synchronizer.go",
         "internal/app/synchronization/transaction.go"
       ]
@@ -849,11 +870,13 @@
       "to": "credentials",
       "label": "checks the Token reader",
       "files": [
+        "internal/app/synchronization/adoptions.go",
         "internal/app/synchronization/follow.go",
         "internal/app/synchronization/preview.go",
         "internal/app/synchronization/record.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
+        "internal/app/synchronization/stops.go",
         "internal/app/synchronization/synchronizer.go",
         "internal/app/synchronization/transaction.go"
       ]
@@ -864,11 +887,13 @@
       "to": "domain",
       "label": "validates",
       "files": [
+        "internal/app/synchronization/adoptions.go",
         "internal/app/synchronization/follow.go",
         "internal/app/synchronization/preview.go",
         "internal/app/synchronization/record.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
+        "internal/app/synchronization/stops.go",
         "internal/app/synchronization/synchronizer.go",
         "internal/app/synchronization/transaction.go"
       ]
@@ -912,14 +937,13 @@
         "internal/adapter/codex/adapter_verify.go",
         "internal/adapter/codex/adoption.go",
         "internal/adapter/codex/catalog.go",
-        "internal/adapter/codex/catalog_reference_unix.go",
-        "internal/adapter/codex/catalog_reference_windows.go",
         "internal/adapter/codex/client.go",
         "internal/adapter/codex/config.go",
         "internal/adapter/codex/conflict.go",
         "internal/adapter/codex/extensions.go",
         "internal/adapter/codex/live_verification.go",
         "internal/adapter/codex/missing.go",
+        "internal/adapter/codex/producer.go",
         "internal/adapter/codex/provider.go",
         "internal/adapter/codex/reconcile.go",
         "internal/adapter/codex/scheduler.go",
@@ -927,7 +951,8 @@
         "internal/adapter/codex/selection_record.go",
         "internal/adapter/codex/surfaces.go",
         "internal/adapter/codex/targets.go",
-        "internal/adapter/codex/unrecorded.go"
+        "internal/adapter/codex/unrecorded.go",
+        "internal/adapter/codex/window_check.go"
       ]
     },
     {
@@ -970,16 +995,15 @@
       "label": "implements",
       "files": [
         "internal/adapter/hermes/adapter.go",
-        "internal/adapter/hermes/adapter_verification_unix.go",
-        "internal/adapter/hermes/adapter_verification_windows.go",
+        "internal/adapter/hermes/adapter_verification.go",
         "internal/adapter/hermes/document.go",
         "internal/adapter/hermes/gateway.go",
+        "internal/adapter/hermes/models.go",
         "internal/adapter/hermes/projection.go",
         "internal/adapter/hermes/record.go",
         "internal/adapter/hermes/selection.go",
         "internal/adapter/hermes/selection_record.go",
-        "internal/adapter/hermes/verification_home_unix.go",
-        "internal/adapter/hermes/verification_home_windows.go"
+        "internal/adapter/hermes/verification_home.go"
       ]
     },
     {
@@ -993,14 +1017,13 @@
         "internal/adapter/codex/adapter_verify.go",
         "internal/adapter/codex/adoption.go",
         "internal/adapter/codex/catalog.go",
-        "internal/adapter/codex/catalog_reference_unix.go",
-        "internal/adapter/codex/catalog_reference_windows.go",
         "internal/adapter/codex/client.go",
         "internal/adapter/codex/config.go",
         "internal/adapter/codex/conflict.go",
         "internal/adapter/codex/extensions.go",
         "internal/adapter/codex/live_verification.go",
         "internal/adapter/codex/missing.go",
+        "internal/adapter/codex/producer.go",
         "internal/adapter/codex/provider.go",
         "internal/adapter/codex/reconcile.go",
         "internal/adapter/codex/scheduler.go",
@@ -1008,7 +1031,8 @@
         "internal/adapter/codex/selection_record.go",
         "internal/adapter/codex/surfaces.go",
         "internal/adapter/codex/targets.go",
-        "internal/adapter/codex/unrecorded.go"
+        "internal/adapter/codex/unrecorded.go",
+        "internal/adapter/codex/window_check.go"
       ]
     },
     {
@@ -1051,16 +1075,15 @@
       "label": "writes under guard",
       "files": [
         "internal/adapter/hermes/adapter.go",
-        "internal/adapter/hermes/adapter_verification_unix.go",
-        "internal/adapter/hermes/adapter_verification_windows.go",
+        "internal/adapter/hermes/adapter_verification.go",
         "internal/adapter/hermes/document.go",
         "internal/adapter/hermes/gateway.go",
+        "internal/adapter/hermes/models.go",
         "internal/adapter/hermes/projection.go",
         "internal/adapter/hermes/record.go",
         "internal/adapter/hermes/selection.go",
         "internal/adapter/hermes/selection_record.go",
-        "internal/adapter/hermes/verification_home_unix.go",
-        "internal/adapter/hermes/verification_home_windows.go"
+        "internal/adapter/hermes/verification_home.go"
       ]
     },
     {
@@ -1072,6 +1095,8 @@
         "internal/adapter/adapters.go",
         "internal/adapter/apply_failure.go",
         "internal/adapter/conflict.go",
+        "internal/adapter/extensions.go",
+        "internal/adapter/program.go",
         "internal/adapter/record.go",
         "internal/adapter/registry.go",
         "internal/adapter/selection.go",
@@ -1089,6 +1114,8 @@
         "internal/adapter/apply_failure.go",
         "internal/adapter/conflict.go",
         "internal/adapter/contract/contract.go",
+        "internal/adapter/extensions.go",
+        "internal/adapter/program.go",
         "internal/adapter/record.go",
         "internal/adapter/registry.go",
         "internal/adapter/selection.go",
@@ -1132,17 +1159,12 @@
       "label": "writes owner-only files",
       "files": [
         "internal/secret/command.go",
-        "internal/secret/command_unix.go",
-        "internal/secret/command_windows.go",
         "internal/secret/diagnostic.go",
         "internal/secret/entrypoint.go",
-        "internal/secret/entrypoint_unix.go",
-        "internal/secret/entrypoint_windows.go",
         "internal/secret/env.go",
+        "internal/secret/file.go",
         "internal/secret/file_store.go",
         "internal/secret/file_transaction.go",
-        "internal/secret/file_unix.go",
-        "internal/secret/file_windows.go",
         "internal/secret/keyring.go",
         "internal/secret/memory.go",
         "internal/secret/native/deadline.go",
@@ -1150,12 +1172,9 @@
         "internal/secret/native/keychain_darwin_nocgo.go",
         "internal/secret/native/keychain_list_darwin.go",
         "internal/secret/native/listing.go",
-        "internal/secret/native/provider.go",
         "internal/secret/native/provider_darwin.go",
-        "internal/secret/native/provider_keyring.go",
         "internal/secret/native/provider_linux.go",
         "internal/secret/native/provider_other.go",
-        "internal/secret/native/provider_windows.go",
         "internal/secret/native/subprocess.go",
         "internal/secret/program.go",
         "internal/secret/recovery.go",
@@ -1217,9 +1236,7 @@
         "internal/terminal/prompt.go",
         "internal/terminal/render.go",
         "internal/terminal/target.go",
-        "internal/terminal/terminal.go",
-        "internal/terminal/terminal_unix.go",
-        "internal/terminal/terminal_windows.go"
+        "internal/terminal/terminal.go"
       ]
     }
   ],
@@ -1321,7 +1338,9 @@
       ]
     }
   ],
-  "edition": { "palette": "patina" },
+  "edition": {
+    "palette": "patina"
+  },
   "editors": [
     {
       "name": "Yang HENG"

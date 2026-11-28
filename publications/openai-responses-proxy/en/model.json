@@ -5,8 +5,8 @@
   "locale": "en",
   "title": "OpenAI Responses Proxy",
   "question": "How does OpenAI Responses Proxy make a Codex Responses turn portable across third-party providers, and how does it install its own listener and keep it running?",
-  "summary": "A loopback listener rebuilds each Responses request in one closed grammar with store=false, sends it, within one total deadline, to the provider named in its path, and retries only what the failure class allows. A signed release asset installs through one journaled transaction as an immutable generation; an upgrade hands the listening socket to a successor process, and a watchdog under the native service manager restarts a stopped listener.",
-  "scope": "The OpenAI Responses Proxy product as released at v7.0.2: the openai_responses_proxy package with its provider manifest, pyproject.toml and VERSION.",
+  "summary": "A loopback listener rebuilds each Responses request in one closed grammar with store=false, sends it, within one total deadline, to the upstream that its path names, and retries only what the failure class allows. A signed release asset installs through one journaled transaction as an immutable generation; an upgrade hands the listening socket to a successor process, and a watchdog under the native service manager restarts a stopped listener.",
+  "scope": "The OpenAI Responses Proxy product as released at v8.0.0: the openai_responses_proxy package, pyproject.toml and VERSION.",
   "limits": [
     "A component lists only the files under the paths it claims, and a relation only the files that import or call the other component.",
     "A relation shows only an import that carries behaviour, a process call, or a call on an object of the other component that was passed in; imports used only for an exception class, a type, a shared helper or the product's names are not drawn.",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "openai-responses-proxy",
     "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
-    "revision": "f89a05c1ef062760266b09abc63bf86bb9147309"
+    "revision": "bc63eca99a413d2e8b835cdb37649726cd9bb240"
   },
   "coverage": {
     "exclude": [
@@ -99,13 +99,13 @@
   },
   "overview": {
     "claim": "Portable requests, transactional installs",
-    "lead": "A loopback data plane for Codex and other Responses clients: each request is rebuilt store-free and sent to the provider named in its path, and the proxy installs, hands off and supervises its own listener.",
+    "lead": "A loopback data plane for Codex and other Responses clients: each request is rebuilt store-free and sent to the upstream that its path names, and the proxy installs, hands off and supervises its own listener.",
     "course": {
       "steps": [
         {
           "id": "route",
           "label": "The route of one turn",
-          "note": "POST /<provider>/v1/responses and GET /<provider>/v1/models; any other path is refused before upstream I/O",
+          "note": "POST /<upstream>/responses and GET /<upstream>/models; any other path is refused before upstream I/O",
           "stations": [
             {
               "id": "client",
@@ -118,6 +118,11 @@
               "note": "127.0.0.1:8792, loopback only"
             },
             {
+              "id": "upstream-origin",
+              "label": "Origin",
+              "note": "scheme, authority and base path, named in the path"
+            },
+            {
               "id": "body",
               "label": "Body",
               "note": "one Content-Length, within 30 s and 64 MiB"
@@ -128,14 +133,9 @@
               "note": "store=false, provider bindings removed"
             },
             {
-              "id": "delegation",
-              "label": "Delegation",
-              "note": "agent messages readable only on a plaintext route"
-            },
-            {
               "id": "gate",
               "label": "Cooldown",
-              "note": "refused while its provider cools"
+              "note": "refused while its upstream origin cools"
             },
             {
               "id": "exchange",
@@ -151,37 +151,22 @@
           "view": "request-path"
         },
         {
-          "id": "providers",
-          "label": "Providers",
-          "note": "one route each, from the manifest",
-          "text": "The manifest names each route's origin and any wire policy.",
+          "id": "upstreams",
+          "label": "Upstreams",
+          "note": "named by the client's base URL",
+          "text": "A new upstream needs no release, and the proxy stores none.",
           "stations": [
             {
               "branches": [
                 {
-                  "id": "dmxapi",
-                  "label": "dmxapi",
-                  "note": "www.dmxapi.cn"
+                  "id": "https",
+                  "label": "https",
+                  "note": "any host"
                 },
                 {
-                  "id": "ucloud",
-                  "label": "ucloud",
-                  "note": "api.modelverse.cn"
-                },
-                {
-                  "id": "aihubmix",
-                  "label": "aihubmix",
-                  "note": "api.inferera.com"
-                },
-                {
-                  "id": "suheai",
-                  "label": "suheai",
-                  "note": "suheai.cn"
-                },
-                {
-                  "id": "upstream",
-                  "label": "upstream",
-                  "note": "one origin chosen at install"
+                  "id": "http",
+                  "label": "http",
+                  "note": "a loopback host only"
                 }
               ]
             }
@@ -221,10 +206,9 @@
         "items": [
           [
             "429",
-            "relayed without a retry; that provider alone cools for Retry-After, at most 300 s"
+            "relayed without a retry; that upstream origin alone cools for Retry-After, at most 300 s"
           ],
-          ["503 after retries", "relayed; that provider cools briefly before the next probe"],
-          ["DMXAPI 477", "the exact empty_response: one retry with the same bytes"],
+          ["503 after retries", "relayed; that origin cools briefly before the next probe"],
           ["response_failed", "shrinking, pair-safe retries, then one dialogue-only attempt"],
           ["input too long", "one smaller historical projection; current input and images kept"],
           ["lost after sending", "502 upstream_outcome_unknown; the client decides"],
@@ -370,11 +354,6 @@
       "category": "security",
       "icon": "shield-check"
     },
-    "registry": {
-      "label": "route registry",
-      "category": "messagebus",
-      "icon": "list-ordered"
-    },
     "observer": {
       "label": "telemetry",
       "category": "cloud",
@@ -412,7 +391,7 @@
       "label": "Responses client",
       "kind": "client",
       "details": {
-        "for example": "Codex, Hermes or a Responses SDK on a qualified route",
+        "for example": "Codex, Hermes or a Responses SDK qualified by a real journey",
         "owns": "conversations, tool state and per-conversation model selection"
       }
     },
@@ -422,7 +401,7 @@
       "kind": "endpoint",
       "details": {
         "binds": "127.0.0.1 on port 8792 unless installed otherwise",
-        "serves": "/healthz, /control/handoff and /<provider>/v1/responses and models",
+        "serves": "/healthz, /control/handoff and /<upstream>/responses and models",
         "starts": "only from a payload whose digests it has verified"
       },
       "files": [
@@ -437,7 +416,7 @@
       "details": {
         "reads": "one length-framed body within 30 s and 64 MiB",
         "counts": "the running handlers and the admitted Responses requests, which an old listener waits on after a handoff",
-        "controls": "handoff only from a loopback client with a loopback Host and no Origin"
+        "controls": "data and handoff requests only from a loopback client with a loopback Host, no Origin and no Fetch Metadata"
       },
       "files": ["src/openai_responses_proxy/relay/admission.py"]
     },
@@ -446,11 +425,13 @@
       "label": "Responses relay",
       "kind": "relay",
       "details": {
-        "orders": "route, body, projection, delegation, cooldown, admission, exchange, delivery",
+        "orders": "route, body, projection, cooldown, admission, exchange, delivery",
+        "resolves": "the upstream origin and resource from the request path; it stores no upstream",
         "relays": "model catalog reads once, without Responses policy"
       },
       "files": [
         "src/openai_responses_proxy/relay/responses.py",
+        "src/openai_responses_proxy/relay/addressing.py",
         "src/openai_responses_proxy/relay/"
       ]
     },
@@ -468,16 +449,6 @@
         "src/openai_responses_proxy/protocol/replay/",
         "src/openai_responses_proxy/protocol/__init__.py"
       ]
-    },
-    {
-      "id": "agent-delivery",
-      "label": "Agent delivery",
-      "kind": "grammar",
-      "details": {
-        "aliases": "collaboration as collaboration_plaintext on a plaintext route",
-        "restores": "the native namespace once readable arguments arrive"
-      },
-      "files": ["src/openai_responses_proxy/protocol/agent_delivery.py"]
     },
     {
       "id": "bounded-recovery",
@@ -499,12 +470,11 @@
       "kind": "relay",
       "details": {
         "retries": "only what the failure class allows, within one total deadline",
-        "cools": "one provider on a 429 or a 503 after retries"
+        "cools": "one upstream origin on a 429 or a 503 after retries"
       },
       "files": [
         "src/openai_responses_proxy/relay/exchange.py",
-        "src/openai_responses_proxy/relay/cooldown.py",
-        "src/openai_responses_proxy/relay/wire_recovery.py"
+        "src/openai_responses_proxy/relay/cooldown.py"
       ]
     },
     {
@@ -551,25 +521,11 @@
       ]
     },
     {
-      "id": "provider-registry",
-      "label": "Provider registry",
-      "kind": "registry",
-      "details": {
-        "routes": "aihubmix, dmxapi, suheai and ucloud, and one optional /upstream",
-        "policy": "dmxapi retries its exact 477 empty_response once"
-      },
-      "files": [
-        "src/openai_responses_proxy/providers/manifest.toml",
-        "src/openai_responses_proxy/providers/registry.py",
-        "src/openai_responses_proxy/providers/"
-      ]
-    },
-    {
       "id": "provider",
       "label": "Provider endpoint",
       "kind": "provider",
       "details": {
-        "admitted": "DMXAPI, UCloud, AIHubMix and Suhe.AI, or one explicit upstream",
+        "admitted": "any Responses upstream that a client's base URL names; plain HTTP only for a loopback host",
         "owns": "model execution, quotas and availability"
       }
     },
@@ -609,7 +565,7 @@
       "details": {
         "keeps": "runtime-config.json beside each generation; an upgrade keeps its limits",
         "validates": "port, timeouts and body, stream and catalog limits",
-        "refuses": "a config without a body, stream or catalog limit, as 5.0.6 or earlier wrote it",
+        "refuses": "a config without a body, stream or catalog limit, as 5.0.6 or earlier wrote it, or one that holds upstream_base_url",
         "provides": "bounded logs, the loopback transport and clean child environments"
       },
       "files": [
@@ -772,14 +728,14 @@
       "id": "listener-responses-relay",
       "from": "listener",
       "to": "responses-relay",
-      "label": "relays provider routes",
+      "label": "relays requests for the upstream the path names",
       "files": ["src/openai_responses_proxy/serving/server.py"]
     },
     {
       "id": "listener-request-admission",
       "from": "listener",
       "to": "request-admission",
-      "label": "counts handlers, checks controllers",
+      "label": "counts handlers, checks local clients",
       "files": [
         "src/openai_responses_proxy/serving/control.py",
         "src/openai_responses_proxy/serving/entrypoint.py",
@@ -811,24 +767,10 @@
       "files": ["src/openai_responses_proxy/relay/responses.py"]
     },
     {
-      "id": "responses-relay-provider-registry",
-      "from": "responses-relay",
-      "to": "provider-registry",
-      "label": "resolves the route",
-      "files": ["src/openai_responses_proxy/relay/responses.py"]
-    },
-    {
       "id": "responses-relay-replay-projection",
       "from": "responses-relay",
       "to": "replay-projection",
       "label": "projects the body",
-      "files": ["src/openai_responses_proxy/relay/responses.py"]
-    },
-    {
-      "id": "responses-relay-agent-delivery",
-      "from": "responses-relay",
-      "to": "agent-delivery",
-      "label": "selects delegation",
       "files": ["src/openai_responses_proxy/relay/responses.py"]
     },
     {
@@ -860,13 +802,6 @@
       "files": ["src/openai_responses_proxy/relay/exchange.py"]
     },
     {
-      "id": "upstream-exchange-provider-registry",
-      "from": "upstream-exchange",
-      "to": "provider-registry",
-      "label": "applies the wire policy",
-      "files": ["src/openai_responses_proxy/relay/exchange.py"]
-    },
-    {
       "id": "upstream-exchange-response-delivery",
       "from": "upstream-exchange",
       "to": "response-delivery",
@@ -888,27 +823,10 @@
       "files": ["src/openai_responses_proxy/relay/upstream.py"]
     },
     {
-      "id": "provider-registry-provider",
-      "from": "provider-registry",
-      "to": "provider",
-      "label": "names each origin",
-      "files": ["src/openai_responses_proxy/providers/manifest.toml"]
-    },
-    {
       "id": "response-delivery-upstream-transport",
       "from": "response-delivery",
       "to": "upstream-transport",
       "label": "reads within the deadline",
-      "files": [
-        "src/openai_responses_proxy/relay/downstream.py",
-        "src/openai_responses_proxy/relay/sse.py"
-      ]
-    },
-    {
-      "id": "response-delivery-agent-delivery",
-      "from": "response-delivery",
-      "to": "agent-delivery",
-      "label": "restores native delivery",
       "files": [
         "src/openai_responses_proxy/relay/downstream.py",
         "src/openai_responses_proxy/relay/sse.py"
@@ -933,13 +851,6 @@
         "src/openai_responses_proxy/protocol/recovery/execution.py",
         "src/openai_responses_proxy/protocol/recovery/input.py"
       ]
-    },
-    {
-      "id": "agent-delivery-replay-projection",
-      "from": "agent-delivery",
-      "to": "replay-projection",
-      "label": "shares the call grammar",
-      "files": ["src/openai_responses_proxy/protocol/agent_delivery.py"]
     },
     {
       "id": "listener-handoff-runtime-identity",
@@ -1162,23 +1073,20 @@
       "members": [
         "responses-relay",
         "replay-projection",
-        "agent-delivery",
         "bounded-recovery",
         "upstream-exchange",
-        "response-delivery",
-        "provider-registry"
+        "response-delivery"
       ]
     },
     {
       "id": "failures",
-      "title": "Failures bounded per provider",
-      "question": "After an upstream failure, what is retried and reported, and how is only its provider cooled?",
-      "summary": "The Upstream exchange retries only what the failure class allows and cools only its provider on a 429 or a 503 after retries. Telemetry counts failure classes; the Upstream transport never resends a complete request left unanswered.",
+      "title": "Failures bounded per upstream origin",
+      "question": "After an upstream failure, what is retried and reported, and how is only its upstream origin cooled?",
+      "summary": "The Upstream exchange retries only what the failure class allows and cools only its upstream origin on a 429 or a 503 after retries. Telemetry counts failure classes; the Upstream transport never resends a complete request left unanswered.",
       "members": [
         "upstream-exchange",
         "upstream-transport",
         "bounded-recovery",
-        "provider-registry",
         "response-delivery",
         "telemetry",
         "provider"

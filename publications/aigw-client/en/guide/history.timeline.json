@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "51fdc384f0a023696ae08d3f938fa68a05150f5e"
+      "revision": "e228861786b9206074d5fa1728527a277d7d54af"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,14 +42,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1404,
-          "end_line": 1412,
+          "line": 1640,
+          "end_line": 1648,
           "label": "0.1.0"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 1492,
-          "end_line": 1493,
+          "line": 1728,
+          "end_line": 1729,
           "label": "0.1.0"
         }
       ]
@@ -64,8 +64,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1318,
-          "end_line": 1342,
+          "line": 1554,
+          "end_line": 1578,
           "label": "0.2.0"
         }
       ]
@@ -80,8 +80,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1290,
-          "end_line": 1316,
+          "line": 1526,
+          "end_line": 1552,
           "label": "0.3.0"
         }
       ]
@@ -95,8 +95,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1069,
-          "end_line": 1095,
+          "line": 1305,
+          "end_line": 1331,
           "label": "0.4.1"
         }
       ]
@@ -110,8 +110,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1005,
-          "end_line": 1015,
+          "line": 1241,
+          "end_line": 1251,
           "label": "0.4.5"
         }
       ]
@@ -126,8 +126,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 989,
-          "end_line": 1003,
+          "line": 1225,
+          "end_line": 1239,
           "label": "0.4.6"
         }
       ]
@@ -141,8 +141,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 978,
-          "end_line": 987,
+          "line": 1214,
+          "end_line": 1223,
           "label": "0.4.7"
         }
       ]
@@ -156,8 +156,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 956,
-          "end_line": 966,
+          "line": 1192,
+          "end_line": 1202,
           "label": "0.4.9"
         }
       ]
@@ -172,8 +172,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 837,
-          "end_line": 862,
+          "line": 1073,
+          "end_line": 1098,
           "label": "0.4.16"
         }
       ]
@@ -187,8 +187,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 806,
-          "end_line": 835,
+          "line": 1042,
+          "end_line": 1071,
           "label": "0.4.17"
         }
       ]
@@ -203,8 +203,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 689,
-          "end_line": 730,
+          "line": 925,
+          "end_line": 966,
           "label": "0.5.0"
         }
       ]
@@ -218,8 +218,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 659,
-          "end_line": 667,
+          "line": 895,
+          "end_line": 903,
           "label": "0.6.1"
         }
       ]
@@ -234,8 +234,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 437,
-          "end_line": 658,
+          "line": 673,
+          "end_line": 894,
           "label": "0.7.0"
         }
       ]
@@ -249,8 +249,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 398,
-          "end_line": 436,
+          "line": 634,
+          "end_line": 672,
           "label": "0.7.1"
         }
       ]
@@ -264,8 +264,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 360,
-          "end_line": 396,
+          "line": 596,
+          "end_line": 632,
           "label": "0.7.2"
         }
       ]
@@ -280,8 +280,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 293,
-          "end_line": 358,
+          "line": 529,
+          "end_line": 594,
           "label": "0.8.0"
         }
       ]
@@ -295,8 +295,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 271,
-          "end_line": 291,
+          "line": 507,
+          "end_line": 527,
           "label": "0.8.1"
         }
       ]
@@ -311,8 +311,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 214,
-          "end_line": 269,
+          "line": 450,
+          "end_line": 505,
           "label": "0.8.2"
         }
       ]
@@ -327,8 +327,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 166,
-          "end_line": 212,
+          "line": 402,
+          "end_line": 448,
           "label": "0.8.3"
         }
       ]
@@ -342,8 +342,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 135,
-          "end_line": 164,
+          "line": 371,
+          "end_line": 400,
           "label": "0.9.0"
         }
       ]
@@ -358,9 +358,41 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 14,
-          "end_line": 133,
+          "line": 250,
+          "end_line": 369,
           "label": "0.10.0"
+        }
+      ]
+    },
+    {
+      "id": "v0110",
+      "at": "2026-11-27T20:58:32+08:00",
+      "lane": "catalog",
+      "kind": "change",
+      "title": "v0.11.0 Each model's context window",
+      "detail": "A model declares its context window, 1,000,000 tokens by default, which AIGW gives Codex for the selected model and Hermes for every listed model. Breaking: a client whose executable is gone stops instead of taking another, and Windows and Intel Macs are no longer supported.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 108,
+          "end_line": 248,
+          "label": "0.11.0"
+        }
+      ]
+    },
+    {
+      "id": "v0120",
+      "at": "2026-11-28T09:26:40+08:00",
+      "lane": "clients",
+      "kind": "change",
+      "title": "v0.12.0 A client declares its program",
+      "detail": "Breaking: aigw.toml moves to version 9. A client declares its program by a path or an editor's extensions directory, or adopts the one found, once. Forwarding names a service's root, and Codex always receives AIGW's own provider table.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 14,
+          "end_line": 106,
+          "label": "0.12.0"
         }
       ]
     }

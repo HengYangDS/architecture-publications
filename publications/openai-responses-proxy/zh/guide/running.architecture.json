@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
       "provider": "github",
-      "revision": "f89a05c1ef062760266b09abc63bf86bb9147309"
+      "revision": "bc63eca99a413d2e8b835cdb37649726cd9bb240"
     }
   },
   "components": [
@@ -87,8 +87,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/serving/entrypoint.py",
-          "line": 171,
-          "end_line": 203,
+          "line": 151,
+          "end_line": 183,
           "label": "运行"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/runtime_spec.py",
-          "line": 153,
-          "end_line": 160,
+          "line": 149,
+          "end_line": 156,
           "label": "激活"
         }
       ]

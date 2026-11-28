@@ -7,69 +7,65 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 - [An upgrade keeps admitting turns](block:p-handoff): the successor process inherits the listening socket, and the old one finishes what it accepted.[](source:readme-handoff)
 - [Every installation step is journaled](block:p-install), so `recover` finishes or undoes an interrupted one.[](source:arch-completion)
 
-@answer scope="OpenAI Responses Proxy v7.0.2 · commit f89a05c · its source and its own documents"
+@answer scope="OpenAI Responses Proxy v8.0.0 · commit bc63eca · its source and its own documents"
 @meta locale=en style=editorial
-@source readme-what title="What the proxy is" path="README.md" lines=3:7
-@source readme-portable title="No conversation storage is edited" path="README.md" lines=12:13
-@source readme-boundary title="Product boundary" path="README.md" lines=26:38
-@source readme-linux title="Supervision on Linux" path="README.md" lines=52:62
-@source readme-macos title="The watchdog on macOS" path="README.md" lines=64:72
-@source readme-install title="Installing a signed asset" path="README.md" lines=86:89
-@source readme-install-tx title="Installation as a transaction" path="README.md" lines=101:109
-@source readme-routes title="Provider routes" path="README.md" lines=122:133
-@source readme-upstream title="One explicit upstream" path="README.md" lines=135:147
-@source readme-status title="What status reports" path="README.md" lines=188:202
-@source readme-purge title="Purging exact files" path="README.md" lines=218:224
-@source readme-generations title="Generations and the selector" path="README.md" lines=226:233
-@source readme-handoff title="Admission-preserving handoff" path="README.md" lines=238:245
-@source readme-compat title="Compatibility behavior" path="README.md" lines=253:272
-@source readme-deadline title="One exchange deadline" path="README.md" lines=274:293
-@source readme-ucloud title="Plaintext delegation on UCloud" path="README.md" lines=295:303
-@source readme-request title="Request boundary" path="README.md" lines=307:332
-@source readme-body title="Body admission" path="README.md" lines=334:341
-@source readme-evidence title="Runtime evidence" path="README.md" lines=363:373
+@source readme-what title="What the proxy is" path="README.md" lines=3:6
+@source readme-portable title="No conversation storage is edited" path="README.md" lines=11:12
+@source readme-boundary title="Product boundary" path="README.md" lines=22:34
+@source readme-linux title="Supervision on Linux" path="README.md" lines=48:58
+@source readme-macos title="The watchdog on macOS" path="README.md" lines=60:68
+@source readme-install title="Installing a signed asset" path="README.md" lines=82:85
+@source readme-install-tx title="Installation as a transaction" path="README.md" lines=97:105
+@source readme-routes title="A base URL that names the upstream" path="README.md" lines=123:136
+@source readme-status title="What status reports" path="README.md" lines=177:191
+@source readme-purge title="Purging exact files" path="README.md" lines=207:213
+@source readme-generations title="Generations and the selector" path="README.md" lines=215:222
+@source readme-handoff title="Admission-preserving handoff" path="README.md" lines=227:234
+@source readme-compat title="Compatibility behavior" path="README.md" lines=240:260
+@source readme-deadline title="One exchange deadline" path="README.md" lines=262:281
+@source readme-agent title="Collaboration messages as sent" path="README.md" lines=283:286
+@source readme-request title="Request boundary" path="README.md" lines=290:321
+@source readme-body title="Body admission" path="README.md" lines=323:330
+@source readme-evidence title="Runtime evidence" path="README.md" lines=352:362
 @source arch-authority title="Who owns which state" path="docs/architecture/authority-and-runtime-boundary.md" lines=40:50
 @source arch-projection title="What the projection removes" path="docs/architecture/authority-and-runtime-boundary.md" lines=226:239
 @source arch-agent title="Encrypted agent messages" path="docs/architecture/authority-and-runtime-boundary.md" lines=248:257
 @source arch-live title="The live-response boundary" path="docs/architecture/authority-and-runtime-boundary.md" lines=259:263
-@source arch-recovery title="Recovery ownership" path="docs/architecture/authority-and-runtime-boundary.md" lines=287:304
-@source arch-commit title="Commit, prewarm, handoff, rebind" path="docs/architecture/authority-and-runtime-boundary.md" lines=328:342
-@source arch-selector title="One selector" path="docs/architecture/authority-and-runtime-boundary.md" lines=344:357
-@source arch-completion title="Completion and recovery" path="docs/architecture/authority-and-runtime-boundary.md" lines=359:366
-@source arch-deletion title="Exact-file deletion" path="docs/architecture/authority-and-runtime-boundary.md" lines=368:378
+@source arch-recovery title="Recovery ownership" path="docs/architecture/authority-and-runtime-boundary.md" lines=272:283
+@source arch-commit title="Commit, prewarm, handoff, rebind" path="docs/architecture/authority-and-runtime-boundary.md" lines=312:326
+@source arch-selector title="One selector" path="docs/architecture/authority-and-runtime-boundary.md" lines=328:341
+@source arch-completion title="Completion and recovery" path="docs/architecture/authority-and-runtime-boundary.md" lines=343:350
+@source arch-deletion title="Exact-file deletion" path="docs/architecture/authority-and-runtime-boundary.md" lines=352:362
 @source threat-assets title="Assets and the client's credential" path="docs/architecture/threat-model.md" lines=18:30
-@source threat-boundaries title="Trust boundaries" path="docs/architecture/threat-model.md" lines=32:44
+@source threat-boundaries title="Trust boundaries" path="docs/architecture/threat-model.md" lines=32:43
 @source threat-residual title="Residual risks" path="docs/architecture/threat-model.md" lines=72:85
 @source dr1-decision title="DR-0001: two products, two owners" path="docs/decisions/dr-0001-control-plane-data-plane-boundary.md" lines=23:29
-@source dr2-decision title="DR-0002: stateless, portable replay" path="docs/decisions/dr-0002-provider-portable-stateless-replay.md" lines=23:57
-@source dr2-consequence title="DR-0002: continuity from replayed dialogue" path="docs/decisions/dr-0002-provider-portable-stateless-replay.md" lines=68:77
-@source dr3-decision title="DR-0003: recovery scoped by provider" path="docs/decisions/dr-0003-provider-scoped-recovery-and-backpressure.md" lines=22:35
+@source dr2-decision title="DR-0002: stateless, portable replay" path="docs/decisions/dr-0002-provider-portable-stateless-replay.md" lines=23:48
+@source dr2-consequence title="DR-0002: continuity from replayed dialogue" path="docs/decisions/dr-0002-provider-portable-stateless-replay.md" lines=59:68
+@source dr3-decision title="DR-0003: recovery scoped by upstream origin" path="docs/decisions/dr-0003-provider-scoped-recovery-and-backpressure.md" lines=23:38
 @source dr6-resend title="DR-0006: a sent request is not sent again" path="docs/decisions/dr-0006-semantic-fit-before-framework-adoption.md" lines=200:228
-@source code-route title="Route dispatch" path="src/openai_responses_proxy/serving/server.py" lines=176:193
-@source code-body title="Reading one framed body" path="src/openai_responses_proxy/relay/responses.py" lines=126:144
-@source code-project title="Projection and delegation" path="src/openai_responses_proxy/relay/responses.py" lines=250:289
-@source code-gate title="Cooldown, then admission" path="src/openai_responses_proxy/relay/responses.py" lines=314:340
-@source code-cooldown title="Provider cooldowns" path="src/openai_responses_proxy/relay/responses.py" lines=40:86
-@source code-deadline title="One exchange, one deadline" path="src/openai_responses_proxy/relay/exchange.py" lines=122:152
-@source code-http-error title="Classified upstream errors" path="src/openai_responses_proxy/relay/exchange.py" lines=369:438
-@source code-transport-error title="Transport failures" path="src/openai_responses_proxy/relay/exchange.py" lines=441:478
+@source code-route title="Route dispatch" path="src/openai_responses_proxy/serving/server.py" lines=171:195
+@source code-body title="Reading one framed body" path="src/openai_responses_proxy/relay/responses.py" lines=106:124
+@source code-project title="Projection" path="src/openai_responses_proxy/relay/responses.py" lines=223:246
+@source code-gate title="Cooldown, then admission" path="src/openai_responses_proxy/relay/responses.py" lines=270:296
+@source code-cooldown title="Cooldowns per upstream origin" path="src/openai_responses_proxy/relay/responses.py" lines=30:66
+@source code-deadline title="One exchange, one deadline" path="src/openai_responses_proxy/relay/exchange.py" lines=120:150
+@source code-http-error title="Classified upstream errors" path="src/openai_responses_proxy/relay/exchange.py" lines=367:429
+@source code-transport-error title="Transport failures" path="src/openai_responses_proxy/relay/exchange.py" lines=432:469
 @source code-outcome title="A failure after a complete send" path="src/openai_responses_proxy/relay/upstream.py" lines=409:422
 @source code-reused title="A failed send on a reused connection" path="src/openai_responses_proxy/relay/upstream.py" lines=346:387
-@source code-reopen title="Only a pre-content failure is reopened" path="src/openai_responses_proxy/relay/sse.py" lines=287:294
-@source code-hold title="Events held before content" path="src/openai_responses_proxy/relay/sse.py" lines=131:174
-@source code-stream-terminals title="The events that end a stream" path="src/openai_responses_proxy/relay/sse.py" lines=35:36
-@source code-stream-end title="The end of a committed stream" path="src/openai_responses_proxy/relay/sse.py" lines=335:339
-@source code-stream-class title="The failure class of a failed stream" path="src/openai_responses_proxy/relay/sse.py" lines=346:360
-@source code-stream-log title="The log line for a stream's ending" path="src/openai_responses_proxy/relay/sse.py" lines=364:384
-@source code-json-terminal title="The log line for a delivered JSON response" path="src/openai_responses_proxy/relay/downstream.py" lines=466:469
-@source code-diagnostic title="Codes and event types named in diagnostics" path="src/openai_responses_proxy/protocol/response.py" lines=93:113
+@source code-reopen title="Only a pre-content failure is reopened" path="src/openai_responses_proxy/relay/sse.py" lines=276:283
+@source code-hold title="Events held before content" path="src/openai_responses_proxy/relay/sse.py" lines=128:170
+@source code-stream-terminals title="The events that end a stream" path="src/openai_responses_proxy/relay/sse.py" lines=34:35
+@source code-stream-end title="The end of a committed stream" path="src/openai_responses_proxy/relay/sse.py" lines=324:328
+@source code-stream-class title="The failure class of a failed stream" path="src/openai_responses_proxy/relay/sse.py" lines=335:349
+@source code-stream-log title="The log line for a stream's ending" path="src/openai_responses_proxy/relay/sse.py" lines=353:373
+@source code-json-terminal title="The log line for a delivered JSON response" path="src/openai_responses_proxy/relay/downstream.py" lines=446:449
+@source code-diagnostic title="Codes and event types named in diagnostics" path="src/openai_responses_proxy/protocol/response.py" lines=92:112
 @source code-disposition title="Which statuses are retried" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=56:92
 @source code-compact title="Pair-safe compaction" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=105:156
 @source code-input-variant title="The input-variant contract" path="src/openai_responses_proxy/protocol/recovery/input.py" lines=90:100
-@source code-capacity title="Input-length and media-budget refusals" path="src/openai_responses_proxy/relay/exchange.py" lines=390:401
-@source code-dmx title="DMXAPI empty_response" path="src/openai_responses_proxy/providers/policies/dmxapi.py" lines=16:34
-@source code-manifest title="The provider manifest" path="src/openai_responses_proxy/providers/manifest.toml" lines=1:15
-@source code-plaintext title="Selecting plaintext delegation" path="src/openai_responses_proxy/protocol/agent_delivery.py" lines=111:129
+@source code-capacity title="Input-length and media-budget refusals" path="src/openai_responses_proxy/relay/exchange.py" lines=382:393
 @source code-signature title="Verifying the signature" path="src/openai_responses_proxy/lifecycle/artifact.py" lines=295:333
 @source code-artifact title="Admitting the archive" path="src/openai_responses_proxy/lifecycle/artifact.py" lines=223:292
 @source code-begin title="Beginning a transaction" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=393:470
@@ -97,9 +93,10 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 @source code-commit title="Crossing COMMIT" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=335:371
 @source code-old-finishes title="The old listener finishes" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=398:429
 @source code-child title="The successor's side" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=480:538
-@source code-local title="Control from a local controller only" path="src/openai_responses_proxy/relay/admission.py" lines=96:106
+@source code-local title="Requests from a local client only" path="src/openai_responses_proxy/relay/admission.py" lines=96:111
+@source code-address title="The upstream that a path names" path="src/openai_responses_proxy/relay/addressing.py" lines=36:61
 @source code-selector title="Reading the selector" path="src/openai_responses_proxy/serving/identity.py" lines=110:133
-@source code-selected title="The selected generation" path="src/openai_responses_proxy/lifecycle/generation.py" lines=73:78
+@source code-selected title="The selected generation" path="src/openai_responses_proxy/lifecycle/generation.py" lines=74:79
 @source code-no-selection title="Status without a selected generation" path="src/openai_responses_proxy/lifecycle/control.py" lines=240:247
 @source code-journal-paths title="The journal beside the data root" path="src/openai_responses_proxy/lifecycle/records.py" lines=26:38
 @source code-command-path title="The command path" path="src/openai_responses_proxy/lifecycle/command.py" lines=36:45
@@ -109,27 +106,29 @@ OpenAI Responses Proxy is a loopback listener between a Responses client, such a
 @source code-plist title="The launch agent" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=125:138
 @source code-domains title="GUI or Background domain" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=66:87
 @source code-unit title="The systemd user unit" path="src/openai_responses_proxy/lifecycle/supervision/linux.py" lines=21:35
-@source code-roots title="Data and state roots" path="src/openai_responses_proxy/runtime/config.py" lines=149:172
+@source code-roots title="Data and state roots" path="src/openai_responses_proxy/runtime/config.py" lines=147:170
 @source code-watchdog title="The watchdog loop" path="src/openai_responses_proxy/lifecycle/supervision/watchdog.py" lines=91:129
-@source code-activate-carrier title="Each role loads its carrier" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=153:160
-@source code-carrier-schema title="A carrier must hold every field" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=163:174
+@source code-activate-carrier title="Each role loads its carrier" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=149:156
+@source code-carrier-schema title="A carrier must hold every field" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=159:166
+@source code-earlier-shape title="A payload of an earlier shape" path="src/openai_responses_proxy/lifecycle/generation.py" lines=98:103
+@source readme-eligibility title="A payload of 7.0.2 or earlier" path="README.md" lines=116:119
 @source code-status-next title="One next command per state" path="src/openai_responses_proxy/cli/outcome.py" lines=37:43
 @source code-lock title="One lifecycle writer" path="src/openai_responses_proxy/cli/application.py" lines=67:86
 @source code-options title="What the port and deadline options accept" path="src/openai_responses_proxy/cli/options.py" lines=32:73
-@source readme-port title="The default port" path="README.md" lines=91:99
-@source readme-budgets title="Limits a fresh installation may choose" path="README.md" lines=343:359
-@source code-defaults title="Runtime defaults" path="src/openai_responses_proxy/runtime/config.py" lines=68:84
+@source readme-port title="The default port" path="README.md" lines=87:95
+@source readme-budgets title="Limits a fresh installation may choose" path="README.md" lines=332:348
+@source code-defaults title="Runtime defaults" path="src/openai_responses_proxy/runtime/config.py" lines=66:82
 @source code-platforms title="Release platforms" path="src/openai_responses_proxy/product_identity.py" lines=13:20
-@source changelog-100 title="The 1.0.0 release" path="CHANGELOG.md" lines=2212:2218
-@source changelog-202 title="Renamed in 2.0.2" path="CHANGELOG.md" lines=1607:1617
-@source changelog-500 title="Renamed in 5.0.0" path="CHANGELOG.md" lines=707:714
-@source changelog-5111 title="The 5.1.11 release" path="CHANGELOG.md" lines=278:291
-@source changelog-5112 title="The 5.1.12 release" path="CHANGELOG.md" lines=256:276
-@source changelog-600 title="The 6.0.0 release" path="CHANGELOG.md" lines=200:254
-@source changelog-601 title="The 6.0.1 release" path="CHANGELOG.md" lines=160:198
-@source changelog-602 title="The 6.0.2 release" path="CHANGELOG.md" lines=107:158
-@source changelog-603 title="The 6.0.3 release" path="CHANGELOG.md" lines=77:105
-@source changelog-702 title="The 7.0.2 release" path="CHANGELOG.md" lines=11:22
+@source changelog-100 title="The 1.0.0 release" path="CHANGELOG.md" lines=2256:2262
+@source changelog-202 title="Renamed in 2.0.2" path="CHANGELOG.md" lines=1651:1661
+@source changelog-500 title="Renamed in 5.0.0" path="CHANGELOG.md" lines=751:758
+@source changelog-5111 title="The 5.1.11 release" path="CHANGELOG.md" lines=322:335
+@source changelog-5112 title="The 5.1.12 release" path="CHANGELOG.md" lines=300:320
+@source changelog-600 title="The 6.0.0 release" path="CHANGELOG.md" lines=244:298
+@source changelog-601 title="The 6.0.1 release" path="CHANGELOG.md" lines=204:242
+@source changelog-602 title="The 6.0.2 release" path="CHANGELOG.md" lines=151:202
+@source changelog-603 title="The 6.0.3 release" path="CHANGELOG.md" lines=121:149
+@source changelog-800 title="The 8.0.0 release" path="CHANGELOG.md" lines=11:53
 
 ## Who sends traffic through the proxy, and what does it leave to others? {#p-context}
 
@@ -151,9 +150,9 @@ The listener binds 127.0.0.1 only and does not authenticate requests.[](source:t
 
 @steps id=context-steps
 | step-ctx-client | Responses client | Codex, Hermes or a Responses SDK, admitted only after its request, replay, streaming, error and installed-client journeys pass.[](source:readme-boundary) | context-map | ctx-client |
-| step-ctx-control | Client control plane | Owns credentials, provider selection and client configuration. It points the client at one loopback URL per provider.[](source:readme-boundary)[](source:readme-routes) | context-map | ctx-control |
+| step-ctx-control | Client control plane | Owns credentials, provider selection and client configuration. It writes the client's base URL, which names the upstream after the loopback address.[](source:readme-boundary)[](source:readme-routes) | context-map | ctx-control |
 | step-ctx-proxy | OpenAI Responses Proxy | Listens on 127.0.0.1 only and holds no credential of its own; the client's Authorization header goes upstream for one request.[](source:threat-boundaries)[](source:threat-assets) | context-map | ctx-proxy |
-| step-ctx-providers | Provider endpoints | The manifest names DMXAPI, UCloud, AIHubMix and Suhe.AI; one explicit upstream can be added at installation.[](source:code-manifest)[](source:readme-upstream) | context-map | ctx-providers |
+| step-ctx-providers | Provider endpoints | Any Responses upstream that the client's base URL names; a new one needs no proxy release.[](source:readme-routes) Plain HTTP is allowed only for a loopback upstream.[](source:threat-boundaries) | context-map | ctx-providers |
 | step-ctx-operator | Operator | Installs a signed release asset with a trust anchor supplied through a separate trusted channel.[](source:readme-install) | context-map | ctx-operator |
 | step-ctx-service | Native service manager | Keeps the watchdog running: launchd on macOS, a systemd user manager on Linux.[](source:readme-macos)[](source:readme-linux) | context-map | ctx-service |
 
@@ -168,7 +167,7 @@ Each kind of state has one owner, and the proxy writes only its own.[](source:ar
 
 ## What happens to one turn? {#p-turn}
 
-Only `POST /<provider>/v1/responses` and `GET /<provider>/v1/models` are admitted. Headers, bodies and query parameters cannot select another host.[](source:readme-request)
+Only `POST /<upstream>/responses` and `GET /<upstream>/models` are admitted, where `<upstream>` is a scheme, an authority and a base path. Headers, bodies and query parameters cannot select another host.[](source:readme-request)[](source:code-address) A request from a web page gets HTTP 403.[](source:readme-request)[](source:code-local)
 
 @sequence id=turn-flow title="One Responses turn through the proxy"
 | actor turn-client | Responses client | frontend |
@@ -179,7 +178,7 @@ Only `POST /<provider>/v1/responses` and `GET /<provider>/v1/models` are admitte
 | actor turn-delivery | Response delivery | backend | source:code-hold |
 | actor turn-provider | Provider endpoint | external |
 | phase | Admit |
-| turn-client | turn-listener | POST /dmxapi/v1/responses |
+| turn-client | turn-listener | POST /https/api.example.com/v1/responses |
 | turn-listener | turn-relay | route and body |
 | turn-relay | turn-projection | project the body |
 | turn-projection | turn-relay | portable bytes | return |
@@ -193,10 +192,10 @@ Only `POST /<provider>/v1/responses` and `GET /<provider>/v1/models` are admitte
 | turn-delivery | turn-client | validated events | return |
 
 @steps id=turn-steps
-| step-turn-route | Loopback listener | Resolves the provider from the path and rejects encoded, dotted or unrelated paths before any upstream I/O.[](source:readme-request)[](source:code-route) | turn-flow | turn-listener | | turn-client-to-turn-listener-1,turn-listener-to-turn-relay-1 |
+| step-turn-route | Loopback listener | Refuses a web page's request with 403, resolves the upstream from the path, and rejects encoded, dotted or unrelated paths before any upstream I/O.[](source:readme-request)[](source:code-route)[](source:code-address) | turn-flow | turn-listener | | turn-client-to-turn-listener-1,turn-listener-to-turn-relay-1 |
 | step-turn-body | Responses relay | Reads one ASCII Content-Length body within 30 s and 64 MiB; a slower or larger body gets 408 or 413.[](source:readme-body)[](source:code-body) | turn-flow | turn-relay | | turn-listener-to-turn-relay-1 |
-| step-turn-project | Replay projection | Rebuilds the body in the portable grammar, then selects plaintext delegation when the route asks for it.[](source:code-project) | turn-flow | turn-projection | | turn-relay-to-turn-projection-1,turn-projection-to-turn-relay-1 |
-| step-turn-gate | Responses relay | A cooling provider answers 429 or 503 with Retry-After. Otherwise the turn is admitted and counted as one active Response.[](source:code-cooldown)[](source:code-gate) | turn-flow | turn-relay | | turn-relay-to-turn-exchange-1 |
+| step-turn-project | Replay projection | Rebuilds the body in the portable grammar, or refuses unproved structure with 400 before any upstream I/O.[](source:code-project) | turn-flow | turn-projection | | turn-relay-to-turn-projection-1,turn-projection-to-turn-relay-1 |
+| step-turn-gate | Responses relay | A cooling upstream origin answers 429 or 503 with Retry-After. Otherwise the turn is admitted and counted as one active Response.[](source:code-cooldown)[](source:code-gate) | turn-flow | turn-relay | | turn-relay-to-turn-exchange-1 |
 | step-turn-send | Upstream exchange | One deadline, 900 s by default, bounds headers, retries, reads and every write to the client.[](source:readme-deadline)[](source:code-deadline) | turn-flow | turn-exchange | | turn-exchange-to-turn-provider-1,turn-provider-to-turn-exchange-1,turn-exchange-to-turn-relay-1 |
 | step-turn-deliver | Response delivery | Validates each event before writing it, and holds events that come before any content.[](source:code-hold)[](source:arch-live) | turn-flow | turn-delivery | | turn-relay-to-turn-delivery-1,turn-delivery-to-turn-client-1 |
 
@@ -213,8 +212,8 @@ Continuity comes from the dialogue the client replays, not from a provider's sto
 | step-pr-controls | Current-turn controls | An empty additional_tools list stays empty, also during native compaction.[](source:dr2-decision) | projection-tree | pr-controls |
 | step-pr-refused | Refused before upstream I/O | Unknown or unproved structure fails locally with 400 instead of being guessed or silently dropped.[](source:dr2-decision)[](source:arch-projection) | projection-tree | pr-refused |
 
-@callout level=note title="Readable delegation on UCloud"
-| The UCloud route aliases the collaboration namespace before generation and restores it once readable arguments arrive. It never relabels ciphertext as plaintext.[](source:readme-ucloud)[](source:code-plaintext) |
+@callout level=note title="Collaboration messages as the client sent them"
+| Every upstream receives Codex's native collaboration messages as the client sent them. An encrypted message remains subject to its original provider's decryption support.[](source:readme-agent)[](source:dr2-decision) |
 
 ## When may a request be sent again? {#p-resend}
 
@@ -229,13 +228,13 @@ A provider that received a complete request may already be working on it. Sendin
 | step-ex-unknown | Outcome unknown | The client receives one `502 upstream_outcome_unknown` and decides whether to retry its turn.[](source:dr6-resend) | exchange-life | ex-unknown |
 | step-ex-expired | Deadline expired | Before commitment the client gets `504 upstream_deadline_exceeded`; after it, the stream closes without a terminator.[](source:readme-deadline) | exchange-life | ex-expired |
 
-Each upstream error has one bounded answer, and a cooldown holds back only the provider that caused it.[](source:dr3-decision)[](source:arch-recovery)
+Each upstream error has one bounded answer, and a cooldown holds back only the upstream origin that caused it.[](source:dr3-decision)[](source:arch-recovery)
 
 | Upstream answer                       | What the proxy does                                                                                                                                                      |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `429`                                 | Relays it once, then cools that provider for its Retry-After, at most 300 s[](source:code-http-error)                                                                    |
-| `503` after bounded retries           | Relays the original error, then briefly cools that provider[](source:code-disposition)[](source:code-http-error)                                                         |
-| DMXAPI `477 empty_response`           | Sends the same projected bytes once more[](source:code-dmx)                                                                                                              |
+| `429`                                 | Relays it once, then cools that upstream origin for its Retry-After, at most 300 s[](source:code-http-error)                                                             |
+| `503` after bounded retries           | Relays the original error, then briefly cools that upstream origin[](source:code-disposition)[](source:code-http-error)                                                  |
+| `477`                                 | Relays it once, like any other client error[](source:dr3-decision)                                                                                                       |
 | `response_failed`                     | Strictly shrinking, pair-safe retries, then at most one dialogue-only attempt[](source:code-compact)                                                                     |
 | Invalid `input` union                 | One smaller current-dialogue attempt, then stops[](source:code-input-variant)                                                                                            |
 | Input too long or media over budget   | One attempt without older history, if the current input allows, then stops[](source:code-capacity)[](source:code-compact)                                                |
@@ -261,6 +260,9 @@ Installation never downloads dependencies or reads provider credentials.[](sourc
 
 @callout level=warning title="An installation from 5.0.6 or earlier is refused"
 | A runtime configuration without the body, catalog and SSE limits is refused, and so is a payload manifest without its receipt digest. On macOS a launch agent without the Aqua and Background session pair is refused too. Each fails with its reason and changes nothing. Remove such an installation with the release that wrote it, then install this one.[](source:code-carrier-schema)[](source:changelog-600) |
+
+@callout level=warning title="An installation from 7.0.2 or earlier is refused"
+| The payload of 8.0.0 holds no `providers.toml`, and a generation that 7.0.2 or earlier wrote is refused. The refusal names `uninstall --purge` and changes nothing. Remove such an installation with its own `uninstall --purge`, then install this release.[](source:readme-eligibility)[](source:code-earlier-shape)[](source:changelog-800) |
 
 ## How does an upgrade replace the listener without dropping a turn? {#p-handoff}
 
@@ -321,7 +323,7 @@ These are the macOS defaults; Linux follows XDG directories.[](source:code-roots
 
 ## How did the proxy get here? {#p-history}
 
-The proxy went from 1.0.0 in July 2026 to 7.0.2 in November, and changed its name twice on the way.[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-702) Below are twenty-one of its releases that changed what a client or an operator meets.
+The proxy went from 1.0.0 in July 2026 to 8.0.0 in November, and changed its name twice on the way.[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-800) Below are twenty-two of its releases that changed what a client or an operator meets.
 
 @diagram timeline id=history source=history.timeline.json title="How the proxy got here"
 

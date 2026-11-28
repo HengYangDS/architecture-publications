@@ -6,7 +6,7 @@
   "title": "ETHOS",
   "question": "How does ETHOS turn official intent and fresh facts into proven repository change, and what does it hold every repository to?",
   "summary": "It compiles an OpenSpec Change, fresh facts and prior Attestations into one TransitionPlan, and admits each effect only on a pass. Every governed repository, ETHOS itself included, keeps to one declared structure.",
-  "scope": "The ETHOS product as released at v0.2.0-beta.11: the src/ethos package, its system declarations and the repository's own .ethos binding.",
+  "scope": "The ETHOS product as released at v0.2.0-beta.12: the src/ethos package, its system declarations and the repository's own .ethos binding.",
   "limits": [
     "A component lists only the files under the paths it claims, and a relation only the modules that import the other component.",
     "Relations show only source imports and process calls, not runtime order or design intent."
@@ -14,7 +14,7 @@
   "repository": {
     "name": "ethos",
     "url": "https://github.com/HengYangDS/ethos.git",
-    "revision": "e4d9d04d36a089aae3924f0dc83f2a990493e852"
+    "revision": "cdb51d469930a57771d9729713b7ec979938ce50"
   },
   "coverage": {
     "include": ["src/ethos/", "system/", ".ethos/"]
@@ -478,7 +478,8 @@
         "system/gates.toml",
         "system/repository-gates.toml",
         "src/ethos/contracts/gate_providers.py",
-        "src/ethos/contracts/gate-providers.toml"
+        "src/ethos/contracts/gate-providers.toml",
+        "src/ethos/contracts/gate-inputs.toml"
       ]
     },
     {

@@ -6,7 +6,7 @@
   "title": "AIGW 统一客户端配置",
   "question": "怎样把一份审阅过的配置，带防护地写入每个已准入客户端的文件？",
   "summary": "提供商、模型和客户端的模型选择都放在一份配置 aigw.toml 里，改动时加锁；提供商令牌放在选定的一个存储里。写入客户端文件时走统一的适配器接口，只改写其中归 AIGW 管的设置；整个写入是一次带防护的事务，中途出错会补偿。请求绝不经过 AIGW。",
-  "scope": "v0.10.0 发布版本的 AIGW 程序：生产代码的 Go 包、命令入口、团队文件 manifests/team.toml 和 go.mod。",
+  "scope": "v0.12.0 发布版本的 AIGW 程序：生产代码的 Go 包、命令入口、团队文件 manifests/team.toml 和 go.mod。",
   "limits": [
     "组件只列出它认领的路径下的生产代码文件，关系只列出导入了对方的那些包的文件。",
     "测试及其输入，以及仓库的工具、CI 和文档，都不在范围之内。"
@@ -14,7 +14,7 @@
   "repository": {
     "name": "aigw-cli",
     "url": "https://github.com/HengYangDS/aigw-cli.git",
-    "revision": "51fdc384f0a023696ae08d3f938fa68a05150f5e"
+    "revision": "e228861786b9206074d5fa1728527a277d7d54af"
   },
   "coverage": {
     "include": ["cmd/", "internal/", "manifests/", "go.mod"],
@@ -113,7 +113,7 @@
           "at": "provider",
           "id": "tokens",
           "label": "令牌",
-          "note": "密钥环、DPAPI 或仅属主可读写的文件"
+          "note": "密钥环或仅属主可读写的文件"
         },
         {
           "at": "model",
@@ -377,7 +377,8 @@
       "details": {
         "操作": ["发现", "收敛", "规划", "应用", "检视", "验证", "撤回"],
         "测试": "每个适配器都要通过同一套契约测试",
-        "记录": "把客户端文件显示的模型选择写进 AIGW 放在旁边的记录，不改动文件本身"
+        "记录": "把客户端文件显示的模型选择写进 AIGW 放在旁边的记录，不改动文件本身",
+        "程序": "按声明确定每个客户端的程序；声明的程序不见了，就让这个客户端停下"
       },
       "files": [
         "internal/adapter/registry.go",
@@ -388,6 +389,8 @@
         "internal/adapter/record.go",
         "internal/adapter/selection.go",
         "internal/adapter/target_error.go",
+        "internal/adapter/program.go",
+        "internal/adapter/extensions.go",
         "internal/adapter/contract/",
         "internal/adapter/surface/",
         "internal/adapter/verification/"
@@ -408,7 +411,8 @@
       "kind": "client",
       "details": {
         "写入": "~/.codex/config.toml 中归 AIGW 管的一块，以及模型清单",
-        "命名": "模型清单里的别名显示模型的 label，不带提供商；已有条目显示同一名称时，再附上模型 ID"
+        "命名": "模型清单里的别名显示模型的 label，不带提供商；已有条目显示同一名称时，再附上模型 ID",
+        "窗口": "模型清单里所选模型那一条写入它声明的上下文窗口"
       },
       "files": ["internal/adapter/codex/"]
     },
@@ -437,7 +441,7 @@
       "label": "Hermes",
       "kind": "client",
       "details": {
-        "写入": "提供商清单、协议和模型",
+        "写入": "提供商清单（每个模型带上下文窗口）、协议和模型",
         "读写": "通过 go.yaml.in/yaml/v4；折叠块标量的值保持不变"
       },
       "files": ["internal/adapter/hermes/"]
@@ -457,7 +461,7 @@
       "label": "凭据存储",
       "kind": "authority",
       "details": {
-        "管理": "提供商令牌，放在选定的一个后端，可以是原生密钥环、DPAPI 或仅属主可读写的文件",
+        "管理": "提供商令牌，放在选定的一个后端，可以是原生密钥环或仅属主可读写的文件",
         "查询": "每条命令对提供商令牌和余额凭据各只查询一次；命令自己存入或移除这份凭据之后，才会再查"
       },
       "files": ["internal/secret/"]
@@ -527,6 +531,8 @@
         "internal/cli/client/documents.go",
         "internal/cli/client/edit.go",
         "internal/cli/client/list.go",
+        "internal/cli/client/program.go",
+        "internal/cli/invocation/adopted.go",
         "internal/cli/invocation/catalog.go",
         "internal/cli/invocation/closest.go",
         "internal/cli/invocation/completion.go",
@@ -535,9 +541,11 @@
         "internal/cli/invocation/flag.go",
         "internal/cli/invocation/followed.go",
         "internal/cli/invocation/models.go",
+        "internal/cli/invocation/output.go",
         "internal/cli/invocation/preview.go",
         "internal/cli/invocation/protocol.go",
         "internal/cli/invocation/readiness.go",
+        "internal/cli/invocation/stopped.go",
         "internal/cli/model/add.go",
         "internal/cli/model/documents.go",
         "internal/cli/model/edit.go",
@@ -578,6 +586,7 @@
       "to": "synchronization",
       "label": "预览",
       "files": [
+        "internal/cli/invocation/adopted.go",
         "internal/cli/invocation/catalog.go",
         "internal/cli/invocation/closest.go",
         "internal/cli/invocation/completion.go",
@@ -586,9 +595,11 @@
         "internal/cli/invocation/flag.go",
         "internal/cli/invocation/followed.go",
         "internal/cli/invocation/models.go",
+        "internal/cli/invocation/output.go",
         "internal/cli/invocation/preview.go",
         "internal/cli/invocation/protocol.go",
-        "internal/cli/invocation/readiness.go"
+        "internal/cli/invocation/readiness.go",
+        "internal/cli/invocation/stopped.go"
       ]
     },
     {
@@ -652,8 +663,10 @@
         "internal/cli/client/documents.go",
         "internal/cli/client/edit.go",
         "internal/cli/client/list.go",
+        "internal/cli/client/program.go",
         "internal/cli/config/config.go",
         "internal/cli/config/rollback.go",
+        "internal/cli/invocation/adopted.go",
         "internal/cli/invocation/catalog.go",
         "internal/cli/invocation/closest.go",
         "internal/cli/invocation/completion.go",
@@ -662,9 +675,11 @@
         "internal/cli/invocation/flag.go",
         "internal/cli/invocation/followed.go",
         "internal/cli/invocation/models.go",
+        "internal/cli/invocation/output.go",
         "internal/cli/invocation/preview.go",
         "internal/cli/invocation/protocol.go",
         "internal/cli/invocation/readiness.go",
+        "internal/cli/invocation/stopped.go",
         "internal/cli/model/add.go",
         "internal/cli/model/documents.go",
         "internal/cli/model/edit.go",
@@ -799,11 +814,13 @@
       "to": "adapter-seam",
       "label": "规划、应用",
       "files": [
+        "internal/app/synchronization/adoptions.go",
         "internal/app/synchronization/follow.go",
         "internal/app/synchronization/preview.go",
         "internal/app/synchronization/record.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
+        "internal/app/synchronization/stops.go",
         "internal/app/synchronization/synchronizer.go",
         "internal/app/synchronization/transaction.go"
       ]
@@ -814,11 +831,13 @@
       "to": "discovery",
       "label": "观测",
       "files": [
+        "internal/app/synchronization/adoptions.go",
         "internal/app/synchronization/follow.go",
         "internal/app/synchronization/preview.go",
         "internal/app/synchronization/record.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
+        "internal/app/synchronization/stops.go",
         "internal/app/synchronization/synchronizer.go",
         "internal/app/synchronization/transaction.go"
       ]
@@ -829,11 +848,13 @@
       "to": "configuration-store",
       "label": "保存",
       "files": [
+        "internal/app/synchronization/adoptions.go",
         "internal/app/synchronization/follow.go",
         "internal/app/synchronization/preview.go",
         "internal/app/synchronization/record.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
+        "internal/app/synchronization/stops.go",
         "internal/app/synchronization/synchronizer.go",
         "internal/app/synchronization/transaction.go"
       ]
@@ -844,11 +865,13 @@
       "to": "credentials",
       "label": "检查读取令牌的程序",
       "files": [
+        "internal/app/synchronization/adoptions.go",
         "internal/app/synchronization/follow.go",
         "internal/app/synchronization/preview.go",
         "internal/app/synchronization/record.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
+        "internal/app/synchronization/stops.go",
         "internal/app/synchronization/synchronizer.go",
         "internal/app/synchronization/transaction.go"
       ]
@@ -859,11 +882,13 @@
       "to": "domain",
       "label": "校验",
       "files": [
+        "internal/app/synchronization/adoptions.go",
         "internal/app/synchronization/follow.go",
         "internal/app/synchronization/preview.go",
         "internal/app/synchronization/record.go",
         "internal/app/synchronization/selection.go",
         "internal/app/synchronization/setup.go",
+        "internal/app/synchronization/stops.go",
         "internal/app/synchronization/synchronizer.go",
         "internal/app/synchronization/transaction.go"
       ]
@@ -907,14 +932,13 @@
         "internal/adapter/codex/adapter_verify.go",
         "internal/adapter/codex/adoption.go",
         "internal/adapter/codex/catalog.go",
-        "internal/adapter/codex/catalog_reference_unix.go",
-        "internal/adapter/codex/catalog_reference_windows.go",
         "internal/adapter/codex/client.go",
         "internal/adapter/codex/config.go",
         "internal/adapter/codex/conflict.go",
         "internal/adapter/codex/extensions.go",
         "internal/adapter/codex/live_verification.go",
         "internal/adapter/codex/missing.go",
+        "internal/adapter/codex/producer.go",
         "internal/adapter/codex/provider.go",
         "internal/adapter/codex/reconcile.go",
         "internal/adapter/codex/scheduler.go",
@@ -922,7 +946,8 @@
         "internal/adapter/codex/selection_record.go",
         "internal/adapter/codex/surfaces.go",
         "internal/adapter/codex/targets.go",
-        "internal/adapter/codex/unrecorded.go"
+        "internal/adapter/codex/unrecorded.go",
+        "internal/adapter/codex/window_check.go"
       ]
     },
     {
@@ -965,16 +990,15 @@
       "label": "实现",
       "files": [
         "internal/adapter/hermes/adapter.go",
-        "internal/adapter/hermes/adapter_verification_unix.go",
-        "internal/adapter/hermes/adapter_verification_windows.go",
+        "internal/adapter/hermes/adapter_verification.go",
         "internal/adapter/hermes/document.go",
         "internal/adapter/hermes/gateway.go",
+        "internal/adapter/hermes/models.go",
         "internal/adapter/hermes/projection.go",
         "internal/adapter/hermes/record.go",
         "internal/adapter/hermes/selection.go",
         "internal/adapter/hermes/selection_record.go",
-        "internal/adapter/hermes/verification_home_unix.go",
-        "internal/adapter/hermes/verification_home_windows.go"
+        "internal/adapter/hermes/verification_home.go"
       ]
     },
     {
@@ -988,14 +1012,13 @@
         "internal/adapter/codex/adapter_verify.go",
         "internal/adapter/codex/adoption.go",
         "internal/adapter/codex/catalog.go",
-        "internal/adapter/codex/catalog_reference_unix.go",
-        "internal/adapter/codex/catalog_reference_windows.go",
         "internal/adapter/codex/client.go",
         "internal/adapter/codex/config.go",
         "internal/adapter/codex/conflict.go",
         "internal/adapter/codex/extensions.go",
         "internal/adapter/codex/live_verification.go",
         "internal/adapter/codex/missing.go",
+        "internal/adapter/codex/producer.go",
         "internal/adapter/codex/provider.go",
         "internal/adapter/codex/reconcile.go",
         "internal/adapter/codex/scheduler.go",
@@ -1003,7 +1026,8 @@
         "internal/adapter/codex/selection_record.go",
         "internal/adapter/codex/surfaces.go",
         "internal/adapter/codex/targets.go",
-        "internal/adapter/codex/unrecorded.go"
+        "internal/adapter/codex/unrecorded.go",
+        "internal/adapter/codex/window_check.go"
       ]
     },
     {
@@ -1046,16 +1070,15 @@
       "label": "带防护写入",
       "files": [
         "internal/adapter/hermes/adapter.go",
-        "internal/adapter/hermes/adapter_verification_unix.go",
-        "internal/adapter/hermes/adapter_verification_windows.go",
+        "internal/adapter/hermes/adapter_verification.go",
         "internal/adapter/hermes/document.go",
         "internal/adapter/hermes/gateway.go",
+        "internal/adapter/hermes/models.go",
         "internal/adapter/hermes/projection.go",
         "internal/adapter/hermes/record.go",
         "internal/adapter/hermes/selection.go",
         "internal/adapter/hermes/selection_record.go",
-        "internal/adapter/hermes/verification_home_unix.go",
-        "internal/adapter/hermes/verification_home_windows.go"
+        "internal/adapter/hermes/verification_home.go"
       ]
     },
     {
@@ -1067,6 +1090,8 @@
         "internal/adapter/adapters.go",
         "internal/adapter/apply_failure.go",
         "internal/adapter/conflict.go",
+        "internal/adapter/extensions.go",
+        "internal/adapter/program.go",
         "internal/adapter/record.go",
         "internal/adapter/registry.go",
         "internal/adapter/selection.go",
@@ -1084,6 +1109,8 @@
         "internal/adapter/apply_failure.go",
         "internal/adapter/conflict.go",
         "internal/adapter/contract/contract.go",
+        "internal/adapter/extensions.go",
+        "internal/adapter/program.go",
         "internal/adapter/record.go",
         "internal/adapter/registry.go",
         "internal/adapter/selection.go",
@@ -1127,17 +1154,12 @@
       "label": "写入仅属主可读写的文件",
       "files": [
         "internal/secret/command.go",
-        "internal/secret/command_unix.go",
-        "internal/secret/command_windows.go",
         "internal/secret/diagnostic.go",
         "internal/secret/entrypoint.go",
-        "internal/secret/entrypoint_unix.go",
-        "internal/secret/entrypoint_windows.go",
         "internal/secret/env.go",
+        "internal/secret/file.go",
         "internal/secret/file_store.go",
         "internal/secret/file_transaction.go",
-        "internal/secret/file_unix.go",
-        "internal/secret/file_windows.go",
         "internal/secret/keyring.go",
         "internal/secret/memory.go",
         "internal/secret/native/deadline.go",
@@ -1145,12 +1167,9 @@
         "internal/secret/native/keychain_darwin_nocgo.go",
         "internal/secret/native/keychain_list_darwin.go",
         "internal/secret/native/listing.go",
-        "internal/secret/native/provider.go",
         "internal/secret/native/provider_darwin.go",
-        "internal/secret/native/provider_keyring.go",
         "internal/secret/native/provider_linux.go",
         "internal/secret/native/provider_other.go",
-        "internal/secret/native/provider_windows.go",
         "internal/secret/native/subprocess.go",
         "internal/secret/program.go",
         "internal/secret/recovery.go",
@@ -1212,9 +1231,7 @@
         "internal/terminal/prompt.go",
         "internal/terminal/render.go",
         "internal/terminal/target.go",
-        "internal/terminal/terminal.go",
-        "internal/terminal/terminal_unix.go",
-        "internal/terminal/terminal_windows.go"
+        "internal/terminal/terminal.go"
       ]
     }
   ],
@@ -1316,7 +1333,9 @@
       ]
     }
   ],
-  "edition": { "palette": "patina" },
+  "edition": {
+    "palette": "patina"
+  },
   "editors": [
     {
       "name": "衡阳"

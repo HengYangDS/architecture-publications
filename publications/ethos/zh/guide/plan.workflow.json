@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/ethos.git",
       "provider": "github",
-      "revision": "e4d9d04d36a089aae3924f0dc83f2a990493e852"
+      "revision": "cdb51d469930a57771d9729713b7ec979938ce50"
     },
     "legend": {
       "entries": {
@@ -125,8 +125,8 @@
       "sources": [
         {
           "path": "docs/architecture/runner-and-mutation.md",
-          "line": 233,
-          "end_line": 233,
+          "line": 243,
+          "end_line": 243,
           "label": "判定"
         }
       ]

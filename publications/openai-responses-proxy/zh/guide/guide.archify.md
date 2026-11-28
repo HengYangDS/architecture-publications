@@ -7,69 +7,65 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 - [升级期间继续放行每轮请求](block:p-handoff)：后继进程继承监听套接字，旧进程做完已接受的请求。[](source:readme-handoff)
 - [每个安装步骤都记入事务日志](block:p-install)，因此 `recover` 能完成或撤销中断的安装。[](source:arch-completion)
 
-@answer scope="OpenAI Responses Proxy v7.0.2 · 提交 f89a05c · 源代码与项目自有文档"
+@answer scope="OpenAI Responses Proxy v8.0.0 · 提交 bc63eca · 源代码与项目自有文档"
 @meta locale=zh-CN style=editorial
-@source readme-what title="代理是什么" path="README.md" lines=3:7
-@source readme-portable title="不改动会话存储" path="README.md" lines=12:13
-@source readme-boundary title="产品边界" path="README.md" lines=26:38
-@source readme-linux title="Linux 上的监管" path="README.md" lines=52:62
-@source readme-macos title="macOS 上的看门狗" path="README.md" lines=64:72
-@source readme-install title="安装已签名的资产" path="README.md" lines=86:89
-@source readme-install-tx title="安装即事务" path="README.md" lines=101:109
-@source readme-routes title="提供商路由" path="README.md" lines=122:133
-@source readme-upstream title="一个显式指定的上游" path="README.md" lines=135:147
-@source readme-status title="status 报告什么" path="README.md" lines=188:202
-@source readme-purge title="只清除记下的文件" path="README.md" lines=218:224
-@source readme-generations title="各代与选择器" path="README.md" lines=226:233
-@source readme-handoff title="保持准入开放的交接" path="README.md" lines=238:245
-@source readme-compat title="兼容行为" path="README.md" lines=253:272
-@source readme-deadline title="同一个交互时限" path="README.md" lines=274:293
-@source readme-ucloud title="UCloud 上的明文委派" path="README.md" lines=295:303
-@source readme-request title="请求边界" path="README.md" lines=307:332
-@source readme-body title="请求体准入" path="README.md" lines=334:341
-@source readme-evidence title="运行时证据" path="README.md" lines=363:373
+@source readme-what title="代理是什么" path="README.md" lines=3:6
+@source readme-portable title="不改动会话存储" path="README.md" lines=11:12
+@source readme-boundary title="产品边界" path="README.md" lines=22:34
+@source readme-linux title="Linux 上的监管" path="README.md" lines=48:58
+@source readme-macos title="macOS 上的看门狗" path="README.md" lines=60:68
+@source readme-install title="安装已签名的资产" path="README.md" lines=82:85
+@source readme-install-tx title="安装即事务" path="README.md" lines=97:105
+@source readme-routes title="指明上游的基础 URL" path="README.md" lines=123:136
+@source readme-status title="status 报告什么" path="README.md" lines=177:191
+@source readme-purge title="只清除记下的文件" path="README.md" lines=207:213
+@source readme-generations title="各代与选择器" path="README.md" lines=215:222
+@source readme-handoff title="保持准入开放的交接" path="README.md" lines=227:234
+@source readme-compat title="兼容行为" path="README.md" lines=240:260
+@source readme-deadline title="同一个交互时限" path="README.md" lines=262:281
+@source readme-agent title="原样转发的协作消息" path="README.md" lines=283:286
+@source readme-request title="请求边界" path="README.md" lines=290:321
+@source readme-body title="请求体准入" path="README.md" lines=323:330
+@source readme-evidence title="运行时证据" path="README.md" lines=352:362
 @source arch-authority title="哪些状态归谁" path="docs/architecture/authority-and-runtime-boundary.md" lines=40:50
 @source arch-projection title="投影去除什么" path="docs/architecture/authority-and-runtime-boundary.md" lines=226:239
 @source arch-agent title="加密的 Agent 消息" path="docs/architecture/authority-and-runtime-boundary.md" lines=248:257
 @source arch-live title="实时响应的边界" path="docs/architecture/authority-and-runtime-boundary.md" lines=259:263
-@source arch-recovery title="恢复的归属" path="docs/architecture/authority-and-runtime-boundary.md" lines=287:304
-@source arch-commit title="提交、预热、交接、重新绑定" path="docs/architecture/authority-and-runtime-boundary.md" lines=328:342
-@source arch-selector title="唯一的选择器" path="docs/architecture/authority-and-runtime-boundary.md" lines=344:357
-@source arch-completion title="完成与恢复" path="docs/architecture/authority-and-runtime-boundary.md" lines=359:366
-@source arch-deletion title="只删除记下的文件" path="docs/architecture/authority-and-runtime-boundary.md" lines=368:378
+@source arch-recovery title="恢复的归属" path="docs/architecture/authority-and-runtime-boundary.md" lines=272:283
+@source arch-commit title="提交、预热、交接、重新绑定" path="docs/architecture/authority-and-runtime-boundary.md" lines=312:326
+@source arch-selector title="唯一的选择器" path="docs/architecture/authority-and-runtime-boundary.md" lines=328:341
+@source arch-completion title="完成与恢复" path="docs/architecture/authority-and-runtime-boundary.md" lines=343:350
+@source arch-deletion title="只删除记下的文件" path="docs/architecture/authority-and-runtime-boundary.md" lines=352:362
 @source threat-assets title="资产与客户端凭据" path="docs/architecture/threat-model.md" lines=18:30
-@source threat-boundaries title="信任边界" path="docs/architecture/threat-model.md" lines=32:44
+@source threat-boundaries title="信任边界" path="docs/architecture/threat-model.md" lines=32:43
 @source threat-residual title="残余风险" path="docs/architecture/threat-model.md" lines=72:85
 @source dr1-decision title="DR-0001：两个产品，两个责任方" path="docs/decisions/dr-0001-control-plane-data-plane-boundary.md" lines=23:29
-@source dr2-decision title="DR-0002：无状态、可移植的重放" path="docs/decisions/dr-0002-provider-portable-stateless-replay.md" lines=23:57
-@source dr2-consequence title="DR-0002：连续性来自重放的对话" path="docs/decisions/dr-0002-provider-portable-stateless-replay.md" lines=68:77
-@source dr3-decision title="DR-0003：以提供商为界的恢复" path="docs/decisions/dr-0003-provider-scoped-recovery-and-backpressure.md" lines=22:35
+@source dr2-decision title="DR-0002：无状态、可移植的重放" path="docs/decisions/dr-0002-provider-portable-stateless-replay.md" lines=23:48
+@source dr2-consequence title="DR-0002：连续性来自重放的对话" path="docs/decisions/dr-0002-provider-portable-stateless-replay.md" lines=59:68
+@source dr3-decision title="DR-0003：以上游源站为界的恢复" path="docs/decisions/dr-0003-provider-scoped-recovery-and-backpressure.md" lines=23:38
 @source dr6-resend title="DR-0006：已发出的请求不再发送" path="docs/decisions/dr-0006-semantic-fit-before-framework-adoption.md" lines=200:228
-@source code-route title="路由分派" path="src/openai_responses_proxy/serving/server.py" lines=176:193
-@source code-body title="按长度读取单个请求体" path="src/openai_responses_proxy/relay/responses.py" lines=126:144
-@source code-project title="投影与委派" path="src/openai_responses_proxy/relay/responses.py" lines=250:289
-@source code-gate title="先冷却，再准入" path="src/openai_responses_proxy/relay/responses.py" lines=314:340
-@source code-cooldown title="提供商冷却" path="src/openai_responses_proxy/relay/responses.py" lines=40:86
-@source code-deadline title="一次交互，一个时限" path="src/openai_responses_proxy/relay/exchange.py" lines=122:152
-@source code-http-error title="已归类的上游错误" path="src/openai_responses_proxy/relay/exchange.py" lines=369:438
-@source code-transport-error title="传输失败" path="src/openai_responses_proxy/relay/exchange.py" lines=441:478
+@source code-route title="路由分派" path="src/openai_responses_proxy/serving/server.py" lines=171:195
+@source code-body title="按长度读取单个请求体" path="src/openai_responses_proxy/relay/responses.py" lines=106:124
+@source code-project title="投影" path="src/openai_responses_proxy/relay/responses.py" lines=223:246
+@source code-gate title="先冷却，再准入" path="src/openai_responses_proxy/relay/responses.py" lines=270:296
+@source code-cooldown title="按上游源站冷却" path="src/openai_responses_proxy/relay/responses.py" lines=30:66
+@source code-deadline title="一次交互，一个时限" path="src/openai_responses_proxy/relay/exchange.py" lines=120:150
+@source code-http-error title="已归类的上游错误" path="src/openai_responses_proxy/relay/exchange.py" lines=367:429
+@source code-transport-error title="传输失败" path="src/openai_responses_proxy/relay/exchange.py" lines=432:469
 @source code-outcome title="完整发出之后的失败" path="src/openai_responses_proxy/relay/upstream.py" lines=409:422
 @source code-reused title="复用连接上的发送失败" path="src/openai_responses_proxy/relay/upstream.py" lines=346:387
-@source code-reopen title="只有内容之前的失败才重新发起" path="src/openai_responses_proxy/relay/sse.py" lines=287:294
-@source code-hold title="内容之前暂存的事件" path="src/openai_responses_proxy/relay/sse.py" lines=131:174
-@source code-stream-terminals title="结束一条流的事件" path="src/openai_responses_proxy/relay/sse.py" lines=35:36
-@source code-stream-end title="响应已提交的流怎样结束" path="src/openai_responses_proxy/relay/sse.py" lines=335:339
-@source code-stream-class title="失败的流归入的失败类别" path="src/openai_responses_proxy/relay/sse.py" lines=346:360
-@source code-stream-log title="记录流怎样结束的日志行" path="src/openai_responses_proxy/relay/sse.py" lines=364:384
-@source code-json-terminal title="JSON 响应投递后的日志行" path="src/openai_responses_proxy/relay/downstream.py" lines=466:469
-@source code-diagnostic title="诊断信息里的错误码与事件类型" path="src/openai_responses_proxy/protocol/response.py" lines=93:113
+@source code-reopen title="只有内容之前的失败才重新发起" path="src/openai_responses_proxy/relay/sse.py" lines=276:283
+@source code-hold title="内容之前暂存的事件" path="src/openai_responses_proxy/relay/sse.py" lines=128:170
+@source code-stream-terminals title="结束一条流的事件" path="src/openai_responses_proxy/relay/sse.py" lines=34:35
+@source code-stream-end title="响应已提交的流怎样结束" path="src/openai_responses_proxy/relay/sse.py" lines=324:328
+@source code-stream-class title="失败的流归入的失败类别" path="src/openai_responses_proxy/relay/sse.py" lines=335:349
+@source code-stream-log title="记录流怎样结束的日志行" path="src/openai_responses_proxy/relay/sse.py" lines=353:373
+@source code-json-terminal title="JSON 响应投递后的日志行" path="src/openai_responses_proxy/relay/downstream.py" lines=446:449
+@source code-diagnostic title="诊断信息里的错误码与事件类型" path="src/openai_responses_proxy/protocol/response.py" lines=92:112
 @source code-disposition title="哪些状态码会重试" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=56:92
 @source code-compact title="不拆配对的压缩" path="src/openai_responses_proxy/protocol/recovery/execution.py" lines=105:156
 @source code-input-variant title="input 变体的契约" path="src/openai_responses_proxy/protocol/recovery/input.py" lines=90:100
-@source code-capacity title="输入超长或媒体超预算的拒绝" path="src/openai_responses_proxy/relay/exchange.py" lines=390:401
-@source code-dmx title="DMXAPI empty_response" path="src/openai_responses_proxy/providers/policies/dmxapi.py" lines=16:34
-@source code-manifest title="提供商清单" path="src/openai_responses_proxy/providers/manifest.toml" lines=1:15
-@source code-plaintext title="选用明文委派" path="src/openai_responses_proxy/protocol/agent_delivery.py" lines=111:129
+@source code-capacity title="输入超长或媒体超预算的拒绝" path="src/openai_responses_proxy/relay/exchange.py" lines=382:393
 @source code-signature title="验证签名" path="src/openai_responses_proxy/lifecycle/artifact.py" lines=295:333
 @source code-artifact title="归档包的准入" path="src/openai_responses_proxy/lifecycle/artifact.py" lines=223:292
 @source code-begin title="开始事务" path="src/openai_responses_proxy/lifecycle/transaction/execution.py" lines=393:470
@@ -97,9 +93,10 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 @source code-commit title="越过 COMMIT" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=335:371
 @source code-old-finishes title="旧监听器收尾" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=398:429
 @source code-child title="后继进程一侧" path="src/openai_responses_proxy/serving/handoff/transaction.py" lines=480:538
-@source code-local title="只接受本地发来的控制请求" path="src/openai_responses_proxy/relay/admission.py" lines=96:106
+@source code-local title="只接受本机客户端的请求" path="src/openai_responses_proxy/relay/admission.py" lines=96:111
+@source code-address title="路径所指的上游" path="src/openai_responses_proxy/relay/addressing.py" lines=36:61
 @source code-selector title="读取选择器" path="src/openai_responses_proxy/serving/identity.py" lines=110:133
-@source code-selected title="选定的一代" path="src/openai_responses_proxy/lifecycle/generation.py" lines=73:78
+@source code-selected title="选定的一代" path="src/openai_responses_proxy/lifecycle/generation.py" lines=74:79
 @source code-no-selection title="未选定任何一代时的 status" path="src/openai_responses_proxy/lifecycle/control.py" lines=240:247
 @source code-journal-paths title="数据根目录旁的事务日志" path="src/openai_responses_proxy/lifecycle/records.py" lines=26:38
 @source code-command-path title="命令路径" path="src/openai_responses_proxy/lifecycle/command.py" lines=36:45
@@ -109,27 +106,29 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 @source code-plist title="launchd Agent" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=125:138
 @source code-domains title="GUI 登录域或 Background 域" path="src/openai_responses_proxy/lifecycle/supervision/macos.py" lines=66:87
 @source code-unit title="systemd 用户单元" path="src/openai_responses_proxy/lifecycle/supervision/linux.py" lines=21:35
-@source code-roots title="数据根目录与状态根目录" path="src/openai_responses_proxy/runtime/config.py" lines=149:172
+@source code-roots title="数据根目录与状态根目录" path="src/openai_responses_proxy/runtime/config.py" lines=147:170
 @source code-watchdog title="看门狗循环" path="src/openai_responses_proxy/lifecycle/supervision/watchdog.py" lines=91:129
-@source code-activate-carrier title="每个角色加载自己的运行配置" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=153:160
-@source code-carrier-schema title="运行配置必须字段齐全" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=163:174
+@source code-activate-carrier title="每个角色加载自己的运行配置" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=149:156
+@source code-carrier-schema title="运行配置必须字段齐全" path="src/openai_responses_proxy/lifecycle/runtime_spec.py" lines=159:166
+@source code-earlier-shape title="更早载荷形态的一代" path="src/openai_responses_proxy/lifecycle/generation.py" lines=98:103
+@source readme-eligibility title="7.0.2 及更早版本的载荷" path="README.md" lines=116:119
 @source code-status-next title="每种状态一条下一步命令" path="src/openai_responses_proxy/cli/outcome.py" lines=37:43
 @source code-lock title="唯一的生命周期写入者" path="src/openai_responses_proxy/cli/application.py" lines=67:86
 @source code-options title="端口与时限选项接受的取值" path="src/openai_responses_proxy/cli/options.py" lines=32:73
-@source readme-port title="默认端口" path="README.md" lines=91:99
-@source readme-budgets title="全新安装可另选的上限" path="README.md" lines=343:359
-@source code-defaults title="运行时默认值" path="src/openai_responses_proxy/runtime/config.py" lines=68:84
+@source readme-port title="默认端口" path="README.md" lines=87:95
+@source readme-budgets title="全新安装可另选的上限" path="README.md" lines=332:348
+@source code-defaults title="运行时默认值" path="src/openai_responses_proxy/runtime/config.py" lines=66:82
 @source code-platforms title="发布平台" path="src/openai_responses_proxy/product_identity.py" lines=13:20
-@source changelog-100 title="1.0.0 版" path="CHANGELOG.md" lines=2212:2218
-@source changelog-202 title="2.0.2 改名" path="CHANGELOG.md" lines=1607:1617
-@source changelog-500 title="5.0.0 改名" path="CHANGELOG.md" lines=707:714
-@source changelog-5111 title="5.1.11 版" path="CHANGELOG.md" lines=278:291
-@source changelog-5112 title="5.1.12 版" path="CHANGELOG.md" lines=256:276
-@source changelog-600 title="6.0.0 版" path="CHANGELOG.md" lines=200:254
-@source changelog-601 title="6.0.1 版" path="CHANGELOG.md" lines=160:198
-@source changelog-602 title="6.0.2 版" path="CHANGELOG.md" lines=107:158
-@source changelog-603 title="6.0.3 版" path="CHANGELOG.md" lines=77:105
-@source changelog-702 title="7.0.2 版" path="CHANGELOG.md" lines=11:22
+@source changelog-100 title="1.0.0 版" path="CHANGELOG.md" lines=2256:2262
+@source changelog-202 title="2.0.2 改名" path="CHANGELOG.md" lines=1651:1661
+@source changelog-500 title="5.0.0 改名" path="CHANGELOG.md" lines=751:758
+@source changelog-5111 title="5.1.11 版" path="CHANGELOG.md" lines=322:335
+@source changelog-5112 title="5.1.12 版" path="CHANGELOG.md" lines=300:320
+@source changelog-600 title="6.0.0 版" path="CHANGELOG.md" lines=244:298
+@source changelog-601 title="6.0.1 版" path="CHANGELOG.md" lines=204:242
+@source changelog-602 title="6.0.2 版" path="CHANGELOG.md" lines=151:202
+@source changelog-603 title="6.0.3 版" path="CHANGELOG.md" lines=121:149
+@source changelog-800 title="8.0.0 版" path="CHANGELOG.md" lines=11:53
 
 ## 谁通过代理发送流量，代理又把哪些事留给别人？ {#p-context}
 
@@ -151,9 +150,9 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 
 @steps id=context-steps
 | step-ctx-client | Responses 客户端 | Codex、Hermes 或某个 Responses SDK。它的请求、重放、流式传输、错误和已安装客户端这几类场景全部通过后，才算准入。[](source:readme-boundary) | context-map | ctx-client |
-| step-ctx-control | 客户端控制面 | 负责凭据、提供商选择和客户端配置，并把客户端指向回环 URL，每个提供商一个。[](source:readme-boundary)[](source:readme-routes) | context-map | ctx-control |
+| step-ctx-control | 客户端控制面 | 负责凭据、提供商选择和客户端配置，并把上游写进客户端的基础 URL，紧跟在回环地址之后。[](source:readme-boundary)[](source:readme-routes) | context-map | ctx-control |
 | step-ctx-proxy | OpenAI Responses Proxy | 只在 127.0.0.1 上监听，自身不持有任何凭据；客户端的 Authorization 请求头随单个请求发往上游。[](source:threat-boundaries)[](source:threat-assets) | context-map | ctx-proxy |
-| step-ctx-providers | 提供商端点 | 清单列出 DMXAPI、UCloud、AIHubMix 和 Suhe.AI；安装时还可另加一个显式指定的上游。[](source:code-manifest)[](source:readme-upstream) | context-map | ctx-providers |
+| step-ctx-providers | 提供商端点 | 客户端基础 URL 所指的任何 Responses 上游，新增上游无需发布代理的新版本。[](source:readme-routes) 明文 HTTP 只允许发往回环上游。[](source:threat-boundaries) | context-map | ctx-providers |
 | step-ctx-operator | 运维方 | 安装已签名的发布资产，信任锚经另一条可信渠道提供。[](source:readme-install) | context-map | ctx-operator |
 | step-ctx-service | 系统服务管理器 | 让看门狗保持运行：macOS 上是 launchd，Linux 上是 systemd 用户管理器。[](source:readme-macos)[](source:readme-linux) | context-map | ctx-service |
 
@@ -168,7 +167,7 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 
 ## 一轮对话会经历什么？ {#p-turn}
 
-代理只放行 `POST /<provider>/v1/responses` 和 `GET /<provider>/v1/models`。请求头、请求体和查询参数都不能另选主机。[](source:readme-request)
+代理只放行 `POST /<upstream>/responses` 和 `GET /<upstream>/models`，其中 `<upstream>` 由协议、主机（可带端口）和基础路径组成。请求头、请求体和查询参数都不能另选主机。[](source:readme-request)[](source:code-address) 网页发来的请求得到 HTTP 403。[](source:readme-request)[](source:code-local)
 
 @sequence id=turn-flow title="穿过代理的一轮 Responses 对话"
 | actor turn-client | Responses 客户端 | frontend |
@@ -179,7 +178,7 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 | actor turn-delivery | 响应投递 | backend | source:code-hold |
 | actor turn-provider | 提供商端点 | external |
 | phase | 准入 |
-| turn-client | turn-listener | POST /dmxapi/v1/responses |
+| turn-client | turn-listener | POST /https/api.example.com/v1/responses |
 | turn-listener | turn-relay | 路由和请求体 |
 | turn-relay | turn-projection | 重建请求体 |
 | turn-projection | turn-relay | 可移植的字节 | return |
@@ -193,10 +192,10 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 | turn-delivery | turn-client | 已校验的事件 | return |
 
 @steps id=turn-steps
-| step-turn-route | 回环监听器 | 从路径解析出提供商。经过编码、带点段或无关的路径，在任何上游 I/O 之前就拒绝。[](source:readme-request)[](source:code-route) | turn-flow | turn-listener | | turn-client-to-turn-listener-1,turn-listener-to-turn-relay-1 |
+| step-turn-route | 回环监听器 | 网页发来的请求以 403 拒绝，其余请求从路径解析出上游。经过编码、带点段或无关的路径，在任何上游 I/O 之前就拒绝。[](source:readme-request)[](source:code-route)[](source:code-address) | turn-flow | turn-listener | | turn-client-to-turn-listener-1,turn-listener-to-turn-relay-1 |
 | step-turn-body | Responses 转发 | 读取一个按 ASCII Content-Length 定长的请求体，限时 30 秒、限长 64 MiB；太慢或太大的请求体分别得到 408 和 413。[](source:readme-body)[](source:code-body) | turn-flow | turn-relay | | turn-listener-to-turn-relay-1 |
-| step-turn-project | 重放投影 | 先按可移植语法重建请求体；路由要求时，再选用明文委派。[](source:code-project) | turn-flow | turn-projection | | turn-relay-to-turn-projection-1,turn-projection-to-turn-relay-1 |
-| step-turn-gate | Responses 转发 | 冷却中的提供商以 429 或 503 加 Retry-After 应答。否则放行这一轮请求，计为一个进行中的 Response。[](source:code-cooldown)[](source:code-gate) | turn-flow | turn-relay | | turn-relay-to-turn-exchange-1 |
+| step-turn-project | 重放投影 | 按可移植语法重建请求体；结构未经证实的请求，在任何上游 I/O 之前以 400 拒绝。[](source:code-project) | turn-flow | turn-projection | | turn-relay-to-turn-projection-1,turn-projection-to-turn-relay-1 |
+| step-turn-gate | Responses 转发 | 冷却中的上游源站以 429 或 503 加 Retry-After 应答。否则放行这一轮请求，计为一个进行中的 Response。[](source:code-cooldown)[](source:code-gate) | turn-flow | turn-relay | | turn-relay-to-turn-exchange-1 |
 | step-turn-send | 上游交互 | 同一个时限（默认 900 秒）约束等待响应头、重试、读取，以及对客户端的每一次写入。[](source:readme-deadline)[](source:code-deadline) | turn-flow | turn-exchange | | turn-exchange-to-turn-provider-1,turn-provider-to-turn-exchange-1,turn-exchange-to-turn-relay-1 |
 | step-turn-deliver | 响应投递 | 每个事件先校验再写出；出现在任何内容之前的事件则暂存。[](source:code-hold)[](source:arch-live) | turn-flow | turn-delivery | | turn-relay-to-turn-delivery-1,turn-delivery-to-turn-client-1 |
 
@@ -213,8 +212,8 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 | step-pr-controls | 本轮控制项 | 空的 additional_tools 列表保持为空，原生压缩期间也是如此。[](source:dr2-decision) | projection-tree | pr-controls |
 | step-pr-refused | 在上游 I/O 之前拒绝 | 未知或未经证明的结构在本地直接以 400 拒绝，既不猜测，也不悄悄丢弃。[](source:dr2-decision)[](source:arch-projection) | projection-tree | pr-refused |
 
-@callout level=note title="UCloud 上的可读委派"
-| UCloud 路由在生成之前给 collaboration 命名空间设别名，可读参数到达后再还原。它绝不把密文改标为明文。[](source:readme-ucloud)[](source:code-plaintext) |
+@callout level=note title="协作消息按客户端发出的原样转发"
+| Codex 的原生协作消息按客户端发出的原样到达每个上游。加密消息能否解密，仍取决于最初的提供商。[](source:readme-agent)[](source:dr2-decision) |
 
 ## 请求何时可以再发一次？ {#p-resend}
 
@@ -229,13 +228,13 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 | step-ex-unknown | 结果未知 | 客户端收到一次 `502 upstream_outcome_unknown`，由它决定是否重试这一轮。[](source:dr6-resend) | exchange-life | ex-unknown |
 | step-ex-expired | 时限已到 | 响应提交之前，客户端得到 `504 upstream_deadline_exceeded`；响应提交之后，流直接关闭，不带终止符。[](source:readme-deadline) | exchange-life | ex-expired |
 
-每种上游错误只有一种应对，而且有限度；冷却只限制引发错误的那家提供商。[](source:dr3-decision)[](source:arch-recovery)
+每种上游错误只有一种应对，而且有限度；冷却只限制引发错误的那个上游源站。[](source:dr3-decision)[](source:arch-recovery)
 
 | 上游应答                    | 代理的做法                                                                                                                                |
 | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `429`                       | 转发一次，再按 Retry-After 冷却这家提供商，至多 300 秒[](source:code-http-error)                                                          |
-| 限次重试后的 `503`          | 转发原始错误，再短暂冷却这家提供商[](source:code-disposition)[](source:code-http-error)                                                   |
-| DMXAPI `477 empty_response` | 把投影后的同一份字节再发一次[](source:code-dmx)                                                                                           |
+| `429`                       | 转发一次，再按 Retry-After 冷却这个上游源站，至多 300 秒[](source:code-http-error)                                                        |
+| 限次重试后的 `503`          | 转发原始错误，再短暂冷却这个上游源站[](source:code-disposition)[](source:code-http-error)                                                 |
+| `477`                       | 转发一次，与其他客户端错误相同[](source:dr3-decision)                                                                                     |
 | `response_failed`           | 以严格更小、不拆配对的请求重试，之后至多再试一次只含对话的请求[](source:code-compact)                                                     |
 | 无效的 `input` 联合类型     | 改用更小的当前对话尝试一次，然后停止[](source:code-input-variant)                                                                         |
 | 输入超长或媒体超预算        | 当前输入允许时，去掉较早的历史再试一次，然后停止[](source:code-capacity)[](source:code-compact)                                           |
@@ -261,6 +260,9 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 
 @callout level=warning title="5.0.6 及更早版本留下的安装会被拒绝"
 | 运行配置若缺少请求体、模型目录和 SSE 的上限，会被拒绝；载荷清单若没有回执摘要，也一样。在 macOS 上，launchd Agent 若不同时声明 Aqua 和 Background 两种会话类型，同样被拒绝。每种情况都给出原因，不做任何改动。这样的安装要先用当初安装它的那个版本卸载，再安装本版本。[](source:code-carrier-schema)[](source:changelog-600) |
+
+@callout level=warning title="7.0.2 及更早版本留下的安装会被拒绝"
+| 8.0.0 的载荷不再含 `providers.toml`，7.0.2 及更早版本写下的世代会被拒绝。拒绝时写明要用 `uninstall --purge`，不做任何改动。这样的安装要先用它自己那个版本的 `uninstall --purge` 卸载，再安装本版本。[](source:readme-eligibility)[](source:code-earlier-shape)[](source:changelog-800) |
 
 ## 升级怎样替换监听器，又一轮都不丢？ {#p-handoff}
 
@@ -321,7 +323,7 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 
 ## 这个代理怎样走到今天？ {#p-history}
 
-代理在 2026 年 7 月发布 1.0.0，11 月发布 7.0.2，其间两次改名。[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-702)下面列出其中二十一个版本，它们改变了客户端或运维方遇到的行为。
+代理在 2026 年 7 月发布 1.0.0，11 月发布 8.0.0，其间两次改名。[](source:changelog-100)[](source:changelog-202)[](source:changelog-500)[](source:changelog-800)下面列出其中二十二个版本，它们改变了客户端或运维方遇到的行为。
 
 @diagram timeline id=history source=history.timeline.json title="这个代理怎样走到今天"
 

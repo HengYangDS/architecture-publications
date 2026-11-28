@@ -5,8 +5,8 @@
   "locale": "zh-CN",
   "title": "OpenAI Responses Proxy",
   "question": "如何让一轮 Codex Responses 对话可在第三方提供商之间移植？又如何安装监听器并使之持续运行？",
-  "summary": "回环监听器按一套只认已知结构的封闭语法重建每个 Responses 请求，并设 store=false；请求发往路径所指的提供商，全程受同一个总时限约束，只有失败类别允许时才重试。已签名的发布资产由一个事务完成安装，全程写入事务日志，成为一个不可变的世代；升级时，监听套接字交给后继进程；监听器一旦停止，系统服务管理器托管的看门狗就会重启它。",
-  "scope": "v7.0.2 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包及其提供商清单、pyproject.toml 和 VERSION。",
+  "summary": "回环监听器按一套只认已知结构的封闭语法重建每个 Responses 请求，并设 store=false；请求发往路径所指的上游，全程受同一个总时限约束，只有失败类别允许时才重试。已签名的发布资产由一个事务完成安装，全程写入事务日志，成为一个不可变的世代；升级时，监听套接字交给后继进程；监听器一旦停止，系统服务管理器托管的看门狗就会重启它。",
+  "scope": "v8.0.0 发布时的 OpenAI Responses Proxy 产品：openai_responses_proxy 包、pyproject.toml 和 VERSION。",
   "limits": [
     "组件只列出它认领的路径下的文件，关系只列出导入或调用对方组件的文件。",
     "关系只表示用到对方行为的导入、进程调用，或对另一组件对象的调用（对象由外部传入）；仅为异常类、类型、共用辅助函数或产品名称而做的导入，不画。",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "openai-responses-proxy",
     "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
-    "revision": "f89a05c1ef062760266b09abc63bf86bb9147309"
+    "revision": "bc63eca99a413d2e8b835cdb37649726cd9bb240"
   },
   "coverage": {
     "exclude": [
@@ -99,13 +99,13 @@
   },
   "overview": {
     "claim": "可移植的请求，事务化的安装",
-    "lead": "面向 Codex 及其他 Responses 客户端的回环数据面：每个请求都重建并设 store=false，再发往路径所指的提供商；代理还负责安装、交接和监管自己的监听器。",
+    "lead": "面向 Codex 及其他 Responses 客户端的回环数据面：每个请求都重建并设 store=false，再发往路径所指的上游；代理还负责安装、交接和监管自己的监听器。",
     "course": {
       "steps": [
         {
           "id": "route",
           "label": "一轮对话的路线",
-          "note": "POST /<provider>/v1/responses 与 GET /<provider>/v1/models；其他路径一律在上游 I/O 之前拒绝",
+          "note": "POST /<upstream>/responses 与 GET /<upstream>/models；其他路径一律在上游 I/O 之前拒绝",
           "stations": [
             {
               "id": "client",
@@ -118,6 +118,11 @@
               "note": "127.0.0.1:8792，仅回环"
             },
             {
+              "id": "upstream-origin",
+              "label": "源站",
+              "note": "路径写明协议、主机（可带端口）和基础路径"
+            },
+            {
               "id": "body",
               "label": "请求体",
               "note": "单个 Content-Length，限 30 秒、64 MiB"
@@ -128,14 +133,9 @@
               "note": "store=false，去除提供商绑定"
             },
             {
-              "id": "delegation",
-              "label": "委派",
-              "note": "Agent 消息仅在明文路由上可读"
-            },
-            {
               "id": "gate",
               "label": "冷却",
-              "note": "提供商冷却期间拒绝请求"
+              "note": "上游源站冷却期间拒绝请求"
             },
             {
               "id": "exchange",
@@ -151,37 +151,22 @@
           "view": "request-path"
         },
         {
-          "id": "providers",
-          "label": "提供商",
-          "note": "每家一条路由，取自清单",
-          "text": "清单指定每条路由的源站，以及报文策略（如有）。",
+          "id": "upstreams",
+          "label": "上游",
+          "note": "由客户端的基础 URL 指明",
+          "text": "新增上游无需发布新版本，代理也不保存任何上游。",
           "stations": [
             {
               "branches": [
                 {
-                  "id": "dmxapi",
-                  "label": "dmxapi",
-                  "note": "www.dmxapi.cn"
+                  "id": "https",
+                  "label": "https",
+                  "note": "任意主机"
                 },
                 {
-                  "id": "ucloud",
-                  "label": "ucloud",
-                  "note": "api.modelverse.cn"
-                },
-                {
-                  "id": "aihubmix",
-                  "label": "aihubmix",
-                  "note": "api.inferera.com"
-                },
-                {
-                  "id": "suheai",
-                  "label": "suheai",
-                  "note": "suheai.cn"
-                },
-                {
-                  "id": "upstream",
-                  "label": "upstream",
-                  "note": "安装时选定的一个源站"
+                  "id": "http",
+                  "label": "http",
+                  "note": "仅限回环主机"
                 }
               ]
             }
@@ -210,9 +195,8 @@
       {
         "title": "每种失败只有一种应对，且有限度",
         "items": [
-          ["429", "转发给客户端，不重试；仅该提供商按 Retry-After 冷却，至多 300 秒"],
-          ["重试后的 503", "转发；该提供商短暂冷却，直到下一次探测"],
-          ["DMXAPI 477", "完全匹配的 empty_response：用同样的字节重试一次"],
+          ["429", "转发给客户端，不重试；仅该上游源站按 Retry-After 冷却，至多 300 秒"],
+          ["重试后的 503", "转发；该源站短暂冷却，直到下一次探测"],
           ["response_failed", "逐步缩小、不拆配对地重试，最后再试一次只含对话的请求"],
           ["输入超长", "删减历史后改发一次更小的请求，保留本轮输入和图片"],
           ["发出后断连", "502 upstream_outcome_unknown；由客户端决定"],
@@ -358,11 +342,6 @@
       "category": "security",
       "icon": "shield-check"
     },
-    "registry": {
-      "label": "路由注册表",
-      "category": "messagebus",
-      "icon": "list-ordered"
-    },
     "observer": {
       "label": "遥测",
       "category": "cloud",
@@ -400,7 +379,7 @@
       "label": "Responses 客户端",
       "kind": "client",
       "details": {
-        "例如": "Codex、Hermes 或 Responses SDK，走已验证兼容的路由",
+        "例如": "Codex、Hermes 或经实际流程验证兼容的 Responses SDK",
         "负责": "会话、工具状态和每个会话的模型选择"
       }
     },
@@ -410,7 +389,7 @@
       "kind": "endpoint",
       "details": {
         "监听": "127.0.0.1 的 8792 端口，安装时可另选",
-        "路径": "/healthz、/control/handoff，以及 /<provider>/v1/responses 和 models",
+        "路径": "/healthz、/control/handoff，以及 /<upstream>/responses 和 models",
         "启动条件": "载荷的摘要已由它自己验证"
       },
       "files": [
@@ -425,7 +404,7 @@
       "details": {
         "请求体": "只读一个，按长度定界，限时 30 秒、限长 64 MiB",
         "计数": "处理中的 HTTP 请求和已放行的 Responses 请求；交接之后，旧监听器等它们结束",
-        "控制": "交接只接受回环客户端的请求，Host 须为回环地址，且不带 Origin"
+        "控制": "数据请求和交接请求只接受回环客户端，Host 须为回环地址，且不带 Origin 和 Fetch Metadata"
       },
       "files": ["src/openai_responses_proxy/relay/admission.py"]
     },
@@ -434,11 +413,13 @@
       "label": "Responses 转发",
       "kind": "relay",
       "details": {
-        "处理顺序": "路由、请求体、投影、委派、冷却、准入、交互、投递",
+        "处理顺序": "路由、请求体、投影、冷却、准入、交互、投递",
+        "解析": "从请求路径得出上游源站和资源，不保存任何上游",
         "模型目录": "读取请求只转发一次，不套用 Responses 策略"
       },
       "files": [
         "src/openai_responses_proxy/relay/responses.py",
+        "src/openai_responses_proxy/relay/addressing.py",
         "src/openai_responses_proxy/relay/"
       ]
     },
@@ -456,16 +437,6 @@
         "src/openai_responses_proxy/protocol/replay/",
         "src/openai_responses_proxy/protocol/__init__.py"
       ]
-    },
-    {
-      "id": "agent-delivery",
-      "label": "Agent 投递",
-      "kind": "grammar",
-      "details": {
-        "别名": "明文路由上，collaboration 改用别名 collaboration_plaintext",
-        "还原": "可读参数到达后，换回原生命名空间"
-      },
-      "files": ["src/openai_responses_proxy/protocol/agent_delivery.py"]
     },
     {
       "id": "bounded-recovery",
@@ -487,12 +458,11 @@
       "kind": "relay",
       "details": {
         "重试": "失败类别允许才做，全程共用一个总时限",
-        "冷却": "429 或重试耗尽的 503 后，只冷却该提供商"
+        "冷却": "429 或重试耗尽的 503 后，只冷却该上游源站"
       },
       "files": [
         "src/openai_responses_proxy/relay/exchange.py",
-        "src/openai_responses_proxy/relay/cooldown.py",
-        "src/openai_responses_proxy/relay/wire_recovery.py"
+        "src/openai_responses_proxy/relay/cooldown.py"
       ]
     },
     {
@@ -539,25 +509,11 @@
       ]
     },
     {
-      "id": "provider-registry",
-      "label": "提供商注册表",
-      "kind": "registry",
-      "details": {
-        "路由": "aihubmix、dmxapi、suheai 和 ucloud，以及一个可选的 /upstream",
-        "策略": "dmxapi 遇到完全匹配的 477 empty_response 时重试一次"
-      },
-      "files": [
-        "src/openai_responses_proxy/providers/manifest.toml",
-        "src/openai_responses_proxy/providers/registry.py",
-        "src/openai_responses_proxy/providers/"
-      ]
-    },
-    {
       "id": "provider",
       "label": "提供商端点",
       "kind": "provider",
       "details": {
-        "已接入": "DMXAPI、UCloud、AIHubMix 和 Suhe.AI，或一个显式指定的上游",
+        "已接入": "客户端基础 URL 所指的任何 Responses 上游；明文 HTTP 仅限回环主机",
         "负责": "模型执行、配额和可用性"
       }
     },
@@ -597,7 +553,7 @@
       "details": {
         "保存": "runtime-config.json 放在每一代旁边，升级时沿用其中的上限",
         "校验": "端口、超时，以及请求体、流和模型目录的上限",
-        "拒绝": "缺少请求体、流或模型目录上限的运行配置，即 5.0.6 及更早版本写出的那种",
+        "拒绝": "缺少请求体、流或模型目录上限的运行配置（5.0.6 及更早版本写出的那种），以及含 upstream_base_url 的运行配置",
         "提供": "大小受限的日志、回环传输和干净的子进程环境"
       },
       "files": [
@@ -760,14 +716,14 @@
       "id": "listener-responses-relay",
       "from": "listener",
       "to": "responses-relay",
-      "label": "转发提供商路由上的请求",
+      "label": "转发路径所指上游的请求",
       "files": ["src/openai_responses_proxy/serving/server.py"]
     },
     {
       "id": "listener-request-admission",
       "from": "listener",
       "to": "request-admission",
-      "label": "统计处理中请求、核对交接来源",
+      "label": "统计处理中请求、核对本机客户端",
       "files": [
         "src/openai_responses_proxy/serving/control.py",
         "src/openai_responses_proxy/serving/entrypoint.py",
@@ -799,24 +755,10 @@
       "files": ["src/openai_responses_proxy/relay/responses.py"]
     },
     {
-      "id": "responses-relay-provider-registry",
-      "from": "responses-relay",
-      "to": "provider-registry",
-      "label": "解析路由",
-      "files": ["src/openai_responses_proxy/relay/responses.py"]
-    },
-    {
       "id": "responses-relay-replay-projection",
       "from": "responses-relay",
       "to": "replay-projection",
       "label": "重建请求体",
-      "files": ["src/openai_responses_proxy/relay/responses.py"]
-    },
-    {
-      "id": "responses-relay-agent-delivery",
-      "from": "responses-relay",
-      "to": "agent-delivery",
-      "label": "选择委派方式",
       "files": ["src/openai_responses_proxy/relay/responses.py"]
     },
     {
@@ -848,13 +790,6 @@
       "files": ["src/openai_responses_proxy/relay/exchange.py"]
     },
     {
-      "id": "upstream-exchange-provider-registry",
-      "from": "upstream-exchange",
-      "to": "provider-registry",
-      "label": "套用报文策略",
-      "files": ["src/openai_responses_proxy/relay/exchange.py"]
-    },
-    {
       "id": "upstream-exchange-response-delivery",
       "from": "upstream-exchange",
       "to": "response-delivery",
@@ -876,27 +811,10 @@
       "files": ["src/openai_responses_proxy/relay/upstream.py"]
     },
     {
-      "id": "provider-registry-provider",
-      "from": "provider-registry",
-      "to": "provider",
-      "label": "指定各源站",
-      "files": ["src/openai_responses_proxy/providers/manifest.toml"]
-    },
-    {
       "id": "response-delivery-upstream-transport",
       "from": "response-delivery",
       "to": "upstream-transport",
       "label": "在时限内读取",
-      "files": [
-        "src/openai_responses_proxy/relay/downstream.py",
-        "src/openai_responses_proxy/relay/sse.py"
-      ]
-    },
-    {
-      "id": "response-delivery-agent-delivery",
-      "from": "response-delivery",
-      "to": "agent-delivery",
-      "label": "还原原生投递",
       "files": [
         "src/openai_responses_proxy/relay/downstream.py",
         "src/openai_responses_proxy/relay/sse.py"
@@ -921,13 +839,6 @@
         "src/openai_responses_proxy/protocol/recovery/execution.py",
         "src/openai_responses_proxy/protocol/recovery/input.py"
       ]
-    },
-    {
-      "id": "agent-delivery-replay-projection",
-      "from": "agent-delivery",
-      "to": "replay-projection",
-      "label": "共用调用语法",
-      "files": ["src/openai_responses_proxy/protocol/agent_delivery.py"]
     },
     {
       "id": "listener-handoff-runtime-identity",
@@ -1150,23 +1061,20 @@
       "members": [
         "responses-relay",
         "replay-projection",
-        "agent-delivery",
         "bounded-recovery",
         "upstream-exchange",
-        "response-delivery",
-        "provider-registry"
+        "response-delivery"
       ]
     },
     {
       "id": "failures",
-      "title": "失败按提供商隔离",
-      "question": "上游失败后，重试什么、报告什么？又如何只冷却出问题的那个提供商？",
-      "summary": "“上游交互”只在失败类别允许时重试；遇到 429 或重试耗尽的 503，只冷却出问题的那个提供商。失败类别由“遥测与日志”统计；请求完整发出后若没等到应答，“上游传输”绝不重发。",
+      "title": "失败按上游源站隔离",
+      "question": "上游失败后，重试什么、报告什么？又如何只冷却出问题的那个上游源站？",
+      "summary": "“上游交互”只在失败类别允许时重试；遇到 429 或重试耗尽的 503，只冷却出问题的那个上游源站。失败类别由“遥测与日志”统计；请求完整发出后若没等到应答，“上游传输”绝不重发。",
       "members": [
         "upstream-exchange",
         "upstream-transport",
         "bounded-recovery",
-        "provider-registry",
         "response-delivery",
         "telemetry",
         "provider"

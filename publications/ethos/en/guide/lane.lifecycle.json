@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/ethos.git",
       "provider": "github",
-      "revision": "e4d9d04d36a089aae3924f0dc83f2a990493e852"
+      "revision": "cdb51d469930a57771d9729713b7ec979938ce50"
     }
   },
   "mainPath": ["lane-started", "lane-writing", "lane-proven", "lane-accepted"],
@@ -36,8 +36,8 @@
       "sources": [
         {
           "path": "src/ethos/adapters/admission/prewrite.py",
-          "line": 117,
-          "end_line": 149,
+          "line": 118,
+          "end_line": 150,
           "label": "Prewrite"
         }
       ]
@@ -50,14 +50,14 @@
       "sources": [
         {
           "path": "src/ethos/adapters/mutation/proof.py",
-          "line": 417,
-          "end_line": 422,
+          "line": 419,
+          "end_line": 424,
           "label": "Proof"
         },
         {
           "path": "docs/architecture/runner-and-mutation.md",
-          "line": 97,
-          "end_line": 104,
+          "line": 107,
+          "end_line": 114,
           "label": "Archive"
         }
       ]
@@ -76,14 +76,14 @@
         },
         {
           "path": "docs/architecture/runner-and-mutation.md",
-          "line": 129,
-          "end_line": 131,
+          "line": 139,
+          "end_line": 141,
           "label": "Closeout"
         },
         {
           "path": "docs/architecture/runner-and-mutation.md",
-          "line": 88,
-          "end_line": 92,
+          "line": 96,
+          "end_line": 100,
           "label": "Retire"
         }
       ]
@@ -110,8 +110,8 @@
       "sources": [
         {
           "path": "docs/architecture/runner-and-mutation.md",
-          "line": 104,
-          "end_line": 107,
+          "line": 114,
+          "end_line": 117,
           "label": "Compensate"
         }
       ]

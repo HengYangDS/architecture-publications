@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "51fdc384f0a023696ae08d3f938fa68a05150f5e"
+      "revision": "e228861786b9206074d5fa1728527a277d7d54af"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,14 +42,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1404,
-          "end_line": 1412,
+          "line": 1640,
+          "end_line": 1648,
           "label": "0.1.0"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 1492,
-          "end_line": 1493,
+          "line": 1728,
+          "end_line": 1729,
           "label": "0.1.0"
         }
       ]
@@ -64,8 +64,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1318,
-          "end_line": 1342,
+          "line": 1554,
+          "end_line": 1578,
           "label": "0.2.0"
         }
       ]
@@ -80,8 +80,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1290,
-          "end_line": 1316,
+          "line": 1526,
+          "end_line": 1552,
           "label": "0.3.0"
         }
       ]
@@ -95,8 +95,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1069,
-          "end_line": 1095,
+          "line": 1305,
+          "end_line": 1331,
           "label": "0.4.1"
         }
       ]
@@ -110,8 +110,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1005,
-          "end_line": 1015,
+          "line": 1241,
+          "end_line": 1251,
           "label": "0.4.5"
         }
       ]
@@ -126,8 +126,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 989,
-          "end_line": 1003,
+          "line": 1225,
+          "end_line": 1239,
           "label": "0.4.6"
         }
       ]
@@ -141,8 +141,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 978,
-          "end_line": 987,
+          "line": 1214,
+          "end_line": 1223,
           "label": "0.4.7"
         }
       ]
@@ -156,8 +156,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 956,
-          "end_line": 966,
+          "line": 1192,
+          "end_line": 1202,
           "label": "0.4.9"
         }
       ]
@@ -172,8 +172,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 837,
-          "end_line": 862,
+          "line": 1073,
+          "end_line": 1098,
           "label": "0.4.16"
         }
       ]
@@ -187,8 +187,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 806,
-          "end_line": 835,
+          "line": 1042,
+          "end_line": 1071,
           "label": "0.4.17"
         }
       ]
@@ -203,8 +203,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 689,
-          "end_line": 730,
+          "line": 925,
+          "end_line": 966,
           "label": "0.5.0"
         }
       ]
@@ -218,8 +218,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 659,
-          "end_line": 667,
+          "line": 895,
+          "end_line": 903,
           "label": "0.6.1"
         }
       ]
@@ -234,8 +234,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 437,
-          "end_line": 658,
+          "line": 673,
+          "end_line": 894,
           "label": "0.7.0"
         }
       ]
@@ -249,8 +249,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 398,
-          "end_line": 436,
+          "line": 634,
+          "end_line": 672,
           "label": "0.7.1"
         }
       ]
@@ -264,8 +264,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 360,
-          "end_line": 396,
+          "line": 596,
+          "end_line": 632,
           "label": "0.7.2"
         }
       ]
@@ -280,8 +280,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 293,
-          "end_line": 358,
+          "line": 529,
+          "end_line": 594,
           "label": "0.8.0"
         }
       ]
@@ -295,8 +295,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 271,
-          "end_line": 291,
+          "line": 507,
+          "end_line": 527,
           "label": "0.8.1"
         }
       ]
@@ -311,8 +311,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 214,
-          "end_line": 269,
+          "line": 450,
+          "end_line": 505,
           "label": "0.8.2"
         }
       ]
@@ -327,8 +327,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 166,
-          "end_line": 212,
+          "line": 402,
+          "end_line": 448,
           "label": "0.8.3"
         }
       ]
@@ -342,8 +342,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 135,
-          "end_line": 164,
+          "line": 371,
+          "end_line": 400,
           "label": "0.9.0"
         }
       ]
@@ -358,9 +358,41 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 14,
-          "end_line": 133,
+          "line": 250,
+          "end_line": 369,
           "label": "0.10.0"
+        }
+      ]
+    },
+    {
+      "id": "v0110",
+      "at": "2026-11-27T20:58:32+08:00",
+      "lane": "catalog",
+      "kind": "change",
+      "title": "v0.11.0 每个模型的上下文窗口",
+      "detail": "模型可以声明上下文窗口，不声明时为 1,000,000 个 token。AIGW 把窗口交给 Codex（只给所选模型）和 Hermes（给列出的每个模型）。不兼容变更：客户端的可执行文件不见了，这个客户端就停下，不再换用别的；Windows 和 Intel Mac 不再受支持。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 108,
+          "end_line": 248,
+          "label": "0.11.0"
+        }
+      ]
+    },
+    {
+      "id": "v0120",
+      "at": "2026-11-28T09:26:40+08:00",
+      "lane": "clients",
+      "kind": "change",
+      "title": "v0.12.0 客户端声明自己的程序",
+      "detail": "不兼容变更：aigw.toml 升到第 9 版。客户端用路径或编辑器扩展目录声明程序，都不声明时接管找到的程序，这一步只做一次。转发只写转发服务的根地址，Codex 总是拿到 AIGW 自己的提供商表。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 14,
+          "end_line": 106,
+          "label": "0.12.0"
         }
       ]
     }

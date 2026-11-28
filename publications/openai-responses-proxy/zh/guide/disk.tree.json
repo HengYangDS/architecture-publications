@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
       "provider": "github",
-      "revision": "f89a05c1ef062760266b09abc63bf86bb9147309"
+      "revision": "bc63eca99a413d2e8b835cdb37649726cd9bb240"
     }
   },
   "layout": {
@@ -28,8 +28,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/runtime/config.py",
-          "line": 149,
-          "end_line": 156,
+          "line": 147,
+          "end_line": 154,
           "label": "数据根目录"
         }
       ]
@@ -71,13 +71,13 @@
     {
       "id": "dk-active",
       "label": "当前代",
-      "sublabel": "bin/、providers.toml、清单、回执、runtime-config.json",
+      "sublabel": "bin/、清单、回执、runtime-config.json",
       "parent": "dk-generations",
       "sources": [
         {
           "path": "src/openai_responses_proxy/serving/inventory.py",
           "line": 15,
-          "end_line": 23,
+          "end_line": 24,
           "label": "成员"
         }
       ]
@@ -90,8 +90,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/lifecycle/generation.py",
-          "line": 138,
-          "end_line": 161,
+          "line": 145,
+          "end_line": 168,
           "label": "选定"
         }
       ]
@@ -118,8 +118,8 @@
       "sources": [
         {
           "path": "src/openai_responses_proxy/runtime/config.py",
-          "line": 159,
-          "end_line": 172,
+          "line": 157,
+          "end_line": 170,
           "label": "状态根目录"
         }
       ]

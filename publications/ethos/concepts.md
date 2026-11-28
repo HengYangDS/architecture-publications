@@ -1,7 +1,7 @@
 # ETHOS: term renderings
 
 The renderings this work fixes before translation, used everywhere under `zh/`. Source
-names the file of `ethos` at v0.2.0-beta.11 (`e4d9d04`) that defines or uses the term; "film" is the owner-approved
+names the file of `ethos` at v0.2.0-beta.12 (`cdb51d4`) that defines or uses the term; "film" is the owner-approved
 Chinese narration, `content/narration.md` of `ethos-film` at v1.0.1 (`c33e60f`). Product names, command names and
 their options, verdict values (`pass`, `block`, `unknown`), file and ref names, and the kernel names Commitment, Facts
 and TransitionPlan stay in Latin type.
@@ -176,3 +176,9 @@ narration; profile and checkout are the owner's choices of that day.
 | application service                           | 应用服务                                                                             | `docs/plans/terminal-governance-product-design.md`                                                       |
 | trust kernel                                  | 信任内核                                                                             | `docs/governance/product-design-contract.md`                                                             |
 | host store                                    | 主机存储                                                                             | `docs/architecture/local-state.md`                                                                       |
+| readiness run                                 | 就绪运行                                                                             | `src/ethos/application/proof/unexamined.py`                                                              |
+| sampling interval (host load)                 | 采样间隔                                                                             | `src/ethos/adapters/gates/proof_slot.py`                                                                 |
+| domain model                                  | 领域模型                                                                             | `docs/decisions/dr-0027-common-semantic-structure.md`                                                    |
+| subjects, names and axes (of a layout)        | 目录布局的主题、命名和划分维度                                                       | `docs/decisions/dr-0027-common-semantic-structure.md`                                                    |
+| structure rules (of DR-0027)                  | 结构规则                                                                             | `docs/decisions/dr-0027-common-semantic-structure.md`                                                    |
+| deprecated (a platform)                       | 已弃用                                                                               | `CHANGELOG.md`                                                                                           |

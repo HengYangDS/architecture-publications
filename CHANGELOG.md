@@ -33,6 +33,8 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 ### Changed
 
+- The repository's README says how to run Architecture Publisher 0.19.0 where a later release is installed:
+  `mise exec github:HengYangDS/architecture-publisher@0.19.0 -- archpub …`.
 - ETHOS 0.2.0-beta.12 replaces 0.2.0-beta.11, declared and locked for linux-arm64, linux-x64 and macos-arm64 only: the Windows declarations and the lock's Windows, musl and Intel macOS entries are gone, and `openspec/config.yaml` no longer names Windows.
 - The works' READMEs leave the publisher releases that check and build them to the repository's README, which names
   Architecture Publisher 0.17.0 to 0.19.0: 0.20.0 and later refuse the positions and sizes the works' guides state.
@@ -90,8 +92,8 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   instead of 2026.11.9, and the hosted jobs keep their CI artifacts for 14 days.
 - The repository's tools run on Node 26.13.1, a security release, and its format check on Prettier
   3.10.1.
-- OpenAI Responses Proxy is pinned at v7.0.2, Architecture Publisher at v0.21.0, Film Kit at
-  v0.35.0, ETHOS at v0.2.0-beta.11, AIGW at v0.10.0 and the Data Department Work Guidelines at v10.1.3.
+- OpenAI Responses Proxy is pinned at v8.0.0, Architecture Publisher at v0.21.0, Film Kit at
+  v0.35.0, ETHOS at v0.2.0-beta.12, AIGW at v0.12.0 and the Data Department Work Guidelines at v10.1.3.
   The Architecture Publisher work lists the `skill` command, describes strips,
   palettes, age bands and the sealed acceptance of an edition, and claims
   `src/style.mjs`. The Film Kit work claims the engine's own draft and picture
@@ -187,6 +189,22 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   follow the languages it declares; that `filmkit narrate` settles an edition's narration and leaves a take under
   its clarity line for the author's ear; and that the picture gate weighs the mass of a scene's lit paints; it
   claims the forty-six files new in its scope, and its history ends at the release.
+  At v8.0.0 the Responses proxy work says that a client's base URL names its upstream after the listener address, so
+  that a new upstream needs no release, and that the provider manifest, the provider registry and the plaintext
+  delivery are gone; that data requests, like the handoff, are served only to a loopback client with a loopback
+  `Host`, no `Origin` and no Fetch Metadata, so a request from a web page gets HTTP 403; that an upstream origin
+  cools alone; and that the payload holds no `providers.toml`, so an installation that 7.0.2 or earlier wrote is
+  refused and is removed with its own `uninstall --purge` before this release is installed; its history ends at the
+  release. At v0.12.0 the AIGW work says that the client runs on macOS on ARM64 and on Linux on AMD64 and ARM64,
+  with no Windows and no DPAPI; that a model may declare the context window AIGW gives Codex and Hermes; that each
+  client declares its program, by path or by an editor's extensions directory, and a plan stops the client whose
+  program is gone, withdrawing only the files the change drops; and that a rollback to a release before 0.12.0 first
+  restores the copy kept before the version 9 edits; it gives owners to the two files new in its scope, and its
+  history ends at the release. At v0.2.0-beta.12 the ETHOS work says that ETHOS deprecates Windows, though this
+  release still publishes its archives; that a readiness run names what it did not examine and an executed proof
+  reports what its gates left in the lane; that a quiet host lets a proof skip one sampling interval; and that each
+  repository keeps its domain model and the subjects, names and axes of its layout; it gives the gate inputs'
+  contract to the gate policy, and its history ends at the release.
 - The ETHOS work claims the application layer and the operation catalog. The
   AIGW work uses the client's new vocabulary: it no longer has a renaming
   component, and its catalog, readiness, configuration and rollout panels follow

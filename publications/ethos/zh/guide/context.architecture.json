@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/ethos.git",
       "provider": "github",
-      "revision": "e4d9d04d36a089aae3924f0dc83f2a990493e852"
+      "revision": "cdb51d469930a57771d9729713b7ec979938ce50"
     }
   },
   "components": [
@@ -136,8 +136,8 @@
       "sources": [
         {
           "path": "README.md",
-          "line": 26,
-          "end_line": 29,
+          "line": 24,
+          "end_line": 27,
           "label": "原生"
         }
       ]

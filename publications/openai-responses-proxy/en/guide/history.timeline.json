@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/openai-responses-proxy.git",
       "provider": "github",
-      "revision": "f89a05c1ef062760266b09abc63bf86bb9147309"
+      "revision": "bc63eca99a413d2e8b835cdb37649726cd9bb240"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 2212,
-          "end_line": 2218,
+          "line": 2256,
+          "end_line": 2262,
           "label": "1.0.0"
         }
       ]
@@ -57,8 +57,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 2084,
-          "end_line": 2129,
+          "line": 2128,
+          "end_line": 2173,
           "label": "1.0.12"
         }
       ]
@@ -72,8 +72,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1701,
-          "end_line": 1712,
+          "line": 1745,
+          "end_line": 1756,
           "label": "1.0.43"
         }
       ]
@@ -88,8 +88,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1607,
-          "end_line": 1673,
+          "line": 1651,
+          "end_line": 1717,
           "label": "2.0.2"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 841,
-          "end_line": 848,
+          "line": 885,
+          "end_line": 892,
           "label": "3.1.16"
         }
       ]
@@ -119,8 +119,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 808,
-          "end_line": 831,
+          "line": 852,
+          "end_line": 875,
           "label": "4.0.0"
         }
       ]
@@ -135,8 +135,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 707,
-          "end_line": 724,
+          "line": 751,
+          "end_line": 768,
           "label": "5.0.0"
         }
       ]
@@ -151,8 +151,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 644,
-          "end_line": 680,
+          "line": 688,
+          "end_line": 724,
           "label": "5.0.3"
         }
       ]
@@ -167,8 +167,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 481,
-          "end_line": 587,
+          "line": 525,
+          "end_line": 631,
           "label": "5.1.0"
         }
       ]
@@ -183,8 +183,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 435,
-          "end_line": 457,
+          "line": 479,
+          "end_line": 501,
           "label": "5.1.3"
         }
       ]
@@ -199,8 +199,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 380,
-          "end_line": 403,
+          "line": 424,
+          "end_line": 447,
           "label": "5.1.7"
         }
       ]
@@ -214,8 +214,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 312,
-          "end_line": 333,
+          "line": 356,
+          "end_line": 377,
           "label": "5.1.10"
         }
       ]
@@ -229,8 +229,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 278,
-          "end_line": 310,
+          "line": 322,
+          "end_line": 354,
           "label": "5.1.11"
         }
       ]
@@ -244,8 +244,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 256,
-          "end_line": 276,
+          "line": 300,
+          "end_line": 320,
           "label": "5.1.12"
         }
       ]
@@ -260,8 +260,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 200,
-          "end_line": 254,
+          "line": 244,
+          "end_line": 298,
           "label": "6.0.0"
         }
       ]
@@ -275,8 +275,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 160,
-          "end_line": 198,
+          "line": 204,
+          "end_line": 242,
           "label": "6.0.1"
         }
       ]
@@ -290,8 +290,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 107,
-          "end_line": 158,
+          "line": 151,
+          "end_line": 202,
           "label": "6.0.2"
         }
       ]
@@ -305,8 +305,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 77,
-          "end_line": 105,
+          "line": 121,
+          "end_line": 149,
           "label": "6.0.3"
         }
       ]
@@ -320,8 +320,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 38,
-          "end_line": 75,
+          "line": 82,
+          "end_line": 119,
           "label": "7.0.0"
         }
       ]
@@ -335,8 +335,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 24,
-          "end_line": 36,
+          "line": 68,
+          "end_line": 80,
           "label": "7.0.1"
         }
       ]
@@ -350,9 +350,24 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 11,
-          "end_line": 22,
+          "line": 55,
+          "end_line": 66,
           "label": "7.0.2"
+        }
+      ]
+    },
+    {
+      "id": "v800",
+      "at": "2026-11-27T23:12:46+08:00",
+      "lane": "product",
+      "title": "v8.0.0 The request path names the upstream",
+      "detail": "A client's base URL names its upstream after the listener address, so a new upstream needs no release; the provider routes and install --upstream-base-url are gone. Data requests are served only to a loopback client that sends no Origin and no Fetch Metadata. The payload holds no providers.toml, so an installation of 7.0.2 or earlier is refused. The DMXAPI 477 retry and plaintext agent delivery are removed.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 11,
+          "end_line": 53,
+          "label": "8.0.0"
         }
       ]
     }

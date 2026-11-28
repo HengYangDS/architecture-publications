@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/ethos.git",
       "provider": "github",
-      "revision": "e4d9d04d36a089aae3924f0dc83f2a990493e852"
+      "revision": "cdb51d469930a57771d9729713b7ec979938ce50"
     }
   },
   "components": [
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "src/ethos/adapters/mutation/proof.py",
-          "line": 417,
-          "end_line": 422,
+          "line": 419,
+          "end_line": 424,
           "label": "Proof"
         }
       ]
@@ -87,8 +87,8 @@
       "sources": [
         {
           "path": "src/ethos/adapters/admission/prewrite.py",
-          "line": 117,
-          "end_line": 149,
+          "line": 118,
+          "end_line": 150,
           "label": "Guard"
         }
       ]
@@ -119,8 +119,8 @@
       "sources": [
         {
           "path": "src/ethos/adapters/repo/hook/protocol.py",
-          "line": 21,
-          "end_line": 34,
+          "line": 23,
+          "end_line": 36,
           "label": "Hook"
         }
       ]

@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/ethos.git",
       "provider": "github",
-      "revision": "e4d9d04d36a089aae3924f0dc83f2a990493e852"
+      "revision": "cdb51d469930a57771d9729713b7ec979938ce50"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -43,8 +43,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 2551,
-          "end_line": 2559,
+          "line": 2800,
+          "end_line": 2808,
           "label": "0.2.0-alpha.5"
         }
       ]
@@ -58,8 +58,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 2463,
-          "end_line": 2476,
+          "line": 2712,
+          "end_line": 2725,
           "label": "0.2.0-alpha.6"
         }
       ]
@@ -73,20 +73,20 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 2311,
-          "end_line": 2315,
+          "line": 2560,
+          "end_line": 2564,
           "label": "0.2.0-alpha.8"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 2365,
-          "end_line": 2370,
+          "line": 2614,
+          "end_line": 2619,
           "label": "0.2.0-alpha.8"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 2269,
-          "end_line": 2271,
+          "line": 2518,
+          "end_line": 2520,
           "label": "0.2.0-alpha.10"
         }
       ]
@@ -101,8 +101,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 2052,
-          "end_line": 2063,
+          "line": 2301,
+          "end_line": 2312,
           "label": "0.2.0-alpha.18"
         }
       ]
@@ -116,8 +116,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 2003,
-          "end_line": 2006,
+          "line": 2252,
+          "end_line": 2255,
           "label": "0.2.0-alpha.19"
         }
       ]
@@ -131,8 +131,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1863,
-          "end_line": 1869,
+          "line": 2112,
+          "end_line": 2118,
           "label": "0.2.0-alpha.22"
         }
       ]
@@ -147,8 +147,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1741,
-          "end_line": 1750,
+          "line": 1990,
+          "end_line": 1999,
           "label": "0.2.0-alpha.26"
         }
       ]
@@ -162,8 +162,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1683,
-          "end_line": 1692,
+          "line": 1932,
+          "end_line": 1941,
           "label": "0.2.0-alpha.27"
         }
       ]
@@ -177,8 +177,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1516,
-          "end_line": 1523,
+          "line": 1765,
+          "end_line": 1772,
           "label": "0.2.0-alpha.29"
         }
       ]
@@ -192,8 +192,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1384,
-          "end_line": 1406,
+          "line": 1633,
+          "end_line": 1655,
           "label": "0.2.0-beta.2"
         }
       ]
@@ -208,8 +208,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1284,
-          "end_line": 1299,
+          "line": 1533,
+          "end_line": 1548,
           "label": "0.2.0-beta.3"
         }
       ]
@@ -224,14 +224,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 1071,
-          "end_line": 1080,
+          "line": 1320,
+          "end_line": 1329,
           "label": "0.2.0-beta.6"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 1098,
-          "end_line": 1103,
+          "line": 1347,
+          "end_line": 1352,
           "label": "0.2.0-beta.6"
         }
       ]
@@ -246,14 +246,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 788,
-          "end_line": 802,
+          "line": 1037,
+          "end_line": 1051,
           "label": "0.2.0-beta.7"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 1063,
-          "end_line": 1065,
+          "line": 1312,
+          "end_line": 1314,
           "label": "0.2.0-beta.7"
         }
       ]
@@ -267,8 +267,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 668,
-          "end_line": 670,
+          "line": 917,
+          "end_line": 919,
           "label": "0.2.0-beta.8"
         }
       ]
@@ -283,14 +283,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 611,
-          "end_line": 616,
+          "line": 860,
+          "end_line": 865,
           "label": "0.2.0-beta.9"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 602,
-          "end_line": 603,
+          "line": 851,
+          "end_line": 852,
           "label": "0.2.0-beta.9"
         }
       ]
@@ -305,20 +305,20 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 513,
-          "end_line": 519,
+          "line": 762,
+          "end_line": 768,
           "label": "0.2.0-beta.10"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 520,
-          "end_line": 526,
+          "line": 769,
+          "end_line": 775,
           "label": "0.2.0-beta.10"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 527,
-          "end_line": 530,
+          "line": 776,
+          "end_line": 779,
           "label": "0.2.0-beta.10"
         }
       ]
@@ -333,21 +333,49 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 182,
-          "end_line": 190,
+          "line": 431,
+          "end_line": 439,
           "label": "0.2.0-beta.11"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 64,
+          "line": 313,
+          "end_line": 322,
+          "label": "0.2.0-beta.11"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 549,
+          "end_line": 560,
+          "label": "0.2.0-beta.11"
+        }
+      ]
+    },
+    {
+      "id": "beta-12",
+      "at": "2026-11-28T00:06:08+08:00",
+      "lane": "proof",
+      "kind": "change",
+      "title": "beta.12 Proof reports, Windows deprecated",
+      "detail": "A readiness run names what it did not examine: the gates it did not run and the tests that read the lane's changed paths. An executed proof reports what its gates left in the lane; neither report changes a verdict. Windows is deprecated, and this release still publishes its archives.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 19,
+          "end_line": 28,
+          "label": "0.2.0-beta.12"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "line": 68,
           "end_line": 73,
-          "label": "0.2.0-beta.11"
+          "label": "0.2.0-beta.12"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 300,
-          "end_line": 311,
-          "label": "0.2.0-beta.11"
+          "line": 171,
+          "end_line": 173,
+          "label": "0.2.0-beta.12"
         }
       ]
     }

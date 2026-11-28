@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/aigw-cli.git",
       "provider": "github",
-      "revision": "51fdc384f0a023696ae08d3f938fa68a05150f5e"
+      "revision": "e228861786b9206074d5fa1728527a277d7d54af"
     }
   },
   "layout": {
@@ -45,15 +45,19 @@
           "type": "EndpointProtocol"
         },
         {
-          "name": "authentication",
-          "type": "Authentication"
+          "name": "program",
+          "type": "string"
+        },
+        {
+          "name": "extensions",
+          "type": "string"
         }
       ],
       "sources": [
         {
           "path": "internal/domain/clients.go",
-          "line": 236,
-          "end_line": 254,
+          "line": 250,
+          "end_line": 268,
           "label": "ClientBinding"
         }
       ],
@@ -88,6 +92,10 @@
           "type": "map"
         },
         {
+          "name": "context_window",
+          "type": "int"
+        },
+        {
           "name": "deprecated",
           "type": "bool"
         }
@@ -96,7 +104,7 @@
         {
           "path": "internal/domain/model.go",
           "line": 95,
-          "end_line": 106,
+          "end_line": 109,
           "label": "Model"
         }
       ]
