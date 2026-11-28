@@ -3,33 +3,21 @@
 lockfile_version = 3
 
 [[tools."http:ethos"]]
-version = "0.2.0-beta.11"
+version = "0.2.0-beta.12"
 backend = "http:ethos"
-specifiers = ["0.2.0-beta.11"]
+specifiers = ["0.2.0-beta.12"]
 
 [tools."http:ethos"."platforms.linux-arm64"]
-checksum = "sha256:d619560f9cd7812303d550721722afa200b2bc152639ec5ac3ab68ef2d50b292"
-url = "https://github.com/HengYangDS/ethos/releases/download/v0.2.0-beta.11/ethos-0.2.0-beta.11-linux-arm64.tar.gz"
-
-[tools."http:ethos"."platforms.linux-arm64-musl"]
-checksum = "sha256:d619560f9cd7812303d550721722afa200b2bc152639ec5ac3ab68ef2d50b292"
-url = "https://github.com/HengYangDS/ethos/releases/download/v0.2.0-beta.11/ethos-0.2.0-beta.11-linux-arm64.tar.gz"
+checksum = "sha256:b7eb93ada12f82f9c755562429367a5e2792a1a2c96013598382fc08a16c873d"
+url = "https://github.com/HengYangDS/ethos/releases/download/v0.2.0-beta.12/ethos-0.2.0-beta.12-linux-arm64.tar.gz"
 
 [tools."http:ethos"."platforms.linux-x64"]
-checksum = "sha256:d8eb1d563015d624fee5d4fbf3b3f50e952e8e9cf603262bbd5d337ff808c30d"
-url = "https://github.com/HengYangDS/ethos/releases/download/v0.2.0-beta.11/ethos-0.2.0-beta.11-linux-x64.tar.gz"
-
-[tools."http:ethos"."platforms.linux-x64-musl"]
-checksum = "sha256:d8eb1d563015d624fee5d4fbf3b3f50e952e8e9cf603262bbd5d337ff808c30d"
-url = "https://github.com/HengYangDS/ethos/releases/download/v0.2.0-beta.11/ethos-0.2.0-beta.11-linux-x64.tar.gz"
+checksum = "sha256:e5e4a390c9a7616067522606160dc0cc63ee8725acd54b30ab3df89b6cf286f0"
+url = "https://github.com/HengYangDS/ethos/releases/download/v0.2.0-beta.12/ethos-0.2.0-beta.12-linux-x64.tar.gz"
 
 [tools."http:ethos"."platforms.macos-arm64"]
-checksum = "sha256:59a2b154e82b9fb5a5f94f12cba6eb5825102235a7e4e802b60bafe82f8b966e"
-url = "https://github.com/HengYangDS/ethos/releases/download/v0.2.0-beta.11/ethos-0.2.0-beta.11-macos-arm64.tar.gz"
-
-[tools."http:ethos"."platforms.windows-x64"]
-checksum = "sha256:85a914179bd660da1f7f0e8a1995fcbf195eb36240c3346aec304ac25da4c826"
-url = "https://github.com/HengYangDS/ethos/releases/download/v0.2.0-beta.11/ethos-0.2.0-beta.11-windows-x64.tar.gz"
+checksum = "sha256:71929b950100188c39a76026e4ff6a6d2d7a35a8fda608483e1e9b2a18729f59"
+url = "https://github.com/HengYangDS/ethos/releases/download/v0.2.0-beta.12/ethos-0.2.0-beta.12-macos-arm64.tar.gz"
 
 [[tools.node]]
 version = "26.13.1"
@@ -40,26 +28,10 @@ specifiers = ["26.13.1"]
 checksum = "sha256:80a330b35415382878df18d41afbd106ea89bfb3be0087d6608e289a14c5cc7d"
 url = "https://nodejs.org/dist/v26.13.1/node-v26.13.1-linux-arm64.tar.gz"
 
-[tools.node."platforms.linux-arm64-musl"]
-checksum = "sha256:42684e7f1830ef9eaadd040672cba41bbaff9549d834600699f92ee1ee5b1fb1"
-url = "https://unofficial-builds.nodejs.org/download/release/v26.13.1/node-v26.13.1-linux-arm64-musl.tar.gz"
-
 [tools.node."platforms.linux-x64"]
 checksum = "sha256:518674de2b621728a5e4486f5fb3b7d2900bb3cc4aa97969edaa463db99f9778"
 url = "https://nodejs.org/dist/v26.13.1/node-v26.13.1-linux-x64.tar.gz"
 
-[tools.node."platforms.linux-x64-musl"]
-checksum = "sha256:04bf9ed3e32ea139c9af52f6dd06879ff6f8880555a0aa1183ef2d156c0e02d3"
-url = "https://unofficial-builds.nodejs.org/download/release/v26.13.1/node-v26.13.1-linux-x64-musl.tar.gz"
-
 [tools.node."platforms.macos-arm64"]
 checksum = "sha256:aec2514ea1ceb2ba52455e9ec65986f6749a06dd759e5db2a72e6889668c9735"
 url = "https://nodejs.org/dist/v26.13.1/node-v26.13.1-darwin-arm64.tar.gz"
-
-[tools.node."platforms.macos-x64"]
-checksum = "sha256:82bb96078a24ca50b9c9a38f2379e6be6d87171fcd400fc14c8934b3bce96e2f"
-url = "https://nodejs.org/dist/v26.13.1/node-v26.13.1-darwin-x64.tar.gz"
-
-[tools.node."platforms.windows-x64"]
-checksum = "sha256:e2edda75bfb089654705cf65a13b58933bfd5f57148e8ebda916f58a2474f1f7"
-url = "https://nodejs.org/dist/v26.13.1/node-v26.13.1-win-x64.zip"

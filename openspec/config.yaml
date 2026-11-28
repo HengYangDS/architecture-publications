@@ -6,7 +6,6 @@ schema: spec-driven
 # Keep general project documentation and discoverable codebase facts out.
 # Example:
 #   context: |
-#     Designs and tasks must cover Windows, macOS, and Linux
 #     Write all artifacts in Spanish
 
 # Per-artifact rules (optional)

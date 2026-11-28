@@ -33,6 +33,7 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
 
 ### Changed
 
+- ETHOS 0.2.0-beta.12 replaces 0.2.0-beta.11, declared and locked for linux-arm64, linux-x64 and macos-arm64 only: the Windows declarations and the lock's Windows, musl and Intel macOS entries are gone, and `openspec/config.yaml` no longer names Windows.
 - The works' READMEs leave the publisher releases that check and build them to the repository's README, which names
   Architecture Publisher 0.17.0 to 0.19.0: 0.20.0 and later refuse the positions and sizes the works' guides state.
 - The GitLab macOS jobs select their runners by the fleet's label, `macos-latest`, and their role, `review` or
