@@ -178,7 +178,7 @@ OpenAI Responses Proxy 是一个回环监听器，架在 Codex 这类 Responses 
 | actor turn-delivery | 响应投递 | backend | source:code-hold |
 | actor turn-provider | 提供商端点 | external |
 | phase | 准入 |
-| turn-client | turn-listener | POST /https/api.example.com/v1/responses |
+| turn-client | turn-listener | POST /https/<authority>/v1/responses |
 | turn-listener | turn-relay | 路由和请求体 |
 | turn-relay | turn-projection | 重建请求体 |
 | turn-projection | turn-relay | 可移植的字节 | return |

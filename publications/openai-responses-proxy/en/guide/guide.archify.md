@@ -178,7 +178,7 @@ Only `POST /<upstream>/responses` and `GET /<upstream>/models` are admitted, whe
 | actor turn-delivery | Response delivery | backend | source:code-hold |
 | actor turn-provider | Provider endpoint | external |
 | phase | Admit |
-| turn-client | turn-listener | POST /https/api.example.com/v1/responses |
+| turn-client | turn-listener | POST /https/<authority>/v1/responses |
 | turn-listener | turn-relay | route and body |
 | turn-relay | turn-projection | project the body |
 | turn-projection | turn-relay | portable bytes | return |
