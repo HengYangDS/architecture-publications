@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
       "provider": "github",
-      "revision": "127e15186115c1cf30e9f476e4991d587bf50500"
+      "revision": "c0308de82eb1714fafdfc19d7a9da58f32d11d41"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -42,8 +42,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 905,
-          "end_line": 942,
+          "line": 930,
+          "end_line": 967,
           "label": "4.0.0"
         }
       ]
@@ -57,8 +57,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 886,
-          "end_line": 896,
+          "line": 911,
+          "end_line": 921,
           "label": "4.1.0"
         }
       ]
@@ -73,8 +73,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 839,
-          "end_line": 859,
+          "line": 864,
+          "end_line": 884,
           "label": "5.0.0"
         }
       ]
@@ -88,8 +88,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 807,
-          "end_line": 822,
+          "line": 832,
+          "end_line": 847,
           "label": "5.0.3"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 758,
-          "end_line": 779,
+          "line": 783,
+          "end_line": 804,
           "label": "5.1.0"
         }
       ]
@@ -119,8 +119,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 621,
-          "end_line": 645,
+          "line": 646,
+          "end_line": 670,
           "label": "7.0.0"
         }
       ]
@@ -134,8 +134,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 605,
-          "end_line": 619,
+          "line": 630,
+          "end_line": 644,
           "label": "7.0.1"
         }
       ]
@@ -149,8 +149,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 549,
-          "end_line": 578,
+          "line": 574,
+          "end_line": 603,
           "label": "7.0.4"
         }
       ]
@@ -164,8 +164,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 516,
-          "end_line": 523,
+          "line": 541,
+          "end_line": 548,
           "label": "7.0.6"
         }
       ]
@@ -179,8 +179,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 391,
-          "end_line": 456,
+          "line": 416,
+          "end_line": 481,
           "label": "7.0.12"
         }
       ]
@@ -195,8 +195,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 225,
-          "end_line": 389,
+          "line": 250,
+          "end_line": 414,
           "label": "8.0.0"
         }
       ]
@@ -211,8 +211,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 160,
-          "end_line": 223,
+          "line": 185,
+          "end_line": 248,
           "label": "9.0.0"
         }
       ]
@@ -226,8 +226,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 135,
-          "end_line": 158,
+          "line": 160,
+          "end_line": 183,
           "label": "9.1.0"
         }
       ]
@@ -241,8 +241,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 109,
-          "end_line": 121,
+          "line": 134,
+          "end_line": 146,
           "label": "9.3.0"
         }
       ]
@@ -257,8 +257,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 79,
-          "end_line": 107,
+          "line": 104,
+          "end_line": 132,
           "label": "10.0.0"
         }
       ]
@@ -272,9 +272,24 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 34,
-          "end_line": 42,
+          "line": 59,
+          "end_line": 67,
           "label": "10.1.0"
+        }
+      ]
+    },
+    {
+      "id": "v1020",
+      "at": "2026-11-28T22:39:55+08:00",
+      "lane": "duties",
+      "title": "v10.2.0 Hiring weighs qualities; tiers told in person",
+      "detail": "Hiring may also weigh qualities declared in writing for the role before its interviews. They bear only on whether to hire and set neither the entry grade nor a tier. After confirming a tier, the decision owner tells the member in person the tier and its records and goes through with the member the next step it points to.",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 15,
+          "end_line": 25,
+          "label": "10.2.0"
         }
       ]
     }

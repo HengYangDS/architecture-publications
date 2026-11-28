@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "888880d8c3f56b63eea9b9e8e1bffbf986f4c5b4"
+      "revision": "5b6dd53e3d1c6b0a36680d33fccce4944a54ceea"
     },
     "legend": {
       "entries": {
@@ -51,8 +51,8 @@
       "sources": [
         {
           "path": "src/plan/views.mjs",
-          "line": 133,
-          "end_line": 138,
+          "line": 136,
+          "end_line": 141,
           "label": "Declared"
         }
       ]
@@ -66,8 +66,8 @@
       "sources": [
         {
           "path": "src/plan/views.mjs",
-          "line": 198,
-          "end_line": 221,
+          "line": 201,
+          "end_line": 224,
           "label": "Admission"
         }
       ]
@@ -81,8 +81,8 @@
       "sources": [
         {
           "path": "src/plan/views.mjs",
-          "line": 128,
-          "end_line": 132,
+          "line": 131,
+          "end_line": 135,
           "label": "Plan"
         }
       ]
@@ -96,8 +96,8 @@
       "sources": [
         {
           "path": "src/plan/views.mjs",
-          "line": 139,
-          "end_line": 144,
+          "line": 142,
+          "end_line": 147,
           "label": "Whole model"
         }
       ]
@@ -111,8 +111,8 @@
       "sources": [
         {
           "path": "src/plan/views.mjs",
-          "line": 145,
-          "end_line": 146,
+          "line": 148,
+          "end_line": 149,
           "label": "Fits"
         }
       ]
@@ -126,8 +126,8 @@
       "sources": [
         {
           "path": "src/plan/views.mjs",
-          "line": 147,
-          "end_line": 152,
+          "line": 150,
+          "end_line": 155,
           "label": "Groups"
         }
       ]
@@ -141,8 +141,8 @@
       "sources": [
         {
           "path": "src/plan/views.mjs",
-          "line": 50,
-          "end_line": 55,
+          "line": 53,
+          "end_line": 58,
           "label": "Overview"
         }
       ]
@@ -156,8 +156,8 @@
       "sources": [
         {
           "path": "src/plan/views.mjs",
-          "line": 147,
-          "end_line": 152,
+          "line": 150,
+          "end_line": 155,
           "label": "Refusal"
         }
       ]

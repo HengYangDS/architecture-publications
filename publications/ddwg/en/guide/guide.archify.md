@@ -7,7 +7,7 @@ The guidelines are a documentation repository that members and Agents read witho
 - [A change is admitted before it is written](block:p-change): a selected Change, an owned lane and exact-path admission come first.[](source:agents-change)
 - [Passing checks do not show adoption](block:p-open): a readable route and passing checks do not prove that members use the guidance.[](source:map-maintain)
 
-@answer scope="DDWG v10.1.3 · commit 127e151 · its documents, specs and configuration"
+@answer scope="DDWG v10.2.0 · commit c0308de · its documents, specs and configuration"
 @meta locale=en style=editorial
 @source readme-start title="Start with your work question" path="README.md" lines=8:10
 @source readme-repo title="A documentation repository" path="README.md" lines=15:21
@@ -20,10 +20,10 @@ The guidelines are a documentation repository that members and Agents read witho
 @source charter-purpose title="When to use the charter" path="docs/charter.md" lines=13:19
 @source charter-authority title="Authority to act" path="docs/charter.md" lines=43:59
 @source charter-facts title="Authority about facts" path="docs/charter.md" lines=61:70
-@source charter-boundaries title="Four non-negotiable boundaries" path="docs/charter.md" lines=78:93
-@source charter-risk title="Form follows risk" path="docs/charter.md" lines=99:111
-@source charter-review title="Independent review" path="docs/charter.md" lines=113:118
-@source charter-version title="Guideline stewardship" path="docs/charter.md" lines=158:168
+@source charter-boundaries title="Four non-negotiable boundaries" path="docs/charter.md" lines=78:96
+@source charter-risk title="Form follows risk" path="docs/charter.md" lines=102:114
+@source charter-review title="Independent review" path="docs/charter.md" lines=116:121
+@source charter-version title="Guideline stewardship" path="docs/charter.md" lines=161:171
 @source decide-record title="Record the choice and next action" path="docs/decide.md" lines=157:164
 @source decide-act title="Once action begins" path="docs/decide.md" lines=178:180
 @source deliver-loop title="The working loop" path="docs/deliver.md" lines=80:93
@@ -80,9 +80,8 @@ The guidelines are a documentation repository that members and Agents read witho
 @source github-job title="The GitHub job" path=".github/workflows/ci.yml" lines=36:43
 @source version-file title="VERSION" path="VERSION" lines=1:1
 @source changelog-intro title="Earlier editions had no release tags" path="CHANGELOG.md" lines=10:11
-@source changelog-400 title="The 4.0.0 release" path="CHANGELOG.md" lines=905:942
-@source changelog-1010 title="The 10.1.0 release" path="CHANGELOG.md" lines=34:42
-@source changelog-1013 title="The 10.1.3 release" path="CHANGELOG.md" lines=15:19
+@source changelog-400 title="The 4.0.0 release" path="CHANGELOG.md" lines=930:967
+@source changelog-1020 title="The 10.2.0 release" path="CHANGELOG.md" lines=15:25
 
 ## Who reads the guidelines, and where do they start? {#p-readers}
 
@@ -116,6 +115,14 @@ The ETHOS profile names the same eight topics as the repository's normative sour
 
 Read the charter when the question is who may decide, which facts can be trusted or which boundary must hold.[](source:charter-purpose) The same rule words bind members and their Agents, and risk decides the form of the work, not whether a duty exists.[](source:charter-risk)
 
+The four non-negotiable boundaries are the conditions under which colleagues can rely on one another.[](source:charter-boundaries)
+
+@facts
+| Tell the truth | No fabricated, hidden or selectively presented facts, and no uncertainty presented as certainty.[](source:charter-boundaries) |
+| Stay in bounds | Subject, time, competence, permission, data, security, compliance and action limits hold.[](source:charter-boundaries) |
+| Name the owner | Every judgment, decision, change and acceptance has an accountable person.[](source:charter-boundaries) |
+| No false completion | Nothing is called complete, correct, usable or adopted without matching current evidence.[](source:charter-boundaries) |
+
 Must and must not allow no departure. Should and should not set the default, which a stated reason may depart from; may leaves the choice to the responsible person.[](source:charter-risk)
 
 | Level        | When it applies                                                 | Minimum response                                                                                            |
@@ -123,12 +130,6 @@ Must and must not allow no departure. Should and should not set the default, whi
 | L0 low risk  | Local, reversible work without an external commitment           | Conclusion, basis and action in one clear exchange                                                          |
 | L1 standard  | Cross-role work, competing options or material uncertainty      | Problem, options, path and acceptance in the existing record                                                |
 | L2 high risk | Production, funds, sensitive data, overwrite or irreversibility | Written decision, authorization, rollback, independent review and human acceptance[](source:charter-review) |
-
-@facts
-| Tell the truth | No fabricated, hidden or selectively presented facts, and no uncertainty presented as certainty.[](source:charter-boundaries) |
-| Stay in bounds | Subject, time, competence, permission, data, security, compliance and action limits hold.[](source:charter-boundaries) |
-| Name the owner | Every judgment, decision, change and acceptance has an accountable person.[](source:charter-boundaries) |
-| No false completion | Nothing is called complete, correct, usable or adopted without matching current evidence.[](source:charter-boundaries) |
 
 @callout level=note title="Two kinds of authority"
 | Authority to act says who may decide; authority about facts says what establishes truth. Neither grants the other, and no Agent, tool or file can grant itself authority.[](source:charter-authority)[](source:charter-facts) |
@@ -253,9 +254,7 @@ A withdrawn task keeps its line and identity without a checkbox, so the archived
 
 ## How did the guidelines get here? {#p-history}
 
-Versioned releases begin with v4.0.0 on 2026-09-26; earlier branch editions had no release tags.[](source:changelog-intro)[](source:changelog-400) The timeline picks sixteen releases, up to v10.1.0 on 2026-11-25, that changed what members, Agents or maintainers read.[](source:changelog-1010)
-
-The latest release is v10.1.3, which states each rule only once.[](source:changelog-1013)
+Versioned releases begin with v4.0.0 on 2026-09-26; earlier branch editions had no release tags.[](source:changelog-intro)[](source:changelog-400) The timeline picks seventeen releases that changed what members, Agents or maintainers read. The latest release, v10.2.0 of 2026-11-28, is the last of them.[](source:changelog-1020)
 
 @diagram timeline id=history source=history.timeline.json title="How the guidelines got here"
 

@@ -7,7 +7,7 @@
 - [改动先准入，后写入](block:p-change)：写入之前，先要选定一项正式变更，拿到自己的工作通道，并让确切路径通过准入。[](source:agents-change)
 - [检查通过，不等于已经采用](block:p-open)：路线读得通、仓库检查通过，都证明不了成员在用这份指南。[](source:map-maintain)
 
-@answer scope="DDWG v10.1.3 · 提交 127e151 · 文档、规格和配置"
+@answer scope="DDWG v10.2.0 · 提交 c0308de · 文档、规格和配置"
 @meta locale=zh-CN style=editorial
 @source readme-start title="从工作问题开始" path="README.md" lines=8:10
 @source readme-repo title="文档仓库" path="README.md" lines=15:21
@@ -20,10 +20,10 @@
 @source charter-purpose title="什么时候读章程" path="docs/charter.md" lines=13:19
 @source charter-authority title="行动依据" path="docs/charter.md" lines=43:59
 @source charter-facts title="事实依据" path="docs/charter.md" lines=61:70
-@source charter-boundaries title="四条底线" path="docs/charter.md" lines=78:93
-@source charter-risk title="形式随风险而定" path="docs/charter.md" lines=99:111
-@source charter-review title="独立评审" path="docs/charter.md" lines=113:118
-@source charter-version title="指南的管理" path="docs/charter.md" lines=158:168
+@source charter-boundaries title="四条底线" path="docs/charter.md" lines=78:96
+@source charter-risk title="形式随风险而定" path="docs/charter.md" lines=102:114
+@source charter-review title="独立评审" path="docs/charter.md" lines=116:121
+@source charter-version title="指南的管理" path="docs/charter.md" lines=161:171
 @source decide-record title="记下选择和下一步行动" path="docs/decide.md" lines=157:164
 @source decide-act title="行动开始之后" path="docs/decide.md" lines=178:180
 @source deliver-loop title="工作循环" path="docs/deliver.md" lines=80:93
@@ -80,9 +80,8 @@
 @source github-job title="GitHub 作业" path=".github/workflows/ci.yml" lines=36:43
 @source version-file title="VERSION" path="VERSION" lines=1:1
 @source changelog-intro title="更早的版本没有发布标签" path="CHANGELOG.md" lines=10:11
-@source changelog-400 title="4.0.0 的发布" path="CHANGELOG.md" lines=905:942
-@source changelog-1010 title="10.1.0 的发布" path="CHANGELOG.md" lines=34:42
-@source changelog-1013 title="10.1.3 的发布" path="CHANGELOG.md" lines=15:19
+@source changelog-400 title="4.0.0 的发布" path="CHANGELOG.md" lines=930:967
+@source changelog-1020 title="10.2.0 的发布" path="CHANGELOG.md" lines=15:25
 
 ## 谁读这份指南，从哪里开始？ {#p-readers}
 
@@ -116,6 +115,14 @@ ETHOS 治理配置也把这八个主题列为仓库的规范来源。[](source:p
 
 要弄清谁可以决定、哪些事实可信、哪条边界必须守住，就读章程。[](source:charter-purpose)规则的字句对成员和他们的智能体一样有约束力；风险决定工作采取什么形式，不决定职责存不存在。[](source:charter-risk)
 
+四条底线是同事之间能够彼此信赖的前提。[](source:charter-boundaries)
+
+@facts
+| 说真话 | 不编造、不隐瞒、不挑着说；没把握的不说成有把握。[](source:charter-boundaries) |
+| 守边界 | 对象、时间、能力、权限、数据、安全、合规和行动的界限都要守住。[](source:charter-boundaries) |
+| 责任落到人 | 每项判断、决定、变更和验收，都有人负责。[](source:charter-boundaries) |
+| 不虚报完成 | 没有对得上的当前证据，就不说完成、正确、可用或已采用。[](source:charter-boundaries) |
+
 “必须”和“不得”不容偏离。“应当”和“不应”定下默认做法，说明理由才可偏离；“可以”留给负责人选择。[](source:charter-risk)
 
 | 级别      | 适用情形                                         | 最低要求                                                              |
@@ -123,12 +130,6 @@ ETHOS 治理配置也把这八个主题列为仓库的规范来源。[](source:p
 | L0 低风险 | 局部、可逆、没有对外承诺的工作                   | 一次讲清结论、依据和做法                                              |
 | L1 标准   | 跨角色、要在几个方案间取舍或有重大不确定性的工作 | 在现有记录里写清问题、方案、做法和验收                                |
 | L2 高风险 | 涉及生产、资金、敏感数据、覆盖写入或不可逆操作   | 书面决定、授权、回滚、独立评审，最后由人验收[](source:charter-review) |
-
-@facts
-| 说真话 | 不编造、不隐瞒、不挑着说；没把握的不说成有把握。[](source:charter-boundaries) |
-| 守边界 | 对象、时间、能力、权限、数据、安全、合规和行动的界限都要守住。[](source:charter-boundaries) |
-| 责任落到人 | 每项判断、决定、变更和验收，都有人负责。[](source:charter-boundaries) |
-| 不虚报完成 | 没有对得上的当前证据，就不说完成、正确、可用或已采用。[](source:charter-boundaries) |
 
 @callout level=note title="两种依据"
 | 行动依据回答谁可以决定，事实依据回答靠什么认定一件事是真的。有了一种依据，不等于有了另一种；任何智能体、工具或文件，都不能给自己授予权限。[](source:charter-authority)[](source:charter-facts) |
@@ -253,9 +254,7 @@ OpenSpec 工作空间里的六份能力规格，保存已验收的需求。需�
 
 ## 这套指南怎样走到今天？ {#p-history}
 
-正式的版本号从 v4.0.0 开始，这一版于 2026 年 9 月 26 日发布；此前各分支版本都没有打发布标签。[](source:changelog-intro)[](source:changelog-400)时间线从中挑出十六个版本，最后一个是 2026 年 11 月 25 日发布的 v10.1.0；这些版本都改变了成员、智能体或维护者读到的内容。[](source:changelog-1010)
-
-最新的版本是 v10.1.3，这一版让每条规则只说一次。[](source:changelog-1013)
+正式的版本号从 v4.0.0 开始，这一版于 2026 年 9 月 26 日发布；此前各分支版本都没有打发布标签。[](source:changelog-intro)[](source:changelog-400)时间线从中挑出十七个版本，都改变了成员、智能体或维护者读到的内容。最新的版本 v10.2.0 于 2026 年 11 月 28 日发布，也是其中最后一个。[](source:changelog-1020)
 
 @diagram timeline id=history source=history.timeline.json title="这套指南怎样走到今天"
 

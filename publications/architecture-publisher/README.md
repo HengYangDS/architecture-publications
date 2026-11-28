@@ -2,8 +2,8 @@
 
 [`en/model.json`](en/model.json) is an Architecture Model of how Architecture
 Publisher turns an architecture model into a print edition and a page. It pins
-`architecture-publisher` at v0.21.0
-(`888880d8c3f56b63eea9b9e8e1bffbf986f4c5b4`), and its components own all 107
+`architecture-publisher` at v0.22.0
+(`5b6dd53e3d1c6b0a36680d33fccce4944a54ceea`), and its components own all 122
 files of its coverage scope: the publisher's source under `src/`, its
 `package.json` and the manifests of its six vendored supplies. Thirty-three
 components, fifty-five relations and six views show one build from the author
@@ -22,7 +22,7 @@ page of the print edition and how a plate draws its parts as cards with the
 strips of their files, how the page and the overview are made and checked,
 what the manifest binds and how a delivery is accepted and published. It shows
 the releases that brought the publisher here and ends with what moving the pin
-changes. Each claim about the product cites a line range at v0.21.0, and the
+changes. Each claim about the product cites a line range at v0.22.0, and the
 diagrams the draft names sit beside it. The re-pin counts were measured on
 2026-11-18, when this work moved from v0.14.0 to v0.15.0. Of the moves before
 it, the move to v0.10.1
@@ -59,7 +59,12 @@ relation to the explainer page now cites three of them, and the two that write
 the guide into the reader file to the data and reader file. It rewrote what the
 work says of the bundled Archify, the manifest's version, a plate's head, the
 edition's index, the overview's closer spacing and the views it does not reach,
-and added no component and no relation.
+and added no component and no relation. The move to v0.22.0 found fourteen of
+the fifteen files that release added under directories its parts claim, and gave
+the child environment's variables, `src/environment.json`, to File binding
+beside `src/environment.mjs`, which reads them. It added what the work says of
+the compositions a plate may take, the tiers figure's fill and the data's
+format, and added no component and no relation.
 
 Each component claims the directories and files its path rules name, and each
 file goes to its most specific claim, so every file in the scope has one owner;

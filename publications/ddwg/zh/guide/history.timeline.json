@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
       "provider": "github",
-      "revision": "127e15186115c1cf30e9f476e4991d587bf50500"
+      "revision": "c0308de82eb1714fafdfc19d7a9da58f32d11d41"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 905,
-          "end_line": 942,
+          "line": 930,
+          "end_line": 967,
           "label": "4.0.0"
         }
       ]
@@ -54,8 +54,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 886,
-          "end_line": 896,
+          "line": 911,
+          "end_line": 921,
           "label": "4.1.0"
         }
       ]
@@ -70,8 +70,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 839,
-          "end_line": 859,
+          "line": 864,
+          "end_line": 884,
           "label": "5.0.0"
         }
       ]
@@ -85,8 +85,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 807,
-          "end_line": 822,
+          "line": 832,
+          "end_line": 847,
           "label": "5.0.3"
         }
       ]
@@ -100,8 +100,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 758,
-          "end_line": 779,
+          "line": 783,
+          "end_line": 804,
           "label": "5.1.0"
         }
       ]
@@ -116,8 +116,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 621,
-          "end_line": 645,
+          "line": 646,
+          "end_line": 670,
           "label": "7.0.0"
         }
       ]
@@ -131,8 +131,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 605,
-          "end_line": 619,
+          "line": 630,
+          "end_line": 644,
           "label": "7.0.1"
         }
       ]
@@ -146,8 +146,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 549,
-          "end_line": 578,
+          "line": 574,
+          "end_line": 603,
           "label": "7.0.4"
         }
       ]
@@ -161,8 +161,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 516,
-          "end_line": 523,
+          "line": 541,
+          "end_line": 548,
           "label": "7.0.6"
         }
       ]
@@ -176,8 +176,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 391,
-          "end_line": 456,
+          "line": 416,
+          "end_line": 481,
           "label": "7.0.12"
         }
       ]
@@ -192,8 +192,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 225,
-          "end_line": 389,
+          "line": 250,
+          "end_line": 414,
           "label": "8.0.0"
         }
       ]
@@ -208,8 +208,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 160,
-          "end_line": 223,
+          "line": 185,
+          "end_line": 248,
           "label": "9.0.0"
         }
       ]
@@ -223,8 +223,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 135,
-          "end_line": 158,
+          "line": 160,
+          "end_line": 183,
           "label": "9.1.0"
         }
       ]
@@ -238,8 +238,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 109,
-          "end_line": 121,
+          "line": 134,
+          "end_line": 146,
           "label": "9.3.0"
         }
       ]
@@ -254,8 +254,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 79,
-          "end_line": 107,
+          "line": 104,
+          "end_line": 132,
           "label": "10.0.0"
         }
       ]
@@ -269,9 +269,24 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 34,
-          "end_line": 42,
+          "line": 59,
+          "end_line": 67,
           "label": "10.1.0"
+        }
+      ]
+    },
+    {
+      "id": "v1020",
+      "at": "2026-11-28T22:39:55+08:00",
+      "lane": "duties",
+      "title": "v10.2.0 招聘看素质，绩效档位当面告知",
+      "detail": "招聘还可以看重某些素质，但要在面试开始前为该岗位书面声明。这些素质只影响录不录用，既不决定入职职级，也不决定绩效档位。决策负责人确认绩效档位后，要当面告诉成员绩效档位和它所依据的记录，再一起过一遍这一档指向的下一步。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 15,
+          "end_line": 25,
+          "label": "10.2.0"
         }
       ]
     }

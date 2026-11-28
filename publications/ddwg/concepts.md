@@ -1,7 +1,7 @@
 # Data Department Work Guidelines: term renderings
 
 The renderings this work fixes before translation, used everywhere under `zh/`. Source
-names the file of `data-department-work-guidelines` at v10.1.3 (`127e151`) that defines or uses the term, or
+names the file of `data-department-work-guidelines` at v10.2.0 (`c0308de`) that defines or uses the term, or
 `concepts.toml` for the owner-approved concept contract of the DDWG film, `content/concepts.toml` of
 `data-department-work-guidelines-film` at v1.2.0 (`f286c43`). That contract renders Agent as 智能体 for this work,
 which takes precedence over the brief's shared rendering Agent → Agent. None of the contract's `zh.avoid` words is
@@ -39,6 +39,7 @@ used in this work.
 | Practice and Evolution; practice                                              | 实践与演进；实践                                     | `docs/evolve.md`                                                                  |
 | Grades, Tiers, and Growth (topic title); grade; tier; promotion               | 职级、绩效档位与成长；职级；绩效档位；晋升           | `docs/grow.md`                                                                    |
 | professional sequence; band; period; assessor; quota                          | 专业序列；段；周期；评定者；名额比例                 | `docs/grow.md`                                                                    |
+| hiring; interview; entry grade; declared quality                              | 招聘；面试；入职职级；事先声明的素质                 | `docs/grow.md`                                                                    |
 | function (of the department); data value chain                                | 职能；数据价值链                                     | `docs/data.md`                                                                    |
 | non-negotiable boundary (earlier 'hard boundary')                             | 底线                                                 | `docs/charter.md`                                                                 |
 | boundary; bounds                                                              | 边界                                                 | `docs/charter.md`                                                                 |

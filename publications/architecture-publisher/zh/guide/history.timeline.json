@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "888880d8c3f56b63eea9b9e8e1bffbf986f4c5b4"
+      "revision": "5b6dd53e3d1c6b0a36680d33fccce4944a54ceea"
     },
     "evidence": "observed",
     "timezone": "Asia/Shanghai"
@@ -39,8 +39,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 965,
-          "end_line": 975,
+          "line": 1051,
+          "end_line": 1061,
           "label": "0.4.0"
         }
       ]
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 920,
-          "end_line": 925,
+          "line": 1006,
+          "end_line": 1011,
           "label": "0.6.0"
         }
       ]
@@ -71,8 +71,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 813,
-          "end_line": 858,
+          "line": 899,
+          "end_line": 944,
           "label": "0.8.0"
         }
       ]
@@ -86,8 +86,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 796,
-          "end_line": 804,
+          "line": 882,
+          "end_line": 890,
           "label": "0.9.0"
         }
       ]
@@ -102,14 +102,14 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 752,
-          "end_line": 763,
+          "line": 838,
+          "end_line": 849,
           "label": "0.10.0"
         },
         {
           "path": "CHANGELOG.md",
-          "line": 788,
-          "end_line": 791,
+          "line": 874,
+          "end_line": 877,
           "label": "Removed"
         }
       ]
@@ -123,8 +123,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 739,
-          "end_line": 750,
+          "line": 825,
+          "end_line": 836,
           "label": "0.10.1"
         }
       ]
@@ -138,8 +138,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 730,
-          "end_line": 737,
+          "line": 816,
+          "end_line": 823,
           "label": "0.10.2"
         }
       ]
@@ -153,8 +153,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 709,
-          "end_line": 722,
+          "line": 795,
+          "end_line": 808,
           "label": "0.11.0"
         }
       ]
@@ -168,8 +168,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 681,
-          "end_line": 707,
+          "line": 767,
+          "end_line": 793,
           "label": "0.12.0"
         }
       ]
@@ -184,8 +184,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 624,
-          "end_line": 679,
+          "line": 710,
+          "end_line": 765,
           "label": "0.13.0"
         }
       ]
@@ -199,8 +199,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 612,
-          "end_line": 622,
+          "line": 698,
+          "end_line": 708,
           "label": "0.13.1"
         }
       ]
@@ -214,8 +214,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 576,
-          "end_line": 610,
+          "line": 662,
+          "end_line": 696,
           "label": "0.14.0"
         }
       ]
@@ -230,8 +230,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 344,
-          "end_line": 574,
+          "line": 430,
+          "end_line": 660,
           "label": "0.15.0"
         }
       ]
@@ -246,8 +246,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 250,
-          "end_line": 342,
+          "line": 336,
+          "end_line": 428,
           "label": "0.16.0"
         }
       ]
@@ -261,8 +261,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 202,
-          "end_line": 248,
+          "line": 288,
+          "end_line": 334,
           "label": "0.17.0"
         }
       ]
@@ -277,8 +277,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 141,
-          "end_line": 200,
+          "line": 227,
+          "end_line": 286,
           "label": "0.18.0"
         }
       ]
@@ -292,8 +292,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 120,
-          "end_line": 139,
+          "line": 206,
+          "end_line": 225,
           "label": "0.19.0"
         }
       ]
@@ -308,8 +308,8 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 74,
-          "end_line": 118,
+          "line": 160,
+          "end_line": 204,
           "label": "0.20.0"
         }
       ]
@@ -324,9 +324,25 @@
       "sources": [
         {
           "path": "CHANGELOG.md",
-          "line": 10,
-          "end_line": 72,
+          "line": 96,
+          "end_line": 158,
           "label": "0.21.0"
+        }
+      ]
+    },
+    {
+      "id": "v0220",
+      "at": "2026-11-28T21:29:38+08:00",
+      "lane": "layout",
+      "kind": "change",
+      "title": "0.22.0 矩阵、放射图与主干图",
+      "detail": "视图被规则选中或由作者指定时，图版可以把它画成矩阵、围绕中心的放射图，或沿主线折行的主干图。层级图首行或末行若只有一张卡片，且属于代码之外的事物，可以画成通栏。src/pinned/data.schema.json 写明数据的格式，src/cli/outcomes.json 写明命令的四种结果。",
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 10,
+          "end_line": 94,
+          "label": "0.22.0"
         }
       ]
     }

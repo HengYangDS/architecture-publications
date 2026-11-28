@@ -6,7 +6,7 @@
   "title": "Data Department Work Guidelines",
   "question": "How do the Data Department work guidelines lead a reader to the rule that governs a task, and how is a change to them proposed, checked and released?",
   "summary": "One task map routes each work question to one of eight topics led by the charter. Six OpenSpec capability specs state what the guidance and its upkeep must do, installed ETHOS admits and proves every change, and each Forge receives the signed release independently.",
-  "scope": "The guidelines as released at v10.1.3: the entries, the task map, the eight topics, the decision records, the maintenance documents, the OpenSpec workspace with its six capability specs, and the configuration of ETHOS, tools, checks and CI that maintains them.",
+  "scope": "The guidelines as released at v10.2.0: the entries, the task map, the eight topics, the decision records, the maintenance documents, the OpenSpec workspace with its six capability specs, and the configuration of ETHOS, tools, checks and CI that maintains them.",
   "limits": [
     "A component lists only the files under the paths it claims, and a relation only those that generate, install or run the other component, or whose link, named path or requirement routes a reader to it, places a duty on it or constrains it.",
     "Between the eight topics, only links to the charter are drawn. Links back to an entry, the task map or Repository change and release, and pointers that another document already holds, are not.",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "data-department-work-guidelines",
     "url": "https://github.com/HengYangDS/data-department-work-guidelines.git",
-    "revision": "127e15186115c1cf30e9f476e4991d587bf50500"
+    "revision": "c0308de82eb1714fafdfc19d7a9da58f32d11d41"
   },
   "coverage": {
     "exclude": [
@@ -217,7 +217,7 @@
       {
         "title": "The release",
         "items": [
-          ["VERSION", "10.1.3, the one release identity; the Changelog follows it"],
+          ["VERSION", "10.2.0, the one release identity; the Changelog follows it"],
           ["Tag", "a signed vX.Y.Z that matches VERSION and its Changelog entry"]
         ],
         "view": "release"
@@ -551,7 +551,7 @@
       "label": "Version and Changelog",
       "kind": "identity",
       "details": {
-        "release": "10.1.3",
+        "release": "10.2.0",
         "follows": "SemVer 2.0.0 and Keep a Changelog 1.1.0"
       },
       "files": ["VERSION", "CHANGELOG.md"]
@@ -561,7 +561,7 @@
       "label": "Tool supply",
       "kind": "input",
       "details": {
-        "pins": "ETHOS 0.2.0-beta.11 through Mise and its lock"
+        "pins": "ETHOS 0.2.0-beta.12 through Mise and its lock"
       },
       "files": [".config/mise/"]
     },

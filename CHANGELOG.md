@@ -92,8 +92,8 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   instead of 2026.11.9, and the hosted jobs keep their CI artifacts for 14 days.
 - The repository's tools run on Node 26.13.1, a security release, and its format check on Prettier
   3.10.1.
-- OpenAI Responses Proxy is pinned at v8.0.0, Architecture Publisher at v0.21.0, Film Kit at
-  v0.35.0, ETHOS at v0.2.0-beta.12, AIGW at v0.12.0 and the Data Department Work Guidelines at v10.1.3.
+- OpenAI Responses Proxy is pinned at v8.0.0, Architecture Publisher at v0.22.0, Film Kit at
+  v0.35.0, ETHOS at v0.2.0-beta.12, AIGW at v0.12.0 and the Data Department Work Guidelines at v10.2.0.
   The Architecture Publisher work lists the `skill` command, describes strips,
   palettes, age bands and the sealed acceptance of an edition, and claims
   `src/style.mjs`. The Film Kit work claims the engine's own draft and picture
@@ -205,6 +205,14 @@ Versions below `1.0.0` remain pre-release contracts and may contain incompatible
   reports what its gates left in the lane; that a quiet host lets a proof skip one sampling interval; and that each
   repository keeps its domain model and the subjects, names and axes of its layout; it gives the gate inputs'
   contract to the gate policy, and its history ends at the release.
+  At v0.22.0 the Architecture Publisher work says that a view may name its composition, tiers, a matrix, a radial
+  figure or a spine, and that the composer chooses one for each view; that tiers fill the blank their rows leave
+  with a band or spread rows; that a radial figure's slanting lines are measured along their own lines; and that the
+  data's format stands once, in a JSON Schema; it gives `src/environment.json` an owner, and its history ends at the
+  release. At v10.2.0 the DDWG work says that hiring may weigh qualities declared in writing for the role before its
+  interviews, which set neither the entry grade nor a tier; that the decision owner tells a member their tier and
+  its records in person; that the four non-negotiable boundaries are the conditions under which colleagues can rely
+  on one another; and that its tools take ETHOS 0.2.0-beta.12; its history ends at the release.
 - The ETHOS work claims the application layer and the operation catalog. The
   AIGW work uses the client's new vocabulary: it no longer has a renaming
   component, and its catalog, readiness, configuration and rollout panels follow

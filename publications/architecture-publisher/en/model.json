@@ -6,7 +6,7 @@
   "title": "Architecture Publisher",
   "question": "How does Architecture Publisher turn an architecture model into a print edition and an HTML page?",
   "summary": "A build validates the model, gives each file in its scope at the pinned revision to the component that claims it, plans the views and lays each out on one grid. It typesets a print edition: the model's overview and one plate per view, each part a card with a strip whose length is in proportion to the size of its files. It also writes one HTML page, which is the author's guide when the model names one; the edition as data, with a reader file for a reader that works from text; and a manifest of their digests. A named reviewer accepts the delivery before it is published.",
-  "scope": "Architecture Publisher as released at v0.21.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
+  "scope": "Architecture Publisher as released at v0.22.0: the publisher's source under src/, its package manifest and the manifests of its vendored supplies.",
   "limits": [
     "A component lists only the files under the paths it claims, each file given to its most specific claim; a relation lists only the modules that import or call the other component.",
     "Relations show only imports and process calls in the source, not runtime order; none is drawn for the shared refusal type, the child environment, or the delivery's names and house tokens that many modules read (src/names.mjs, src/house.mjs).",
@@ -15,7 +15,7 @@
   "repository": {
     "name": "architecture-publisher",
     "url": "https://github.com/HengYangDS/architecture-publisher",
-    "revision": "888880d8c3f56b63eea9b9e8e1bffbf986f4c5b4"
+    "revision": "5b6dd53e3d1c6b0a36680d33fccce4944a54ceea"
   },
   "coverage": {
     "include": ["src/", "package.json", "renderers/*/supply/supply.json", "supplies/*/supply.json"]
@@ -146,8 +146,11 @@
       {
         "title": "How a view is drawn",
         "items": [
-          ["Rows", "parts on shared row lines of one grid, each as wide as its text or its strip"],
-          ["Wires", "only horizontal or vertical, in channels between rows"],
+          [
+            "Rows",
+            "in tiers, parts on shared row lines of one grid, each as wide as its text or strip"
+          ],
+          ["Wires", "horizontal or vertical between rows; at any slant in a radial figure"],
           ["Overlap", "a layout that overlaps is never drawn"],
           ["Refusal", "a view that no layout can draw is refused, never shrunk"]
         ],
@@ -357,7 +360,7 @@
         "reads": "Git at the pinned revision, never changing the checkout",
         "dates": "each file by its last change, for three fixed age bands"
       },
-      "files": ["src/sources/", "src/environment.mjs"]
+      "files": ["src/sources/", "src/environment.mjs", "src/environment.json"]
     },
     {
       "id": "scope",
@@ -411,7 +414,8 @@
       "label": "Grid layout",
       "kind": "engine",
       "details": {
-        "places": "cards on one grid"
+        "places": "cards on one grid",
+        "fills": "the blank its rows leave, with a band or spread rows"
       },
       "files": ["src/layout/"]
     },
@@ -466,6 +470,7 @@
       "kind": "medium",
       "details": {
         "composes": "each view as one plate for the edition's body, at the narrowest of three widths that wires no worse, or at the full width with its summary above it, or over the whole body with its summary in its head",
+        "chooses": "for each view, tiers, a matrix, a radial figure or a spine",
         "records": "the balance gates each plate misses, for the reviewer",
         "draws": "each part as one card, its strip's length the size of its files, on one scale for the edition",
         "justifies": "a part's details in an edition written without spaces between words, each line but a detail's last spread to one measure",

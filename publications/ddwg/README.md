@@ -3,8 +3,8 @@
 [`en/model.json`](en/model.json) is an Architecture Model of how the Data Department
 work guidelines lead a reader to the rule that owns a task, and how a change to
 them is proposed, checked and released. It pins
-`data-department-work-guidelines` at v10.1.3
-(`127e15186115c1cf30e9f476e4991d587bf50500`), and its components own all 48
+`data-department-work-guidelines` at v10.2.0
+(`c0308de82eb1714fafdfc19d7a9da58f32d11d41`), and its components own all 48
 files of its coverage scope: the two entries, the task map, the eight topics,
 the decision records, the maintenance documents, the OpenSpec workspace with
 its six capability specs, and the ETHOS, tool, check and CI configuration.
@@ -24,7 +24,7 @@ work question, what the charter holds every topic to and how the topics hand
 work to each other. It then shows which specs state what the guidelines must
 do, how a change is proposed, checked and admitted, what the checks read and
 how a release reaches two Forges. It ends with the decisions behind
-the lifecycle and what is still open. Each claim cites a line range at v10.1.3,
+the lifecycle and what is still open. Each claim cites a line range at v10.2.0,
 and the diagrams the draft names sit beside it.
 
 Each component claims the directories and files its path rules name, and each

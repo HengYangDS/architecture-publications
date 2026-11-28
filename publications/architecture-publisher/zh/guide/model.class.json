@@ -10,7 +10,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "888880d8c3f56b63eea9b9e8e1bffbf986f4c5b4"
+      "revision": "5b6dd53e3d1c6b0a36680d33fccce4944a54ceea"
     }
   },
   "layout": {
@@ -57,8 +57,8 @@
       "sources": [
         {
           "path": "src/model/load.mjs",
-          "line": 37,
-          "end_line": 58,
+          "line": 38,
+          "end_line": 59,
           "label": "Fields"
         }
       ]
@@ -117,8 +117,8 @@
       "sources": [
         {
           "path": "src/model/load.mjs",
-          "line": 332,
-          "end_line": 340,
+          "line": 333,
+          "end_line": 341,
           "label": "Relations"
         }
       ]
@@ -159,8 +159,8 @@
       "sources": [
         {
           "path": "src/model/load.mjs",
-          "line": 311,
-          "end_line": 330,
+          "line": 312,
+          "end_line": 331,
           "label": "Components"
         }
       ]
@@ -189,8 +189,8 @@
       "sources": [
         {
           "path": "src/model/load.mjs",
-          "line": 394,
-          "end_line": 420,
+          "line": 395,
+          "end_line": 427,
           "label": "Views"
         }
       ]

@@ -9,7 +9,7 @@
     "repository": {
       "url": "https://github.com/HengYangDS/architecture-publisher",
       "provider": "github",
-      "revision": "888880d8c3f56b63eea9b9e8e1bffbf986f4c5b4"
+      "revision": "5b6dd53e3d1c6b0a36680d33fccce4944a54ceea"
     }
   },
   "components": [
@@ -23,8 +23,8 @@
       "sources": [
         {
           "path": "src/poster/plate.mjs",
-          "line": 84,
-          "end_line": 84,
+          "line": 105,
+          "end_line": 105,
           "label": "Plate layout"
         }
       ]
@@ -55,8 +55,8 @@
       "sources": [
         {
           "path": "src/layout/grid.mjs",
-          "line": 87,
-          "end_line": 120,
+          "line": 89,
+          "end_line": 118,
           "label": "layoutView"
         }
       ]
@@ -103,8 +103,8 @@
       "sources": [
         {
           "path": "src/layout/channels.mjs",
-          "line": 60,
-          "end_line": 68,
+          "line": 61,
+          "end_line": 70,
           "label": "buildWires"
         }
       ]
@@ -136,7 +136,7 @@
         {
           "path": "src/layout/measure.mjs",
           "line": 1,
-          "end_line": 4,
+          "end_line": 7,
           "label": "Measure"
         }
       ]
